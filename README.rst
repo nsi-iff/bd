@@ -1,5 +1,7 @@
-Digital Library 2.0
-===================
+BD 2.0
+======
 
-Coming soon...
+Dependências nativas
+--------------------
 
+A gem capybara-webkit depende da instalação do pacote libqt4-dev (no Ubuntu).
