@@ -1,0 +1,31 @@
+%p
+  Título:
+  = conteudo.titulo
+%p
+  Arquivo:
+  = conteudo.arquivo
+%p
+  Link:
+  = conteudo.link
+%p
+  Grande Área de Conhecimento:
+  = conteudo.grande_area_de_conhecimento
+%p
+  Área de Conhecimento:
+  = conteudo.area_de_conhecimento
+- conteudo.autores.each do |autor|
+  %p
+    Autor:
+    = autor.nome
+  %p
+    Curriculum Lattes:
+    = autor.lattes
+%p
+  Campus:
+  = conteudo.campus
+%p
+  Resumo:
+  = conteudo.resumo
+%p
+  Direitos:
+  = conteudo.direitos

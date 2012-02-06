@@ -1,0 +1,18 @@
+= semantic_form_for @artigo_de_evento do |f|
+  = render 'conteudos/dados_basicos', :f => f
+  = f.input :subtitulo, label: 'Subtítulo'
+  = f.inputs 'Dados do evento' do
+    = f.input :nome_evento, label: 'Nome'
+    = f.input :numero_evento, label: 'Número'
+    = f.input :local_evento, label: 'Local'
+    = f.input :ano_evento, label: 'Ano'
+  = f.inputs 'Publicação' do
+    = f.input :editora
+    = f.input :ano_publicacao, label: 'Ano'
+    = f.input :local_publicacao, label: 'Local'
+    = f.input :titulo_anais, label: 'Título dos anais'
+  = f.input :pagina_inicial, label: 'Página inicial do trabalho'
+  = f.input :pagina_final, label: 'Página final do trabalho'
+
+  = f.buttons do
+    = f.submit 'Salvar'

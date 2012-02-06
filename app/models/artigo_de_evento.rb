@@ -1,0 +1,2 @@
+class ArtigoDeEvento < Conteudo
+end
