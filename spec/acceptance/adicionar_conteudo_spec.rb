@@ -21,4 +21,25 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
       page.should have_content 'não pode existir simultaneamente a link'
     end
   end
+
+  scenario 'aceita vários autores', :driver => :webkit do
+    submeter_conteudo :artigo_de_evento, :autores => false do
+      ['Linus Torvalds',
+       'Yukihiro Matsumoto',
+       'Guido van Rossum'].each_with_index do |autor, i|
+        click_link 'Adicionar autor'
+        within "#autores .nested-fields:nth-child(#{i + 1})" do
+          fill_in 'Autor', with: autor
+          fill_in 'Curriculum Lattes',
+            with: "http://lattes.cnpq.br/#{autor.downcase.gsub(' ', '_')}"
+        end
+      end
+    end
+    page.should have_content 'Autor: Linus Torvalds'
+    page.should have_content 'Curriculum Lattes: http://lattes.cnpq.br/linus_torvalds'
+    page.should have_content 'Autor: Yukihiro Matsumoto'
+    page.should have_content 'Curriculum Lattes: http://lattes.cnpq.br/yukihiro_matsumoto'
+    page.should have_content 'Autor: Guido van Rossum'
+    page.should have_content 'Curriculum Lattes: http://lattes.cnpq.br/guido_van_rossum'
+  end
 end
