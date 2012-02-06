@@ -21,6 +21,7 @@ group :test, :development do
   gem 'capybara', '~> 1.1.2'
   gem 'capybara-webkit', '~> 0.9.0'
   gem 'launchy', '~> 2.0.5'
+  gem 'factory_girl_rails', '~> 1.6.0'
 end
 
 gem 'jquery-rails'
