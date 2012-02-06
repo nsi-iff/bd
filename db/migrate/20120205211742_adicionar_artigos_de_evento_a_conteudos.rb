@@ -1,6 +1,7 @@
 class AdicionarArtigosDeEventoAConteudos < ActiveRecord::Migration
   def up
     change_table :conteudos do |t|
+      t.string :subtitulo
       t.string :nome_evento
       t.string :local_evento
       t.integer :numero_evento
@@ -16,6 +17,7 @@ class AdicionarArtigosDeEventoAConteudos < ActiveRecord::Migration
 
   def down
     change_table :conteudos do |t|
+      t.remove :subtitulo
       t.remove :nome_evento
       t.remove :local_evento
       t.remove :numero_evento
@@ -29,3 +31,4 @@ class AdicionarArtigosDeEventoAConteudos < ActiveRecord::Migration
     end
   end
 end
+

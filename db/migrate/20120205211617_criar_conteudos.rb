@@ -9,7 +9,6 @@ class CriarConteudos < ActiveRecord::Migration
       t.string :campus
       t.text :direitos
       t.text :resumo
-      t.string :subtitulo
 
       t.string :type
 
@@ -21,3 +20,4 @@ class CriarConteudos < ActiveRecord::Migration
     drop_table :conteudos
   end
 end
+

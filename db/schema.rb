@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(:version => 20120205213318) do
     t.string   "campus"
     t.text     "direitos"
     t.text     "resumo"
-    t.string   "subtitulo"
     t.string   "type"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "subtitulo"
     t.string   "nome_evento"
     t.string   "local_evento"
     t.integer  "numero_evento"
