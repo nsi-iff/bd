@@ -3,6 +3,31 @@
 require 'spec_helper'
 
 feature 'adicionar conteudo (referente aos dados básicos)' do
+  scenario 'adicionar dados basicos de conteudo', :driver => :webkit do
+    visit new_artigo_de_evento_path
+    fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
+    fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
+    fill_in 'Grande Área de Conhecimento', with: 'Ciência da Computação'
+    fill_in 'Área de Conhecimento*', with: 'Linguagens de Programação'
+    click_link 'Adicionar autor'
+    fill_in 'Autor', with: 'Yukihiro Matsumoto'
+    fill_in 'Curriculum Lattes', with: 'http://lattes.cnpq.br/1234567890'
+    fill_in 'Campus da Instituição do Usuário', with: 'Campos Centro'
+    fill_in 'Direitos', with: 'Direitos e esquerdos'
+    fill_in 'Resumo', with: 'This work proposes an Ruby performance improvement'
+    click_button 'Salvar'
+
+    page.should have_content 'Título: A Proposal for Ruby Performance Improvements'
+    page.should have_content 'Link: http://www.rubyconf.org/articles/1'
+    page.should have_content 'Grande Área de Conhecimento: Ciência da Computação'
+    page.should have_content 'Área de Conhecimento: Linguagens de Programação'
+    page.should have_content 'Autor: Yukihiro Matsumoto'
+    page.should have_content 'Curriculum Lattes: http://lattes.cnpq.br/1234567890'
+    page.should have_content 'Campus: Campos Centro'
+    page.should have_content 'Direitos: Direitos e esquerdos'
+    page.should have_content 'Resumo: This work proposes an Ruby performance improvement'
+  end
+
   scenario 'arquivo e link não podem ser fornecidos simultaneamente',
            :driver => :webkit do
     submeter_conteudo :artigo_de_evento, link: '', arquivo: 'arquivo.nsi'
