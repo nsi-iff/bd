@@ -76,9 +76,9 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     [:titulo, :grande_area_de_conhecimento, :area_de_conhecimento,
      :campus].each do |campo|
       within("#artigo_de_evento_#{campo}_input") do
-        page.should have_content "can't be blank"
+        page.should have_content "não pode ficar em branco"
       end
     end
-    within('#autores') { page.should have_content "can't be blank" }
+    within('#autores') { page.should have_content "não pode ficar em branco" }
   end
 end
