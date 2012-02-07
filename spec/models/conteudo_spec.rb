@@ -11,4 +11,19 @@ describe Conteudo do
     conteudo.errors[:arquivo].should be_any
     conteudo.errors[:link].should be_any
   end
+
+  context 'atributos obrigatorios' do
+    it { should_not have_valid(:titulo).when('', nil) }
+    it { should_not have_valid(:grande_area_de_conhecimento).when('', nil) }
+    it { should_not have_valid(:area_de_conhecimento).when('', nil) }
+    it { should_not have_valid(:campus).when('', nil) }
+
+    it 'deve ter pelo menos um autor' do
+      subject.valid?
+      subject.errors[:autores].should be_any
+      subject.autores.build(nome: 'Linus', lattes: 'http://lattes.cnpq.br/1')
+      subject.valid?
+      subject.errors[:autores].should_not be_any
+    end
+  end
 end

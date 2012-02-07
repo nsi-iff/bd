@@ -5,9 +5,10 @@
 = f.input :area_de_conhecimento, label: 'Área de Conhecimento'
 #autores
   = f.semantic_fields_for :autores do |autor|
-    = render 'conteudos/autor_fields', :f => autor
+    = render 'autor_fields', :f => autor
   .links
     = link_to_add_association 'Adicionar autor', f, :autores
+  = f.semantic_errors :autores
 = f.input :campus, label: 'Campus da Instituição do Usuário'
 = f.input :resumo
 = f.input :direitos

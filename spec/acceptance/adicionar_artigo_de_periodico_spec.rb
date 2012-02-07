@@ -4,21 +4,21 @@ require 'spec_helper'
 
 feature 'adicionar artigo de periódico' do
   scenario 'padrao', :driver => :webkit do
-    visit new_artigo_de_periodico_path
-    fill_in 'Subtítulo', with: 'Adicionando artigo de periódico'
-    within_fieldset 'Dados do periódico' do
-      fill_in 'Nome', with: 'Nome teste do periódico'
+    submeter_conteudo :artigo_de_periodico do
+      fill_in 'Subtítulo', with: 'Adicionando artigo de periódico'
+      within_fieldset 'Dados do periódico' do
+        fill_in 'Nome', with: 'Nome teste do periódico'
+      end
+      within_fieldset 'Publicação' do
+        fill_in 'Editora', with: 'Essentia'
+        fill_in 'Fascículo', with: 'Fascículo do periódico'
+        fill_in 'Volume', with: '2'
+        fill_in 'Data', with: '2013'
+        fill_in 'Local', with: 'Campos dos Goytacazes (RJ)'
+      end
+      fill_in 'Página inicial da publicação', with: '10'
+      fill_in 'Página final da publicação', with: '25'
     end
-    within_fieldset 'Publicação' do
-      fill_in 'Editora', with: 'Essentia'
-      fill_in 'Fascículo', with: 'Fascículo do periódico'
-      fill_in 'Volume', with: '2'
-      fill_in 'Data', with: '2013'
-      fill_in 'Local', with: 'Campos dos Goytacazes (RJ)'
-    end
-    fill_in 'Página inicial da publicação', with: '10'
-    fill_in 'Página final da publicação', with: '25'
-    click_button 'Salvar'
 
     page.should have_content 'Subtítulo: Adicionando artigo de periódico'
     page.should have_content 'Página inicial da publicação: 10'

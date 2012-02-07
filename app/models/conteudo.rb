@@ -4,6 +4,8 @@ class Conteudo < ActiveRecord::Base
   has_many :autores
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
   validate :nao_pode_ter_arquivo_e_link_simultaneamente
+  validates :titulo, :grande_area_de_conhecimento, :area_de_conhecimento,
+            :campus, :autores, :presence => true
 
   private
 

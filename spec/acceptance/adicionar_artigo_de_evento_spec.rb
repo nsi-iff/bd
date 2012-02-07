@@ -7,8 +7,8 @@ feature 'adicionar artigo de evento' do
     visit new_artigo_de_evento_path
     fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
-    fill_in 'Grande Área de Conhecimento', :with => 'Ciência da Computação'
-    fill_in 'Área de Conhecimento', with: 'Linguagens de Programação'
+    fill_in 'Grande Área de Conhecimento', with: 'Ciência da Computação'
+    fill_in 'Área de Conhecimento*', with: 'Linguagens de Programação'
     click_link 'Adicionar autor'
     fill_in 'Autor', with: 'Yukihiro Matsumoto'
     fill_in 'Curriculum Lattes', with: 'http://lattes.cnpq.br/1234567890'
