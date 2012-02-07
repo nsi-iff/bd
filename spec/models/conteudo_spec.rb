@@ -12,6 +12,13 @@ describe Conteudo do
     conteudo.errors[:link].should be_any
   end
 
+  it 'arquivo ou link devem existir' do
+    conteudo = Factory.build(:conteudo, arquivo: '', link: '')
+    conteudo.should_not be_valid
+    conteudo.errors[:arquivo].should be_any
+    conteudo.errors[:link].should be_any
+  end
+
   context 'atributos obrigatorios' do
     it { should_not have_valid(:titulo).when('', nil) }
     it { should_not have_valid(:grande_area_de_conhecimento).when('', nil) }
