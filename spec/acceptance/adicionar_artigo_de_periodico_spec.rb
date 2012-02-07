@@ -1,0 +1,37 @@
+# encoding: utf-8
+
+require 'spec_helper'
+
+feature 'adicionar artigo de periódico' do
+  scenario 'padrao', :driver => :webkit do
+    visit new_artigo_de_periodico_path
+    fill_in 'Subtítulo', with: 'Adicionando artigo de periódico'
+    within_fieldset 'Dados do periódico' do
+      fill_in 'Nome', with: 'Nome teste do periódico'
+    end
+    within_fieldset 'Publicação' do
+      fill_in 'Editora', with: 'Essentia'
+      fill_in 'Fascículo', with: 'Fascículo do periódico'
+      fill_in 'Volume', with: '2'
+      fill_in 'Data', with: '2013'
+      fill_in 'Local', with: 'Campos dos Goytacazes (RJ)'
+    end
+    fill_in 'Página inicial da publicação', with: '10'
+    fill_in 'Página final da publicação', with: '25'
+    click_button 'Salvar'
+
+    page.should have_content 'Subtítulo: Adicionando artigo de periódico'
+    page.should have_content 'Página inicial da publicação: 10'
+    page.should have_content 'Página final da publicação: 25'
+    within_fieldset 'Dados do periódico' do
+      page.should have_content 'Nome: Nome teste do periódico'
+    end
+    within_fieldset 'Publicação' do
+     page.should have_content 'Editora: Essentia'
+     page.should have_content 'Fascículo: Fascículo do periódico'
+     page.should have_content 'Volume: 2'
+     page.should have_content 'Data: 2013'
+     page.should have_content 'Local: Campos dos Goytacazes (RJ)'
+    end
+  end
+end

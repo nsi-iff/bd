@@ -1,0 +1,2 @@
+class ArtigoDePeriodico < Conteudo
+end

@@ -7,6 +7,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.singular /ores$/i, 'or'
   inflect.irregular 'artigo_de_evento', 'artigos_de_evento'
   inflect.irregular 'ArtigoDeEvento', 'ArtigosDeEvento'
+  inflect.irregular 'artigo_de_periodico', 'artigos_de_periodico'
+  inflect.irregular 'ArtigoDePeriodico', 'ArtigosDePeriodico'
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'
