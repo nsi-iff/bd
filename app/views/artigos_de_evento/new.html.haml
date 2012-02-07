@@ -2,15 +2,19 @@
   = render 'conteudos/dados_basicos', :f => f
   = f.input :subtitulo, label: 'Subtítulo'
   = f.inputs 'Dados do evento' do
-    = f.input :nome_evento, label: 'Nome'
-    = f.input :numero_evento, label: 'Número'
-    = f.input :local_evento, label: 'Local'
-    = f.input :ano_evento, label: 'Ano'
+    = f.input :nome_evento, label: 'Nome',
+        hint: 'Nome do evento onde o artigo foi publicado'
+    = f.input :numero_evento, label: 'Número',
+        hint: 'Número do evento onde o artigo foi publicado'
+    = f.input :local_evento, label: 'Local',
+        hint: 'Local do evento onde o artigo foi publicado'
+    = f.input :ano_evento, label: 'Ano',
+        hint: 'Ano do evento onde o artigo foi publicado'
   = f.inputs 'Publicação' do
-    = f.input :editora
+    = f.input :editora, hint: 'Uma organização que coordena a publicação dos anais do evento'
     = f.input :ano_publicacao, label: 'Ano'
     = f.input :local_publicacao, label: 'Local'
-    = f.input :titulo_anais, label: 'Título dos anais'
+    = f.input :titulo_anais, label: 'Título dos anais', hint: 'Título da publicação do artigo'
   = f.input :pagina_inicial, label: 'Página inicial do trabalho'
   = f.input :pagina_final, label: 'Página final do trabalho'
 
