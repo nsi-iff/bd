@@ -2,15 +2,21 @@
   = render 'conteudos/dados_basicos', :f => f
   = f.input :subtitulo, label: 'Subtítulo'
   = f.inputs 'Dados do periódico' do
-    = f.input :nome_periodico, label: 'Nome'
+    = f.input :nome_periodico, label: 'Nome',
+        hint: 'Nome do periódico no qual o artigo foi publicado'
   = f.inputs 'Publicação' do
-    = f.input :editora
+    = f.input :editora,
+        hint: 'Uma organização que coordena a publicação dos anais do evento'
     = f.input :fasciculo, label: 'Fascículo'
-    = f.input :volume_publicacao, label: 'Volume'
-    = f.input :data_publicacao, label: 'Data'
+    = f.input :volume_publicacao, label: 'Volume',
+        hint: 'Volume da publicação do artigo'
+    = f.input :data_publicacao, label: 'Data',
+        hint: 'Data de publicação do artigo'
     = f.input :local_publicacao, label: 'Local'
-  = f.input :pagina_inicial, label: 'Página inicial da publicação'
-  = f.input :pagina_final, label: 'Página final da publicação'
+  = f.input :pagina_inicial, label: 'Página inicial da publicação',
+      hint: 'Página inicial da publicação do artigo'
+  = f.input :pagina_final, label: 'Página final da publicação',
+      hint: 'Página final da publicação do artigo'
 
   = f.buttons do
     = f.submit 'Salvar'
