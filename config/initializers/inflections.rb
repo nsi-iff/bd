@@ -9,6 +9,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'ArtigoDeEvento', 'ArtigosDeEvento'
   inflect.irregular 'artigo_de_periodico', 'artigos_de_periodico'
   inflect.irregular 'ArtigoDePeriodico', 'ArtigosDePeriodico'
+  inflect.irregular 'periodico_tecnico_cientifico', 'periodicos_tecnico_cientificos'
+  inflect.irregular 'PeriodicoTecnicoCientifico', 'PeriodicosTecnicoCientificos'
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'
