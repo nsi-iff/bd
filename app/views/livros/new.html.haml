@@ -1,0 +1,11 @@
+= semantic_form_for @livro do |f|
+  = render 'conteudos/dados_basicos', :f => f
+  = f.input :subtitulo, label: 'Subtítulo'
+  = f.input :traducao, label: 'Tradução', hint: 'Sim, se representa a tradução de uma obra.'
+  = f.input :numero_edicao, label: 'Número da Edição'
+  = f.input :local_publicacao, label: 'Local da Publicação'
+  = f.input :editora, hint: 'Uma organização que coordena a publicação de obras literárias. Opcionalmente a editora geralmente disponibiliza um grupo para revisar, encadernar e/ou digitalizar a obra.'
+  = f.input :ano_publicacao, label: 'Ano de Publicação'
+  = f.input :numero_paginas, label: 'Número de Páginas'
+  = f.buttons do
+    = f.submit 'Salvar'

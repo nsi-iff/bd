@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206221420) do
+ActiveRecord::Schema.define(:version => 20120208041723) do
 
   create_table "autores", :force => true do |t|
     t.string   "nome"
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(:version => 20120206221420) do
     t.string   "campus"
     t.text     "direitos"
     t.text     "resumo"
-    t.string   "subtitulo"
     t.string   "type"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.string   "subtitulo"
     t.string   "nome_evento"
     t.string   "local_evento"
     t.integer  "numero_evento"
@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(:version => 20120206221420) do
     t.string   "fasciculo"
     t.integer  "volume_publicacao"
     t.integer  "data_publicacao"
+    t.boolean  "traducao",                    :default => false
+    t.integer  "numero_edicao"
+    t.integer  "numero_paginas"
   end
 
 end
