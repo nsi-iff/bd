@@ -1,0 +1,2 @@
+class Relatorio < Conteudo
+end
