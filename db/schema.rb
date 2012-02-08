@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206221420) do
+ActiveRecord::Schema.define(:version => 20120207223435) do
 
   create_table "autores", :force => true do |t|
     t.string   "nome"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(:version => 20120206221420) do
     t.string   "fasciculo"
     t.integer  "volume_publicacao"
     t.integer  "data_publicacao"
+    t.integer  "ano_primeiro_volume"
+    t.integer  "ano_ultimo_volume"
   end
 
 end
