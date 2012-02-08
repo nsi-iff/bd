@@ -2,6 +2,7 @@ DigitalLibrary::Application.routes.draw do
   resources :artigos_de_evento, :only => [:new, :create, :show]
   resources :artigos_de_periodico, :only => [:new, :create, :show]
   resources :livros, :only => [:new, :create, :show]
+  resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
