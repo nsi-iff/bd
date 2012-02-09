@@ -20,6 +20,7 @@ feature 'adicionar artigo de periódico' do
       fill_in 'Página final da publicação', with: '25'
     end
 
+    validar_conteudo
     page.should have_content 'Subtítulo: Adicionando artigo de periódico'
     page.should have_content 'Página inicial da publicação: 10'
     page.should have_content 'Página final da publicação: 25'

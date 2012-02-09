@@ -13,6 +13,7 @@ feature 'adicionar periodico tecnico cientifico' do
       fill_in 'Ano do último volume', with: '2011'
     end
 
+    validar_conteudo
     within_fieldset 'Publicação' do
       page.should have_content 'Editora: Bookmam'
       page.should have_content 'Local: Campos dos Goytacazes'

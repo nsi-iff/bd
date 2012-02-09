@@ -9,6 +9,8 @@ feature 'adicionar relatório' do
       fill_in 'Ano', with: '1998'
       fill_in 'Número de páginas', with: '427'
     end
+
+    validar_conteudo
     page.should have_content 'Local da publicação: Rio de Janeiro'
     page.should have_content 'Ano: 1998'
     page.should have_content 'Número de páginas: 427'

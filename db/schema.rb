@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(:version => 20120208041723) do
     t.string   "fasciculo"
     t.integer  "volume_publicacao"
     t.integer  "data_publicacao"
-    t.integer  "ano_primeiro_volume"
-    t.integer  "ano_ultimo_volume"
     t.boolean  "traducao",                    :default => false
     t.integer  "numero_edicao"
     t.integer  "numero_paginas"
+    t.integer  "ano_primeiro_volume"
+    t.integer  "ano_ultimo_volume"
   end
 
 end
