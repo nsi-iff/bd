@@ -10,8 +10,10 @@ describe Livro do
   it { should have_valid(:numero_edicao).when '4' }
   it { should have_valid(:numero_edicao).when '', nil }
   it { should_not have_valid(:numero_edicao).when '4 ed' }
+  it { should_not have_valid(:numero_edicao).when '-1' }
 
   it { should have_valid(:numero_paginas).when '180' }
   it { should have_valid(:numero_paginas).when '', nil }
   it { should_not have_valid(:numero_paginas).when 'cento e oitenta' }
+  it { should_not have_valid(:numero_paginas).when '-1' }
 end
