@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar relatório' do
-  scenario 'padrao', :driver => :webkit do
+  scenario 'padrao', :javascript => true do
     submeter_conteudo :relatorio do
       fill_in 'Local da publicação', with: 'Rio de Janeiro'
       fill_in 'Ano', with: '1998'

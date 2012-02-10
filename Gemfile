@@ -23,6 +23,7 @@ group :test, :development do
   gem 'launchy', '~> 2.0.5'
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'valid_attribute', '~> 1.2.0'
+  gem 'database_cleaner', '~> 0.7.1'
 end
 
 gem 'jquery-rails'

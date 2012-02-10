@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar conteudo (referente aos dados básicos)' do
-  scenario 'adicionar dados basicos de conteudo', :driver => :webkit do
+  scenario 'adicionar dados basicos de conteudo', :javascript => true do
     visit new_artigo_de_evento_path
     fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
@@ -29,7 +29,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
   end
 
   scenario 'arquivo e link não podem ser fornecidos simultaneamente',
-           :driver => :webkit do
+           :javascript => true do
     submeter_conteudo :artigo_de_evento, link: '', arquivo: 'arquivo.nsi'
     page.should have_content 'com sucesso'
 
@@ -48,7 +48,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     end
   end
 
-  scenario 'aceita vários autores', :driver => :webkit do
+  scenario 'aceita vários autores', :javascript => true do
     submeter_conteudo :artigo_de_evento do
       ['Linus Torvalds',
        'Yukihiro Matsumoto',

@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar periodico tecnico cientifico' do
-  scenario 'padrao', :driver => :webkit do
+  scenario 'padrao', :javascript => true do
     submeter_conteudo :periodico_tecnico_cientifico do
       within_fieldset 'Publicação' do
         fill_in 'Editora', with: 'Bookmam'
