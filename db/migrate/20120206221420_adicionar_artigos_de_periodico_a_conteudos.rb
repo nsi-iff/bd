@@ -6,10 +6,10 @@ class AdicionarArtigosDePeriodicoAConteudos < ActiveRecord::Migration
       # t.string :editora ---> artigo de evento
       t.string :fasciculo
       t.integer :volume_publicacao
-      t.integer :data_publicacao
+      t.string :data_publicacao
       # t.string :local_publicacao ---> artigo de evento
-      # t.string :pagina_inicial ---> artigo de evento
-      # t.string :pagina_final ---> artigo de evento
+      # t.integer :pagina_inicial ---> artigo de evento
+      # t.integer :pagina_final ---> artigo de evento
     end
   end
 

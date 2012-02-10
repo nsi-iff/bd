@@ -13,7 +13,7 @@ feature 'adicionar artigo de periódico' do
         fill_in 'Editora', with: 'Essentia'
         fill_in 'Fascículo', with: 'Fascículo do periódico'
         fill_in 'Volume', with: '2'
-        fill_in 'Data', with: '2013'
+        fill_in 'Data', with: '02/10/2011'
         fill_in 'Local', with: 'Campos dos Goytacazes (RJ)'
       end
       fill_in 'Página inicial da publicação', with: '10'
@@ -31,7 +31,7 @@ feature 'adicionar artigo de periódico' do
      page.should have_content 'Editora: Essentia'
      page.should have_content 'Fascículo: Fascículo do periódico'
      page.should have_content 'Volume: 2'
-     page.should have_content 'Data: 2013'
+     page.should have_content 'Data: 02/10/2011'
      page.should have_content 'Local: Campos dos Goytacazes (RJ)'
     end
   end
