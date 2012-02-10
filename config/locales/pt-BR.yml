@@ -198,3 +198,9 @@ pt-BR:
       long: ! '%A, %d de %B de %Y, %H:%M h'
       short: ! '%d/%m, %H:%M h'
     pm: ''
+
+  flexible_date:
+    configuration:
+      format: "%d/%m/%Y"
+    messages:
+      invalid: "inválida."
