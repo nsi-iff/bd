@@ -1,0 +1,375 @@
+;Idioma neutro
+ab;Abcasiano
+aa;Afar
+af;Afrikaans
+sq;Albaniano
+am;Amharic
+ar;Árabe
+ar-dz;Árabe (Argélia)
+ar-bh;Árabe (Bahrain)
+ar-td;Árabe (Chade)
+ar-eg;Árabe (Egito)
+ar-iq;Árabe (Iraque)
+ar-il;Árabe (Israel)
+ar-jo;Árabe (Jordânia)
+ar-kw;Árabe (Kuwait)
+ar-lb;Árabe (Líbano)
+ar-ly;Árabe (Líbia)
+ar-mr;Árabe (Mauritânia)
+ar-ma;Árabe (Marrocos)
+ar-om;Árabe (Omã)
+ar-ps;Árabe (Palestina e Gaza)
+ar-qa;Árabe (Qatar)
+ar-sa;Árabe (Arábia Saudita)
+ar-so;Árabe (Somália)
+ar-sd;Árabe (Sudão)
+ar-sy;Árabe (Síria)
+ar-tn;Árabe (Tunísia)
+ar-ae;Árabe (Emirados Árabes Unidos)
+ar-ye;Árabe (Iêmen)
+hy;Armênio
+as;Assamese
+ay;Aimará
+az;Azerbaijano
+ba;Bashkir
+eu;Basco
+be;Bielorruso
+bn;Bengali
+bn-bd;Bengali (Bangladesh)
+bn-in;Bengali (Índia)
+bn-sg;Bengali (Singapura)
+bh;Bihari
+bi;Bislama
+bs;Bósnio
+br;Bretão
+bg;Búlgaro
+my;Burmês
+km;Cambojano/Khmer
+ca;Catalão
+ch-gu;Chamorro (Guam)
+ch-mp;Chamorro (Northern Mariana Islands)
+zh;Chinês
+zh-cn;Chinês (China)
+zh-hk;Chinês (Hongkong)
+zh-sg;Chinês (Singapura)
+zh-tw;Chinês (Taiwan)
+kw;Cornish
+co;Corsican
+hr;Croata
+hr-ba;Croata (Bósnia-Herzegovina)
+hr-hr;Croata (Croácia)
+cs;Tcheco
+cs-cz;Tcheco (República Tcheca)
+da;Dinamarquês
+da-dk;Dinamarquês (Dinamarca)
+da-gl;Dinamarquês (Groenlândia)
+nl;Holandês
+nl-aw;Holandês (Aruba)
+nl-be;Holandês (Bélgica)
+nl-an;Holandês (Antilhas Holandesas)
+nl-nl;Holandês (Holanda)
+nl-sr;Holandês (Suriname)
+en;Inglês
+en-as;Inglês (Samoa Americana)
+en-ai;Inglês (Anguilla)
+en-ag;Inglês (Antigua e Barbuda)
+en-au;Inglês (Austrália)
+en-bs;Inglês (Bahamas)
+en-bb;Inglês (Barbados)
+en-bz;Inglês (Belize)
+en-bm;Inglês (Bermuda)
+en-bw;Inglês (Botsuana)
+en-io;Inglês (Território Britânico do Oceano Índico)
+en-vg;Inglês (Ilhas Virgens Britânicas)
+en-bn;Inglês (Brunei)
+en-cm;Inglês (Camarões)
+en-ca;Inglês (Canadá)
+en-ky;Inglês (Ilhas Cayman)
+en-ck;Inglês (Ilhas Cook)
+en-dm;Inglês (Dominica)
+en-er;Inglês (Eritreia)
+en-et;Inglês (Etiópia)
+en-fk;Inglês (Ilhas Falkland)
+en-fj;Inglês (Fiji)
+en-gm;Inglês (Gambia)
+en-gh;Inglês (Gana)
+en-gi;Inglês (Gibraltar)
+en-gd;Inglês (Granada)
+en-gu;Inglês (Guam)
+en-gy;Inglês (Guiana)
+en-ie;Inglês (Irlanda)
+en-il;Inglês (Israel)
+en-jm;Inglês (Jamaica)
+en-ke;Inglês (Quênia)
+en-ki;Inglês (Kiribati)
+en-ls;Inglês (Lesoto)
+en-lr;Inglês (Libéria)
+en-mw;Inglês (Malawi)
+en-mt;Inglês (Malta)
+en-mu;Inglês (Maurício)
+en-fm;Inglês (Micronésia)
+en-ms;Inglês (Montserrat)
+en-na;Inglês (Namíbia)
+en-nr;Inglês (Nauru)
+en-nz;Inglês (Nova Zelândia)
+en-ng;Inglês (Nigéria)
+en-nu;Inglês (Niue)
+en-nf;Inglês (Ilha Norfolk)
+en-mp;Inglês (Northern Mariana Islands)
+en-pk;Inglês (Paquistão)
+en-pw;Inglês (Palau)
+en-pg;Inglês (Papua Nova Guiné)
+en-ph;Inglês (Filipinas)
+en-pn;Inglês (Pitcairn)
+en-pr;Inglês (Porto Rico)
+en-rw;Inglês (Ruanda)
+en-sc;Inglês (Seychelles)
+en-sl;Inglês (Serra Leoa)
+en-sg;Inglês (Singapura)
+en-sb;Inglês (Ilhas Salomão)
+en-so;Inglês (Somália)
+en-za;Inglês (África do Sul)
+en-sh;Inglês (Santa Helena)
+en-kn;Inglês (St. Kitts-Nevis)
+en-lc;Inglês (Santa Lucia)
+en-vc;Inglês (São Vicente e Granadinas)
+en-sz;Inglês (Suazilândia)
+en-tk;Inglês (Tokelau)
+en-to;Inglês (Tonga)
+en-tt;Inglês (Trinidad e Tobago)
+en-tc;Inglês (Turks and Caicos Islands)
+en-vi;Inglês (U.S. Virgin Islands)
+en-us;Inglês (Estados Unidos)
+en-ug;Inglês (Uganda)
+en-gb;Inglês (Reino Unido)
+en-vu;Inglês (Vanuatu)
+en-ws;Inglês (Samoa Ocidental)
+en-zm;Inglês (Zâmbia)
+en-zw;Inglês (Zimbábue)
+eo;Esperanto
+et;Estoniano
+fo;Faroês
+fj;Fiji
+fi;Finlândiaês
+fr;Francês
+fr-ad;Francês (Andorra)
+fr-be;Francês (Bélgica)
+fr-bj;Francês (Benin)
+fr-bf;Francês (Burkina Faso)
+fr-bi;Francês (Burundi)
+fr-cm;Francês (Camarões)
+fr-ca;Francês (Canadá)
+fr-cf;Francês (República Centro-Africana)
+fr-td;Francês (Chad)
+fr-km;Francês (Ilhas Comoros)
+fr-cg;Francês (Congo)
+fr-ci;Francês (Costa do Marfim)
+fr-cd;Francês (República Democrática do Congo)
+fr-dj;Francês (Djibuti)
+fr-fr;Francês (França)
+fr-gf;Francês (Guiana Francesa)
+fr-pf;Francês (Polinésia Francesa)
+fr-ga;Francês (Gabão)
+fr-gp;Francês (Guadalupe)
+fr-gn;Francês (Guiné)
+fr-ht;Francês (Haiti)
+fr-it;Francês (Itália)
+fr-lb;Francês (Líbano)
+fr-lu;Francês (Luxemburgo)
+fr-mg;Francês (Madagascar)
+fr-ml;Francês (Mali)
+fr-mq;Francês (Martinica)
+fr-yt;Francês (Mayotte)
+fr-mc;Francês (Mônaco)
+fr-nc;Francês (Nova Caledônia)
+fr-re;Francês (Reunião)
+fr-rw;Francês (Ruanda)
+fr-sc;Francês (Seychelles)
+fr-pm;Francês (St. Pierre and Miquelon)
+fr-ch;Francês (Suíça)
+fr-tg;Francês (Togo)
+fr-gb;Francês (Reino Unido)
+fr-vu;Francês (Vanuatu)
+fr-wf;Francês (Wallis e Futuna)
+fy;Frisian
+gl;Galego
+ka;Georgiano
+de;Alemão
+de-at;Alemão (Áustria)
+de-be;Alemão (Bélgica)
+de-dk;Alemão (Dinamarca)
+de-de;Alemão (Alemanha)
+de-li;Alemão (Liechtenstein)
+de-lu;Alemão (Luxemburgo)
+de-ch;Alemão (Suíça)
+el;Grego
+el-cy;Grego (Chipre)
+el-gr;Grego (Grécia)
+kl;Greenlandic
+gn;Guarani
+gu;Gujarati
+ha;Hausa
+he;Hebraico
+hi;Hindi
+hu;Húngaro
+hu-hu;Húngaro (Hungria)
+hu-si;Húngaro (Eslovênia)
+is;Islandês
+dz;Índian Bhutani
+id;Indonésio
+ia;Interlingua
+ie;Interlingue
+iu;Inuktitut
+ik;Inupiak
+ga;Irish Gaelic
+it;Italiano
+it-hr;Italiano (Croácia)
+it-it;Italiano (Itália)
+it-sm;Italiano (San Marino)
+it-si;Italiano (Eslovênia)
+it-ch;Italiano (Suíça)
+ja;Japonês
+jw;Javanês
+kn;Kannada
+ks;Kashmiri
+kk;Kazakh
+ky;Kirghiz
+rn;Kirundi
+rw;Kiyarwanda
+ko;Coreano
+ko-kp;Coreano (Coreia do Norte)
+ko-kr;Coreano (Coreia do Sul)
+ku;Kurdish
+lo;Laosiano
+la;Latim
+lv;Letoniano
+li;Limburgish
+ln;Lingala
+ln-cg;Lingala (Congo)
+ln-cd;Lingala (República Democrática do Congo)
+lt;Lituaniano
+lb;Luxemburgês
+mk;Macedônio
+mg;Madagascariano
+ms;Malaio
+ms-bn;Malaio (Brunei)
+ms-my;Malaio (Malásia)
+ms-sg;Malaio (Singapura)
+ml;Malaioalam
+mt;Maltês
+gv;Manx Gaelic
+mi;Maori
+mr;Marathi
+mo;Moldave
+mn;Mongol
+me;Montenegrino
+na;Nauruano
+ne;Nepalês
+se;Northern Sámi
+no;Norueguês
+nn;Nynorsk
+oc;Occitan
+or;Oriya
+om;Oromo
+ps;Pashto
+fa;Persa
+pl;Polonês
+pt;Português
+pt-ao;Português (Angola)
+pt-br;Português (Brasil)
+pt-gw;Português (Guiné-Bissau)
+pt-cv;Português (Ilhas Cabo Verde)
+pt-mz;Português (Moçambique)
+pt-pt;Português (Portugal)
+pt-st;Português (São Tomé e Príncipe)
+pa;Punjabi
+qu;Quéchia
+rm;Rhaeto-Romance
+ro;Romeno
+ru;Russo
+sm;Samoano
+sg;Sangho
+sa;Sânscrito
+gd;Scottish Gaelic
+sr;Sérvio
+sr-ba;Sérvio (Bósnia-Herzegovina)
+sh;Servo-Croata
+st;Sesotho
+tn;Setswana
+sn;Shona
+sd;Sindhi
+sd-in;Sindhi (Índia)
+sd-pk;Sindhi (Paquistão)
+si;Singhalese
+ss;Siswati
+sk;Eslovavo
+sl;Esloveno
+so;Somali
+es;Espanhol
+es-ar;Espanhol (Argentina)
+es-bo;Espanhol (Bolívia)
+es-cl;Espanhol (Chile)
+es-co;Espanhol (Colômbia)
+es-cr;Espanhol (Costa Rica)
+es-cu;Espanhol (Cuba)
+es-do;Espanhol (República Dominicana)
+es-ec;Espanhol (Equador)
+es-sv;Espanhol (El Salvador)
+es-gq;Espanhol (Guiné Equatorial)
+es-gt;Espanhol (Guatemala)
+es-hn;Espanhol (Honduras)
+es-mx;Espanhol (México)
+es-ni;Espanhol (Nicarágua)
+es-pa;Espanhol (Panamá)
+es-py;Espanhol (Paraguai)
+es-pe;Espanhol (Peru)
+es-pr;Espanhol (Porto Rico)
+es-es;Espanhol (Espanha)
+es-us;Espanhol (Estados Unidos)
+es-uy;Espanhol (Uruguai)
+es-ve;Espanhol (Venezuela)
+su;Sudanês
+sw;Swahili
+sw-ke;Swahili (Quênia)
+sw-tz;Swahili (Tanzânia)
+ss-za;Swati (África do Sul)
+ss-sz;Swati (Suazilândia)
+sv;Sueco
+sv-fi;Sueco (Finlândia)
+sv-se;Sueco (Suécia)
+tg;Tadjik
+tl;Tagalog
+ta;Tamil
+ta-in;Tamil (Índia)
+ta-sg;Tamil (Singapura)
+tt;Tatar
+te;Telugu
+th;Thai
+bo;Tibetano
+ti;Tigrinya
+to;Tonga
+ts;Tsonga
+tn-bw;Tswana (Botsuana)
+tn-za;Tswana (África do Sul)
+tr;Turco
+tr-bg;Turco (Bulgária)
+tr-cy;Turco (Chipre)
+tr-tr;Turco (Turquia)
+tk;Turcomeno
+tw;Twi
+ug;Uigur
+uk;Ucraniano
+ur;Urdu
+ur-in;Urdu (Índia)
+ur-pk;Urdu (Paquistão)
+uz;Usbeque
+vi;Vietnamês
+vo;Volapük
+wa;Walloon
+cy;Galês
+wo;Wolof
+xh;Xhosa
+yi;Iídiche
+yo;Iorubá
+za;Zhuang
+zu;Zulu
