@@ -1,0 +1,11 @@
+= semantic_form_for @objeto_de_aprendizagem do |f|
+  = render 'conteudos/dados_basicos', :f => f
+  = f.input :palavras_chave, label: 'Palavras-chave',
+      hint: 'Palavras-chave do documento, separadas por vírgula'
+  = f.input :tempo_aprendizagem, label: 'Tempo de aprendizagem típico',
+      hint: 'Tempo típico para uma audiência típica lidar com o objeto de aprendizagem'
+  = f.input :eixos_tematicos, :member_label => :nome, label: 'Eixos temáticos',
+      hint: 'Eixos temáticos da EPCT'
+  = f.input :novas_tags
+  = f.input :idioma, :member_label => :descricao
+  = f.submit 'Salvar'

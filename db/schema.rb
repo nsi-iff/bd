@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120208041723) do
+ActiveRecord::Schema.define(:version => 20120209054733) do
 
   create_table "autores", :force => true do |t|
     t.string   "nome"
@@ -53,6 +53,28 @@ ActiveRecord::Schema.define(:version => 20120208041723) do
     t.integer  "numero_paginas"
     t.integer  "ano_primeiro_volume"
     t.integer  "ano_ultimo_volume"
+    t.string   "palavras_chave"
+    t.string   "tempo_aprendizagem"
+    t.text     "novas_tags"
+    t.integer  "idioma_id"
+  end
+
+  create_table "eixos_tematicos", :force => true do |t|
+    t.string   "nome"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "eixos_tematicos_objetos_de_aprendizagem", :id => false, :force => true do |t|
+    t.integer "objeto_de_aprendizagem_id"
+    t.integer "eixo_tematico_id"
+  end
+
+  create_table "idiomas", :force => true do |t|
+    t.string   "sigla"
+    t.string   "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
