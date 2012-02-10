@@ -7,7 +7,6 @@ feature 'adicionar objeto de aprendizagem' do
     Idioma.create! descricao: 'Português (Brasil)'
     %w(Algoritmos Objetos POO).each {|tema| EixoTematico.create! nome: tema }
     submeter_conteudo :objeto_de_aprendizagem do
-      save_and_open_page
       fill_in 'Palavras-chave', with: 'programação, orientação a objetos, classe'
       fill_in 'Tempo de aprendizagem típico', with: '2 meses'
       select 'Objetos', on: 'Eixos temáticos'

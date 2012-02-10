@@ -8,6 +8,7 @@ gem 'inherited_resources', '~> 1.3.0'
 gem 'haml', '~> 3.1.4'
 gem 'formtastic', '~> 2.0.2'
 gem 'cocoon', '~> 1.0.15'
+gem 'flexible_date', '~> 0.4.1'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
