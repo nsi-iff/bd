@@ -22,6 +22,7 @@ feature 'adicionar artigo de evento' do
       fill_in 'Página final do trabalho', with: '25'
     end
 
+    validar_conteudo
     page.should have_content 'Subtítulo: Ruby Becomes The Flash'
     page.should have_content 'Página inicial do trabalho: 10'
     page.should have_content 'Página final do trabalho: 25'
