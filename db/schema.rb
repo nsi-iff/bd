@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20120208041723) do
     t.string   "nome_periodico"
     t.string   "fasciculo"
     t.integer  "volume_publicacao"
-    t.date     "data_publicacao"
+    t.string   "data_publicacao"
     t.integer  "ano_primeiro_volume"
     t.integer  "ano_ultimo_volume"
     t.boolean  "traducao",                    :default => false
