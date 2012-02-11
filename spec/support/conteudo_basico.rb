@@ -6,6 +6,27 @@ def popular_area_sub_area
 
   engenharia = Area.create(:nome => 'Engenharias')
   SubArea.create(nome: 'Engenharia de Produção', area: engenharia)
+
+  biologicas = Area.create(:nome => 'Ciências Biológicas')
+  SubArea.create(nome: 'Biologia Geral', area: biologicas)
+
+  agrarias = Area.create(:nome => 'Ciências Agrárias')
+  SubArea.create(nome: 'Agronomia', area: agrarias)
+
+  saude = Area.create(:nome => 'Ciências da Saúde')
+  SubArea.create(nome: 'Enfermagem', area: saude)
+
+  humanas = Area.create(:nome => 'Ciências Humanas')
+  SubArea.create(nome: 'Teologia', area: humanas)
+
+  sociais_aplicadas = Area.create(:nome => 'Ciências Sociais Aplicadas')
+  SubArea.create(nome: 'Administração', area: sociais_aplicadas)
+
+  linguisticas = Area.create(:nome => 'Linguística, Letras e Artes')
+  SubArea.create(nome: 'Letras', area: linguisticas)
+
+  outras = Area.create(:nome => 'Outras')
+  SubArea.create(nome: 'Biomedicina', area: outras)
 end
 
 def submeter_conteudo(tipo, opcoes = {})

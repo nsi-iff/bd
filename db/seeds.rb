@@ -28,57 +28,57 @@ carregar_idiomas if Idioma.count == 0
 #######################  Seeds para Áreas e sub-áreas #######################
 
 Area.delete_all
+SubArea.delete_all
 #Criando Ciências Exatas e da Terra
 exatas = Area.create(:nome => 'Ciências Exatas e da Terra')
 #Criando sub_areas para exatas
-SubArea.delete_all
 SubArea.create([
-        {:nome => 'Astronomia',                    :area => exatas},
-        {:nome => 'Ciência da Computação',         :area => exatas},
-        {:nome => 'Física',                        :area => exatas},
-        {:nome => 'Geociências',                   :area => exatas},
-        {:nome => 'Matemática',                    :area => exatas},
-        {:nome => 'Oceanografia',                  :area => exatas},
-        {:nome => 'Probabilidade e Estatística',   :area => exatas},
-        {:nome => 'Química',                       :area => exatas}
+        { :nome => 'Astronomia',                    :area => exatas },
+        { :nome => 'Ciência da Computação',         :area => exatas },
+        { :nome => 'Física',                        :area => exatas },
+        { :nome => 'Geociências',                   :area => exatas },
+        { :nome => 'Matemática',                    :area => exatas },
+        { :nome => 'Oceanografia',                  :area => exatas },
+        { :nome => 'Probabilidade e Estatística',   :area => exatas },
+        { :nome => 'Química',                       :area => exatas }
 ])
 
 #Criando areas biologicas
 biologicas = Area.create(:nome => 'Ciências Biológicas')
 #Criando sub_areas para biologicas
 SubArea.create([
-        {:nome => 'Biofísica',        :area => biologicas},
-        {:nome => 'Biologia Geral',   :area => biologicas},
-        {:nome => 'Bioquimíca',       :area => biologicas},
-        {:nome => 'Botânica',         :area => biologicas},
-        {:nome => 'Ecologia',         :area => biologicas},
-        {:nome => 'Farmacologia',     :area => biologicas},
-        {:nome => 'Fisiologia',       :area => biologicas},
-        {:nome => 'Genética',         :area => biologicas},
-        {:nome => 'Imunologia',       :area => biologicas},
-        {:nome => 'Microbiologia',    :area => biologicas},
-        {:nome => 'Morfologia',       :area => biologicas},
-        {:nome => 'Parasitologia',    :area => biologicas},
-        {:nome => 'Zoologia',         :area => biologicas}
+        { :nome => 'Biofísica',        :area => biologicas },
+        { :nome => 'Biologia Geral',   :area => biologicas },
+        { :nome => 'Bioquimíca',       :area => biologicas },
+        { :nome => 'Botânica',         :area => biologicas },
+        { :nome => 'Ecologia',         :area => biologicas },
+        { :nome => 'Farmacologia',     :area => biologicas },
+        { :nome => 'Fisiologia',       :area => biologicas },
+        { :nome => 'Genética',         :area => biologicas },
+        { :nome => 'Imunologia',       :area => biologicas },
+        { :nome => 'Microbiologia',    :area => biologicas },
+        { :nome => 'Morfologia',       :area => biologicas },
+        { :nome => 'Parasitologia',    :area => biologicas },
+        { :nome => 'Zoologia',         :area => biologicas }
 ])
 
 #Criando areas Engenharias
 engenharias = Area.create(:nome => 'Engenharias')
 #Criando sub_ares para Engenharias
 SubArea.create([
-        {:nome => 'Engenharia Aeroespacial',                  :area => engenharias},
-        {:nome => 'Engenharia Biomédica',                     :area => engenharias},
-        {:nome => 'Engenharia Civil',                         :area => engenharias},
-        {:nome => 'Engenharia de Materiais e Metalúrgica',    :area => engenharias},
-        {:nome => 'Engenharia de Minas',                      :area => engenharias},
-        {:nome => 'Engenharia de Produção',                   :area => engenharias},
-        {:nome => 'Engenharia de Transportes',                :area => engenharias},
-        {:nome => 'Engenharia Elétrica',                      :area => engenharias},
-        {:nome => 'Engenharia Mecânica',                      :area => engenharias},
-        {:nome => 'Engenharia Naval e Oceânica',              :area => engenharias},
-        {:nome => 'Engenharia Nuclear',                       :area => engenharias},
-        {:nome => 'Engenharia Química',                       :area => engenharias},
-        {:nome => 'Engenharia Sanitária',                     :area => engenharias}
+        { :nome => 'Engenharia Aeroespacial',                  :area => engenharias },
+        { :nome => 'Engenharia Biomédica',                     :area => engenharias },
+        { :nome => 'Engenharia Civil',                         :area => engenharias },
+        { :nome => 'Engenharia de Materiais e Metalúrgica',    :area => engenharias },
+        { :nome => 'Engenharia de Minas',                      :area => engenharias },
+        { :nome => 'Engenharia de Produção',                   :area => engenharias },
+        { :nome => 'Engenharia de Transportes',                :area => engenharias },
+        { :nome => 'Engenharia Elétrica',                      :area => engenharias },
+        { :nome => 'Engenharia Mecânica',                      :area => engenharias },
+        { :nome => 'Engenharia Naval e Oceânica',              :area => engenharias },
+        { :nome => 'Engenharia Nuclear',                       :area => engenharias },
+        { :nome => 'Engenharia Química',                       :area => engenharias },
+        { :nome => 'Engenharia Sanitária',                     :area => engenharias }
 ])
 
 #Criando areas saúde
@@ -145,8 +145,8 @@ SubArea.create([
 ])
 
 #Criando areas Linguística, Letras e Artes
-linguisticas_letras_e_artes = Area.create(:nome => 'Linguistica, Letras e Artes')
-#Criando sub_areas para Linguística, Letras e Artes
+linguisticas_letras_e_artes = Area.create(:nome => 'Linguística, Letras e Artes')
+#Criando sub_areas para Linguística, Letras e Artes 
 SubArea.create([
         { :nome => 'Artes',         :area => linguisticas_letras_e_artes },
         { :nome => 'Letras',        :area => linguisticas_letras_e_artes },
@@ -162,7 +162,7 @@ SubArea.create([
         { :nome => 'Biomedicina',                     :area => outras },
         { :nome => 'Carreira Militar',                :area => outras },
         { :nome => 'Carreira Religiosa',              :area => outras },
-        { :nome => 'Ciências',                        :area => outras },
+        { :nome => 'Ciências' ,                       :area => outras },
         { :nome => 'Ciências Atuarias',               :area => outras },
         { :nome => 'Ciências Sociais',                :area => outras },
         { :nome => 'Decoração',                       :area => outras },
