@@ -4,11 +4,12 @@ require 'spec_helper'
 
 feature 'adicionar conteudo (referente aos dados básicos)' do
   scenario 'adicionar dados basicos de conteudo', :javascript => true do
+    popular_area_sub_area
     visit new_artigo_de_evento_path
     fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
-    fill_in 'Grande Área de Conhecimento', with: 'Ciência da Computação'
-    fill_in 'Área de Conhecimento*', with: 'Linguagens de Programação'
+    select('Ciências Exatas e da Terra', :from => 'Grande Área de Conhecimento') 
+    select('Ciência da Computação', :from => 'Área de Conhecimento*')
     click_link 'Adicionar autor'
     fill_in 'Autor', with: 'Yukihiro Matsumoto'
     fill_in 'Curriculum Lattes', with: 'http://lattes.cnpq.br/1234567890'
@@ -19,8 +20,8 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
 
     page.should have_content 'Título: A Proposal for Ruby Performance Improvements'
     page.should have_content 'Link: http://www.rubyconf.org/articles/1'
-    page.should have_content 'Grande Área de Conhecimento: Ciência da Computação'
-    page.should have_content 'Área de Conhecimento: Linguagens de Programação'
+    page.should have_content 'Grande Área de Conhecimento: Ciências Exatas e da Terra'
+    page.should have_content 'Área de Conhecimento: Ciência da Computação'
     page.should have_content 'Autor: Yukihiro Matsumoto'
     page.should have_content 'Curriculum Lattes: http://lattes.cnpq.br/1234567890'
     page.should have_content 'Campus: Campos Centro'
@@ -71,10 +72,8 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
 
   scenario 'campos obrigatórios' do
     submeter_conteudo :artigo_de_evento,
-      titulo: '', grande_area_de_conhecimento: '',
-      area_de_conhecimento: '', campus: '', autores: false
-    [:titulo, :grande_area_de_conhecimento, :area_de_conhecimento,
-     :campus].each do |campo|
+      titulo: '', campus: '', autores: false
+    [:titulo, :campus].each do |campo|
       within("#artigo_de_evento_#{campo}_input") do
         page.should have_content "não pode ficar em branco"
       end

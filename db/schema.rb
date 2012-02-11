@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210143607) do
+ActiveRecord::Schema.define(:version => 20120210215304) do
+
+  create_table "areas", :force => true do |t|
+    t.string   "nome"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "autores", :force => true do |t|
     t.string   "nome"
@@ -25,8 +31,6 @@ ActiveRecord::Schema.define(:version => 20120210143607) do
     t.string   "titulo"
     t.string   "link"
     t.string   "arquivo"
-    t.string   "grande_area_de_conhecimento"
-    t.string   "area_de_conhecimento"
     t.string   "campus"
     t.text     "direitos"
     t.text     "resumo"
@@ -57,6 +61,8 @@ ActiveRecord::Schema.define(:version => 20120210143607) do
     t.text     "novas_tags"
     t.integer  "idioma_id"
     t.date     "data_publicacao"
+    t.integer  "grande_area_de_conhecimento"
+    t.integer  "area_de_conhecimento"
   end
 
   create_table "eixos_tematicos", :force => true do |t|
@@ -73,6 +79,13 @@ ActiveRecord::Schema.define(:version => 20120210143607) do
   create_table "idiomas", :force => true do |t|
     t.string   "sigla"
     t.string   "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sub_areas", :force => true do |t|
+    t.string   "nome"
+    t.integer  "area_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

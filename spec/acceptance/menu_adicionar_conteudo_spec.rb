@@ -4,6 +4,7 @@ require 'spec_helper'
 
 feature 'verificar menu adicionar conteúdo' do
   scenario 'link para adicionar artigo de evento' do
+    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Artigo de Evento'
@@ -12,6 +13,7 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar artigo de periódico' do
+    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Artigo de Periódico'
@@ -20,6 +22,7 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar livro' do
+    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Livro'
@@ -28,6 +31,7 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar objeto de aprendizagem' do
+    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Objeto de Aprendizagem'
@@ -36,6 +40,7 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar periódico técnico científico' do
+    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Periódico Técnico Científico'
@@ -44,6 +49,7 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar relatório' do
+    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Relatório'

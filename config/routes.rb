@@ -6,7 +6,8 @@ DigitalLibrary::Application.routes.draw do
   resources :relatorios,  :only => [:new, :create, :show]
   resources :objetos_de_aprendizagem, :only => [:new, :create, :show]
   resources :adicionar_conteudo
-
+  match "/areas/:id/sub_areas" => "areas#sub_areas"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
