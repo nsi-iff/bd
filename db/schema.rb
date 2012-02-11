@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(:version => 20120210143607) do
     t.string   "campus"
     t.text     "direitos"
     t.text     "resumo"
+    t.string   "subtitulo"
     t.string   "type"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
-    t.string   "subtitulo"
     t.string   "nome_evento"
     t.string   "local_evento"
     t.integer  "numero_evento"
@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(:version => 20120210143607) do
     t.string   "nome_periodico"
     t.string   "fasciculo"
     t.integer  "volume_publicacao"
+    t.integer  "ano_primeiro_volume"
+    t.integer  "ano_ultimo_volume"
     t.boolean  "traducao",                    :default => false
     t.integer  "numero_edicao"
     t.integer  "numero_paginas"
-    t.integer  "ano_primeiro_volume"
-    t.integer  "ano_ultimo_volume"
     t.string   "palavras_chave"
     t.string   "tempo_aprendizagem"
     t.text     "novas_tags"
