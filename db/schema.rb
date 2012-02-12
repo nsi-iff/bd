@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(:version => 20120210215304) do
     t.string   "nome_periodico"
     t.string   "fasciculo"
     t.integer  "volume_publicacao"
+    t.integer  "ano_primeiro_volume"
+    t.integer  "ano_ultimo_volume"
     t.boolean  "traducao",                    :default => false
     t.integer  "numero_edicao"
     t.integer  "numero_paginas"
-    t.integer  "ano_primeiro_volume"
-    t.integer  "ano_ultimo_volume"
     t.string   "palavras_chave"
     t.string   "tempo_aprendizagem"
     t.text     "novas_tags"
