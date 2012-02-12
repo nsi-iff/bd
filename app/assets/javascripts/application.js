@@ -16,8 +16,8 @@
 //= require cocoon
 
 $(document).ready(function() {
-	$(".areas").change(function() {
-		var id = $(this).val();
-		$.post("/areas/" + id + "/sub_areas");
-	});
+    $(".areas").change(function() {
+        var id = $(this).val();
+        $.post("/areas/" + id + "/sub_areas");
+    });
 })
