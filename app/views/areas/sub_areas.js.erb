@@ -1,8 +1,10 @@
+var sub_areas = $(".sub_areas");
+
 //remove elementos presentes no combo-box
-$(".sub_areas").children('option').remove().end();
+sub_areas.children().remove();
 
 //inclui as sub_areas da grande area selecionada
 <% @area.sub_areas.each do |sub_area| %>
-$(".sub_areas").append(
-		"<option value=\"<%= sub_area.id %>\"> <%= sub_area.nome %> </option>");
+  sub_areas.append(
+      "<option value=' <%= sub_area.id %> '> <%= sub_area.nome %> </option>");
 <% end %>
