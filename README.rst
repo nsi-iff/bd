@@ -22,6 +22,7 @@ Boas Práticas
 -------------
 - Antes de começar a alterar o código, execute um pull e rode os testes, ou no mínimo verifique se os testes estão passando na integração contínua.
 - Evite deixar espaços em branco (blank spaces/trailing characters).
+- Não use tab para indentação, mas sim espaços, respeitando a convenção de cada linguagem: `2 espaços <https://github.com/nsi-iff/ruby-style-guide/tree/reduce-over-inject>`_ para Ruby, `4 espaços <http://javascript.crockford.com/code.html>`_ para JavaScript. Na maioria dos editores, é possível configurar de modo que tabs sejam convertidas no número desejado de espaços.
 
 
 Dependências nativas
