@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar artigo de evento' do
-  scenario 'padrao', :javascript => true do
+  scenario 'padrao', javascript: true do
     submeter_conteudo :artigo_de_evento do
       fill_in 'Subtítulo', with: 'Ruby Becomes The Flash'
       within_fieldset 'Dados do evento' do

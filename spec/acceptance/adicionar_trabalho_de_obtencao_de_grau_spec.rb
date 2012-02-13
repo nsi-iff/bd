@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar trabalho de obtençao de grau' do
-  scenario 'padrao', :javascript => true do
+  scenario 'padrao', javascript: true do
     submeter_conteudo :trabalho_de_obtencao_de_grau do
       fill_in 'Subtítulo', with: 'Adicionando trabalho de obtenção de grau'
       within_fieldset 'Dados do trabalho' do

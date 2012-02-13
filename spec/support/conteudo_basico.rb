@@ -1,32 +1,34 @@
 # encoding: utf-8
 
 def popular_area_sub_area
-  exatas = Area.create(:nome => 'Ciências Exatas e da Terra')
-  SubArea.create(nome: 'Ciência da Computação', area: exatas)
+  Area.destroy_all
+  SubArea.destroy_all
+  exatas = Area.create(nome: 'Ciências Exatas e da Terra')
+  exatas.sub_areas.create(nome: 'Ciência da Computação')
 
-  engenharia = Area.create(:nome => 'Engenharias')
-  SubArea.create(nome: 'Engenharia de Produção', area: engenharia)
+  engenharia = Area.create(nome: 'Engenharias')
+  engenharia.sub_areas.create(nome: 'Engenharia de Produção')
 
-  biologicas = Area.create(:nome => 'Ciências Biológicas')
-  SubArea.create(nome: 'Biologia Geral', area: biologicas)
+  biologicas = Area.create(nome: 'Ciências Biológicas')
+  biologicas.sub_areas.create(nome: 'Biologia Geral')
 
-  agrarias = Area.create(:nome => 'Ciências Agrárias')
-  SubArea.create(nome: 'Agronomia', area: agrarias)
+  agrarias = Area.create(nome: 'Ciências Agrárias')
+  agrarias.sub_areas.create(nome: 'Agronomia')
 
-  saude = Area.create(:nome => 'Ciências da Saúde')
-  SubArea.create(nome: 'Enfermagem', area: saude)
+  saude = Area.create(nome: 'Ciências da Saúde')
+  saude.sub_areas.create(nome: 'Enfermagem')
 
-  humanas = Area.create(:nome => 'Ciências Humanas')
-  SubArea.create(nome: 'Teologia', area: humanas)
+  humanas = Area.create(nome: 'Ciências Humanas')
+  humanas.sub_areas.create(nome: 'Teologia')
 
-  sociais_aplicadas = Area.create(:nome => 'Ciências Sociais Aplicadas')
-  SubArea.create(nome: 'Administração', area: sociais_aplicadas)
+  sociais_aplicadas = Area.create(nome: 'Ciências Sociais Aplicadas')
+  sociais_aplicadas.sub_areas.create(nome: 'Administração')
 
-  linguisticas = Area.create(:nome => 'Linguística, Letras e Artes')
-  SubArea.create(nome: 'Letras', area: linguisticas)
+  linguisticas = Area.create(nome: 'Linguística, Letras e Artes')
+  linguisticas.sub_areas.create(nome: 'Letras')
 
-  outras = Area.create(:nome => 'Outras')
-  SubArea.create(nome: 'Biomedicina', area: outras)
+  outras = Area.create(nome: 'Outras')
+  outras.sub_areas.create(nome: 'Biomedicina')
 end
 
 def submeter_conteudo(tipo, opcoes = {})
@@ -37,7 +39,7 @@ def submeter_conteudo(tipo, opcoes = {})
     with: opcoes[:titulo] || 'A Proposal for Ruby Performance Improvements'
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'
 
-  select('Ciências Exatas e da Terra', :from => 'Grande Área de Conhecimento')
+  select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
     
   select('Ciência da Computação', from: 'Área de Conhecimento*')
 
