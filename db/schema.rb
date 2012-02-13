@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210215304) do
+ActiveRecord::Schema.define(:version => 20120212192917) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(:version => 20120210215304) do
     t.string   "nome_periodico"
     t.string   "fasciculo"
     t.integer  "volume_publicacao"
+    t.integer  "ano_primeiro_volume"
+    t.integer  "ano_ultimo_volume"
     t.boolean  "traducao",                    :default => false
     t.integer  "numero_edicao"
     t.integer  "numero_paginas"
-    t.integer  "ano_primeiro_volume"
-    t.integer  "ano_ultimo_volume"
     t.string   "palavras_chave"
     t.string   "tempo_aprendizagem"
     t.text     "novas_tags"
@@ -63,6 +63,9 @@ ActiveRecord::Schema.define(:version => 20120210215304) do
     t.date     "data_publicacao"
     t.integer  "grande_area_de_conhecimento"
     t.integer  "area_de_conhecimento"
+    t.date     "data_defesa"
+    t.string   "instituicao"
+    t.string   "local_defesa"
   end
 
   create_table "eixos_tematicos", :force => true do |t|
