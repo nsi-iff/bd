@@ -9,10 +9,10 @@
   = conteudo.link
 %p
   Grande Área de Conhecimento:
-  = Area.find_by_id(conteudo.grande_area_de_conhecimento).nome
+  = conteudo.area
 %p
   Área de Conhecimento:
-  = SubArea.find_by_id(conteudo.area_de_conhecimento).nome
+  = conteudo.sub_area
 - conteudo.autores.each do |autor|
   %p
     Autor:

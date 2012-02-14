@@ -3,10 +3,18 @@ FactoryGirl.define do
     nome 'Jose das Couves'
   end
 
+  factory :area do
+    sequence(:nome) {|n| "Nome#{n}" }
+  end
+	
+  factory :sub_area do
+    sequence(:nome) {|n| "Nome#{n}" }
+		area 
+  end
+
   factory :conteudo do
     titulo "Conteudo interessante"
-    grande_area_de_conhecimento 'Grande Area'
-    area_de_conhecimento 'Sub area'
+    sub_area 
     campus 'Campos-Centro'
     autores { [Factory.create(:autor)] }
   end
