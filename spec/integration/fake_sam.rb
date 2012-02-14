@@ -5,8 +5,12 @@ def app_file
   File.expand_path(File.join(File.dirname(__FILE__), 'fake_sam_app.rb'))
 end
 
+def uri
+  Rails.application.config.sam_uri
+end
+
 def port
-  9999
+  Rails.application.config.sam_port
 end
 
 def command
@@ -38,7 +42,7 @@ def fake_sam_down
 end
 
 def wait_for_server_up
-  URI.parse("http://localhost:#{port}?key=123").read
+  URI.parse("#{uri}:#{port}?key=123").read
 rescue Errno::ECONNREFUSED
   sleep 0.1
   retry
@@ -46,7 +50,7 @@ end
 
 def wait_for_server_down
   while true
-    URI.parse("http://localhost:#{port}?key=123").read
+    URI.parse("#{uri}:#{port}?key=123").read
     sleep 0.1
   end
 rescue Errno::ECONNREFUSED
