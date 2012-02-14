@@ -11,3 +11,185 @@
  *= require_self
  *= require_tree .
 */
+
+* {
+    padding: 0;
+    font-family: Verdana, "Bitstream Vera Sans", Arial, sans-serif;
+}
+
+a {
+    color: #FFF;
+    text-decoration: none; 
+}
+
+a:hover {
+    text-decoration: underline; 
+}
+
+body {
+  margin: 0;
+  background: #8db727 url(/assets/bg.gif) 0 23px repeat-x;
+  font-size: 80%;
+}
+
+.barra {
+  margin: 0;
+  padding: 0;
+  background: url("/assets/barra-brasil-v3-preto.png") no-repeat #000;
+  height: 24px;
+  position: relative;
+}
+
+.barra_governo {
+  height: 24px;
+  overflow: hidden;
+  padding: 0;
+  width: 1000px;
+  background: url("/assets/barra-brasil-v3-preto.png") no-repeat scroll center 0 #000000;
+  margin: 0 auto;
+}
+
+@font-face {
+  font-family: FuturaStd;
+  src: url('types/FuturaStd-Heavy.otf');
+}
+
+header h1 {
+  font-family: FuturaStd;
+  color: #FFF;
+  font-size: 36px;
+  padding-left: 150px;
+}
+
+header .site_actions ul, ol {
+  list-style: none outside none;
+}
+
+header .site_actions li {
+  float: left;
+  margin-top: -2px;
+  margin-left: 20px;
+}
+
+header .site_actions {
+  background: url("/assets/bg_site_actions.png") 0 0 no-repeat;
+  float: right;
+  height: 30px;
+  width: 500px;
+  margin-top: -70px;
+  margin-right: 200px;
+}
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+
+.container {
+  background: url("/assets/corpo_bg.gif") no-repeat scroll 0 top #F1F6E4;
+  height: 900px;
+  margin: 0 auto;
+  margin-top: 80px;
+  min-height: 900px;
+  padding: 0;
+  vertical-align: top !important;
+  width: 980px !important;
+  z-index: 9;
+}
+
+.container .navigation {
+  width: 220px;
+  float: left;
+  margin-top: 10px;
+}
+
+.container .navigation ul, ol {
+  list-style: none outside none;
+  margin: 0;
+}
+
+
+.container .navigation li {
+  margin-left: 5px;
+  width: 200px;
+  height: 27px;
+  cursor: pointer;
+}
+
+.container .navigation ul a {
+  text-decoration: none;
+}
+
+.container .navigation li p {
+  margin: 5px;
+  font-weight: bold;
+  padding: 0.4em;
+  font-size: 15px;
+}
+
+.container .navigation li#home {
+  background-image: url("/assets/menu_vermelho.jpg");
+}
+
+.container .navigation li#busca {
+  background-image: url("/assets/menu_azul.jpg");
+}
+
+.container .navigation li#adicionar_conteudo {
+  background-image: url("/assets/menu_amarelo.jpg");
+}
+
+.container .navigation li#ajuda {
+  background-image: url("/assets/menu_rosa.jpg");
+}
+
+.container .navigation li#sobre {
+  background-image: url("/assets/menu_laranja.jpg");
+}
+
+.container .navigation li#noticias {
+  background-image: url("/assets/menu_roxo.jpg");
+}
+
+.container .content {
+  float: right;
+  width: 760px;
+}
+
+footer {
+  width: 973px;
+  height: 28px;
+  background: url("/assets/bg_rodape.gif") 0 0 no-repeat;
+  margin: 0 auto;
+  margin-top: 12px;
+  overflow: hidden;
+  padding: 0 0 10px 7px;
+}
+
+footer p {
+  font-size: 1.1em;
+  color: #fff;
+  float: left;
+  margin: 7px 0 0 0;
+}
+
+footer p strong {
+    color: #fff;
+}
+
+footer p span a {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+footer a.topo {
+    background: url("/assets/topo.gif") no-repeat right 0;
+    color: #FFFFFF;
+    display: inline;
+    float: right;
+    font-size: 1.1em;
+    height: 16px;
+    margin: 3px 3px 0 24px;
+    padding: 3px 28px 4px 0;
+    text-decoration: none;
+}

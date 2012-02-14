@@ -1,4 +1,14 @@
 DigitalLibrary::Application.routes.draw do
+
+  root :to => 'pages#inicio'
+  match "/busca", :to => "pages#busca"
+  match "/ajuda", :to => "pages#ajuda"
+  match "/sobre", :to => "pages#sobre"
+  match "/noticias", :to => "pages#noticias"
+
+#  get "pages/adicionar_conteudo"
+
+
   resources :artigos_de_evento, :only => [:new, :create, :show]
   resources :artigos_de_periodico, :only => [:new, :create, :show]
   resources :livros, :only => [:new, :create, :show]
