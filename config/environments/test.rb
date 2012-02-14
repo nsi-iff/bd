@@ -34,7 +34,4 @@ DigitalLibrary::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-
-  config.sam_port = 9999
-  config.sam_uri = 'http://localhost'
 end
