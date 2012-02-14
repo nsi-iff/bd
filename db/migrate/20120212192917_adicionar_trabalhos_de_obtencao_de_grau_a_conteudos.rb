@@ -6,6 +6,7 @@ class AdicionarTrabalhosDeObtencaoDeGrauAConteudos < ActiveRecord::Migration
       t.date :data_defesa
       t.string :instituicao
       t.string :local_defesa
+      t.references :grau
     end
   end
 

@@ -31,6 +31,10 @@ def popular_area_sub_area
   outras.sub_areas.create(nome: 'Biomedicina')
 end
 
+def popular_graus
+  Grau.create nome: 'Graduação'
+end
+
 def submeter_conteudo(tipo, opcoes = {})
   popular_area_sub_area
   visit send(:"new_#{tipo}_path")
@@ -40,7 +44,9 @@ def submeter_conteudo(tipo, opcoes = {})
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'
 
   select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
-    
+
+  select('Ciências Exatas e da Terra', :from => 'Grande Área de Conhecimento')
+
   select('Ciência da Computação', from: 'Área de Conhecimento*')
 
   unless opcoes[:autores] == false

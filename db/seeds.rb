@@ -24,6 +24,16 @@ end
 carregar_eixos_tematicos if EixoTematico.count == 0
 carregar_idiomas if Idioma.count == 0
 
+##############  Seeds para opções "grau" em trabalho de obtencação de grau ############
+
+Grau.delete_all
+# Criando as opções
+Grau.create([
+    { :nome => 'Graduação' },
+    { :nome => 'Especialização' },
+    { :nome => 'Mestrado' },
+    { :nome => 'Doutorado' }
+])
 
 #######################  Seeds para Áreas e sub-áreas #######################
 

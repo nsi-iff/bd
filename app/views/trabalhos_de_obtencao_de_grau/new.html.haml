@@ -6,6 +6,7 @@
     = f.input :numero_paginas, label: 'Número de páginas'
     = f.input :instituicao, label: 'Instituição',
       hint: 'Instituição concedente do grau associado ao trabalho'
+    = f.input :grau, label: 'Grau', as: 'select', collection: Grau.all.map { |grau| [grau.nome, grau.id] }
 
   = f.inputs 'Defesa' do
     = f.input :data_defesa_br, as: 'string', label: 'Data da Defesa',
