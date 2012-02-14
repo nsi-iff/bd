@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DigitalLibrary</title>
+  <title><%= title %> </title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "jquery", "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<p><%= notice %></p>
-<%= yield %>
-
+  <%= render 'layouts/header' %>
+  <div class="container round">
+    <div class="navigation">
+      <%= render 'layouts/navigation' %>
+    </div>
+    <div class="content">
+      <p><%= notice %></p>
+      <%= yield %>
+    </div>
+  </div>
+  <%= render 'layouts/footer' %>
 </body>
 </html>
