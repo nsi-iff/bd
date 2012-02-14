@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar objeto de aprendizagem' do
-  scenario 'padrão', :javascript => true do
+  scenario 'padrão', javascript: true do
     Idioma.create! descricao: 'Português (Brasil)'
     %w(Algoritmos Objetos POO).each {|tema| EixoTematico.create! nome: tema }
     submeter_conteudo :objeto_de_aprendizagem do

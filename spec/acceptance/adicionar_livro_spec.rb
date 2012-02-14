@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar livro' do
-  scenario 'padrão', :javascript => true do
+  scenario 'padrão', javascript: true do
     visit new_livro_path
     submeter_conteudo :livro do
       fill_in 'Direitos', with: 'Direitos e esquerdos'
@@ -30,7 +30,7 @@ feature 'adicionar livro' do
     page.should have_content 'Número de Páginas: 480'
   end
 
-  scenario 'sem tradução', :javascript => true do
+  scenario 'sem tradução', javascript: true do
     submeter_conteudo :livro
 
     page.should have_content 'Tradução: Não'

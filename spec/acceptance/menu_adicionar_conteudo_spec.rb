@@ -56,4 +56,13 @@ feature 'verificar menu adicionar conteúdo' do
     end
     current_path.should == new_relatorio_path
   end
+
+  scenario 'link para adicionar trabalho de obtenção de grau' do
+    popular_area_sub_area
+    visit adicionar_conteudo_path
+    within_fieldset 'Adicionar Conteúdo' do
+      click_link 'Trabalho de Obtenção de Grau'
+    end
+    current_path.should == new_trabalho_de_obtencao_de_grau_path
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210215304) do
+ActiveRecord::Schema.define(:version => 20120212192917) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
@@ -63,6 +63,10 @@ ActiveRecord::Schema.define(:version => 20120210215304) do
     t.date     "data_publicacao"
     t.integer  "grande_area_de_conhecimento"
     t.integer  "area_de_conhecimento"
+    t.date     "data_defesa"
+    t.string   "instituicao"
+    t.string   "local_defesa"
+    t.integer  "grau_id"
   end
 
   create_table "eixos_tematicos", :force => true do |t|
@@ -74,6 +78,12 @@ ActiveRecord::Schema.define(:version => 20120210215304) do
   create_table "eixos_tematicos_objetos_de_aprendizagem", :id => false, :force => true do |t|
     t.integer "objeto_de_aprendizagem_id"
     t.integer "eixo_tematico_id"
+  end
+
+  create_table "graus", :force => true do |t|
+    t.string   "nome"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "idiomas", :force => true do |t|

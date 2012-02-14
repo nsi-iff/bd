@@ -6,7 +6,7 @@ class Conteudo < ActiveRecord::Base
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
            :arquivo_ou_link_devem_existir
   validates :titulo, :grande_area_de_conhecimento, :area_de_conhecimento,
-            :campus, :autores, :presence => true
+            :campus, :autores, presence: true
 
   private
 

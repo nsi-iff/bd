@@ -3,13 +3,13 @@
 require 'spec_helper'
 
 feature 'adicionar conteudo (referente aos dados básicos)' do
-  scenario 'adicionar dados basicos de conteudo', :javascript => true do
+  scenario 'adicionar dados basicos de conteudo', javascript: true do
     popular_area_sub_area
     visit new_artigo_de_evento_path
     fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
-    select('Ciências Exatas e da Terra', :from => 'Grande Área de Conhecimento')
-    select('Ciência da Computação', :from => 'Área de Conhecimento*')
+    select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
+    select('Ciência da Computação', from: 'Área de Conhecimento*')
     click_link 'Adicionar autor'
     fill_in 'Autor', with: 'Yukihiro Matsumoto'
     fill_in 'Curriculum Lattes', with: 'http://lattes.cnpq.br/1234567890'
@@ -30,7 +30,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
   end
 
   scenario 'arquivo e link não podem ser fornecidos simultaneamente',
-           :javascript => true do
+           javascript: true do
     submeter_conteudo :artigo_de_evento, link: '', arquivo: 'arquivo.nsi'
     page.should have_content 'com sucesso'
 
@@ -49,7 +49,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     end
   end
 
-  scenario 'aceita vários autores', :javascript => true do
+  scenario 'aceita vários autores', javascript: true do
     submeter_conteudo :artigo_de_evento do
       ['Linus Torvalds',
        'Yukihiro Matsumoto',
@@ -81,7 +81,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     within('#autores') { page.should have_content "não pode ficar em branco" }
   end
 
-  scenario "conteudo da área deve mudar quando grande área é selecionada", :javascript => true do
+  scenario "conteudo da área deve mudar quando grande área é selecionada", javascript: true do
     popular_area_sub_area
     visit new_artigo_de_evento_path
 
