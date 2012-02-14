@@ -15,7 +15,6 @@
 /tmp
 
 config/database.yml
-config/sam.yml
 
 *.swo
 *.swp
