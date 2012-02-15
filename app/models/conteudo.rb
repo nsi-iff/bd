@@ -22,7 +22,7 @@ class Conteudo < ActiveRecord::Base
     end
 
     event :reprovar do
-      transition :pendente => :reprovado
+      transition :pendente => :removido
     end
 
     event :devolver do
@@ -77,3 +77,4 @@ class Conteudo < ActiveRecord::Base
     end
   end
 end
+

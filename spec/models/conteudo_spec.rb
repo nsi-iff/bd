@@ -40,9 +40,9 @@ describe Conteudo do
         end
       end
 
-      it 'ao reprovar, vai para reprovado' do
+      it 'ao reprovar, vai para removido' do
         expect { conteudo.reprovar! }.to change { conteudo.state }.
-          from('pendente').to('reprovado')
+          from('pendente').to('removido')
       end
 
       it 'ao devolver, vai para editável' do
@@ -165,3 +165,4 @@ describe Conteudo do
     end
   end
 end
+
