@@ -6,15 +6,15 @@ FactoryGirl.define do
   factory :area do
     sequence(:nome) {|n| "Nome#{n}" }
   end
-	
+
   factory :sub_area do
     sequence(:nome) {|n| "Nome#{n}" }
-		area 
+    area
   end
 
   factory :conteudo do
     titulo "Conteudo interessante"
-    sub_area 
+    sub_area
     campus 'Campos-Centro'
     autores { [Factory.create(:autor)] }
   end

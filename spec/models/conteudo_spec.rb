@@ -19,13 +19,13 @@ describe Conteudo do
     conteudo.errors[:link].should be_any
   end
 
-	it 'area deve ser a area ligada a sua subarea' do
-		area = Factory.create(:area)
-		subarea = Factory.create(:sub_area, area: area)
-		conteudo = Factory.build(:conteudo, sub_area: subarea)
+  it 'area deve ser a area ligada a sua subarea' do
+    area = Factory.create(:area)
+    subarea = Factory.create(:sub_area, area: area)
+    conteudo = Factory.build(:conteudo, sub_area: subarea)
 
-		conteudo.area.should be(area)
-	end
+    conteudo.area.should be(area)
+  end
 
   context 'atributos obrigatorios' do
     it { should_not have_valid(:titulo).when('', nil) }
