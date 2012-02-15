@@ -9,6 +9,7 @@ gem 'haml', '~> 3.1.4'
 gem 'formtastic', '~> 2.0.2'
 gem 'cocoon', '~> 1.0.15'
 gem 'flexible_date', '~> 0.4.1'
+gem 'state_machine', '~> 1.1.2'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -25,6 +26,7 @@ group :test, :development do
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'valid_attribute', '~> 1.2.0'
   gem 'database_cleaner', '~> 0.7.1'
+  gem 'sinatra', '~> 1.3.2'
 end
 
 gem 'jquery-rails'

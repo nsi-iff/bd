@@ -55,5 +55,11 @@ module DigitalLibrary
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Configuracoes do acesso ao SAM
+    sam_config = YAML.load(
+      File.read(File.join(Rails.root, 'config', 'sam.yml')))[Rails.env]
+    config.sam_uri = sam_config['uri']
+    config.sam_port = sam_config['port']
   end
 end

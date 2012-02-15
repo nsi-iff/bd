@@ -2,11 +2,64 @@
 
 class Conteudo < ActiveRecord::Base
   has_many :autores
+  belongs_to :sub_area
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
+
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
            :arquivo_ou_link_devem_existir
-  validates :titulo, :grande_area_de_conhecimento, :area_de_conhecimento,
+
+  validates :titulo, :sub_area,
             :campus, :autores, presence: true
+
+  state_machine :initial => :editavel do
+    event :submeter do
+      transition :editavel => :pendente
+    end
+
+    event :aprovar do
+      transition :pendente => :granularizando, :if => :granularizavel?
+      transition :pendente => :publicado
+    end
+
+    event :reprovar do
+      transition :pendente => :reprovado
+    end
+
+    event :devolver do
+      transition [:publicado, :recolhido, :pendente] => :editavel
+    end
+
+    event :granularizou do
+      transition :granularizando => :publicado, :if => :granularizado?
+      transition :granularizando => :pendente
+    end
+
+    event :remover do
+      transition [:pendente, :recolhido] => :removido
+    end
+
+    event :recolher do
+      transition :publicado => :recolhido
+    end
+
+    event :publicar do
+      transition :recolhido => :publicado
+    end
+  end
+
+  def granularizavel?
+    # STUB
+    false
+  end
+
+  def granularizado?
+    # STUB
+    false
+  end
+
+  def area
+    self.sub_area.area
+  end
 
   private
 

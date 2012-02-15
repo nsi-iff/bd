@@ -15,6 +15,7 @@
 /tmp
 
 config/database.yml
+
 *.swo
 *.swp
 *.rb~
