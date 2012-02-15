@@ -89,8 +89,8 @@ describe Conteudo do
         conteudo.aprovar!
       end
 
-      it 'ao requisitar alteração, vai para editavel' do
-        expect { conteudo.editar! }.to change { conteudo.state }.
+      it 'ao requisitar devolução, vai para editavel' do
+        expect { conteudo.devolver! }.to change { conteudo.state }.
           from('publicado').to('editavel')
       end
 
@@ -108,8 +108,8 @@ describe Conteudo do
         conteudo.recolher!
       end
 
-      it 'ao editar, vai para editavel' do
-        expect { conteudo.editar! }.to change { conteudo.state }.
+      it 'ao devolver, vai para editavel' do
+        expect { conteudo.devolver! }.to change { conteudo.state }.
           from('recolhido').to('editavel')
       end
 

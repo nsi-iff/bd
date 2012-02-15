@@ -26,7 +26,7 @@ class Conteudo < ActiveRecord::Base
     end
 
     event :devolver do
-      transition :pendente => :editavel
+      transition [:publicado, :recolhido, :pendente] => :editavel
     end
 
     event :granularizou do
@@ -36,10 +36,6 @@ class Conteudo < ActiveRecord::Base
 
     event :remover do
       transition [:pendente, :recolhido] => :removido
-    end
-
-    event :editar do
-      transition [:publicado, :recolhido] => :editavel
     end
 
     event :recolher do
