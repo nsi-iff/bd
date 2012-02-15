@@ -17,6 +17,7 @@ FactoryGirl.define do
     sub_area
     campus 'Campos-Centro'
     autores { [Factory.create(:autor)] }
+    link 'http://something.com'
   end
 
   factory :artigo_de_evento, :parent => :conteudo do

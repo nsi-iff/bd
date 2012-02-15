@@ -11,6 +11,56 @@ class Conteudo < ActiveRecord::Base
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
 
+  state_machine :initial => :editavel do
+    event :submeter do
+      transition :editavel => :pendente
+    end
+
+    event :aprovar do
+      transition :pendente => :granularizando, :if => :granularizavel?
+      transition :pendente => :publicado
+    end
+
+    event :reprovar do
+      transition :pendente => :reprovado
+    end
+
+    event :devolver do
+      transition :pendente => :editavel
+    end
+
+    event :granularizou do
+      transition :granularizando => :publicado, :if => :granularizado?
+      transition :granularizando => :pendente
+    end
+
+    event :remover do
+      transition [:pendente, :recolhido] => :removido
+    end
+
+    event :editar do
+      transition [:publicado, :recolhido] => :editavel
+    end
+
+    event :recolher do
+      transition :publicado => :recolhido
+    end
+
+    event :publicar do
+      transition :recolhido => :publicado
+    end
+  end
+
+  def granularizavel?
+    # STUB
+    false
+  end
+
+  def granularizado?
+    # STUB
+    false
+  end
+
   def area
     self.sub_area.area
   end
