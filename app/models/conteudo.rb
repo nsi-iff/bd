@@ -2,6 +2,7 @@
 
 class Conteudo < ActiveRecord::Base
   has_many :autores
+  has_many :mudancas_de_estado
   belongs_to :sub_area
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
 
@@ -19,10 +20,6 @@ class Conteudo < ActiveRecord::Base
     event :aprovar do
       transition :pendente => :granularizando, :if => :granularizavel?
       transition :pendente => :publicado
-    end
-
-    event :reprovar do
-      transition :pendente => :reprovado
     end
 
     event :devolver do
@@ -45,6 +42,23 @@ class Conteudo < ActiveRecord::Base
     event :publicar do
       transition :recolhido => :publicado
     end
+
+    after_transition(any => any) do |conteudo, transicao|
+      conteudo.mudancas_de_estado.create!(
+        { de: transicao.from,
+          para: transicao.to }.merge(transicao.args.first || {}))
+    end
+
+    after_transition any => :editavel, :do => :destruir_graos
+  end
+
+  def remover(*args)
+    raise "O motivo é obrigatório" unless args.present? && args.first.has_key?(:motivo)
+    super
+  end
+
+  def destruir_graos
+    # STUB
   end
 
   def granularizavel?
@@ -77,3 +91,4 @@ class Conteudo < ActiveRecord::Base
     end
   end
 end
+

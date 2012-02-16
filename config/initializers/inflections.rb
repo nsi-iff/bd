@@ -17,6 +17,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'eixo_tematico', 'eixos_tematicos'
   inflect.irregular 'TrabalhoDeObtencaoDegrau', 'TrabalhosDeObtencaoDeGrau'
   inflect.irregular 'trabalho_de_obtencao_de_grau', 'trabalhos_de_obtencao_de_grau'
+  inflect.irregular 'MudancaDeEstado', 'MudancasDeEstado'
+  inflect.irregular 'mudanca_de_estado', 'mudancas_de_estado'
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'

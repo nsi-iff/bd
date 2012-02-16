@@ -40,19 +40,15 @@ describe Conteudo do
         end
       end
 
-      it 'ao reprovar, vai para reprovado' do
-        expect { conteudo.reprovar! }.to change { conteudo.state }.
-          from('pendente').to('reprovado')
-      end
-
       it 'ao devolver, vai para editável' do
         expect { conteudo.devolver! }.to change { conteudo.state }.
           from('pendente').to('editavel')
       end
 
       it 'ao remover, vai para removido' do
-        expect { conteudo.remover! }.to change { conteudo.state }.
-          from('pendente').to('removido')
+        expect {
+          conteudo.remover!(motivo: 'qq um')
+        }.to change { conteudo.state }.from('pendente').to('removido')
       end
     end
 
@@ -119,8 +115,74 @@ describe Conteudo do
       end
 
       it 'ao remover, vai para removido' do
-        expect { conteudo.remover! }.to change { conteudo.state }.
-          from('recolhido').to('removido')
+        expect {
+          conteudo.remover!(motivo: 'improprio')
+        }.to change { conteudo.state }.from('recolhido').to('removido')
+      end
+    end
+  end
+
+  context 'mudança de estado' do
+    let(:conteudo) { Factory.create(:conteudo) }
+
+    def verificar(conteudo, evento, de, para)
+      tempo = Time.now
+      expect {
+        Timecop.freeze(tempo) do
+          conteudo.send(evento)
+        end
+      }.to change { conteudo.mudancas_de_estado.size }.by(1)
+      mudanca = conteudo.mudancas_de_estado.last
+      mudanca.de.should == de
+      mudanca.para.should == para
+      mudanca.data_hora.should == tempo
+    end
+
+    it 'gera um objeto para a mudança de estado a cada transição' do
+      verificar(conteudo, :submeter!, 'editavel', 'pendente')
+      conteudo.stub(:granularizavel?).and_return(true)
+      verificar(conteudo, :aprovar!, 'pendente', 'granularizando')
+      conteudo.stub(:granularizado?).and_return(false)
+      verificar(conteudo, :granularizou!, 'granularizando', 'pendente')
+      verificar(conteudo, :devolver, 'pendente', 'editavel')
+    end
+
+    context 'motivo da remoção' do
+      before(:each) { conteudo.submeter! }
+
+      it 'obrigatório' do
+        expect { conteudo.remover! }.to raise_error
+        conteudo.remover!(motivo: 'um problema')
+      end
+
+      it 'escreve o motivo na mudança de estado' do
+        conteudo.remover!(motivo: 'inadequado')
+        conteudo.mudancas_de_estado.last.motivo.should == 'inadequado'
+      end
+    end
+
+    context 'todas as transições para "editavel" devem destruir todos os grãos' do
+      it 'pendente --> editavel' do
+        conteudo.submeter!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.devolver!
+      end
+
+      it 'publicado --> editavel' do
+        conteudo.submeter!
+        conteudo.stub(:granularizavel?).and_return(false)
+        conteudo.aprovar!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.devolver!
+      end
+
+      it 'recolhido --> editavel' do
+        conteudo.submeter!
+        conteudo.stub(:granularizavel?).and_return(false)
+        conteudo.aprovar!
+        conteudo.recolher!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.devolver!
       end
     end
   end
@@ -165,3 +227,4 @@ describe Conteudo do
     end
   end
 end
+
