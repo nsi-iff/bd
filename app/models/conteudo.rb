@@ -48,11 +48,17 @@ class Conteudo < ActiveRecord::Base
         { de: transicao.from,
           para: transicao.to }.merge(transicao.args.first || {}))
     end
+
+    after_transition any => :editavel, :do => :destruir_graos
   end
 
   def remover(*args)
     raise "O motivo é obrigatório" unless args.present? && args.first.has_key?(:motivo)
     super
+  end
+
+  def destruir_graos
+    # STUB
   end
 
   def granularizavel?
@@ -85,3 +91,4 @@ class Conteudo < ActiveRecord::Base
     end
   end
 end
+

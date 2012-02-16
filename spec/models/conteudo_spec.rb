@@ -160,6 +160,31 @@ describe Conteudo do
         conteudo.mudancas_de_estado.last.motivo.should == 'inadequado'
       end
     end
+
+    context 'todas as transições para "editavel" devem destruir todos os grãos' do
+      it 'pendente --> editavel' do
+        conteudo.submeter!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.devolver!
+      end
+
+      it 'publicado --> editavel' do
+        conteudo.submeter!
+        conteudo.stub(:granularizavel?).and_return(false)
+        conteudo.aprovar!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.devolver!
+      end
+
+      it 'recolhido --> editavel' do
+        conteudo.submeter!
+        conteudo.stub(:granularizavel?).and_return(false)
+        conteudo.aprovar!
+        conteudo.recolher!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.devolver!
+      end
+    end
   end
 
   it 'nao pode possuir simultaneamente arquivo e link' do
@@ -202,3 +227,4 @@ describe Conteudo do
     end
   end
 end
+
