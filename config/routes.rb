@@ -18,6 +18,7 @@ DigitalLibrary::Application.routes.draw do
   resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show]
   resources :adicionar_conteudo
   match "/areas/:id/sub_areas" => "areas#sub_areas"
+  match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

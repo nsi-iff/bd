@@ -32,6 +32,7 @@ feature 'verificar menu adicionar conteúdo' do
 
   scenario 'link para adicionar objeto de aprendizagem' do
     popular_area_sub_area
+    popular_eixos_tematicos_cursos
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Objeto de Aprendizagem'

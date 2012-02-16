@@ -3,17 +3,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-def carregar_eixos_tematicos
-  ['Artes', 'Ciências', 'Educação', 'Eletrotécnica', 'Eletrônica', 'Filosofia',
-   'Física', 'Gestão Ambiental', 'História', 'Informática Educativa',
-   'Língua Inglesa', 'Língua Portuguesa', 'Matemática', 'Matemática Básica',
-   'Psicologia', 'Química', 'Refrigeração e Climatização',
-   'Tecnologia em Informática', 'Telecomunicações', 'Termologia',
-   'Todas as Áreas', 'Turismo'].each do |nome_eixo|
-    EixoTematico.create! nome: nome_eixo
-  end
-end
-
 def carregar_idiomas
   File.read(File.join("#{Rails.root}", 'db', 'seeds', 'idiomas.txt')).each_line do |idioma|
     sigla, descricao = idioma.split(";").map(&:strip)
@@ -21,7 +10,6 @@ def carregar_idiomas
   end
 end
 
-carregar_eixos_tematicos if EixoTematico.count == 0
 carregar_idiomas if Idioma.count == 0
 
 ##############  Seeds para opções "grau" em trabalho de obtencação de grau ############
@@ -33,6 +21,89 @@ Grau.create([
     { :nome => 'Especialização' },
     { :nome => 'Mestrado' },
     { :nome => 'Doutorado' }
+])
+
+#######################  Seeds para Eixos temáticos e cursos #######################
+
+EixoTematico.delete_all
+Curso.delete_all
+
+# Criando eixo Ambiente e Saúde e seus cursos
+ambiente_saude = EixoTematico.create(nome: 'Ambiente e Saúde')
+ambiente_saude.cursos.create([
+  { nome: 'Gestão Ambiental'    },
+  { nome: 'Gestão Hospitalar'   },
+  { nome: 'Oftálmica'           },
+  { nome: 'Radiologia'          },
+  { nome: 'Saneamento Ambiental'},
+  { nome: 'Sistemas Biomédicos' },
+])
+
+# Criando eixo Apoio Escolar e seus cursos
+apoio_escolar = EixoTematico.create(nome: 'Apoio Escolar')
+apoio_escolar.cursos.create([
+  { nome: 'Processos Escolares'},
+])
+
+# Criando eixo Controle e Processos Industriais e seus cursos
+controle_processos_industriais = EixoTematico.create(nome: 'Controle e Processos Industriais')
+controle_processos_industriais.cursos.create([
+  { nome: 'Automação Industrial'         },
+  { nome: 'Eletrônica Industrial'        },
+  { nome: 'Eletrotécnica Industrial'     },
+  { nome: 'Gestão da Produção Industrial'},
+  { nome: 'Manutenção de Aeronaves'      },
+  { nome: 'Manutenção Industrial'        },
+  { nome: 'Mecânica de Precisão'         },
+  { nome: 'Mecatrônica Industrial'       },
+  { nome: 'Processos Ambientais'         },
+  { nome: 'Processos Metalúrgicos'       },
+  { nome: 'Processos Químicos'           },
+  { nome: 'Sistemas Elétricos'           }
+])
+
+# Criando eixo Gestão e Negócios e seus cursos
+gestao_negocios = EixoTematico.create(nome: 'Gestão e Negócios')
+gestao_negocios.cursos.create([
+  { nome: 'Comércio Exterior'         },
+  { nome: 'Gestão Comercial'          },
+  { nome: 'Gestão da Qualidade'       },
+  { nome: 'Gestão de Cooperativas'    },
+  { nome: 'Gestão de Recursos Humanos'},
+  { nome: 'Gestão Financeira'         },
+  { nome: 'Gestão Pública'            },
+  { nome: 'Logística'                 },
+  { nome: 'Marketing'                 },
+  { nome: 'Negócios Imobiliários'     },
+  { nome: 'Processos Gerenciais'      },
+  { nome: 'Secretariado'              }
+])
+
+# Criando eixo Hospitalidade e Lazer e seus cursos
+hospitalidade_lazer = EixoTematico.create(nome: 'Hospitalidade e Lazer')
+hospitalidade_lazer.cursos.create([
+  { nome: 'Eventos'                     },
+  { nome: 'Gastronomia'                 },
+  { nome: 'Gestão Desportiva e de Lazer'},
+  { nome: 'Gestão de Turismo'           },
+  { nome: 'Hotelaria'                   }
+])
+
+# Criando eixo Informação e Comunicação e seus cursos
+informacao_comunicacao = EixoTematico.create(nome: 'Informação e Comunicação')
+informacao_comunicacao.cursos.create([
+  { nome: 'Análise e Desenvolvimento de Sistemas'},
+  { nome: 'Banco de Dados'                       },
+  { nome: 'Geoprocessamento'                     },
+  { nome: 'Gestão da Tecnologia da Informação'   },
+  { nome: 'Gestão de Telecomunicações'           },
+  { nome: 'Jogos Digitais'                       },
+  { nome: 'Redes de Computadores'                },
+  { nome: 'Redes de Telecomunicações'            },
+  { nome: 'Segurança da Informação'              },
+  { nome: 'Sistemas de Telecomunicações'         },
+  { nome: 'Sistemas para Internet'               },
+  { nome: 'Telemática'                           }
 ])
 
 #######################  Seeds para Áreas e sub-áreas #######################

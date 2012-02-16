@@ -4,8 +4,12 @@
       hint: 'Palavras-chave do documento, separadas por vírgula'
   = f.input :tempo_aprendizagem, label: 'Tempo de aprendizagem típico',
       hint: 'Tempo típico para uma audiência típica lidar com o objeto de aprendizagem'
-  = f.input :eixos_tematicos, :member_label => :nome, label: 'Eixos temáticos',
-      hint: 'Eixos temáticos da EPCT'
+  = label_tag(:eixos_tematicos, 'Eixos temáticos')
+  = select_tag(:eixos_tematicos, options_for_select(EixoTematico.all.map {|eixo| [eixo.nome, eixo.id] }), 
+    class: "eixos_tematicos")
+  = f.input :cursos, :as => :select, input_html: { class: "cursos" },
+    collection: EixoTematico.first.cursos.map {|curso| [curso.nome, curso.id]},
+    prompt: false, label: 'Cursos'
   = f.input :novas_tags
   = f.input :idioma, :member_label => :descricao
   = f.submit 'Salvar'

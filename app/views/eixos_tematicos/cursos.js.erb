@@ -1,0 +1,10 @@
+var cursos = $(".cursos");
+
+//remove elementos presentes no combo-box
+cursos.children().remove();
+
+//inclui os cursos do eixo tematico selecionado
+<% @eixo_tematico.cursos.each do |curso| %>
+  cursos.append(
+      "<option value=' <%= curso.id %> '> <%= curso.nome %> </option>");
+<% end %>

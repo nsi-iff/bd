@@ -31,6 +31,26 @@ def popular_area_sub_area
   outras.sub_areas.create(nome: 'Biomedicina')
 end
 
+def popular_eixos_tematicos_cursos
+  EixoTematico.destroy_all
+  Curso.destroy_all
+  
+  ambiente_saude = EixoTematico.create(nome: 'Ambiente e Saúde')
+  ambiente_saude.cursos.create([
+    { nome: 'Gestão Ambiental'    },
+    { nome: 'Gestão Hospitalar'   },
+    { nome: 'Oftálmica'           },
+    { nome: 'Radiologia'          },
+    { nome: 'Saneamento Ambiental'},
+    { nome: 'Sistemas Biomédicos' },
+  ])
+
+  apoio_escolar = EixoTematico.create(nome: 'Apoio Escolar')
+  apoio_escolar.cursos.create([
+    { nome: 'Processos Escolares'},
+  ])
+end
+
 def popular_graus
   Grau.create nome: 'Graduação'
 end

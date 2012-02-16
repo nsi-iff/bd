@@ -1,5 +1,6 @@
 class ObjetoDeAprendizagem < Conteudo
-  has_and_belongs_to_many :eixos_tematicos
+  has_and_belongs_to_many :cursos
+  has_many :eixos_tematicos, :through => :cursos, :uniq => true
   belongs_to :idioma
 
   def nomes_dos_eixos_tematicos

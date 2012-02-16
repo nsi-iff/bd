@@ -21,3 +21,10 @@ $(document).ready(function() {
         $.post("/areas/" + id + "/sub_areas");
     });
 })
+
+$(document).ready(function() {
+    $(".eixos_tematicos").change(function() {
+        var id = $(this).val();
+        $.post("/eixos_tematicos/" + id + "/cursos")
+    });
+})
