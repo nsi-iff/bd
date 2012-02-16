@@ -22,10 +22,6 @@ class Conteudo < ActiveRecord::Base
       transition :pendente => :publicado
     end
 
-    event :reprovar do
-      transition :pendente => :removido
-    end
-
     event :devolver do
       transition [:publicado, :recolhido, :pendente] => :editavel
     end
@@ -49,9 +45,14 @@ class Conteudo < ActiveRecord::Base
 
     after_transition(any => any) do |conteudo, transicao|
       conteudo.mudancas_de_estado.create!(
-        de: transicao.from,
-        para: transicao.to)
+        { de: transicao.from,
+          para: transicao.to }.merge(transicao.args.first || {}))
     end
+  end
+
+  def remover(*args)
+    raise "O motivo é obrigatório" unless args.present? && args.first.has_key?(:motivo)
+    super
   end
 
   def granularizavel?

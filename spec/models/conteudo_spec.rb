@@ -40,19 +40,15 @@ describe Conteudo do
         end
       end
 
-      it 'ao reprovar, vai para removido' do
-        expect { conteudo.reprovar! }.to change { conteudo.state }.
-          from('pendente').to('removido')
-      end
-
       it 'ao devolver, vai para editável' do
         expect { conteudo.devolver! }.to change { conteudo.state }.
           from('pendente').to('editavel')
       end
 
       it 'ao remover, vai para removido' do
-        expect { conteudo.remover! }.to change { conteudo.state }.
-          from('pendente').to('removido')
+        expect {
+          conteudo.remover!(motivo: 'qq um')
+        }.to change { conteudo.state }.from('pendente').to('removido')
       end
     end
 
@@ -119,8 +115,9 @@ describe Conteudo do
       end
 
       it 'ao remover, vai para removido' do
-        expect { conteudo.remover! }.to change { conteudo.state }.
-          from('recolhido').to('removido')
+        expect {
+          conteudo.remover!(motivo: 'improprio')
+        }.to change { conteudo.state }.from('recolhido').to('removido')
       end
     end
   end
@@ -148,6 +145,20 @@ describe Conteudo do
       conteudo.stub(:granularizado?).and_return(false)
       verificar(conteudo, :granularizou!, 'granularizando', 'pendente')
       verificar(conteudo, :devolver, 'pendente', 'editavel')
+    end
+
+    context 'motivo da remoção' do
+      before(:each) { conteudo.submeter! }
+
+      it 'obrigatório' do
+        expect { conteudo.remover! }.to raise_error
+        conteudo.remover!(motivo: 'um problema')
+      end
+
+      it 'escreve o motivo na mudança de estado' do
+        conteudo.remover!(motivo: 'inadequado')
+        conteudo.mudancas_de_estado.last.motivo.should == 'inadequado'
+      end
     end
   end
 

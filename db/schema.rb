@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215220037) do
+ActiveRecord::Schema.define(:version => 20120216031138) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120215220037) do
     t.string   "para"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "motivo"
   end
 
   add_index "mudancas_de_estado", ["conteudo_id"], :name => "index_mudancas_de_estado_on_conteudo_id"
