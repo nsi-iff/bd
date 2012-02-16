@@ -2,6 +2,7 @@
 
 class Conteudo < ActiveRecord::Base
   has_many :autores
+  has_many :mudancas_de_estado
   belongs_to :sub_area
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
 
@@ -45,6 +46,12 @@ class Conteudo < ActiveRecord::Base
     event :publicar do
       transition :recolhido => :publicado
     end
+
+    after_transition(any => any) do |conteudo, transicao|
+      conteudo.mudancas_de_estado.create!(
+        de: transicao.from,
+        para: transicao.to)
+    end
   end
 
   def granularizavel?
@@ -77,4 +84,3 @@ class Conteudo < ActiveRecord::Base
     end
   end
 end
-

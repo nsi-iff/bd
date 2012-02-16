@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213140007) do
+ActiveRecord::Schema.define(:version => 20120215220037) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
@@ -91,6 +91,18 @@ ActiveRecord::Schema.define(:version => 20120213140007) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "mudancas_de_estado", :force => true do |t|
+    t.integer  "usuario_id"
+    t.integer  "conteudo_id"
+    t.string   "de"
+    t.string   "para"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "mudancas_de_estado", ["conteudo_id"], :name => "index_mudancas_de_estado_on_conteudo_id"
+  add_index "mudancas_de_estado", ["usuario_id"], :name => "index_mudancas_de_estado_on_usuario_id"
 
   create_table "sub_areas", :force => true do |t|
     t.string   "nome"

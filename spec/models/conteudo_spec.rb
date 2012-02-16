@@ -125,6 +125,32 @@ describe Conteudo do
     end
   end
 
+  context 'mudança de estado' do
+    let(:conteudo) { Factory.create(:conteudo) }
+
+    def verificar(conteudo, evento, de, para)
+      tempo = Time.now
+      expect {
+        Timecop.freeze(tempo) do
+          conteudo.send(evento)
+        end
+      }.to change { conteudo.mudancas_de_estado.size }.by(1)
+      mudanca = conteudo.mudancas_de_estado.last
+      mudanca.de.should == de
+      mudanca.para.should == para
+      mudanca.data_hora.should == tempo
+    end
+
+    it 'gera um objeto para a mudança de estado a cada transição' do
+      verificar(conteudo, :submeter!, 'editavel', 'pendente')
+      conteudo.stub(:granularizavel?).and_return(true)
+      verificar(conteudo, :aprovar!, 'pendente', 'granularizando')
+      conteudo.stub(:granularizado?).and_return(false)
+      verificar(conteudo, :granularizou!, 'granularizando', 'pendente')
+      verificar(conteudo, :devolver, 'pendente', 'editavel')
+    end
+  end
+
   it 'nao pode possuir simultaneamente arquivo e link' do
     Factory.build(:conteudo, arquivo: 'arquivo.nsi', link: '').should be_valid
     Factory.build(:conteudo, arquivo: '', link: 'http://nsi.iff.edu.br').
@@ -165,4 +191,3 @@ describe Conteudo do
     end
   end
 end
-
