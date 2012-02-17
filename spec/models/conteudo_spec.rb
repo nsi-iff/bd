@@ -125,6 +125,24 @@ describe Conteudo do
   context 'mudança de estado' do
     let(:conteudo) { Factory.create(:conteudo) }
 
+    it 'armazena seu estado corrente' do
+      c = Factory.create(:conteudo)
+      c.submeter!
+      c = Conteudo.find(c.id)
+      c.state.should == 'pendente'
+
+      c.stub(:granularizavel?).and_return(false)
+      c.aprovar!
+      c = Conteudo.find(c .id)
+      c.state.should == 'publicado'
+    end
+
+    it 'mensagem "estado" retorna o estado corrente' do
+      conteudo.estado.should == 'editavel'
+      conteudo.submeter!
+      conteudo.estado.should == 'pendente'
+    end
+
     def verificar(conteudo, evento, de, para)
       tempo = Time.now
       expect {
@@ -227,4 +245,3 @@ describe Conteudo do
     end
   end
 end
-
