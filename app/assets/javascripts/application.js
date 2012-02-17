@@ -16,17 +16,15 @@
 //= require cocoon
 
 $(document).ready(function() {
-    $(".areas").change(function() {
-        var id = $(this).val();
+
+    $("#area").change(function() {
+        var id = this.value;
         $.post("/areas/" + id + "/sub_areas");
     });
-})
 
-$(document).ready(function() {
-    $(".eixos_tematicos").change(function() {
-        var id = $(this).val();
-        $.post("/eixos_tematicos/" + id + "/cursos")
+    $("#eixos_tematicos").change(function() {
+        var id = this.value;
+        $.post("/eixos_tematicos/" + id + "/cursos");
     });
-})
 
-
+});
