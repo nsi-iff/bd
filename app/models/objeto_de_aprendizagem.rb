@@ -11,6 +11,14 @@ class ObjetoDeAprendizagem < Conteudo
     end
   end
 
+  def nome_dos_cursos
+    if cursos.present?
+      cursos.
+        map(&:nome).
+        to_sentence(two_words_connector: ' e ', last_word_connector: ' e ')
+    end
+  end
+
   def nomes_das_novas_tags
     if novas_tags.present?
       novas_tags.
