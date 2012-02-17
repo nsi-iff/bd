@@ -12,7 +12,7 @@ class Conteudo < ActiveRecord::Base
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
 
-  state_machine :initial => :editavel do
+  state_machine :state, :initial => :editavel do
     event :submeter do
       transition :editavel => :pendente
     end
@@ -75,6 +75,10 @@ class Conteudo < ActiveRecord::Base
     self.sub_area.area
   end
 
+  def estado
+    state
+  end
+
   private
 
   def nao_pode_ter_arquivo_e_link_simultaneamente
@@ -91,4 +95,3 @@ class Conteudo < ActiveRecord::Base
     end
   end
 end
-
