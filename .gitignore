@@ -20,3 +20,5 @@ config/database.yml
 *.swp
 *.rb~
 *.haml~
+*.js~
+*.gitignore~

@@ -23,7 +23,7 @@ Grau.create([
     { :nome => 'Doutorado' }
 ])
 
-#######################  Seeds para Eixos temáticos e cursos #######################
+#################### Seeds para Eixos temáticos e cursos #######################
 
 EixoTematico.delete_all
 Curso.delete_all
@@ -36,13 +36,13 @@ ambiente_saude.cursos.create([
   { nome: 'Oftálmica'           },
   { nome: 'Radiologia'          },
   { nome: 'Saneamento Ambiental'},
-  { nome: 'Sistemas Biomédicos' },
+  { nome: 'Sistemas Biomédicos' }
 ])
 
-# Criando eixo Apoio Escolar e seus cursos
+# Criando eixo Apoio Escolar e seu curso
 apoio_escolar = EixoTematico.create(nome: 'Apoio Escolar')
 apoio_escolar.cursos.create([
-  { nome: 'Processos Escolares'},
+  { nome: 'Processos Escolares'}
 ])
 
 # Criando eixo Controle e Processos Industriais e seus cursos
@@ -104,6 +104,105 @@ informacao_comunicacao.cursos.create([
   { nome: 'Sistemas de Telecomunicações'         },
   { nome: 'Sistemas para Internet'               },
   { nome: 'Telemática'                           }
+])
+
+# Criando eixo Infraestrutura e seus cursos
+infraestrutura = EixoTematico.create(nome: 'Infraestrutura')
+infraestrutura.cursos.create([
+  { nome: 'Agrimensura'                        },
+  { nome: 'Construção de Edifícios'            },
+  { nome: 'Controle de Obras'                  },
+  { nome: 'Estradas'                           },
+  { nome: 'Gestão Portuária'                   },
+  { nome: 'Material de Construção'             },
+  { nome: 'Obras Hidráulicas'                  },
+  { nome: 'Pilotagem Profissional de Aeronaves'},
+  { nome: 'Sistemas de Navegação Fluvial'      },
+  { nome: 'Transporte Aéreo'                   },
+  { nome: 'Transporte Terrestre'               }
+])
+
+# Criando eixo Militar e seus cursos
+militar = EixoTematico.create(nome: 'Militar')
+militar.cursos.create([
+  { nome: 'Comunicações Aeronáuticas'      },
+  { nome: 'Fotointeligência'               },
+  { nome: 'Gerenciamento de Tráfego Aéreo' },
+  { nome: 'Gestão e Manutenção Aeronáutica'},
+  { nome: 'Meteorologia Aeronáutica'       },
+  { nome: 'Sistemas de Armas'              }
+])
+
+# Criando eixo Produção Alimentícia e seus cursos
+producao_alimenticia = EixoTematico.create(nome: 'Produção Alimentícia')
+producao_alimenticia.cursos.create([
+  { nome: 'Agroindústria'          },
+  { nome: 'Alimentos'              },
+  { nome: 'Laticínios'             },
+  { nome: 'Processamento de Carnes'},
+  { nome: 'Produção de Cachaça'    },
+  { nome: 'Viticultura e Enologia' }
+])
+
+# Criando eixo Produção Cultural e Design e seus cursos
+producao_cultural_design = EixoTematico.create(nome: 'Produção Cultural e Design')
+producao_cultural_design.cursos.create([
+  { nome: 'Comunicação Assistiva'    },
+  { nome: 'Comunicação Institucional'},
+  { nome: 'Conservação e Restauro'   },
+  { nome: 'Design de Interiores'     },
+  { nome: 'Design de Moda'           },
+  { nome: 'Design de Produto'        },
+  { nome: 'Design Gráfico'           },
+  { nome: 'Fotografia'               },
+  { nome: 'Produção Audiovisual'     },
+  { nome: 'Produção Cênica'          },
+  { nome: 'Produção Cultural'        },
+  { nome: 'Produção Fonográfica'     },
+  { nome: 'Produção Multimídia'      },
+  { nome: 'Produção Publicitária'    }
+])
+
+# Criando eixo Produção Industrial e seus cursos
+producao_industrial = EixoTematico.create(nome: 'Produção Industrial')
+producao_industrial.cursos.create([
+  { nome: 'Biocombustíveis'         },
+  { nome: 'Construção Naval'        },
+  { nome: 'Fabricação Mecânica'     },
+  { nome: 'Papel e Celulose'        },
+  { nome: 'Petróleo e Gás'          },
+  { nome: 'Polímeros'               },
+  { nome: 'Produção de Vestuário'   },
+  { nome: 'Produção Gráfica'        },
+  { nome: 'Produção Joalheira'      },
+  { nome: 'Produção Moveleira'      },
+  { nome: 'Produção Sucroalcooleira'},
+  { nome: 'Produção Têxtil'         }
+])
+
+# Criando eixo Recursos Naturais e seus cursos
+recursos_naturais = EixoTematico.create(nome: 'Recursos Naturais')
+recursos_naturais.cursos.create([
+  { nome: 'Agroecologia'        },
+  { nome: 'Agronegócio'         },
+  { nome: 'Aquicultura'         },
+  { nome: 'Cafeicultura'        },
+  { nome: 'Horticultura'        },
+  { nome: 'Irrigação e Drenagem'},
+  { nome: 'Produção de Grãos'   },
+  { nome: 'Produção Pesqueira'  },
+  { nome: 'Rochas Ornamentais'  },
+  { nome: 'Silvicultura'        }
+])
+
+# Criando eixo Segurança e seus cursos
+seguranca = EixoTematico.create(nome: 'Segurança')
+seguranca.cursos.create([
+  { nome: 'Gestão de Segurança Privada'},
+  { nome: 'Segurança no Trabalho'      },
+  { nome: 'Segurança no Trânsito'      },
+  { nome: 'Segurança Pública'          },
+  { nome: 'Serviços Penais'            }
 ])
 
 #######################  Seeds para Áreas e sub-áreas #######################
