@@ -196,6 +196,5 @@ footer a.topo {
 
 #curso {
     height: 200px;
-    width: 100px;
-
+    width: relative;
 }
