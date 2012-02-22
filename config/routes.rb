@@ -1,5 +1,8 @@
 DigitalLibrary::Application.routes.draw do
 
+  devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
+  resources :usuarios
+
   root :to => 'pages#inicio'
   match "/busca", :to => "pages#busca"
   match "/ajuda", :to => "pages#ajuda"

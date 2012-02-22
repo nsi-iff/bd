@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
 
+gem 'devise'
+
 gem 'pg', '~> 0.12.2'
 
 gem 'inherited_resources', '~> 1.3.0'
