@@ -20,7 +20,7 @@ feature 'adicionar objeto de aprendizagem' do
     page.should have_content 'Palavras-chave: programação, orientação a objetos, classe'
     page.should have_content 'Tempo de aprendizagem típico: 2 meses'
     page.should have_content 'Eixos temáticos: Ambiente e Saúde'
-#    page.should have_content 'Cursos: Radiologia e Saneamento Ambiental'
+    page.should have_content 'Cursos: Radiologia e Saneamento Ambiental'
     page.should have_content 'Novas tags: Técnicas de programação, OO e Testes'
     page.should have_content 'Idioma: Português (Brasil)'
   end
