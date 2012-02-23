@@ -20,6 +20,8 @@ FactoryGirl.define do
     link 'http://something.com'
   end
 
-  factory :artigo_de_evento, :parent => :conteudo do
+  factory :livro, :parent => :conteudo, :class => Livro do
+    numero_paginas 200
+    numero_edicao 1
   end
 end

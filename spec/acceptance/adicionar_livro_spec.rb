@@ -30,9 +30,8 @@ feature 'adicionar livro' do
     page.should have_content 'Número de Páginas: 480'
   end
 
-  scenario 'sem tradução', javascript: true do
-    submeter_conteudo :livro
-
+  scenario 'sem tradução' do
+    visit livro_path(Factory.create :livro, traducao: false)
     page.should have_content 'Tradução: Não'
   end
 end
