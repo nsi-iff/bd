@@ -17,10 +17,20 @@ carregar_idiomas if Idioma.count == 0
 Grau.delete_all
 # Criando as opções
 Grau.create([
-    { :nome => 'Graduação' },
+    { :nome => 'Graduação'      },
     { :nome => 'Especialização' },
-    { :nome => 'Mestrado' },
-    { :nome => 'Doutorado' }
+    { :nome => 'Mestrado'       },
+    { :nome => 'Doutorado'      }
+])
+
+############################### Seeds para Papeis ################################
+
+Papel.delete_all
+Papel.create([
+    { nome: 'membro'                   },
+    { nome: 'contribuidor de conteúdo' },
+    { nome: 'gestor de conteúdo'       },
+    { nome: 'administrador'            }
 ])
 
 #################### Seeds para Eixos temáticos e cursos #######################

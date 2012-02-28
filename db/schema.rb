@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218032336) do
+ActiveRecord::Schema.define(:version => 20120228090209) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
@@ -113,6 +113,15 @@ ActiveRecord::Schema.define(:version => 20120218032336) do
   add_index "mudancas_de_estado", ["conteudo_id"], :name => "index_mudancas_de_estado_on_conteudo_id"
   add_index "mudancas_de_estado", ["usuario_id"], :name => "index_mudancas_de_estado_on_usuario_id"
 
+  create_table "papeis", :force => true do |t|
+    t.string "nome"
+  end
+
+  create_table "papeis_usuarios", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "papel_id"
+  end
+
   create_table "sub_areas", :force => true do |t|
     t.string   "nome"
     t.integer  "area_id"
@@ -133,7 +142,6 @@ ActiveRecord::Schema.define(:version => 20120218032336) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "usuario"
     t.string   "nome_completo"
     t.string   "instituicao"
     t.string   "campus"

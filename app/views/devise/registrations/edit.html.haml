@@ -1,27 +1,18 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email
-  %div
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, :autocomplete => "off"
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password
-  %div= f.submit "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
-= link_to "Back", :back
+  = f.inputs "Editar #{resource_name.to_s.humanize}" do
+    = f.input :email, required: false, label: 'E-mail'
+    = f.input :password, label: 'Nova senha',
+      hint: 'Deixe em branco, caso não queira mudar'
+    = f.input :password_confirmation, label: 'Confirmação da senha'
+    = f.input :current_password, label: 'Senha atual',
+      hint: 'Precisamos da sua senha atual para atualizar os campos'
+    = f.input :instituicao, required: false, label: 'Instituição'
+    = f.input :campus, required: false, label: 'Campos'
+    = f.input :papeis, as: 'check_boxes', label: 'Papeis do usuário',
+      label_method: 'nome'
+
+  = f.buttons do
+    = f.submit 'Atualizar'
+
+= render 'links'

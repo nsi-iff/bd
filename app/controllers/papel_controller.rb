@@ -1,0 +1,2 @@
+class PapelController < ApplicationController
+end
