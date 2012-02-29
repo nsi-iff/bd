@@ -31,7 +31,10 @@ feature 'adicionar livro' do
   end
 
   scenario 'sem tradução' do
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
     visit livro_path(Factory.create :livro, traducao: false)
     page.should have_content 'Tradução: Não'
   end
 end
+

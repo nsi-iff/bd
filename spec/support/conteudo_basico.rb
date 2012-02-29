@@ -84,7 +84,6 @@ def submeter_conteudo(tipo, opcoes = {})
 end
 
 def validar_conteudo(opcoes = {})
-    save_and_open_page
   page.should have_content opcoes[:titulo] || 'Título: A Proposal for Ruby Performance Improvements'
   (page.should have_content opcoes[:link] || 'http://www.rubyconf.org/articles/1') unless opcoes[:arquivo]
   page.should have_content opcoes[:arquivo] || ''
