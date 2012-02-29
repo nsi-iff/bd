@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228090209) do
+ActiveRecord::Schema.define(:version => 20120229194657) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20120228090209) do
 
   create_table "papeis", :force => true do |t|
     t.string "nome"
+    t.string "descricao"
   end
 
   create_table "papeis_usuarios", :id => false, :force => true do |t|

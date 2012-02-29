@@ -3,8 +3,13 @@
 require 'spec_helper'
 
 feature 'verificar menu adicionar conteúdo' do
-  scenario 'link para adicionar artigo de evento' do
+  before(:each) do
     popular_area_sub_area
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
+  end
+
+  scenario 'link para adicionar artigo de evento' do
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Artigo de Evento'
@@ -13,7 +18,6 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar artigo de periódico' do
-    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Artigo de Periódico'
@@ -22,7 +26,6 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar livro' do
-    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Livro'
@@ -31,7 +34,6 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar objeto de aprendizagem' do
-    popular_area_sub_area
     popular_eixos_tematicos_cursos
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
@@ -41,7 +43,6 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar periódico técnico científico' do
-    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Periódico Técnico Científico'
@@ -50,7 +51,6 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar relatório' do
-    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Relatório'
@@ -59,7 +59,6 @@ feature 'verificar menu adicionar conteúdo' do
   end
 
   scenario 'link para adicionar trabalho de obtenção de grau' do
-    popular_area_sub_area
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Trabalho de Obtenção de Grau'
@@ -67,3 +66,4 @@ feature 'verificar menu adicionar conteúdo' do
     current_path.should == new_trabalho_de_obtencao_de_grau_path
   end
 end
+

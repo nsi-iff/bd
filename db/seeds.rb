@@ -26,12 +26,7 @@ Grau.create([
 ############################### Seeds para Papeis ################################
 
 Papel.delete_all
-Papel.create([
-    { nome: 'membro'                   },
-    { nome: 'contribuidor de conteúdo' },
-    { nome: 'gestor de conteúdo'       },
-    { nome: 'administrador'            }
-])
+Papel.criar_todos
 
 #################### Seeds para Eixos temáticos e cursos #######################
 
@@ -336,7 +331,7 @@ humanas.sub_areas.create([
 
 #Criando areas Linguística, Letras e Artes
 linguisticas_letras_e_artes = Area.create(nome: 'Linguística, Letras e Artes')
-#Criando sub_areas para Linguística, Letras e Artes 
+#Criando sub_areas para Linguística, Letras e Artes
 linguisticas_letras_e_artes.sub_areas.create([
         { nome: 'Artes'        },
         { nome: 'Letras'       },
@@ -373,3 +368,4 @@ outras.sub_areas.create([
         { nome: 'Secretariado Executivo'      },
         { nome: 'Outra'                       }
 ])
+

@@ -12,4 +12,17 @@ describe Usuario do
 
   it { should have_valid(:campus).when 'Campus Centro', 'Campus Foo' }
   it { should_not have_valid(:campus).when '', nil }
+
+  it 'responde se possui um determinado papel' do
+    usuario = Usuario.new
+    papeis = ['gestor', 'admin', 'contribuidor'].map {|nome|
+      Papel.create!(nome: nome, descricao: 'dummy')
+    }
+    usuario.papeis = papeis[0..1]
+    usuario.should be_gestor
+    usuario.should be_admin
+    usuario.should_not be_contribuidor
+    expect { usuario.qqcoisa? }.to raise_error(NoMethodError)
+  end
 end
+

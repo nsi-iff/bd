@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.1'
 
 gem 'devise'
+gem 'cancan'
 
 gem 'pg', '~> 0.12.2'
 
@@ -33,3 +34,4 @@ group :test, :development do
 end
 
 gem 'jquery-rails'
+

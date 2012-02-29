@@ -24,3 +24,4 @@ feature 'mudar papel do usuário' do
     page.has_checked_field? 'administrador'
   end
 end
+

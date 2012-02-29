@@ -34,7 +34,7 @@ end
 def popular_eixos_tematicos_cursos
   EixoTematico.destroy_all
   Curso.destroy_all
-  
+
   ambiente_saude = EixoTematico.create(nome: 'Ambiente e Saúde')
   ambiente_saude.cursos.create([
     { nome: 'Gestão Ambiental'    },
@@ -57,6 +57,8 @@ end
 
 def submeter_conteudo(tipo, opcoes = {})
   popular_area_sub_area
+  criar_papeis
+  autenticar_usuario(Papel.contribuidor)
   visit send(:"new_#{tipo}_path")
   fill_in 'Arquivo', with: opcoes[:arquivo] || ''
   fill_in 'Título',
@@ -82,6 +84,7 @@ def submeter_conteudo(tipo, opcoes = {})
 end
 
 def validar_conteudo(opcoes = {})
+    save_and_open_page
   page.should have_content opcoes[:titulo] || 'Título: A Proposal for Ruby Performance Improvements'
   (page.should have_content opcoes[:link] || 'http://www.rubyconf.org/articles/1') unless opcoes[:arquivo]
   page.should have_content opcoes[:arquivo] || ''
@@ -93,3 +96,4 @@ def validar_conteudo(opcoes = {})
   end
   page.should have_content opcoes[:campus] || 'Campus: Campos Centro'
 end
+
