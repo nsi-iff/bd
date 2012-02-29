@@ -2,19 +2,25 @@
 
 require 'spec_helper'
 
-feature 'cadastrar usuário na BD' do
-  scenario 'cadastrar usuários preenchendo todos os campos' do
-    visit new_usuario_registration_path
-    within_fieldset 'Registro de Usuário' do
-      fill_in 'Nome completo', with: 'Anaquin Skywalker'
-      fill_in 'E-mail', with: 'vader@darkside.com'
-      fill_in 'Senha', with: 'deathstar'
-      fill_in 'Confirmação de senha', with: 'deathstar'
-      fill_in 'Instituição', with: 'Star Wars'
-      fill_in 'Campus', with: 'Death Star'
+feature 'mudar papel do usuário' do
+  scenario 'adicionando papel de membro e administrador para usuário' do
+    criar_papeis
+    autenticar_usuario
+    visit '/usuarios/edit'
+    within_fieldset 'Editar Usuario' do
+     fill_in 'Senha atual', with: 'foobar'
+     within_fieldset 'Papeis do usuário' do
+       check 'membro'
+       check 'administrador'
+     end
     end
-    click_button 'Registrar'
 
-    page.should have_content 'Login efetuado com sucesso'
+    click_button 'Atualizar'
+
+    page.should have_content 'A sua conta foi atualizada com sucesso.'
+    visit '/usuarios/edit'
+
+    page.has_checked_field? 'membro'
+    page.has_checked_field? 'administrador'
   end
 end

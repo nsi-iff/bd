@@ -10,7 +10,7 @@
     = f.input :instituicao, required: false, label: 'Instituição'
     = f.input :campus, required: false, label: 'Campos'
     = f.input :papeis, as: 'check_boxes', label: 'Papeis do usuário',
-      label_method: 'nome'
+      member_label: 'nome'
 
   = f.buttons do
     = f.submit 'Atualizar'
