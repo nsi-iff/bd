@@ -2,10 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.home p {
+  margin-right: 20px;
+  text-align: justify;
+  color: gray;
+}
+
 .about {
   margin-right: 20px;
 }
 
 .about p, li {
   text-align: justify;
+}
+
+.ajuda a {
+  color: #648217;
 }
