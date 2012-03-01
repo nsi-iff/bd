@@ -1,0 +1,5 @@
+- @usuarios.map do |usuario|
+  = usuario.email
+  - @papeis.map do |papel|
+    = check_box_tag "#{usuario.email}[#{papel.nome}][]", papel.id, usuario.papeis.include?(papel)
+  %br

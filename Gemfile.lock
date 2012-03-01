@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/natanael-araujo/tire-mock_client.git
+  revision: b1a280636d50d79b52a90014954b3d22554a61d7
+  specs:
+    tire-mock_client (0.0.1)
+      activesupport
+      tire (>= 0.3.11)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -32,6 +40,7 @@ GEM
     arel (3.0.0)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
+    cancan (1.6.7)
     capybara (1.1.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -125,6 +134,8 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     responders (0.6.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.8.0)
       rspec-core (~> 2.8.0)
       rspec-expectations (~> 2.8.0)
@@ -163,6 +174,11 @@ GEM
     thor (0.14.6)
     tilt (1.3.3)
     timecop (0.3.5)
+    tire (0.3.12)
+      activemodel (~> 3.0)
+      multi_json (~> 1.0)
+      rake
+      rest-client (~> 1.6.0)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -180,6 +196,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cancan
   capybara (~> 1.1.2)
   capybara-webkit (~> 0.9.0)
   cocoon (~> 1.0.15)
@@ -201,5 +218,7 @@ DEPENDENCIES
   state_machine (~> 1.1.2)
   therubyracer
   timecop (~> 0.3.5)
+  tire
+  tire-mock_client!
   uglifier (>= 1.0.3)
   valid_attribute (~> 1.2.0)

@@ -24,4 +24,32 @@ FactoryGirl.define do
     numero_paginas 200
     numero_edicao 1
   end
+
+  factory :usuario do
+    sequence(:email) {|n| "usuario%s@gmail.com" % n }
+    password '12345678'
+    password_confirmation '12345678'
+    nome_completo 'Linus Torvalds'
+    instituicao 'iff'
+    campus 'centro'
+  end
+
+  factory :papel do
+    sequence(:nome) {|n| "papel#{n}" }
+    descricao 'um papel'
+  end
+
+  %w(contribuidor gestor).each do |papel|
+    factory "usuario_#{papel}".to_sym, :parent => :usuario do
+      after_create do |u|
+        hash = { nome: papel }
+        u.papeis = [Papel.where(hash).first || Papel.create!(hash)]
+        u.save!
+      end
+    end
+
+    factory "papel_#{papel}".to_sym, :parent => :papel do
+      nome papel
+    end
+  end
 end

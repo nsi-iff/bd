@@ -40,3 +40,4 @@ feature 'adicionar artigo de evento' do
     end
   end
 end
+

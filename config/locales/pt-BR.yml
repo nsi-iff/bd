@@ -95,7 +95,7 @@ pt-BR:
       month: Mês
       second: Segundo
       year: Ano
-  errors:
+  errors: &ERRORS
     format: ! '%{attribute} %{message}'
     messages:
       accepted: deve ser aceito
@@ -204,3 +204,7 @@ pt-BR:
       format: "%d/%m/%Y"
     messages:
       invalid: "inválida."
+
+  activerecord:
+    errors:
+      <<: *ERRORS

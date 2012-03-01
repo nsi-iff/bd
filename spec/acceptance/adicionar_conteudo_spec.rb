@@ -5,6 +5,8 @@ require 'spec_helper'
 feature 'adicionar conteudo (referente aos dados básicos)' do
   scenario 'adicionar dados basicos de conteudo', javascript: true do
     popular_area_sub_area
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
     visit new_artigo_de_evento_path
     fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
@@ -83,6 +85,8 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
 
   scenario "conteudo da área deve mudar quando grande área é selecionada", javascript: true do
     popular_area_sub_area
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
     visit new_artigo_de_evento_path
 
     select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
@@ -113,3 +117,4 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     select('Biomedicina', from: 'Área de Conhecimento*')
   end
 end
+

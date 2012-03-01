@@ -22,5 +22,11 @@ feature 'mudar papel do usuário' do
 
     page.has_checked_field? 'membro'
     page.has_checked_field? 'administrador'
+
+    visit '/usuarios'
+
+    page.has_checked_field? 'foo@bar.com[membro]'
+    page.has_checked_field? 'foo@bar.com[admin]'
   end
 end
+

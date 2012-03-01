@@ -244,4 +244,49 @@ describe Conteudo do
       subject.errors[:autores].should_not be_any
     end
   end
+
+  context 'pesquisa por meta-dados' do
+    it "pesquisa no índice 'conteudos' do elasticsearch" do
+      result = mock(:result).as_null_object
+      Tire.should_receive('search').with('conteudos').and_return(result)
+      Conteudo.search 'busca'
+    end
+
+    context 'indexação de atributos de relacionamentos' do
+      before(:all) do
+        subject.autores = [Factory(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
+                           Factory(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
+        Area.destroy_all
+        SubArea.destroy_all
+        area = Area.create(nome: 'Ciências Exatas e da Terra')
+        subject.sub_area = area.sub_areas.create(nome: 'Ciência da Computação')
+      end
+
+      context 'dos autores' do
+        let(:autores) { campos_a_serem_indexados['autores'] }
+
+        it "deve incluir os nomes dos autores" do
+          autores.first['nome'].should == '_why'
+          autores.second['nome'].should == 'blix'
+        end
+
+        it "deve incluir os links dos currículos lattes dos autores" do
+          autores.first['lattes'].should == 'http://lattes.cnpq.br/1234567890'
+          autores.second['lattes'].should == 'http://lattes.cnpq.br/0987654321'
+        end
+      end
+
+      it "deve incluir o nome da sub-área" do
+        campos_a_serem_indexados['sub_area']['nome'].should == 'Ciência da Computação'
+      end
+
+      it "deve incluir o nome da área da sub-área" do
+        campos_a_serem_indexados['sub_area']['area']['nome'].should == 'Ciências Exatas e da Terra'
+      end
+    end
+
+    def campos_a_serem_indexados
+      JSON.parse(subject.to_indexed_json)
+    end
+  end
 end

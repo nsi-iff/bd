@@ -34,7 +34,7 @@ end
 def popular_eixos_tematicos_cursos
   EixoTematico.destroy_all
   Curso.destroy_all
-  
+
   ambiente_saude = EixoTematico.create(nome: 'Ambiente e Saúde')
   ambiente_saude.cursos.create([
     { nome: 'Gestão Ambiental'    },
@@ -57,6 +57,8 @@ end
 
 def submeter_conteudo(tipo, opcoes = {})
   popular_area_sub_area
+  criar_papeis
+  autenticar_usuario(Papel.contribuidor)
   visit send(:"new_#{tipo}_path")
   fill_in 'Arquivo', with: opcoes[:arquivo] || ''
   fill_in 'Título',
@@ -93,3 +95,4 @@ def validar_conteudo(opcoes = {})
   end
   page.should have_content opcoes[:campus] || 'Campus: Campos Centro'
 end
+

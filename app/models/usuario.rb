@@ -14,4 +14,15 @@ class Usuario < ActiveRecord::Base
   validates :nome_completo, presence: true, format: { with: /^[a-z ]+$/i,
             message: 'Erro, Somente letras' }, allow_blank: true
   validates_presence_of :instituicao, :campus
+
+  def method_missing(method_name, *params)
+    nome_papel = method_name.to_s.chop
+    todos = Papel.all.map(&:nome)
+    if todos.include?(nome_papel)
+      papeis.select {|p| p.nome == nome_papel }.present?
+    else
+      super
+    end
+  end
 end
+

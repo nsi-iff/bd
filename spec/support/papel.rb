@@ -1,9 +1,15 @@
 # encoding: utf-8
 
 def criar_papeis
-  Papel.destroy_all
-  membro = Papel.create(nome: 'membro')
-  contribuidor_de_conteudo = Papel.create(nome: 'contribuidor de conteúdo')
-  gestor_de_conteudo = Papel.create(nome: 'gestor de conteúdo')
-  administrador = Papel.create(nome: 'administrador')
+  Papel.delete_all
+  Papel.criar_todos
 end
+
+def papel(nome)
+  Papel.where(nome: nome).present? || Papel.create!(nome: nome, descricao: 'dummy')
+end
+
+def acesso_negado
+  'Acesso negado'
+end
+
