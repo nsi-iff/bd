@@ -1,4 +1,5 @@
 class ObjetoDeAprendizagem < Conteudo
+  index_name 'conteudos'
   has_and_belongs_to_many :cursos
   has_many :eixos_tematicos, :through => :cursos, :uniq => true
   belongs_to :idioma

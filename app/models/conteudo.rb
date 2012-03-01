@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 class Conteudo < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   has_many :autores
   has_many :mudancas_de_estado
   belongs_to :sub_area
@@ -77,6 +80,18 @@ class Conteudo < ActiveRecord::Base
 
   def estado
     state
+  end
+
+  def self.search(busca)
+    s = Tire.search 'conteudos' do
+      query { string busca }
+    end
+    s.results
+  end
+
+  def to_indexed_json
+    to_json(include: { autores: { only: [:nome, :lattes] },
+                       sub_area: { only: [:nome], include: {area: {only: [:nome]}} }})
   end
 
   private
