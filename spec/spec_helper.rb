@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
 require 'valid_attribute'
+require 'cancan/matchers'
 
 require 'integration/fake_sam'
 

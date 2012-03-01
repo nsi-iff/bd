@@ -8,4 +8,3 @@ class ArtigosDeEventoController < InheritedResources::Base
     create! notice: 'Artigo de evento submetido com sucesso'
   end
 end
-

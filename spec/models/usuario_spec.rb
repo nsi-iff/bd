@@ -1,6 +1,47 @@
 require 'spec_helper'
 
 describe Usuario do
+  describe 'abilities' do
+    subject { ability }
+    let(:ability) { Ability.new(usuario) }
+    let(:tipos) do
+      [ArtigoDeEvento, ArtigoDePeriodico, Livro,
+       ObjetoDeAprendizagem, PeriodicoTecnicoCientifico,
+       Relatorio, TrabalhoDeObtencaoDeGrau]
+    end
+
+    before(:each) do
+      Factory.create(:papel_gestor)
+      Factory.create(:papel_contribuidor)
+    end
+
+    shared_examples 'adicionar e ler todos os tipos de conteudo' do
+      it 'pode adicionar todos os tipos de conteudo' do
+        tipos.each do |conteudo|
+          should be_able_to(:create, conteudo)
+        end
+      end
+
+      it 'pode acessar todos os tipos de conteudo' do
+        tipos.each do |conteudo|
+          should be_able_to(:read, conteudo)
+        end
+      end
+    end
+
+    context 'gestor de conteudo' do
+      let(:usuario) { Factory.create(:usuario_gestor) }
+
+      include_examples 'adicionar e ler todos os tipos de conteudo'
+    end
+
+    context 'contribuidor de conteudo' do
+      let(:usuario) { Factory.create(:usuario_contribuidor) }
+
+      include_examples 'adicionar e ler todos os tipos de conteudo'
+    end
+  end
+
   it { should have_valid(:email).when 'bernardo.fire@gmail.com', 'aeiou@abcd.com' }
   it { should_not have_valid(:email).when '', nil }
 
@@ -25,4 +66,3 @@ describe Usuario do
     expect { usuario.qqcoisa? }.to raise_error(NoMethodError)
   end
 end
-
