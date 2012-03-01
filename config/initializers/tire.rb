@@ -1,4 +1,4 @@
 Tire.configure do
   client Tire::Http::Client::MockClient
-  logger 'log/elasticsearch.log'
+  logger "#{Rails.root}/log/elasticsearch.log"
 end
