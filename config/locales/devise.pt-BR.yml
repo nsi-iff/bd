@@ -30,7 +30,9 @@ pt-BR:
       confirmed: 'A sua conta foi confirmada com sucesso. Você está autenticado.'
     registrations:
       signed_up: 'Login efetuado com sucesso. Se não foi autorizado, a confirmação será enviada por email.'
-      inactive_signed_up: 'A sua conta foi criada com sucesso. No entanto, não foi possível fazer login, pois ela está %{reason}.'
+      signed_up_but_unconfirmed: 'A sua conta foi criada com sucesso. No entanto, não foi possível fazer login, pois ela não foi confirmada.'
+      signed_up_but_inactive: 'A sua conta foi criada com sucesso. No entanto, não foi possível fazer login, pois ela está inativa.'
+      signed_up_but_locked: 'A sua conta foi criada com sucesso. No entanto, não foi possível fazer login, pois ela está bloqueada.'
       updated: 'A sua conta foi atualizada com sucesso.'
       destroyed: 'Adeus! A sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
     unlocks:
