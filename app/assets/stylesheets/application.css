@@ -151,6 +151,33 @@ header .site_actions {
   background-image: url("/assets/menu_roxo.jpg");
 }
 
+.container .searchbyarea {
+  margin-top: 20px;
+  margin-left: 5px;
+  width: 200px;
+  height: 27px;
+  background-image: url("/assets/menu_verde.gif");
+}
+
+.container .searchbyarea #title {
+  color: #fff;
+  margin: 5px;
+  font-weight: bold;
+  padding: 0.4em;
+  font-size: 15px;
+}
+
+.container .searchbyarea .areas li p {
+  color: #000;
+  font-size: 12px;
+}
+
+.container .searchbyarea .subAreas li {
+  color: #000;
+  font-size: 12px;
+  margin-left: 30px;
+}
+
 .container .content {
   float: right;
   width: 760px;
