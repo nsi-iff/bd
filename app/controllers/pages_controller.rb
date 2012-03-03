@@ -20,4 +20,7 @@ class PagesController < ApplicationController
   def noticias
     @title = "Notícias"
   end
+
+  def adicionar_conteudo
+  end
 end

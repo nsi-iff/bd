@@ -8,9 +8,7 @@ DigitalLibrary::Application.routes.draw do
   match "/ajuda",     :to => "pages#ajuda"
   match "/sobre",     :to => "pages#sobre"
   match "/noticias",  :to => "pages#noticias"
-
-#  get "pages/adicionar_conteudo"
-
+  match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
 
   resources :artigos_de_evento, :only => [:new, :create, :show]
   resources :artigos_de_periodico, :only => [:new, :create, :show]
@@ -19,7 +17,6 @@ DigitalLibrary::Application.routes.draw do
   resources :relatorios,  :only => [:new, :create, :show]
   resources :objetos_de_aprendizagem, :only => [:new, :create, :show]
   resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show]
-  resources :adicionar_conteudo
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
 
