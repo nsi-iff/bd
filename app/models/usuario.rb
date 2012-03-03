@@ -1,6 +1,5 @@
 class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :papeis
-  attr_accessible :papel_ids
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,7 +7,8 @@ class Usuario < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :usuario, :nome_completo, :instituicao, :campus
+                  :usuario, :nome_completo, :instituicao, :campus,
+                  :papel_ids
 
   validates :email, presence: true, uniqueness: true
   validates :nome_completo, presence: true, format: { with: /^[a-z ]+$/i,
