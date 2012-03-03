@@ -1,6 +1,5 @@
 ﻿$(document).ready(function() {
 
-    eixo     = $('#eixos_tematicos option:selected');
     cursoSelecionados = $("#curso");
     to1      = $('#to1');
     allTo1   = $('#allTo1');
@@ -28,6 +27,7 @@
 
 
     function MoveSelected() {
+        var eixo     = $('#eixos_tematicos option:selected');
         var curso = $('#objeto_de_aprendizagem_curso_ids option:selected');
         var cursoEmSelecao = eixo.text() + ": "+ curso.text();
         if ($('#curso option[value="' + cursoEmSelecao + '"]').length == false){
@@ -37,6 +37,7 @@
    }
 
     function MoveAll() {
+        var eixo     = $('#eixos_tematicos option:selected');
         var curso = $('#objeto_de_aprendizagem_curso_ids option');
         for (var i=0; i<= curso.length;i++){
             var cursoEmSelecao = eixo.text() + ": "+ curso[i].text;
