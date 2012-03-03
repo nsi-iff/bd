@@ -1,7 +1,8 @@
 DigitalLibrary::Application.routes.draw do
 
   devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
-  resources :usuarios
+  get "/usuarios", to: "usuarios#index"
+  put "/atualizar_papeis", to: "usuarios#atualizar_papeis"
 
   root :to => 'pages#inicio'
   match "/busca",     :to => "busca#index"

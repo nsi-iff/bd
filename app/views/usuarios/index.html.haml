@@ -1,5 +1,18 @@
-- @usuarios.map do |usuario|
-  = usuario.email
-  - @papeis.map do |papel|
-    = check_box_tag "#{usuario.email}[#{papel.nome}][]", papel.id, usuario.papeis.include?(papel)
-  %br
+= form_tag atualizar_papeis_path, method: 'put' do
+  %table{ border: '1' }
+    %thead
+      %td E-mail
+      - @papeis.each do |papel|
+        %td #{papel.nome}
+      %tbody
+        - @usuarios.each do |usuario|
+          %tr
+            %td
+              = usuario.nome_completo
+              %br
+              = usuario.email
+              - @papeis.each do |papel|
+                %td= check_box_tag "usuarios[#{usuario.id}][papel_ids][]", papel.id,
+                  usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}"
+
+  = submit_tag 'Salvar'

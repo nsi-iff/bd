@@ -9,8 +9,6 @@
       hint: 'Precisamos da sua senha atual para atualizar os campos'
     = f.input :instituicao, required: false, label: 'Instituição'
     = f.input :campus, required: false, label: 'Campos'
-    = f.input :papeis, as: 'check_boxes', label: 'Papeis do usuário',
-        member_label: 'descricao'
 
   = f.buttons do
     = f.submit 'Atualizar'
