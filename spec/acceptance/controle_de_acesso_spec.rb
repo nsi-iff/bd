@@ -6,11 +6,11 @@ feature 'controle de acesso' do
   context 'adicionar conteudos' do
      tipos = %W(artigo_de_evento
                 artigo_de_periodico
-	              livro
-	              objeto_de_aprendizagem
+                livro
+                objeto_de_aprendizagem
                 periodico_tecnico_cientifico
-               	relatorio
-	              trabalho_de_obtencao_de_grau)
+                 relatorio
+                trabalho_de_obtencao_de_grau)
 
     scenario 'pode ser acessado por gestores e contribuidores de conteúdo', javascript: true do
       Papel.criar_todos
@@ -33,4 +33,3 @@ feature 'controle de acesso' do
     end
   end
 end
-
