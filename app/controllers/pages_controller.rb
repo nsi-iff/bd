@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 class PagesController < ApplicationController
+  before_filter :authenticate_usuario!
+  load_and_authorize_resource Usuario, parent: false, only: [:adicionar_conteudo]
+
   def inicio
     @title = "Página Inicial"
   end

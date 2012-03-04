@@ -6,6 +6,7 @@ class Ability
       [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
        TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
        Relatorio].each {|tipo| can [:create, :read], tipo }
+       can [:adicionar_conteudo], Usuario
     end
 
     if usuario.admin?
@@ -13,4 +14,3 @@ class Ability
     end
   end
 end
-
