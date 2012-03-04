@@ -15,6 +15,8 @@ require 'integration/fake_sam'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, :type => :controller
+
   # testes de busca são dependentes do elasticsearch
   config.filter_run_excluding busca: true
 

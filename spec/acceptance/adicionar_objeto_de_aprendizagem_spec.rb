@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar objeto de aprendizagem' do
-  scenario 'padrão', javascript: true do
+  scenario 'padrão' do
     Idioma.create! descricao: 'Português (Brasil)'
     popular_eixos_tematicos_cursos
     submeter_conteudo :objeto_de_aprendizagem do

@@ -12,4 +12,3 @@ end
 def acesso_negado
   'Acesso negado'
 end
-

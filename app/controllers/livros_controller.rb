@@ -1,6 +1,8 @@
 class LivrosController < InheritedResources::Base
   actions :new, :create, :show
 
+  include NovoComAutor
+
   before_filter :authenticate_usuario!
   load_and_authorize_resource
 
@@ -8,4 +10,3 @@ class LivrosController < InheritedResources::Base
     create! notice: 'Livro submetido com sucesso'
   end
 end
-

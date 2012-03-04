@@ -15,7 +15,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'objeto_de_aprendizagem', 'objetos_de_aprendizagem'
   inflect.irregular 'EixoTematico', 'EixosTematicos'
   inflect.irregular 'eixo_tematico', 'eixos_tematicos'
-  inflect.irregular 'TrabalhoDeObtencaoDegrau', 'TrabalhosDeObtencaoDeGrau'
+  inflect.irregular 'TrabalhoDeObtencaoDeGrau', 'TrabalhosDeObtencaoDeGrau'
   inflect.irregular 'trabalho_de_obtencao_de_grau', 'trabalhos_de_obtencao_de_grau'
   inflect.irregular 'MudancaDeEstado', 'MudancasDeEstado'
   inflect.irregular 'mudanca_de_estado', 'mudancas_de_estado'

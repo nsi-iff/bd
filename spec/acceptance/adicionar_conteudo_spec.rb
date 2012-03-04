@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar conteudo (referente aos dados básicos)' do
-  scenario 'adicionar dados basicos de conteudo', javascript: true do
+  scenario 'adicionar dados basicos de conteudo' do
     popular_area_sub_area
     criar_papeis
     autenticar_usuario(Papel.contribuidor)
@@ -31,8 +31,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     page.should have_content 'Resumo: This work proposes an Ruby performance improvement'
   end
 
-  scenario 'arquivo e link não podem ser fornecidos simultaneamente',
-           javascript: true do
+  scenario 'arquivo e link não podem ser fornecidos simultaneamente' do
     submeter_conteudo :artigo_de_evento, link: '', arquivo: 'arquivo.nsi'
     page.should have_content 'com sucesso'
 
@@ -117,4 +116,3 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     select('Biomedicina', from: 'Área de Conhecimento*')
   end
 end
-

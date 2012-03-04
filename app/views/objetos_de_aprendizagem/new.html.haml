@@ -8,7 +8,7 @@
     %tr
       = label_tag(:eixos_tematicos, 'Eixos temáticos')
       %td
-        = select_tag(:eixos_tematicos, options_for_select(EixoTematico.all.map {|eixo| [eixo.nome, eixo.id] }), 
+        = select_tag(:eixos_tematicos, options_for_select(EixoTematico.all.map {|eixo| [eixo.nome, eixo.id] }),
           class: "eixos_tematicos")
         = f.input :cursos, :as => :select, input_html: { class: "cursos" },
           collection: EixoTematico.first.cursos.map {|curso| [curso.nome, curso.id]},

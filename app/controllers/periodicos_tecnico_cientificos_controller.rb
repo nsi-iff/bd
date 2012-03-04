@@ -3,6 +3,8 @@
 class PeriodicosTecnicoCientificosController < InheritedResources::Base
   actions :new, :create, :show
 
+  include NovoComAutor
+
   before_filter :authenticate_usuario!
   load_and_authorize_resource
 
@@ -10,4 +12,3 @@ class PeriodicosTecnicoCientificosController < InheritedResources::Base
     create! notice: 'Periódico técnico científico submetido com sucesso'
   end
 end
-

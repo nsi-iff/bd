@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar artigo de periódico' do
-  scenario 'padrao', javascript: true do
+  scenario 'padrao' do
     submeter_conteudo :artigo_de_periodico do
       fill_in 'Subtítulo', with: 'Adicionando artigo de periódico'
       within_fieldset 'Dados do periódico' do
