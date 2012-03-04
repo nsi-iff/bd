@@ -13,6 +13,7 @@ describe Usuario do
     before(:each) do
       Factory.create(:papel_gestor)
       Factory.create(:papel_contribuidor)
+      Factory.create(:papel_admin)
     end
 
     shared_examples 'adicionar e ler todos os tipos de conteudo' do

@@ -3,9 +3,19 @@
 require 'spec_helper'
 
 feature 'mudar papel do usuário' do
-  scenario 'adicionando papel de membro e administrador para usuário' do
+  scenario 'usuário não admin, não pode acessar página de manipulação de papéis' do
     criar_papeis
     autenticar_usuario
+
+    visit '/usuarios'
+
+    page.should have_content 'Acesso negado'
+  end
+
+  scenario 'admin pode acessar página de manipulação de papéis e alterar papéis de usuários' do
+    criar_papeis
+    autenticar_usuario Papel.admin
+
     visit '/usuarios'
     check 'foo@bar.com["membro"]'
     check 'foo@bar.com["gestor"]'
@@ -15,4 +25,3 @@ feature 'mudar papel do usuário' do
     page.has_checked_field? 'foo@bar.com["gestor"]'
   end
 end
-

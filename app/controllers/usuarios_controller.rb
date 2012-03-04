@@ -1,4 +1,8 @@
 class UsuariosController < ApplicationController
+
+  before_filter :authenticate_usuario!
+  load_and_authorize_resource
+
   def index
     @usuarios = Usuario.all
     @papeis = Papel.all
