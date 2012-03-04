@@ -60,7 +60,7 @@ def submeter_conteudo(tipo, opcoes = {})
   criar_papeis
   autenticar_usuario(Papel.contribuidor)
   visit send(:"new_#{tipo}_path")
-  fill_in 'Arquivo', with: opcoes[:arquivo] || ''
+  attach_file('Arquivo', opcoes[:arquivo]) if opcoes[:arquivo].present?
   fill_in 'Título',
     with: opcoes[:titulo] || 'A Proposal for Ruby Performance Improvements'
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'

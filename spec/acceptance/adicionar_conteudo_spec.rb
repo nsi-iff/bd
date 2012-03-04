@@ -32,7 +32,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
   end
 
   scenario 'arquivo e link não podem ser fornecidos simultaneamente' do
-    submeter_conteudo :artigo_de_evento, link: '', arquivo: 'arquivo.nsi'
+    submeter_conteudo :artigo_de_evento, link: '', arquivo: Rails.root + 'spec/resources/arquivo.nsi'
     page.should have_content 'com sucesso'
 
     submeter_conteudo :artigo_de_evento, link: 'http://nsi.iff.edu.br',
@@ -40,7 +40,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     page.should have_content 'com sucesso'
 
     submeter_conteudo :artigo_de_evento, link: 'http://nsi.iff.edu.br',
-                                         arquivo: 'arquivo.nsi'
+                                         arquivo: Rails.root + 'spec/resources/arquivo.nsi'
     page.should_not have_content 'com sucesso'
     within '#artigo_de_evento_link_input' do
       page.should have_content 'não pode existir simultaneamente a arquivo'

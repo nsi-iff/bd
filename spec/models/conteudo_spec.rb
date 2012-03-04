@@ -206,10 +206,15 @@ describe Conteudo do
   end
 
   it 'nao pode possuir simultaneamente arquivo e link' do
-    Factory.build(:conteudo, arquivo: 'arquivo.nsi', link: '').should be_valid
-    Factory.build(:conteudo, arquivo: '', link: 'http://nsi.iff.edu.br').
+    arquivo = ActionDispatch::Http::UploadedFile.new({
+      :filename => 'arquivo.nsi',
+      :type => 'text/plain',
+      :tempfile => File.new(Rails.root + 'spec/resources/arquivo.nsi')
+    })
+    Factory.build(:conteudo, arquivo: arquivo, link: '').should be_valid
+    Factory.build(:conteudo, arquivo: nil, link: 'http://nsi.iff.edu.br').
       should be_valid
-    conteudo = Factory.build(:conteudo, arquivo: 'arquivo.nsi',
+    conteudo = Factory.build(:conteudo, arquivo: arquivo,
                                         link: 'http://nsi.iff.edu.br')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
@@ -217,7 +222,7 @@ describe Conteudo do
   end
 
   it 'arquivo ou link devem existir' do
-    conteudo = Factory.build(:conteudo, arquivo: '', link: '')
+    conteudo = Factory.build(:conteudo, arquivo: nil, link: '')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
     conteudo.errors[:link].should be_any

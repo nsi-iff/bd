@@ -1,57 +1,53 @@
-require 'rbconfig'
-require 'open-uri'
+module NSISam
+  class Client
+    def initialize(url)
+      @storage = {}
+    end
 
-def app_file
-  File.expand_path(File.join(File.dirname(__FILE__), 'fake_sam_app.rb'))
-end
+    # Store a given data in SAM
+    #
+    # @param [String] data the desired data to store
+    # @return [Hash] response with the data key and checksum
+    #   * "key" [String] the key to access the stored data
+    #   * "checksum" [String] the sha1 checksum of the stored data
+    # @example
+    #   nsisam.store("something")
+    def store(data)
+      key = Time.now.to_i
+      @storage[key] = data
+      {'key' => key, 'checksum' => 0 }
+    end
 
-def uri
-  Rails.application.config.sam_uri
-end
+    # Delete data at a given SAM key
+    #
+    # @param [Sring] key of the value to delete
+    # @return [Hash] response
+    #   * "deleted" [Boolean] true if the key was successfully deleted
+    # @raise [NSISam::Errors::Client::KeyNotFoundError] When the key doesn't exists
+    # @example Deleting an existing key
+    #   nsisam.delete("some key")
+    def delete(key)
+      @storage.delete(key)
+      true
+    end
 
-def port
-  Rails.application.config.sam_port
-end
+    def get(key)
+      {'data' => @storage[key] }
+    end
 
-def command
-  cmd = ['exec']
-  if RbConfig.respond_to? :ruby
-    cmd << RbConfig.ruby.inspect
-  else
-    file, dir = RbConfig::CONFIG.values_at('ruby_install_name', 'bindir')
-    cmd << File.expand_path(file, dir).inspect
+    # Update data stored at a given SAM key
+    #
+    # @param [String] key of the data to update
+    # @param [String, Hash, Array] data to be stored at the key
+    # @return [Hash] response
+    #   * "key" [String] just to value key again
+    #   * "checksum" [String] the new sha1 checksum of the key's data
+    # @raise [NSISam::Errors::Client::KeyNotFoundError] When the key doesn't exists
+    # @example
+    #   nsisam.update("my key", "my value")
+    def update(key, value)
+      @storage[key] = value
+      { 'key' => key, 'checksum' => 0 }
+    end
   end
-  cmd << app_file.inspect << '-p' << port << '2>&1'
-  cmd.join(' ')
-end
-
-def kill(pid, signal = 'TERM')
-  Process.kill(signal, pid)
-rescue NotImplementedError
-  system "kill -s #{signal} #{pid}"
-end
-
-def fake_sam_up
-  @pipe = IO.popen(command)
-  wait_for_server_up
-end
-
-def fake_sam_down
-  kill(@pipe.pid) if @pipe
-  wait_for_server_down
-end
-
-def wait_for_server_up
-  URI.parse("#{uri}:#{port}?key=123").read
-rescue Errno::ECONNREFUSED
-  sleep 0.1
-  retry
-end
-
-def wait_for_server_down
-  while true
-    URI.parse("#{uri}:#{port}?key=123").read
-    sleep 0.1
-  end
-rescue Errno::ECONNREFUSED
 end

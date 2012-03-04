@@ -37,5 +37,6 @@ DigitalLibrary::Application.configure do
 
   #
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
 end
+
+require File.join(Rails.root, 'spec', 'integration', 'fake_sam') unless ENV['INTEGRACAO']

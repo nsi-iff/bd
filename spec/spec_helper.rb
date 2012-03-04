@@ -8,7 +8,7 @@ require 'capybara/rails'
 require 'valid_attribute'
 require 'cancan/matchers'
 
-require 'integration/fake_sam'
+require 'integration/fake_sam' unless ENV["INTEGRACAO"]
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

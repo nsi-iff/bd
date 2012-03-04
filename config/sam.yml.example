@@ -1,11 +1,16 @@
 development:
-  uri:
-  port:
+  user: 'test'
+  password: 'test'
+  host: 'localhost'
+  port: 8888
 
 test:
-  uri: 'http://localhost'
+  user: 'test'
+  password: 'test'
+  host: 'localhost'
   port: 9999
 
 production:
-  uri:
+  user:
+  password:
   port:

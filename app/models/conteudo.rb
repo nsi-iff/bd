@@ -7,6 +7,7 @@ class Conteudo < ActiveRecord::Base
   has_many :autores
   has_many :mudancas_de_estado
   belongs_to :sub_area
+  has_one :arquivo
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
@@ -14,6 +15,8 @@ class Conteudo < ActiveRecord::Base
 
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
+
+  before_validation :enviar_arquivo_ao_sam_e_salvar
 
   state_machine :state, :initial => :editavel do
     event :submeter do
@@ -94,7 +97,27 @@ class Conteudo < ActiveRecord::Base
                        sub_area: { only: [:nome], include: {area: {only: [:nome]}} }})
   end
 
+  alias  :set_arquivo :arquivo=
+
+  def arquivo=(uploaded)
+    @arquivo_uploaded = uploaded
+  end
+
   private
+
+  def enviar_arquivo_ao_sam_e_salvar
+     if @arquivo_uploaded.present?
+      config = Rails.application.config
+
+      #conectar ao servidor do sam e enviar arquivo
+      url = "http://#{config.sam_user}:#{config.sam_password}@#{config.sam_host}:#{config.sam_port}"
+      sam = NSISam::Client.new url
+      result = sam.store Base64.encode64(@arquivo_uploaded.read)
+
+      arquivo = Arquivo.create!(nome: @arquivo_uploaded.original_filename, key: result["key"])
+      set_arquivo arquivo
+    end
+  end
 
   def nao_pode_ter_arquivo_e_link_simultaneamente
     if arquivo.present? && link.present?

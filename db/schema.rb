@@ -11,12 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120229194657) do
+ActiveRecord::Schema.define(:version => 20120304190434) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "arquivos", :force => true do |t|
+    t.string   "nome"
+    t.string   "key"
+    t.string   "mime_type"
+    t.integer  "conteudo_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "autores", :force => true do |t|
@@ -30,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20120229194657) do
   create_table "conteudos", :force => true do |t|
     t.string   "titulo"
     t.string   "link"
-    t.string   "arquivo"
     t.string   "campus"
     t.text     "direitos"
     t.text     "resumo"

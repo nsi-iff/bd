@@ -59,7 +59,9 @@ module DigitalLibrary
     # Configuracoes do acesso ao SAM
     sam_config = YAML.load(
       File.read(File.join(Rails.root, 'config', 'sam.yml')))[Rails.env]
-    config.sam_uri = sam_config['uri']
+    config.sam_user = sam_config['user']
+    config.sam_password = sam_config['password']
+    config.sam_host = sam_config['host']
     config.sam_port = sam_config['port']
   end
 end
