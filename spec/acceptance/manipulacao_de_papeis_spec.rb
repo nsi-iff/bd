@@ -21,6 +21,9 @@ feature 'mudar papel do usuário' do
     check 'foo@bar.com["gestor"]'
     click_button 'Salvar'
 
+    foobar = Usuario.find_by_nome_completo('Foo Bar')
+    foobar.membro?.should == true
+    foobar.gestor?.should == true
     page.has_checked_field? 'foo@bar.com["membro"]'
     page.has_checked_field? 'foo@bar.com["gestor"]'
   end
