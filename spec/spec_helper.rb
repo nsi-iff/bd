@@ -40,9 +40,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.before(:suite) { fake_sam_up }
-  config.after(:suite) { fake_sam_down }
-
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
