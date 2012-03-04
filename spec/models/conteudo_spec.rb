@@ -207,9 +207,9 @@ describe Conteudo do
 
   it 'nao pode possuir simultaneamente arquivo e link' do
     arquivo = ActionDispatch::Http::UploadedFile.new({
-      :filename => 'arquivo.nsi',
-      :type => 'text/plain',
-      :tempfile => File.new(Rails.root + 'spec/resources/arquivo.nsi')
+      filename: 'arquivo.nsi',
+      type: 'text/plain',
+      tempfile: File.new(Rails.root + 'spec/resources/arquivo.nsi')
     })
     Factory.build(:conteudo, arquivo: arquivo, link: '').should be_valid
     Factory.build(:conteudo, arquivo: nil, link: 'http://nsi.iff.edu.br').
