@@ -11,8 +11,7 @@ class Usuario < ActiveRecord::Base
                   :papel_ids
 
   validates :email, presence: true, uniqueness: true
-  validates :nome_completo, presence: true, format: { with: /^[a-z ]+$/i,
-            message: 'Erro, Somente letras' }, allow_blank: true
+  validates :nome_completo, presence: true, allow_blank: true
   validates_presence_of :instituicao, :campus
 
   def method_missing(method_name, *params)
