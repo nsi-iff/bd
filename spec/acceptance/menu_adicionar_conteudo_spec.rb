@@ -2,6 +2,32 @@
 
 require 'spec_helper'
 
+feature 'determinados usuários não podem acessar página de adicionar conteúdo' do
+  scenario 'não cadastrado não pode ver link para adicionar conteúdo' do
+    visit root_path
+    page.should_not have_content 'Adicionar Conteúdo'
+  end
+
+  scenario 'não cadastrado pode acessar página adicionar conteúdo' do
+    visit adicionar_conteudo_path
+    current_path.should == new_usuario_session_path
+  end
+
+  scenario 'sem permissão não pode ver link para adicionar conteúdo' do
+    criar_papeis
+    autenticar_usuario
+    visit root_path
+    page.should_not have_content 'Adicionar Conteúdo'
+  end
+
+  scenario 'sem permissão não pode acessar página de adicionar conteúdo' do
+    criar_papeis
+    autenticar_usuario
+    visit adicionar_conteudo_path
+    page.should have_content 'Acesso negado'
+  end
+end
+
 feature 'verificar menu adicionar conteúdo' do
   before(:each) do
     popular_area_sub_area
