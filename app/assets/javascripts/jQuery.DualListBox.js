@@ -30,9 +30,11 @@
         var eixo     = $('#eixos_tematicos option:selected');
         var curso = $('#objeto_de_aprendizagem_curso_ids option:selected');
         var cursoEmSelecao = eixo.text() + ": "+ curso.text();
-        if ($('#curso option[value="' + cursoEmSelecao + '"]').length == false){
-            $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).
-                appendTo(cursoSelecionados);
+        if ($('#objeto_de_aprendizagem_curso_ids option:selected').length !=0){
+            if ($('#curso option[value="' + cursoEmSelecao + '"]').length == false){
+                $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).
+                    appendTo(cursoSelecionados);
+            }
         }
    }
 
