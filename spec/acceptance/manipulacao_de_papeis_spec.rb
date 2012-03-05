@@ -24,7 +24,25 @@ feature 'mudar papel do usuário' do
     foobar = Usuario.find_by_nome_completo('Foo Bar')
     foobar.membro?.should == true
     foobar.gestor?.should == true
-    page.has_checked_field? 'foo@bar.com["membro"]'
-    page.has_checked_field? 'foo@bar.com["gestor"]'
+    page.should have_checked_field 'foo@bar.com["membro"]'
+    page.should have_checked_field 'foo@bar.com["gestor"]'
+  end
+
+  scenario 'buscar usuário e alterar seu papel' do
+    criar_papeis
+    autenticar_usuario Papel.admin
+    Factory.create(:usuario_gestor, nome_completo: 'Rodrigo Manhaes', email: 'rodrigo@manhaes.com')
+    Factory.create(:usuario_contribuidor, nome_completo: 'Priscila Manhaes', email: 'priscila@manhaes.com')
+    Factory.create(:usuario_gestor, nome_completo: 'Larva Fire')
+
+    visit '/usuarios'
+    fill_in 'Buscar por nome', with: 'Manhaes'
+    click_button 'Buscar'
+
+    page.should have_content 'Rodrigo Manhaes'
+    page.should have_checked_field 'rodrigo@manhaes.com["gestor"]'
+    page.should have_content 'Priscila Manhaes'
+    page.should have_checked_field 'priscila@manhaes.com["contribuidor"]'
+    page.should_not have_content 'Larva Fire'
   end
 end

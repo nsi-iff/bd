@@ -1,18 +1,24 @@
-= form_tag atualizar_papeis_path, method: 'put' do
-  %table{ border: '1' }
+= form_tag buscar_usuarios_path, method: 'get' do
+  = label_tag 'buscar_nome', 'Buscar por nome'
+  = text_field_tag 'buscar_nome'
+  = submit_tag 'Buscar'
+
+= form_tag atualizar_papeis_usuarios_path, method: 'put' do
+  %table{ border: '1', id: 'usuarios' }
     %thead
-      %td E-mail
-      - @papeis.each do |papel|
-        %td #{papel.nome}
-      %tbody
-        - @usuarios.each do |usuario|
-          %tr
-            %td
-              = usuario.nome_completo
-              %br
-              = usuario.email
-              - @papeis.each do |papel|
-                %td= check_box_tag "papeis[#{usuario.id}][]", papel.id,
-                  usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}"
+      %tr
+        %th E-mail
+        - Papel.all.each do |papel|
+          %th #{papel.nome}
+    %tbody
+      - @usuarios.each do |usuario|
+        %tr
+          %td
+            = usuario.nome_completo
+            %br
+            = usuario.email
+          - Papel.all.each do |papel|
+            %td= check_box_tag "papeis[#{usuario.id}][]", papel.id,
+              usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}"
 
   = submit_tag 'Salvar'

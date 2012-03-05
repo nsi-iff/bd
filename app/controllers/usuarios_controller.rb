@@ -5,7 +5,11 @@ class UsuariosController < ApplicationController
 
   def index
     @usuarios = Usuario.all
-    @papeis = Papel.all
+  end
+
+  def buscar
+    @usuarios = Usuario.where('nome_completo like ?', "%#{params['buscar_nome']}%")
+    render action: 'index'
   end
 
   def atualizar_papeis

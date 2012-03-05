@@ -10,7 +10,7 @@ class Ability
     end
 
     if usuario.admin?
-      can [:atualizar_papeis, :index], Usuario
+      can [:atualizar_papeis, :index, :buscar], Usuario
     end
   end
 end
