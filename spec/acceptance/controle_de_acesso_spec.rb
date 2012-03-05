@@ -13,7 +13,7 @@ feature 'controle de acesso' do
                 trabalho_de_obtencao_de_grau)
 
     scenario 'pode ser acessado por gestores e contribuidores de conteúdo' do
-      Papel.criar_todos
+      criar_papeis
       popular_area_sub_area
       popular_eixos_tematicos_cursos
       [Papel.gestor, Papel.contribuidor].each do |papel|
