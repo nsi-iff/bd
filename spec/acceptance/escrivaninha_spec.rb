@@ -23,4 +23,14 @@ feature 'Escrivaninha' do
     page.should_not have_content 'Agile rulz'
     page.should_not have_content 'We love Ruby and Agile'
   end
+
+  scenario 'somente pode ser acessada pelo próprio usuário' do
+    criar_papeis
+    usuario = Factory.create(:usuario_contribuidor)
+    outro = autenticar_usuario(Papel.contribuidor)
+    visit area_privada_usuario_path(usuario)
+    page.should have_content acesso_negado
+    visit escrivaninha_usuario_path(usuario)
+    page.should have_content acesso_negado
+  end
 end

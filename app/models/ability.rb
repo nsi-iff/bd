@@ -13,6 +13,6 @@ class Ability
       can [:atualizar_papeis, :index, :buscar], Usuario
     end
 
-    can [:area_privada, :escrivaninha], Usuario
+    can [:area_privada, :escrivaninha], Usuario, { :id => usuario.id }
   end
 end
