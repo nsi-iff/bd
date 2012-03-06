@@ -1,0 +1,73 @@
+fieldset {
+  border: solid 1px #000;
+  padding: 10px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input {
+  font-size: 140%;
+  font-family: "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  width: 60%;
+}
+
+input:focus {
+  border-color: orange;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+}
+
+input[type="submit"] {
+  width: 80px;
+}
+
+.hint {
+  display: block;
+}
+
+select {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.autores input {
+  font-size: 80%;
+}
+
+.error {
+  background-color: #fdc;
+  border: 1px solid #d00;
+  padding: 0.5em;
+  margin: 0 0 1em 0;
+  width: 95%;
+  display: block;
+}
+
+abbr {
+  color: red;
+}
+
+textarea {
+  font-family: "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+  height: 150px;
+  width: 90%;
+  overflow: auto;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+form a {
+  color: #000;
+}
+
+form li {
+  list-style: none;
+}

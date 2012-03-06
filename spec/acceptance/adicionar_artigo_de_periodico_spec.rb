@@ -6,18 +6,16 @@ feature 'adicionar artigo de periódico' do
   scenario 'padrao' do
     submeter_conteudo :artigo_de_periodico do
       fill_in 'Subtítulo', with: 'Adicionando artigo de periódico'
-      within_fieldset 'Dados do periódico' do
+      within_fieldset 'Dados Complementares' do
         fill_in 'Nome', with: 'Nome teste do periódico'
-      end
-      within_fieldset 'Publicação' do
         fill_in 'Editora', with: 'Essentia'
         fill_in 'Fascículo', with: 'Fascículo do periódico'
         fill_in 'Volume', with: '2'
         fill_in 'Data', with: '02/10/2011'
         fill_in 'Local', with: 'Campos dos Goytacazes (RJ)'
+        fill_in 'Página inicial da publicação', with: '10'
+        fill_in 'Página final da publicação', with: '25'
       end
-      fill_in 'Página inicial da publicação', with: '10'
-      fill_in 'Página final da publicação', with: '25'
     end
 
     validar_conteudo

@@ -1,18 +1,21 @@
-= f.input :titulo, label: 'Título'
-= f.input :arquivo, as: :file, label: 'Arquivo'
-= f.input :link
-= label_tag(:area, 'Grande Área de Conhecimento')
-= select_tag(:area, options_for_select(Area.all.map {|area| [area.nome, area.id] }), class: "areas")
-= f.input :sub_area, as: :select, input_html: { class: "sub_areas" },
-    collection: Area.first.sub_areas.map {|sub_area| [sub_area.nome, sub_area.id] },
-    prompt: false, label: 'Área de Conhecimento'
-#autores
-  = f.semantic_fields_for :autores do |autor|
-    = render 'autor_fields', :f => autor
-  .links
-    = link_to_add_association 'Adicionar autor', f, :autores
-  = f.semantic_errors :autores
-= f.input :campus, label: 'Campus da Instituição do Usuário'
-= f.input :resumo
-= f.input :direitos
-= f.input :contribuidor_id, :as => :hidden, :value => current_usuario.id
+%fieldset{:id => "dados_basicos"}
+  %legend
+    Dados Básicos
+  = f.input :titulo, label: 'Título'
+  = f.input :arquivo, as: :file, label: 'Arquivo'
+  = f.input :link
+  = label_tag(:area, 'Grande Área de Conhecimento')
+  = select_tag(:area, options_for_select(Area.all.map {|area| [area.nome, area.id] }), class: "areas")
+  = f.input :sub_area, as: :select, input_html: { class: "sub_areas" },
+      collection: Area.first.sub_areas.map {|sub_area| [sub_area.nome, sub_area.id] },
+      prompt: false, label: 'Área de Conhecimento'
+  #autores
+    = f.semantic_fields_for :autores do |autor|
+      = render 'autor_fields', :f => autor
+    .links
+      = link_to_add_association 'Adicionar autor', f, :autores
+      = f.semantic_errors :autores
+  = f.input :campus, label: 'Campus da Instituição do Usuário'
+  = f.input :resumo
+  = f.input :direitos
+  = f.input :contribuidor_id, :as => :hidden, :value => current_usuario.id
