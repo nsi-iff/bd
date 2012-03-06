@@ -8,6 +8,18 @@
   color: gray;
 }
 
+#adicionar_conteudo ul {
+  list-style: none outside none;
+}
+
+#adicionar_conteudo a {
+  color: #000;
+}
+
+#adicionar_conteudo legend {
+  display: none;
+}
+
 .about {
   margin-right: 20px;
 }

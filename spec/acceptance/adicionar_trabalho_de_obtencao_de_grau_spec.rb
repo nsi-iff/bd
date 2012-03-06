@@ -7,15 +7,11 @@ feature 'adicionar trabalho de obtençao de grau' do
     popular_graus
     submeter_conteudo :trabalho_de_obtencao_de_grau do
       fill_in 'Subtítulo', with: 'Adicionando trabalho de obtenção de grau'
-      within_fieldset 'Dados do trabalho' do
-        fill_in 'Número de páginas', with: '20'
-        fill_in 'Instituição', with: 'IFF'
-        select 'Graduação', from: 'Grau'
-      end
-      within_fieldset 'Defesa' do
-        fill_in 'Data da Defesa', with: '02/10/2011'
-        fill_in 'Local de Defesa', with: 'Campos dos Goytacazes (RJ)'
-      end
+      fill_in 'Número de páginas', with: '20'
+      fill_in 'Instituição', with: 'IFF'
+      select 'Graduação', from: 'Grau'
+      fill_in 'Data da Defesa', with: '02/10/2011'
+      fill_in 'Local de Defesa', with: 'Campos dos Goytacazes (RJ)'
     end
 
     validar_conteudo

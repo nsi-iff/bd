@@ -1,8 +1,43 @@
 class ObjetosDeAprendizagemController < InheritedResources::Base
-  actions :new, :create, :show
+  actions :new, :show
 
   include NovoComAutor
 
   before_filter :authenticate_usuario!
   load_and_authorize_resource
+
+  def create
+    @objeto_de_aprendizagem = ObjetoDeAprendizagem.new(params[:objeto_de_aprendizagem])
+
+    cont = 0
+    cursos_anteriores = []
+    lista_eixos_cursos = params['cursos_selecionados_oculto'].strip.split(' ,')
+    lista_eixos_cursos.each do |descricao_curso|
+      nome_eixo, nome_curso = descricao_curso.split(':  ')
+      if cont != 0
+        cursos = nome_curso.strip.split('  ')
+        cursos_anteriores.each do |curso|
+          if cursos.include? curso
+            cursos.delete(curso)
+          end
+        end
+        nome_curso = cursos[0]
+      end
+#      eixo = EixoTematico.find_by_nome(nome_eixo)
+#      @objeto_de_aprendizagem.cursos << eixo.cursos.where(nome: nome_curso).first
+      cursos_anteriores << nome_curso
+      cont = cont + 1;
+    end
+
+    if @objeto_de_aprendizagem.save
+      redirect_to @objeto_de_aprendizagem
+    else
+      render :action => :new
+    end
+  end
+
 end
+
+
+
+

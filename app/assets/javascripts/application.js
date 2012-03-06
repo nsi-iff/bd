@@ -22,9 +22,4 @@ $(document).ready(function() {
         $.post("/areas/" + id + "/sub_areas");
     });
 
-    $("#eixos_tematicos").change(function() {
-        var id = this.value;
-        $.post("/eixos_tematicos/" + id + "/cursos");
-    });
-
 });
