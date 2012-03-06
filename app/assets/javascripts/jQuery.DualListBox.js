@@ -1,39 +1,35 @@
 ﻿$(document).ready(function() {
 
-    cursoSelecionados = $("#curso");
-    to1      = $('#to1');
-    allTo1   = $('#allTo1');
-    to2      = $('#to2');
-    allTo2   = $('#allTo2');
-
-
+    cursosSelecionados = $("#cursos_selecionados");
+    to1 = $('#to1');
+    to2 = $('#to2');
+    allTo1 = $('#allTo1');
+    allTo2 = $('#allTo2');
 
     to1.click(function() {
         RemoveSelected();
+    });
+
+    to2.click(function() {
+        MoveSelected();
     });
 
     allTo1.click(function() {
         RemoveAll();
     });
 
-
-     to2.click(function() {
-        MoveSelected();
-    });
-
     allTo2.click(function() {
         MoveAll();
     });
-
 
     function MoveSelected() {
         var eixo     = $('#eixos_tematicos option:selected');
         var curso = $('#objeto_de_aprendizagem_curso_ids option:selected');
         var cursoEmSelecao = eixo.text() + ": "+ curso.text();
         if ($('#objeto_de_aprendizagem_curso_ids option:selected').length !=0){
-            if ($('#curso option[value="' + cursoEmSelecao + '"]').length == false){
+            if ($('#cursos_selecionados option[value="' + cursoEmSelecao + '"]').length == false){
                 $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).
-                    appendTo(cursoSelecionados);
+                    appendTo(cursosSelecionados);
             }
         }
    }
@@ -43,17 +39,19 @@
         var curso = $('#objeto_de_aprendizagem_curso_ids option');
         for (var i=0; i<= curso.length;i++){
             var cursoEmSelecao = eixo.text() + ": "+ curso[i].text;
-            if ($('#curso option[value="' + cursoEmSelecao + '"]').length == false){
+            if ($('#cursos_selecionados option[value="' + cursoEmSelecao + '"]').length == false){
                 $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).
-                    appendTo(cursoSelecionados);
+                    appendTo(cursosSelecionados);
             }
         }
    }
+
     function RemoveSelected() {
-        $('#curso option:selected').remove();
+        $('#cursos_selecionados option:selected').remove();
     }
+
     function RemoveAll(removeGroup, otherGroup) {
-        $('#curso  option').remove();
+        $('#cursos_selecionados  option').remove();
     }
 
 });

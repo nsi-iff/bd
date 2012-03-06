@@ -19,7 +19,8 @@
         %input{:type => 'button', :value => '>>', :id => 'allTo2'}
         %input{:type => 'button', :value => '<<', :id => 'allTo1'}
       %td
-        %select{:id => 'curso',:multiple => 'multiple'}
+        = label_tag(:cursos, 'Cursos selecionados')
+        %select{id: 'cursos_selecionados', name: 'cursos_selecionados', multiple: 'multiple'}
   = f.input :novas_tags
   = f.input :idioma, :member_label => :descricao
-  = f.submit 'Salvar'
+  = f.submit 'Salvar', onclick: 'enviar_cursos_selecionados()'

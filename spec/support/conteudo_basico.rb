@@ -49,6 +49,16 @@ def popular_eixos_tematicos_cursos
   apoio_escolar.cursos.create([
     { nome: 'Processos Escolares'},
   ])
+
+  militar = EixoTematico.create(nome: 'Militar')
+  militar.cursos.create([
+    { nome: 'Comunicações Aeronáuticas'      },
+    { nome: 'Fotointeligência'               },
+    { nome: 'Gerenciamento de Tráfego Aéreo' },
+    { nome: 'Gestão e Manutenção Aeronáutica'},
+    { nome: 'Meteorologia Aeronáutica'       },
+    { nome: 'Sistemas de Armas'              }
+  ])
 end
 
 def popular_graus
