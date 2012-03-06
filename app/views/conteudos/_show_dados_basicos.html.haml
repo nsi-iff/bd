@@ -29,3 +29,7 @@
 %p
   Direitos:
   = conteudo.direitos
+
+%p
+  Contribuidor:
+  = conteudo.contribuidor.try(:nome_completo)

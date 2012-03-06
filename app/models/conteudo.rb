@@ -8,6 +8,7 @@ class Conteudo < ActiveRecord::Base
   has_many :mudancas_de_estado
   belongs_to :sub_area
   has_one :arquivo
+  belongs_to :contribuidor, :class_name => 'Usuario'
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,

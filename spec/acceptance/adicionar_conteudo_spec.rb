@@ -6,7 +6,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
   scenario 'adicionar dados basicos de conteudo' do
     popular_area_sub_area
     criar_papeis
-    autenticar_usuario(Papel.contribuidor)
+    usuario = autenticar_usuario(Papel.contribuidor)
     visit new_artigo_de_evento_path
     fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
@@ -29,6 +29,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     page.should have_content 'Campus: Campos Centro'
     page.should have_content 'Direitos: Direitos e esquerdos'
     page.should have_content 'Resumo: This work proposes an Ruby performance improvement'
+    page.should have_content "Contribuidor: #{usuario.nome_completo}"
   end
 
   scenario 'arquivo e link não podem ser fornecidos simultaneamente' do

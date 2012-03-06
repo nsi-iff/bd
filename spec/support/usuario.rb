@@ -19,5 +19,5 @@ def autenticar_usuario(*papeis)
     fill_in 'Senha', with: 'foobar'
   end
   click_button 'Entrar'
+  usuario
 end
-

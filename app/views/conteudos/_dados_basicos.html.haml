@@ -15,3 +15,4 @@
 = f.input :campus, label: 'Campus da Instituição do Usuário'
 = f.input :resumo
 = f.input :direitos
+= f.input :contribuidor_id, :as => :hidden, :value => current_usuario.id
