@@ -5,8 +5,8 @@ require 'spec_helper'
 feature 'adicionar artigo de evento' do
   scenario 'padrao' do
     submeter_conteudo :artigo_de_evento do
-      fill_in 'Subtítulo', with: 'Ruby Becomes The Flash'
       within_fieldset 'Dados Complementares' do
+        fill_in 'Subtítulo', with: 'Ruby Becomes The Flash'
         fill_in 'Nome', with: 'NSI Ruby Conf'
         fill_in 'Local do Evento', with: 'Campos dos Goytacazes, Rio de Janeiro, Brazil'
         fill_in 'Número', with: '1'
