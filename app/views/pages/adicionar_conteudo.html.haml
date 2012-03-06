@@ -1,25 +1,26 @@
-%fieldset
-  %legend
-    Adicionar Conteúdo
-    %ul
-      - if can? :create, ArtigoDeEvento
-        %li
-          = link_to 'Artigo de Evento', new_artigo_de_evento_path
-      - if can? :create, ArtigoDePeriodico
-        %li
-          = link_to 'Artigo de Periódico', new_artigo_de_periodico_path
-      - if can? :create, Livro
-        %li
-          = link_to 'Livro', new_livro_path
-      - if can? :create, ObjetoDeAprendizagem
-        %li
-          = link_to 'Objeto de Aprendizagem', new_objeto_de_aprendizagem_path
-      - if can? :create, PeriodicoTecnicoCientifico
-        %li
-          = link_to 'Periódico Técnico Científico', new_periodico_tecnico_cientifico_path
-      - if can? :create, Relatorio
-        %li
-          = link_to 'Relatório', new_relatorio_path
-      - if can? :create, TrabalhoDeObtencaoDeGrau
-        %li
-          = link_to 'Trabalho de Obtenção de Grau', new_trabalho_de_obtencao_de_grau_path
+%h2 Adicionar Conteúdo
+
+%fieldset{:id => "adicionar_conteudo"}
+  %legend Adicionar Conteúdo
+  %ul
+    - if can? :create, ArtigoDeEvento
+      %li
+        = link_to 'Artigo de Evento', new_artigo_de_evento_path
+    - if can? :create, ArtigoDePeriodico
+      %li
+        = link_to 'Artigo de Periódico', new_artigo_de_periodico_path
+    - if can? :create, Livro
+      %li
+        = link_to 'Livro', new_livro_path
+    - if can? :create, ObjetoDeAprendizagem
+      %li
+        = link_to 'Objeto de Aprendizagem', new_objeto_de_aprendizagem_path
+    - if can? :create, PeriodicoTecnicoCientifico
+      %li
+        = link_to 'Periódico Técnico Científico', new_periodico_tecnico_cientifico_path
+    - if can? :create, Relatorio
+      %li
+        = link_to 'Relatório', new_relatorio_path
+    - if can? :create, TrabalhoDeObtencaoDeGrau
+      %li
+        = link_to 'Trabalho de Obtenção de Grau', new_trabalho_de_obtencao_de_grau_path

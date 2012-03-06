@@ -87,14 +87,13 @@ header .site_actions {
 
 .container {
   background: url("/assets/corpo_bg.gif") no-repeat scroll 0 top #F1F6E4;
-  height: 900px;
+  height: auto;
   margin: 0 auto;
   margin-top: 80px;
-  min-height: 900px;
+  min-height: 680px;
   padding: 0;
-  vertical-align: top !important;
   width: 980px !important;
-  z-index: 9;
+  overflow: auto;
 }
 
 .container .navigation {
@@ -107,7 +106,6 @@ header .site_actions {
   list-style: none outside none;
   margin: 0;
 }
-
 
 .container .navigation li {
   margin-left: 5px;
@@ -179,7 +177,7 @@ header .site_actions {
 }
 
 .container .content {
-  float: right;
+  float: left;
   width: 760px;
 }
 
