@@ -21,6 +21,10 @@ input:focus {
   border-color: orange;
 }
 
+input[type="checkbox"] {
+  width: 20px;
+}
+
 .hint {
   display: block;
 }
