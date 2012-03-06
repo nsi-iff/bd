@@ -25,6 +25,12 @@ FactoryGirl.define do
     numero_edicao 1
   end
 
+  factory :artigo_de_evento, :parent => :conteudo, :class => ArtigoDeEvento do
+  end
+
+  factory :relatorio, :parent => :conteudo, :class => ArtigoDeEvento do
+  end
+
   factory :usuario do
     sequence(:email) {|n| "usuario%s@gmail.com" % n }
     password '12345678'

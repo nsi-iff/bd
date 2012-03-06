@@ -12,5 +12,7 @@ class Ability
     if usuario.admin?
       can [:atualizar_papeis, :index, :buscar], Usuario
     end
+
+    can [:area_privada, :escrivaninha], Usuario
   end
 end

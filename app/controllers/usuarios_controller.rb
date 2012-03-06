@@ -1,5 +1,4 @@
 class UsuariosController < ApplicationController
-
   before_filter :authenticate_usuario!
   load_and_authorize_resource
 
@@ -18,5 +17,12 @@ class UsuariosController < ApplicationController
       usuario.update_attributes papel_ids: params[:papeis]["#{usuario.id}"] || []
     end
     redirect_to action: 'index'
+  end
+
+  def area_privada
+  end
+
+  def escrivaninha
+    @conteudos = Conteudo.editaveis(current_usuario)
   end
 end

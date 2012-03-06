@@ -59,6 +59,10 @@ class Conteudo < ActiveRecord::Base
     after_transition any => :editavel, :do => :destruir_graos
   end
 
+  scope :editaveis, lambda {|contribuidor|
+    where(:contribuidor_id => contribuidor.id, :state => 'editavel')
+  }
+
   def remover(*args)
     raise "O motivo é obrigatório" unless args.present? && args.first.has_key?(:motivo)
     super
