@@ -1,13 +1,8 @@
 # encoding: utf-8
 
 def autenticar_usuario(*papeis)
-  Usuario.delete_all
-  usuario = Usuario.create!({ nome_completo: 'Foo Bar',
-                               email: 'foo@bar.com',
-                               password: 'foobar',
-                               password_confirmation: 'foobar',
-                               instituicao: 'iff',
-                               campus: 'centro' })
+  visit '/usuarios/logout'
+  usuario = Factory.create(:usuario)
   papeis.each do |papel|
     usuario.papeis << papel
     usuario.save!
@@ -15,8 +10,8 @@ def autenticar_usuario(*papeis)
 
   visit '/usuarios/login'
   within_fieldset 'Entrar' do
-    fill_in 'E-mail', with: 'foo@bar.com'
-    fill_in 'Senha', with: 'foobar'
+    fill_in 'E-mail', with: usuario.email
+    fill_in 'Senha', with: '12345678'
   end
   click_button 'Entrar'
   usuario

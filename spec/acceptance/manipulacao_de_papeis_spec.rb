@@ -14,18 +14,18 @@ feature 'mudar papel do usuário' do
 
   scenario 'admin pode acessar página de manipulação de papéis e alterar papéis de usuários' do
     criar_papeis
-    autenticar_usuario Papel.admin
+    usuario = autenticar_usuario(Papel.admin)
 
     visit '/usuarios'
-    check 'foo@bar.com["membro"]'
-    check 'foo@bar.com["gestor"]'
+    check "#{usuario.email}[\"membro\"]"
+    check "#{usuario.email}[\"gestor\"]"
     click_button 'Salvar'
 
-    foobar = Usuario.find_by_nome_completo('Foo Bar')
+    foobar = usuario.reload
     foobar.membro?.should == true
     foobar.gestor?.should == true
-    page.should have_checked_field 'foo@bar.com["membro"]'
-    page.should have_checked_field 'foo@bar.com["gestor"]'
+    page.should have_checked_field "#{usuario.email}[\"membro\"]"
+    page.should have_checked_field "#{usuario.email}[\"gestor\"]"
   end
 
   scenario 'buscar usuário' do
@@ -36,6 +36,7 @@ feature 'mudar papel do usuário' do
     Factory.create(:usuario_gestor, nome_completo: 'Larva Fire')
 
     visit '/usuarios'
+    save_and_open_page
     fill_in 'Buscar por nome', with: 'Manhães'
     click_button 'Buscar'
 
