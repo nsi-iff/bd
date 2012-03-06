@@ -36,7 +36,6 @@ feature 'mudar papel do usuário' do
     Factory.create(:usuario_gestor, nome_completo: 'Larva Fire')
 
     visit '/usuarios'
-    save_and_open_page
     fill_in 'Buscar por nome', with: 'Manhães'
     click_button 'Buscar'
 
