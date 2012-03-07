@@ -22,3 +22,5 @@ config/database.yml
 *.haml~
 *.js~
 *.gitignore~
+*~
+
