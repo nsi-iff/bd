@@ -8,6 +8,7 @@ class ObjetoDeAprendizagem < Conteudo
     if eixos_tematicos.present?
       eixos_tematicos.
         map(&:nome).
+        sort.
         to_sentence(two_words_connector: ' e ', last_word_connector: ' e ')
     end
   end
@@ -16,6 +17,7 @@ class ObjetoDeAprendizagem < Conteudo
     if cursos.present?
       cursos.
         map(&:nome).
+        sort.
         to_sentence(two_words_connector: ' e ', last_word_connector: ' e ')
     end
   end
