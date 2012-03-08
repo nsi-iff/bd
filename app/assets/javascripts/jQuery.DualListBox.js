@@ -26,7 +26,7 @@
         var eixo     = $('#eixos_tematicos option:selected');
         var curso = $('#objeto_de_aprendizagem_curso_ids option:selected');
         var cursoEmSelecao = eixo.text() + ": "+ curso.text();
-        if ($('#objeto_de_aprendizagem_curso_ids option:selected').length ==1){
+        if ($('#objeto_de_aprendizagem_curso_ids option:selected').length !=0){
             if ($('#cursos_selecionados option[value="' + cursoEmSelecao + '"]').length == false){
                 $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).
                     appendTo(cursosSelecionados);
