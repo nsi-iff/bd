@@ -43,6 +43,14 @@ describe Usuario do
     end
   end
 
+  context 'escrivaninha' do
+    it 'retorna os conteudos do usuario que sao editaveis' do
+      usuario = Usuario.new
+      Conteudo.should_receive(:editaveis).with(usuario).and_return(:dummy)
+      usuario.escrivaninha.should == :dummy
+    end
+  end
+
   it { should have_valid(:email).when 'bernardo.fire@gmail.com', 'aeiou@abcd.com' }
   it { should_not have_valid(:email).when '', nil }
 

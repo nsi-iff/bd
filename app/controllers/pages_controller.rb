@@ -24,6 +24,10 @@ class PagesController < ApplicationController
     @title = "Notícias"
   end
 
+  def estatisticas
+    @title = "Estatísticas"
+  end
+
   def adicionar_conteudo
   end
 end
