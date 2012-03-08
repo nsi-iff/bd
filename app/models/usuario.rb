@@ -14,6 +14,10 @@ class Usuario < ActiveRecord::Base
   validates :nome_completo, presence: true, allow_blank: true
   validates_presence_of :instituicao, :campus
 
+  def escrivaninha
+    Conteudo.editaveis(self)
+  end
+
   def method_missing(method_name, *params)
     nome_papel = method_name.to_s.chop
     todos = Papel.all.map(&:nome)
@@ -24,4 +28,3 @@ class Usuario < ActiveRecord::Base
     end
   end
 end
-

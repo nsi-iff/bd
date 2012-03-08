@@ -1,0 +1,7 @@
+- if current_usuario.present?
+  #escrivaninha
+    %h3 Escrivaninha
+    - current_usuario.escrivaninha.each do |conteudo|
+      .item
+        = link_to conteudo.titulo, conteudo
+        = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"

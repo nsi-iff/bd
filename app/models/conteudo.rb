@@ -90,6 +90,10 @@ class Conteudo < ActiveRecord::Base
     state
   end
 
+  def nome_contribuidor
+    contribuidor.try(:nome_completo)
+  end
+
   def self.search(busca)
     s = Tire.search 'conteudos' do
       query { string busca }

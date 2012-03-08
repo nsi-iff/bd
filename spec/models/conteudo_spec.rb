@@ -217,6 +217,12 @@ describe Conteudo do
     Conteudo.editaveis(contribuidor2).should == [c4]
   end
 
+  it 'fornece o nome do contribuidor' do
+    conteudo = Conteudo.new(
+      contribuidor: stub_model(Usuario, nome_completo: 'Linus Torvalds'))
+    conteudo.nome_contribuidor.should == 'Linus Torvalds'
+  end
+
   it 'nao pode possuir simultaneamente arquivo e link' do
     arquivo = ActionDispatch::Http::UploadedFile.new({
       filename: 'arquivo.nsi',
@@ -307,3 +313,4 @@ describe Conteudo do
     end
   end
 end
+

@@ -1,13 +1,9 @@
 DigitalLibrary::Application.routes.draw do
-
   devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   resources :usuarios, only: [:index] do
     put :atualizar_papeis, on: :collection
     get :buscar, on: :collection
-    member do
-      get :area_privada
-      get :escrivaninha
-    end
+    get :area_privada, on: :member
   end
 
   root :to => 'pages#inicio'
@@ -84,3 +80,4 @@ DigitalLibrary::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
