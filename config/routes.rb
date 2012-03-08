@@ -12,6 +12,7 @@ DigitalLibrary::Application.routes.draw do
   match "/sobre",     :to => "pages#sobre"
   match "/noticias",  :to => "pages#noticias"
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
+  match '/estatisticas', :to => "pages#estatisticas"
 
   resources :artigos_de_evento, :only => [:new, :create, :show]
   resources :artigos_de_periodico, :only => [:new, :create, :show]
