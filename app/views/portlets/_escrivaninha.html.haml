@@ -5,3 +5,5 @@
       .item
         = link_to conteudo.titulo, conteudo
         = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+    - if current_usuario.escrivaninha.blank?
+      %p Não há nenhum conteúdo editável.

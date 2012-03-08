@@ -3,8 +3,9 @@
 require 'spec_helper'
 
 feature 'Escrivaninha' do
+  before(:each) { criar_papeis }
+
   scenario 'mostra os conteúdos do usuário em estado de edição' do
-    criar_papeis
     usuario = autenticar_usuario(Papel.contribuidor)
     outro = Factory.create(:usuario_contribuidor)
     c1 = Factory.create(:artigo_de_evento, titulo: 'Ruby is cool!', contribuidor: usuario)
@@ -24,6 +25,19 @@ feature 'Escrivaninha' do
       page.should have_content 'Ruby is cool'
       page.should_not have_content 'Agile rulz'
       page.should_not have_content 'We love Ruby and Agile'
+    end
+  end
+
+  context 'vazia' do
+    before :each do
+      autenticar_usuario(Papel.contribuidor)
+    end
+
+    scenario 'deve mostrar mensagem' do
+      visit root_path
+      within '#escrivaninha' do
+        page.should have_content escrivaninha_vazia
+      end
     end
   end
 end
