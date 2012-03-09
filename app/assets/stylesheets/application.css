@@ -19,11 +19,11 @@
 
 a {
     color: #FFF;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 body {
@@ -182,7 +182,7 @@ header .site_actions {
 
 .container .content {
   float: left;
-  width: 760px;
+  width: 550px;
 }
 
 footer {
