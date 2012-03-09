@@ -25,8 +25,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                                     autores: [autor_1, autor_2],
                                                     volume_publicacao: 10
     @livro = Livro.create titulo: "Livro",
-                          link: "",
-                          arquivo: "arquivo.nsi",
+                          link: "http://www.google.com",
                           sub_area: sub_area_1,
                           campus: "Campos Centro",
                           autores: [autor_1, autor_2]
@@ -54,11 +53,11 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
     sleep(1) # espera o elasticsearch indexar :(
   end
 
-  scenario 'por título' do
+  scenario 'por título', busca: false do
     testar_busca "Artigo", @artigo_de_evento, @artigo_de_periodico
   end
 
-  scenario 'por link' do
+  scenario 'por link', busca: false do
     testar_busca "nsi.iff.edu.br", @artigo_de_periodico
   end
 
