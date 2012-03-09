@@ -40,4 +40,16 @@ feature 'Escrivaninha' do
       end
     end
   end
+
+  scenario 'somente gestores e contribuidores têm escrivaninha' do
+    { Papel.contribuidor => true,
+      Papel.gestor => true,
+      Papel.membro => false,
+      Papel.admin => false }.each_pair do |papel, tem_escrivaninha|
+      autenticar_usuario(papel)
+      visit root_path
+      page.send(tem_escrivaninha ? :should : :should_not,
+        have_selector('#escrivaninha'))
+    end
+  end
 end

@@ -1,4 +1,4 @@
-- if current_usuario.present?
+- if current_usuario.present? && can?(:ter_escrivaninha, current_usuario)
   #escrivaninha.portlet
     %h3 Escrivaninha
     - current_usuario.escrivaninha.each do |conteudo|
