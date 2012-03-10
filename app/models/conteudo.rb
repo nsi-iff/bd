@@ -63,6 +63,10 @@ class Conteudo < ActiveRecord::Base
     where(:contribuidor_id => contribuidor.id, :state => 'editavel')
   }
 
+  scope :pendentes, lambda {|contribuidor|
+    where(:contribuidor_id => contribuidor.id, :state => 'pendente')
+  }
+
   def remover(*args)
     raise "O motivo é obrigatório" unless args.present? && args.first.has_key?(:motivo)
     super
