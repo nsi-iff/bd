@@ -1,11 +1,9 @@
 DigitalLibrary::Application.routes.draw do
-
   devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   resources :usuarios, only: [:index] do
     put :atualizar_papeis, on: :collection
     get :buscar, on: :collection
     member do
-      get :area_privada
       get :escrivaninha
       get :estante
     end
@@ -17,6 +15,7 @@ DigitalLibrary::Application.routes.draw do
   match "/sobre",     :to => "pages#sobre"
   match "/noticias",  :to => "pages#noticias"
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
+  match '/estatisticas', :to => "pages#estatisticas"
 
   resources :artigos_de_evento, :only => [:new, :create, :show]
   resources :artigos_de_periodico, :only => [:new, :create, :show]
@@ -85,3 +84,4 @@ DigitalLibrary::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
