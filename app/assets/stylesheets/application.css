@@ -19,11 +19,11 @@
 
 a {
     color: #FFF;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 body {
@@ -149,6 +149,10 @@ header .site_actions {
   background-image: url("/assets/menu_roxo.jpg");
 }
 
+.container .navigation li#estatisticas {
+  background-image: url("/assets/menu_cinza.jpg");
+}
+
 .container .searchbyarea {
   margin-top: 20px;
   margin-left: 5px;
@@ -178,7 +182,7 @@ header .site_actions {
 
 .container .content {
   float: left;
-  width: 760px;
+  width: 550px;
 }
 
 footer {

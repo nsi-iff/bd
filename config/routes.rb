@@ -3,7 +3,10 @@ DigitalLibrary::Application.routes.draw do
   resources :usuarios, only: [:index] do
     put :atualizar_papeis, on: :collection
     get :buscar, on: :collection
-    get :area_privada, on: :member
+    member do
+      get :escrivaninha
+      get :estante
+    end
   end
 
   root :to => 'pages#inicio'

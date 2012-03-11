@@ -223,6 +223,18 @@ describe Conteudo do
     conteudo.nome_contribuidor.should == 'Linus Torvalds'
   end
 
+  it 'retorna pendentes por contribuidor' do
+    contribuidor1, contribuidor2 = 2.times.map { Factory.create(:usuario_contribuidor) }
+    c1 = Factory.create(:livro, contribuidor: contribuidor1)
+    c2 = Factory.create(:relatorio, contribuidor: contribuidor1)
+    c2.submeter!
+    c3 = Factory.create(:artigo_de_evento, contribuidor: contribuidor2)
+    c3.submeter!
+    c4 = Factory.create(:livro, contribuidor: contribuidor2)
+    Conteudo.pendentes(contribuidor1).should == [c2]
+    Conteudo.pendentes(contribuidor2).should == [c3]
+  end
+
   it 'nao pode possuir simultaneamente arquivo e link' do
     arquivo = ActionDispatch::Http::UploadedFile.new({
       filename: 'arquivo.nsi',

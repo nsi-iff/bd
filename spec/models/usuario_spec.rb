@@ -51,6 +51,14 @@ describe Usuario do
     end
   end
 
+  context 'estante' do
+    it 'retorna os conteudos do usuario em estado pendente' do
+      usuario = Usuario.new
+      Conteudo.should_receive(:pendentes).with(usuario).and_return(:dummy)
+      usuario.estante.should == :dummy
+    end
+  end
+
   it { should have_valid(:email).when 'bernardo.fire@gmail.com', 'aeiou@abcd.com' }
   it { should_not have_valid(:email).when '', nil }
 

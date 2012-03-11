@@ -25,4 +25,8 @@ class UsuariosController < ApplicationController
   def escrivaninha
     @conteudos = Conteudo.editaveis(current_usuario)
   end
+
+  def estante
+    @conteudos = Conteudo.pendentes(current_usuario)
+  end
 end

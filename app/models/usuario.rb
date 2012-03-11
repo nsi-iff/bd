@@ -18,6 +18,10 @@ class Usuario < ActiveRecord::Base
     Conteudo.editaveis(self)
   end
 
+  def estante
+    Conteudo.pendentes(self)
+  end
+
   def method_missing(method_name, *params)
     nome_papel = method_name.to_s.chop
     todos = Papel.all.map(&:nome)

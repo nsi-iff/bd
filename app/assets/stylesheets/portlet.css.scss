@@ -1,0 +1,29 @@
+.portlet {
+  float: right;
+  background-color: #e7f0d1;
+  width: 196px;
+  border: 1px solid #cab2d7;
+  margin: 5px 5px 5px;
+
+  .item {
+    h3 {
+      font-weight: bold;
+      padding: 5px 2px;
+      font-size: 0.9em;
+    }
+
+    a {
+      color: #648217;
+    }
+
+    .info {
+      display: block;
+      font-size: 0.85em;
+      float: right;
+    }
+  }
+}
+
+.content {
+  float: right;
+}
