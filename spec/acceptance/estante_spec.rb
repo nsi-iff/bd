@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 feature 'Estante' do
+  before(:each) { criar_papeis }
+
   scenario 'mostra os conteúdos do usuário em estado pendente' do
     criar_papeis
     usuario = autenticar_usuario(Papel.contribuidor)
@@ -35,6 +37,18 @@ feature 'Estante' do
       page.should_not have_content 'Ruby is cool'
       page.should have_content 'Agile rulz'
       page.should_not have_content 'We love Ruby and Agile'
+    end
+  end
+
+  scenario 'somente gestores e contribuidores têm estante' do
+    { Papel.contribuidor => true,
+      Papel.gestor => true,
+      Papel.membro => false,
+      Papel.admin => false }.each_pair do |papel, tem_estante|
+    autenticar_usuario(papel)
+    visit root_path
+    page.send(tem_estante ? :should : :should_not,
+      have_selector('#estante'))
     end
   end
 end

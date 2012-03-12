@@ -9,6 +9,7 @@ class Ability
 
       can :adicionar_conteudo, Usuario
       can :ter_escrivaninha, Usuario
+      can :ter_estante, Usuario
     end
 
     if usuario.admin?
