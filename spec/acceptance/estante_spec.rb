@@ -12,7 +12,7 @@ feature 'Estante' do
     c1 = Factory.create(:artigo_de_evento, titulo: 'Ruby is cool!', contribuidor: usuario)
     c2 = Factory.create(:livro, titulo: 'Agile rulz!', contribuidor: usuario)
     c3 = Factory.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: outro)
-    
+
     c3.submeter!
     visit root_path
     within "#estante" do
@@ -30,7 +30,7 @@ feature 'Estante' do
     end
 
     c1.aprovar!
-    c2.submeter!    
+    c2.submeter!
     visit root_path
     within "#estante" do
       page.should_not have_content 'Ruby is cool'

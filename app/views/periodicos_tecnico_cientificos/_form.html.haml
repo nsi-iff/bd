@@ -1,0 +1,11 @@
+= semantic_form_for @periodico_tecnico_cientifico do |f|
+  = render 'conteudos/dados_basicos', :f => f
+  %br
+  %fieldset{:id => "dados_complementares"}
+    %legend
+      Dados Complementares
+    = f.input :editora, hint: 'Organização que coordena a publicação do Periódico'
+    = f.input :local_publicacao, label: 'Local da publicação'
+    = f.input :ano_primeiro_volume, label: 'Ano do primeiro volume'
+    = f.input :ano_ultimo_volume, label: 'Ano do último volume'
+  = f.submit 'Salvar'
