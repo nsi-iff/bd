@@ -1,5 +1,5 @@
 class RelatoriosController < InheritedResources::Base
-  actions :new, :create, :show
+  actions :new, :create, :show, :edit, :update
 
   include NovoComAutor
 

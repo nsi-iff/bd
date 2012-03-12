@@ -17,16 +17,15 @@ DigitalLibrary::Application.routes.draw do
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
   match '/estatisticas', :to => "pages#estatisticas"
 
-  resources :artigos_de_evento, :only => [:new, :create, :show, :edit]
-  resources :artigos_de_periodico, :only => [:new, :create, :show, :edit]
-  resources :livros, :only => [:new, :create, :show, :edit]
-  resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit]
-  resources :relatorios,  :only => [:new, :create, :show, :edit]
-  resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit]
-  resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show, :edit]
+  resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update]
+  resources :artigos_de_periodico, :only => [:new, :create, :show, :edit, :update]
+  resources :livros, :only => [:new, :create, :show, :edit, :update]
+  resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit, :update]
+  resources :relatorios,  :only => [:new, :create, :show, :edit, :update]
+  resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit, :update]
+  resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show, :edit, :update]
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

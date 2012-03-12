@@ -1,5 +1,5 @@
 class ObjetosDeAprendizagemController < InheritedResources::Base
-  actions :new, :show
+  actions :new, :create, :show, :edit, :update
 
   include NovoComAutor
 
@@ -36,7 +36,3 @@ class ObjetosDeAprendizagemController < InheritedResources::Base
   end
 
 end
-
-
-
-

@@ -36,4 +36,15 @@ feature 'adicionar livro' do
     visit livro_path(Factory.create :livro, traducao: false)
     page.should have_content 'Tradução: Não'
   end
+
+  scenario 'editar livro' do
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
+    visit edit_livro_path(Factory.create :livro)
+
+    fill_in 'Subtítulo', with: 'Metaprograming Rails'
+    click_button 'Salvar'
+
+    page.should have_content 'Subtítulo: Metaprograming Rails'
+  end
 end

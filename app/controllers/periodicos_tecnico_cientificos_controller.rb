@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class PeriodicosTecnicoCientificosController < InheritedResources::Base
-  actions :new, :create, :show
+  actions :new, :create, :show, :edit, :update
 
   include NovoComAutor
 
