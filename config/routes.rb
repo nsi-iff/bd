@@ -17,13 +17,13 @@ DigitalLibrary::Application.routes.draw do
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
   match '/estatisticas', :to => "pages#estatisticas"
 
-  resources :artigos_de_evento, :only => [:new, :create, :show]
-  resources :artigos_de_periodico, :only => [:new, :create, :show]
-  resources :livros, :only => [:new, :create, :show]
-  resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show]
-  resources :relatorios,  :only => [:new, :create, :show]
-  resources :objetos_de_aprendizagem, :only => [:new, :create, :show]
-  resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show]
+  resources :artigos_de_evento, :only => [:new, :create, :show, :edit]
+  resources :artigos_de_periodico, :only => [:new, :create, :show, :edit]
+  resources :livros, :only => [:new, :create, :show, :edit]
+  resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit]
+  resources :relatorios,  :only => [:new, :create, :show, :edit]
+  resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit]
+  resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show, :edit]
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
 
