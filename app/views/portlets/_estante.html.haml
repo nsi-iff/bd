@@ -1,7 +1,10 @@
-- if current_usuario.present?
-  #estante
-    %h1 Estante
+- if current_usuario.present? && can?(:ter_estante, current_usuario)
+  #estante.portlet
+    %h3 Estante
     - current_usuario.estante.each do |conteudo|
       .item
-        =link_to conteudo.titulo, conteudo
-        ="#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+        = link_to conteudo.titulo, conteudo
+        %span.info
+          = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+    - if current_usuario.estante.blank?
+      %p Não há nenhum conteúdo pendente.
