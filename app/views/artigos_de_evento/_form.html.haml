@@ -1,0 +1,22 @@
+= semantic_form_for @artigo_de_evento do |f|
+  = render 'conteudos/dados_basicos', :f => f
+  %br
+  %fieldset{:id => "dados_complementares"}
+    %legend
+      Dados Complementares
+    = f.input :subtitulo, label: 'Subtítulo'
+    = f.input :nome_evento, label: 'Nome',
+      hint: 'Nome do evento onde o artigo foi publicado'
+    = f.input :numero_evento, label: 'Número',
+      hint: 'Número do evento onde o artigo foi publicado'
+    = f.input :local_evento, label: 'Local do Evento',
+      hint: 'Local do evento onde o artigo foi publicado'
+    = f.input :ano_evento, label: 'Ano do Evento',
+      hint: 'Ano do evento onde o artigo foi publicado'
+    = f.input :editora, hint: 'Uma organização que coordena a publicação dos anais do evento'
+    = f.input :ano_publicacao, label: 'Ano da Publicação'
+    = f.input :local_publicacao, label: 'Local da Publicação'
+    = f.input :titulo_anais, label: 'Título dos anais', hint: 'Título da publicação do artigo'
+    = f.input :pagina_inicial, label: 'Página inicial do trabalho'
+    = f.input :pagina_final, label: 'Página final do trabalho'
+  = f.submit 'Salvar'

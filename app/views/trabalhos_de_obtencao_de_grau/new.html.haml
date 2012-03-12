@@ -1,18 +1,3 @@
 %h2 Adicionar Trabalho de Obtenção de Grau
 
-= semantic_form_for @trabalho_de_obtencao_de_grau do |f|
-  = render 'conteudos/dados_basicos', :f => f
-  %br
-  %fieldset{:id => "dados_complementares"}
-    %legend
-    = f.input :subtitulo, label: 'Subtítulo'
-    = f.input :numero_paginas, label: 'Número de páginas'
-    = f.input :instituicao, label: 'Instituição',
-      hint: 'Instituição concedente do grau associado ao trabalho'
-    = f.input :grau, label: 'Grau', as: 'select', collection: Grau.all.map { |grau| [grau.nome, grau.id] }
-    = f.input :data_defesa_br, as: 'string', label: 'Data da Defesa',
-      hint: 'Data na qual o trabalho foi apresentado'
-    = f.input :local_defesa, label: 'Local de Defesa',
-      hint: 'Cidade onde o trabalho foi defendido'
-
-  = f.submit 'Salvar'
+= render 'form'
