@@ -6,5 +6,5 @@
         = link_to conteudo.titulo, conteudo
         %span.info
           = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
-    - if current_usuario.escrivaninha.blank?
-      %p Não há nenhum conteúdo editável.
+    - if current_usuario.estante.blank?
+      %p Não há nenhum conteúdo pendente.
