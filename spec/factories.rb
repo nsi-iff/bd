@@ -20,6 +20,10 @@ FactoryGirl.define do
     link 'http://something.com'
   end
 
+  factory :grau do
+    sequence(:nome) {|n| "Nome#{n}"}
+  end
+
   factory :livro, :parent => :conteudo, :class => Livro do
     numero_paginas 200
     numero_edicao 1
@@ -32,8 +36,7 @@ FactoryGirl.define do
   end
 
   factory :trabalho_de_obtencao_de_grau, :parent => :conteudo, :class => TrabalhoDeObtencaoDeGrau do
-    Grau.criar_todos
-    grau Grau.first
+    grau { Factory.create(:grau) }
   end
 
   factory :periodico_tecnico_cientifico, :parent => :conteudo, :class => PeriodicoTecnicoCientifico do
