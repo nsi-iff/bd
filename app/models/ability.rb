@@ -11,8 +11,10 @@ class Ability
     end
 
     if usuario.gestor?
+      [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
+       TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
+       Relatorio].each {|tipo| can :aprovar, tipo }
       can :aprovacao, Usuario
-      can :aprovar, Livro
     end
 
     if usuario.admin?

@@ -18,16 +18,28 @@ DigitalLibrary::Application.routes.draw do
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
   match '/estatisticas', :to => "pages#estatisticas"
 
-  resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update]
-  resources :artigos_de_periodico, :only => [:new, :create, :show, :edit, :update]
+  resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update] do
+    get :aprovar, :to  => 'artigos_de_evento#aprovar'
+  end
+  resources :artigos_de_periodico, :only => [:new, :create, :show, :edit, :update] do
+    get :aprovar, :to  => 'artigos_de_periodico#aprovar'
+  end
   resources :livros, :only => [:new, :create, :show, :edit, :update] do
     get :submeter, :to  => 'livros#submeter'
     get :aprovar, :to  => 'livros#aprovar'
   end
-  resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit, :update]
-  resources :relatorios,  :only => [:new, :create, :show, :edit, :update]
-  resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit, :update]
-  resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show, :edit, :update]
+  resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit, :update] do
+    get :aprovar, :to  => 'periodicos_tecnico_cientificos#aprovar'
+  end
+  resources :relatorios,  :only => [:new, :create, :show, :edit, :update] do
+    get :aprovar, :to  => 'relatorios#aprovar'
+  end
+  resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit, :update] do
+    get :aprovar, :to  => 'objetos_de_aprendizagem#aprovar'
+  end
+  resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show, :edit, :update] do
+    get :aprovar, :to  => 'trabalhos_de_obtencao_de_grau#aprovar'
+  end
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
   # The priority is based upon order of creation:

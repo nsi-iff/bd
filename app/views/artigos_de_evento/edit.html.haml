@@ -1,3 +1,5 @@
 %h2 Editar Artigo de Evento
 
 = render 'form'
+- if @artigo_de_evento.pendente? and current_usuario.gestor?
+  = link_to 'Aprovar', artigo_de_evento_aprovar_path(@artigo_de_evento)

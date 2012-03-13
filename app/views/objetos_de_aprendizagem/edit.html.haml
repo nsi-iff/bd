@@ -1,3 +1,5 @@
 %h2 Editar Objeto de Aprendizagem
 
 = render 'form'
+- if @objeto_de_aprendizagem.pendente? and current_usuario.gestor?
+  = link_to 'Aprovar', objeto_de_aprendizagem_aprovar_path(@objeto_de_aprendizagem)

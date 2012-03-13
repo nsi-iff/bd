@@ -1,5 +1,5 @@
 class ObjetosDeAprendizagemController < InheritedResources::Base
-  actions :new, :create, :show, :edit, :update
+  actions :new, :create, :show, :edit, :update, :aprovar
 
   include NovoComAutor
 
@@ -35,4 +35,9 @@ class ObjetosDeAprendizagemController < InheritedResources::Base
     end
   end
 
+  def aprovar
+    objeto = ObjetoDeAprendizagem.find(params[:objeto_de_aprendizagem_id])
+    objeto.aprovar
+    redirect_to objeto_de_aprendizagem_path(objeto)
+  end
 end

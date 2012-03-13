@@ -1,5 +1,5 @@
 class ArtigosDeEventoController < InheritedResources::Base
-  actions :new, :create, :show, :edit, :update
+  actions :new, :create, :show, :edit, :update, :aprovar
 
   include NovoComAutor
 
@@ -8,5 +8,11 @@ class ArtigosDeEventoController < InheritedResources::Base
 
   def create
     create! notice: 'Artigo de evento submetido com sucesso'
+  end
+
+  def aprovar
+    artigo = ArtigoDeEvento.find(params[:artigo_de_evento_id])
+    artigo.aprovar
+    redirect_to artigo_de_evento_path(artigo)
   end
 end
