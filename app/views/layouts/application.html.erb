@@ -14,8 +14,12 @@
       <%= render 'layouts/searchbyarea' %>
     </div>
     <div class="content">
-      <p id="notice"><%= notice %></p>
-      <p id="alert"><%= alert %></p>
+      <% if notice %>
+        <p id="notice"><span class='tipo'>Aviso</span><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p id="alert"><span class='tipo'>Erro</span><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
     <div class="portlets">
@@ -25,4 +29,3 @@
   <%= render 'layouts/footer' %>
 </body>
 </html>
-

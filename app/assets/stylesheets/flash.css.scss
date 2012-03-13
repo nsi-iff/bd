@@ -1,10 +1,29 @@
-#alert, #error {
+$cor_alert: #DD0000;
+$cor_notice: #008800;
+
+@mixin flash($cor_tipo) {
   border: 1px solid #DD8800;
   width: 100%;
   background-color: #FFDD77;
   color: #343434;
   font-family: Verdana,"Bitstream Vera Sans",Arial,sans-serif;
-  font-size: 0.85em;
+  font-size: 0.78em;
   padding: 0.35em;
+
+  .tipo {
+    background-color: $cor_tipo;
+    padding: 0.34em 1em;
+    margin-left: -4px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: white;
+  }
 }
 
+#alert {
+  @include flash($cor_alert);
+}
+
+#notice {
+  @include flash($cor_notice);
+}
