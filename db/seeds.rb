@@ -15,12 +15,7 @@ carregar_idiomas if Idioma.count == 0
 ##############  Seeds para opções "grau" em trabalho de obtencação de grau ############
 
 # Criando as opções
-Grau.create([
-    { :nome => 'Graduação'      },
-    { :nome => 'Especialização' },
-    { :nome => 'Mestrado'       },
-    { :nome => 'Doutorado'      }
-]) if Grau.count == 0
+Grau.criar_todos if Grau.count == 0
 
 ############################### Seeds para Papeis ################################
 

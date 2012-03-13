@@ -62,7 +62,7 @@ def popular_eixos_tematicos_cursos
 end
 
 def popular_graus
-  Grau.create nome: 'Graduação'
+  Grau.criar_todos
 end
 
 def submeter_conteudo(tipo, opcoes = {})
