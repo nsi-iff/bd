@@ -9,7 +9,7 @@ feature 'mudar papel do usuário' do
     livro = Factory.create(:livro, titulo: 'programming')
     livro.submeter
 
-    visit '/aprovacao'
+    visit conteudos_pendentes_path
 
     page.should have_content 'programming'
   end
