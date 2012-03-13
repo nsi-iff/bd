@@ -10,6 +10,10 @@ class Ability
       can [:adicionar_conteudo, :ter_escrivaninha, :ter_estante], Usuario
     end
 
+    if usuario.gestor?
+      can [:aprovacao], Usuario
+    end
+
     if usuario.admin?
       can [:atualizar_papeis, :index, :buscar], Usuario
     end

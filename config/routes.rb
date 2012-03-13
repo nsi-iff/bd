@@ -8,6 +8,7 @@ DigitalLibrary::Application.routes.draw do
       get :estante
     end
   end
+  get :aprovacao, :to => 'usuarios#aprovacao'
 
   root :to => 'pages#inicio'
   match "/busca",     :to => "busca#index"

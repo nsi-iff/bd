@@ -29,4 +29,9 @@ class UsuariosController < ApplicationController
   def estante
     @conteudos = Conteudo.pendentes(current_usuario)
   end
+
+  def aprovacao
+    @conteudos = []
+    Conteudo.all.map { |conteudo| @conteudos << conteudo if conteudo.pendente? }
+  end
 end
