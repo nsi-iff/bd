@@ -7,9 +7,7 @@ class Ability
        TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
        Relatorio].each {|tipo| can [:create, :read, :edit, :update, :submeter], tipo }
 
-      can :adicionar_conteudo, Usuario
-      can :ter_escrivaninha, Usuario
-      can :ter_estante, Usuario
+      can [:adicionar_conteudo, :ter_escrivaninha, :ter_estante], Usuario
     end
 
     if usuario.admin?
