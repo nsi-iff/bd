@@ -11,7 +11,8 @@ class Ability
     end
 
     if usuario.gestor?
-      can [:aprovacao], Usuario
+      can :aprovacao, Usuario
+      can :aprovar, Livro
     end
 
     if usuario.admin?

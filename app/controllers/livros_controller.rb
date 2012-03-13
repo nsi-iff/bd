@@ -1,5 +1,5 @@
 class LivrosController < InheritedResources::Base
-  actions :new, :create, :show, :edit, :update, :submeter
+  actions :new, :create, :show, :edit, :update, :submeter, :aprovar
 
   include NovoComAutor
 
@@ -13,6 +13,12 @@ class LivrosController < InheritedResources::Base
   def submeter
     livro = Livro.find(params[:livro_id])
     livro.submeter
+    redirect_to livro_path(livro)
+  end
+
+  def aprovar
+    livro = Livro.find(params[:livro_id])
+    livro.aprovar
     redirect_to livro_path(livro)
   end
 end
