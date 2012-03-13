@@ -31,6 +31,18 @@ FactoryGirl.define do
   factory :relatorio, :parent => :conteudo, :class => ArtigoDeEvento do
   end
 
+  factory :trabalho_de_obtencao_de_grau, :parent => :conteudo, :class => TrabalhoDeObtencaoDeGrau do
+  end
+
+  factory :periodico_tecnico_cientifico, :parent => :conteudo, :class => PeriodicoTecnicoCientifico do
+  end
+
+  factory :artigo_de_periodico, :parent => :conteudo, :class => ArtigoDePeriodico do
+  end
+
+  factory :objeto_de_aprendizagem, :parent => :conteudo, :class => ObjetoDeAprendizagem do
+  end
+
   factory :usuario do
     sequence(:email) {|n| "usuario%s@gmail.com" % n }
     password '12345678'
