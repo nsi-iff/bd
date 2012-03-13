@@ -32,7 +32,7 @@ FactoryGirl.define do
   factory :artigo_de_evento, :parent => :conteudo, :class => ArtigoDeEvento do
   end
 
-  factory :relatorio, :parent => :conteudo, :class => ArtigoDeEvento do
+  factory :relatorio, :parent => :conteudo, :class => Relatorio do
   end
 
   factory :trabalho_de_obtencao_de_grau, :parent => :conteudo, :class => TrabalhoDeObtencaoDeGrau do
