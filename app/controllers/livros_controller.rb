@@ -1,5 +1,5 @@
 class LivrosController < InheritedResources::Base
-  actions :new, :create, :show, :edit, :update
+  actions :new, :create, :show, :edit, :update, :submeter
 
   include NovoComAutor
 
@@ -7,6 +7,12 @@ class LivrosController < InheritedResources::Base
   load_and_authorize_resource
 
   def create
-    create! notice: 'Livro submetido com sucesso'
+    create! notice: 'Livro criado com sucesso'
+  end
+
+  def submeter
+    livro = Livro.find(params[:livro_id])
+    livro.submeter
+    redirect_to livro_path(livro)
   end
 end

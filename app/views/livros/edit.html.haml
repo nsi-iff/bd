@@ -1,3 +1,5 @@
 %h2 Editar Livro
 
 = render 'form'
+- if @livro.editavel?
+  = link_to 'Submeter', livro_submeter_path(@livro)

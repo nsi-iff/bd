@@ -5,7 +5,7 @@ class Ability
     if usuario.gestor? || usuario.contribuidor?
       [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
        TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
-       Relatorio].each {|tipo| can [:create, :read, :edit, :update], tipo }
+       Relatorio].each {|tipo| can [:create, :read, :edit, :update, :submeter], tipo }
 
       can :adicionar_conteudo, Usuario
       can :ter_escrivaninha, Usuario

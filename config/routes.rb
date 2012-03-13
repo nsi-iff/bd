@@ -19,7 +19,9 @@ DigitalLibrary::Application.routes.draw do
 
   resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update]
   resources :artigos_de_periodico, :only => [:new, :create, :show, :edit, :update]
-  resources :livros, :only => [:new, :create, :show, :edit, :update]
+  resources :livros, :only => [:new, :create, :show, :edit, :update] do
+    get :submeter, :to  => 'livros#submeter'
+  end
   resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit, :update]
   resources :relatorios,  :only => [:new, :create, :show, :edit, :update]
   resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit, :update]
