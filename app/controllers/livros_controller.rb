@@ -7,7 +7,7 @@ class LivrosController < InheritedResources::Base
   load_and_authorize_resource
 
   def create
-    create! notice: 'Livro criado com sucesso'
+    create! notice: 'Livro enviado com sucesso'
   end
 
   def submeter

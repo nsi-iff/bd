@@ -18,7 +18,7 @@ feature 'adicionar livro' do
     end
 
     validar_conteudo
-    page.should have_content 'Livro submetido com sucesso'
+    page.should have_content 'Livro enviado com sucesso'
     page.should have_content 'Direitos: Direitos e esquerdos'
     page.should have_content 'Subtítulo: Rails Rocks'
     page.should have_content 'Resumo: Ruby on Rails helps you produce high-quality, beautiful-looking web applications quickly.'
