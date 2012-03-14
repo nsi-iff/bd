@@ -4,6 +4,8 @@ require 'spec_helper'
 
 feature 'adicionar relatório' do
   scenario 'padrao' do
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :relatorio do
       fill_in 'Local da publicação', with: 'Rio de Janeiro'
       fill_in 'Ano', with: '1998'
