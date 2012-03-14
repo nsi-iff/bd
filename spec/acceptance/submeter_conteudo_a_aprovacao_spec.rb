@@ -7,24 +7,25 @@ feature 'submeter conteúdo a aprovação' do
     criar_papeis
     popular_area_sub_area
     user = autenticar_usuario(Papel.contribuidor)
-    livro = Factory.create :livro, contribuidor: user
+    livro = Factory.create :livro, titulo: 'Rspec book',  contribuidor: user
 
     visit edit_livro_path(livro)
 
     within '#escrivaninha' do
-      page.should have_content 'Conteudo interessante'
+      page.should have_content 'Rspec book'
     end
     within '#estante' do
-      page.should_not have_content 'Conteudo interessante'
+      page.should_not have_content 'Rspec book'
     end
 
     click_link 'Submeter'
 
     within '#escrivaninha' do
-      page.should_not have_content 'Conteudo interessante'
+      page.should_not have_content 'Rspec book'
     end
     within '#estante' do
-      page.should have_content 'Conteudo interessante'
+      page.should have_content 'Rspec book'
     end
   end
 end
+
