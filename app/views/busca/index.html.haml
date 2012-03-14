@@ -6,3 +6,5 @@
 %ul
   - @conteudos.each do |conteudo|
     %li= link_to conteudo.titulo, __send__("#{conteudo._type}_path", conteudo)
+
+= link_to 'Salvar Busca', new_usuario_busca_path(current_usuario)

@@ -8,6 +8,7 @@ DigitalLibrary::Application.routes.draw do
       get :escrivaninha
       get :estante
     end
+    resources :buscas
   end
 
   root :to => 'pages#inicio'

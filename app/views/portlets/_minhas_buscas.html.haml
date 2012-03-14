@@ -1,0 +1,11 @@
+- if current_usuario.present?
+  #minhas_buscas
+    %h3 Minhas Buscas
+    - if current_usuario.buscas.present?
+      - current_usuario.buscas.each do |busca|
+        .item
+          = link_to busca.titulo, busca
+          = link_to 'Editar', edit_usuario_busca_path({:usuario => current_usuario, :busca => busca})
+          = link_to 'Deletar', [current_usuario, busca], confirm: 'Are you sure?', method: :delete
+    - else
+      %p Não há buscas salvas.
