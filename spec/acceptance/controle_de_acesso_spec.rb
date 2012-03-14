@@ -12,19 +12,17 @@ feature 'controle de acesso' do
                  relatorio
                 trabalho_de_obtencao_de_grau)
 
-    scenario 'pode ser acessado por gestores e contribuidores de conteúdo' do
+    scenario 'pode ser acessado por contribuidores de conteúdo' do
       criar_papeis
       popular_area_sub_area
       popular_eixos_tematicos_cursos
-      [Papel.gestor, Papel.contribuidor].each do |papel|
-        autenticar_usuario(papel)
-        tipos.each do |tipo|
-          visit send("new_#{tipo}_path")
-          page.should_not have_content acesso_negado
-        end
+      autenticar_usuario(Papel.contribuidor)
+      tipos.each do |tipo|
+        visit send("new_#{tipo}_path")
+        page.should_not have_content acesso_negado
       end
 
-      [Papel.admin, Papel.membro].each do |papel|
+      [Papel.gestor, Papel.admin, Papel.membro].each do |papel|
         autenticar_usuario(papel)
         tipos.each do |tipo|
           visit send("new_#{tipo}_path")

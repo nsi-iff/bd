@@ -3,17 +3,20 @@ class Ability
 
   def initialize(usuario)
     if usuario.gestor? || usuario.contribuidor?
+      can [:adicionar_conteudo, :ter_escrivaninha, :ter_estante], Usuario
+    end
+
+    if usuario.contribuidor?
       [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
        TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
        Relatorio].each {|tipo| can [:create, :read, :edit, :update, :submeter], tipo }
-
-      can [:adicionar_conteudo, :ter_escrivaninha, :ter_estante], Usuario
     end
 
     if usuario.gestor?
       [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
        TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
-       Relatorio].each {|tipo| can :aprovar, tipo }
+       Relatorio].each {|tipo| can [:aprovar, :read, :edit, :update], tipo }
+
       can [:lista_de_revisao, :ter_lista_de_revisao], Usuario
     end
 

@@ -30,12 +30,6 @@ describe Usuario do
       end
     end
 
-    context 'gestor de conteudo' do
-      let(:usuario) { Factory.create(:usuario_gestor) }
-
-      include_examples 'adicionar e ler todos os tipos de conteudo'
-    end
-
     context 'contribuidor de conteudo' do
       let(:usuario) { Factory.create(:usuario_contribuidor) }
 
