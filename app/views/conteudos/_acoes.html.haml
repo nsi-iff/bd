@@ -1,0 +1,5 @@
+- if can? :submeter, conteudo
+  = link_to 'Submeter', livro_submeter_path(conteudo)
+- if can? :aprovar, conteudo and current_usuario.gestor?
+  = link_to 'Aprovar', livro_aprovar_path(conteudo)
+
