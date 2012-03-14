@@ -4,11 +4,11 @@ DigitalLibrary::Application.routes.draw do
     put :atualizar_papeis, on: :collection
     get :buscar, on: :collection
     member do
+      get :lista_de_revisao
       get :escrivaninha
       get :estante
     end
   end
-  get :conteudos_pendentes, :to => 'usuarios#conteudos_pendentes'
 
   root :to => 'pages#inicio'
   match "/busca",     :to => "busca#index"

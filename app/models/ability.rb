@@ -14,7 +14,7 @@ class Ability
       [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
        TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
        Relatorio].each {|tipo| can :aprovar, tipo }
-      can :conteudos_pendentes, Usuario
+      can [:lista_de_revisao, :ter_lista_de_revisao], Usuario
     end
 
     if usuario.admin?

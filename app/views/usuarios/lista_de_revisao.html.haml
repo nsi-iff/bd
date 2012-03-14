@@ -1,0 +1,10 @@
+%h1 Lista de Revisão
+
+%table
+  %thead
+    %tr
+      %th Título
+  %tbody
+    - @conteudos.each do |conteudo|
+      %tr
+        %td= conteudo.titulo

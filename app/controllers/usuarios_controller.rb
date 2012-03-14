@@ -30,7 +30,7 @@ class UsuariosController < ApplicationController
     @conteudos = Conteudo.pendentes(current_usuario)
   end
 
-  def conteudos_pendentes
+  def lista_de_revisao
     @conteudos = []
     Conteudo.all.map { |conteudo| @conteudos << conteudo if conteudo.pendente? }
   end
