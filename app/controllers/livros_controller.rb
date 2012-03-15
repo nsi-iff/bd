@@ -10,11 +10,5 @@ class LivrosController < InheritedResources::Base
   def create
     create! notice: 'Livro enviado com sucesso'
   end
-
-  def aprovar
-    livro = Livro.find(params[:livro_id])
-    livro.aprovar
-    redirect_to livro_path(livro)
-  end
 end
 

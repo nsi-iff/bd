@@ -2,6 +2,7 @@ class ObjetosDeAprendizagemController < InheritedResources::Base
   actions :new, :create, :show, :edit, :update, :aprovar
 
   include NovoComAutor
+  include WorkflowActions
 
   before_filter :authenticate_usuario!
   load_and_authorize_resource
@@ -33,11 +34,5 @@ class ObjetosDeAprendizagemController < InheritedResources::Base
     else
       render :action => :new
     end
-  end
-
-  def aprovar
-    objeto = ObjetoDeAprendizagem.find(params[:objeto_de_aprendizagem_id])
-    objeto.aprovar
-    redirect_to objeto_de_aprendizagem_path(objeto)
   end
 end
