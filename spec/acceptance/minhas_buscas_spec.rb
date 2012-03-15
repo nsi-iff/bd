@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'Minhas Buscas' do
   before(:each) do
-    criar_papeis 
+    criar_papeis
     @usuario = autenticar_usuario(Papel.membro)
   end
 
@@ -18,11 +18,13 @@ feature 'Minhas Buscas' do
     click_link 'Salvar Busca'
     fill_in 'Título', with: 'Buscas book'
     fill_in 'Descriçao', with: 'Primeira busca'
-    click_button 'Salvar' 
+    click_button 'Salvar'
 
     page.should have_content 'Busca salva com sucesso'
     page.should have_link 'My book'
     page.should have_link 'Outro book'
+
+    visit '/'
   end
 
   scenario 'nenhum busca salva' do
