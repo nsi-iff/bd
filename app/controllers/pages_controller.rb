@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class PagesController < ApplicationController
-  before_filter :authenticate_usuario!
+  before_filter :authenticate_usuario!, only: [:adicionar_conteudo]
   load_and_authorize_resource Usuario, parent: false, only: [:adicionar_conteudo]
 
   def inicio
