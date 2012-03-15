@@ -1,5 +1,4 @@
 %h2 Editar Trabalho de Obtenção de Grau
 
 = render 'form'
-- if @trabalho_de_obtencao_de_grau.pendente? and current_usuario.gestor?
-  = link_to 'Aprovar', trabalho_de_obtencao_de_grau_aprovar_path(@trabalho_de_obtencao_de_grau)
+= render 'conteudos/acoes', :conteudo => @trabalho_de_obtencao_de_grau

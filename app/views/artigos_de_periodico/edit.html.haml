@@ -1,5 +1,4 @@
 %h2 Editar Artigo de Periodico
 
 = render 'form'
-- if @artigo_de_periodico.pendente? and current_usuario.gestor?
-  = link_to 'Aprovar', artigo_de_periodico_aprovar_path(@artigo_de_periodico)
+= render 'conteudos/acoes', :conteudo => @artigo_de_periodico

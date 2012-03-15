@@ -1,5 +1,4 @@
 %h2 Editar Relátorio
 
 = render 'form'
-- if @relatorio.pendente? and current_usuario.gestor?
-  = link_to 'Aprovar', relatorio_aprovar_path(@relatorio)
+= render 'conteudos/acoes', :conteudo => @relatorio

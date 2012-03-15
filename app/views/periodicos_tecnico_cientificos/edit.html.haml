@@ -1,5 +1,4 @@
 %h2 Editar Periódico Técnico Científico
 
 = render 'form'
-- if @periodico_tecnico_cientifico.pendente? and current_usuario.gestor?
-  = link_to 'Aprovar', periodico_tecnico_cientifico_aprovar_path(@periodico_tecnico_cientifico)
+= render 'conteudos/acoes', :conteudo => @periodico_tecnico_cientifico
