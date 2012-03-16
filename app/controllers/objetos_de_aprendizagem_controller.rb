@@ -3,6 +3,7 @@ class ObjetosDeAprendizagemController < InheritedResources::Base
 
   include NovoComAutor
   include WorkflowActions
+  include ContadorDeAcesso
 
   before_filter :authenticate_usuario!
   load_and_authorize_resource
@@ -34,5 +35,9 @@ class ObjetosDeAprendizagemController < InheritedResources::Base
     else
       render :action => :new
     end
+  end
+
+  def show
+    incrementar_numero_de_acessos
   end
 end

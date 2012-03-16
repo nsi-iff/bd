@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314185051) do
+ActiveRecord::Schema.define(:version => 20120315183409) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20120314185051) do
     t.integer  "sub_area_id"
     t.string   "state"
     t.integer  "contribuidor_id"
+    t.integer  "numero_de_acessos",   :default => 0
   end
 
   create_table "cursos", :force => true do |t|

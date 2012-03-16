@@ -1,2 +1,63 @@
-<h1>Pages#estatisticas</h1>
-<p>Find me in app/views/pages/estatisticas.html.erb</p>
+<h1>Estatísticas</h1>
+
+Selecione uma opção de pesquisa:
+
+<div>
+  <%= form_tag(estatisticas_path, :method => "get") do %>
+    <input name="group" type="radio" id="radio_ano" onchange="ano()"><label for='radio_ano'>Ano</label>
+    <input name="group" type="radio" id="radio_mes" onchange="mes()">Mês
+    <br>
+    <%= select_tag "select_ano", anos_for_select, disabled: 'true' %>
+    <%= select_tag "select_mes", options_for_select(meses), disabled: 'true' %>
+    <%= submit_tag("search") %>
+  <% end %>
+
+</div>
+
+<% if @estatisticas %>
+  <% ano = params['select_ano'] %>
+  <% mes = params['select_mes'] %>
+
+  <h2>Estatísticas de acesso em
+      <font color="#228B22">
+        <% if ano and mes %>
+          <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
+        <% else %>
+          <%= ano %>
+        <% end %>
+      </font>
+  </h2>
+
+  <h3>
+    Número de usuários cadastrados: <%= @estatisticas.numero_de_usuarios_cadastrados %>
+  </h3>
+
+  <h3>
+    Por conteúdo individual:
+  </h3>
+
+  Os 5 mais visitados:
+
+  <h3>
+    Por tipo de conteúdo: 
+  </h3>
+
+  <h3>Por subárea do conhecimento
+    Por subárea do conhecimento: 
+  </h3>
+
+  <h2>
+    Estatísticas de contribuição em
+    <font color="#228B22">
+        <% if ano and mes %>
+          <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
+        <% else %>
+          <%= ano %>
+        <% end %>
+    </font>
+  </h2>
+
+  <h3>Instituto</h3>
+
+  <h3>Campus de Instituto</h3>
+<% end %>
