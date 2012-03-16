@@ -1,5 +1,5 @@
 class ObjetosDeAprendizagemController < InheritedResources::Base
-  actions :new, :create, :show, :edit, :update, :aprovar
+  actions :new, :create, :show, :edit, :update, :aprovar, :submeter
 
   include NovoComAutor
   include WorkflowActions
@@ -41,3 +41,4 @@ class ObjetosDeAprendizagemController < InheritedResources::Base
     incrementar_numero_de_acessos
   end
 end
+
