@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class PeriodicosTecnicoCientificosController < InheritedResources::Base
-  actions :new, :create, :show, :edit, :update, :aprovar
+  actions :new, :create, :show, :edit, :update, :aprovar, :submeter
 
   include NovoComAutor
   include WorkflowActions
@@ -18,3 +18,4 @@ class PeriodicosTecnicoCientificosController < InheritedResources::Base
     incrementar_numero_de_acessos
   end
 end
+
