@@ -1,5 +1,5 @@
 class RelatoriosController < InheritedResources::Base
-  actions :new, :create, :show, :edit, :update, :aprovar
+  actions :new, :create, :show, :edit, :update, :aprovar, :submeter
 
   include NovoComAutor
   include WorkflowActions
@@ -13,3 +13,4 @@ class RelatoriosController < InheritedResources::Base
   end
 
 end
+
