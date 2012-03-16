@@ -4,7 +4,8 @@
     - current_usuario.escrivaninha.each do |conteudo|
       .item
         = link_to conteudo.titulo, conteudo
+        %br
         %span.info
-          = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+          = "#{conteudo.created_at.strftime('%d/%m/%Y')}"
     - if current_usuario.escrivaninha.blank?
       %p Não há nenhum conteúdo editável.

@@ -4,6 +4,7 @@
     - current_usuario.estante.each do |conteudo|
       .item
         = link_to conteudo.titulo, conteudo
+        %br
         %span.info
           = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
     - if current_usuario.estante.blank?

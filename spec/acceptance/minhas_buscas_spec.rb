@@ -25,6 +25,7 @@ feature 'Minhas Buscas' do
     page.should have_link 'Outro book'
 
     visit '/'
+    page.should have_link 'Buscas book'
   end
 
   scenario 'nenhum busca salva' do

@@ -185,6 +185,10 @@ header .site_actions {
   width: 550px;
 }
 
+.container .portlets {
+  float: left;
+}
+
 footer {
   width: 973px;
   height: 28px;
