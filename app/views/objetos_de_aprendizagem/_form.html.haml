@@ -5,7 +5,7 @@
     %legend
       Dados Complementares
     = f.input :palavras_chave, label: 'Palavras-chave',
-       hint: 'Palavras-chave do documento, separadas por vírgula'
+        hint: 'Palavras-chave do documento, separadas por vírgula'
     = f.input :tempo_aprendizagem, label: 'Tempo de aprendizagem típico',
         hint: 'Tempo típico para uma audiência típica lidar com o objeto de aprendizagem'
     %table
@@ -29,3 +29,4 @@
     = f.input :novas_tags
     = f.input :idioma, :member_label => :descricao
   = f.submit 'Salvar', onclick: 'enviar_cursos_selecionados()'
+
