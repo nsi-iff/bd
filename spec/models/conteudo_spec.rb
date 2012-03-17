@@ -205,6 +205,23 @@ describe Conteudo do
     end
   end
 
+  context 'não deve rodar código relativo a arquivos e SAM ao validar #bugfix' do
+    let :conteudo do
+      Conteudo.new(arquivo: stub(read: 'dummy value',
+                                 original_filename: 'another dummy'))
+    end
+
+    it 'não deve salvar arquivo' do
+      expect { conteudo.valid? }.to_not change { Arquivo.count }
+    end
+
+    it 'não deve enviar arquivo ao SAM' do
+      NSISam::Client.stub(:new).and_return(sam_mock = mock)
+      sam_mock.should_not_receive(:store)
+      conteudo.valid?
+    end
+  end
+
   it 'retorna editaveis por contribuidor' do
     contribuidor1, contribuidor2 = 2.times.map { Factory.create(:usuario_contribuidor) }
     c1 = Factory.create(:livro, contribuidor: contribuidor1)
@@ -325,4 +342,3 @@ describe Conteudo do
     end
   end
 end
-

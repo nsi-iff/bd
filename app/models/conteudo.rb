@@ -17,7 +17,8 @@ class Conteudo < ActiveRecord::Base
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
 
-  before_validation :enviar_arquivo_ao_sam_e_salvar
+  before_validation :vincular_arquivo
+  before_create :enviar_arquivo_ao_sam
 
   state_machine :state, :initial => :editavel do
     event :submeter do
@@ -118,17 +119,19 @@ class Conteudo < ActiveRecord::Base
 
   private
 
-  def enviar_arquivo_ao_sam_e_salvar
-     if @arquivo_uploaded.present?
-      config = Rails.application.config
+  def vincular_arquivo
+    if @arquivo_uploaded.present?
+      set_arquivo(Arquivo.new(nome: @arquivo_uploaded.original_filename, conteudo: self))
+    end
+  end
 
-      #conectar ao servidor do sam e enviar arquivo
+  def enviar_arquivo_ao_sam
+    if arquivo.present?
+      config = Rails.application.config
       url = "http://#{config.sam_user}:#{config.sam_password}@#{config.sam_host}:#{config.sam_port}"
       sam = NSISam::Client.new url
       result = sam.store Base64.encode64(@arquivo_uploaded.read)
-
-      arquivo = Arquivo.create!(nome: @arquivo_uploaded.original_filename, key: result["key"])
-      set_arquivo arquivo
+      arquivo.key = result['key']
     end
   end
 
