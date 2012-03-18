@@ -27,7 +27,7 @@ class Usuario < ActiveRecord::Base
     nome_papel = method_name.to_s.chop
     todos = Papel.all.map(&:nome)
     if todos.include?(nome_papel)
-      papeis.select {|p| p.nome == nome_papel }.present?
+      papeis.any? {|p| p.nome == nome_papel }
     else
       super
     end
