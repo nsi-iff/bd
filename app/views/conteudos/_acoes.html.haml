@@ -1,4 +1,4 @@
 - if can? :submeter, conteudo
   = link_to 'Submeter', send("#{conteudo.class.name.underscore}_submeter_path", conteudo)
-- if can? :aprovar, conteudo and current_usuario.gestor?
+- if can? :aprovar, conteudo
   = link_to 'Aprovar', send("#{conteudo.class.name.underscore}_aprovar_path", conteudo)
