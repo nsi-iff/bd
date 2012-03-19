@@ -5,6 +5,9 @@ require "spec_helper"
 feature 'buscar todos os tipos de conteúdo', busca: true do
   before(:all) do
     Conteudo.index.delete
+    require Rails.root + 'db/create_indexes'
+    Conteudo.destroy_all
+    Area.delete_all; SubArea.delete_all
     autor_1       = Autor.create nome: "Yukihiro Matsumoto",
                                  lattes: "http://lattes.cnpq.br/1234567890"
     autor_2       = Autor.create nome: "Why, the Lucky Stiff",
@@ -26,7 +29,11 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                                     volume_publicacao: 10
     @livro = Livro.create titulo: "Livro",
                           link: "",
-                          arquivo: "arquivo.nsi",
+                          arquivo: ActionDispatch::Http::UploadedFile.new({
+                            filename: 'arquivo.rtf',
+                            type: 'text/rtf',
+                            tempfile: File.new(Rails.root + 'spec/resources/arquivo.rtf')
+                          }),
                           sub_area: sub_area_1,
                           campus: "Campos Centro",
                           autores: [autor_1, autor_2]
@@ -80,6 +87,10 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
 
   scenario 'pesquisar por Lattes de autor' do
     testar_busca "lattes.cnpq.br/6666666666", @livro, @artigo_de_periodico, @relatorio
+  end
+
+  scenario 'pesquisar por arquivo' do
+    testar_busca "Winter", @livro
   end
 
   def testar_busca(texto, *resultados)
