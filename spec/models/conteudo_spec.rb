@@ -297,6 +297,22 @@ describe Conteudo do
     end
   end
 
+
+  context "codifica arquivo para base 64" do
+    it "retorna a string em base 64 do arquivo caso exista" do
+      subject.arquivo = ActionDispatch::Http::UploadedFile.new({
+        filename: 'arquivo.rtf',
+        type: 'text/rtf',
+        tempfile: File.new(Rails.root + 'spec/resources/arquivo.rtf')
+      })
+      subject.arquivo_base64.should match(/e1xydGYxXGFuc2lcYW5zaWNwZz/)
+    end
+
+    it "retorna string vazia caso o arquivo não exista" do
+      subject.arquivo_base64.should == ""
+    end
+  end
+
   context 'pesquisa por meta-dados' do
     it "pesquisa no índice 'conteudos' do elasticsearch" do
       result = mock(:result).as_null_object

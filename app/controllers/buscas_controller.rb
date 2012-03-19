@@ -6,7 +6,7 @@ class BuscasController < InheritedResources::Base
     @busca = Busca.new(params[:busca].merge busca: session[:ultima_busca], usuario: @usuario)
     create! :notice => "Busca salva com sucesso"
   end
- 
+
   def show
     busca = Busca.find(params[:id]).busca
     p busca
