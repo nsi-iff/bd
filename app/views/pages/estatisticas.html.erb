@@ -5,7 +5,7 @@ Selecione uma opção de pesquisa:
 <div>
   <%= form_tag(estatisticas_path, :method => "get") do %>
     <input name="group" type="radio" id="radio_ano" onchange="ano()"><label for='radio_ano'>Ano</label>
-    <input name="group" type="radio" id="radio_mes" onchange="mes()">Mês
+    <input name="group" type="radio" id="radio_mes" onchange="mes()"><label for='radio_ano'>Mes</label>
     <br>
     <%= select_tag "select_ano", anos_for_select, disabled: 'true' %>
     <%= select_tag "select_mes", options_for_select(meses), disabled: 'true' %>
