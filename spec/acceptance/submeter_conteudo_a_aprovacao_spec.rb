@@ -10,13 +10,26 @@ feature 'submeter conteúdo a aprovação' do
     popular_eixos_tematicos_cursos
 
     livro = Factory.create :livro, titulo: 'Rspec book',  contribuidor: user
-    artigo_de_evento = Factory.create :artigo_de_evento, titulo: 'Artigo de evento', contribuidor: user
-    artigo_de_periodico = Factory.create :artigo_de_periodico, titulo: 'artigo de periódico', contribuidor: user
-    objeto_de_aprendizagem = Factory.create :objeto_de_aprendizagem, titulo: 'objeto de aprendizagem', contribuidor: user
-    periodico_tecnico_cientifico = Factory.create :periodico_tecnico_cientifico, titulo: 'periódico técnico científico', contribuidor: user
-    relatorio = Factory.create :relatorio, titulo: 'relatório', contribuidor: user
-    trabalho_de_obtencao_de_grau = Factory.create :trabalho_de_obtencao_de_grau, titulo: 'trabalho de obtenção de grau', contribuidor: user
-
+    artigo_de_evento = Factory.create :artigo_de_evento,
+                                      titulo: 'Artigo de evento',
+                                      contribuidor: user
+    artigo_de_periodico = Factory.create :artigo_de_periodico,
+                                         titulo: 'artigo de periódico',
+                                         contribuidor: user
+    objeto_de_aprendizagem = Factory.create :objeto_de_aprendizagem,
+                                            titulo: 'objeto de aprendizagem',
+                                            contribuidor: user
+    periodico_tecnico_cientifico =
+      Factory.create :periodico_tecnico_cientifico,
+                     titulo: 'periódico técnico científico',
+                     contribuidor: user
+    relatorio = Factory.create :relatorio,
+                               titulo: 'relatório',
+                               contribuidor: user
+    trabalho_de_obtencao_de_grau =
+      Factory.create :trabalho_de_obtencao_de_grau,
+                     titulo: 'trabalho de obtenção de grau',
+                     contribuidor: user
 
     conteudos = [ livro,
                   artigo_de_evento,
@@ -47,7 +60,5 @@ feature 'submeter conteúdo a aprovação' do
         page.should have_content conteudo.titulo
       end
     end
-
   end
 end
-
