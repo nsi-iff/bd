@@ -19,13 +19,11 @@ Selecione uma opção de pesquisa:
   <% mes = params['select_mes'] %>
 
   <h2>Estatísticas de acesso em
-      <font color="#228B22">
         <% if ano and mes %>
           <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
         <% else %>
           <%= ano %>
         <% end %>
-      </font>
   </h2>
 
   <h3>
@@ -36,14 +34,13 @@ Selecione uma opção de pesquisa:
     Por conteúdo individual:
   </h3>
 
-  Os 5 mais visitados:
+    <%= render 'application/tabela_de_acesso_de_documentos' %>
 
   <h3>
     Por tipo de conteúdo: 
   </h3>
 
   <h3>Por subárea do conhecimento
-    Por subárea do conhecimento: 
   </h3>
 
   <h2>

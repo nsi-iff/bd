@@ -18,6 +18,7 @@ DigitalLibrary::Application.routes.draw do
   match "/noticias",  :to => "pages#noticias"
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
   match '/estatisticas', :to => "pages#estatisticas"
+  match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
 
   resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update] do
     get :aprovar, :to  => 'artigos_de_evento#aprovar'
