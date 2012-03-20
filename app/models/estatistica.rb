@@ -1,33 +1,25 @@
 class Estatistica
-  attr_reader :numero_de_usuarios_cadastrados
+  attr_reader :numero_de_usuarios_cadastrados, :numero_de_documentos_por_tipo_de_conteudo
 
   def initialize(ano, mes = nil)
-    @numero_de_usuarios_cadastrados = mes ? usuarios_por_mes(mes, ano) : usuarios_por_ano(ano)
-  end
-
-  def acessos_por_conteudo_individual
-    
-  end
-
-  def acessos_por_tipo_de_conteudo
-    
-  end
-
-  def acessos_por_sub_area_de_conhecimento
-    
+    data_inicial = mes ? Time.new(ano, mes).beginning_of_month : Time.new(ano).beginning_of_year
+    data_final = mes ? data_inicial.end_of_month : data_inicial.end_of_year
+    @numero_de_usuarios_cadastrados = usuarios(data_inicial, data_final)
+    @numero_de_documentos_por_tipo_de_conteudo = tipos_de_conteudo(data_inicial, data_final)
   end
 
   private
-  
-  def usuarios_por_mes(mes, ano)
-    data_inicial = Time.new(ano, mes).beginning_of_month
-    data_final = Time.new(ano, mes).end_of_month
+
+  def usuarios(data_inicial, data_final)
     Usuario.where('created_at between ? and ?', data_inicial, data_final).count
   end
 
-  def usuarios_por_ano(ano)
-    data_inicial = Time.new(ano).beginning_of_year
-    data_final = Time.new(ano).end_of_year
-    Usuario.where('created_at between ? and ?', data_inicial, data_final).count
+  def tipos_de_conteudo(data_inicial, data_final)
+    tipos_de_conteudo = [ArtigoDeEvento, ArtigoDePeriodico, Livro, ObjetoDeAprendizagem, PeriodicoTecnicoCientifico, Relatorio, TrabalhoDeObtencaoDeGrau]
+    numeros_por_tipo_de_conteudo = []
+    tipos_de_conteudo.each do |c|
+      numeros_por_tipo_de_conteudo << c.where('created_at between ? and ?', data_inicial, data_final).count
+    end
+    numeros_por_tipo_de_conteudo
   end
 end

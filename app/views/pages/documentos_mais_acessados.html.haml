@@ -1,0 +1,13 @@
+%h2 Documentos mais acessados
+
+%table{:id => "acesso_de_documentos", :border => "1"}
+  %th Nome do documento
+  %th Número de acessos
+  - documentos_mais_acessados.each do |d|
+    %tr
+      %td
+        = link_to d.titulo, "#{d.class.name.underscore.pluralize}/#{d.id}"
+      %td
+        = d.numero_de_acessos
+%br
+= link_to "Voltar", :back
