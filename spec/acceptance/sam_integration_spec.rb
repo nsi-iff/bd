@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 require 'spec_helper'
+require 'nsisam'
 
 feature 'Integração com o SAM' do
   before(:all) do
