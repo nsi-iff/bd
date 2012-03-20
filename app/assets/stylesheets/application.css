@@ -18,12 +18,11 @@
 }
 
 a {
-    color: #FFF;
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 body {
@@ -61,6 +60,15 @@ header h1 {
   padding-left: 150px;
 }
 
+header .site_actions a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+header .site_actions a:hover {
+  text-decoration: underline;
+}
+
 header .site_actions ul, ol {
   list-style: none outside none;
 }
@@ -94,6 +102,11 @@ header .site_actions {
   padding: 0;
   width: 980px !important;
   overflow: auto;
+}
+
+.container .navigation a {
+  color: #FFF;
+  text-decoration: none;
 }
 
 .container .navigation {
