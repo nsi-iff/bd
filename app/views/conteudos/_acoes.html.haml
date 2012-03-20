@@ -1,4 +1,4 @@
-- if can? :submeter, conteudo
+- if can? :submeter, conteudo and conteudo.editavel?
   = link_to 'Submeter', send("#{conteudo.class.name.underscore}_submeter_path", conteudo)
-- if can? :aprovar, conteudo
+- if can? :aprovar, conteudo and conteudo.pendente?
   = link_to 'Aprovar', send("#{conteudo.class.name.underscore}_aprovar_path", conteudo)
