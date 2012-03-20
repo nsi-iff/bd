@@ -106,15 +106,21 @@ class Conteudo < ActiveRecord::Base
     s.results
   end
 
+  def arquivo_base64
+    @arquivo_base64 || ""
+  end
+
   def to_indexed_json
     to_json(include: { autores: { only: [:nome, :lattes] },
-                       sub_area: { only: [:nome], include: {area: {only: [:nome]}} }})
+                       sub_area: { only: [:nome], include: {area: {only: [:nome]}} }},
+            methods: [:arquivo_base64])
   end
 
   alias  :set_arquivo :arquivo=
 
   def arquivo=(uploaded)
     @arquivo_uploaded = uploaded
+    @arquivo_base64 = Base64.encode64(@arquivo_uploaded.read) if @arquivo_uploaded
   end
 
   private
@@ -130,7 +136,7 @@ class Conteudo < ActiveRecord::Base
       config = Rails.application.config
       url = "http://#{config.sam_user}:#{config.sam_password}@#{config.sam_host}:#{config.sam_port}"
       sam = NSISam::Client.new url
-      result = sam.store Base64.encode64(@arquivo_uploaded.read)
+      result = sam.store arquivo_base64
       arquivo.key = result['key']
     end
   end

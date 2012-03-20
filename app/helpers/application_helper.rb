@@ -10,8 +10,8 @@ module ApplicationHelper
     end
   end
 
-  def anos_for_select
-    options_for_select((2005..Date.today.year))
+  def anos
+    2005..Date.today.year
   end
 
   def meses

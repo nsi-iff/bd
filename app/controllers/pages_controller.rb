@@ -27,7 +27,7 @@ class PagesController < ApplicationController
   def estatisticas
     @title = "Estatísticas"
     if params['select_ano']
-      @estatisticas = Estatistica.new(params['select_ano'])
+      @estatisticas = Estatistica.new(params['select_ano'], params['select_mes'])
     end
   end
 

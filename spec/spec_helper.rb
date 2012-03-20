@@ -35,7 +35,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
 
   # testes de busca são dependentes do elasticsearch
-  config.filter_run_excluding busca: true
+  config.filter_run_excluding busca: true unless ENV['INTEGRACAO']
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

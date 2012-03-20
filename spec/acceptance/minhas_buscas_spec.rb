@@ -23,7 +23,6 @@ feature 'Minhas Buscas' do
     page.should have_content 'Busca salva com sucesso'
     page.should have_link 'My book'
     page.should have_link 'Outro book'
-
     visit '/'
     page.should have_link 'Buscas book'
   end
