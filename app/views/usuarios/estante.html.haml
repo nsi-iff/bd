@@ -1,10 +1,9 @@
-%h1 Estante
-
-%table
-  %thead
-    %tr
-      %th Título
-  %tbody
-    - @conteudos.each do |conteudo|
-      %tr
-        %td= conteudo.titulo
+- if current_usuario.present? && can?(:ter_estante, current_usuario)
+  %h3 Estante
+  - current_usuario.estante.each do |conteudo|
+    .item
+      = link_to conteudo.titulo, conteudo
+      %span.info
+        = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+  - if current_usuario.estante.blank?
+    %p Não há nenhum conteúdo pendente.

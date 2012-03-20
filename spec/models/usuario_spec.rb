@@ -46,9 +46,9 @@ describe Usuario do
   end
 
   context 'estante' do
-    it 'retorna os conteudos do usuario em estado pendente' do
+    it 'retorna os conteudos aprovados do usuario' do
       usuario = Usuario.new
-      Conteudo.should_receive(:pendentes).with(usuario).and_return(:dummy)
+      Conteudo.should_receive(:publicados).with(usuario).and_return(:dummy)
       usuario.estante.should == :dummy
     end
   end
