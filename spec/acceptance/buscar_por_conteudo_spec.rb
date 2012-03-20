@@ -5,7 +5,7 @@ require "spec_helper"
 feature 'buscar todos os tipos de conteúdo', busca: true do
   before(:all) do
     Conteudo.index.delete
-    require Rails.root + 'db/create_indexes'
+    require Rails.root + 'db/criar_indices'
     Conteudo.destroy_all
     Area.delete_all; SubArea.delete_all
     autor_1       = Autor.create nome: "Yukihiro Matsumoto",
