@@ -40,8 +40,9 @@ describe Usuario do
   context 'escrivaninha' do
     it 'retorna os conteudos do usuario que sao editaveis' do
       usuario = Usuario.new
-      Conteudo.should_receive(:editaveis).with(usuario).and_return(:dummy)
-      usuario.escrivaninha.should == :dummy
+      Conteudo.should_receive(:pendentes).with(usuario).and_return('pendentes')
+      Conteudo.should_receive(:editaveis).with(usuario).and_return('editaveis')
+      usuario.escrivaninha.should == 'editaveispendentes'
     end
   end
 
