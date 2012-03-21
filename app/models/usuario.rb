@@ -16,7 +16,7 @@ class Usuario < ActiveRecord::Base
   validates_presence_of :instituicao, :campus
 
   def escrivaninha
-    Conteudo.editaveis(self)
+    Conteudo.editaveis(self) + Conteudo.pendentes(self)
   end
 
   def estante

@@ -20,8 +20,10 @@ feature 'Estante' do
     end
 
     visit estante_usuario_path(usuario)
-    page.should_not have_content 'Ruby is cool!'
-    page.should_not have_content 'We love Ruby and Agile!'
+    within '.content' do
+      page.should_not have_content 'Ruby is cool!'
+      page.should_not have_content 'We love Ruby and Agile!'
+    end
 
     artigo.aprovar!
     visit root_path
@@ -31,7 +33,9 @@ feature 'Estante' do
     end
 
     visit estante_usuario_path(usuario)
-    page.should have_content 'Ruby is cool!'
-    page.should_not have_content 'We love Ruby and Agile!'
+    within '.content' do
+      page.should have_content 'Ruby is cool!'
+      page.should_not have_content 'We love Ruby and Agile!'
+    end
   end
 end

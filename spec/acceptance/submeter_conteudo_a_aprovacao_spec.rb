@@ -49,7 +49,7 @@ feature 'submeter conteúdo a aprovação' do
       click_link 'Submeter'
 
       within '#escrivaninha' do
-        page.should_not have_content conteudo.titulo
+        page.should have_content conteudo.titulo
       end
     end
   end
