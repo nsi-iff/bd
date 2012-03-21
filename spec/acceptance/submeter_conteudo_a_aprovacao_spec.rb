@@ -46,18 +46,10 @@ feature 'submeter conteúdo a aprovação' do
         page.should have_content conteudo.titulo
       end
 
-      within '#estante' do
-        page.should_not have_content conteudo.titulo
-      end
-
       click_link 'Submeter'
 
       within '#escrivaninha' do
         page.should_not have_content conteudo.titulo
-      end
-
-      within '#estante' do
-        page.should have_content conteudo.titulo
       end
     end
   end
