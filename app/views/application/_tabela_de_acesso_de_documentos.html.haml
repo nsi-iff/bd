@@ -1,7 +1,7 @@
 %table{:id => "acesso_de_documentos", :border => "1"}
   %th Nome do documento
   %th Número de acessos
-  - cinco_documentos_mais_acessados.each do |d|
+  - @estatisticas.cinco_documentos_mais_acessados.each do |d|
     %tr
       %td
         = link_to d.titulo, "#{d.class.name.underscore.pluralize}/#{d.id}"
