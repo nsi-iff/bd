@@ -36,4 +36,39 @@ describe Estatistica do
     estatisticas =  Estatistica.new(ano, 2.months.ago.month)
     estatisticas.numero_de_usuarios_cadastrados.should == 4
   end
+
+  it 'deve retornar os cinco documentos mais acessados' do
+    livro = Factory.create(:livro, :numero_de_acessos => 10)
+    livro.save!
+    periodico = Factory.create(:periodico_tecnico_cientifico, :numero_de_acessos => 8)
+    periodico.save!
+    artigo_de_evento = Factory.create(:artigo_de_evento, :numero_de_acessos => 5)
+    artigo_de_evento.save!
+    relatorio = Factory.create(:relatorio, :numero_de_acessos => 3)
+    relatorio.save!
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 2)
+    trabalho_obtencao_de_grau.save!
+    estatisticas = Estatistica.new(Date.today.year)
+    estatisticas.cinco_documentos_mais_acessados.length.should_not > 5
+  end
+
+  it 'deve retornar todos os documentos mais acessados' do
+    livro = Factory.create(:livro, :numero_de_acessos => 12)
+    livro.save!
+    periodico = Factory.create(:periodico_tecnico_cientifico, :numero_de_acessos => 10)
+    periodico.save!
+    artigo_de_evento = Factory.create(:artigo_de_evento, :numero_de_acessos => 8)
+    artigo_de_evento.save!
+    relatorio = Factory.create(:relatorio, :numero_de_acessos => 5)
+    relatorio.save!
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 4)
+    trabalho_obtencao_de_grau.save!
+    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :numero_de_acessos => 3)
+    objeto_de_aprendizagem.save!
+    artigo_de_periodico = Factory.create(:artigo_de_periodico, :numero_de_acessos => 2)
+    artigo_de_periodico.save!
+    estatisticas = Estatistica.new(Date.today.year)
+    estatisticas.documentos_mais_acessados.length.should ==  7
+  end
+
 end

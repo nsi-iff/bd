@@ -8,6 +8,18 @@ class Estatistica
     @numero_de_documentos_por_tipo_de_conteudo = tipos_de_conteudo(data_inicial, data_final)
   end
 
+  def documentos_mais_acessados
+    Conteudo.all.sort_by(&:numero_de_acessos).reverse
+  end
+
+  def cinco_documentos_mais_acessados
+    if documentos_mais_acessados.length < 5
+      documentos_mais_acessados[0..documentos_mais_acessados.length]
+    else
+      documentos_mais_acessados[0..4]
+    end
+  end
+
   private
 
   def usuarios(data_inicial, data_final)

@@ -116,12 +116,17 @@ GEM
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nokogiri (1.5.0)
+    nsisam (0.3.0)
+      json
+      sinatra
     orm_adapter (0.0.6)
     pg (0.12.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-protection (1.2.0)
+      rack
     rack-ssl (1.3.2)
       rack
     rack-test (0.6.1)
@@ -171,6 +176,10 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
+    sinatra (1.3.2)
+      rack (~> 1.3, >= 1.3.6)
+      rack-protection (~> 1.2)
+      tilt (~> 1.3, >= 1.3.3)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -217,6 +226,7 @@ DEPENDENCIES
   inherited_resources (~> 1.3.0)
   jquery-rails
   launchy (~> 2.0.5)
+  nsisam
   pg (~> 0.12.2)
   rails (= 3.2.2)
   rspec-rails (~> 2.8.1)

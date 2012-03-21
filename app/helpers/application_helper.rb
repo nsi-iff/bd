@@ -30,16 +30,4 @@ module ApplicationHelper
       'Dezembro' => 12
     }.to_a
   end
-
-  def documentos_mais_acessados
-    Conteudo.all.sort_by(&:numero_de_acessos).reverse
-  end
-
-  def cinco_documentos_mais_acessados
-    if documentos_mais_acessados.length < 5
-      documentos_mais_acessados[0..documentos_mais_acessados.length]
-    else
-      documentos_mais_acessados[0..4]
-    end
-  end
 end
