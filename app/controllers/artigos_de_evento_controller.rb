@@ -6,6 +6,7 @@ class ArtigosDeEventoController < InheritedResources::Base
   include ContadorDeAcesso
 
   before_filter :authenticate_usuario!
+  before_filter :pode_editar, only: [:edit, :update]
   load_and_authorize_resource
 
   def create
