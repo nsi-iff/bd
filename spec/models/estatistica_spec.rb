@@ -87,7 +87,38 @@ describe Estatistica do
     trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7)
     trabalho_obtencao_de_grau.save!
     estatisticas = Estatistica.new(Date.today.year)
-    estatisticas.percentual_de_acessos_por_tipo_de_conteudo.should == [10, 10, 10, 10, 20, 30, 10]
+    estatisticas.percentual_de_acessos_por_tipo_de_conteudo.should == [["Artigo de evento", 10.0],
+                                                                       ["Artigo de periodico", 10.0],
+                                                                       ["Livro", 10.0], 
+                                                                       ["Objeto de aprendizagem", 10.0], 
+                                                                       ["Periodico tecnico cientifico", 20.0],
+                                                                       ["Relatorio", 30.0],
+                                                                       ["Trabalho de obtencao de grau", 10.0]]
   end
 
+  it 'deve retornar o percentual dos acessos por subárea de conhecimento' do
+    artigo_de_evento = Factory.create(:artigo_de_evento, :numero_de_acessos => 7)
+    artigo_de_evento.save!
+    artigo_de_periodico = Factory.create(:artigo_de_periodico, :numero_de_acessos => 7)
+    artigo_de_periodico.save!
+    livro = Factory.create(:livro, :numero_de_acessos => 7)
+    livro.save!
+    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :numero_de_acessos => 7)
+    objeto_de_aprendizagem.save!
+    periodico = Factory.create(:periodico_tecnico_cientifico, :numero_de_acessos => 14)
+    periodico.save!
+    relatorio = Factory.create(:relatorio, :numero_de_acessos => 21)
+    relatorio.save!
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7)
+    trabalho_obtencao_de_grau.save!
+    estatisticas = Estatistica.new(Date.today.year)
+    estatisticas.percentual_de_acessos_por_subarea_de_conhecimento.should == [
+                         [SubArea.find(artigo_de_evento.sub_area_id).nome, 10.0],
+                         [SubArea.find(artigo_de_periodico.sub_area_id).nome, 10.0],
+                         [SubArea.find(livro.sub_area_id).nome, 10.0],
+                         [SubArea.find(objeto_de_aprendizagem.sub_area_id).nome, 10.0],
+                         [SubArea.find(periodico.sub_area_id).nome, 20.0],
+                         [SubArea.find(relatorio.sub_area_id).nome, 30.0],
+                         [SubArea.find(trabalho_obtencao_de_grau.sub_area_id).nome, 10.0]]
+  end
 end
