@@ -33,15 +33,23 @@ Selecione uma opção de pesquisa:
   <h3>
     Por conteúdo individual:
   </h3>
-
     <%= render 'application/tabela_de_acesso_de_documentos' %>
-
   <h3>
     Por tipo de conteúdo: 
   </h3>
 
-  <h3>Por subárea do conhecimento
-  </h3>
+  <table id="tipos_de_conteudo" border = "1px">
+  <th> Tipo de conteúdo </th>
+  <th> Percentual de acessos </th>
+  <% @estatisticas.percentual_de_acessos_por_tipo_de_conteudo.each do |percentual| %>
+  <tr>
+      <td><%= percentual[0] %></td>
+      <td><%= percentual[1].round 2 %> %</td>
+  </tr>
+  <% end %>
+  </table>
+
+  <h3>Por subárea do conhecimento</h3>
 
   <h2>
     Estatísticas de contribuição em
