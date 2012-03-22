@@ -24,6 +24,7 @@ feature 'Escrivaninha' do
     within '#escrivaninha' do
       page.should have_content 'Ruby is cool'
       page.should have_content 'Agile rulz'
+      page.should have_content 'Pendente'
       page.should_not have_content 'We love Ruby and Agile'
     end
   end

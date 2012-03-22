@@ -4,6 +4,8 @@
     - current_usuario.escrivaninha.each do |conteudo|
       .item
         = link_to conteudo.titulo, conteudo
+        - if conteudo.pendente?
+          %span.info{ id: "pendente[#{conteudo.id}]" } Pendente
         %br
         %span.info
           = "#{conteudo.created_at.strftime('%d/%m/%Y')}"
