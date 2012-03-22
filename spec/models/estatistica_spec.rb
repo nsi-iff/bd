@@ -71,4 +71,23 @@ describe Estatistica do
     estatisticas.documentos_mais_acessados.length.should ==  7
   end
 
+  it 'deve retornar o percentual dos acessos por tipo de conteúdo' do
+    artigo_de_evento = Factory.create(:artigo_de_evento, :numero_de_acessos => 7)
+    artigo_de_evento.save!
+    artigo_de_periodico = Factory.create(:artigo_de_periodico, :numero_de_acessos => 7)
+    artigo_de_periodico.save!
+    livro = Factory.create(:livro, :numero_de_acessos => 7)
+    livro.save!
+    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :numero_de_acessos => 7)
+    objeto_de_aprendizagem.save!
+    periodico = Factory.create(:periodico_tecnico_cientifico, :numero_de_acessos => 14)
+    periodico.save!
+    relatorio = Factory.create(:relatorio, :numero_de_acessos => 21)
+    relatorio.save!
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7)
+    trabalho_obtencao_de_grau.save!
+    estatisticas = Estatistica.new(Date.today.year)
+    estatisticas.percentual_de_acessos_por_tipo_de_conteudo.should == [10, 10, 10, 10, 20, 30, 10]
+  end
+
 end
