@@ -32,13 +32,14 @@ class Estatistica
     percentuais
   end
 
-  def percentual_de_acessos_por_subarea_de_conhecimento
+  def cinco_maiores_percentuais_de_acessos_por_subarea
     percentuais = []
     SubArea.all.map(&:id).each do |subarea|
-      percentuais << [SubArea.find(subarea).nome, 
-      Conteudo.where("#{subarea} = sub_area_id").sum(&:numero_de_acessos) / Conteudo.all.sum(&:numero_de_acessos).to_f * 100]
+      percentuais << [
+      Conteudo.where("#{subarea} = sub_area_id").sum(&:numero_de_acessos) / Conteudo.all.sum(&:numero_de_acessos).to_f * 100,
+      SubArea.find(subarea).nome]
     end
-    percentuais
+    percentuais.sort.reverse[0..4]
   end
 
   private
