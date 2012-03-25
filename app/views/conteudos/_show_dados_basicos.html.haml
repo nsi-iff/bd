@@ -1,4 +1,7 @@
-= link_to 'Favoritar', send("#{conteudo.class.name.underscore}_favoritar_path", conteudo)
+- if current_usuario.favoritos.include? conteudo
+  = link_to 'Desfavoritar', send("#{conteudo.class.name.underscore}_desfavoritar_path", conteudo)
+- else
+  = link_to 'Favoritar', send("#{conteudo.class.name.underscore}_favoritar_path", conteudo)
 
 %p
   Título:
