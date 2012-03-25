@@ -111,11 +111,6 @@ ActiveRecord::Schema.define(:version => 20120325024916) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "favoritos", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "graus", :force => true do |t|
     t.string   "nome"
     t.datetime "created_at", :null => false
