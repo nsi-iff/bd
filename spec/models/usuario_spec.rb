@@ -49,8 +49,9 @@ describe Usuario do
   context 'estante' do
     it 'retorna os conteudos aprovados do usuario' do
       usuario = Usuario.new
-      Conteudo.should_receive(:publicados).with(usuario).and_return(:dummy)
-      usuario.estante.should == :dummy
+      Conteudo.should_receive(:publicados).with(usuario).and_return([:publicados])
+      usuario.should_receive(:favoritos).and_return([:favoritos])
+      usuario.estante.should == [:publicados, :favoritos]
     end
   end
 

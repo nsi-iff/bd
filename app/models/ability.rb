@@ -25,5 +25,8 @@ class Ability
     end
 
     can [:area_privada, :escrivaninha, :estante], Usuario, { :id => usuario.id }
+    [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
+      TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
+      Relatorio].each {|tipo| can [:favoritar], tipo}
   end
 end

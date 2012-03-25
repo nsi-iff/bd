@@ -21,7 +21,7 @@ class Usuario < ActiveRecord::Base
   end
 
   def estante
-    Conteudo.publicados(self)
+    Conteudo.publicados(self) + self.favoritos
   end
 
   def method_missing(method_name, *params)
