@@ -72,5 +72,18 @@ feature 'Estante' do
     within '.content' do
       page.should_not have_content 'We love Ruby and Agile!'
     end
+
+    visit relatorio_path(relatorio)
+    click_link 'Favoritar'
+
+    visit estante_usuario_path(usuario)
+    within '.content' do
+      page.should have_content 'We love Ruby and Agile!'
+      click_link 'Remover favorito'
+    end
+
+    within '#estante' do
+      page.should_not have_content 'We love Ruby and Agile!'
+    end
   end
 end
