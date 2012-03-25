@@ -21,44 +21,44 @@ DigitalLibrary::Application.routes.draw do
   match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
 
   resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update] do
-    get :aprovar, :to  => 'artigos_de_evento#aprovar'
-    get :submeter, :to  => 'artigos_de_evento#submeter'
+    get :aprovar
+    get :submeter
     get :favoritar
     get :remover_favorito
   end
   resources :artigos_de_periodico, :only => [:new, :create, :show, :edit, :update] do
-    get :aprovar, :to  => 'artigos_de_periodico#aprovar'
-    get :submeter, :to  => 'artigos_de_periodico#submeter'
+    get :aprovar
+    get :submeter
     get :favoritar
     get :remover_favorito
   end
   resources :livros, :only => [:new, :create, :show, :edit, :update] do
-    get :aprovar, :to  => 'livros#aprovar'
-    get :submeter, :to  => 'livros#submeter'
+    get :aprovar
+    get :submeter
     get :favoritar
     get :remover_favorito
   end
   resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit, :update] do
-    get :aprovar, :to  => 'periodicos_tecnico_cientificos#aprovar'
-    get :submeter, :to  => 'periodicos_tecnico_cientificos#submeter'
+    get :aprovar
+    get :submeter
     get :favoritar
     get :remover_favorito
   end
   resources :relatorios,  :only => [:new, :create, :show, :edit, :update] do
-    get :aprovar, :to  => 'relatorios#aprovar'
-    get :submeter, :to  => 'relatorios#submeter'
+    get :aprovar
+    get :submeter
     get :favoritar
     get :remover_favorito
   end
   resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit, :update] do
-    get :aprovar, :to  => 'objetos_de_aprendizagem#aprovar'
-    get :submeter, :to  => 'objetos_de_aprendizagem#submeter'
+    get :aprovar
+    get :submeter
     get :favoritar
     get :remover_favorito
   end
   resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show, :edit, :update] do
-    get :aprovar, :to  => 'trabalhos_de_obtencao_de_grau#aprovar'
-    get :submeter, :to  => 'trabalhos_de_obtencao_de_grau#submeter'
+    get :aprovar
+    get :submeter
     get :favoritar
     get :remover_favorito
   end
