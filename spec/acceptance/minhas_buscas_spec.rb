@@ -12,7 +12,7 @@ feature 'Minhas Buscas' do
     livro = Factory.create(:livro, titulo: 'My book')
     livro2 = Factory.create(:livro, titulo: 'Outro book')
 
-    visit '/busca'
+    visit busca_path
     fill_in 'Busca', with: 'book'
     click_button 'Buscar'
     click_link 'Salvar Busca'
@@ -23,7 +23,7 @@ feature 'Minhas Buscas' do
     page.should have_content 'Busca salva com sucesso'
     page.should have_link 'My book'
     page.should have_link 'Outro book'
-    visit '/'
+    visit root_path
     page.should have_link 'Buscas book'
   end
 
