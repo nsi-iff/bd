@@ -61,7 +61,7 @@ feature 'Estante' do
     end
 
     visit relatorio_path(relatorio)
-    click_link 'Desfavoritar'
+    click_link 'Remover favorito'
 
     visit root_path
     within '#estante' do
