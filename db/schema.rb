@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315183409) do
+ActiveRecord::Schema.define(:version => 20120325024916) do
 
   create_table "areas", :force => true do |t|
     t.string   "nome"
@@ -88,6 +88,11 @@ ActiveRecord::Schema.define(:version => 20120315183409) do
     t.integer  "numero_de_acessos",   :default => 0
   end
 
+  create_table "conteudos_usuarios", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "conteudo_id"
+  end
+
   create_table "cursos", :force => true do |t|
     t.string   "nome"
     t.integer  "eixo_tematico_id"
@@ -102,6 +107,11 @@ ActiveRecord::Schema.define(:version => 20120315183409) do
 
   create_table "eixos_tematicos", :force => true do |t|
     t.string   "nome"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "favoritos", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

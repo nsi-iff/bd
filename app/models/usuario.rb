@@ -1,5 +1,6 @@
 class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :papeis
+  has_and_belongs_to_many :favoritos, class_name: 'Conteudo'
   has_many :buscas
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
