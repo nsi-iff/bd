@@ -11,7 +11,7 @@ class ArtigosDeEventoController < InheritedResources::Base
   load_and_authorize_resource
 
   def create
-    create! notice: 'Artigo de evento submetido com sucesso'
+    create! notice: 'Artigo de evento enviado com sucesso'
   end
 
   def show

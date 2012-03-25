@@ -13,7 +13,7 @@ class PeriodicosTecnicoCientificosController < InheritedResources::Base
   load_and_authorize_resource
 
   def create
-    create! notice: 'Periódico técnico científico submetido com sucesso'
+    create! notice: 'Periódico técnico científico enviado com sucesso'
   end
 
   def show

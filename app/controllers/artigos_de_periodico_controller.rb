@@ -11,7 +11,7 @@ class ArtigosDePeriodicoController < InheritedResources::Base
   load_and_authorize_resource
 
   def create
-    create! notice: 'Artigo de periodico submetido com sucesso'
+    create! notice: 'Artigo de periodico enviado com sucesso'
   end
 
   def show

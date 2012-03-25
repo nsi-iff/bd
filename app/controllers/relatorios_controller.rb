@@ -13,6 +13,5 @@ class RelatoriosController < InheritedResources::Base
   def show
     incrementar_numero_de_acessos
   end
-
 end
 
