@@ -1,4 +1,8 @@
+%h2 Área privada
 = link_to 'Escrivaninha', escrivaninha_usuario_path(current_usuario)
+%br
 = link_to 'Estante', estante_usuario_path(current_usuario)
+%br
 = link_to 'Minhas Buscas', usuario_buscas_path(current_usuario)
+%br
 = link_to 'Lista de Revisão', lista_de_revisao_usuario_path(current_usuario) if current_usuario.gestor?
