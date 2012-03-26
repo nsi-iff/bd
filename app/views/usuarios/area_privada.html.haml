@@ -1,2 +1,4 @@
 = link_to 'Escrivaninha', escrivaninha_usuario_path(current_usuario)
 = link_to 'Estante', estante_usuario_path(current_usuario)
+= link_to 'Minhas Buscas', usuario_buscas(current_usuario)
+= link_to 'Lista de Revisão', lista_de_revisao_usuario_path(current_usuario) if usuario.gestor?
