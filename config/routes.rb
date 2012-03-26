@@ -3,6 +3,7 @@ DigitalLibrary::Application.routes.draw do
   resources :usuarios, only: [:index] do
     put :atualizar_papeis, on: :collection
     get :buscar, on: :collection
+    get :area_privada
     member do
       get :lista_de_revisao
       get :escrivaninha
