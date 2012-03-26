@@ -22,7 +22,7 @@ set :normalize_asset_timestamps, false
 
 namespace :utils do
   task :compile_assets do
-    run "cd #{latest_release}; bundle exec rake assets:precompile --trace"
+    run "cd #{latest_release}; bundle exec rake assets:precompile"
   end
   task :run_seed do
     run "cd #{latest_release}; bundle exec rake db:seed RAILS_ENV=production"
