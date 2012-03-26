@@ -12,7 +12,7 @@ DigitalLibrary::Application.routes.draw do
   end
 
   root :to => 'pages#inicio'
-  match "/busca",     :to => "busca#index"
+  get "/buscas",     :to => "buscas#index"
   match "/ajuda",     :to => "pages#ajuda"
   match "/sobre",     :to => "pages#sobre"
   match "/noticias",  :to => "pages#noticias"

@@ -12,7 +12,7 @@ feature 'Minhas Buscas' do
     livro = Factory.create(:livro, titulo: 'My book')
     livro2 = Factory.create(:livro, titulo: 'Outro book')
 
-    visit busca_path
+    visit buscas_path
     fill_in 'Busca', with: 'book'
     click_button 'Buscar'
     click_link 'Salvar Busca'

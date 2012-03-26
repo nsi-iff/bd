@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe BuscaController do
+describe BuscasController do
 
   describe "GET 'index'" do
     it "atribui um array vazio a @conteudos se não houver parâmetro de busca" do
