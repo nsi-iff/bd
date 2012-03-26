@@ -10,6 +10,9 @@
       <li><%= link_to "Mapa do Site", '#' %></li>
       <li><%= link_to "Acessibilidade", '#' %></li>
       <li><%= link_to "Contato", '#' %></li>
+      <% unless usuario_signed_in? %>
+        <li><%= link_to "Registrar Usuario", new_usuario_registration_path %></li>
+      <% end %>
     </ul>
   </div>
 </header>
