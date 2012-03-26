@@ -53,7 +53,7 @@ Selecione uma opção de pesquisa:
   <table id="sub_ara_de_conhecimento" border = "1px">
   <th> Sub área do conhecimento </th>
   <th> Percentual de acessos </th>
-  <% @estatisticas.cinco_maiores_percentuais_de_acessos_por_subarea.each do |percentual| %>
+  <% @estatisticas.percentual_de_acessos_por_subarea_de_conhecimento.each do |percentual| %>
   <tr>
       <td><%= percentual[1] %></td>
       <td><%= percentual[0].round 2 %> %</td>

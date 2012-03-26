@@ -53,38 +53,38 @@ describe Estatistica do
   end
 
   it 'deve retornar todos os documentos mais acessados' do
-    livro = Factory.create(:livro, :numero_de_acessos => 12)
+    livro = Factory.create(:livro, :numero_de_acessos => 12, :state => 'publicado')
     livro.save!
-    periodico = Factory.create(:periodico_tecnico_cientifico, :numero_de_acessos => 10)
+    periodico = Factory.create(:periodico_tecnico_cientifico, :numero_de_acessos => 10, :state => 'publicado')
     periodico.save!
-    artigo_de_evento = Factory.create(:artigo_de_evento, :numero_de_acessos => 8)
+    artigo_de_evento = Factory.create(:artigo_de_evento, :numero_de_acessos => 8, :state => 'publicado')
     artigo_de_evento.save!
-    relatorio = Factory.create(:relatorio, :numero_de_acessos => 5)
+    relatorio = Factory.create(:relatorio, :numero_de_acessos => 5, :state => 'publicado')
     relatorio.save!
-    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 4)
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 4, :state => 'publicado')
     trabalho_obtencao_de_grau.save!
-    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :numero_de_acessos => 3)
+    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :numero_de_acessos => 3, :state => 'publicado')
     objeto_de_aprendizagem.save!
-    artigo_de_periodico = Factory.create(:artigo_de_periodico, :numero_de_acessos => 2)
+    artigo_de_periodico = Factory.create(:artigo_de_periodico, :numero_de_acessos => 2, :state => 'publicado')
     artigo_de_periodico.save!
     estatisticas = Estatistica.new(Date.today.year)
     estatisticas.documentos_mais_acessados.length.should ==  7
   end
 
   it 'deve retornar o percentual dos acessos por tipo de conteúdo' do
-    artigo_de_evento = Factory.create(:artigo_de_evento, :numero_de_acessos => 7)
+    artigo_de_evento = Factory.create(:artigo_de_evento, :numero_de_acessos => 7, :state => 'publicado')
     artigo_de_evento.save!
-    artigo_de_periodico = Factory.create(:artigo_de_periodico, :numero_de_acessos => 7)
+    artigo_de_periodico = Factory.create(:artigo_de_periodico, :numero_de_acessos => 7, :state => 'publicado')
     artigo_de_periodico.save!
-    livro = Factory.create(:livro, :numero_de_acessos => 7)
+    livro = Factory.create(:livro, :numero_de_acessos => 7, :state => 'publicado')
     livro.save!
-    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :numero_de_acessos => 7)
+    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :numero_de_acessos => 7, :state => 'publicado')
     objeto_de_aprendizagem.save!
-    periodico = Factory.create(:periodico_tecnico_cientifico, :numero_de_acessos => 14)
+    periodico = Factory.create(:periodico_tecnico_cientifico, :numero_de_acessos => 14, :state => 'publicado')
     periodico.save!
-    relatorio = Factory.create(:relatorio, :numero_de_acessos => 21)
+    relatorio = Factory.create(:relatorio, :numero_de_acessos => 21, :state => 'publicado')
     relatorio.save!
-    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7)
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7, :state => 'publicado')
     trabalho_obtencao_de_grau.save!
     estatisticas = Estatistica.new(Date.today.year)
     estatisticas.percentual_de_acessos_por_tipo_de_conteudo.should == [["Artigo de evento", 10.0],
