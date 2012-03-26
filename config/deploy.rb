@@ -33,7 +33,7 @@ namespace :utils do
 end
 
 namespace :bundle do
-  task :install do; run "cd #{release_path} && bundle install"; end
+  task :install do; run "cd #{release_path} && bundle install --without test development --deployment"; end
 end
 
 namespace :db do
