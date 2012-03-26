@@ -10,7 +10,10 @@
       <li><%= link_to "Mapa do Site", '#' %></li>
       <li><%= link_to "Acessibilidade", '#' %></li>
       <li><%= link_to "Contato", '#' %></li>
-      <% unless usuario_signed_in? %>
+      <% if usuario_signed_in? %>
+        <li><%= link_to "Editar Conta", edit_registration_path(current_usuario) %></li>
+      <% else %>
+        <li><%= link_to "Acessar", new_usuario_session_path %></li>
         <li><%= link_to "Registrar Usuario", new_usuario_registration_path %></li>
       <% end %>
     </ul>
