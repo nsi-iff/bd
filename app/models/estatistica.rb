@@ -30,7 +30,7 @@ class Estatistica
 
   def percentual_de_acessos_por_tipo_de_conteudo
     percentuais = []
-    if !(@conteudos_validos.empty?)
+    unless @conteudos_validos.empty?
       TIPOS_DE_CONTEUDO.each do |tipo_atual|
         percentuais << [tipo_atual.to_s.underscore.humanize,
                         tipo_atual.all.sum(&:numero_de_acessos) /
@@ -42,7 +42,7 @@ class Estatistica
 
   def cinco_maiores_percentuais_de_acessos_por_subarea
     percentuais = []
-    if !(@conteudos_validos.empty?)
+    unless @conteudos_validos.empty?
       SubArea.all.map(&:id).each do |subarea|
         percentuais << [@conteudos_validos.where("#{subarea} = sub_area_id").
                           sum(&:numero_de_acessos) /
