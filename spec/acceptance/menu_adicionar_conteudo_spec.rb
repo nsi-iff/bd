@@ -17,15 +17,19 @@ feature 'determinados usuários não podem acessar página de adicionar conteúd
   end
 
   scenario 'sem permissão não pode ver link para adicionar conteúdo' do
-    autenticar_usuario
-    visit root_path
-    page.should_not have_content 'Adicionar Conteúdo'
+    [Papel.membro, Papel.admin, Papel.gestor].each do |papel|
+      autenticar_usuario(papel)
+      visit root_path
+      page.should_not have_content 'Adicionar Conteúdo'
+    end
   end
 
   scenario 'sem permissão não pode acessar página de adicionar conteúdo' do
-    autenticar_usuario
-    visit adicionar_conteudo_path
-    page.should have_content 'Acesso negado'
+    [Papel.membro, Papel.admin, Papel.gestor].each do |papel|
+      autenticar_usuario(papel)
+      visit adicionar_conteudo_path
+      page.should have_content 'Acesso negado'
+    end
   end
 end
 
