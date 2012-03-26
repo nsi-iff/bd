@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     @title = "Página Inicial"
   end
 
-  def busca
+  def buscas
     @title = "Busca no Acervo"
   end
 
@@ -30,7 +30,7 @@ class PagesController < ApplicationController
       @estatisticas = Estatistica.new(params['select_ano'], params['select_mes'])
     end
   end
-  
+
   def documentos_mais_acessados
     @title = "Documentos mais acessados"
     @estatisticas = Estatistica.new(Date.today.year)
