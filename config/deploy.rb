@@ -9,20 +9,21 @@ set :domain, "<your domain>"
 set :deploy_to, "/var/www/#{application}"
 set :user, "<your user>"
 set :use_sudo, false
+set :keep_releases, 3
 
 set :repository,  "https://github.com/nsi-iff/bd.git"
 set :scm, :git
 set :scm_verbose, true
 
-role :web, domain                          # Your HTTP server, Apache/etc
-role :app, domain                          # This may be the same as your `Web` server
-role :db,  domain, :primary => true # This is where Rails migrations will run
+role :web, domain
+role :app, domain
+role :db,  domain, :primary => true
 
 set :normalize_asset_timestamps, false
 
 namespace :utils do
   task :compile_assets do
-    run "cd #{latest_release}; bundle exec rake assets:precompile --trace"
+    run "cd #{latest_release}; bundle exec rake assets:precompile"
   end
   task :run_seed do
     run "cd #{latest_release}; bundle exec rake db:seed RAILS_ENV=production"
@@ -33,7 +34,9 @@ namespace :utils do
 end
 
 namespace :bundle do
-  task :install do; run "cd #{release_path} && bundle install"; end
+  task :install do
+    run "cd #{release_path} && bundle install --without test development --deployment"
+  end
 end
 
 namespace :db do

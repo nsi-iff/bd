@@ -57,8 +57,8 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                                                      sub_area: sub_area_2,
                                                                      campus: "Campos Centro",
                                                                      autores: [autor_1]
-
-    sleep(1) # espera o elasticsearch indexar :(
+    # espera o elasticsearch indexar :(
+    sleep(2) if ENV['INTEGRACAO']
   end
 
   scenario 'por título' do
@@ -94,7 +94,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
   end
 
   def testar_busca(texto, *resultados)
-    visit "/busca"
+    visit "/buscas"
     fill_in "Busca", with: texto
     click_button "Buscar"
     resultados.each do |resultado|

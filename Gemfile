@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
-gem 'pry'
-
-gem 'capistrano'
 gem 'devise'
 gem 'cancan'
 
@@ -17,7 +14,6 @@ gem 'cocoon', '~> 1.0.15'
 gem 'flexible_date', '~> 0.4.1'
 gem 'state_machine', '~> 1.1.2'
 gem 'tire'
-gem 'tire-mock_client', git: 'git://github.com/natanael-araujo/tire-mock_client.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -34,6 +30,9 @@ group :test, :development do
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
+  gem 'pry'
+  gem 'capistrano'
+  gem 'tire-mock_client', git: 'git://github.com/natanael-araujo/tire-mock_client.git'
 end
 
 gem 'jquery-rails'
