@@ -9,18 +9,16 @@ DigitalLibrary::Application.routes.draw do
       get :escrivaninha
       get :estante
     end
-    resources :buscas
   end
 
   root :to => 'pages#inicio'
-  get "/buscas",     :to => "buscas#index"
   match "/ajuda",     :to => "pages#ajuda"
   match "/sobre",     :to => "pages#sobre"
   match "/noticias",  :to => "pages#noticias"
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
   match '/estatisticas', :to => "pages#estatisticas"
   match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
-
+  resources :buscas
   resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update] do
     get :aprovar
     get :submeter

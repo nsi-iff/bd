@@ -5,7 +5,7 @@
       - current_usuario.buscas.each do |busca|
         .item
           = link_to busca.titulo, buscas_path
-          = link_to 'Editar', edit_usuario_busca_path({:usuario_id => current_usuario.id, :id => busca.id})
-          = link_to 'Deletar', [current_usuario, busca], confirm: 'Tem certeza?', method: :delete
+          = link_to 'Editar', edit_busca_path(busca)
+          = link_to 'Deletar', busca_path(busca), method: "delete", confirm: 'Tem certeza?'
     - else
       %p Não há buscas salvas.
