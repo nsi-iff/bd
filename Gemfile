@@ -14,6 +14,8 @@ gem 'cocoon', '~> 1.0.15'
 gem 'flexible_date', '~> 0.4.1'
 gem 'state_machine', '~> 1.1.2'
 gem 'tire'
+gem 'apachelogregex'
+gem 'rufus-scheduler'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
