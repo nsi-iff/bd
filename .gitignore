@@ -3,8 +3,8 @@
 /log/*.log
 /tmp
 /logs
-
-config/database.yml
+/public/ckeditor_assets/
+/config/database.yml
 
 *.swo
 *.swp

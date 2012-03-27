@@ -1,4 +1,6 @@
 DigitalLibrary::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   resources :usuarios, only: [:index] do
     put :atualizar_papeis, on: :collection
@@ -63,4 +65,6 @@ DigitalLibrary::Application.routes.draw do
   end
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
+  get '/editor' => 'editor#index'
+  post '/editor' => 'editor#download'
 end

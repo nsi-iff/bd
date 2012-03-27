@@ -4,7 +4,6 @@ gem 'rails', '3.2.2'
 
 gem 'devise'
 gem 'cancan'
-
 gem 'pg', '~> 0.12.2'
 gem 'nsisam'
 gem 'inherited_resources', '~> 1.3.0'
@@ -16,6 +15,9 @@ gem 'state_machine', '~> 1.1.2'
 gem 'tire'
 gem 'apachelogregex'
 gem 'rufus-scheduler'
+gem "ckeditor", "3.7.0.rc3"
+gem "paperclip"
+gem 'jquery-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -36,5 +38,3 @@ group :test, :development do
   gem 'capistrano'
   gem 'tire-mock_client', git: 'git://github.com/natanael-araujo/tire-mock_client.git'
 end
-
-gem 'jquery-rails'
