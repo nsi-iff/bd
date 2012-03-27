@@ -5,6 +5,7 @@ require 'spec_helper'
 describe Papel do
   describe 'obter papel a partir do nome' do
     it 'retorna o papel' do
+      Papel.delete_all
       ['admin', 'gestor', 'qq_um'].each do |nome|
         papel = Papel.create!(nome: nome, descricao: 'dummy')
         Papel.send(nome).should == papel
@@ -16,4 +17,3 @@ describe Papel do
     end
   end
 end
-
