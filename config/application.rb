@@ -63,5 +63,9 @@ module DigitalLibrary
     config.sam_password = sam_config['password']
     config.sam_host = sam_config['host']
     config.sam_port = sam_config['port']
+
+    # Configuracoes de acesso ao elasticsearch
+    config.elasticsearch_config = YAML.load(
+      File.read(File.join(Rails.root, 'config', 'elasticsearch.yml')))[Rails.env]
   end
 end

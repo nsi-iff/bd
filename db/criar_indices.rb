@@ -1,4 +1,13 @@
 require "tire"
+require "yaml"
+
+es = defined?(Rails) ? Rails.application.config.elasticsearch_config : {}
+es_host = es['host'] || 'localhost'
+es_port = es['port'] || '9200'
+
+Tire.configure do
+  url "#{es_host}:#{es_port}"
+end
 
 properties = {
   :id               => {:type => 'string', :index => :not_analyzed},
