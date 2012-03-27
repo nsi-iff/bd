@@ -118,6 +118,13 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "graos", :force => true do |t|
+    t.string   "link"
+    t.integer  "conteudo_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "graus", :force => true do |t|
     t.string   "nome"
     t.datetime "created_at", :null => false
@@ -174,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "usuario"
     t.string   "nome_completo"
     t.string   "instituicao"
     t.string   "campus"
