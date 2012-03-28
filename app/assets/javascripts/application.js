@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require cocoon
+//= require ckeditor/init
+//= require_tree .
 
 $(document).ready(function() {
 
