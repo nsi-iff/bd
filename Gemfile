@@ -10,6 +10,7 @@ gem 'cancan'
 
 gem 'pg', '~> 0.12.2'
 gem 'nsisam'
+gem 'nsicloudooo'
 gem 'inherited_resources', '~> 1.3.0'
 gem 'haml', '~> 3.1.4'
 gem 'formtastic', '~> 2.0.2'
@@ -37,3 +38,4 @@ group :test, :development do
 end
 
 gem 'jquery-rails'
+
