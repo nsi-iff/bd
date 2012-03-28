@@ -40,3 +40,9 @@ DigitalLibrary::Application.configure do
 end
 
 require File.join(Rails.root, 'spec', 'integration', 'fake_sam') unless ENV['INTEGRACAO']
+
+Tire.configure do
+  unless ENV['INTEGRACAO']
+    client Tire::Http::Client::MockClient
+  end
+end
