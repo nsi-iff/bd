@@ -75,4 +75,10 @@ FactoryGirl.define do
       nome papel
     end
   end
+
+  factory :arquivo do
+    nome 'any name'
+    key { rand.to_s.split('.')[1] }
+  end
 end
+

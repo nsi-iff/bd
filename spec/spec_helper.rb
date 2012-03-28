@@ -8,7 +8,10 @@ require 'capybara/rails'
 require 'valid_attribute'
 require 'cancan/matchers'
 
-require 'integration/fake_sam' unless ENV["INTEGRACAO"]
+unless ENV["INTEGRACAO"]
+  require 'integration/fake_sam'
+  require 'integration/fake_nsicloudooo'
+end
 
 # ver http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
 Devise.stretches = 1
@@ -54,3 +57,4 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 end
+

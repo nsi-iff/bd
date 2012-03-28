@@ -4,4 +4,9 @@ class Arquivo < ActiveRecord::Base
   def to_s
     self.nome
   end
+
+  def odt?
+    nome =~ /\.odt$/i
+  end
 end
+

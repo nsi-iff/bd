@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 require 'spec_helper'
+require 'integration/fake_sam'
+require 'integration/fake_nsicloudooo'
 
 describe Conteudo do
   context 'workflow' do
@@ -22,7 +24,24 @@ describe Conteudo do
 
       context 'ao aprovar' do
         context 'se granularizável' do
-          before(:each) { conteudo.stub(:granularizavel?).and_return(true) }
+          before(:each) do
+            conteudo.stub(:granularizavel?).and_return(true)
+            conteudo.link = nil
+            f = File.open(File.join(Rails.root, 'spec', 'resources',
+              'manual.odt'))
+            f.stub(:original_filename).and_return('anything')
+            conteudo.arquivo = f
+            conteudo.save!
+          end
+
+          it 'envia para granularização' do
+            NSICloudooo::Client.image_grains = 2
+            NSICloudooo::Client.file_grains = 1
+            conteudo.aprovar!
+            conteudo.should have(3).graos
+            conteudo.graos.select {|g| g.tipo == 'images' }.count.should == 2
+            conteudo.graos.select {|g| g.tipo == 'files' }.count.should == 1
+          end
 
           it 'vai para granularizando' do
             expect { conteudo.aprovar! }.to change { conteudo.state }.
@@ -56,6 +75,8 @@ describe Conteudo do
       before :each do
         conteudo.submeter!
         conteudo.stub(:granularizavel?).and_return(true)
+        conteudo.set_arquivo(Arquivo.create!(key: 'dummy_key'))
+        conteudo.link = nil
         conteudo.aprovar!
       end
 
@@ -159,6 +180,8 @@ describe Conteudo do
     it 'gera um objeto para a mudança de estado a cada transição' do
       verificar(conteudo, :submeter!, 'editavel', 'pendente')
       conteudo.stub(:granularizavel?).and_return(true)
+      conteudo.set_arquivo(Arquivo.new(key: 'dummy'))
+      conteudo.link = nil
       verificar(conteudo, :aprovar!, 'pendente', 'granularizando')
       conteudo.stub(:granularizado?).and_return(false)
       verificar(conteudo, :granularizou!, 'granularizando', 'pendente')
@@ -297,6 +320,23 @@ describe Conteudo do
     end
   end
 
+  context 'granularizavel' do
+    let(:conteudo) { Factory.build(:conteudo) }
+
+    it 'nao granularizavel se é um link' do
+      conteudo.set_arquivo(nil)
+      conteudo.link = 'um link'
+      conteudo.should_not be_granularizavel
+    end
+
+    it 'por enquanto, apenas se o arquivo associado for um ODT' do
+      conteudo.link = nil
+      conteudo.set_arquivo(stub_model(Arquivo, odt?: false))
+      conteudo.should_not be_granularizavel
+      conteudo.set_arquivo(stub_model(Arquivo, odt?: true))
+      conteudo.should be_granularizavel
+    end
+  end
 
   context "codifica arquivo para base 64" do
     it "retorna a string em base 64 do arquivo caso exista" do
@@ -358,3 +398,4 @@ describe Conteudo do
     end
   end
 end
+

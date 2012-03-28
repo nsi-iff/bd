@@ -63,5 +63,14 @@ module DigitalLibrary
     config.sam_password = sam_config['password']
     config.sam_host = sam_config['host']
     config.sam_port = sam_config['port']
+
+    # Configuracoes do acesso ao Cloudooo
+    cloudooo_config = YAML.load(
+      File.read(File.join(Rails.root, 'config', 'cloudooo.yml')))[Rails.env]
+    config.cloudooo_user = cloudooo_config['user']
+    config.cloudooo_password = cloudooo_config['password']
+    config.cloudooo_host = cloudooo_config['host']
+    config.cloudooo_port = cloudooo_config['port']
   end
 end
+

@@ -1,0 +1,12 @@
+development:
+  user: 'staging'
+  password: 'staging'
+  host: '200.143.198.46'
+  port: 8886
+
+test:
+  user: 'staging'
+  password: 'staging'
+  host: '200.143.198.46'
+  port: 8886
+

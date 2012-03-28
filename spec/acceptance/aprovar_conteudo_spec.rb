@@ -9,12 +9,11 @@ feature 'aprovar conteúdo' do
     popular_eixos_tematicos_cursos
   end
 
-  let(:user) { autenticar_usuario(Papel.gestor) }
-
   [:livro, :artigo_de_evento, :artigo_de_periodico, :objeto_de_aprendizagem,
    :periodico_tecnico_cientifico, :relatorio, :trabalho_de_obtencao_de_grau].
    each do |tipo|
     scenario "gestor deve poder aprovar #{tipo} pendente" do
+      user = autenticar_usuario(Papel.gestor)
       conteudo = Factory.create(tipo)
       conteudo.submeter!
 
@@ -28,4 +27,22 @@ feature 'aprovar conteúdo' do
       page.should_not have_content conteudo.titulo
     end
   end
+
+  scenario 'envia conteúdo para granularização ao aprovar' do
+    autenticar_usuario(Papel.contribuidor)
+    submeter_conteudo :artigo_de_evento, link: '',
+      arquivo: File.join(Rails.root, *%w(spec resources manual.odt))
+    artigo = ArtigoDeEvento.last
+    artigo.submeter!
+
+    autenticar_usuario(Papel.gestor)
+    visit edit_artigo_de_evento_path(artigo)
+    NSICloudooo::Client.image_grains = 3
+
+    click_link 'Aprovar'
+
+    visit artigo_de_evento_path(artigo)
+    page.should have_content '3 grãos'
+  end
 end
+

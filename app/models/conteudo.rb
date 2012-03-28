@@ -4,6 +4,7 @@ class Conteudo < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
+  has_many :graos
   has_many :autores
   has_many :mudancas_de_estado
   belongs_to :sub_area
@@ -59,6 +60,7 @@ class Conteudo < ActiveRecord::Base
     end
 
     after_transition any => :editavel, :do => :destruir_graos
+    before_transition :pendente => :granularizando, :do => :granularizar
   end
 
   scope :editaveis, lambda {|contribuidor|
@@ -83,8 +85,7 @@ class Conteudo < ActiveRecord::Base
   end
 
   def granularizavel?
-    # STUB
-    false
+    arquivo.present? && arquivo.odt?
   end
 
   def granularizado?
@@ -130,6 +131,21 @@ class Conteudo < ActiveRecord::Base
 
   private
 
+  def granularizar
+    config = Rails.application.config
+    url = "http://#{config.cloudooo_user}:#{config.cloudooo_password}@#{config.cloudooo_host}:#{config.cloudooo_port}"
+    cloudooo = NSICloudooo::Client.new(url)
+    response = cloudooo.granulate(sam_uid: arquivo.key)
+    doc_key = response['doc_key']
+    while cloudooo.done(doc_key) != { 'done' => 'true' }
+      sleep(1)
+    end
+    graos_response = cloudooo.grains_keys_for(doc_key)
+    graos_response.keys.each do |tipo|
+      graos_response[tipo].each {|key| graos.create!(key: key, tipo: tipo) }
+    end
+  end
+
   def vincular_arquivo
     if @arquivo_uploaded.present?
       set_arquivo(Arquivo.new(nome: @arquivo_uploaded.original_filename, conteudo: self))
@@ -160,3 +176,4 @@ class Conteudo < ActiveRecord::Base
     end
   end
 end
+
