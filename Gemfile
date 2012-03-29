@@ -18,6 +18,8 @@ gem 'rufus-scheduler'
 gem "ckeditor", "3.7.0.rc3"
 gem "paperclip"
 gem 'jquery-rails'
+gem 'rabl'
+gem 'gon'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

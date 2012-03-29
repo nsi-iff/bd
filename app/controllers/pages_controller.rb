@@ -28,6 +28,7 @@ class PagesController < ApplicationController
     @title = "Estatísticas"
     if params['select_ano']
       @estatisticas = Estatistica.new(params['select_ano'], params['select_mes'])
+      gon.rabl "app/views/pages/estatisticas.json.rabl"
     end
   end
 
