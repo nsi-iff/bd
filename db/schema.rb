@@ -48,8 +48,9 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.string   "titulo"
     t.text     "descricao"
     t.integer  "usuario_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "mala_direta", :default => false
   end
 
   create_table "ckeditor_assets", :force => true do |t|

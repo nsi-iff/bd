@@ -60,6 +60,7 @@ GEM
       json
     childprocess (0.3.0)
       ffi (~> 1.0.6)
+    chronic (0.6.7)
     ckeditor (3.7.0.rc3)
       mime-types (~> 1.17.2)
       orm_adapter (~> 0.0.6)
@@ -73,6 +74,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    delorean (1.2.0)
+      chronic
     devise (2.0.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -246,6 +249,7 @@ DEPENDENCIES
   ckeditor (= 3.7.0.rc3)
   cocoon (~> 1.0.15)
   coffee-rails (~> 3.2.1)
+  delorean
   devise
   factory_girl_rails (~> 1.6.0)
   flexible_date (~> 0.4.1)

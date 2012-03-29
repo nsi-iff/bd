@@ -23,4 +23,12 @@ $(document).ready(function() {
         $.post("/areas/" + id + "/sub_areas");
     });
 
+    $(".mala_direta_checkbox").change(function() {
+        var busca_id = this.value;
+        if (this.checked == true)
+            $.post("/buscas/" + busca_id + "/cadastrar_mala_direta");
+        else
+            $.post("/buscas/" + busca_id + "/remover_mala_direta");
+    });
+
 });

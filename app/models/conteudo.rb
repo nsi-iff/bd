@@ -115,10 +115,21 @@ class Conteudo < ActiveRecord::Base
     @arquivo_base64 || ""
   end
 
+  def data_publicado
+    if publicado?
+      mudanca = MudancaDeEstado.where(conteudo_id: id, para: 'publicado')
+      if mudanca.present?
+        mudanca[0].data_hora.strftime("%d/%m/%y")
+      else
+        Time.now.strftime("%d/%m/%y")
+      end
+    end
+  end
+
   def to_indexed_json
     to_json(include: { autores: { only: [:nome, :lattes] },
                        sub_area: { only: [:nome], include: {area: {only: [:nome]}} }},
-            methods: [:arquivo_base64])
+            methods: [:arquivo_base64, :data_publicado])
   end
 
   alias  :set_arquivo :arquivo=

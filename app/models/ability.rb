@@ -26,7 +26,7 @@ class Ability
       can [:atualizar_papeis, :index, :buscar], Usuario
     end
 
-    can [:area_privada, :escrivaninha, :estante], Usuario, { :id => usuario.id }
+    can [:area_privada, :escrivaninha, :estante, :minhas_buscas], Usuario, { :id => usuario.id }
     [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
       TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
       Relatorio].each {|tipo| can [:favoritar, :remover_favorito], tipo}

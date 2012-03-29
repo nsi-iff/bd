@@ -7,6 +7,7 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'valid_attribute'
 require 'cancan/matchers'
+require 'rufus/scheduler'
 
 require 'integration/fake_sam' unless ENV["INTEGRACAO"]
 

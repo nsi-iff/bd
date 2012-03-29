@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>
+      Caro <%= @usuario.nome_completo %>, <br/>
+      <br/>
+      os documentos abaixo relacionados foram publicados e contemplam pesquisas de seu interesse:
+    </p>
+
+    <% @conteudos.each do |conteudo|%>
+        <%= link_to conteudo.titulo, __send__("#{conteudo.class.name.underscore}_url", conteudo) %>
+        <br/>
+    <% end %>
+    <br/>
+    <p>
+      Atenciosamente, <br/>
+      Biblioteca Digital da EPCT.
+    </p>
+  </body>
+</html>

@@ -4,8 +4,7 @@
     - if current_usuario.buscas.present?
       - current_usuario.buscas.each do |busca|
         .item
-          = link_to busca.titulo, buscas_path
-          = link_to 'Editar', edit_busca_path(busca)
-          = link_to 'Deletar', busca_path(busca), method: "delete", confirm: 'Tem certeza?'
+          = link_to busca.titulo, busca_path(busca)
+      = link_to "Gerenciar buscas", usuario_minhas_buscas_path(current_usuario)
     - else
       %p Não há buscas salvas.
