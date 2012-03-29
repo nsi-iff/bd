@@ -21,12 +21,6 @@ class BuscasController < InheritedResources::Base
     render :index
   end
 
-  # def destroy
-  #   busca = Busca.find(params[:id])
-  #   busca.delete
-  #   redirect_to :back
-  # end
-
   def cadastrar_mala_direta
     respond_to do |format|
       format.js do
