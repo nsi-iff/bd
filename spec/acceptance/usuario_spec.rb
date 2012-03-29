@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-feature 'acessar sistema' do
+feature 'sessão e registro de usuário' do
   scenario 'cadastrar usuario' do
     visit root_path
     click_link 'Registrar Usuário'
@@ -13,6 +13,18 @@ feature 'acessar sistema' do
     fill_in 'Instituição', with: 'instituicao'
     fill_in 'Campus', with: 'campus'
     click_button 'Registrar'
+
+    page.should have_content 'Login efetuado com sucesso'
+  end
+
+  scenario 'acessar sistema' do
+    usuario = Factory.create :usuario, password: 'foobar', password_confirmation: 'foobar'
+
+    visit root_path
+    click_link 'Acessar'
+    fill_in 'E-mail', with: usuario.email
+    fill_in 'Senha', with: 'foobar'
+    click_button 'Entrar'
 
     page.should have_content 'Login efetuado com sucesso'
   end
