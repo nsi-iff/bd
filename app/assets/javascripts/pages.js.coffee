@@ -3,4 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   if window.location.pathname == '/estatisticas'
-    console.log gon.estatistica if gon
+    title = []
+    acessos = []
+    documentos = gon.estatistica.documentos_mais_acessados
+    for i in [0..(documentos.length - 1)]
+      title.push documentos[i].titulo
+      acessos.push documentos[i].numero_de_acessos
+    console.log title
+    console.log acessos
