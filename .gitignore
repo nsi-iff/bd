@@ -9,3 +9,6 @@
 *.swo
 *.swp
 *~
+
+# ignore automatic gemset usage (rvm)
+.rvmrc
