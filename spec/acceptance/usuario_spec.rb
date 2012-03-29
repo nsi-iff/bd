@@ -3,6 +3,11 @@
 require 'spec_helper'
 
 feature 'sessão e registro de usuário' do
+
+  before(:each) do
+    criar_papeis
+  end
+
   scenario 'cadastrar usuario' do
     visit root_path
     click_link 'Registrar Usuário'
