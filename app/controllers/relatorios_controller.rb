@@ -10,6 +10,10 @@ class RelatoriosController < InheritedResources::Base
   before_filter :pode_editar, only: [:edit, :update]
   load_and_authorize_resource
 
+  def create
+    create! notice: 'Relatorio enviado com sucesso'
+  end
+
   def show
     incrementar_numero_de_acessos
   end

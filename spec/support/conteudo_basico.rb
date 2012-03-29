@@ -70,9 +70,19 @@ def submeter_conteudo(tipo, opcoes = {})
   criar_papeis
   autenticar_usuario(Papel.contribuidor)
   visit send(:"new_#{tipo}_path")
-  attach_file('Arquivo', opcoes[:arquivo]) if opcoes[:arquivo].present?
+
+  preencher_campos opcoes
+
+  yield if block_given?
+  click_button 'Salvar'
+end
+
+def preencher_campos(opcoes = {})
   fill_in 'Título',
     with: opcoes[:titulo] || 'A Proposal for Ruby Performance Improvements'
+
+  attach_file('Arquivo', opcoes[:arquivo]) if opcoes[:arquivo].present?
+
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'
 
   select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
@@ -89,8 +99,6 @@ def submeter_conteudo(tipo, opcoes = {})
   end
   fill_in 'Campus da Instituição do Usuário',
     with: opcoes[:campus] || 'Campos Centro'
-  yield if block_given?
-  click_button 'Salvar'
 end
 
 def validar_conteudo(opcoes = {})
