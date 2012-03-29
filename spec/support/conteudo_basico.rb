@@ -71,6 +71,13 @@ def submeter_conteudo(tipo, opcoes = {})
   autenticar_usuario(Papel.contribuidor)
   visit send(:"new_#{tipo}_path")
 
+  preencher_campos opcoes
+
+  yield if block_given?
+  click_button 'Salvar'
+end
+
+def preencher_campos(opcoes = {})
   fill_in 'Título',
     with: opcoes[:titulo] || 'A Proposal for Ruby Performance Improvements'
 
@@ -92,8 +99,6 @@ def submeter_conteudo(tipo, opcoes = {})
   end
   fill_in 'Campus da Instituição do Usuário',
     with: opcoes[:campus] || 'Campos Centro'
-  yield if block_given?
-  click_button 'Salvar'
 end
 
 def validar_conteudo(opcoes = {})
