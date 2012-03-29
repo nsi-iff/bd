@@ -28,4 +28,12 @@ feature 'sessão e registro de usuário' do
 
     page.should have_content 'Login efetuado com sucesso'
   end
+
+  scenario 'sair do sistema' do
+    autenticar_usuario
+
+    click_link 'Sair'
+
+    page.should have_content 'Logout efetuado com sucesso'
+  end
 end
