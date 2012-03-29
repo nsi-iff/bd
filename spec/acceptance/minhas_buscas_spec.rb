@@ -101,6 +101,8 @@ feature 'Buscas' do
 
      email.to.should == [usuario.email]
      email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
+
+     Delorean.back_to_the_present
   end
 
   scenario 'nenhuma busca salva' do
