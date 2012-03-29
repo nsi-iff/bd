@@ -35,6 +35,7 @@ class PagesController < ApplicationController
   def documentos_mais_acessados
     @title = "Documentos mais acessados"
     @estatisticas = Estatistica.new(Date.today.year)
+    gon.rabl "app/views/pages/estatisticas.json.rabl"
   end
 
   def adicionar_conteudo
