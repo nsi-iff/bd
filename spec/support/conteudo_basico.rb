@@ -70,9 +70,12 @@ def submeter_conteudo(tipo, opcoes = {})
   criar_papeis
   autenticar_usuario(Papel.contribuidor)
   visit send(:"new_#{tipo}_path")
-  attach_file('Arquivo', opcoes[:arquivo]) if opcoes[:arquivo].present?
+
   fill_in 'Título',
     with: opcoes[:titulo] || 'A Proposal for Ruby Performance Improvements'
+
+  attach_file('Arquivo', opcoes[:arquivo]) if opcoes[:arquivo].present?
+
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'
 
   select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
