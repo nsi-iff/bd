@@ -259,8 +259,8 @@ describe Conteudo do
       tempfile: File.new(Rails.root + 'spec/resources/arquivo.nsi')
     })
     Factory.build(:conteudo, arquivo: arquivo, link: '').should be_valid
-    Factory.build(:conteudo, arquivo: nil, link: 'http://nsi.iff.edu.br').
-      should be_valid
+    Factory.build(:conteudo, arquivo: nil,
+                  link: 'http://nsi.iff.edu.br').  should be_valid
     conteudo = Factory.build(:conteudo, arquivo: arquivo,
                                         link: 'http://nsi.iff.edu.br')
     conteudo.should_not be_valid
@@ -289,6 +289,16 @@ describe Conteudo do
         Factory.build(tipo, link: '',
                   arquivo: arquivo).should be_valid
       end
+    end
+
+    it "#{tipo} não deve permitir outros além de rtf, doc, odt, ps, pdf" do
+      arquivo = ActionDispatch::Http::UploadedFile.new({
+        filename: 'arquivo.nsi',
+        type: 'text/plain',
+        tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
+      })
+      Factory.build(tipo, link: '',
+                arquivo: arquivo).should_not be_valid
     end
    end
 
