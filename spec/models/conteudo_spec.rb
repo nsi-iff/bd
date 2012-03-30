@@ -254,7 +254,7 @@ describe Conteudo do
 
   it 'nao pode possuir simultaneamente arquivo e link' do
     arquivo = ActionDispatch::Http::UploadedFile.new({
-      filename: 'arquivo.nsi',
+      filename: 'arquivo.pdf',
       type: 'text/plain',
       tempfile: File.new(Rails.root + 'spec/resources/arquivo.nsi')
     })

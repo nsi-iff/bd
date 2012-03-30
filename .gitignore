@@ -5,6 +5,7 @@
 /logs
 /public/ckeditor_assets/
 /config/database.yml
+/config/sam.yml
 
 *.swo
 *.swp

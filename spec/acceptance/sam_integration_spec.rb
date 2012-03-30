@@ -11,7 +11,7 @@ feature 'Integração com o SAM', :if => ENV['INTEGRACAO_SAM'] do
   end
 
   scenario 'padrão' do
-    submeter_conteudo :artigo_de_evento, titulo: 'integracao sam', link: '', arquivo: Rails.root + 'spec/resources/arquivo.nsi'
+    submeter_conteudo :artigo_de_evento, titulo: 'integracao sam', link: '', arquivo: Rails.root + 'spec/resources/arquivo.pdf'
     page.should have_content 'com sucesso'
 
     @artigo = ArtigoDeEvento.find_by_titulo('integracao sam')
