@@ -6,8 +6,9 @@ Instalação
 
 - Bundle install
 - É necessário copiar o sam.yml.example e o database.yml.example:
-  cp config/sam.yml.example config/sam.yml
+  cp config/sam.yml.example config/sam.yml &&
   cp config/database.yml.example config/database.yml
+- rake db:drop:all db:create:all db:migrate db:seed db:test:prepare
 
 Contribuindo
 ++++++++++++
