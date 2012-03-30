@@ -13,7 +13,8 @@ class Conteudo < ActiveRecord::Base
   has_and_belongs_to_many :usuarios
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
-           :arquivo_ou_link_devem_existir
+           :arquivo_ou_link_devem_existir,
+           :tipo_de_arquivo
 
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
@@ -168,6 +169,16 @@ class Conteudo < ActiveRecord::Base
     if arquivo.blank? && link.blank?
       errors.add(:arquivo, 'deve ser fornecido (ou informe um link)')
       errors.add(:link, 'deve ser informado (ou forneça um arquivo)')
+    end
+  end
+
+  def tipo_de_arquivo
+    if arquivo.present?
+      unless self.class == ObjetoDeAprendizagem
+        unless arquivo.nome =~/.*\.(pdf|rtf|odt|doc|ps)/
+          errors.add(:arquivo, 'Tipo de arquivo não suportado para o conteúdo')
+        end
+      end
     end
   end
 end
