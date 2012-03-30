@@ -1,6 +1,6 @@
 class AdicionaCampoMalaDiretaABuscas < ActiveRecord::Migration
   def up
-    add_column :buscas, :mala_direta, :bool, :default => false
+    add_column :buscas, :mala_direta, :boolean, :default => false
   end
 
   def down
