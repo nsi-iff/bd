@@ -36,9 +36,11 @@ Selecione uma opção de pesquisa:
   </h3>
     <%= render 'application/tabela_de_acesso_de_documentos' %>
   <h3>
+  <div>
+    <div id="cinco_acessos" class="graph"></div>
+  </div>
     Por tipo de conteúdo: 
   </h3>
-
   <table id="tipos_de_conteudo" border = "1px">
   <th> Tipo de conteúdo </th>
   <th> Percentual de acessos </th>
@@ -48,8 +50,10 @@ Selecione uma opção de pesquisa:
       <td><%= percentual[1].round 2 %> %</td>
   </tr>
   <% end %>
+  <div>
+    <div id="conteudo" class="graph"></div>
+  </div>
   </table>
-
   <h3>Por subárea do conhecimento</h3>
   <table id="sub_ara_de_conhecimento" border = "1px">
   <th> Sub área do conhecimento </th>
@@ -60,8 +64,11 @@ Selecione uma opção de pesquisa:
       <td><%= percentual[0].round 2 %> %</td>
   </tr>
   <% end %>
-  </table>
 
+  <div>
+    <div id="subarea" class="graph"></div>
+  </div>
+  </table>
   <h2>
     Estatísticas de contribuição em
     <font color="#228B22">

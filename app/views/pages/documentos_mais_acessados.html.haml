@@ -9,5 +9,6 @@
         = link_to d.titulo, "#{d.class.name.underscore.pluralize}/#{d.id}"
       %td
         = d.numero_de_acessos
+.graph{:id => "todos_acessos"}
 %br
 = link_to "Voltar", :back
