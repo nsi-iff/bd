@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Acesso do
-  it 'testa acessos por dia' do
+  it 'obtem a quantidade de acessos do dia' do
     Time.stub_chain(:new, :day => 26)
     acesso = Acesso.new
     acesso.log_file = "#{Rails.root}/spec/resources/access.log"
@@ -10,7 +10,7 @@ describe Acesso do
     acesso.data.day.should == Time.now.day
   end
 
-  it 'testa total de acessos' do
+  it 'contabiliza o total de acessos' do
     Time.stub_chain(:new, :day => 26)
     acesso = Acesso.new
     acesso.log_file = "#{Rails.root}/spec/resources/access.log"

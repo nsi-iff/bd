@@ -12,14 +12,23 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require cocoon
+//= require ckeditor/init
+//= require_tree .
 
 $(document).ready(function() {
 
     $("#area").change(function() {
         var id = this.value;
         $.post("/areas/" + id + "/sub_areas");
+    });
+
+    $(".mala_direta_checkbox").change(function() {
+        var busca_id = this.value;
+        if (this.checked == true)
+            $.post("/buscas/" + busca_id + "/cadastrar_mala_direta");
+        else
+            $.post("/buscas/" + busca_id + "/remover_mala_direta");
     });
 
 });

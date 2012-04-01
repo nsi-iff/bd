@@ -3,9 +3,13 @@
 /log/*.log
 /tmp
 /logs
-
-config/database.yml
+/public/ckeditor_assets/
+/config/database.yml
+/config/sam.yml
 
 *.swo
 *.swp
 *~
+
+# ignore automatic gemset usage (rvm)
+.rvmrc

@@ -1,9 +1,12 @@
 DigitalLibrary::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   resources :usuarios, only: [:index] do
     put :atualizar_papeis, on: :collection
     get :buscar, on: :collection
     get :area_privada
+    get :minhas_buscas, :to => 'usuarios#minhas_buscas'
     member do
       get :lista_de_revisao
       get :escrivaninha
@@ -18,7 +21,10 @@ DigitalLibrary::Application.routes.draw do
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
   match '/estatisticas', :to => "pages#estatisticas"
   match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
-  resources :buscas
+  resources :buscas do
+    post :cadastrar_mala_direta, :to => 'buscas#cadastrar_mala_direta'
+    post :remover_mala_direta, :to => 'buscas#remover_mala_direta'
+  end
   resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update] do
     get :aprovar
     get :submeter
@@ -63,4 +69,6 @@ DigitalLibrary::Application.routes.draw do
   end
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
+  get '/editor' => 'editor#index'
+  post '/editor' => 'editor#download'
 end

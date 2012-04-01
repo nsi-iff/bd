@@ -28,12 +28,14 @@ class PagesController < ApplicationController
     @title = "Estatísticas"
     if params['select_ano']
       @estatisticas = Estatistica.new(params['select_ano'], params['select_mes'])
+      gon.rabl "app/views/pages/estatisticas.json.rabl"
     end
   end
 
   def documentos_mais_acessados
     @title = "Documentos mais acessados"
     @estatisticas = Estatistica.new(Date.today.year)
+    gon.rabl "app/views/pages/estatisticas.json.rabl"
   end
 
   def adicionar_conteudo

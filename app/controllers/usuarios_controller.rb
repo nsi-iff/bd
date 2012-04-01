@@ -34,4 +34,8 @@ class UsuariosController < ApplicationController
     @conteudos = []
     Conteudo.all.map { |conteudo| @conteudos << conteudo if conteudo.pendente? }
   end
+
+  def minhas_buscas
+    @buscas = current_usuario.buscas
+  end
 end
