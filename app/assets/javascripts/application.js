@@ -31,4 +31,9 @@ $(document).ready(function() {
             $.post("/buscas/" + busca_id + "/remover_mala_direta");
     });
 
+    $("#instituicao").change(function() {
+        var id = this.value;
+        $.post("/instituicoes/" + id + "/campus");
+    });
+
 });

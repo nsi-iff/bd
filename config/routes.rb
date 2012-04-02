@@ -68,6 +68,7 @@ DigitalLibrary::Application.routes.draw do
     get :remover_favorito
   end
   match "/areas/:id/sub_areas" => "areas#sub_areas"
+  match "/instituicoes/:id/campus" => "instituicoes#campus"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
   get '/editor' => 'editor#index'
   post '/editor' => 'editor#download'

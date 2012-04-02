@@ -9,14 +9,15 @@ feature 'sessão e registro de usuário' do
   end
 
   scenario 'cadastrar usuario' do
+    popular_instituicao_campus
     visit root_path
     click_link 'Registrar Usuário'
     fill_in 'Nome Completo', with: 'Foo Bar'
     fill_in 'E-mail', with: 'foo@bar.com'
     fill_in 'Senha', with: 'foobar'
     fill_in 'Confirmação de Senha', with: 'foobar'
-    fill_in 'Instituição', with: 'instituicao'
-    fill_in 'Campus', with: 'campus'
+    select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'Instituição'
+    select 'Campus Campos Centro', from: 'Campus'
     click_button 'Registrar'
 
     page.should have_content 'Login efetuado com sucesso'

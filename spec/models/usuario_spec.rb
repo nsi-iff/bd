@@ -61,12 +61,6 @@ describe Usuario do
   it { should have_valid(:nome_completo).when 'Luke Skywalker', 'Darth Vader', 'foo 123' }
   it { should_not have_valid(:nome_completo).when nil, '' }
 
-  it { should have_valid(:instituicao).when 'ifto', 'IFF' }
-  it { should_not have_valid(:instituicao).when '', nil }
-
-  it { should have_valid(:campus).when 'Campus Centro', 'Campus Foo' }
-  it { should_not have_valid(:campus).when '', nil }
-
   it 'responde se possui um determinado papel' do
     usuario = Usuario.new
     papeis = ['gestor', 'admin', 'contribuidor'].map {|nome|

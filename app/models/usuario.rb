@@ -2,6 +2,7 @@ class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :papeis
   has_and_belongs_to_many :favoritos, class_name: 'Conteudo'
   has_many :buscas
+  belongs_to :campus
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,12 +10,10 @@ class Usuario < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :usuario, :nome_completo, :instituicao, :campus,
-                  :papel_ids
+                  :usuario, :nome_completo, :papel_ids, :campus_id
 
   validates :email, presence: true, uniqueness: true
   validates :nome_completo, presence: true, allow_blank: true
-  validates_presence_of :instituicao, :campus
 
   def escrivaninha
     Conteudo.editaveis(self) + Conteudo.pendentes(self)
