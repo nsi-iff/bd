@@ -259,8 +259,8 @@ describe Conteudo do
       tempfile: File.new(Rails.root + 'spec/resources/arquivo.nsi')
     })
     Factory.build(:conteudo, arquivo: arquivo, link: '').should be_valid
-    Factory.build(:conteudo, arquivo: nil, link: 'http://nsi.iff.edu.br').
-      should be_valid
+    Factory.build(:conteudo, arquivo: nil,
+                  link: 'http://nsi.iff.edu.br').  should be_valid
     conteudo = Factory.build(:conteudo, arquivo: arquivo,
                                         link: 'http://nsi.iff.edu.br')
     conteudo.should_not be_valid
@@ -274,6 +274,33 @@ describe Conteudo do
     conteudo.errors[:arquivo].should be_any
     conteudo.errors[:link].should be_any
   end
+
+  [:livro, :artigo_de_evento, :artigo_de_periodico, :periodico_tecnico_cientifico,
+   :relatorio, :trabalho_de_obtencao_de_grau].
+   each do |tipo|
+    it "#{tipo} deve permitir os formatos de arquivo: rtf, doc, odt, ps, pdf" do
+      ['arquivo.rtf', 'arquivo.doc', 'arquivo.odt', 'arquivo.ps', 'arquivo.pdf']
+      .each do |arquivo_tipo|
+        arquivo = ActionDispatch::Http::UploadedFile.new({
+          filename: arquivo_tipo,
+          type: 'text/plain',
+          tempfile: File.new(Rails.root + "spec/resources/#{arquivo_tipo}")
+        })
+        Factory.build(tipo, link: '',
+                  arquivo: arquivo).should be_valid
+      end
+    end
+
+    it "#{tipo} não deve permitir outros além de rtf, doc, odt, ps, pdf" do
+      arquivo = ActionDispatch::Http::UploadedFile.new({
+        filename: 'arquivo.nsi',
+        type: 'text/plain',
+        tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
+      })
+      Factory.build(tipo, link: '',
+                arquivo: arquivo).should_not be_valid
+    end
+   end
 
   it 'area deve ser a area ligada a sua subarea' do
     area = Factory.create(:area)

@@ -38,7 +38,6 @@ Selecione uma opção de pesquisa:
   <h3>
     Por tipo de conteúdo: 
   </h3>
-
   <table id="tipos_de_conteudo" border = "1px">
   <th> Tipo de conteúdo </th>
   <th> Percentual de acessos </th>
@@ -49,7 +48,6 @@ Selecione uma opção de pesquisa:
   </tr>
   <% end %>
   </table>
-
   <h3>Por subárea do conhecimento</h3>
   <table id="sub_ara_de_conhecimento" border = "1px">
   <th> Sub área do conhecimento </th>
@@ -60,8 +58,8 @@ Selecione uma opção de pesquisa:
       <td><%= percentual[0].round 2 %> %</td>
   </tr>
   <% end %>
-  </table>
 
+  </table>
   <h2>
     Estatísticas de contribuição em
     <font color="#228B22">
@@ -76,4 +74,5 @@ Selecione uma opção de pesquisa:
   <h3>Instituto</h3>
 
   <h3>Campus de Instituto</h3>
+  <%= link_to 'Graficos', graficos_de_acessos_path %>
 <% end %>
