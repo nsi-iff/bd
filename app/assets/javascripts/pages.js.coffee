@@ -37,7 +37,7 @@ Estatisticas =
 
 
 jQuery ->
-  if window.location.pathname == '/estatisticas'
+  if window.location.pathname == '/graficos_de_acessos'
     documentos = gon.estatistica.cinco_documentos_mais_acessados
     acessos = Estatisticas.lista_de_documentos(documentos.length, documentos)
 
@@ -91,7 +91,6 @@ jQuery ->
         show: false
 
 
-  if window.location.pathname == '/documentos_mais_acessados'
     documentos = gon.estatistica.documentos_mais_acessados
     todos_acessos = Estatisticas.lista_de_documentos(documentos.length, documentos)
 
