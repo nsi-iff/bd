@@ -1,7 +1,7 @@
 - if current_usuario.present? && can?(:ter_estante, current_usuario)
   #estante.portlet
     %h3 Estante
-    - current_usuario.estante.each do |conteudo|
+    - current_usuario.estante.reverse[0..2].each do |conteudo|
       .item
         = link_to conteudo.titulo, conteudo
         %br

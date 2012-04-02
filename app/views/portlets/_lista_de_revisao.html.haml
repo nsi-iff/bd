@@ -1,7 +1,7 @@
 - if current_usuario.present? && can?(:ter_lista_de_revisao, current_usuario)
   #lista_de_revisao.portlet
     %h3 Lista de Revisão
-    - Conteudo.all.each do |conteudo|
+    - Conteudo.all.reverse[0..2].each do |conteudo|
       - if conteudo.pendente?
         .item
           = link_to conteudo.titulo, conteudo

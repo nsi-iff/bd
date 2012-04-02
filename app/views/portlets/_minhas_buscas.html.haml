@@ -2,7 +2,7 @@
   #minhas_buscas.portlet
     %h3 Minhas Buscas
     - if current_usuario.buscas.present?
-      - current_usuario.buscas.each do |busca|
+      - current_usuario.buscas.reverse[0..2].each do |busca|
         .item
           = link_to busca.titulo, busca_path(busca)
       = link_to "Gerenciar buscas", usuario_minhas_buscas_path(current_usuario)
