@@ -367,3 +367,23 @@ end
 
 criar_areas_e_sub_areas if Area.count == 0
 
+def popular_instituicao_campus
+  Instituicao.destroy_all
+  Campus.destroy_all
+
+  iffluminense = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense')
+  iffluminense.campus.create([
+    { nome: 'Campus Bom Jesus de Itabapoana' },
+    { nome: 'Campus Cabo Frio'               },
+    { nome: 'Campus Campos Centro'           },
+    { nome: 'Campus Campos Guarus'           },
+    { nome: 'Campus Itaperuna'               },
+    { nome: 'Campus Macaé'                   }
+  ])
+
+  ifamapa = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá')
+  ifamapa.campus.create([
+    { nome: 'Campus Macapá' }
+  ])
+end
+popular_instituicao_campus
