@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327173931) do
+ActiveRecord::Schema.define(:version => 20120330193518) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.boolean  "mala_direta", :default => false
+  end
+
+  create_table "campus", :force => true do |t|
+    t.string   "nome"
+    t.integer  "instituicao_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -146,6 +153,12 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "instituicoes", :force => true do |t|
+    t.string   "nome"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "mudancas_de_estado", :force => true do |t|
     t.integer  "usuario_id"
     t.integer  "conteudo_id"
@@ -190,8 +203,7 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "nome_completo"
-    t.string   "instituicao"
-    t.string   "campus"
+    t.integer  "campus_id"
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true
