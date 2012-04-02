@@ -17,11 +17,26 @@ feature 'Escrivaninha' do
       page.should have_content 'Ruby is cool'
       page.should have_content 'Agile rulz'
       page.should_not have_content 'We love Ruby and Agile'
+      click_link 'Ver todos'
+    end
+
+    within '.content' do
+      page.should have_content 'Ruby is cool'
+      page.should have_content 'Agile rulz'
+      page.should_not have_content 'We love Ruby and Agile'
     end
 
     livro.submeter!
     visit root_path
     within '#escrivaninha' do
+      page.should have_content 'Ruby is cool'
+      page.should have_content 'Agile rulz'
+      page.should have_content 'Pendente'
+      page.should_not have_content 'We love Ruby and Agile'
+      click_link 'Ver todos'
+    end
+
+    within '.content' do
       page.should have_content 'Ruby is cool'
       page.should have_content 'Agile rulz'
       page.should have_content 'Pendente'

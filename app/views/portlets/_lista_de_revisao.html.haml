@@ -8,3 +8,5 @@
           %br
           %span.info
             = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+
+    = link_to "Ver todos", lista_de_revisao_usuario_path(current_usuario)

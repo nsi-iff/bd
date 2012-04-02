@@ -9,3 +9,5 @@
           = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
     - if current_usuario.estante.blank?
       %p Não há nenhum conteúdo pendente.
+
+    = link_to "Ver todos", estante_usuario_path(current_usuario)
