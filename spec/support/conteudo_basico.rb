@@ -117,8 +117,6 @@ def preencher_campos(opcoes = {})
     fill_in 'Curriculum Lattes',
       with: opcoes[:lattes_autor] || 'http://lattes.cnpq.br/1234567890'
   end
-  fill_in 'Campus da Instituição do Usuário',
-    with: opcoes[:campus] || 'Campos Centro'
 end
 
 def validar_conteudo(opcoes = {})
@@ -131,6 +129,5 @@ def validar_conteudo(opcoes = {})
     page.should have_content opcoes[:nome_autor] || 'Autor: Yukihiro Matsumoto'
     page.should have_content opcoes[:lattes_autor] || 'Curriculum Lattes: http://lattes.cnpq.br/1234567890'
   end
-  page.should have_content opcoes[:campus] || 'Campus: Campos Centro'
 end
 
