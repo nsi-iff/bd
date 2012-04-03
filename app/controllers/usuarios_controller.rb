@@ -36,6 +36,5 @@ class UsuariosController < ApplicationController
   end
 
   def minhas_buscas
-    @buscas = current_usuario.buscas
   end
 end
