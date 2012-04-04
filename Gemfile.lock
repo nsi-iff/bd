@@ -74,6 +74,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    columnize (0.3.6)
+    debugger (1.0.0)
+      columnize (>= 0.3.1)
+      debugger-linecache
+      debugger-ruby_core_source
+    debugger-linecache (1.0.1)
+      debugger-ruby_core_source
+    debugger-ruby_core_source (1.0.1)
     delorean (1.2.0)
       chronic
     devise (2.0.2)
@@ -253,6 +261,7 @@ DEPENDENCIES
   ckeditor (= 3.7.0.rc3)
   cocoon (~> 1.0.15)
   coffee-rails (~> 3.2.1)
+  debugger
   delorean
   devise
   factory_girl_rails (~> 1.6.0)
