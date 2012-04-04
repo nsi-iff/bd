@@ -41,4 +41,5 @@ group :test, :development do
   gem 'capistrano'
   gem 'tire-mock_client', git: 'git://github.com/natanael-araujo/tire-mock_client.git'
   gem 'spork-rails', '~> 3.2.0'
+  gem 'debugger'
 end
