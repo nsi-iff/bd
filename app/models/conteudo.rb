@@ -135,12 +135,11 @@ class Conteudo < ActiveRecord::Base
     config = Rails.application.config
     url = "http://#{config.cloudooo_user}:#{config.cloudooo_password}@#{config.cloudooo_host}:#{config.cloudooo_port}"
     cloudooo = NSICloudooo::Client.new(url)
-    response = cloudooo.granulate(sam_uid: arquivo.key)
-    doc_key = response['doc_key']
-    while cloudooo.done(doc_key) != { 'done' => 'true' }
+    response = cloudooo.granulate(sam_uid: arquivo.key, filename: arquivo.nome)
+    while cloudooo.done(arquivo.key) != { 'done' => true }
       sleep(1)
     end
-    graos_response = cloudooo.grains_keys_for(doc_key)
+    graos_response = cloudooo.grains_keys_for(arquivo.key)
     graos_response.keys.each do |tipo|
       graos_response[tipo].each {|key| graos.create!(key: key, tipo: tipo) }
     end
@@ -157,7 +156,7 @@ class Conteudo < ActiveRecord::Base
       config = Rails.application.config
       url = "http://#{config.sam_user}:#{config.sam_password}@#{config.sam_host}:#{config.sam_port}"
       sam = NSISam::Client.new url
-      result = sam.store arquivo_base64
+      result = sam.store(doc: arquivo_base64)
       arquivo.key = result['key']
     end
   end

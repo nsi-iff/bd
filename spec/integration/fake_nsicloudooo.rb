@@ -13,7 +13,7 @@ module NSICloudooo
     end
 
     def done(key)
-      { 'done' => 'true' }
+      { 'done' => true }
     end
 
     def grains_keys_for(doc_key)

@@ -37,7 +37,7 @@ feature 'aprovar conteúdo' do
 
     autenticar_usuario(Papel.gestor)
     visit edit_artigo_de_evento_path(artigo)
-    NSICloudooo::Client.image_grains = 3
+    NSICloudooo::Client.image_grains = 3 if NSICloudooo::Client.respond_to? :image_grains=
 
     click_link 'Aprovar'
 

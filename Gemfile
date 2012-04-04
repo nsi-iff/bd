@@ -35,6 +35,7 @@ group :test, :development do
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
+  gem 'debugger'
 end
 
 gem 'jquery-rails'
