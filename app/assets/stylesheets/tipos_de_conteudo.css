@@ -42,7 +42,7 @@ select {
   font-size: 80%;
 }
 
-.error {
+.error, .errors {
   background-color: #fdc;
   border: 1px solid #d00;
   padding: 0.5em;
