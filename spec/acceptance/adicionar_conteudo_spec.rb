@@ -12,10 +12,10 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
     select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
     select('Ciência da Computação', from: 'Área de Conhecimento*')
+    select(usuario.campus.nome, from: 'Campus da Instituição do Usuário')
     click_link 'Adicionar autor'
     fill_in 'Autor', with: 'Yukihiro Matsumoto'
     fill_in 'Curriculum Lattes', with: 'http://lattes.cnpq.br/1234567890'
-    fill_in 'Campus da Instituição do Usuário', with: 'Campos Centro'
     fill_in 'Direitos', with: 'Direitos e esquerdos'
     fill_in 'Resumo', with: 'This work proposes an Ruby performance improvement'
     click_button 'Salvar'
@@ -26,7 +26,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     page.should have_content 'Área de Conhecimento: Ciência da Computação'
     page.should have_content 'Autor: Yukihiro Matsumoto'
     page.should have_content 'Curriculum Lattes: http://lattes.cnpq.br/1234567890'
-    page.should have_content 'Campus: Campos Centro'
+    page.should have_content "Campus: #{usuario.campus.nome}"
     page.should have_content 'Direitos: Direitos e esquerdos'
     page.should have_content 'Resumo: This work proposes an Ruby performance improvement'
     page.should have_content "Contribuidor: #{usuario.nome_completo}"
@@ -74,8 +74,8 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
 
   scenario 'campos obrigatórios' do
     submeter_conteudo :artigo_de_evento,
-      titulo: '', campus: '', autores: false
-    [:titulo, :campus].each do |campo|
+      titulo: '', autores: false
+    [:titulo].each do |campo|
       within("#artigo_de_evento_#{campo}_input") do
         page.should have_content "não pode ficar em branco"
       end

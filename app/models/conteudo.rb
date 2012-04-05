@@ -12,6 +12,7 @@ class Conteudo < ActiveRecord::Base
   belongs_to :contribuidor, :class_name => 'Usuario'
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
   has_and_belongs_to_many :usuarios
+  belongs_to :campus
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
            :arquivo_ou_link_devem_existir,

@@ -1,15 +1,18 @@
 .minhas_buscas.index
-  %h1 Minhas Buscas
+  %h3 Minhas Buscas
 
-  - @buscas.each do |busca|
-    .item
-      = link_to busca.titulo, busca_path(busca)
-      - if busca.descricao.present?
-        %p #{busca.descricao}
-      %br
-      %span
-        =check_box_tag :mala_direta, busca.id, busca.mala_direta, :class => 'mala_direta_checkbox'
-        = label_tag :mala_direta, 'Me envie um e-mail avisando sobre a publicação de novos documentos contemplados por esta busca'
-      .links
-        = link_to 'Editar', edit_busca_path(busca)
-        = link_to 'Deletar', busca_path(busca), method: 'delete', confirm: 'Tem certeza?'
+  - if current_usuario.buscas.present?
+    - current_usuario.buscas.each do |busca|
+      .item
+        = link_to busca.titulo, busca_path(busca)
+        - if busca.descricao.present?
+          %p #{busca.descricao}
+        %br
+        %span
+          =check_box_tag :mala_direta, busca.id, busca.mala_direta, :class => 'mala_direta_checkbox'
+          = label_tag :mala_direta, 'Me envie um e-mail avisando sobre a publicação de novos documentos contemplados por esta busca'
+        .links
+          = link_to 'Editar', edit_busca_path(busca)
+          = link_to 'Deletar', busca_path(busca), method: 'delete', confirm: 'Tem certeza?'
+  - else
+    %p Não há buscas salvas.

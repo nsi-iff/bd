@@ -1,10 +1,13 @@
-%h1 Lista de Revisão
-
-%table
-  %thead
-    %tr
-      %th Título
-  %tbody
-    - @conteudos.each do |conteudo|
-      %tr
-        %td= conteudo.titulo
+- if current_usuario.present? && can?(:ter_lista_de_revisao, current_usuario)
+  %h3 Lista de Revisão
+  - if @conteudos.present?
+    %table
+      %thead
+        %tr
+          %th Título
+      %tbody
+        - @conteudos.each do |conteudo|
+          %tr
+            %td= conteudo.titulo
+    - else
+      %p Não há nenhum conteúdo para revisão.

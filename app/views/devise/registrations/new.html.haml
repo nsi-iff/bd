@@ -4,9 +4,11 @@
     = f.input :email, label: 'E-mail'
     = f.input :password, label: 'Senha'
     = f.input :password_confirmation, label: 'Confirmação de Senha'
-    = f.input :instituicao, label: 'Instituição'
-    = f.input :campus, label: 'Campus'
-
+    = label_tag(:instituicao, 'Instituição')
+    = select_tag(:instituicao, options_for_select(Instituicao.all.map {|instituicao| [instituicao.nome, instituicao.id] }), class: "instituicoes")
+    = f.input :campus, as: :select, input_html: { class: "campus" },
+      collection: Instituicao.first.campus.map {|campus| [campus.nome, campus.id] },
+      prompt: false, label: 'Campus'
   = f.buttons do
     = f.submit 'Registrar'
 

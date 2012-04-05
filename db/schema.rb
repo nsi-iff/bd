@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327173931) do
+ActiveRecord::Schema.define(:version => 20120403183239) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.boolean  "mala_direta", :default => false
   end
 
+  create_table "campus", :force => true do |t|
+    t.string   "nome"
+    t.integer  "instituicao_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
     t.string   "data_content_type"
@@ -70,7 +77,6 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
   create_table "conteudos", :force => true do |t|
     t.string   "titulo"
     t.string   "link"
-    t.string   "campus"
     t.text     "direitos"
     t.text     "resumo"
     t.string   "type"
@@ -108,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.string   "state"
     t.integer  "contribuidor_id"
     t.integer  "numero_de_acessos",   :default => 0
+    t.integer  "campus_id"
   end
 
   create_table "conteudos_usuarios", :id => false, :force => true do |t|
@@ -149,6 +156,12 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
   create_table "idiomas", :force => true do |t|
     t.string   "sigla"
     t.string   "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "instituicoes", :force => true do |t|
+    t.string   "nome"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -198,8 +211,7 @@ ActiveRecord::Schema.define(:version => 20120327173931) do
     t.datetime "updated_at",                             :null => false
     t.string   "usuario"
     t.string   "nome_completo"
-    t.string   "instituicao"
-    t.string   "campus"
+    t.integer  "campus_id"
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true

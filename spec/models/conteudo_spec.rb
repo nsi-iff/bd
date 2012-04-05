@@ -128,12 +128,10 @@ describe Conteudo do
     it 'armazena seu estado corrente' do
       c = Factory.create(:conteudo)
       c.submeter!
-      c = Conteudo.find(c.id)
       c.state.should == 'pendente'
 
       c.stub(:granularizavel?).and_return(false)
       c.aprovar!
-      c = Conteudo.find(c .id)
       c.state.should == 'publicado'
     end
 
@@ -310,10 +308,19 @@ describe Conteudo do
     conteudo.area.should be(area)
   end
 
+  it 'instituicao deve ser a instituicao ligada ao usuario contribuidor' do
+    usuario = Factory.create(:usuario_contribuidor)
+    instituicao_usuario = usuario.campus.instituicao
+    campus = Factory.create(:campus, instituicao: instituicao_usuario)
+    conteudo = Factory.build(:conteudo, campus: campus)
+
+    conteudo.campus.instituicao.should be(instituicao_usuario)
+  end
+
   context 'atributos obrigatorios' do
     it { should_not have_valid(:titulo).when('', nil) }
     it { should_not have_valid(:sub_area).when(nil) }
-    it { should_not have_valid(:campus).when('', nil) }
+#    it { should_not have_valid(:campus).when('', nil) }
 
     it 'deve ter pelo menos um autor' do
       subject.valid?
