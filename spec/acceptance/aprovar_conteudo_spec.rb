@@ -27,19 +27,4 @@ feature 'aprovar conteúdo' do
       page.should_not have_content conteudo.titulo
     end
   end
-
-  scenario 'envia conteúdo para granularização ao aprovar' do
-    autenticar_usuario(Papel.contribuidor)
-    submeter_conteudo :artigo_de_evento, link: '',
-      arquivo: File.join(Rails.root, *%w(spec resources manual.odt))
-    artigo = ArtigoDeEvento.last
-    artigo.submeter!
-
-    autenticar_usuario(Papel.gestor)
-    visit edit_artigo_de_evento_path(artigo)
-    click_link 'Aprovar'
-
-    visit artigo_de_evento_path(artigo)
-    page.should have_content '3 grãos'
-  end
 end

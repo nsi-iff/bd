@@ -8,6 +8,8 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
     require Rails.root + 'db/criar_indices'
     Conteudo.destroy_all
     Area.delete_all; SubArea.delete_all
+    campos_centro = Campus.create nome: 'Campos Centro',
+                                  instituicao: Instituicao.create(nome: 'IFF')
     autor_1       = Autor.create nome: "Yukihiro Matsumoto",
                                  lattes: "http://lattes.cnpq.br/1234567890"
     autor_2       = Autor.create nome: "Why, the Lucky Stiff",
@@ -19,12 +21,12 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
     @artigo_de_evento = ArtigoDeEvento.create titulo: "Artigo de Evento",
                                               link: "http://www.rubyconf.org/articles/1",
                                               sub_area: sub_area_2,
-                                              campus: "Campos Centro",
+                                              campus: campos_centro,
                                               autores: [autor_1]
     @artigo_de_periodico = ArtigoDePeriodico.create titulo: "Artigo de Periódico",
                                                     link: "nsi.iff.edu.br",
                                                     sub_area: sub_area_1,
-                                                    campus: "Campos Centro",
+                                                    campus: campos_centro,
                                                     autores: [autor_1, autor_2],
                                                     volume_publicacao: 10
     @livro = Livro.create titulo: "Livro",
@@ -35,12 +37,12 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                             tempfile: File.new(Rails.root + 'spec/resources/arquivo.rtf')
                           }),
                           sub_area: sub_area_1,
-                          campus: "Campos Centro",
+                          campus: campos_centro,
                           autores: [autor_1, autor_2]
     @objeto_de_aprendizagem = ObjetoDeAprendizagem.create titulo: "Objeto de Aprendizagem",
                                                           link: "http://www.rubyconf.org/articles/1",
                                                           sub_area: sub_area_2,
-                                                          campus: "Campos Centro",
+                                                          campus: campos_centro,
                                                           autores: [autor_1]
     @periodico_tecnico_cientifico = PeriodicoTecnicoCientifico.create titulo: "Periodico Tecnico Cientifico",
                                                                        link: "http://www.rubyconf.org/articles/1",
@@ -50,12 +52,12 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
     @relatorio = Relatorio.create titulo: "Relatório",
                                    link: "http://www.rubyconf.org/articles/1",
                                    sub_area: sub_area_1,
-                                   campus: "Campos Centro",
+                                   campus: campos_centro,
                                    autores: [autor_2]
     @trabalho_de_obtencao_de_grau = TrabalhoDeObtencaoDeGrau.create titulo: "Trabalho de Obtencao de Grau",
                                                                      link: "http://www.rubyconf.org/articles/1",
                                                                      sub_area: sub_area_2,
-                                                                     campus: "Campos Centro",
+                                                                     campus: campos_centro,
                                                                      autores: [autor_1]
     # espera o elasticsearch indexar :(
     sleep(2) if ENV['INTEGRACAO']
