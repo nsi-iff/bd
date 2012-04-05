@@ -8,8 +8,9 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
     require Rails.root + 'db/criar_indices'
     Conteudo.destroy_all
     Area.delete_all; SubArea.delete_all
-    campos_centro = Campus.create nome: 'Campos Centro',
-                                  instituicao: Instituicao.create(nome: 'IFF')
+    iff = Instituicao.create(nome: 'IFF')
+    campos_centro = Campus.create nome: 'Campos Centro', instituicao: iff
+    cabo_frio = Campus.create nome: 'Cabo Frio', instituicao: iff
     autor_1       = Autor.create nome: "Yukihiro Matsumoto",
                                  lattes: "http://lattes.cnpq.br/1234567890"
     autor_2       = Autor.create nome: "Why, the Lucky Stiff",
@@ -47,7 +48,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
     @periodico_tecnico_cientifico = PeriodicoTecnicoCientifico.create titulo: "Periodico Tecnico Cientifico",
                                                                        link: "http://www.rubyconf.org/articles/1",
                                                                        sub_area: sub_area_2,
-                                                                       campus: "Cabo Frio",
+                                                                       campus: cabo_frio,
                                                                        autores: [autor_1]
     @relatorio = Relatorio.create titulo: "Relatório",
                                    link: "http://www.rubyconf.org/articles/1",
