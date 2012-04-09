@@ -15,9 +15,9 @@
       prompt: false, label: 'Área de Conhecimento'
   #autores
     = f.semantic_fields_for :autores do |autor|
-      = render 'autor_fields', :f => autor
+      = render 'conteudos/autor_fields', :f => autor
     .links
-      = link_to_add_association 'Adicionar autor', f, :autores
+      = link_to_add_association 'Adicionar autor', f, :autores, :partial => 'conteudos/autor_fields'
       = f.semantic_errors :autores
   = f.input :campus, as: :select, input_html: { class: "campus" },
       collection: current_usuario.campus.instituicao.campus.map {|campus| [campus.nome, campus.id] },
