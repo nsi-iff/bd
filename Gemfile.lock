@@ -65,7 +65,7 @@ GEM
       mime-types (~> 1.17.2)
       orm_adapter (~> 0.0.6)
     cocaine (0.2.1)
-    cocoon (1.0.17)
+    cocoon (1.0.20)
     coderay (1.0.5)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -262,7 +262,7 @@ DEPENDENCIES
   capybara (~> 1.1.2)
   capybara-webkit (~> 0.9.0)
   ckeditor (= 3.7.0.rc3)
-  cocoon (~> 1.0.15)
+  cocoon (~> 1.0.20)
   coffee-rails (~> 3.2.1)
   debugger
   delorean
