@@ -130,8 +130,9 @@ class Conteudo < ActiveRecord::Base
   end
 
   def to_indexed_json
-    to_json(include: { autores: { only: [:nome, :lattes] },
-                       sub_area: { only: [:nome], include: {area: {only: [:nome]}} }},
+    to_json(include: {autores: { only: [:nome, :lattes]},
+                      sub_area: { only: [:nome], include: {area: {only: [:nome]}}},
+                      campus: { only: [:nome]}},
             methods: [:arquivo_base64, :data_publicado])
   end
 
