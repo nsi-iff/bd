@@ -1,98 +1,112 @@
-<h1>Estatísticas</h1>
+<div class="estatisticas">
+  <h1>Estatísticas</h1>
 
-Selecione uma opção de pesquisa:
+  Selecione uma opção de pesquisa:
 
-<div>
-  <%= form_tag(estatisticas_path, :method => "get") do %>
-    <input name="group" type="radio" id="radio_ano" onchange="ano()"><label for='radio_ano'>Ano</label>
-    <input name="group" type="radio" id="radio_mes" onchange="mes()"><label for='radio_mes'>Mês</label>
-    <br>
-    <%= select_tag "select_ano", options_for_select(anos), disabled: 'true' %>
-    <%= select_tag "select_mes", options_for_select(meses), disabled: 'true' %>
-    <%= submit_tag("search") %>
-  <% end %>
+  <div>
+    <br />
+    <%= form_tag(estatisticas_path, :method => "get") do %>
+      <input name="group" type="radio" id="radio_ano" onchange="ano()"><label for='radio_ano'>Ano</label>
+      <input name="group" type="radio" id="radio_mes" onchange="mes()"><label for='radio_mes'>Mês</label>
+      <br />
+      <br />
+      <%= select_tag "select_ano", options_for_select(anos), disabled: 'true' %>
+      <%= select_tag "select_mes", options_for_select(meses), disabled: 'true' %>
+      <%= submit_tag("Pesquisar") %>
+    <% end %>
+  </div>
 
-</div>
+  <% if @estatisticas %>
+    <% ano = params['select_ano'] %>
+    <% mes = params['select_mes'] %>
 
-<% if @estatisticas %>
-  <% ano = params['select_ano'] %>
-  <% mes = params['select_mes'] %>
+    <h2>Estatísticas de acesso em
+      <% if ano and mes %>
+        <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
+      <% else %>
+        <%= ano %>
+      <% end %>
+    </h2>
 
-  <h2>Estatísticas de acesso em
-        <% if ano and mes %>
-          <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
-        <% else %>
-          <%= ano %>
+    <h3>
+      Número de usuários cadastrados: <%= @estatisticas.numero_de_usuarios_cadastrados %>
+    </h3>
+
+    <h3>
+      Por conteúdo individual:
+    </h3>
+      <table class="tabelas_de_estatisticas" id="acesso_de_documentos">
+        <th> Nome do documento </th>
+        <th> Número de acessos </th>
+        <% @estatisticas.cinco_documentos_mais_acessados.each do |d| %>
+          <tr>
+            <td><%= link_to d.titulo, "#{d.class.name.underscore.pluralize}/#{d.id}" %></td>
+            <td><%= d.numero_de_acessos %></td>
+          </tr>
         <% end %>
-  </h2>
+      </table>
+      <br />
+      <% link_to "Veja a lista completa dos mais visitados", documentos_mais_acessados_path %>
 
-  <h3>
-    Número de usuários cadastrados: <%= @estatisticas.numero_de_usuarios_cadastrados %>
-  </h3>
+    <h3>
+      Por tipo de conteúdo: 
+    </h3>
+    <table class="tabelas_de_estatisticas" id="tipos_de_conteudo">
+      <th> Tipo de conteúdo </th>
+      <th> Percentual de acessos </th>
+      <% @estatisticas.percentual_de_acessos_por_tipo_de_conteudo.each do |percentual| %>
+        <tr>
+          <td><%= percentual[0] %></td>
+          <td><%= percentual[1].round 2 %> %</td>
+        </tr>
+      <% end %>
+    </table>
 
-  <h3>
-    Por conteúdo individual:
-  </h3>
-    <%= render 'application/tabela_de_acesso_de_documentos' %>
-  <h3>
-    Por tipo de conteúdo: 
-  </h3>
-  <table id="tipos_de_conteudo" border = "1px">
-  <th> Tipo de conteúdo </th>
-  <th> Percentual de acessos </th>
-  <% @estatisticas.percentual_de_acessos_por_tipo_de_conteudo.each do |percentual| %>
-  <tr>
-      <td><%= percentual[0] %></td>
-      <td><%= percentual[1].round 2 %> %</td>
-  </tr>
-  <% end %>
-  </table>
-  <h3>Por subárea do conhecimento</h3>
-  <table id="sub_ara_de_conhecimento" border = "1px">
-  <th> Sub área do conhecimento </th>
-  <th> Percentual de acessos </th>
-  <% @estatisticas.percentual_de_acessos_por_subarea_de_conhecimento.each do |percentual| %>
-  <tr>
-      <td><%= percentual[1] %></td>
-      <td><%= percentual[0].round 2 %> %</td>
-  </tr>
-  <% end %>
+    <h3>Por subárea do conhecimento:</h3>
+    <table class="tabelas_de_estatisticas" id="sub_area_de_conhecimento">
+      <th> Sub área do conhecimento </th>
+      <th> Percentual de acessos </th>
+      <% @estatisticas.percentual_de_acessos_por_subarea_de_conhecimento.each do |percentual| %>
+        <tr>
+          <td><%= percentual[1] %></td>
+          <td><%= percentual[0].round 2 %> %</td>
+        </tr>
+      <% end %>
+    </table>
 
-  </table>
-  <h2>
-    Estatísticas de contribuição em
-    <font color="#228B22">
-        <% if ano and mes %>
-          <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
-        <% else %>
-          <%= ano %>
-        <% end %>
-    </font>
-  </h2>
+    <h2>
+     Estatísticas de contribuição em
+      <% if ano and mes %>
+        <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
+      <% else %>
+        <%= ano %>
+      <% end %>
+    </h2>
 
-  <h3>Por instituição</h3>
-    <table id="instituicao" border = "1px">
+    <h3>Por instituição:</h3>
+    <table class="tabelas_de_estatisticas" id="instituicao">
       <th> Instituição </th>
       <th> Número de documentos </th>
       <% @estatisticas.instituicoes_que_mais_contribuiram.each do |instituicao| %>
-      <tr>
+        <tr>
           <td><%= instituicao[1] %></td>
           <td><%= instituicao[0] %></td>
-      </tr>
+        </tr>
+      <% end %>
+    </table>
+
+    <h3>Por campus de instituição:</h3>
+    <table class="tabelas_de_estatisticas" id="campus_de_instituicao">
+      <th> Campus </th>
+      <th> Número de documentos </th>
+      <% @estatisticas.campus_que_mais_contribuiram.each do |instituicao| %>
+        <tr>
+          <td><%= instituicao[1] %></td>
+          <td><%= instituicao[0] %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <br><%= link_to 'Graficos', graficos_de_acessos_path %>
   <% end %>
-  </table>
-
-  <h3>Por campus de instituição</h3>
-  <table id="campus_de_instituicao" border = "1px">
-    <th> Campus </th>
-    <th> Número de documentos </th>
-    <% @estatisticas.campus_que_mais_contribuiram.each do |instituicao| %>
-      <tr>
-          <td><%= instituicao[1] %></td>
-          <td><%= instituicao[0] %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <br><%= link_to 'Graficos', graficos_de_acessos_path %>
-<% end %>
+</div>
