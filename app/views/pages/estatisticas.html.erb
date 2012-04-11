@@ -1,4 +1,3 @@
-
 <h1>Estatísticas</h1>
 
 Selecione uma opção de pesquisa:
@@ -71,8 +70,29 @@ Selecione uma opção de pesquisa:
     </font>
   </h2>
 
-  <h3>Instituto</h3>
+  <h3>Por instituição</h3>
+    <table id="instituicao" border = "1px">
+      <th> Instituição </th>
+      <th> Número de documentos </th>
+      <% @estatisticas.instituicoes_que_mais_contribuiram.each do |instituicao| %>
+      <tr>
+          <td><%= instituicao[1] %></td>
+          <td><%= instituicao[0] %></td>
+      </tr>
+  <% end %>
+  </table>
 
-  <h3>Campus de Instituto</h3>
-  <%= link_to 'Graficos', graficos_de_acessos_path %>
+  <h3>Por campus de instituição</h3>
+  <table id="campus_de_instituicao" border = "1px">
+    <th> Campus </th>
+    <th> Número de documentos </th>
+    <% @estatisticas.campus_que_mais_contribuiram.each do |instituicao| %>
+      <tr>
+          <td><%= instituicao[1] %></td>
+          <td><%= instituicao[0] %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br><%= link_to 'Graficos', graficos_de_acessos_path %>
 <% end %>

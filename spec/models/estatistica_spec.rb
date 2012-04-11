@@ -115,4 +115,45 @@ describe Estatistica do
                          [10.0, SubArea.find(objeto_de_aprendizagem.sub_area_id).nome],
                          [20.0, SubArea.find(periodico.sub_area_id).nome]]
   end
+
+  it 'deve retornar as cinco instituições com maior número de contribuições' do
+    instituicao1 = Factory.create(:instituicao, nome: "IFF")
+    instituicao2 = Factory.create(:instituicao, nome: "IFRN")
+
+    campus1 = Factory.create(:campus, instituicao: instituicao1)
+    campus2 = Factory.create(:campus, instituicao: instituicao2)
+
+    artigo_de_evento = Factory.create(:artigo_de_evento, :state => 'publicado', :campus => campus1)
+    livro = Factory.create(:livro, :state => 'publicado', :campus => campus1)
+    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :state => 'publicado', :campus => campus1)
+    periodico = Factory.create(:periodico_tecnico_cientifico, :state => 'publicado', :campus => campus2)
+    relatorio = Factory.create(:relatorio, :state => 'publicado', :campus => campus2)
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7, :state => 'publicado', :campus => campus2)
+
+    estatisticas = Estatistica.new(Date.today.year)
+    estatisticas.instituicoes_contribuidoras.should == [
+                         [3, "IFRN"],
+                         [3, "IFF"]]
+  end
+
+  it 'deve retornar os cinco campus com maior número de contribuições' do
+    instituicao1 = Factory.create(:instituicao, nome: "IFF")
+    instituicao2 = Factory.create(:instituicao, nome: "IFRN")
+
+    campus1 = Factory.create(:campus, nome: "Centro", instituicao: instituicao1)
+    campus2 = Factory.create(:campus, nome: "Guarus", instituicao: instituicao2)
+
+    artigo_de_evento = Factory.create(:artigo_de_evento, :state => 'publicado', :campus => campus1)
+    livro = Factory.create(:livro, :state => 'publicado', :campus => campus1)
+    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :state => 'publicado', :campus => campus1)
+    periodico = Factory.create(:periodico_tecnico_cientifico, :state => 'publicado', :campus => campus2)
+    relatorio = Factory.create(:relatorio, :state => 'publicado', :campus => campus2)
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7, :state => 'publicado', :campus => campus2)
+    estatisticas = Estatistica.new(Date.today.year)
+    estatisticas = Estatistica.new(Date.today.year)
+    estatisticas.campus_contribuidores.should == [
+                         [3, "Guarus"],
+                         [3, "Centro"]]
+  end
+
 end

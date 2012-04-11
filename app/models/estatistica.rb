@@ -1,7 +1,9 @@
 class Estatistica
   attr_reader :numero_de_usuarios_cadastrados, 
               :percentual_de_acessos_por_tipo_de_conteudo,
-              :percentual_de_acessos_por_subarea_de_conhecimento
+              :percentual_de_acessos_por_subarea_de_conhecimento,
+              :instituicoes_que_mais_contribuiram,
+              :campus_que_mais_contribuiram
 
   TIPOS_DE_CONTEUDO = [ArtigoDeEvento, ArtigoDePeriodico, Livro,
                        ObjetoDeAprendizagem, PeriodicoTecnicoCientifico,
@@ -14,6 +16,8 @@ class Estatistica
     @numero_de_usuarios_cadastrados = usuarios(data_inicial, data_final)
     @percentual_de_acessos_por_tipo_de_conteudo = percentual_de_acessos_por_tipo_de_conteudo
     @percentual_de_acessos_por_subarea_de_conhecimento = cinco_maiores_percentuais_de_acessos_por_subarea
+    @instituicoes_que_mais_contribuiram = instituicoes_contribuidoras
+    @campus_que_mais_contribuiram = campus_contribuidores
   end
 
   def documentos_mais_acessados
@@ -51,6 +55,23 @@ class Estatistica
       end
     end
     percentuais.sort.reverse[0..4]
+  end
+
+  def instituicoes_contribuidoras
+    instituicoes_contribuidoras = []
+    ids_instituicoes = @conteudos_validos.map(&:campus).map(&:instituicao_id)
+    ids_instituicoes.uniq.each do |id|
+      instituicoes_contribuidoras << [ids_instituicoes.count(id), Instituicao.find(id).nome]
+    end
+    instituicoes_contribuidoras.sort.reverse[0..4]
+  end
+
+  def campus_contribuidores
+    contribuidores = []
+    @conteudos_validos.all.map(&:campus_id).uniq.each do |id|
+      contribuidores << [@conteudos_validos.where(campus_id: id).count, Campus.find(id).nome]
+    end
+    contribuidores.sort.reverse[0..4]
   end
 
   private
