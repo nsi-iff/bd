@@ -137,6 +137,9 @@ describe Estatistica do
   end
 
   it 'deve retornar os cinco campus com maior número de contribuições' do
+    Instituicao.destroy_all
+    Campus.destroy_all
+
     instituicao1 = Factory.create(:instituicao, nome: "IFF")
     instituicao2 = Factory.create(:instituicao, nome: "IFRN")
 
