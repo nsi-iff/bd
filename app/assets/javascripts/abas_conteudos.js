@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     function selecionar_aba_de(sel_aba) {
         sel_aba.addClass('selecionado').siblings('.sel_aba').removeClass('selecionado')
-        var aba = document.getElementById(sel_aba.data('aba_id'))
-        $(aba).show().siblings('.aba').hide()
+        var aba_id = sel_aba.children().attr('href')
+        $(aba_id).show().siblings('.aba').hide()
     };
 });

@@ -1,15 +1,15 @@
 %nav{ id: 'menu_abas'}
   %ul
-    %li{ class: 'sel_aba', data: { aba_id: 'aba_metadados', padrao: '' }}
-      %a{:href=>"#"} Metadados
-    %li{ class: 'sel_aba', data: { aba_id: 'aba_imagens' }}
-      %a{:href=>"#"} Imagens
-    %li{ class: 'sel_aba', data: { aba_id: 'aba_tabelas' }}
-      %a{:href=>"#"} Tabelas
+    %li{ class: 'sel_aba', data: { padrao: '' }}
+      %a{:href=>"#metadados"} Metadados
+    %li{ class: 'sel_aba'}
+      %a{:href=>"#imagens"} Imagens
+    %li{ class: 'sel_aba'}
+      %a{:href=>"#tabelas"} Tabelas
 
-#aba_metadados.aba
+#metadados.aba
   = render 'metadados'
 
-#aba_imagens.aba
+#imagens.aba
 
-#aba_tabelas.aba
+#tabelas.aba
