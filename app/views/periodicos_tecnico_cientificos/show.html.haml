@@ -1,19 +1,15 @@
-= render 'conteudos/show_dados_basicos', conteudo: @periodico_tecnico_cientifico
+%nav{ id: 'menu_abas'}
+  %ul
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_metadados', padrao: '' }}
+      %a{:href=>"#"} Metadados
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_imagens' }}
+      %a{:href=>"#"} Imagens
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_tabelas' }}
+      %a{:href=>"#"} Tabelas
 
+#aba_metadados.aba
+  = render 'metadados'
 
-%fieldset
-  %legend Publicação
-  %p
-    Editora:
-    = @periodico_tecnico_cientifico.editora
-  %p
-    Local:
-    = @periodico_tecnico_cientifico.local_publicacao
+#aba_imagens.aba
 
-%p
-  Ano do primeiro volume:
-  = @periodico_tecnico_cientifico.ano_primeiro_volume
-
-%p
-  Ano do último volume:
-  = @periodico_tecnico_cientifico.ano_ultimo_volume
+#aba_tabelas.aba

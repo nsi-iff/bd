@@ -1,23 +1,15 @@
-= render 'conteudos/show_dados_basicos', conteudo: @livro
+%nav{ id: 'menu_abas'}
+  %ul
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_metadados', padrao: '' }}
+      %a{:href=>"#"} Metadados
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_imagens' }}
+      %a{:href=>"#"} Imagens
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_tabelas' }}
+      %a{:href=>"#"} Tabelas
 
-%p
-  Subtítulo:
-  = @livro.subtitulo
-%p
-  Tradução:
-  = @livro.traducao ? 'Sim' : 'Não'
-%p
-  Número da Edição:
-  = @livro.numero_edicao
-%p
-  Local da Publicação:
-  = @livro.local_publicacao
-%p
-  Editora:
-  = @livro.editora
-%p
-  Ano de Publicação:
-  = @livro.ano_publicacao
-%p
-  Número de Páginas:
-  = @livro.numero_paginas
+#aba_metadados.aba
+  = render 'metadados'
+
+#aba_imagens.aba
+
+#aba_tabelas.aba

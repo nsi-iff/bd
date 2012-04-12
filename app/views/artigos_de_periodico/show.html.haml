@@ -1,36 +1,15 @@
-= render 'conteudos/show_dados_basicos', conteudo: @artigo_de_periodico
+%nav{ id: 'menu_abas'}
+  %ul
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_metadados', padrao: '' }}
+      %a{:href=>"#"} Metadados
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_imagens' }}
+      %a{:href=>"#"} Imagens
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_tabelas' }}
+      %a{:href=>"#"} Tabelas
 
-%p
-  Subtítulo:
-  = @artigo_de_periodico.subtitulo
+#aba_metadados.aba
+  = render 'metadados'
 
-%fieldset
-  %legend Dados do periódico
-  %p
-    Nome:
-    = @artigo_de_periodico.nome_periodico
+#aba_imagens.aba
 
-%fieldset
-  %legend Publicação
-  %p
-    Editora:
-    = @artigo_de_periodico.editora
-  %p
-    Volume:
-    = @artigo_de_periodico.volume_publicacao
-  %p
-    Data:
-    = @artigo_de_periodico.data_publicacao_br
-  %p
-    Local:
-    = @artigo_de_periodico.local_publicacao
-  %p
-    Fascículo:
-    = @artigo_de_periodico.fasciculo
-%p
-  Página inicial da publicação:
-  = @artigo_de_periodico.pagina_inicial
-
-%p
-  Página final da publicação:
-  = @artigo_de_periodico.pagina_final
+#aba_tabelas.aba

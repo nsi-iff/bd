@@ -1,26 +1,15 @@
-= render 'conteudos/show_dados_basicos', conteudo: @trabalho_de_obtencao_de_grau
+%nav{ id: 'menu_abas'}
+  %ul
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_metadados', padrao: '' }}
+      %a{:href=>"#"} Metadados
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_imagens' }}
+      %a{:href=>"#"} Imagens
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_tabelas' }}
+      %a{:href=>"#"} Tabelas
 
-%p
-  Subtítulo:
-  = @trabalho_de_obtencao_de_grau.subtitulo
+#aba_metadados.aba
+  = render 'metadados'
 
-%fieldset
-  %legend Dados do trabalho
-  %p
-    Número de páginas:
-    = @trabalho_de_obtencao_de_grau.numero_paginas
-  %p
-    Instituição:
-    = @trabalho_de_obtencao_de_grau.instituicao
-  %p
-    Grau:
-    = @trabalho_de_obtencao_de_grau.grau.nome
+#aba_imagens.aba
 
-%fieldset
-  %legend Defesa
-  %p
-    Data da Defesa:
-    = @trabalho_de_obtencao_de_grau.data_defesa_br
-  %p
-    Local de Defesa:
-    = @trabalho_de_obtencao_de_grau.local_defesa
+#aba_tabelas.aba

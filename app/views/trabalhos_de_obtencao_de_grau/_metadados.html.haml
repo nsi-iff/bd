@@ -1,0 +1,26 @@
+= render 'conteudos/show_dados_basicos', conteudo: @trabalho_de_obtencao_de_grau
+
+%p
+  Subtítulo:
+  = @trabalho_de_obtencao_de_grau.subtitulo
+
+%fieldset
+  %legend Dados do trabalho
+  %p
+    Número de páginas:
+    = @trabalho_de_obtencao_de_grau.numero_paginas
+  %p
+    Instituição:
+    = @trabalho_de_obtencao_de_grau.instituicao
+  %p
+    Grau:
+    = @trabalho_de_obtencao_de_grau.grau.nome
+
+%fieldset
+  %legend Defesa
+  %p
+    Data da Defesa:
+    = @trabalho_de_obtencao_de_grau.data_defesa_br
+  %p
+    Local de Defesa:
+    = @trabalho_de_obtencao_de_grau.local_defesa

@@ -1,12 +1,15 @@
-= render 'conteudos/show_dados_basicos', conteudo: @relatorio
+%nav{ id: 'menu_abas'}
+  %ul
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_metadados', padrao: '' }}
+      %a{:href=>"#"} Metadados
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_imagens' }}
+      %a{:href=>"#"} Imagens
+    %li{ class: 'sel_aba', data: { aba_id: 'aba_tabelas' }}
+      %a{:href=>"#"} Tabelas
 
-%p
-  Local da publicação:
-  = @relatorio.local_publicacao
-%p
-  Ano:
-  = @relatorio.ano_publicacao
+#aba_metadados.aba
+  = render 'metadados'
 
-%p
-  Número de páginas:
-  = @relatorio.numero_paginas
+#aba_imagens.aba
+
+#aba_tabelas.aba
