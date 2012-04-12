@@ -1,15 +1,1 @@
-%nav{ id: 'menu_abas'}
-  %ul
-    %li{ class: 'sel_aba', data: { aba_id: 'aba_metadados', padrao: '' }}
-      %a{:href=>"#"} Metadados
-    %li{ class: 'sel_aba', data: { aba_id: 'aba_imagens' }}
-      %a{:href=>"#"} Imagens
-    %li{ class: 'sel_aba', data: { aba_id: 'aba_tabelas' }}
-      %a{:href=>"#"} Tabelas
-
-#aba_metadados.aba
-  = render 'metadados'
-
-#aba_imagens.aba
-
-#aba_tabelas.aba
+= render 'conteudos/show_estrutura_generica'
