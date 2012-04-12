@@ -34,11 +34,18 @@ class Estatistica
 
   def percentual_de_acessos_por_tipo_de_conteudo
     percentuais = []
+    soma_geral_dos_acessos = @conteudos_validos.all.sum(&:numero_de_acessos)
     unless @conteudos_validos.empty?
-      TIPOS_DE_CONTEUDO.each do |tipo_atual|
-        percentuais << [tipo_atual.to_s.underscore.humanize,
-                        tipo_atual.all.sum(&:numero_de_acessos) /
-                        @conteudos_validos.all.sum(&:numero_de_acessos).to_f * 100]
+      if soma_geral_dos_acessos == 0
+        TIPOS_DE_CONTEUDO.each do |tipo_atual|
+          percentuais << [tipo_atual.to_s.underscore.humanize, 0]
+        end
+      else
+        TIPOS_DE_CONTEUDO.each do |tipo_atual|
+          percentuais << [tipo_atual.to_s.underscore.humanize,
+                          tipo_atual.all.sum(&:numero_de_acessos) /
+                          soma_geral_dos_acessos.to_f * 100]
+        end
       end
     end
     percentuais
@@ -46,12 +53,20 @@ class Estatistica
 
   def cinco_maiores_percentuais_de_acessos_por_subarea
     percentuais = []
+    soma_geral_dos_acessos = @conteudos_validos.all.sum(&:numero_de_acessos)
+    id_sub_area_dos_conteudos = @conteudos_validos.all.map(&:sub_area_id).uniq
     unless @conteudos_validos.empty?
-      SubArea.all.map(&:id).each do |subarea|
-        percentuais << [@conteudos_validos.where("#{subarea} = sub_area_id").
-                          sum(&:numero_de_acessos) /
-                        @conteudos_validos.all.sum(&:numero_de_acessos).to_f * 100,
-                        SubArea.find(subarea).nome]
+      if soma_geral_dos_acessos == 0
+        id_sub_area_dos_conteudos.each do |id|
+          percentuais << [0, SubArea.find(id).nome]
+        end
+      else
+        id_sub_area_dos_conteudos.each do |id|
+          percentuais << [@conteudos_validos.where(sub_area_id: id).
+                            sum(&:numero_de_acessos) /
+                          soma_geral_dos_acessos.to_f * 100,
+                          SubArea.find(id).nome]
+        end
       end
     end
     percentuais.sort.reverse[0..4]
