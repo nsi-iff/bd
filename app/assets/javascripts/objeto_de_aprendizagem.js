@@ -1,4 +1,4 @@
-
+//TODO: refatorar / melhorar (2012-04-12, 17:39, ciberglo)`
 $(document).ready(function() {
 
     $("#eixos_tematicos").change(function() {

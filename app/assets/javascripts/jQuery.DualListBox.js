@@ -1,4 +1,7 @@
-﻿$(document).ready(function() {
+﻿//TODO: FIX não é possível adicionar vários cursos ao mesmo tempo (2012-04-12, 17:01, ciberglo)`
+//TODO: refatorar para melhorar codigo (2012-04-12, 17:02, ciberglo)`
+
+$(document).ready(function() {
 
     cursosSelecionados = $("#cursos_selecionados");
     to1 = $('#to1');
