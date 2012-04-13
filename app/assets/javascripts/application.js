@@ -16,14 +16,7 @@
 //= require ckeditor/init
 //= require_tree .
 
-//TODO: refatorar / melhorar (2012-04-12, 17:39, ciberglo)`
 $(document).ready(function() {
-
-    $("#area").change(function() {
-        var id = this.value;
-        $.post("/areas/" + id + "/sub_areas");
-    });
-
     $(".mala_direta_checkbox").change(function() {
         var busca_id = this.value;
         if (this.checked == true)
@@ -36,5 +29,4 @@ $(document).ready(function() {
         var id = this.value;
         $.post("/instituicoes/" + id + "/campus");
     });
-
 });
