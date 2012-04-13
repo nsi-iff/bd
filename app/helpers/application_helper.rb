@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def anos
-    2005..Date.today.year
+    Date.today.year.downto 2005
   end
 
   def meses
