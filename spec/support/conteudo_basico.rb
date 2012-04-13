@@ -61,6 +61,26 @@ def popular_eixos_tematicos_cursos
   ])
 end
 
+def popular_instituicao_campus
+  Instituicao.destroy_all
+  Campus.destroy_all
+
+  iffluminense = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense')
+  iffluminense.campus.create([
+    { nome: 'Campus Bom Jesus de Itabapoana' },
+    { nome: 'Campus Cabo Frio'               },
+    { nome: 'Campus Campos Centro'           },
+    { nome: 'Campus Campos Guarus'           },
+    { nome: 'Campus Itaperuna'               },
+    { nome: 'Campus Macaé'                   }
+  ])
+
+  ifamapa = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá')
+  ifamapa.campus.create([
+    { nome: 'Campus Macapá' }
+  ])
+end
+
 def popular_graus
   Grau.criar_todos
 end
@@ -70,9 +90,19 @@ def submeter_conteudo(tipo, opcoes = {})
   criar_papeis
   autenticar_usuario(Papel.contribuidor)
   visit send(:"new_#{tipo}_path")
-  attach_file('Arquivo', opcoes[:arquivo]) if opcoes[:arquivo].present?
+
+  preencher_campos opcoes
+
+  yield if block_given?
+  click_button 'Salvar'
+end
+
+def preencher_campos(opcoes = {})
   fill_in 'Título',
     with: opcoes[:titulo] || 'A Proposal for Ruby Performance Improvements'
+
+  attach_file('Arquivo', opcoes[:arquivo]) if opcoes[:arquivo].present?
+
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'
 
   select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
@@ -87,10 +117,6 @@ def submeter_conteudo(tipo, opcoes = {})
     fill_in 'Curriculum Lattes',
       with: opcoes[:lattes_autor] || 'http://lattes.cnpq.br/1234567890'
   end
-  fill_in 'Campus da Instituição do Usuário',
-    with: opcoes[:campus] || 'Campos Centro'
-  yield if block_given?
-  click_button 'Salvar'
 end
 
 def validar_conteudo(opcoes = {})
@@ -103,6 +129,5 @@ def validar_conteudo(opcoes = {})
     page.should have_content opcoes[:nome_autor] || 'Autor: Yukihiro Matsumoto'
     page.should have_content opcoes[:lattes_autor] || 'Curriculum Lattes: http://lattes.cnpq.br/1234567890'
   end
-  page.should have_content opcoes[:campus] || 'Campus: Campos Centro'
 end
 

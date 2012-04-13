@@ -1,44 +1,51 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require "rvm/capistrano"
-require "bundler/capistrano"
-set :rvm_ruby_string, "ruby-1.9.3-p0@bd"
-set :rvm_bin_path, "/usr/local/rvm/bin/"
-
 set :application, "bd"
-set :domain, "<your domain>"
-set :deploy_to, "/var/www/#{application}"
-set :user, "<your user>"
+set :domain, "pink.iff.edu.br"
+set :deploy_to, "/home/deploy/#{application}"
+set :user, "deploy"
 set :use_sudo, false
+set :keep_releases, 3
 
 set :repository,  "https://github.com/nsi-iff/bd.git"
 set :scm, :git
 set :scm_verbose, true
 
-role :web, domain                          # Your HTTP server, Apache/etc
-role :app, domain                          # This may be the same as your `Web` server
-role :db,  domain, :primary => true # This is where Rails migrations will run
+role :web, domain
+role :app, domain
+role :db,  domain, :primary => true
 
 set :normalize_asset_timestamps, false
 
+require "bundler/capistrano"
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require "rvm/capistrano"
+set :rvm_ruby_string, "ruby-1.9.3-p125@bd"
+set :rvm_type, :user
+
+default_environment["RAILS_ENV"] = 'production'
+
 namespace :utils do
   task :compile_assets do
-    run "cd #{latest_release}; bundle exec rake assets:precompile --trace"
+    run "cd #{latest_release}; bundle exec rake assets:precompile"
   end
   task :run_seed do
-    run "cd #{latest_release}; bundle exec rake db:seed RAILS_ENV=production"
+    run "cd #{latest_release}; bundle exec rake db:seed"
   end
   task :copy_config_file do
     run "cp -rf #{latest_release}/config/database.yml.example #{latest_release}/config/database.yml"
+    run "cat ~/sam.yml > #{latest_release}/config/sam.yml"
+    run "cat ~/elasticsearch.yml > #{latest_release}/config/elasticsearch.yml"
   end
 end
 
 namespace :bundle do
-  task :install do; run "cd #{release_path} && bundle install"; end
+  task :install do
+    run "cd #{release_path} && bundle install --without test development --deployment"
+  end
 end
 
 namespace :db do
-  task :create do; run "cd #{release_path}; rake db:create RAILS_ENV=production"; end
-  task :migrate do; run "cd #{release_path}; rake db:migrate RAILS_ENV=production"; end
+  task :create do; run "cd #{release_path}; rake db:create"; end
+  task :migrate do; run "cd #{release_path}; rake db:migrate"; end
 end
 
 namespace :deploy do

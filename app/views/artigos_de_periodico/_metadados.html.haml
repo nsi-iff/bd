@@ -1,0 +1,36 @@
+= render 'conteudos/show_dados_basicos', conteudo: @artigo_de_periodico
+
+%p
+  Subtítulo:
+  = @artigo_de_periodico.subtitulo
+
+%fieldset
+  %legend Dados do periódico
+  %p
+    Nome:
+    = @artigo_de_periodico.nome_periodico
+
+%fieldset
+  %legend Publicação
+  %p
+    Editora:
+    = @artigo_de_periodico.editora
+  %p
+    Volume:
+    = @artigo_de_periodico.volume_publicacao
+  %p
+    Data:
+    = @artigo_de_periodico.data_publicacao_br
+  %p
+    Local:
+    = @artigo_de_periodico.local_publicacao
+  %p
+    Fascículo:
+    = @artigo_de_periodico.fasciculo
+%p
+  Página inicial da publicação:
+  = @artigo_de_periodico.pagina_inicial
+
+%p
+  Página final da publicação:
+  = @artigo_de_periodico.pagina_final

@@ -166,6 +166,10 @@ header .site_actions {
   background-image: url("/assets/menu_cinza.jpg");
 }
 
+.container .navigation li#editor_online {
+  background-image: url("/assets/menu_azul_claro.jpg");
+}
+
 .container .searchbyarea {
   margin-top: 20px;
   margin-left: 5px;

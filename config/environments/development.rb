@@ -14,7 +14,11 @@ DigitalLibrary::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+
+  #utiliza sendmail para enviar emails
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :sendmail
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -39,4 +43,10 @@ DigitalLibrary::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
 
-require File.join(Rails.root, 'spec', 'integration', 'fake_sam') unless ENV['INTEGRACAO']
+require File.join(Rails.root, 'spec', 'integration', 'fake_sam') unless ENV['INTEGRACAO_SAM']
+
+Tire.configure do
+  unless ENV['INTEGRACAO_TIRE']
+    client Tire::Http::Client::MockClient
+  end
+end

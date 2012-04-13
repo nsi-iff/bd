@@ -11,7 +11,7 @@ class TrabalhosDeObtencaoDeGrauController < InheritedResources::Base
   load_and_authorize_resource
 
   def create
-    create! notice: 'Trabalho de obtencao de grau submetido com sucesso'
+    create! notice: 'Trabalho de obtencao de grau enviado com sucesso'
   end
 
   def show

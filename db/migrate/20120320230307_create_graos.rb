@@ -1,8 +1,7 @@
 class CreateGraos < ActiveRecord::Migration
   def change
     create_table :graos do |t|
-      t.string :key
-      t.string :tipo
+      t.string :link
       t.references :conteudo
 
       t.timestamps

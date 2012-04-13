@@ -153,12 +153,10 @@ describe Conteudo do
     it 'armazena seu estado corrente' do
       c = Factory.create(:conteudo)
       c.submeter!
-      c = Conteudo.find(c.id)
       c.state.should == 'pendente'
 
       c.stub(:granularizavel?).and_return(false)
       c.aprovar!
-      c = Conteudo.find(c .id)
       c.state.should == 'publicado'
     end
 
@@ -280,13 +278,13 @@ describe Conteudo do
 
   it 'nao pode possuir simultaneamente arquivo e link' do
     arquivo = ActionDispatch::Http::UploadedFile.new({
-      filename: 'arquivo.nsi',
+      filename: 'arquivo.pdf',
       type: 'text/plain',
       tempfile: File.new(Rails.root + 'spec/resources/arquivo.nsi')
     })
     Factory.build(:conteudo, arquivo: arquivo, link: '').should be_valid
-    Factory.build(:conteudo, arquivo: nil, link: 'http://nsi.iff.edu.br').
-      should be_valid
+    Factory.build(:conteudo, arquivo: nil,
+                  link: 'http://nsi.iff.edu.br').  should be_valid
     conteudo = Factory.build(:conteudo, arquivo: arquivo,
                                         link: 'http://nsi.iff.edu.br')
     conteudo.should_not be_valid
@@ -301,6 +299,33 @@ describe Conteudo do
     conteudo.errors[:link].should be_any
   end
 
+  [:livro, :artigo_de_evento, :artigo_de_periodico, :periodico_tecnico_cientifico,
+   :relatorio, :trabalho_de_obtencao_de_grau].
+   each do |tipo|
+    it "#{tipo} deve permitir os formatos de arquivo: rtf, doc, odt, ps, pdf" do
+      ['arquivo.rtf', 'arquivo.doc', 'arquivo.odt', 'arquivo.ps', 'arquivo.pdf']
+      .each do |arquivo_tipo|
+        arquivo = ActionDispatch::Http::UploadedFile.new({
+          filename: arquivo_tipo,
+          type: 'text/plain',
+          tempfile: File.new(Rails.root + "spec/resources/#{arquivo_tipo}")
+        })
+        Factory.build(tipo, link: '',
+                  arquivo: arquivo).should be_valid
+      end
+    end
+
+    it "#{tipo} não deve permitir outros além de rtf, doc, odt, ps, pdf" do
+      arquivo = ActionDispatch::Http::UploadedFile.new({
+        filename: 'arquivo.nsi',
+        type: 'text/plain',
+        tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
+      })
+      Factory.build(tipo, link: '',
+                arquivo: arquivo).should_not be_valid
+    end
+   end
+
   it 'area deve ser a area ligada a sua subarea' do
     area = Factory.create(:area)
     subarea = Factory.create(:sub_area, area: area)
@@ -309,10 +334,19 @@ describe Conteudo do
     conteudo.area.should be(area)
   end
 
+  it 'instituicao deve ser a instituicao ligada ao usuario contribuidor' do
+    usuario = Factory.create(:usuario_contribuidor)
+    instituicao_usuario = usuario.campus.instituicao
+    campus = Factory.create(:campus, instituicao: instituicao_usuario)
+    conteudo = Factory.build(:conteudo, campus: campus)
+
+    conteudo.campus.instituicao.should be(instituicao_usuario)
+  end
+
   context 'atributos obrigatorios' do
     it { should_not have_valid(:titulo).when('', nil) }
     it { should_not have_valid(:sub_area).when(nil) }
-    it { should_not have_valid(:campus).when('', nil) }
+#    it { should_not have_valid(:campus).when('', nil) }
 
     it 'deve ter pelo menos um autor' do
       subject.valid?

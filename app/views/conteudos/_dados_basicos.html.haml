@@ -2,7 +2,11 @@
   %legend
     Dados Básicos
   = f.input :titulo, label: 'Título'
-  = f.input :arquivo, as: :file, label: 'Arquivo'
+  - if @objeto_de_aprendizagem
+    = f.input :arquivo, as: :file, label: 'Arquivo'
+  - else
+    = f.input :arquivo, as: :file, label: 'Arquivo',
+      hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
   = f.input :link
   = label_tag(:area, 'Grande Área de Conhecimento')
   = select_tag(:area, options_for_select(Area.all.map {|area| [area.nome, area.id] }), class: "areas")
@@ -11,11 +15,13 @@
       prompt: false, label: 'Área de Conhecimento'
   #autores
     = f.semantic_fields_for :autores do |autor|
-      = render 'autor_fields', :f => autor
+      = render 'conteudos/autor_fields', :f => autor
     .links
-      = link_to_add_association 'Adicionar autor', f, :autores
+      = link_to_add_association 'Adicionar autor', f, :autores, :partial => 'conteudos/autor_fields'
       = f.semantic_errors :autores
-  = f.input :campus, label: 'Campus da Instituição do Usuário'
+  = f.input :campus, as: :select, input_html: { class: "campus" },
+      collection: current_usuario.campus.instituicao.campus.map {|campus| [campus.nome, campus.id] },
+      prompt: false, label: 'Campus da Instituição do Usuário'
   = f.input :resumo
   = f.input :direitos
   = f.input :contribuidor_id, :as => :hidden, :value => current_usuario.id

@@ -18,3 +18,4 @@ function extrair_ano()
     select_ano = $('#select_ano')[0]
     return select_ano.value;
 }
+

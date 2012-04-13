@@ -1,3 +1,14 @@
+require 'rubygems'
+require 'spork'
+#uncomment the following line to use spork with the debugger
+#require 'spork/ext/ruby-debug'
+
+Spork.prefork do
+end
+
+Spork.each_run do
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -7,6 +18,7 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'valid_attribute'
 require 'cancan/matchers'
+require 'rufus/scheduler'
 
 unless ENV["INTEGRACAO"]
   require 'integration/fake_sam'
@@ -57,3 +69,10 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 end
+
+Tire.configure do
+  unless ENV['INTEGRACAO']
+    client Tire::Http::Client::MockClient
+  end
+end
+

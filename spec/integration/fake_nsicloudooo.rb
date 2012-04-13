@@ -1,6 +1,3 @@
-require 'net/http'
-require 'json'
-
 module NSICloudooo
   class Client
     def initialize(url)

@@ -55,6 +55,7 @@ module DigitalLibrary
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.apache_log_file = '/var/log/apache2/access.log.1'
 
     # Configuracoes do acesso ao SAM
     sam_config = YAML.load(
@@ -73,5 +74,10 @@ module DigitalLibrary
     config.cloudooo_port = cloudooo_config['port']
     config.cloudooo_callback_url = cloudooo_config['callback_url']
     config.cloudooo_callback_verb = cloudooo_config['callback_verb']
+
+    # Configuracoes de acesso ao elasticsearch
+    config.elasticsearch_config = YAML.load(
+      File.read(File.join(Rails.root, 'config', 'elasticsearch.yml')))[Rails.env]
   end
 end
+

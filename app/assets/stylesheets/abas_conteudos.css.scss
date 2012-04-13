@@ -1,0 +1,41 @@
+#menu_abas {
+  ul {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    position: relative;
+    bottom: -14px;
+
+    li {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0px 5px;
+      margin-right: -5px;
+      border: 1px solid #648217;
+      background: url("/assets/corpo_bg.gif");
+
+      a {
+        color: #648217;
+        text-decoration: none;
+        font-size: 80%;
+      }
+    }
+
+    li:hover {
+      background: #B6E16B;
+      }
+
+    .selecionado {
+      background: #B6E16B;
+    }
+  }
+}
+
+.aba {
+  border: 1px solid #648217;
+  padding: 10px;
+  margin: 5px;
+}
+

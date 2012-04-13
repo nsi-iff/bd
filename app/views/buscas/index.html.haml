@@ -5,6 +5,7 @@
 
 %ul
   - @conteudos.each do |conteudo|
-    %li= link_to conteudo.titulo, __send__("#{conteudo.class.name.underscore}_path", conteudo)
+    %li
+      = link_to conteudo.titulo, __send__("#{conteudo.class.name.underscore}_path", conteudo)
 
-= link_to 'Salvar Busca', new_usuario_busca_path(current_usuario) if current_usuario
+= link_to 'Salvar Busca', new_busca_path if current_usuario

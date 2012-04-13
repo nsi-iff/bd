@@ -36,6 +36,12 @@ class PagesController < ApplicationController
     @estatisticas = Estatistica.new(Date.today.year)
   end
 
+  def graficos_de_acessos
+    @title = "Gráficos de acessos"
+    @estatisticas = Estatistica.new(Date.today.year)
+    gon.rabl "app/views/pages/estatisticas.json.rabl"
+  end
+
   def adicionar_conteudo
   end
 end

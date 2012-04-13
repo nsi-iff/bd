@@ -12,9 +12,11 @@ class Conteudo < ActiveRecord::Base
   belongs_to :contribuidor, :class_name => 'Usuario'
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
   has_and_belongs_to_many :usuarios
+  belongs_to :campus
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
-           :arquivo_ou_link_devem_existir
+           :arquivo_ou_link_devem_existir,
+           :tipo_de_arquivo
 
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
@@ -121,10 +123,22 @@ class Conteudo < ActiveRecord::Base
     @arquivo_base64 || ""
   end
 
+  def data_publicado
+    if publicado?
+      mudanca = MudancaDeEstado.where(conteudo_id: id, para: 'publicado')
+      if mudanca.present?
+        mudanca[0].data_hora.strftime("%d/%m/%y")
+      else
+        Time.now.strftime("%d/%m/%y")
+      end
+    end
+  end
+
   def to_indexed_json
-    to_json(include: { autores: { only: [:nome, :lattes] },
-                       sub_area: { only: [:nome], include: {area: {only: [:nome]}} }},
-            methods: [:arquivo_base64])
+    to_json(include: {autores: { only: [:nome, :lattes]},
+                      sub_area: { only: [:nome], include: {area: {only: [:nome]}}},
+                      campus: { only: [:nome]}},
+            methods: [:arquivo_base64, :data_publicado])
   end
 
   alias  :set_arquivo :arquivo=
@@ -152,10 +166,6 @@ class Conteudo < ActiveRecord::Base
     config = Rails.application.config
     url = "http://#{config.cloudooo_user}:#{config.cloudooo_password}@#{config.cloudooo_host}:#{config.cloudooo_port}"
     cloudooo = NSICloudooo::Client.new(url)
-#    p sam_uid: arquivo.key,
-#      filename: arquivo.nome,
-#      callback: config.cloudooo_callback_url % object_collection_name,
-#      verb: config.cloudooo_callback_verb
     cloudooo.granulate(
       sam_uid: arquivo.key,
       filename: arquivo.nome,
@@ -198,4 +208,15 @@ class Conteudo < ActiveRecord::Base
       errors.add(:link, 'deve ser informado (ou forneça um arquivo)')
     end
   end
+
+  def tipo_de_arquivo
+    if arquivo.present?
+      unless self.class == ObjetoDeAprendizagem
+        unless arquivo.nome =~/.*\.(pdf|rtf|odt|doc|ps)/
+          errors.add(:arquivo, 'Tipo de arquivo não suportado para o conteúdo')
+        end
+      end
+    end
+  end
 end
+

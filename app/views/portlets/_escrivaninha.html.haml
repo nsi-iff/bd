@@ -1,7 +1,7 @@
 - if current_usuario.present? && can?(:ter_escrivaninha, current_usuario)
   #escrivaninha.portlet
     %h3 Escrivaninha
-    - current_usuario.escrivaninha.each do |conteudo|
+    - current_usuario.escrivaninha.reverse[0..2].each do |conteudo|
       .item
         = link_to conteudo.titulo, conteudo
         - if conteudo.pendente?
@@ -11,3 +11,5 @@
           = "#{conteudo.created_at.strftime('%d/%m/%Y')}"
     - if current_usuario.escrivaninha.blank?
       %p Não há nenhum conteúdo editável.
+
+    = link_to "Ver todos", escrivaninha_usuario_path(current_usuario)

@@ -7,3 +7,4 @@ class Grao < ActiveRecord::Base
     tipo == 'images'
   end
 end
+

@@ -15,7 +15,7 @@ FactoryGirl.define do
   factory :conteudo do
     titulo "Conteudo interessante"
     sub_area
-    campus 'Campos-Centro'
+    campus
     autores { [Factory.create(:autor)] }
     link 'http://something.com'
   end
@@ -48,13 +48,21 @@ FactoryGirl.define do
   factory :objeto_de_aprendizagem, :parent => :conteudo, :class => ObjetoDeAprendizagem do
   end
 
+  factory :instituicao do
+    sequence(:nome) {|n| "Nome#{n}"}
+  end
+  
+  factory :campus do
+    sequence(:nome) {|n| "Nome#{n}"}
+    instituicao
+  end
+
   factory :usuario do
     sequence(:email) {|n| "usuario%s@gmail.com" % n }
     password '12345678'
     password_confirmation '12345678'
     nome_completo 'Linus Torvalds'
-    instituicao 'iff'
-    campus 'centro'
+    campus
   end
 
   factory :papel do
