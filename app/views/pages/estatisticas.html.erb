@@ -6,11 +6,11 @@
   <div>
     <br />
     <%= form_tag(estatisticas_path, :method => "get") do %>
-      <input name="group" type="radio" id="radio_ano" onchange="ano()"><label for='radio_ano'>Ano</label>
-      <input name="group" type="radio" id="radio_mes" onchange="mes()"><label for='radio_mes'>Mês</label>
+      <input name="group" type="radio" id="radio_ano" checked><label for='radio_ano'>Ano</label>
+      <input name="group" type="radio" id="radio_mes"><label for='radio_mes'>Mês</label>
       <br />
       <br />
-      <%= select_tag "select_ano", options_for_select(anos), disabled: 'true' %>
+      <%= select_tag "select_ano", options_for_select(anos) %>
       <%= select_tag "select_mes", options_for_select(meses), disabled: 'true' %>
       <%= submit_tag("Pesquisar") %>
     <% end %>
@@ -49,7 +49,7 @@
       <%= link_to "Veja a lista completa dos mais visitados", documentos_mais_acessados_path %>
 
     <h3>
-      Por tipo de conteúdo: 
+      Por tipo de conteúdo:
     </h3>
     <table class="tabelas_de_estatisticas" id="tipos_de_conteudo">
       <th> Tipo de conteúdo </th>
