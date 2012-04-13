@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403183239) do
+ActiveRecord::Schema.define(:version => 20120413192417) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -141,10 +141,11 @@ ActiveRecord::Schema.define(:version => 20120403183239) do
   end
 
   create_table "graos", :force => true do |t|
-    t.string   "link"
     t.integer  "conteudo_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "tipo"
+    t.string   "key"
   end
 
   create_table "graus", :force => true do |t|
@@ -217,4 +218,3 @@ ActiveRecord::Schema.define(:version => 20120403183239) do
   add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
 
 end
-

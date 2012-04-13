@@ -29,7 +29,7 @@ describe Conteudo do
             conteudo.link = nil
             f = File.open(File.join(Rails.root, 'spec', 'resources',
               'manual.odt'))
-            f.stub(:original_filename).and_return('anything')
+            f.stub(:original_filename).and_return('anything.odt')
             conteudo.arquivo = f
             conteudo.save!
           end
@@ -72,7 +72,7 @@ describe Conteudo do
       before :each do
         conteudo.submeter!
         conteudo.stub(:granularizavel?).and_return(true)
-        conteudo.set_arquivo(Arquivo.create!(key: 'dummy_key'))
+        conteudo.set_arquivo(Arquivo.create!(key: 'dummy_key', nome: 'file.odt'))
         conteudo.link = nil
         conteudo.aprovar!
       end
@@ -182,7 +182,7 @@ describe Conteudo do
     it 'gera um objeto para a mudança de estado a cada transição' do
       verificar(conteudo, :submeter!, 'editavel', 'pendente')
       conteudo.stub(:granularizavel?).and_return(true)
-      conteudo.set_arquivo(Arquivo.new(key: 'dummy'))
+      conteudo.set_arquivo(Arquivo.new(key: 'dummy', nome: 'file.odt'))
       conteudo.link = nil
       verificar(conteudo, :aprovar!, 'pendente', 'granularizando')
       verificar(conteudo, :falhou_granularizacao!, 'granularizando', 'pendente')
@@ -466,3 +466,4 @@ describe Conteudo do
     end
   end
 end
+
