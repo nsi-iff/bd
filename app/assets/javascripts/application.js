@@ -16,7 +16,7 @@
 //= require ckeditor/init
 //= require_tree .
 
-TODO: refatorar / melhorar (2012-04-12, 17:39, ciberglo)`
+//TODO: refatorar / melhorar (2012-04-12, 17:39, ciberglo)`
 $(document).ready(function() {
 
     $("#area").change(function() {
