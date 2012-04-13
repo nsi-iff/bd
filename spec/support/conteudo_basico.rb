@@ -107,8 +107,6 @@ def preencher_campos(opcoes = {})
 
   select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
 
-  select('Ciências Exatas e da Terra', :from => 'Grande Área de Conhecimento')
-
   select('Ciência da Computação', from: 'Área de Conhecimento*')
 
   unless opcoes[:autores] == false
