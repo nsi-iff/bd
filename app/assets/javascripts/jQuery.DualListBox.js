@@ -11,7 +11,7 @@
     function addEixoECursosSelecionados(eixo, cursos) {
       cursos.each(function(index, curso) {
         var cursoEmSelecao = eixo + ": " + curso.text
-        // antes de adicionar, verifica para nao duplicar algo ja adicionado
+        // antes de adicionar, verifica para nao duplicar curso ja adicionado
         if ($('#cursos_selecionados option[value="' + cursoEmSelecao + '"]').length == false) {
           $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).appendTo($('#cursos_selecionados'))
         }
