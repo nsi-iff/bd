@@ -91,13 +91,13 @@ def submeter_conteudo(tipo, opcoes = {})
   autenticar_usuario(Papel.contribuidor)
   visit send(:"new_#{tipo}_path")
 
-  preencher_campos opcoes
+  preencher_campos tipo, opcoes
 
   yield if block_given?
   click_button 'Salvar'
 end
 
-def preencher_campos(opcoes = {})
+def preencher_campos(tipo, opcoes = {})
   fill_in 'Título',
     with: opcoes[:titulo] || 'A Proposal for Ruby Performance Improvements'
 
@@ -105,9 +105,9 @@ def preencher_campos(opcoes = {})
 
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'
 
-  select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
+  select("Ciências Exatas e da Terra", from: 'area')
 
-  select('Ciência da Computação', from: 'Área de Conhecimento*')
+  select('Ciência da Computação', from: "#{tipo}_sub_area_id")
 
   unless opcoes[:autores] == false
     click_link 'Adicionar autor'
