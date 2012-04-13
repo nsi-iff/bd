@@ -14,10 +14,3 @@ function mes()
         $('#select_ano')[0].disabled = false;
     $('#select_mes')[0].disabled = false;
 }
-
-function extrair_ano()
-{
-    select_ano = $('#select_ano')[0]
-    return select_ano.value;
-}
-
