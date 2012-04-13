@@ -1,60 +1,36 @@
-﻿//TODO: FIX não é possível adicionar vários cursos ao mesmo tempo (2012-04-12, 17:01, ciberglo)`
-//TODO: refatorar para melhorar codigo (2012-04-12, 17:02, ciberglo)`
+﻿$(document).ready(function() {
+    $('#to1').click(function() { removeSelected() });
+    $('#to2').click(function() { addSelected() });
+    $('#allTo1').click(function() { removeAll() });
+    $('#allTo2').click(function() { addAll() });
 
-$(document).ready(function() {
-
-    cursosSelecionados = $("#cursos_selecionados");
-    to1 = $('#to1');
-    to2 = $('#to2');
-    allTo1 = $('#allTo1');
-    allTo2 = $('#allTo2');
-
-    to1.click(function() {
-        RemoveSelected();
-    });
-
-    to2.click(function() {
-        MoveSelected();
-    });
-
-    allTo1.click(function() {
-        RemoveAll();
-    });
-
-    allTo2.click(function() {
-        MoveAll();
-    });
-
-    function MoveSelected() {
-        var eixo     = $('#eixos_tematicos option:selected');
-        var curso = $('#objeto_de_aprendizagem_curso_ids option:selected');
-        var cursoEmSelecao = eixo.text() + ": "+ curso.text();
-        if ($('#objeto_de_aprendizagem_curso_ids option:selected').length !=0){
-            if ($('#cursos_selecionados option[value="' + cursoEmSelecao + '"]').length == false){
-                $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).
-                    appendTo(cursosSelecionados);
-            }
-        }
-   }
-
-    function MoveAll() {
-        var eixo     = $('#eixos_tematicos option:selected');
-        var curso = $('#objeto_de_aprendizagem_curso_ids option');
-        for (var i=0; i<= curso.length;i++){
-            var cursoEmSelecao = eixo.text() + ": "+ curso[i].text;
-            if ($('#cursos_selecionados option[value="' + cursoEmSelecao + '"]').length == false){
-                $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).
-                    appendTo(cursosSelecionados);
-            }
-        }
-   }
-
-    function RemoveSelected() {
+    function removeSelected() {
         $('#cursos_selecionados option:selected').remove();
     }
 
-    function RemoveAll(removeGroup, otherGroup) {
-        $('#cursos_selecionados  option').remove();
+    function addEixoECursosSelecionados(eixo, cursos) {
+      cursos.each(function(index, curso) {
+        var cursoEmSelecao = eixo + ": "+ curso.text
+        // antes de adicionar, verifica para nao duplicar algo ja adicionado
+        if ($('#cursos_selecionados option[value="' + cursoEmSelecao + '"]').length == false) {
+          $(new Option(cursoEmSelecao,cursoEmSelecao,true, true)).appendTo($('#cursos_selecionados'))
+        }
+      })
     }
 
+    function addSelected() {
+        var eixo = $('#eixos_tematicos option:selected').text()
+        var cursos_selecionados = $('#objeto_de_aprendizagem_curso_ids option:selected')
+        addEixoECursosSelecionados(eixo, cursos_selecionados)
+    }
+
+    function addAll() {
+        var eixo = $('#eixos_tematicos option:selected').text()
+        var cursos_selecionados = $('#objeto_de_aprendizagem_curso_ids option')
+        addEixoECursosSelecionados(eixo, cursos_selecionados)
+    }
+
+    function removeAll() {
+        $('#cursos_selecionados option').remove();
+    }
 });
