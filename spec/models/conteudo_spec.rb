@@ -35,12 +35,9 @@ describe Conteudo do
           end
 
           it 'envia para granularização' do
-            NSICloudooo::Client.image_grains = 2
-            NSICloudooo::Client.file_grains = 1
+            NSICloudooo::Client.stub(:new).and_return(oo = stub)
+            oo.should_receive(:granulate)
             conteudo.aprovar!
-            conteudo.should have(3).graos
-            conteudo.graos.select {|g| g.tipo == 'images' }.count.should == 2
-            conteudo.graos.select {|g| g.tipo == 'files' }.count.should == 1
           end
 
           it 'vai para granularizando' do
@@ -81,20 +78,27 @@ describe Conteudo do
       end
 
       context 'problemas na granularização' do
-        before(:each) { conteudo.stub(:granularizado?).and_return(false) }
-
         it 'vai para pendente' do
-          expect { conteudo.granularizou! }.to change { conteudo.state }.
+          expect { conteudo.falhou_granularizacao! }.to change { conteudo.state }.
             from('granularizando').to('pendente')
         end
       end
 
       context 'granularização ok' do
-        before(:each) { conteudo.stub(:granularizado?).and_return(true) }
+        before(:each) { Arquivo.create!(key: '1234', conteudo: conteudo) }
 
         it 'vai para publicado' do
-          expect { conteudo.granularizou! }.to change { conteudo.state }.
-            from('granularizando').to('publicado')
+          expect {
+            conteudo.granularizou!(graos: {})
+          }.to change { conteudo.state }.from('granularizando').to('publicado')
+        end
+
+        it 'gera grãos' do
+          conteudo.granularizou!(
+            graos: { 'files' => ['9876', '5432'], 'images' => ['5678'] })
+          conteudo.should have(3).graos
+          conteudo.graos_arquivo.map(&:key).should =~ %w(9876 5432)
+          conteudo.graos_imagem.map(&:key).should == ['5678']
         end
       end
     end
@@ -183,8 +187,7 @@ describe Conteudo do
       conteudo.set_arquivo(Arquivo.new(key: 'dummy'))
       conteudo.link = nil
       verificar(conteudo, :aprovar!, 'pendente', 'granularizando')
-      conteudo.stub(:granularizado?).and_return(false)
-      verificar(conteudo, :granularizou!, 'granularizando', 'pendente')
+      verificar(conteudo, :falhou_granularizacao!, 'granularizando', 'pendente')
       verificar(conteudo, :devolver, 'pendente', 'editavel')
     end
 
@@ -397,5 +400,35 @@ describe Conteudo do
       JSON.parse(subject.to_indexed_json)
     end
   end
-end
 
+  describe 'encontrar conteudo por ID SAM' do
+    it 'padrão' do
+      Arquivo.stub(:find_by_key).with('sinister_key').and_return(
+        arquivo = stub_model(Arquivo, conteudo: conteudo = stub_model(Conteudo)))
+      Conteudo.encontrar_por_id_sam('sinister_key').should == conteudo
+    end
+
+    it 'retorna nil caso não exista' do
+      Arquivo.stub(:find_by_key).and_return(nil)
+      Conteudo.encontrar_por_id_sam('dummy value').should be_nil
+    end
+  end
+
+  describe 'retorna graos por tipo' do
+    let(:conteudo) do
+      conteudo = Conteudo.new
+      conteudo.graos << @grao1 = stub_model(Grao, imagem?: true, arquivo?: false)
+      conteudo.graos << @grao2 = stub_model(Grao, imagem?: false, arquivo?: true)
+      conteudo.graos << @grao3 = stub_model(Grao, imagem?: false, arquivo?: true)
+      conteudo
+    end
+
+    it 'graos imagem' do
+      conteudo.graos_imagem.should == [@grao1]
+    end
+
+    it 'graos arquivo' do
+      conteudo.graos_arquivo.should =~ [@grao2, @grao3]
+    end
+  end
+end

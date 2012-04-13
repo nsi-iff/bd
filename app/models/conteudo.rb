@@ -37,7 +37,10 @@ class Conteudo < ActiveRecord::Base
     end
 
     event :granularizou do
-      transition :granularizando => :publicado, :if => :granularizado?
+      transition :granularizando => :publicado
+    end
+
+    event :falhou_granularizacao do
       transition :granularizando => :pendente
     end
 
@@ -80,17 +83,19 @@ class Conteudo < ActiveRecord::Base
     super
   end
 
+  def granularizou(*args)
+    options = args.first
+    graos_response = options.delete(:graos)
+    criar_graos(graos_response)
+    super
+  end
+
   def destruir_graos
     # STUB
   end
 
   def granularizavel?
     arquivo.present? && arquivo.odt?
-  end
-
-  def granularizado?
-    # STUB
-    false
   end
 
   def area
@@ -129,19 +134,38 @@ class Conteudo < ActiveRecord::Base
     @arquivo_base64 = Base64.encode64(@arquivo_uploaded.read) if @arquivo_uploaded
   end
 
+  def self.encontrar_por_id_sam(id_sam)
+    Arquivo.find_by_key(id_sam).try(:conteudo)
+  end
+
+  def graos_arquivo
+    graos.select(&:arquivo?)
+  end
+
+  def graos_imagem
+    graos.select(&:imagem?)
+  end
+
   private
 
   def granularizar
     config = Rails.application.config
     url = "http://#{config.cloudooo_user}:#{config.cloudooo_password}@#{config.cloudooo_host}:#{config.cloudooo_port}"
     cloudooo = NSICloudooo::Client.new(url)
-    response = cloudooo.granulate(sam_uid: arquivo.key, filename: arquivo.nome)
-    while cloudooo.done(arquivo.key) != { 'done' => true }
-      sleep(1)
-    end
-    graos_response = cloudooo.grains_keys_for(arquivo.key)
-    graos_response.keys.each do |tipo|
-      graos_response[tipo].each {|key| graos.create!(key: key, tipo: tipo) }
+#    p sam_uid: arquivo.key,
+#      filename: arquivo.nome,
+#      callback: config.cloudooo_callback_url % object_collection_name,
+#      verb: config.cloudooo_callback_verb
+    cloudooo.granulate(
+      sam_uid: arquivo.key,
+      filename: arquivo.nome,
+      callback: config.cloudooo_callback_url % object_collection_name,
+      verb: config.cloudooo_callback_verb)
+  end
+
+  def criar_graos(dados_graos)
+    dados_graos.keys.each do |tipo|
+      dados_graos[tipo].each {|key| graos.create!(key: key, tipo: tipo) }
     end
   end
 
@@ -175,4 +199,3 @@ class Conteudo < ActiveRecord::Base
     end
   end
 end
-

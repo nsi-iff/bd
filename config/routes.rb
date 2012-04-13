@@ -26,43 +26,52 @@ DigitalLibrary::Application.routes.draw do
     get :submeter
     get :favoritar
     get :remover_favorito
+    post :granularizou, on: :collection
   end
+
   resources :artigos_de_periodico, :only => [:new, :create, :show, :edit, :update] do
     get :aprovar
     get :submeter
     get :favoritar
     get :remover_favorito
+    post :granularizou
   end
   resources :livros, :only => [:new, :create, :show, :edit, :update] do
     get :aprovar
     get :submeter
     get :favoritar
     get :remover_favorito
+    post :granularizou
   end
   resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit, :update] do
     get :aprovar
     get :submeter
     get :favoritar
     get :remover_favorito
+    post :granularizou
   end
   resources :relatorios,  :only => [:new, :create, :show, :edit, :update] do
     get :aprovar
     get :submeter
     get :favoritar
     get :remover_favorito
+    post :granularizou
   end
   resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit, :update] do
     get :aprovar
     get :submeter
     get :favoritar
     get :remover_favorito
+    post :granularizou
   end
   resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show, :edit, :update] do
     get :aprovar
     get :submeter
     get :favoritar
     get :remover_favorito
+    post :granularizou
   end
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
 end
+

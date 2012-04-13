@@ -37,9 +37,21 @@ feature 'aprovar conteúdo' do
 
     autenticar_usuario(Papel.gestor)
     visit edit_artigo_de_evento_path(artigo)
-    NSICloudooo::Client.image_grains = 3 if NSICloudooo::Client.respond_to? :image_grains=
-
     click_link 'Aprovar'
+    if integracao?
+      artigo.reload.estado.should == 'granularizando'
+      sleep(5)
+    else
+      page.driver.post(granularizou_artigos_de_evento_path,
+                       doc_key: artigo.arquivo.key,
+                       grains_keys: {
+                         images: 2.times.map {|n| rand.to_s.split('.').last },
+                         files: [rand.to_s.split('.').last]
+                        })
+    end
+    artigo.reload.estado.should == 'publicado'
+    artigo.should have(2).graos_imagem
+    artigo.should have(1).graos_arquivo
 
     visit artigo_de_evento_path(artigo)
     page.should have_content '3 grãos'

@@ -71,6 +71,7 @@ module DigitalLibrary
     config.cloudooo_password = cloudooo_config['password']
     config.cloudooo_host = cloudooo_config['host']
     config.cloudooo_port = cloudooo_config['port']
+    config.cloudooo_callback_url = cloudooo_config['callback_url']
+    config.cloudooo_callback_verb = cloudooo_config['callback_verb']
   end
 end
-
