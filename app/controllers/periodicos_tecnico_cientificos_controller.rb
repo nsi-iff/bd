@@ -7,6 +7,7 @@ class PeriodicosTecnicoCientificosController < InheritedResources::Base
   include WorkflowActions
   include ContadorDeAcesso
   include Favoritar
+  include CallbackGranularizacao
 
   before_filter :authenticate_usuario!
   before_filter :pode_editar, only: [:edit, :update]
