@@ -93,6 +93,7 @@ feature 'Buscas' do
      Delorean.time_travel_to amanha_as_2_horas
      sleep(5)
 
+     # TODO: resolver isto!
      #Comentado porque esta quebrando o BUILD porem esta passando na minha maquina
      #verificar se emails foram disparados
      # ActionMailer::Base.deliveries.should_not be_empty
