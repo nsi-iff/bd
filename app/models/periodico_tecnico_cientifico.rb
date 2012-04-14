@@ -9,4 +9,8 @@ class PeriodicoTecnicoCientifico < Conteudo
   validates :ano_ultimo_volume,
     numericality: { greater_than: 0, less_than_or_equal_to: this_year,
                     allow_blank: true }
+
+  def nome_humanizado
+    "Periódico técnico-científico"
+  end
 end

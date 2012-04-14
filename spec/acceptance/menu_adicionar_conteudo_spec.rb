@@ -53,7 +53,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Artigo de Periódico'
     end
-    page.should have_content 'Adicionar Artigo de periodico'
+    page.should have_content 'Adicionar Artigo de periódico'
   end
 
   scenario 'link para adicionar livro' do
@@ -78,7 +78,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Periódico Técnico Científico'
     end
-    page.should have_content 'Adicionar Periodico tecnico cientifico'
+    page.should have_content 'Adicionar Periódico técnico-científico'
   end
 
   scenario 'link para adicionar relatório' do
@@ -86,7 +86,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Relatório'
     end
-    page.should have_content 'Adicionar Relatorio'
+    page.should have_content 'Adicionar Relatório'
   end
 
   scenario 'link para adicionar trabalho de obtenção de grau' do
@@ -94,6 +94,6 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Trabalho de Obtenção de Grau'
     end
-    page.should have_content 'Adicionar Trabalho de obtencao de grau'
+    page.should have_content 'Adicionar Trabalho de obtenção de grau'
   end
 end
