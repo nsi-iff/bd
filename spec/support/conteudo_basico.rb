@@ -127,3 +127,8 @@ def validar_conteudo(opcoes = {})
     page.should have_content opcoes[:lattes_autor] || 'Curriculum Lattes: http://lattes.cnpq.br/1234567890'
   end
 end
+
+def tipos_de_conteudo
+  [:livro, :artigo_de_evento, :artigo_de_periodico, :objeto_de_aprendizagem,
+   :periodico_tecnico_cientifico, :relatorio, :trabalho_de_obtencao_de_grau]
+end

@@ -9,9 +9,7 @@ feature 'aprovar conteúdo' do
     popular_eixos_tematicos_cursos
   end
 
-  [:livro, :artigo_de_evento, :artigo_de_periodico, :objeto_de_aprendizagem,
-   :periodico_tecnico_cientifico, :relatorio, :trabalho_de_obtencao_de_grau].
-   each do |tipo|
+  tipos_de_conteudo.each do |tipo|
     scenario "gestor deve poder aprovar #{tipo} pendente" do
       user = autenticar_usuario(Papel.gestor)
       conteudo = Factory.create(tipo)

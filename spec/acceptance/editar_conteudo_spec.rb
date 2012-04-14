@@ -4,19 +4,11 @@ require 'spec_helper'
 
 feature 'Editar Conteúdo' do
   context 'conteúdo em estado pendente ou recolhido' do
-    tipos = %W(livro
-               artigo_de_evento
-               periodico_tecnico_cientifico
-               relatorio
-               artigo_de_periodico
-               trabalho_de_obtencao_de_grau
-               objeto_de_aprendizagem)
-
     scenario 'editar conteúdo' do
       criar_papeis
       autenticar_usuario(Papel.contribuidor)
 
-      tipos.each do |tipo|
+      tipos_de_conteudo.each do |tipo|
         conteudo = Factory.create tipo
         conteudo.submeter
         visit edit_conteudo_path(conteudo)

@@ -11,9 +11,7 @@ feature 'submeter conteúdo a aprovação' do
 
   let(:user) { autenticar_usuario(Papel.contribuidor) }
 
-  [:livro, :artigo_de_evento, :artigo_de_periodico, :objeto_de_aprendizagem,
-   :periodico_tecnico_cientifico, :relatorio, :trabalho_de_obtencao_de_grau].
-    each do |tipo|
+  tipos_de_conteudo.each do |tipo|
       scenario "dono do #{tipo} pode submetê-lo a aprovação" do
         conteudo = Factory.create(tipo, contribuidor: user)
 
