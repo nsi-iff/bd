@@ -9,12 +9,19 @@ describe ConteudosController do
   end
 
   describe 'GET new' do
-    it 'define um atributo @conteudo como um novo ArtigoDeEvento' do
+    before(:each) do
       get :new, tipo: :artigo_de_evento
-      conteudo = assigns[:conteudo]
-      conteudo.should_not be_nil
-      conteudo.should be_new_record
-      conteudo.should be_kind_of(ArtigoDeEvento)
+      @conteudo = assigns[:conteudo]
+    end
+
+    it 'define um atributo @conteudo como um novo ArtigoDeEvento' do
+      @conteudo.should_not be_nil
+      @conteudo.should be_new_record
+      @conteudo.should be_kind_of(ArtigoDeEvento)
+    end
+
+    it 'inclui um autor em @conteudo' do
+      @conteudo.should have(1).autores
     end
   end
 end
