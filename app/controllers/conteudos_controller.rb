@@ -12,8 +12,8 @@ class ConteudosController < ApplicationController
 
   def create
     authorize! :create, Conteudo
+    @conteudo = klass.new(conteudo_da_requisicao)
     if params['tipo'] == 'objeto_de_aprendizagem'
-      @conteudo = ObjetoDeAprendizagem.new(params[:objeto_de_aprendizagem])
       @conteudo.cursos = []
       cursos_anteriores = []
       cont = 0
@@ -34,8 +34,6 @@ class ConteudosController < ApplicationController
         cursos_anteriores << nome_curso
         cont += 1;
       end
-    else
-      @conteudo = klass.new(conteudo_da_requisicao)
     end
 
     if @conteudo.save
