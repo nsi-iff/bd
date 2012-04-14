@@ -15,8 +15,8 @@ class Conteudo < ActiveRecord::Base
   belongs_to :campus
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
-           :arquivo_ou_link_devem_existir,
-           :tipo_de_arquivo
+           :arquivo_ou_link_devem_existir
+  validate :tipo_de_arquivo, :if => :tipo_de_arquivo_importa?
 
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
@@ -209,14 +209,15 @@ class Conteudo < ActiveRecord::Base
     end
   end
 
+  def tipo_de_arquivo_importa?
+    true
+  end
+
   def tipo_de_arquivo
     if arquivo.present?
-      unless self.class == ObjetoDeAprendizagem
-        unless arquivo.nome =~/.*\.(pdf|rtf|odt|doc|ps)/
-          errors.add(:arquivo, 'Tipo de arquivo não suportado para o conteúdo')
-        end
+      unless arquivo.nome =~/.*\.(pdf|rtf|odt|doc|ps)/
+        errors.add(:arquivo, 'tipo de arquivo não suportado')
       end
     end
   end
 end
-

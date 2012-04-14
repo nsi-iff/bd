@@ -22,4 +22,14 @@ describe ObjetoDeAprendizagem do
     subject.idioma = stub_model(Idioma, descricao: 'Português (Brasil)')
     subject.descricao_idioma.should == 'Português (Brasil)'
   end
+
+  it 'tipo de arquivo não importa' do
+    arquivo = ActionDispatch::Http::UploadedFile.new({
+      filename: 'arquivo.nsi',
+      type: 'text/plain',
+      tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
+    })
+    Factory.build(:objeto_de_aprendizagem, link: '',
+                  arquivo: arquivo).should be_valid
+  end
 end
