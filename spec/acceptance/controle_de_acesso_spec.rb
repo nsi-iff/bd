@@ -18,14 +18,14 @@ feature 'controle de acesso' do
       popular_eixos_tematicos_cursos
       autenticar_usuario(Papel.contribuidor)
       tipos.each do |tipo|
-        visit send("new_#{tipo}_path")
+        visit new_conteudo_path(tipo: tipo)
         page.should_not have_content acesso_negado
       end
 
       [Papel.gestor, Papel.admin, Papel.membro].each do |papel|
         autenticar_usuario(papel)
         tipos.each do |tipo|
-          visit send("new_#{tipo}_path")
+          visit new_conteudo_path(tipo: tipo)
           page.should have_content acesso_negado
         end
       end

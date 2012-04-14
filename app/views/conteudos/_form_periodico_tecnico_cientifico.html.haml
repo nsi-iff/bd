@@ -1,0 +1,11 @@
+= semantic_form_for @conteudo, url: conteudos_path(tipo: @conteudo.nome_como_simbolo) do |f|
+  = render 'conteudos/dados_basicos', :f => f
+  %br
+  %fieldset{:id => "dados_complementares"}
+    %legend
+      Dados Complementares
+    = f.input :editora, hint: 'Organização que coordena a publicação do Periódico'
+    = f.input :local_publicacao, label: 'Local da publicação'
+    = f.input :ano_primeiro_volume, label: 'Ano do primeiro volume'
+    = f.input :ano_ultimo_volume, label: 'Ano do último volume'
+  = f.submit 'Salvar'

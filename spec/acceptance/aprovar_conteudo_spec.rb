@@ -20,7 +20,7 @@ feature 'aprovar conteúdo' do
       visit lista_de_revisao_usuario_path(user)
       page.should have_content conteudo.titulo
 
-      visit send("edit_#{tipo}_path", conteudo)
+      visit edit_conteudo_path(conteudo)
       click_link 'Aprovar'
 
       visit lista_de_revisao_usuario_path(user)
@@ -36,10 +36,10 @@ feature 'aprovar conteúdo' do
     artigo.submeter!
 
     autenticar_usuario(Papel.gestor)
-    visit edit_artigo_de_evento_path(artigo)
+    visit edit_conteudo_path(artigo)
     click_link 'Aprovar'
     artigo.reload.estado.should == 'granularizando'
-    page.driver.post(granularizou_artigos_de_evento_path,
+    page.driver.post(granularizou_conteudos_path,
                      doc_key: artigo.arquivo.key,
                      grains_keys: {
                        images: 2.times.map {|n| rand.to_s.split('.').last },
@@ -49,8 +49,7 @@ feature 'aprovar conteúdo' do
     artigo.should have(2).graos_imagem
     artigo.should have(1).graos_arquivo
 
-    visit artigo_de_evento_path(artigo)
+    visit conteudo_path(artigo)
     page.should have_content '3 grãos'
   end
 end
-

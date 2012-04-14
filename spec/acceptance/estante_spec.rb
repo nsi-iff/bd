@@ -47,7 +47,7 @@ feature 'Estante' do
     relatorio.submeter!
     relatorio.aprovar!
 
-    visit relatorio_path(relatorio)
+    visit conteudo_path(relatorio)
     click_link 'Favoritar'
 
     visit root_path
@@ -60,7 +60,7 @@ feature 'Estante' do
       page.should have_content 'We love Ruby and Agile!'
     end
 
-    visit relatorio_path(relatorio)
+    visit conteudo_path(relatorio)
     click_link 'Remover favorito'
 
     visit root_path
@@ -73,7 +73,7 @@ feature 'Estante' do
       page.should_not have_content 'We love Ruby and Agile!'
     end
 
-    visit relatorio_path(relatorio)
+    visit conteudo_path(relatorio)
     click_link 'Favoritar'
 
     visit estante_usuario_path(usuario)

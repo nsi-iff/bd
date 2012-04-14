@@ -5,22 +5,24 @@
   %ul
     - if can? :create, ArtigoDeEvento
       %li
-        = link_to 'Artigo de Evento', new_artigo_de_evento_path
+        = link_to 'Artigo de Evento', new_conteudo_path(tipo: :artigo_de_evento)
     - if can? :create, ArtigoDePeriodico
       %li
-        = link_to 'Artigo de Periódico', new_artigo_de_periodico_path
+        = link_to 'Artigo de Periódico', new_conteudo_path(tipo: :artigo_de_periodico)
     - if can? :create, Livro
       %li
-        = link_to 'Livro', new_livro_path
+        = link_to 'Livro', new_conteudo_path(tipo: :livro)
     - if can? :create, ObjetoDeAprendizagem
       %li
-        = link_to 'Objeto de Aprendizagem', new_objeto_de_aprendizagem_path
+        = link_to 'Objeto de Aprendizagem', new_conteudo_path(tipo: :objeto_de_aprendizagem)
     - if can? :create, PeriodicoTecnicoCientifico
       %li
-        = link_to 'Periódico Técnico Científico', new_periodico_tecnico_cientifico_path
+        = link_to 'Periódico Técnico Científico',
+            new_conteudo_path(tipo: :periodico_tecnico_cientifico)
     - if can? :create, Relatorio
       %li
-        = link_to 'Relatório', new_relatorio_path
+        = link_to 'Relatório', new_conteudo_path(tipo: :relatorio)
     - if can? :create, TrabalhoDeObtencaoDeGrau
       %li
-        = link_to 'Trabalho de Obtenção de Grau', new_trabalho_de_obtencao_de_grau_path
+        = link_to 'Trabalho de Obtenção de Grau',
+            new_conteudo_path(tipo: :trabalho_de_obtencao_de_grau)

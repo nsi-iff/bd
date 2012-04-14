@@ -160,6 +160,14 @@ class Conteudo < ActiveRecord::Base
     graos.select(&:imagem?)
   end
 
+  def nome_humanizado
+    nome_como_simbolo.humanize
+  end
+
+  def nome_como_simbolo
+    self.class.name.underscore
+  end
+
   private
 
   def granularizar

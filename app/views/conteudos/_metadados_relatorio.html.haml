@@ -1,0 +1,12 @@
+= render 'conteudos/show_dados_basicos', conteudo: @conteudo
+
+%p
+  Local da publicação:
+  = @conteudo.local_publicacao
+%p
+  Ano:
+  = @conteudo.ano_publicacao
+
+%p
+  Número de páginas:
+  = @conteudo.numero_paginas

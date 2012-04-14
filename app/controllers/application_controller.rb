@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def pode_editar
     @conteudo = Conteudo.find(params[:id])
     unless (@conteudo.editavel? or @conteudo.publicado?) or current_usuario.gestor?
-      redirect_to @conteudo, alert: 'Conteúdo não pode ser editado'
+      redirect_to conteudo_path(@conteudo), alert: 'Conteúdo não pode ser editado'
     end
   end
 end

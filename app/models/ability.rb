@@ -7,18 +7,12 @@ class Ability
     end
 
     if usuario.contribuidor?
-      [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
-       TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
-       Relatorio].each {|tipo| can [:create, :read, :edit, :update, :submeter], tipo }
-
+      can [:create, :read, :edit, :update, :submeter], Conteudo
       can :adicionar_conteudo, Usuario
     end
 
     if usuario.gestor?
-      [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
-       TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
-       Relatorio].each {|tipo| can [:aprovar, :read, :edit, :update], tipo }
-
+      can [:aprovar, :read, :edit, :update], Conteudo
       can [:lista_de_revisao, :ter_lista_de_revisao], Usuario
     end
 
@@ -27,8 +21,6 @@ class Ability
     end
 
     can [:area_privada, :escrivaninha, :estante, :minhas_buscas], Usuario, { :id => usuario.id }
-    [ArtigoDePeriodico, ArtigoDeEvento, Livro, ObjetoDeAprendizagem,
-      TrabalhoDeObtencaoDeGrau, PeriodicoTecnicoCientifico,
-      Relatorio].each {|tipo| can [:favoritar, :remover_favorito], tipo}
+    can [:favoritar, :remover_favorito], Conteudo
   end
 end

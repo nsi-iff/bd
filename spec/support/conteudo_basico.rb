@@ -89,8 +89,7 @@ def submeter_conteudo(tipo, opcoes = {})
   popular_area_sub_area
   criar_papeis
   autenticar_usuario(Papel.contribuidor)
-  visit send(:"new_#{tipo}_path")
-
+  visit new_conteudo_path(tipo: tipo)
   preencher_campos tipo, opcoes
 
   yield if block_given?
@@ -128,4 +127,3 @@ def validar_conteudo(opcoes = {})
     page.should have_content opcoes[:lattes_autor] || 'Curriculum Lattes: http://lattes.cnpq.br/1234567890'
   end
 end
-

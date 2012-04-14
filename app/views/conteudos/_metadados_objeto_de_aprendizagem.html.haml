@@ -1,0 +1,20 @@
+= render 'conteudos/show_dados_basicos', conteudo: @conteudo
+
+%p
+  Palavras-chave:
+  = @conteudo.palavras_chave
+%p
+  Tempo de aprendizagem típico:
+  = @conteudo.tempo_aprendizagem
+%p
+  Eixos temáticos:
+  = @conteudo.nomes_dos_eixos_tematicos
+%p
+  Cursos selecionados:
+  = @conteudo.nome_dos_cursos
+%p
+  Novas tags:
+  = @conteudo.nomes_das_novas_tags
+%p
+  Idioma:
+  = @conteudo.descricao_idioma

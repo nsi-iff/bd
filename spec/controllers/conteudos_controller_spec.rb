@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ArtigosDeEventoController, "incluindo modulo NovoComAutor" do
+describe ConteudosController do
   include ControllerAuth
 
   before :each do
@@ -8,11 +8,13 @@ describe ArtigosDeEventoController, "incluindo modulo NovoComAutor" do
     login Factory.create(:usuario_contribuidor)
   end
 
-  describe 'new' do
-    it 'define um atributo @artigo_de_evento como um novo ArtigoDeEvento' do
-      get :new
-      assigns[:artigo_de_evento].should be_new_record
-      assigns[:artigo_de_evento].should be_kind_of(ArtigoDeEvento)
+  describe 'GET new' do
+    it 'define um atributo @conteudo como um novo ArtigoDeEvento' do
+      get :new, tipo: :artigo_de_evento
+      conteudo = assigns[:conteudo]
+      conteudo.should_not be_nil
+      conteudo.should be_new_record
+      conteudo.should be_kind_of(ArtigoDeEvento)
     end
   end
 end

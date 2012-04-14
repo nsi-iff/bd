@@ -1,0 +1,23 @@
+= render 'conteudos/show_dados_basicos', conteudo: @conteudo
+
+%p
+  Subtítulo:
+  = @conteudo.subtitulo
+%p
+  Tradução:
+  = @conteudo.traducao ? 'Sim' : 'Não'
+%p
+  Número da Edição:
+  = @conteudo.numero_edicao
+%p
+  Local da Publicação:
+  = @conteudo.local_publicacao
+%p
+  Editora:
+  = @conteudo.editora
+%p
+  Ano de Publicação:
+  = @conteudo.ano_publicacao
+%p
+  Número de Páginas:
+  = @conteudo.numero_paginas

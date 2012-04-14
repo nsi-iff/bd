@@ -30,4 +30,12 @@ module ApplicationHelper
       'Dezembro' => 12
     }.to_a
   end
+
+  def url_para_form_conteudo(conteudo)
+    if conteudo.new_record?
+      conteudos_path(tipo: @conteudo.nome_como_simbolo)
+    else
+      conteudo_path(@conteudo)
+    end
+  end
 end

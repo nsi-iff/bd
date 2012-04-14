@@ -19,9 +19,9 @@ feature 'Editar Conteúdo' do
       tipos.each do |tipo|
         conteudo = Factory.create tipo
         conteudo.submeter
-        visit send("edit_#{tipo}_path", conteudo)
+        visit edit_conteudo_path(conteudo)
         page.should have_content 'Conteúdo não pode ser editado'
-        current_path.should == send("#{tipo}_path", conteudo)
+        current_path.should == conteudo_path(conteudo)
       end
     end
   end

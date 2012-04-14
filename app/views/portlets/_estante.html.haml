@@ -3,7 +3,7 @@
     %h3 Estante
     - current_usuario.estante.reverse[0..2].each do |conteudo|
       .item
-        = link_to conteudo.titulo, conteudo
+        = link_to conteudo.titulo, conteudo_path(conteudo)
         %br
         %span.info
           = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"

@@ -2,6 +2,7 @@ module ControllerAuth
   def autorizar_tudo
     @ability = Object.new
     @ability.extend(CanCan::Ability)
+    @ability.stub(:can?).and_return(true)
     controller.stub(:current_ability) { @ability }
   end
 

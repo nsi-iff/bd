@@ -2,7 +2,7 @@
   %h3 Escrivaninha
   - current_usuario.escrivaninha.each do |conteudo|
     .item
-      = link_to conteudo.titulo, conteudo
+      = link_to conteudo.titulo, conteudo_path(conteudo)
       - if conteudo.pendente?
         %span.info{ id: "pendente[#{conteudo.id}]" } Pendente
       %span.info

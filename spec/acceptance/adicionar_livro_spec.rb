@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'adicionar livro' do
   scenario 'padrão' do
-    visit new_livro_path
+    visit new_conteudo_path(tipo: :livro)
     submeter_conteudo :livro do
       fill_in 'Direitos', with: 'Direitos e esquerdos'
       fill_in 'Subtítulo', with: 'Rails Rocks'
@@ -33,14 +33,14 @@ feature 'adicionar livro' do
   scenario 'sem tradução' do
     criar_papeis
     autenticar_usuario(Papel.contribuidor)
-    visit livro_path(Factory.create :livro, traducao: false)
+    visit conteudo_path(Factory.create(:livro, traducao: false))
     page.should have_content 'Tradução: Não'
   end
 
   scenario 'editar livro' do
     criar_papeis
     autenticar_usuario(Papel.contribuidor)
-    visit edit_livro_path(Factory.create :livro)
+    visit edit_conteudo_path(Factory.create :livro)
 
     fill_in 'Subtítulo', with: 'Metaprograming Rails'
     click_button 'Salvar'

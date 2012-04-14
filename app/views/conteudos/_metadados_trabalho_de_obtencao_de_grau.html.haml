@@ -1,0 +1,26 @@
+= render 'conteudos/show_dados_basicos', conteudo: @conteudo
+
+%p
+  Subtítulo:
+  = @conteudo.subtitulo
+
+%fieldset
+  %legend Dados do trabalho
+  %p
+    Número de páginas:
+    = @conteudo.numero_paginas
+  %p
+    Instituição:
+    = @conteudo.instituicao
+  %p
+    Grau:
+    = @conteudo.grau.nome
+
+%fieldset
+  %legend Defesa
+  %p
+    Data da Defesa:
+    = @conteudo.data_defesa_br
+  %p
+    Local de Defesa:
+    = @conteudo.local_defesa

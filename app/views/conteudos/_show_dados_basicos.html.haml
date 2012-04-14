@@ -1,7 +1,7 @@
 - if current_usuario.favoritos.include? conteudo
-  = link_to 'Remover favorito', send("#{conteudo.class.name.underscore}_remover_favorito_path", conteudo)
+  = link_to 'Remover favorito', remover_favorito_conteudo_path(conteudo)
 - else
-  = link_to 'Favoritar', send("#{conteudo.class.name.underscore}_favoritar_path", conteudo)
+  = link_to 'Favoritar', favoritar_conteudo_path(conteudo)
 
 %p
   Título:
@@ -44,4 +44,3 @@
     %p= "#{conteudo.graos.count} #{'grão'.pluralize(conteudo.graos.count)}"
     - conteudo.graos.each do |grao|
       = render 'conteudos/grao', grao: grao
-

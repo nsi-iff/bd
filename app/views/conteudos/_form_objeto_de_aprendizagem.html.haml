@@ -1,0 +1,31 @@
+= semantic_form_for @conteudo, url: conteudos_path(tipo: @conteudo.nome_como_simbolo) do |f|
+  = render 'conteudos/dados_basicos', :f => f
+  %br
+  %fieldset{:id => "dados_complementares"}
+    %legend
+      Dados Complementares
+    = f.input :palavras_chave, label: 'Palavras-chave',
+        hint: 'Palavras-chave do documento, separadas por vírgula'
+    = f.input :tempo_aprendizagem, label: 'Tempo de aprendizagem típico',
+        hint: 'Tempo típico para uma audiência típica lidar com o objeto de aprendizagem'
+    %table
+      %tr
+        = label_tag(:eixos_tematicos, 'Eixos temáticos')
+        %td
+          = select_tag(:eixos_tematicos, options_for_select(EixoTematico.all.map {|eixo| [eixo.nome, eixo.id] }),
+            class: "eixos_tematicos")
+          = f.input :cursos, :as => :select, input_html: { class: "cursos" },
+            collection: EixoTematico.first.cursos.map {|curso| [curso.nome, curso.id]},
+            prompt: false, label: 'Cursos'
+        %td
+          %input{:type => 'button', :value => '>', :id => 'to2'}
+          %input{:type => 'button', :value => '<', :id => 'to1'}
+          %input{:type => 'button', :value => '>>', :id => 'allTo2'}
+          %input{:type => 'button', :value => '<<', :id => 'allTo1'}
+        %td
+          = label_tag(:cursos, 'Cursos selecionados')
+          %select{id: 'cursos_selecionados', name: 'cursos_selecionados', multiple: 'multiple'}
+
+    = f.input :novas_tags
+    = f.input :idioma, :member_label => :descricao
+  = f.submit 'Salvar', onclick: 'enviar_cursos_selecionados()'

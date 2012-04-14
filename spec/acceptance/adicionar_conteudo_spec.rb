@@ -7,7 +7,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     popular_area_sub_area
     criar_papeis
     usuario = autenticar_usuario(Papel.contribuidor)
-    visit new_artigo_de_evento_path
+    visit new_conteudo_path(tipo: :artigo_de_evento)
     fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
     select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
@@ -87,7 +87,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     popular_area_sub_area
     criar_papeis
     autenticar_usuario(Papel.contribuidor)
-    visit new_artigo_de_evento_path
+    visit new_conteudo_path(tipo: :artigo_de_evento)
 
     select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
     select('Ciência da Computação', from: 'Área de Conhecimento*')

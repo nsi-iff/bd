@@ -1,0 +1,36 @@
+= render 'conteudos/show_dados_basicos', conteudo: @conteudo
+
+%p
+  Subtítulo:
+  = @conteudo.subtitulo
+
+%fieldset
+  %legend Dados do periódico
+  %p
+    Nome:
+    = @conteudo.nome_periodico
+
+%fieldset
+  %legend Publicação
+  %p
+    Editora:
+    = @conteudo.editora
+  %p
+    Volume:
+    = @conteudo.volume_publicacao
+  %p
+    Data:
+    = @conteudo.data_publicacao_br
+  %p
+    Local:
+    = @conteudo.local_publicacao
+  %p
+    Fascículo:
+    = @conteudo.fasciculo
+%p
+  Página inicial da publicação:
+  = @conteudo.pagina_inicial
+
+%p
+  Página final da publicação:
+  = @conteudo.pagina_final

@@ -45,7 +45,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Artigo de Evento'
     end
-    current_path.should == new_artigo_de_evento_path
+    page.should have_content 'Adicionar Artigo de evento'
   end
 
   scenario 'link para adicionar artigo de periódico' do
@@ -53,7 +53,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Artigo de Periódico'
     end
-    current_path.should == new_artigo_de_periodico_path
+    page.should have_content 'Adicionar Artigo de periodico'
   end
 
   scenario 'link para adicionar livro' do
@@ -61,7 +61,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Livro'
     end
-    current_path.should == new_livro_path
+    page.should have_content 'Adicionar Livro'
   end
 
   scenario 'link para adicionar objeto de aprendizagem' do
@@ -70,7 +70,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Objeto de Aprendizagem'
     end
-    current_path.should == new_objeto_de_aprendizagem_path
+    page.should have_content 'Adicionar Objeto de aprendizagem'
   end
 
   scenario 'link para adicionar periódico técnico científico' do
@@ -78,7 +78,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Periódico Técnico Científico'
     end
-    current_path.should == new_periodico_tecnico_cientifico_path
+    page.should have_content 'Adicionar Periodico tecnico cientifico'
   end
 
   scenario 'link para adicionar relatório' do
@@ -86,7 +86,7 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Relatório'
     end
-    current_path.should == new_relatorio_path
+    page.should have_content 'Adicionar Relatorio'
   end
 
   scenario 'link para adicionar trabalho de obtenção de grau' do
@@ -94,7 +94,6 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Trabalho de Obtenção de Grau'
     end
-    current_path.should == new_trabalho_de_obtencao_de_grau_path
+    page.should have_content 'Adicionar Trabalho de obtencao de grau'
   end
 end
-

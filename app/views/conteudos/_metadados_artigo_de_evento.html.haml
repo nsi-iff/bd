@@ -1,0 +1,43 @@
+= render 'conteudos/show_dados_basicos', conteudo: @conteudo
+
+%p
+  Subtítulo:
+  = @conteudo.subtitulo
+
+%fieldset
+  %legend Dados do evento
+  %p
+    Nome:
+    = @conteudo.nome_evento
+  %p
+    Local:
+    = @conteudo.local_evento
+  %p
+    Número:
+    = @conteudo.numero_evento
+  %p
+    Ano:
+    = @conteudo.ano_evento
+
+%fieldset
+  %legend Publicação
+  %p
+    Editora:
+    = @conteudo.editora
+  %p
+    Ano:
+    = @conteudo.ano_publicacao
+  %p
+    Local:
+    = @conteudo.local_publicacao
+  %p
+    Título dos anais:
+    = @conteudo.titulo_anais
+
+%p
+  Página inicial do trabalho:
+  = @conteudo.pagina_inicial
+
+%p
+  Página final do trabalho:
+  = @conteudo.pagina_final
