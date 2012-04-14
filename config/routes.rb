@@ -27,7 +27,7 @@ DigitalLibrary::Application.routes.draw do
     post :remover_mala_direta, :to => 'buscas#remover_mala_direta'
   end
 
-  resources :conteudos, :only => [:new, :create, :show, :edit, :update] do #except: [:index, :delete] do
+  resources :conteudos, except: [:index, :delete] do
     member do
       get :aprovar
       get :submeter
@@ -37,56 +37,6 @@ DigitalLibrary::Application.routes.draw do
     post :granularizou, on: :collection
   end
 
-#  resources :artigos_de_evento, :only => [:new, :create, :show, :edit, :update] do
-#    get :aprovar
-#    get :submeter
-#    get :favoritar
-#    get :remover_favorito
-#    post :granularizou, on: :collection
-#  end
-
-#  resources :artigos_de_periodico, :only => [:new, :create, :show, :edit, :update] do
-#    get :aprovar
-#    get :submeter
-#    get :favoritar
-#    get :remover_favorito
-#    post :granularizou
-#  end
-#  resources :livros, :only => [:new, :create, :show, :edit, :update] do
-#    get :aprovar
-#    get :submeter
-#    get :favoritar
-#    get :remover_favorito
-#    post :granularizou
-#  end
-#  resources :periodicos_tecnico_cientificos, :only => [:new, :create, :show, :edit, :update] do
-#    get :aprovar
-#    get :submeter
-#    get :favoritar
-#    get :remover_favorito
-#    post :granularizou
-#  end
-#  resources :relatorios,  :only => [:new, :create, :show, :edit, :update] do
-#    get :aprovar
-#    get :submeter
-#    get :favoritar
-#    get :remover_favorito
-#    post :granularizou
-#  end
-#  resources :objetos_de_aprendizagem, :only => [:new, :create, :show, :edit, :update] do
-#    get :aprovar
-#    get :submeter
-#    get :favoritar
-#    get :remover_favorito
-#    post :granularizou
-#  end
-#  resources :trabalhos_de_obtencao_de_grau, :only => [:new, :create, :show, :edit, :update] do
-#    get :aprovar
-#    get :submeter
-#    get :favoritar
-#    get :remover_favorito
-#    post :granularizou
-#  end
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
