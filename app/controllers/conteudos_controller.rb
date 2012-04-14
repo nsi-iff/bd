@@ -13,27 +13,19 @@ class ConteudosController < ApplicationController
   def create
     authorize! :create, Conteudo
     @conteudo = klass.new(conteudo_da_requisicao)
-    if params['tipo'] == 'objeto_de_aprendizagem'
-      @conteudo.cursos = []
-      cursos_anteriores = []
-      cont = 0
-      lista_eixos_cursos = params['cursos_selecionados_oculto'].strip.split(' ,')
-      lista_eixos_cursos.each do |descricao_curso|
-        nome_eixo, nome_curso = descricao_curso.split(':  ')
-        if cont != 0
-          cursos = nome_curso.strip.split('  ')
-          cursos_anteriores.each do |curso|
-            if cursos.include? curso
-              cursos.delete(curso)
-            end
-          end
-          nome_curso = cursos[0]
-        end
-        eixo = EixoTematico.find_by_nome(nome_eixo)
-        @conteudo.cursos << eixo.cursos.where(nome: nome_curso).first
-        cursos_anteriores << nome_curso
-        cont += 1;
-      end
+    if params['cursos_selecionados_oculto']
+      @conteudo.cursos = params['cursos_selecionados_oculto'].
+        strip.split(' ,').
+        map {|descricao_curso| descricao_curso.gsub(':', '') }.
+        map {|descricao_curso| descricao_curso.split('  ') }.
+        map {|nome_eixo, *nomes_cursos|
+          nomes_cursos.map {|nome_curso|
+            EixoTematico.find_by_nome(nome_eixo).cursos.where(nome: nome_curso).first
+          }
+        }.
+        flatten.
+        # necessario devido ao conteudo bugado de params['cursos_selecionados_oculto']
+        uniq
     end
 
     if @conteudo.save
