@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.3'
 
 gem 'devise'
 gem 'cancan'
@@ -44,4 +44,3 @@ group :test, :development do
   gem 'spork-rails', '~> 3.2.0'
   gem 'debugger'
 end
-
