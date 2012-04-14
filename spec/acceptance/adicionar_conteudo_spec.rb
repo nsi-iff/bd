@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar conteudo (referente aos dados básicos)' do
-  scenario 'adicionar dados basicos de conteudo' do
+  scenario 'adicionar dados basicos de conteudo', javascript: true do
     popular_area_sub_area
     criar_papeis
     usuario = autenticar_usuario(Papel.contribuidor)
