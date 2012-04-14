@@ -102,7 +102,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
     click_button "Buscar"
     resultados.each do |resultado|
       page.should have_link resultado.titulo,
-                            href: __send__("#{resultado.class.name.underscore}_path", resultado)
+                            href: conteudo_path(resultado)
     end
   end
 end
