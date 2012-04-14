@@ -29,10 +29,10 @@ DigitalLibrary::Application.routes.draw do
 
   resources :conteudos, except: [:index, :delete] do
     member do
-      get :aprovar
-      get :submeter
-      get :favoritar
-      get :remover_favorito
+      put :aprovar
+      put :submeter
+      put :favoritar
+      put :remover_favorito
     end
     post :granularizou, on: :collection
   end
