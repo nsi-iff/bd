@@ -177,7 +177,7 @@ class Conteudo < ActiveRecord::Base
     cloudooo.granulate(
       sam_uid: arquivo.key,
       filename: arquivo.nome,
-      callback: config.cloudooo_callback_url % object_collection_name,
+      callback: config.cloudooo_callback_url,
       verb: config.cloudooo_callback_verb)
   end
 
