@@ -51,7 +51,7 @@ FactoryGirl.define do
   factory :instituicao do
     sequence(:nome) {|n| "Nome#{n}"}
   end
-  
+
   factory :campus do
     sequence(:nome) {|n| "Nome#{n}"}
     instituicao
@@ -88,5 +88,9 @@ FactoryGirl.define do
     nome 'any name'
     key { rand.to_s.split('.')[1] }
   end
-end
 
+  factory :acesso do
+    data "2012-03-27"
+    quantidade 1
+  end
+end
