@@ -1,6 +1,7 @@
+(function(){
 var cursos = $(".cursos");
 
-//remove elementos presentes no combo-box
+//remove elementos presentes no select
 cursos.children().remove();
 
 //inclui os cursos do eixo tematico selecionado
@@ -8,3 +9,4 @@ cursos.children().remove();
   cursos.append(
       "<option value=' <%= curso.id %> '> <%= curso.nome %> </option>");
 <% end %>
+})();
