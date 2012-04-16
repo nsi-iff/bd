@@ -1,6 +1,4 @@
-//TODO: refatorar / melhorar (2012-04-12, 17:39, ciberglo)`
 $(document).ready(function() {
-
     $("#eixos_tematicos").change(function() {
         var id = this.value;
         $.post("/eixos_tematicos/" + id + "/cursos");
@@ -8,11 +6,11 @@ $(document).ready(function() {
 
 });
 
-/* Funcao para o evento 'onclick' do botao 'submit' da pagina view/objetos_de_aprendizagem/new.html.haml.
+/* Funcao para o evento 'onclick' do botao 'submit' do form de objetos_de_aprendizagem
    Adiciona uma hidden tag a fim de enviar os cursos selecionados para o controller. */
 function enviar_cursos_selecionados()
 {
-  input = $("<input type='hidden' id='cursos_selecionados_oculto' name='cursos_selecionados_oculto' value=''>");
-  input.insertAfter($('#objeto_de_aprendizagem_idioma_id'));
-  input.val($('#cursos_selecionados').val());
+    hidden_input = $("<input type='hidden' name='cursos_selecionados_oculto'>");
+    hidden_input.val($('#cursos_selecionados').val());
+    hidden_input.insertAfter($('#objeto_de_aprendizagem_cursos_input'));
 }
