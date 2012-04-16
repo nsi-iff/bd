@@ -34,6 +34,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.9.0'
   gem 'capybara', '~> 1.1.2'
   gem 'capybara-webkit', '~> 0.9.0'
+  gem 'poltergeist', '~> 0.6.0'
   gem 'launchy', '~> 2.0.5'
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'valid_attribute', '~> 1.2.0'

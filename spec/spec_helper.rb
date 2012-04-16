@@ -16,6 +16,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'capybara/rails'
+  require 'capybara/poltergeist'
   require 'valid_attribute'
   require 'cancan/matchers'
   require 'rufus/scheduler'
@@ -63,8 +64,14 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
+    # check phantomjs availability to use poltergeist driver
+    if system("which phantomjs > /dev/null 2>&1")
+      js_driver = :poltergeist
+    else
+      js_driver = :webkit
+    end
     config.before :each do
-      Capybara.current_driver = :webkit if example.metadata[:javascript]
+      Capybara.current_driver = js_driver if example.metadata[:javascript]
     end
 
     # If true, the base class of anonymous controllers will be inferred
