@@ -11,7 +11,7 @@
     </p>
 
     <% @conteudos.each do |conteudo|%>
-        <%= link_to conteudo.titulo, __send__("#{conteudo.class.name.underscore}_url", conteudo) %>
+        <%= link_to conteudo.titulo, conteudo_url(conteudo) %>
         <br/>
     <% end %>
     <br/>
