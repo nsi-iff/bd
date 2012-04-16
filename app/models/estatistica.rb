@@ -13,6 +13,7 @@ class Estatistica
     data_inicial = mes ? Time.new(ano, mes).beginning_of_month : Time.new(ano).beginning_of_year
     data_final = mes ? data_inicial.end_of_month : data_inicial.end_of_year
     @conteudos_validos = Conteudo.where(state: 'publicado')
+    @conteudos_por_periodo = @conteudos_validos.where('created_at between ? and ?', data_inicial, data_final)
     @numero_de_usuarios_cadastrados = usuarios(data_inicial, data_final)
     @percentual_de_acessos_por_tipo_de_conteudo = percentual_de_acessos_por_tipo_de_conteudo
     @percentual_de_acessos_por_subarea_de_conhecimento = cinco_maiores_percentuais_de_acessos_por_subarea
@@ -74,7 +75,7 @@ class Estatistica
 
   def instituicoes_contribuidoras
     instituicoes_contribuidoras = []
-    ids_instituicoes = @conteudos_validos.map(&:campus).map(&:instituicao_id)
+    ids_instituicoes = @conteudos_por_periodo.map(&:campus).map(&:instituicao_id)
     ids_instituicoes.uniq.each do |id|
       instituicoes_contribuidoras << [ids_instituicoes.count(id), Instituicao.find(id).nome]
     end
@@ -83,8 +84,8 @@ class Estatistica
 
   def campus_contribuidores
     contribuidores = []
-    @conteudos_validos.all.map(&:campus_id).uniq.each do |id|
-      contribuidores << [@conteudos_validos.where(campus_id: id).count, Campus.find(id).nome]
+    @conteudos_por_periodo.all.map(&:campus_id).uniq.each do |id|
+      contribuidores << [@conteudos_por_periodo.where(campus_id: id).count, Campus.find(id).nome]
     end
     contribuidores.sort.reverse[0..4]
   end
