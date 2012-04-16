@@ -14,18 +14,12 @@ class ConteudosController < ApplicationController
     authorize! :create, Conteudo
     @conteudo = klass.new(conteudo_da_requisicao)
     if params['cursos_selecionados_oculto']
-      @conteudo.cursos = params['cursos_selecionados_oculto'].
-        strip.split(' ,').
-        map {|descricao_curso| descricao_curso.gsub(':', '') }.
-        map {|descricao_curso| descricao_curso.split('  ') }.
-        map {|nome_eixo, *nomes_cursos|
-          nomes_cursos.map {|nome_curso|
-            EixoTematico.find_by_nome(nome_eixo).cursos.where(nome: nome_curso).first
-          }
-        }.
-        flatten.
-        # necessario devido ao conteudo bugado de params['cursos_selecionados_oculto']
-        uniq
+      @conteudo.cursos = params["cursos_selecionados_oculto"].
+        split(',').
+        map{|descricao_curso| descricao_curso.split(': ')}.
+        map{|nome_eixo, nome_curso|
+          EixoTematico.find_by_nome(nome_eixo).cursos.where(nome: nome_curso).first
+        }
     end
 
     if @conteudo.save
