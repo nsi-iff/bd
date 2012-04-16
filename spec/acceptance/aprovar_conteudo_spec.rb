@@ -48,6 +48,5 @@ feature 'aprovar conteúdo' do
     artigo.should have(1).graos_arquivo
 
     visit conteudo_path(artigo)
-    page.should have_content '3 grãos'
   end
 end

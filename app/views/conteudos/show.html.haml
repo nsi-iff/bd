@@ -1,1 +1,25 @@
-= render 'conteudos/show_estrutura_generica'
+%nav{ id: 'menu_abas'}
+  %ul
+    %li{ class: 'sel_aba', data: { padrao: '' }}
+      %a{:href=>"#metadados"} Metadados
+
+    - if @conteudo.graos_imagem.present?
+      %li{ class: 'sel_aba'}
+        %a{:href=>"#imagens"} Imagens
+
+    - if @conteudo.graos_arquivo.present?
+      %li{ class: 'sel_aba'}
+        %a{:href=>"#tabelas"} Tabelas
+
+#metadados.aba
+  = render "metadados_#{@conteudo.nome_como_simbolo}"
+
+-if @conteudo.graos_imagem.present?
+  #imagens.aba
+    - @conteudo.graos_imagem.each do |grao|
+      = render 'conteudos/grao', grao: grao
+
+- if @conteudo.graos_arquivo.present?
+  #tabelas.aba
+    - @conteudo.graos_arquivo.each do |grao|
+      = render 'conteudos/grao', grao: grao

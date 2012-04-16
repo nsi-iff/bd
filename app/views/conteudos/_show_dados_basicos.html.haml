@@ -38,9 +38,3 @@
 %p
   Contribuidor:
   = conteudo.contribuidor.try(:nome_completo)
-
-- if conteudo.graos.present?
-  #graos
-    %p= "#{conteudo.graos.count} #{'grão'.pluralize(conteudo.graos.count)}"
-    - conteudo.graos.each do |grao|
-      = render 'conteudos/grao', grao: grao

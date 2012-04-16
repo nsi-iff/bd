@@ -24,6 +24,12 @@ FactoryGirl.define do
     sequence(:nome) {|n| "Nome#{n}"}
   end
 
+  factory :grao do
+    tipo "images"
+    key "key"
+    conteudo
+  end
+
   factory :livro, :parent => :conteudo, :class => Livro do
     numero_paginas 200
     numero_edicao 1
