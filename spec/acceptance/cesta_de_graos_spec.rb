@@ -7,7 +7,7 @@ feature 'cesta de grãos' do
     require File.join(Rails.root, *%w(db criar_indices))
 
     # monkeypatch temporario para passar no teste sem o Elastic Search
-    # TODO: reverter depois
+    # TODO: remover depois que funcionarem buscas básicas com o ES fake
     class << Conteudo
       alias old_search search
       def search(param)
