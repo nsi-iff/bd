@@ -40,6 +40,7 @@ group :test, :development do
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
   gem 'pry'
+  gem 'pry-rails'
   gem 'capistrano'
   gem 'tire-mock_client', git: 'git://github.com/natanael-araujo/tire-mock_client.git'
   gem 'spork-rails', '~> 3.2.0'

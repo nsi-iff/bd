@@ -64,8 +64,11 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
-    # check phantomjs availability to use poltergeist driver
-    if system("which phantomjs > /dev/null 2>&1")
+    # check phantomjs availability in order to use poltergeist driver
+    def is_command_available command
+          system("which #{command} > /dev/null 2>&1")
+    end
+    if is_command_available(:phantomjs)
       js_driver = :poltergeist
     else
       js_driver = :webkit
@@ -92,7 +95,14 @@ Spork.each_run do
   # Capybara because it starts the web server in a thread.
   ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
-  FactoryGirl.reload
+  # only do this when using spork
+  if Spork.using_spork?
+    # re-load all models and controllers
+    ActiveSupport::Dependencies.clear
+    # re-instantiates observers
+    ActiveRecord::Base.instantiate_observers
+    # re-load factories
+    FactoryGirl.reload
+  end
 end
-
 
