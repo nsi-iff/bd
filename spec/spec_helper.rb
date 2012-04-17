@@ -95,7 +95,14 @@ Spork.each_run do
   # Capybara because it starts the web server in a thread.
   ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
+  # re-load all models and controllers
+  ActiveSupport::Dependencies.clear
+  # re-instantiates observers
+  ActiveRecord::Base.instantiate_observers
+
+  # re-load factories
   FactoryGirl.reload
-end
+# only do this when using spork
+end if Spork.using_spork?
 
 
