@@ -94,7 +94,8 @@ feature 'Buscas' do
      Delorean.time_travel_to amanha_as_2_horas
      sleep(3)
 
-     Busca.enviar_email_mala_direta
+     # TODO: desfazer isto
+     Busca.enviar_email_mala_direta if ENV['INTEGRACAO']
 
      ActionMailer::Base.deliveries.should_not be_empty
      ActionMailer::Base.deliveries.size.should == 1
