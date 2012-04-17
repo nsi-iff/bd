@@ -3,7 +3,25 @@
 require 'spec_helper'
 
 feature 'cesta de grãos' do
-  before(:all) { require File.join(Rails.root, *%w(db criar_indices)) }
+  before :all do
+    require File.join(Rails.root, *%w(db criar_indices))
+
+    # monkeypatch temporario para passar no teste sem o Elastic Search
+    # TODO: reverter depois
+    class << Conteudo
+      alias old_search search
+      def search(param)
+        where('upper(titulo) like ?', "%#{param.to_s.upcase}%")
+      end
+    end
+  end
+
+  after :all do
+    class << Conteudo
+      alias search old_search
+    end
+  end
+
   before(:each) { criar_papeis }
 
   scenario 'incluir grão na cesta', javascript: true do
@@ -11,11 +29,6 @@ feature 'cesta de grãos' do
     Factory.create(:grao_imagem, key: '12345', conteudo: livro)
     Factory.create(:grao_arquivo, key: '67890', conteudo: livro)
     sleep(3) if ENV['INTEGRACAO']
-
-    # monkeypatch temporario para passar no teste sem o Elastic Search
-    def Conteudo.search(param)
-      where('upper(titulo) like ?', "%#{param.to_s.upcase}%")
-    end
 
     visit "/buscas"
     fill_in "Busca", with: 'Mechanics'
