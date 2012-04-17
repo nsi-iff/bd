@@ -1,0 +1,24 @@
+development:
+  address: 'smtp.gmail.com'
+  port: '25'
+  authentication: 'plain'
+  domain: 'meu_dominio'
+  user_name: 'usuario'
+  password: 'senha'
+  enable_starttls_auto: true
+
+test:
+  address:
+  port:
+  authentication: plain
+  user_name:
+  password:
+  enable_starttls_auto: true
+
+production:
+  address:
+  port:
+  authentication: plain
+  user_name:
+  password:
+  enable_starttls_auto: true
