@@ -94,13 +94,15 @@ feature 'Buscas' do
      # Delorean.time_travel_to amanha_as_2_horas
      # sleep(5)
 
-     # ActionMailer::Base.deliveries.should_not be_empty
-     # ActionMailer::Base.deliveries.size.should == 1
+     Busca.enviar_email_mala_direta
 
-     # email = ActionMailer::Base.deliveries.last
+     ActionMailer::Base.deliveries.should_not be_empty
+     ActionMailer::Base.deliveries.size.should == 1
 
-     # email.to.should == [usuario.email]
-     # email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
+     email = ActionMailer::Base.deliveries.last
+
+     email.to.should == [usuario.email]
+     email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
 
      # Delorean.back_to_the_present
   end
