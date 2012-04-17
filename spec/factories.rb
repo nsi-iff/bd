@@ -30,6 +30,14 @@ FactoryGirl.define do
     conteudo
   end
 
+  factory :grao_imagem, :parent => :grao, :class => Grao do
+    tipo 'images'
+  end
+
+  factory :grao_arquivo, :parent => :grao, :class => Grao do
+    tipo 'files'
+  end
+
   factory :livro, :parent => :conteudo, :class => Livro do
     numero_paginas 200
     numero_edicao 1

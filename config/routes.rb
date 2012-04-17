@@ -37,9 +37,14 @@ DigitalLibrary::Application.routes.draw do
     post :granularizou, on: :collection
   end
 
+  resources :graos, :except => :all  do
+    put :adicionar_a_cesta, :on => :member
+  end
+
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
   get '/editor' => 'editor#index'
   post '/editor' => 'editor#download'
 end
+

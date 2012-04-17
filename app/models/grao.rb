@@ -8,5 +8,8 @@ class Grao < ActiveRecord::Base
   def imagem?
     tipo == 'images'
   end
-end
 
+  def tipo_humanizado
+    arquivo? ? "arquivo" : (imagem? ? "imagem" : nil)
+  end
+end
