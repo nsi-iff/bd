@@ -4,7 +4,7 @@ class Busca < ActiveRecord::Base
   validates :titulo, presence: true
 
   def self.enviar_email_mala_direta
-    ontem = (Time.now - 1.day).strftime("%d/%m/%y")
+    ontem = Date.yesterday.strftime("%d/%m/%y")
     conteudos_por_usuarios = {}
 
     self.where(mala_direta: true).each do |busca|
