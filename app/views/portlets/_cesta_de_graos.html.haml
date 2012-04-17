@@ -8,5 +8,7 @@
         = link_to grao.key, conteudo_path(grao.conteudo)
         = grao.tipo_humanizado
         = "#{grao.created_at.strftime('%d/%m/%Y')}"
+        = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete,
+            remote: true
 
 //  = link_to "Ver todos", escrivaninha_usuario_path(current_usuario)

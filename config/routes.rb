@@ -38,7 +38,10 @@ DigitalLibrary::Application.routes.draw do
   end
 
   resources :graos, :except => :all  do
-    put :adicionar_a_cesta, :on => :member
+    member do
+      put :adicionar_a_cesta
+      delete :remover_da_cesta
+    end
   end
 
   match "/areas/:id/sub_areas" => "areas#sub_areas"
@@ -47,4 +50,3 @@ DigitalLibrary::Application.routes.draw do
   get '/editor' => 'editor#index'
   post '/editor' => 'editor#download'
 end
-
