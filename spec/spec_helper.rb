@@ -8,10 +8,20 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
 
   require 'rails/application'
+  # Use of https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujutsu
   Spork.trap_method(Rails::Application, :reload_routes!)
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 
+  # As próximas etapas são para re-carregar app/models/..., app/controllers/... no spork
+  # como visto em http://my.rails-royce.org/2012/01/14/reloading-models-in-rails-3-1-when-usign-spork-and-cache_classes-true/
+  # Prevent main application to eager_load in the prefork block (do not load files in autoload_paths)
+  # I.e., prevent Rails::Application to loads files in the application autoload_paths
+  # such as app/models, app/controllers, etc.
+  Spork.trap_method(Rails::Application, :eager_load!)
+  # Depois dessa linha já é tarde demais. Now, load the rails stack
   require File.expand_path("../../config/environment", __FILE__)
+  # Load all railties files, i.e., eager load all the engines
+  Rails.application.railties.all { |r| r.eager_load! }
 
   require 'rspec/rails'
   require 'rspec/autorun'
@@ -21,12 +31,15 @@ Spork.prefork do
   require 'cancan/matchers'
   require 'rufus/scheduler'
 
-  ## other requires to reduce (improve) test load-time
-  # as test with script tooked from http://www.opinionatedprogrammer.com/2011/02/profiling-spork-for-faster-start-up-time/
-  require 'rspec/core'
-  require 'rspec/mocks'
-  require 'rspec/expectations'
-  require 'treetop/runtime'
+
+  if Spork.using_spork?
+    ## other requires to reduce (improve) test load-time
+    # as test with script tooked from http://www.opinionatedprogrammer.com/2011/02/profiling-spork-for-faster-start-up-time/
+    require 'rspec/core'
+    require 'rspec/mocks'
+    require 'rspec/expectations'
+    require 'treetop/runtime'
+  end
 
   unless ENV["INTEGRACAO"]
     require 'integration/fake_sam'
@@ -95,13 +108,8 @@ Spork.each_run do
   # Capybara because it starts the web server in a thread.
   ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
-  # only do this when using spork
+  # This steps will only be runned when using spork
   if Spork.using_spork?
-    # re-load all models and controllers
-    ActiveSupport::Dependencies.clear
-    # re-instantiates observers
-    ActiveRecord::Base.instantiate_observers
-    # re-load factories
     FactoryGirl.reload
   end
 end
