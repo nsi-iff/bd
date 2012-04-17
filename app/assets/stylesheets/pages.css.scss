@@ -80,3 +80,11 @@
 .estatisticas .tabelas_de_estatisticas td:nth-child(2) {
   text-align: center;
 }
+
+.estatisticas #barra_horizontal {
+  width: 500px;
+  height: 3px;
+  margin: 0 auto 0 0;
+  border: 1px solid #696969;
+  background-color: #696969;
+}

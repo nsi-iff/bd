@@ -26,9 +26,10 @@ class PagesController < ApplicationController
 
   def estatisticas
     @title = "Estatísticas"
-    if params['select_ano']
-      @estatisticas = Estatistica.new(params['select_ano'], params['select_mes'])
+    unless params['select_ano']
+      params['select_ano'] = Date.today.year
     end
+    @estatisticas = Estatistica.new(params['select_ano'], params['select_mes'])
   end
 
   def documentos_mais_acessados
