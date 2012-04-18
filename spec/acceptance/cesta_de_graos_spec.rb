@@ -29,7 +29,7 @@ feature 'cesta de grãos' do
     sleep(3) if ENV['INTEGRACAO'] # aguardar a indexacao
   end
 
-  scenario 'incluir grão na cesta', javascript: true do
+  def incluir_grao_na_cesta
     visit "/buscas"
     fill_in "Busca", with: 'Mechanics'
     click_button "Buscar"
@@ -51,7 +51,7 @@ feature 'cesta de grãos' do
     end
   end
 
-  scenario 'excluir grão da cesta', javascript: true do
+  def excluir_grao_da_cesta
     visit "/buscas"
     fill_in "Busca", with: 'Mechanics'
     click_button "Buscar"
@@ -83,6 +83,24 @@ feature 'cesta de grãos' do
     within '#cesta' do
       page.should_not have_content representacao_grao(@grao1)
       page.should_not have_content representacao_grao(@grao2)
+    end
+  end
+
+  context 'usuário anônimo' do
+    scenario 'incluir grão na cesta', javascript: true do
+      incluir_grao_na_cesta
+    end
+
+    scenario 'excluir grão da cesta', javascript: true do
+      excluir_grao_da_cesta
+    end
+
+    scenario 'cesta é zerada em nova sessão', javascript: true do
+      incluir_grao_na_cesta
+      page.should have_selector '#cesta #items'
+      autenticar_usuario
+      deslogar
+      page.should_not have_selector '#cesta #items'
     end
   end
 end
