@@ -117,6 +117,23 @@ feature 'cesta de grãos' do
     scenario 'excluir grão da cesta', javascript: true do
       excluir_grao_da_cesta
     end
+
+    scenario 'cesta sobrevive de uma sessão para outra', javascript: true do
+      incluir_grao_na_cesta
+      within '#cesta' do
+        [@grao1, @grao2].each {|g|
+          page.should have_content representacao_grao(g)
+        }
+      end
+      deslogar
+      page.should_not have_selector '#cesta #items'
+      autenticar(@usuario)
+      within '#cesta' do
+        [@grao1, @grao2].each {|g|
+          page.should have_content representacao_grao(g)
+        }
+      end
+    end
   end
 end
 
