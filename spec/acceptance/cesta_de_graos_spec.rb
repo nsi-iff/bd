@@ -61,7 +61,7 @@ feature 'cesta de grãos' do
     within('#resultado li:nth-child(1) #graos div:nth-child(2)') do
       click_link 'Adicionar à cesta'
     end
-    sleep(1)
+    sleep(1) # esperar o javascript trabalhar
 
     visit root_path
     within '#cesta' do
@@ -101,6 +101,21 @@ feature 'cesta de grãos' do
       autenticar_usuario
       deslogar
       page.should_not have_selector '#cesta #items'
+    end
+  end
+
+  context 'usuário logado' do
+    before :each do
+      criar_papeis
+      @usuario = autenticar_usuario(Papel.membro)
+    end
+
+    scenario 'incluir grão na cesta', javascript: true do
+      incluir_grao_na_cesta
+    end
+
+    scenario 'excluir grão da cesta', javascript: true do
+      excluir_grao_da_cesta
     end
   end
 end
