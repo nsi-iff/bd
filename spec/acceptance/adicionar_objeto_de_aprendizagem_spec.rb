@@ -4,6 +4,12 @@ require 'spec_helper'
 
 feature 'adicionar objeto de aprendizagem' do
   before(:each) do
+    Capybara.current_driver = :webkit
+    Idioma.create! descricao: 'Português (Brasil)'
+    popular_eixos_tematicos_cursos
+  end
+
+  scenario 'selecionar um curso de um eixo', javascript: true do
     Idioma.create! descricao: 'Português (Brasil)'
     popular_eixos_tematicos_cursos
   end
