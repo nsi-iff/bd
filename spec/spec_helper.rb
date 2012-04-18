@@ -7,6 +7,15 @@ Spork.prefork do
   require 'rubygems'
   ENV["RAILS_ENV"] ||= 'test'
 
+  # inicia simplecov (coverage) se não estiver usando spork, e com COVERAGE=true
+  if !Spork.using_spork? && ENV["COVERAGE"]
+    puts "Running Coverage Tool\n"
+    require 'simplecov'
+    require 'simplecov-rcov'
+    SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+    SimpleCov.start 'rails'
+  end
+
   require 'rails/application'
   # Use of https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujutsu
   Spork.trap_method(Rails::Application, :reload_routes!)
@@ -112,5 +121,6 @@ Spork.each_run do
   if Spork.using_spork?
     FactoryGirl.reload
   end
+
 end
 
