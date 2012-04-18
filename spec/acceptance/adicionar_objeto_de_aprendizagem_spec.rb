@@ -82,4 +82,15 @@ feature 'adicionar objeto de aprendizagem' do
     page.should have_content 'Novas tags: Técnicas de programação, OO e Testes'
     page.should have_content 'Idioma: Português (Brasil)'
   end
+
+  scenario 'editar objeto de aprendizagem' do
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
+
+    visit edit_conteudo_path(Factory.create :objeto_de_aprendizagem)
+    fill_in 'Palavras-chave', with: 'palavras chave editadas'
+    click_button 'Salvar'
+
+    page.should have_content 'Palavras-chave: palavras chave editadas'
+  end
 end
