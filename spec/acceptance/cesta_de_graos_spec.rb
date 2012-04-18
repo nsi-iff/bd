@@ -30,35 +30,31 @@ feature 'cesta de grãos' do
   end
 
   def incluir_grao_na_cesta
-    visit "/buscas"
-    fill_in "Busca", with: 'Mechanics'
-    click_button "Buscar"
+    buscar_por 'Mechanics'
 
-    within('#resultado li:nth-child(1) #graos div:nth-child(1)') do
+    within item_de_busca(resultado: 1, grao: 1) do
       click_link 'Adicionar à cesta'
     end
-    within('#cesta .item') { page.should have_content '12345 imagem' }
+    within('#cesta') { page.should have_content representacao_grao(@grao1) }
 
-    visit "/buscas"
-    fill_in "Busca", with: 'for Dummies'
-    click_button "Buscar"
+    buscar_por 'for Dummies'
 
-    within('#resultado li:nth-child(1) #graos div:nth-child(2)') do
+    within item_de_busca(resultado: 1, grao: 2) do
       click_link 'Adicionar à cesta'
     end
-    within('#cesta #items div:nth-child(2)') do
-      page.should have_content '67890 arquivo'
+
+    within item_da_cesta(2) do
+      page.should have_content representacao_grao(@grao2)
     end
   end
 
   def excluir_grao_da_cesta
-    visit "/buscas"
-    fill_in "Busca", with: 'Mechanics'
-    click_button "Buscar"
-    within('#resultado li:nth-child(1) #graos div:nth-child(1)') do
+    buscar_por 'Mechanics'
+
+    within item_de_busca(resultado: 1, grao: 1) do
       click_link 'Adicionar à cesta'
     end
-    within('#resultado li:nth-child(1) #graos div:nth-child(2)') do
+    within item_de_busca(resultado: 1, grao: 2) do
       click_link 'Adicionar à cesta'
     end
     sleep(1) # esperar o javascript trabalhar
@@ -69,7 +65,7 @@ feature 'cesta de grãos' do
       page.should have_content representacao_grao(@grao2)
     end
 
-    within '#cesta #items div:nth-child(1)' do
+    within item_da_cesta(1) do
       click_link 'Remover'
     end
     within '#cesta' do
