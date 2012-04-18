@@ -77,35 +77,33 @@ feature 'Buscas' do
   end
 
   scenario 'as 2:00 o servico de mala direta envia emails' do
-     usuario = autenticar_usuario(Papel.all)
+    usuario = autenticar_usuario(Papel.all)
 
-     artigo = Factory.create(:artigo_de_evento, titulo: 'artigo')
-     artigo.submeter!
-     artigo.aprovar!
+    artigo = Factory.create(:artigo_de_evento, titulo: 'artigo')
+    artigo.submeter!
+    artigo.aprovar!
+    sleep(2) if ENV['INTEGRACAO']
 
-     busca = Busca.create(titulo: 'busca artigo', busca: 'artigo', usuario: usuario, mala_direta: true)
+    busca = Busca.create(titulo: 'busca artigo', busca: 'artigo', usuario: usuario, mala_direta: true)
 
-     #nenhum email foi enviado
-     ActionMailer::Base.deliveries.should be_empty
+    #nenhum email foi enviado
+    ActionMailer::Base.deliveries.should be_empty
 
-     #mudar hora para 2 horas da manha do dia seguinte
-     amanha_as_2_horas = Date.tomorrow.strftime('%Y-%m-%d') + ' 2:00 am'
+    amanha_as_2_horas = Date.tomorrow.strftime('%Y-%m-%d') + ' 2:00 am'
+    Delorean.time_travel_to amanha_as_2_horas
 
-     Delorean.time_travel_to amanha_as_2_horas
-     sleep(3)
+    #tempo para esperar enviar e-mail
+    sleep(2)
 
-     # TODO: desfazer isto
-     Busca.enviar_email_mala_direta if ENV['INTEGRACAO']
+    ActionMailer::Base.deliveries.should_not be_empty
+    ActionMailer::Base.deliveries.size.should == 1
 
-     ActionMailer::Base.deliveries.should_not be_empty
-     ActionMailer::Base.deliveries.size.should == 1
+    email = ActionMailer::Base.deliveries.last
 
-     email = ActionMailer::Base.deliveries.last
+    email.to.should == [usuario.email]
+    email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
 
-     email.to.should == [usuario.email]
-     email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
-
-      Delorean.back_to_the_present
+    Delorean.back_to_the_present
   end
 
   scenario 'nenhuma busca salva' do
