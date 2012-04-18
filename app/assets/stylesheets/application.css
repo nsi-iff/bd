@@ -243,3 +243,7 @@ footer a.topo {
     padding: 3px 28px 4px 0;
     text-decoration: none;
 }
+
+#select_instituicao, #select_campus {
+  font-size: 12px;
+}

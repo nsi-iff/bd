@@ -34,7 +34,7 @@ input[type="submit"] {
 }
 
 select {
-  width: 200px;
+  width: auto;
   margin-bottom: 10px;
 }
 
