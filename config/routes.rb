@@ -42,6 +42,7 @@ DigitalLibrary::Application.routes.draw do
       put :adicionar_a_cesta
       delete :remover_da_cesta
     end
+    get :cesta, on: :collection
   end
 
   match "/areas/:id/sub_areas" => "areas#sub_areas"

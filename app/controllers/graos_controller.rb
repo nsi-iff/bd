@@ -13,9 +13,12 @@ class GraosController < ApplicationController
     respond_to &:js
   end
 
+  def cesta
+  end
+
   private
 
   def carregar_grao
-    @grao = Grao.find(params[:id])
+    @grao = Grao.find(params[:id]) if params[:id]
   end
 end

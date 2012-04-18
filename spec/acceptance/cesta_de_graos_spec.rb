@@ -82,6 +82,15 @@ feature 'cesta de grãos' do
     end
   end
 
+  def acessar_visao_da_cesta
+    incluir_grao_na_cesta
+    within('#cesta') { click_link 'Ver todos' }
+    within '#visao_cesta' do
+      page.should have_content representacao_grao(@grao1)
+      page.should have_content representacao_grao(@grao2)
+    end
+  end
+
   context 'usuário anônimo' do
     scenario 'incluir grão na cesta', javascript: true do
       incluir_grao_na_cesta
@@ -97,6 +106,10 @@ feature 'cesta de grãos' do
       autenticar_usuario
       deslogar
       page.should_not have_selector '#cesta #items'
+    end
+
+    scenario 'acessar visão da cesta', javascript: true do
+      acessar_visao_da_cesta
     end
   end
 
@@ -129,6 +142,10 @@ feature 'cesta de grãos' do
           page.should have_content representacao_grao(g)
         }
       end
+    end
+
+    scenario 'acessar visão da cesta', javascript: true do
+      acessar_visao_da_cesta
     end
   end
 end
