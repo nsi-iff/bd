@@ -19,17 +19,9 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'trabalho_de_obtencao_de_grau', 'trabalhos_de_obtencao_de_grau'
   inflect.irregular 'MudancaDeEstado', 'MudancasDeEstado'
   inflect.irregular 'mudanca_de_estado', 'mudancas_de_estado'
-  inflect.irregular 'instituicao', 'instituicoes'
-  inflect.irregular 'campus', 'campus'
+  inflect.plural /cao$/i, 'coes'
+  inflect.singular /coes$/i, 'cao'
+  inflect.uncountable ['campus']
   inflect.plural /el$/i, 'eis'
   inflect.singular /eis$/i, 'el'
-#   inflect.plural /^(ox)$/i, '\1en'
-#   inflect.singular /^(ox)en/i, '\1'
-#   inflect.irregular 'person', 'people'
-#   inflect.uncountable %w( fish sheep )
 end
-#
-# These inflection rules are supported but not enabled by default:
-# ActiveSupport::Inflector.inflections do |inflect|
-#   inflect.acronym 'RESTful'
-# end

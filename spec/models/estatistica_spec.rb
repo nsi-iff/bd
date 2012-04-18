@@ -116,7 +116,7 @@ describe Estatistica do
                          [20.0, SubArea.find(periodico.sub_area_id).nome]]
   end
 
-  it 'deve retornar as cinco instituições com maior número de contribuições' do
+  it 'deve retornar as cinco instituições com maior número de contribuições em um período de tempo' do
     Instituicao.destroy_all
     Campus.destroy_all
 
@@ -126,20 +126,22 @@ describe Estatistica do
     campus1 = Factory.create(:campus, instituicao: instituicao1)
     campus2 = Factory.create(:campus, instituicao: instituicao2)
 
-    artigo_de_evento = Factory.create(:artigo_de_evento, :state => 'publicado', :campus => campus1)
-    livro = Factory.create(:livro, :state => 'publicado', :campus => campus1)
-    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :state => 'publicado', :campus => campus1)
-    periodico = Factory.create(:periodico_tecnico_cientifico, :state => 'publicado', :campus => campus2)
-    relatorio = Factory.create(:relatorio, :state => 'publicado', :campus => campus2)
-    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7, :state => 'publicado', :campus => campus2)
+    artigo_de_evento = Factory.create(:artigo_de_evento,
+                                      :state => 'publicado',
+                                      :campus => campus1)
+    livro = Factory.create(:livro,
+                           :state => 'publicado',
+                           :campus => campus1)
+    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem,
+                                            :state => 'publicado',
+                                            :campus => campus1)
 
-    estatisticas = Estatistica.new(Date.today.year)
+    estatisticas = Estatistica.new(Date.today.year, Date.today.month)
     estatisticas.instituicoes_contribuidoras.should == [
-                         [3, "IFRN"],
                          [3, "IFF"]]
   end
 
-  it 'deve retornar os cinco campus com maior número de contribuições' do
+  it 'deve retornar os cinco campus com maior número de contribuições em um período de tempo' do
     Instituicao.destroy_all
     Campus.destroy_all
 
@@ -149,17 +151,20 @@ describe Estatistica do
     campus1 = Factory.create(:campus, nome: "Centro", instituicao: instituicao1)
     campus2 = Factory.create(:campus, nome: "Guarus", instituicao: instituicao2)
 
-    artigo_de_evento = Factory.create(:artigo_de_evento, :state => 'publicado', :campus => campus1)
-    livro = Factory.create(:livro, :state => 'publicado', :campus => campus1)
-    objeto_de_aprendizagem = Factory.create(:objeto_de_aprendizagem, :state => 'publicado', :campus => campus1)
-    periodico = Factory.create(:periodico_tecnico_cientifico, :state => 'publicado', :campus => campus2)
-    relatorio = Factory.create(:relatorio, :state => 'publicado', :campus => campus2)
-    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau, :numero_de_acessos => 7, :state => 'publicado', :campus => campus2)
-    estatisticas = Estatistica.new(Date.today.year)
-    estatisticas = Estatistica.new(Date.today.year)
-    estatisticas.campus_contribuidores.should == [
-                         [3, "Guarus"],
-                         [3, "Centro"]]
-  end
+    periodico = Factory.create(:periodico_tecnico_cientifico,
+                               :state => 'publicado',
+                               :campus => campus2)
+    relatorio = Factory.create(:relatorio,
+                               :state => 'publicado',
+                               :campus => campus1)
+    trabalho_obtencao_de_grau = Factory.create(:trabalho_de_obtencao_de_grau,
+                                               :numero_de_acessos => 7,
+                                               :state => 'publicado',
+                                               :campus => campus2)
 
+    estatisticas = Estatistica.new(Date.today.year, Date.today.month)
+    estatisticas.campus_contribuidores.should == [
+                         [2, "Guarus"],
+                         [1, "Centro"]]
+  end
 end

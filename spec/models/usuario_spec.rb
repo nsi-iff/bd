@@ -72,4 +72,14 @@ describe Usuario do
     usuario.should_not be_contribuidor
     expect { usuario.qqcoisa? }.to raise_error(NoMethodError)
   end
+
+  context 'cesta' do
+    let(:usuario) { Factory.create(:usuario) }
+
+    it 'permite adicionar graos' do
+      usuario.cesta << stub_model(Grao)
+      usuario.cesta << stub_model(Grao)
+      usuario.cesta.should have(2).graos
+    end
+  end
 end

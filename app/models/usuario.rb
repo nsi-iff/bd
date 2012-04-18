@@ -1,6 +1,7 @@
 class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :papeis
   has_and_belongs_to_many :favoritos, class_name: 'Conteudo'
+  has_and_belongs_to_many :cesta, class_name: 'Grao', join_table: 'graos_nas_cestas'
   has_many :buscas
   belongs_to :campus
   # Include default devise modules. Others available are:

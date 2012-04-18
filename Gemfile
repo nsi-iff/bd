@@ -22,6 +22,7 @@ gem "paperclip"
 gem 'jquery-rails'
 gem 'rabl'
 gem 'gon'
+gem 'multi_json', '1.2.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -35,13 +36,17 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.9.0'
   gem 'capybara', '~> 1.1.2'
   gem 'capybara-webkit', '~> 0.9.0'
+  gem 'poltergeist', '~> 0.6.0'
   gem 'launchy', '~> 2.0.5'
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
   gem 'pry'
+  gem 'pry-rails'
   gem 'capistrano'
   gem 'tire-mock_client', git: 'git://github.com/natanael-araujo/tire-mock_client.git'
   gem 'spork-rails', '~> 3.2.0'
   gem 'debugger'
+  gem 'simplecov', require: false
+  gem 'simplecov-rcov', require: false
 end

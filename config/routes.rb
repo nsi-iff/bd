@@ -37,6 +37,13 @@ DigitalLibrary::Application.routes.draw do
     post :granularizou, on: :collection
   end
 
+  resources :graos, :except => :all  do
+    member do
+      put :adicionar_a_cesta
+      delete :remover_da_cesta
+    end
+  end
+
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
