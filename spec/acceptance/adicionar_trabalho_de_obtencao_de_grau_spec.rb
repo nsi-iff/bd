@@ -26,4 +26,15 @@ feature 'adicionar trabalho de obtençao de grau' do
      page.should have_content 'Local de Defesa: Campos dos Goytacazes (RJ)'
     end
   end
+
+  scenario 'editar trabalho de obtenção de grau' do
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
+
+    visit edit_conteudo_path(Factory.create :trabalho_de_obtencao_de_grau)
+    fill_in 'Subtítulo', with: 'trabalho de obtenção de grau editado'
+    click_button 'Salvar'
+
+    page.should have_content 'Subtítulo: trabalho de obtenção de grau editado'
+  end
 end
