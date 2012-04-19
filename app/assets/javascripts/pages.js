@@ -32,7 +32,7 @@ Estatisticas = {
         return data;
      },
 
-    barra: function(div, data, label){
+    barra: function(div, data, label, title){
         $.jqplot(div, [data], {
 
             animate: !$.jqplot.use_excanvas,
@@ -46,10 +46,11 @@ Estatisticas = {
                     ticks: label
                 }
             },
+            title: title,
             highlighter: { show: false }
         });
     },
-    pie: function(div, data) {
+    pie: function(div, data, title) {
         $.jqplot (div, [data], 
             { 
               seriesDefaults: {
@@ -57,7 +58,8 @@ Estatisticas = {
                 rendererOptions: {
                   showDataLabels: true
                 }
-              }, 
+              },
+              title: title, 
               legend: { show:true, location: 'e' }
             }
         );
@@ -67,24 +69,32 @@ Estatisticas = {
 
 
 
-jQuery(function() {
+$(document).ready(function() {
     if (window.location.pathname == '/graficos_de_acessos') {
-    
+        $.jqplot.config.enablePlugins = true;
         cinco_mais = gon.estatistica.cinco_documentos_mais_acessados;
         acessos = Estatisticas.lista_de_documentos(cinco_mais.length, cinco_mais);
-        Estatisticas.barra('cinco_acessos',acessos[1],acessos[0]);
+        title = 'Os cinco documentos mais acessados.';
+        Estatisticas.barra('cinco_acessos',acessos[1],acessos[0], title);
+        $("#salvar_cinco").click( function (){$("#cinco_acessos").jqplotSaveImage()});
 
-        total_acessos = gon.estatistica.documentos_mais_acessados
-        todos_acessos = Estatisticas.lista_de_documentos(total_acessos.length, total_acessos)
-        Estatisticas.barra('todos_acessos',todos_acessos[1],todos_acessos[0]);
 
         percentuais_conteudo = gon.estatistica.percentual_de_acessos_por_tipo_de_conteudo;
         conteudo_ = Estatisticas.lista_percentuais_conteudo(percentuais_conteudo.length, percentuais_conteudo);
-        Estatisticas.pie('conteudo', conteudo_);
+        title = 'Acesso por tipo de contudo.';
+        Estatisticas.pie('conteudo', conteudo_, title);
+        $("#salvar_conteudo").click( function (){$("#conteudo").jqplotSaveImage()});
 
         percentuais_subarea = gon.estatistica.percentual_de_acessos_por_subarea_de_conhecimento;
         subarea_ = Estatisticas.lista_percentuais_subarea(percentuais_subarea.length, percentuais_subarea);
-        Estatisticas.pie('subarea',subarea_);
+        title = 'Acesso por subarea de conhecimento.';
+        Estatisticas.pie('subarea',subarea_, title);
+        $("#salvar_subarea").click( function (){$("#subarea").jqplotSaveImage()});
 
+        total_acessos = gon.estatistica.documentos_mais_acessados
+        todos_acessos = Estatisticas.lista_de_documentos(total_acessos.length, total_acessos)
+        title = 'Acesso de documentos por conteúdo individual.';
+        Estatisticas.barra('todos_acessos',todos_acessos[1],todos_acessos[0], title);
+        $("#salvar_todos_acessos").click( function (){$("#todos_acessos").jqplotSaveImage()});
     }
 });
