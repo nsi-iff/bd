@@ -57,6 +57,7 @@ feature 'cesta de grãos' do
     within item_de_busca(resultado: 1, grao: 2) do
       click_link 'Adicionar à cesta'
     end
+    #TODO: melhorar o meio de esperar o "javascript trabalhar" (2012-04-19, 14:56, ciberglo)`
     sleep(1) # esperar o javascript trabalhar
 
     visit root_path
