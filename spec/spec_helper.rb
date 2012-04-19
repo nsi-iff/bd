@@ -95,9 +95,7 @@ Spork.prefork do
     else
       js_driver = :webkit
     end
-    config.before :each do
-      Capybara.current_driver = js_driver if example.metadata[:javascript]
-    end
+    Capybara.javascript_driver = js_driver
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of

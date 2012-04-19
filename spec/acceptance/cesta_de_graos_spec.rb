@@ -92,15 +92,15 @@ feature 'cesta de grãos' do
   end
 
   context 'usuário anônimo' do
-    scenario 'incluir grão na cesta', javascript: true do
+    scenario 'incluir grão na cesta', js: true do
       incluir_grao_na_cesta
     end
 
-    scenario 'excluir grão da cesta', javascript: true do
+    scenario 'excluir grão da cesta', js: true do
       excluir_grao_da_cesta
     end
 
-    scenario 'cesta é zerada em nova sessão', javascript: true do
+    scenario 'cesta é zerada em nova sessão', js: true do
       incluir_grao_na_cesta
       page.should have_selector '#cesta #items'
       autenticar_usuario
@@ -108,7 +108,7 @@ feature 'cesta de grãos' do
       page.should_not have_selector '#cesta #items'
     end
 
-    scenario 'acessar visão da cesta', javascript: true do
+    scenario 'acessar visão da cesta', js: true do
       acessar_visao_da_cesta
     end
   end
@@ -119,15 +119,15 @@ feature 'cesta de grãos' do
       @usuario = autenticar_usuario(Papel.membro)
     end
 
-    scenario 'incluir grão na cesta', javascript: true do
+    scenario 'incluir grão na cesta', js: true do
       incluir_grao_na_cesta
     end
 
-    scenario 'excluir grão da cesta', javascript: true do
+    scenario 'excluir grão da cesta', js: true do
       excluir_grao_da_cesta
     end
 
-    scenario 'cesta sobrevive de uma sessão para outra', javascript: true do
+    scenario 'cesta sobrevive de uma sessão para outra', js: true do
       incluir_grao_na_cesta
       within '#cesta' do
         [@grao1, @grao2].each {|g|
@@ -144,7 +144,7 @@ feature 'cesta de grãos' do
       end
     end
 
-    scenario 'acessar visão da cesta', javascript: true do
+    scenario 'acessar visão da cesta', js: true do
       acessar_visao_da_cesta
     end
   end
