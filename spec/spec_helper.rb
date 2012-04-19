@@ -86,9 +86,9 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
-    # check phantomjs availability in order to use poltergeist driver
+    # check phantomjs availability in order to use poltergeist driver on capybara
     def is_command_available command
-          system("which #{command} > /dev/null 2>&1")
+      system("which #{command} > /dev/null 2>&1")
     end
     if is_command_available(:phantomjs)
       js_driver = :poltergeist
