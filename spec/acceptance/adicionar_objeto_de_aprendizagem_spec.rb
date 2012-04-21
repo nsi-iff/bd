@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-feature 'adicionar objeto de aprendizagem' do
-  before(:each) do
+feature 'adicionar objeto de aprendizagem', driver: :webkit do
+  scenario 'selecionar um curso de um eixo', js: true do
     Capybara.current_driver = :webkit
     Idioma.create! descricao: 'Português (Brasil)'
     popular_eixos_tematicos_cursos
@@ -54,7 +54,7 @@ feature 'adicionar objeto de aprendizagem' do
     page.should have_content 'Idioma: Português (Brasil)'
   end
 
-  scenario 'selecionar dois cursos de um mesmo eixo', javascript: true do
+  scenario 'selecionar dois cursos de um mesmo eixo', js: true do
     submeter_conteudo :objeto_de_aprendizagem do
       fill_in 'Palavras-chave', with: 'programação, orientação a objetos, classe'
       fill_in 'Tempo de aprendizagem típico', with: '2 meses'
@@ -78,7 +78,7 @@ feature 'adicionar objeto de aprendizagem' do
     page.should have_content 'Idioma: Português (Brasil)'
   end
 
-  scenario 'selecionar diversos cursos de eixos diferentes', javascript: true do
+  scenario 'selecionar diversos cursos de eixos diferentes', js: true do
     submeter_conteudo :objeto_de_aprendizagem do
       fill_in 'Palavras-chave', with: 'programação, orientação a objetos, classe'
       fill_in 'Tempo de aprendizagem típico', with: '2 meses'

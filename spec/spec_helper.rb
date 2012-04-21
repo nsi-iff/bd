@@ -86,18 +86,16 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
-    # check phantomjs availability in order to use poltergeist driver
+    # check phantomjs availability in order to use poltergeist driver on capybara
     def is_command_available command
-          system("which #{command} > /dev/null 2>&1")
+      system("which #{command} > /dev/null 2>&1")
     end
     if is_command_available(:phantomjs)
       js_driver = :poltergeist
     else
       js_driver = :webkit
     end
-    config.before :each do
-      Capybara.current_driver = js_driver if example.metadata[:javascript]
-    end
+    Capybara.javascript_driver = js_driver
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
