@@ -23,6 +23,8 @@ gem 'jquery-rails'
 gem 'rabl'
 gem 'gon'
 gem 'multi_json', '1.2.0'
+gem 'unicode'
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
