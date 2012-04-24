@@ -17,4 +17,15 @@ feature 'adicionar relatório' do
     page.should have_content 'Ano: 1998'
     page.should have_content 'Número de páginas: 427'
   end
+
+  scenario 'editar relatorio' do
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
+
+    visit edit_conteudo_path(Factory.create :relatorio)
+    fill_in 'Local da publicação', with: 'relatório editado'
+    click_button 'Salvar'
+
+    page.should have_content 'Local da publicação: relatório editado'
+  end
 end

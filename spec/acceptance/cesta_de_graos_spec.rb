@@ -30,38 +30,35 @@ feature 'cesta de grãos' do
   end
 
   def incluir_grao_na_cesta
-    visit "/buscas"
-    fill_in "Busca", with: 'Mechanics'
-    click_button "Buscar"
+    buscar_por 'Mechanics'
 
-    within('#resultado li:nth-child(1) #graos div:nth-child(1)') do
+    within item_de_busca(resultado: 1, grao: 1) do
       click_link 'Adicionar à cesta'
     end
-    within('#cesta .item') { page.should have_content '12345 imagem' }
+    within('#cesta') { page.should have_content representacao_grao(@grao1) }
 
-    visit "/buscas"
-    fill_in "Busca", with: 'for Dummies'
-    click_button "Buscar"
+    buscar_por 'for Dummies'
 
-    within('#resultado li:nth-child(1) #graos div:nth-child(2)') do
+    within item_de_busca(resultado: 1, grao: 2) do
       click_link 'Adicionar à cesta'
     end
-    within('#cesta #items div:nth-child(2)') do
-      page.should have_content '67890 arquivo'
+
+    within item_da_cesta(2) do
+      page.should have_content representacao_grao(@grao2)
     end
   end
 
   def excluir_grao_da_cesta
-    visit "/buscas"
-    fill_in "Busca", with: 'Mechanics'
-    click_button "Buscar"
-    within('#resultado li:nth-child(1) #graos div:nth-child(1)') do
+    buscar_por 'Mechanics'
+
+    within item_de_busca(resultado: 1, grao: 1) do
       click_link 'Adicionar à cesta'
     end
-    within('#resultado li:nth-child(1) #graos div:nth-child(2)') do
+    within item_de_busca(resultado: 1, grao: 2) do
       click_link 'Adicionar à cesta'
     end
-    sleep(1)
+    #TODO: melhorar o meio de esperar o "javascript trabalhar" (2012-04-19, 14:56, ciberglo)`
+    sleep(1) # esperar o javascript trabalhar
 
     visit root_path
     within '#cesta' do
@@ -69,7 +66,7 @@ feature 'cesta de grãos' do
       page.should have_content representacao_grao(@grao2)
     end
 
-    within '#cesta #items div:nth-child(1)' do
+    within item_da_cesta(1) do
       click_link 'Remover'
     end
     within '#cesta' do
@@ -86,21 +83,70 @@ feature 'cesta de grãos' do
     end
   end
 
+  def acessar_visao_da_cesta
+    incluir_grao_na_cesta
+    within('#cesta') { click_link 'Ver todos' }
+    within '#visao_cesta' do
+      page.should have_content representacao_grao(@grao1)
+      page.should have_content representacao_grao(@grao2)
+    end
+  end
+
   context 'usuário anônimo' do
-    scenario 'incluir grão na cesta', javascript: true do
+    scenario 'incluir grão na cesta', js: true do
       incluir_grao_na_cesta
     end
 
-    scenario 'excluir grão da cesta', javascript: true do
+    scenario 'excluir grão da cesta', js: true do
       excluir_grao_da_cesta
     end
 
-    scenario 'cesta é zerada em nova sessão', javascript: true do
+    scenario 'cesta é zerada em nova sessão', js: true do
       incluir_grao_na_cesta
       page.should have_selector '#cesta #items'
       autenticar_usuario
       deslogar
       page.should_not have_selector '#cesta #items'
+    end
+
+    scenario 'acessar visão da cesta', js: true do
+      acessar_visao_da_cesta
+    end
+  end
+
+  context 'usuário logado' do
+    before :each do
+      criar_papeis
+      @usuario = autenticar_usuario(Papel.membro)
+    end
+
+    scenario 'incluir grão na cesta', js: true do
+      incluir_grao_na_cesta
+    end
+
+    scenario 'excluir grão da cesta', js: true do
+      excluir_grao_da_cesta
+    end
+
+    scenario 'cesta sobrevive de uma sessão para outra', js: true do
+      incluir_grao_na_cesta
+      within '#cesta' do
+        [@grao1, @grao2].each {|g|
+          page.should have_content representacao_grao(g)
+        }
+      end
+      deslogar
+      page.should_not have_selector '#cesta #items'
+      autenticar(@usuario)
+      within '#cesta' do
+        [@grao1, @grao2].each {|g|
+          page.should have_content representacao_grao(g)
+        }
+      end
+    end
+
+    scenario 'acessar visão da cesta', js: true do
+      acessar_visao_da_cesta
     end
   end
 end

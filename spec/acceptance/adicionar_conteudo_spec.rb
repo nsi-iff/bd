@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'adicionar conteudo (referente aos dados básicos)' do
-  scenario 'adicionar dados basicos de conteudo', javascript: true do
+  scenario 'adicionar dados basicos de conteudo', js: true do
     popular_area_sub_area
     criar_papeis
     usuario = autenticar_usuario(Papel.contribuidor)
@@ -51,7 +51,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     end
   end
 
-  scenario 'aceita vários autores', javascript: true do
+  scenario 'aceita vários autores', js: true do
     submeter_conteudo :artigo_de_evento do
       ['Linus Torvalds',
        'Yukihiro Matsumoto',
@@ -83,7 +83,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     within('#autores') { page.should have_content "não pode ficar em branco" }
   end
 
-  scenario "conteudo da área deve mudar quando grande área é selecionada", javascript: true do
+  scenario "conteudo da área deve mudar quando grande área é selecionada", js: true do
     popular_area_sub_area
     criar_papeis
     autenticar_usuario(Papel.contribuidor)

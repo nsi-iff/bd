@@ -7,6 +7,15 @@ Spork.prefork do
   require 'rubygems'
   ENV["RAILS_ENV"] ||= 'test'
 
+  # inicia simplecov (coverage) se não estiver usando spork, e com COVERAGE=true
+  if !Spork.using_spork? && ENV["COVERAGE"]
+    puts "Running Coverage Tool\n"
+    require 'simplecov'
+    require 'simplecov-rcov'
+    SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+    SimpleCov.start 'rails'
+  end
+
   require 'rails/application'
   # Use of https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujutsu
   Spork.trap_method(Rails::Application, :reload_routes!)
@@ -77,18 +86,16 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
-    # check phantomjs availability in order to use poltergeist driver
+    # check phantomjs availability in order to use poltergeist driver on capybara
     def is_command_available command
-          system("which #{command} > /dev/null 2>&1")
+      system("which #{command} > /dev/null 2>&1")
     end
     if is_command_available(:phantomjs)
       js_driver = :poltergeist
     else
       js_driver = :webkit
     end
-    config.before :each do
-      Capybara.current_driver = js_driver if example.metadata[:javascript]
-    end
+    Capybara.javascript_driver = js_driver
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
@@ -112,5 +119,6 @@ Spork.each_run do
   if Spork.using_spork?
     FactoryGirl.reload
   end
+
 end
 

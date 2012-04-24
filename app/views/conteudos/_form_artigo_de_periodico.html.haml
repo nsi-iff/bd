@@ -1,4 +1,4 @@
-= semantic_form_for @conteudo, url: conteudos_path(tipo: @conteudo.nome_como_simbolo) do |f|
+= semantic_form_for @conteudo, url: url_para_form_conteudo(@conteudo) do |f|
   = render 'conteudos/dados_basicos', :f => f
   %br
   %fieldset{:id => "dados_complementares"}

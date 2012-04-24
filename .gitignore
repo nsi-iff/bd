@@ -13,3 +13,6 @@
 
 # ignore automatic gemset usage (rvm)
 .rvmrc
+
+# ignore personal TODO file
+.todo

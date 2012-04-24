@@ -17,7 +17,6 @@ set :normalize_asset_timestamps, false
 
 require "bundler/capistrano"
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require "rvm/capistrano"
 set :rvm_ruby_string, "ruby-1.9.3-p125@bd"
 set :rvm_type, :user
 
@@ -31,9 +30,10 @@ namespace :utils do
     run "cd #{latest_release}; bundle exec rake db:seed"
   end
   task :copy_config_file do
-    run "cp -rf #{latest_release}/config/database.yml.example #{latest_release}/config/database.yml"
-    run "cat ~/sam.yml > #{latest_release}/config/sam.yml"
-    run "cat ~/elasticsearch.yml > #{latest_release}/config/elasticsearch.yml"
+    run "cat ~/.nsi/database.yml > #{latest_release}/config/database.yml"
+    run "cat ~/.nsi/sam.yml > #{latest_release}/config/sam.yml"
+    run "cat ~/.nsi/elasticsearch.yml > #{latest_release}/config/elasticsearch.yml"
+    run "cat ~/.nsi/cloudooo.yml > #{latest_release}/config/cloudooo.yml"
   end
 end
 

@@ -1,13 +1,24 @@
 class GraosController < ApplicationController
+  before_filter :carregar_grao, :if => :current_usuario
+
   def adicionar_a_cesta
-    session[:cesta] ||= []
-    session[:cesta] << params[:id]
+    @cesta << params[:id]
+    current_usuario.cesta << @grao if current_usuario.present?
     respond_to &:js
   end
 
   def remover_da_cesta
-    session[:cesta] ||= []
-    session[:cesta].delete(params[:id])
+    @cesta.delete(params[:id])
+    current_usuario.cesta.delete(@grao) if current_usuario.present?
     respond_to &:js
+  end
+
+  def cesta
+  end
+
+  private
+
+  def carregar_grao
+    @grao = Grao.find(params[:id]) if params[:id]
   end
 end

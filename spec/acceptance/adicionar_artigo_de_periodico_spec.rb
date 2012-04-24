@@ -33,4 +33,15 @@ feature 'adicionar artigo de periódico' do
      page.should have_content 'Local: Campos dos Goytacazes (RJ)'
     end
   end
+
+  scenario 'editar artigo de evento' do
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
+
+    visit edit_conteudo_path(Factory.create :artigo_de_periodico)
+    fill_in 'Nome', with: 'artigo de periodico editado'
+    click_button 'Salvar'
+
+    page.should have_content 'Nome: artigo de periodico editado'
+  end
 end
