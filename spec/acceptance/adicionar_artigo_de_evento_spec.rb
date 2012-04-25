@@ -37,4 +37,15 @@ feature 'adicionar artigo de evento' do
      page.should have_content 'Título dos anais: Proceedings of the 1st NSI Ruby Conf'
     end
   end
+
+  scenario 'editar artigo de evento' do
+    criar_papeis
+    autenticar_usuario(Papel.contribuidor)
+
+    visit edit_conteudo_path(Factory.create :artigo_de_evento)
+    fill_in 'Nome', with: 'artigo de evento editado'
+    click_button 'Salvar'
+
+    page.should have_content 'Nome: artigo de evento editado'
+  end
 end

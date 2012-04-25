@@ -21,7 +21,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'mudanca_de_estado', 'mudancas_de_estado'
   inflect.plural /cao$/i, 'coes'
   inflect.singular /coes$/i, 'cao'
-  inflect.uncountable ['campus']
+  inflect.uncountable %w(campus cesta)
   inflect.plural /el$/i, 'eis'
   inflect.singular /eis$/i, 'el'
 end

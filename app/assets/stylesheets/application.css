@@ -61,6 +61,7 @@ header h1 {
 }
 
 header .site_actions a {
+  width: 100%;
   color: #FFF;
   text-decoration: none;
 }
@@ -73,10 +74,19 @@ header .site_actions ul, ol {
   list-style: none outside none;
 }
 
+header .site_actions ul {
+  margin-left: 10px;
+}
+
+.clear {
+  clear: both;
+  display: block;
+}
+
 header .site_actions li {
   float: left;
+  padding: 0px 6px;
   margin-top: -2px;
-  margin-left: 20px;
 }
 
 header .site_actions {
@@ -242,4 +252,8 @@ footer a.topo {
     margin: 3px 3px 0 24px;
     padding: 3px 28px 4px 0;
     text-decoration: none;
+}
+
+#select_instituicao, #select_campus {
+  font-size: 12px;
 }

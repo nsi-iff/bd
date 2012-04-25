@@ -22,6 +22,9 @@ gem "paperclip"
 gem 'jquery-rails'
 gem 'rabl'
 gem 'gon'
+gem 'multi_json', '1.2.0'
+gem 'nsi-abntformat'
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -31,6 +34,7 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'sqlite3'
   gem 'rspec-rails', '~> 2.9.0'
   gem 'capybara', '~> 1.1.2'
   gem 'capybara-webkit', '~> 0.9.0'
@@ -45,4 +49,6 @@ group :test, :development do
   gem 'tire-mock_client', git: 'git://github.com/natanael-araujo/tire-mock_client.git'
   gem 'spork-rails', '~> 3.2.0'
   gem 'debugger'
+  gem 'simplecov', require: false
+  gem 'simplecov-rcov', require: false
 end
