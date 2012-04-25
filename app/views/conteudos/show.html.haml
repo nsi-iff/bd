@@ -24,4 +24,6 @@
     - @conteudo.graos_arquivo.each do |grao|
       = render 'conteudos/grao', grao: grao
 
+= link_to "Editar", edit_conteudo_path(@conteudo)
+%br
 = render 'conteudos/acoes', :conteudo => @conteudo
