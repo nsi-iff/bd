@@ -23,7 +23,7 @@ gem 'jquery-rails'
 gem 'rabl'
 gem 'gon'
 gem 'multi_json', '1.2.0'
-gem 'unicode', '0.4.2'
+gem 'nsi-abntformat'
 
 
 group :assets do
