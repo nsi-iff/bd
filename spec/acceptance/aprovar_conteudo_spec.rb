@@ -18,7 +18,7 @@ feature 'aprovar conteúdo' do
       visit lista_de_revisao_usuario_path(user)
       page.should have_content conteudo.titulo
 
-      visit edit_conteudo_path(conteudo)
+      visit conteudo_path(conteudo)
       click_link 'Aprovar'
 
       visit lista_de_revisao_usuario_path(user)
@@ -34,7 +34,7 @@ feature 'aprovar conteúdo' do
     artigo.submeter!
 
     autenticar_usuario(Papel.gestor)
-    visit edit_conteudo_path(artigo)
+    visit conteudo_path(artigo)
     click_link 'Aprovar'
     artigo.reload.estado.should == 'granularizando'
     page.driver.post(granularizou_conteudos_path,

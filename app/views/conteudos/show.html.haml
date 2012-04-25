@@ -23,3 +23,5 @@
   #tabelas.aba
     - @conteudo.graos_arquivo.each do |grao|
       = render 'conteudos/grao', grao: grao
+
+= render 'conteudos/acoes', :conteudo => @conteudo
