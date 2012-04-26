@@ -97,8 +97,12 @@ feature 'Estante' do
   scenario 'move graos da cesta para estante (como graos favoritos)' do
     @usuario.cesta << Factory.create(:grao)
 
-    visit root_path
+    visit estante_usuario_path(@usuario)
+
     within '#estante' do
+      page.should_not have_content 'key imagem'
+    end
+    within '.content' do
       page.should_not have_content 'key imagem'
     end
 
@@ -108,6 +112,9 @@ feature 'Estante' do
     end
 
     within '#estante' do
+      page.should have_content 'key imagem'
+    end
+    within '.content' do
       page.should have_content 'key imagem'
     end
 
