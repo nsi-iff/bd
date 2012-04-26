@@ -23,5 +23,6 @@ class Ability
 
     can [:area_privada, :escrivaninha, :estante, :minhas_buscas], Usuario, { :id => usuario.id }
     can [:favoritar, :remover_favorito], Conteudo
+    can [:favoritar], Grao
   end
 end

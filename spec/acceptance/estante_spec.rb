@@ -86,10 +86,33 @@ feature 'Estante' do
   end
 
   scenario 'mostrar graos favoritos do usuário' do
+    # TODO: teste seguinte é de aceitação ou de model ?
     @usuario.graos_favoritos << Factory.create(:grao)
     visit root_path
     within '#estante' do
       page.should have_content 'key imagem'
+    end
+  end
+
+  scenario 'move graos da cesta para estante (como graos favoritos)' do
+    @usuario.cesta << Factory.create(:grao)
+
+    visit root_path
+    within '#estante' do
+      page.should_not have_content 'key imagem'
+    end
+
+    within '#cesta' do
+      page.should have_content 'key imagem'
+      click_link 'Mover para estante'
+    end
+
+    within '#estante' do
+      page.should have_content 'key imagem'
+    end
+
+    within '#cesta' do
+      page.should_not have_content 'key imagem'
     end
   end
 end
