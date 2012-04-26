@@ -1,12 +1,17 @@
 - if current_usuario.present? && can?(:ter_estante, current_usuario)
   #estante.portlet
     %h3 Estante
-    - current_usuario.estante.reverse[0..2].each do |conteudo|
+    - current_usuario.estante.reverse[0..2].each do |item|
       .item
-        = link_to conteudo.titulo, conteudo_path(conteudo)
-        %br
-        %span.info
-          = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+        - if item.is_a? Grao
+          = link_to item.key, conteudo_path(item.conteudo)
+          = item.tipo_humanizado
+          = "#{item.created_at.strftime('%d/%m/%Y')}"
+        - else
+          = link_to item.titulo, conteudo_path(item)
+          %br
+          %span.info
+            = "#{item.nome_contribuidor} - #{item.created_at.strftime('%d/%m/%Y')}"
     - if current_usuario.estante.blank?
       %p Não há nenhum conteúdo pendente ou favoritado.
 
