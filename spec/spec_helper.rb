@@ -50,7 +50,7 @@ Spork.prefork do
     require 'treetop/runtime'
   end
 
-  unless ENV["INTEGRACAO"]
+  unless ENV["INTEGRACAO_SAM"]
     require 'integration/fake_sam'
     require 'integration/fake_nsicloudooo'
   end
