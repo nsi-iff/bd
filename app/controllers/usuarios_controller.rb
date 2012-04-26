@@ -26,10 +26,6 @@ class UsuariosController < ApplicationController
     @conteudos = Conteudo.editaveis(current_usuario)
   end
 
-  def estante
-    @conteudos = Conteudo.pendentes(current_usuario)
-  end
-
   def lista_de_revisao
     @conteudos = []
     Conteudo.all.map { |conteudo| @conteudos << conteudo if conteudo.pendente? }
