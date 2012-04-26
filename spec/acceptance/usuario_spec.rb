@@ -13,7 +13,6 @@ feature 'sessão e registro de usuário' do
     visit root_path
     click_link 'Registrar Usuário'
     select 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá', from: 'select_instituicao'
-    save_and_open_page
     select 'Campus Macapá', from: 'Campus'
     select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'select_instituicao'
     select 'Campus Macaé', from: 'Campus'
