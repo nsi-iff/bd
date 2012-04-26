@@ -40,7 +40,7 @@ feature 'Estante' do
     end
   end
 
-  scenario 'mostra favoritos do usuário' do
+  scenario 'mostra conteudos favoritos do usuário' do
     relatorio = Factory.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: @outro_usuario)
     relatorio.submeter!
     relatorio.aprovar!
@@ -82,6 +82,14 @@ feature 'Estante' do
 
     within '#estante' do
       page.should_not have_content 'We love Ruby and Agile!'
+    end
+  end
+
+  scenario 'mostrar graos favoritos do usuário' do
+    @usuario.graos_favoritos << Factory.create(:grao)
+    visit root_path
+    within '#estante' do
+      page.should have_content 'key imagem'
     end
   end
 end
