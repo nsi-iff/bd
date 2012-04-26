@@ -4,15 +4,16 @@ class Ability
   def initialize(usuario)
     if usuario.gestor? || usuario.contribuidor?
       can [:ter_escrivaninha, :ter_estante], Usuario
+      can [:read, :edit, :update], Conteudo
     end
 
     if usuario.contribuidor?
-      can [:create, :read, :edit, :update, :submeter], Conteudo
-      can :adicionar_conteudo, Usuario
+      can [:create, :submeter], Conteudo
+      can [:adicionar_conteudo], Usuario
     end
 
     if usuario.gestor?
-      can [:aprovar, :read, :edit, :update], Conteudo
+      can [:aprovar], Conteudo
       can [:lista_de_revisao, :ter_lista_de_revisao], Usuario
     end
 
