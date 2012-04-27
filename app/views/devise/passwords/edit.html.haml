@@ -3,12 +3,12 @@
   = devise_error_messages!
   = f.hidden_field :reset_password_token
   %div
-    = f.label :password, "New password"
+    = f.label :password, "Nova senha"
     %br/
     = f.password_field :password
   %div
-    = f.label :password_confirmation, "Confirm new password"
+    = f.label :password_confirmation, "Confirmação da senha"
     %br/
     = f.password_field :password_confirmation
-  %div= f.submit "Change my password"
+  %div= f.submit "Confirmar alteração"
 = render "links"
