@@ -33,6 +33,7 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'parallel_tests'
   gem 'sqlite3'
   gem 'rspec-rails', '~> 2.9.0'
   gem 'capybara', '~> 1.1.2'
