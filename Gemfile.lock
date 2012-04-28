@@ -157,9 +157,6 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (>= 0.0.2)
       mime-types
-    parallel (0.5.16)
-    parallel_tests (0.7.4)
-      parallel
     pg (0.12.2)
     poltergeist (0.6.0)
       capybara (~> 1.0)
@@ -308,7 +305,6 @@ DEPENDENCIES
   nsicloudooo
   nsisam
   paperclip
-  parallel_tests
   pg (~> 0.12.2)
   poltergeist (~> 0.6.0)
   pry
