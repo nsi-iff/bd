@@ -3,7 +3,8 @@
     Dados Básicos
   = f.input :titulo, label: 'Título'
   - if @objeto_de_aprendizagem
-    = f.input :arquivo, as: :file, label: 'Arquivo'
+    = f.input :arquivo, as: :file, label: 'Arquivo',
+      hint: 'É suportado qualquer formato de arquivo.'
   - else
     = f.input :arquivo, as: :file, label: 'Arquivo',
       hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
