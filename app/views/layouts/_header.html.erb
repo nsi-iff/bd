@@ -11,6 +11,9 @@
       <li><%= link_to "Acessibilidade", '#' %></li>
       <li><%= link_to "Contato", '#' %></li>
       <% if usuario_signed_in? %>
+        <% if current_usuario.admin? %>
+          <li><%= link_to "Administração", usuarios_path  %></li>
+        <% end %>
         <li><%= link_to "Editar Conta", edit_registration_path(current_usuario) %></li>
         <li><%= link_to "Sair", destroy_usuario_session_path %></li>
       <% else %>
