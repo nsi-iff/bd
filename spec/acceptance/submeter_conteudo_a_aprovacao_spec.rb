@@ -15,9 +15,9 @@ feature 'submeter conteúdo a aprovação' do
       scenario "dono do #{tipo} pode submetê-lo a aprovação" do
         conteudo = Factory.create(tipo, contribuidor: user)
 
-        visit edit_conteudo_path(conteudo)
+        visit conteudo_path(conteudo)
         click_link 'Submeter'
-        visit edit_conteudo_path(conteudo)
+        visit conteudo_path(conteudo)
 
         page.should_not have_content 'Submeter'
         within '#escrivaninha' do

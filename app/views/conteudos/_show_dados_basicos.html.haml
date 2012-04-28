@@ -1,4 +1,4 @@
-- if current_usuario.favoritos.include? conteudo
+- if current_usuario.conteudos_favoritos.include? conteudo
   = link_to 'Remover favorito', remover_favorito_conteudo_path(conteudo), method: :put
 - else
   = link_to 'Favoritar', favoritar_conteudo_path(conteudo), method: :put

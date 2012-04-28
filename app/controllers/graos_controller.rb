@@ -16,6 +16,13 @@ class GraosController < ApplicationController
   def cesta
   end
 
+  def favoritar_graos
+    authorize! :favoritar, Grao
+    current_usuario.graos_favoritos << current_usuario.cesta.all
+    current_usuario.cesta = []
+    redirect_to :back
+  end
+
   private
 
   def carregar_grao

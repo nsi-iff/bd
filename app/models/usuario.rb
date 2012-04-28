@@ -1,6 +1,7 @@
 class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :papeis
-  has_and_belongs_to_many :favoritos, class_name: 'Conteudo'
+  has_and_belongs_to_many :conteudos_favoritos, class_name: 'Conteudo'
+  has_and_belongs_to_many :graos_favoritos, class_name: 'Grao', join_table: 'graos_nas_estantes'
   has_and_belongs_to_many :cesta, class_name: 'Grao', join_table: 'graos_nas_cestas'
   has_many :buscas
   belongs_to :campus
@@ -21,7 +22,9 @@ class Usuario < ActiveRecord::Base
   end
 
   def estante
-    Conteudo.publicados(self) + self.favoritos
+    Conteudo.publicados(self) +
+    self.graos_favoritos +
+    self.conteudos_favoritos
   end
 
   def method_missing(method_name, *params)

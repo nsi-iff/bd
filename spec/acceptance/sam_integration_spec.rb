@@ -11,7 +11,7 @@ feature 'Integração com o SAM', :if => ENV['INTEGRACAO_SAM'] do
   end
 
   scenario 'padrão' do
-    submeter_conteudo :artigo_de_evento, titulo: 'integracao sam', link: '', arquivo: Rails.root + 'spec/resources/arquivo.pdf'
+    submeter_conteudo :artigo_de_evento, titulo: 'integracao sam', link: '', arquivo: Rails.root + 'spec/resources/manual.odt'
     page.should have_content 'com sucesso'
 
     @artigo = ArtigoDeEvento.find_by_titulo('integracao sam')
@@ -24,8 +24,9 @@ feature 'Integração com o SAM', :if => ENV['INTEGRACAO_SAM'] do
 
     response.should have_key("date")
 
-    arquivo_64 = Base64.encode64(File.open('spec/resources/arquivo.nsi').read)
+    arquivo_64 = Base64.encode64(File.open('spec/resources/manual.odt').read)
     response.should have_key("data")
-    response["data"].should == arquivo_64
+    response["data"].should have_key("doc")
+    response["data"]["doc"].should == arquivo_64
   end
 end

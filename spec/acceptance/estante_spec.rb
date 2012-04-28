@@ -3,14 +3,15 @@
 require 'spec_helper'
 
 feature 'Estante' do
-  before(:each) { criar_papeis }
+  before(:each) do
+    criar_papeis
+    @usuario = autenticar_usuario(Papel.contribuidor)
+    @outro_usuario = Factory.create(:usuario)
+  end
 
   scenario 'mostra os conteúdos aprovados do usuário' do
-    usuario = autenticar_usuario(Papel.contribuidor)
-    outro = Factory.create(:usuario)
-
-    artigo = Factory.create(:artigo_de_evento, titulo: 'Ruby is cool!', contribuidor: usuario)
-    relatorio = Factory.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: outro)
+    artigo = Factory.create(:artigo_de_evento, titulo: 'Ruby is cool!', contribuidor: @usuario)
+    relatorio = Factory.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: @outro_usuario)
 
     artigo.submeter!
     visit root_path
@@ -19,7 +20,7 @@ feature 'Estante' do
       page.should_not have_content 'We love Ruby and Agile!'
     end
 
-    visit estante_usuario_path(usuario)
+    visit estante_usuario_path(@usuario)
     within '.content' do
       page.should_not have_content 'Ruby is cool!'
       page.should_not have_content 'We love Ruby and Agile!'
@@ -32,18 +33,15 @@ feature 'Estante' do
       page.should_not have_content 'We love Ruby and Agile!'
     end
 
-    visit estante_usuario_path(usuario)
+    visit estante_usuario_path(@usuario)
     within '.content' do
       page.should have_content 'Ruby is cool!'
       page.should_not have_content 'We love Ruby and Agile!'
     end
   end
 
-  scenario 'mostra favoritos do usuário' do
-    usuario = autenticar_usuario(Papel.contribuidor)
-    outro = Factory.create(:usuario)
-
-    relatorio = Factory.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: outro)
+  scenario 'mostra conteudos favoritos do usuário' do
+    relatorio = Factory.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: @outro_usuario)
     relatorio.submeter!
     relatorio.aprovar!
 
@@ -55,7 +53,7 @@ feature 'Estante' do
       page.should have_content 'We love Ruby and Agile!'
     end
 
-    visit estante_usuario_path(usuario)
+    visit estante_usuario_path(@usuario)
     within '.content' do
       page.should have_content 'We love Ruby and Agile!'
     end
@@ -68,7 +66,7 @@ feature 'Estante' do
       page.should_not have_content 'We love Ruby and Agile!'
     end
 
-    visit estante_usuario_path(usuario)
+    visit estante_usuario_path(@usuario)
     within '.content' do
       page.should_not have_content 'We love Ruby and Agile!'
     end
@@ -76,7 +74,7 @@ feature 'Estante' do
     visit conteudo_path(relatorio)
     click_link 'Favoritar'
 
-    visit estante_usuario_path(usuario)
+    visit estante_usuario_path(@usuario)
     within '.content' do
       page.should have_content 'We love Ruby and Agile!'
       click_link 'Remover favorito'
@@ -84,6 +82,44 @@ feature 'Estante' do
 
     within '#estante' do
       page.should_not have_content 'We love Ruby and Agile!'
+    end
+  end
+
+  scenario 'mostrar graos favoritos do usuário' do
+    # TODO: teste seguinte é de aceitação ou de model ?
+    @usuario.graos_favoritos << Factory.create(:grao)
+    visit root_path
+    within '#estante' do
+      page.should have_content 'key imagem'
+    end
+  end
+
+  scenario 'move graos da cesta para estante (como graos favoritos)' do
+    @usuario.cesta << Factory.create(:grao)
+
+    visit estante_usuario_path(@usuario)
+
+    within '#estante' do
+      page.should_not have_content 'key imagem'
+    end
+    within '.content' do
+      page.should_not have_content 'key imagem'
+    end
+
+    within '#cesta' do
+      page.should have_content 'key imagem'
+      click_link 'Mover para estante'
+    end
+
+    within '#estante' do
+      page.should have_content 'key imagem'
+    end
+    within '.content' do
+      page.should have_content 'key imagem'
+    end
+
+    within '#cesta' do
+      page.should_not have_content 'key imagem'
     end
   end
 end

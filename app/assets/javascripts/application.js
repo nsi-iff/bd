@@ -19,10 +19,8 @@
 $(document).ready(function() {
     $(".mala_direta_checkbox").change(function() {
         var busca_id = this.value;
-        if (this.checked == true)
-            $.post("/buscas/" + busca_id + "/cadastrar_mala_direta");
-        else
-            $.post("/buscas/" + busca_id + "/remover_mala_direta");
+        var acao = this.checked ? "/cadastrar" : "/remover";
+        $.post("/buscas/" + busca_id + acao + "_mala_direta");
     });
 
     $("#instituicao").change(function() {

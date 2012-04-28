@@ -44,6 +44,7 @@ DigitalLibrary::Application.routes.draw do
     end
     get :cesta, on: :collection
   end
+  get :favoritar_graos, :to => 'graos#favoritar_graos'
 
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"

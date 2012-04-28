@@ -8,6 +8,17 @@ feature 'sessão e registro de usuário' do
     criar_papeis
   end
 
+  scenario 'modificar opções de campus ao modificar instituição', :js => true do
+    popular_instituicao_campus
+    visit root_path
+    click_link 'Registrar Usuário'
+    select 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá', from: 'select_instituicao'
+    select 'Campus Macapá', from: 'Campus'
+    select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'select_instituicao'
+    select 'Campus Macaé', from: 'Campus'
+    select 'Campus Campos Centro', from: 'Campus'
+  end
+
   scenario 'cadastrar usuario' do
     popular_instituicao_campus
     visit root_path

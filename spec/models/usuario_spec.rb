@@ -50,8 +50,9 @@ describe Usuario do
     it 'retorna os conteudos aprovados do usuario' do
       usuario = Usuario.new
       Conteudo.should_receive(:publicados).with(usuario).and_return([:publicados])
-      usuario.should_receive(:favoritos).and_return([:favoritos])
-      usuario.estante.should == [:publicados, :favoritos]
+      usuario.should_receive(:graos_favoritos).and_return([:graos_favoritos])
+      usuario.should_receive(:conteudos_favoritos).and_return([:conteudos_favoritos])
+      usuario.estante.should == [:publicados, :graos_favoritos, :conteudos_favoritos]
     end
   end
 
