@@ -3,10 +3,12 @@
 require 'spec_helper'
 
 feature 'controle de acesso' do
-
   context 'ver conteúdo' do
-    scenario 'qualquer usuário inclusive convidados podem ver conteúdo publicado' do
+    before(:each) do
       criar_papeis
+    end
+
+    scenario 'qualquer usuário inclusive convidados podem ver conteúdo publicado' do
       livro = Factory.create(:livro)
       livro.submeter!
       livro.aprovar!
@@ -31,8 +33,24 @@ feature 'controle de acesso' do
     end
   end
   context 'adicionar conteudos' do
-    scenario 'pode ser acessado por contribuidores de conteúdo' do
+    before(:each) do
       criar_papeis
+    end
+
+    scenario 'usuário contribuidor não pertencente a nenhum instituto não pode adicionar conteúdo' do
+      usuario = autenticar_usuario(Papel.contribuidor)
+
+      campus_nao_federais.each do |campus|
+        usuario.campus = campus[0]
+        usuario.save!
+        visit adicionar_conteudo_path
+
+        page.should have_content 'Acesso negado'
+        page.should_not have_content '#adicionar_conteudo'
+      end
+    end
+
+    scenario 'pode ser acessado por contribuidores de conteúdo' do
       popular_area_sub_area
       popular_eixos_tematicos_cursos
       autenticar_usuario(Papel.contribuidor)
