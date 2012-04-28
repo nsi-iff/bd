@@ -74,32 +74,25 @@ $(document).ready(function() {
         acessos = Estatisticas.lista_de_documentos(cinco_mais.length, cinco_mais);
         title = 'Os cinco documentos mais acessados.';
         Estatisticas.barra('cinco_acessos', acessos[1], acessos[0], title);
-        $("#salvar_cinco").click(function() {
-            $("#cinco_acessos").jqplotSaveImage();
-        });
 
         percentuais_conteudo = gon.estatistica.percentual_de_acessos_por_tipo_de_conteudo;
         conteudo_ = Estatisticas.lista_percentuais_conteudo(percentuais_conteudo.length, percentuais_conteudo);
-        title = 'Acesso por tipo de contudo.';
+        title = 'Acesso por tipo de conteudo.';
         Estatisticas.pie('conteudo', conteudo_, title);
-        $("#salvar_conteudo").click(function() {
-            $("#conteudo").jqplotSaveImage();
-        });
 
         percentuais_subarea = gon.estatistica.percentual_de_acessos_por_subarea_de_conhecimento;
         subarea_ = Estatisticas.lista_percentuais_subarea(percentuais_subarea.length, percentuais_subarea);
         title = 'Acesso por subarea de conhecimento.';
         Estatisticas.pie('subarea', subarea_, title);
-        $("#salvar_subarea").click(function() {
-            $("#subarea").jqplotSaveImage();
-        });
 
         total_acessos = gon.estatistica.documentos_mais_acessados;
         todos_acessos = Estatisticas.lista_de_documentos(total_acessos.length, total_acessos);
         title = 'Acesso de documentos por conteúdo individual.';
         Estatisticas.barra('todos_acessos', todos_acessos[1], todos_acessos[0], title);
-        $("#salvar_todos_acessos").click(function() {
-            $("#todos_acessos").jqplotSaveImage();
+
+        $('.salvar_grafico').live('click', function() {
+          var grafico_id = this.id.replace('salvar_', '');
+          $('#' + grafico_id).jqplotSaveImage();
         });
     }
 });
