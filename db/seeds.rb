@@ -371,6 +371,9 @@ def criar_instituicoes_e_campus_associados
   Instituicao.delete_all
   Campus.delete_all
 
+  outra = Insituicao.create(nome: 'Outro')
+  outra.campus.create(nome: '----')
+
   iftocantins = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Tocantins')
   iftocantins.campus.create([
     { nome: 'Campus Araguatins'           },
