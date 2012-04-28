@@ -2,6 +2,9 @@ class Ability
   include CanCan::Ability
 
   def initialize(usuario)
+
+    usuario ||= Usuario.new    # usuário não cadastrado (convidado)
+
     if usuario.gestor? || usuario.contribuidor?
       can [:ter_escrivaninha, :ter_estante], Usuario
       can [:read, :edit, :update], Conteudo
