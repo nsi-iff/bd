@@ -371,8 +371,8 @@ def criar_instituicoes_e_campus_associados
   Instituicao.delete_all
   Campus.delete_all
 
-  outra = Insituicao.create(nome: 'Outro')
-  outra.campus.create(nome: '----')
+  nenhum = Instituicao.create(nome: 'Não pertenço a nenhum Instituto Federal')
+  nenhum.campus.create(nome: '----')
 
   iftocantins = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Tocantins')
   iftocantins.campus.create([
@@ -884,6 +884,9 @@ def criar_instituicoes_e_campus_associados
   setecmec.campus.create([
     { nome: 'RENAPI' },
   ])
+
+  outra = Instituicao.create(nome: 'Outro')
+  outra.campus.create(nome: 'Outro')
 end
 
 criar_instituicoes_e_campus_associados if Instituicao.count == 0
