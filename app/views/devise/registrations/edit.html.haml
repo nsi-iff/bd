@@ -15,7 +15,7 @@
       class: "instituicoes", id: "select_instituicao")
 
     = label_tag(:campus, 'Campus')
-    = select_tag(:campus, options_for_select(Instituicao.first.campus.map {|campus| [campus.nome, campus.id] }),
+    = select_tag(:campus, options_for_select(current_usuario.campus.instituicao.campus.map {|campus| [campus.nome, campus.id] }),
       class: "campus", id: "select_campus")
 
   = f.buttons do
