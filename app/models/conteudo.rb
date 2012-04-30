@@ -169,6 +169,10 @@ class Conteudo < ActiveRecord::Base
     self.class.name.underscore
   end
 
+  def tipo_de_arquivo_importa?
+    true
+  end
+
   private
 
   def granularizar
@@ -216,10 +220,6 @@ class Conteudo < ActiveRecord::Base
       errors.add(:arquivo, 'deve ser fornecido (ou informe um link)')
       errors.add(:link, 'deve ser informado (ou forneça um arquivo)')
     end
-  end
-
-  def tipo_de_arquivo_importa?
-    true
   end
 
   def tipo_de_arquivo
