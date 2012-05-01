@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class ConteudosController < ApplicationController
-  before_filter :authenticate_usuario!, except: :granularizou
+  before_filter :authenticate_usuario!, except: [:granularizou, :show]
   before_filter :pode_editar, only: [:edit, :update]
 
   def new
@@ -47,8 +47,10 @@ class ConteudosController < ApplicationController
   end
 
   def show
-    authorize! :read, Conteudo
     @conteudo = obter_conteudo
+    unless @conteudo.publicado?
+      authorize! :read, @conteudo
+    end
     incrementar_numero_de_acessos
   end
 

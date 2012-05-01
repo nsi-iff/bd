@@ -35,8 +35,6 @@ class ObjetoDeAprendizagem < Conteudo
     idioma.try(:descricao)
   end
 
-  private
-
   def tipo_de_arquivo_importa?
     false
   end

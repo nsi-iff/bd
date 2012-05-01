@@ -1,15 +1,23 @@
+# encoding: utf-8
+
 class Ability
   include CanCan::Ability
 
   def initialize(usuario)
+
+    usuario ||= Usuario.new    # usuário não cadastrado (convidado)
+
     if usuario.gestor? || usuario.contribuidor?
       can [:ter_escrivaninha, :ter_estante], Usuario
       can [:read, :edit, :update], Conteudo
     end
 
     if usuario.contribuidor?
+      instituicao = usuario.campus.instituicao.nome
+      unless instituicao == 'Não pertenço a nenhum Instituto Federal' || instituicao == 'Outro'
+        can [:adicionar_conteudo], Usuario
+      end
       can [:create, :submeter], Conteudo
-      can [:adicionar_conteudo], Usuario
     end
 
     if usuario.gestor?
