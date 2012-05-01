@@ -1,16 +1,15 @@
-#cesta.portlet
-  %h3 Cesta de Grãos
-  - if @cesta.blank?
-    %p Não há nenhum grão na cesta.
-  - else
-    #items
-      - @cesta.map {|grao_id| Grao.find(grao_id) }.each do |grao|
-        .item
-          = link_to grao.key, conteudo_path(grao.conteudo)
-          = grao.tipo_humanizado
-          = "#{grao.created_at.strftime('%d/%m/%Y')}"
-          = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete,
-              remote: true
+%h3 Cesta de Grãos
+- if @cesta.blank?
+  %p Não há nenhum grão na cesta.
+- else
+  #items
+    - @cesta.map {|grao_id| Grao.find(grao_id) }.each do |grao|
+      .item
+        = link_to grao.key, conteudo_path(grao.conteudo)
+        = grao.tipo_humanizado
+        = "#{grao.created_at.strftime('%d/%m/%Y')}"
+        = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete,
+            remote: true
 
-    = link_to "Ver todos", cesta_graos_path
-    = link_to "Mover para estante", favoritar_graos_path
+  = link_to "Ver todos", cesta_graos_path
+  = link_to "Mover para estante", favoritar_graos_path
