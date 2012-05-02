@@ -1,8 +1,10 @@
 # encoding: utf-8
+require 'referencia_bibliografica'
 
 class Conteudo < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
+  include ReferenciaBibliografica 
 
   has_many :graos
   has_many :autores
