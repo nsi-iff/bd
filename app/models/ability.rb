@@ -14,7 +14,7 @@ class Ability
 
     if usuario.contribuidor?
       instituicao = usuario.campus.instituicao.nome
-      unless instituicao == 'Não pertenço a nenhum Instituto Federal' || instituicao == 'Outro'
+      unless instituicao == 'Não pertenço a uma Instituição da Rede Federal de EPCT'
         can [:adicionar_conteudo], Usuario
       end
       can [:create, :submeter], Conteudo
