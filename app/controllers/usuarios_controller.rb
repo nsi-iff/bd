@@ -3,12 +3,15 @@ class UsuariosController < ApplicationController
   load_and_authorize_resource
 
   def index
+  end
+
+  def papeis
     @usuarios = Usuario.all
   end
 
   def buscar
     @usuarios = Usuario.where('nome_completo like ?', "%#{params['buscar_nome']}%")
-    render action: 'index'
+    render action: 'papeis'
   end
 
   def atualizar_papeis

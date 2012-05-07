@@ -26,7 +26,7 @@ class Ability
     end
 
     if usuario.admin?
-      can [:atualizar_papeis, :index, :buscar], Usuario
+      can [:atualizar_papeis, :index, :buscar, :papeis], Usuario
     end
 
     can [:area_privada, :escrivaninha, :estante, :minhas_buscas], Usuario, { :id => usuario.id }

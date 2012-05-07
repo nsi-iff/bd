@@ -13,6 +13,7 @@ DigitalLibrary::Application.routes.draw do
       get :estante
     end
   end
+  get "usuarios/papeis", :to => "usuarios#papeis"
 
   root :to => 'pages#inicio'
   match "/ajuda",     :to => "pages#ajuda"
