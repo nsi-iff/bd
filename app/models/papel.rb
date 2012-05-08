@@ -8,7 +8,8 @@ class Papel < ActiveRecord::Base
       { nome: 'membro', descricao: 'membro' },
       { nome: 'contribuidor', descricao: 'contribuidor de conteúdo' },
       { nome: 'gestor', descricao: 'gestor de conteúdo' },
-      { nome: 'admin', descricao: 'administrador' }
+      { nome: 'admin', descricao: 'administrador' },
+      { nome: 'instituicao_admin', descricao: 'administrador de instituição' }
     ])
   end
 
