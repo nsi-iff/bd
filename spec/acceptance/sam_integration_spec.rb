@@ -6,8 +6,7 @@ require 'base64'
 
 feature 'Integração com o SAM', :if => ENV['INTEGRACAO_SAM'] do
   before(:all) do
-    config = Rails.application.config
-    @sam = NSISam::Client.new "http://#{config.sam_user}:#{config.sam_password}@#{config.sam_host}:#{config.sam_port}"
+    @sam = ServiceRegistry.sam
   end
 
   scenario 'padrão' do
@@ -20,7 +19,7 @@ feature 'Integração com o SAM', :if => ENV['INTEGRACAO_SAM'] do
     response.should have(3).keys
 
     response.should have_key("from_user")
-    response["from_user"].should == Rails.application.config.sam_user
+    response["from_user"].should == Rails.application.config.sam_configuration[:user]
 
     response.should have_key("date")
 

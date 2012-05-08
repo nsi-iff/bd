@@ -4,7 +4,7 @@ require 'referencia_bibliografica'
 class Conteudo < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
-  include ReferenciaBibliografica 
+  include ReferenciaBibliografica
 
   has_many :graos
   has_many :autores
@@ -202,9 +202,6 @@ class Conteudo < ActiveRecord::Base
 
   def enviar_arquivo_ao_sam
     if arquivo.present?
-      config = Rails.application.config
-      url = "http://#{config.sam_user}:#{config.sam_password}@#{config.sam_host}:#{config.sam_port}"
-      sam = NSISam::Client.new url
       result = sam.store(doc: arquivo_base64)
       arquivo.key = result['key']
     end

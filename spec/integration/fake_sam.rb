@@ -1,6 +1,6 @@
 module NSISam
-  class Client
-    def initialize(url)
+  class FakeClient
+    def initialize(params = {})
       @storage = {}
     end
 

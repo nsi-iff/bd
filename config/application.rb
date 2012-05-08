@@ -58,12 +58,9 @@ module DigitalLibrary
     config.apache_log_file = '/var/log/apache2/access.log.1'
 
     # Configuracoes do acesso ao SAM
-    sam_config = YAML.load(
-      File.read(File.join(Rails.root, 'config', 'sam.yml')))[Rails.env]
-    config.sam_user = sam_config['user']
-    config.sam_password = sam_config['password']
-    config.sam_host = sam_config['host']
-    config.sam_port = sam_config['port']
+    config.sam_configuration = YAML.load(
+      File.read(File.join(Rails.root, 'config', 'sam.yml')))[Rails.env].
+      symbolize_keys
 
     # Configuracoes do acesso ao Cloudooo
     cloudooo_config = YAML.load(
