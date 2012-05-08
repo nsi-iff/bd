@@ -15,7 +15,8 @@ class UsuariosController < ApplicationController
   end
 
   def usuarios_instituicao
-    @usuarios = Campus.where('instituicao_id like ?', params['usuarios_instituicao']).map {|campus| campus.usuarios }.flatten
+    @usuarios = Instituicao.where('nome like ?', Instituicao.find_by_id(params['usuarios_instituicao']).nome)
+    .first.campus.map { |campus| campus.usuarios }.flatten
     render action: 'papeis'
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426041846) do
+ActiveRecord::Schema.define(:version => 20120502215843) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20120426041846) do
     t.integer  "contribuidor_id"
     t.integer  "numero_de_acessos",   :default => 0
     t.integer  "campus_id"
+    t.string   "tipo_trabalho"
   end
 
   create_table "conteudos_usuarios", :id => false, :force => true do |t|
