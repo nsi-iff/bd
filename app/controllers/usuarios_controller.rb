@@ -9,7 +9,7 @@ class UsuariosController < ApplicationController
     @usuarios = Usuario.all
   end
 
-  def buscar
+  def buscar_por_nome
     @usuarios = Usuario.where('nome_completo like ?', "%#{params['buscar_nome']}%")
     render action: 'papeis'
   end

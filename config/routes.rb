@@ -4,7 +4,7 @@ DigitalLibrary::Application.routes.draw do
   devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   resources :usuarios, only: [:index] do
     put :atualizar_papeis, on: :collection
-    get :buscar, on: :collection
+    get :buscar_por_nome, on: :collection
     get :area_privada
     get :minhas_buscas, :to => 'usuarios#minhas_buscas'
     member do

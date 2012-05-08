@@ -1,7 +1,8 @@
-= form_tag buscar_usuarios_path, method: 'get' do
+= form_tag buscar_por_nome_usuarios_path, method: 'get' do
   = label_tag 'buscar_nome', 'Buscar por nome'
   = text_field_tag 'buscar_nome'
   = submit_tag 'Buscar'
+
 
 = form_tag atualizar_papeis_usuarios_path, method: 'put' do
   %table{ border: '1', id: 'usuarios' }
