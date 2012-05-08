@@ -29,6 +29,34 @@ feature 'mudar papel do usuário' do
     page.should have_checked_field "#{usuario.email}[\"gestor\"]"
   end
 
+  scenario 'listar usuários por instituição' do
+    criar_papeis
+    autenticar_usuario Papel.admin
+    ins1 = Instituicao.create(nome: 'instituicao1')
+    camp1 = ins1.campus.create(nome: 'campus1')
+    ins2 = Instituicao.create(nome: 'instituicao2')
+    camp2 = ins2.campus.create(nome: 'campus2')
+
+    Factory.create(:usuario_gestor, nome_completo: 'Rodrigo', campus: camp1)
+    Factory.create(:usuario_contribuidor, nome_completo: 'Priscila', campus: camp2)
+
+    visit usuarios_papeis_path
+    page.should have_content 'Rodrigo'
+    page.should have_content 'Priscila'
+
+    select ins1.nome, from: 'Listar usuários do Instituicao'
+    click_button 'Listar'
+
+    page.should have_content 'Rodrigo'
+    page.should_not have_content 'Priscila'
+
+    select ins2.nome, from: 'Listar usuários do Instituicao'
+    click_button 'Listar'
+
+    page.should_not have_content 'Rodrigo'
+    page.should have_content 'Priscila'
+  end
+
   scenario 'buscar usuário' do
     criar_papeis
     autenticar_usuario Papel.admin

@@ -14,6 +14,11 @@ class UsuariosController < ApplicationController
     render action: 'papeis'
   end
 
+  def usuarios_instituicao
+    @usuarios = Campus.where('instituicao_id like ?', params['usuarios_instituicao']).map {|campus| campus.usuarios }.flatten
+    render action: 'papeis'
+  end
+
   def atualizar_papeis
     params[:papeis] ||= {}
     Usuario.all.each do |usuario|
