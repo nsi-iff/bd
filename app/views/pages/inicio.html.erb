@@ -1,5 +1,12 @@
 <div class="home">
   <h1>Pages#inicio</h1>
+
+  <%= form_tag "/buscas", :method => :get do %>
+    <%= label_tag :busca, "Busca" %>
+    <%= text_field_tag :busca, params[:busca] %>
+    <%= submit_tag "Buscar", name: nil %>
+  <% end %>
+
   <p>Os conteúdos disseminados pela Biblioteca Digital da EPCT são criados e depositados pelos Institutos Federais de Educação, Centros Federais de Educação e Escolas Técnicas Federais que compõem a Rede Federal de Educação Tecnológica. Portanto, a qualidade dos seus metadados e o controle do acesso ao teor dos mesmos é de responsabilidade dos colaboradores que os depositam. Apesar dos conteúdos estarem disponibilizados pelo portal da Biblioteca Digital e serem de livre acesso para consulta e download, é ilegal copiar trecho ou conteúdo completo sem dar os devidos créditos ao(s) seu(s) autor(es).</p>
   <p>O portal da Biblioteca Digital da EPCT preza para que nenhum direito autoral seja violado. Contudo, caso seja encontrado algum conteúdo que esteja violando direitos autorais, solicitamos sua colaboração em informar a nossa equipe para que a situação seja regularizada.</p>
 </div>

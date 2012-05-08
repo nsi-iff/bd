@@ -30,7 +30,6 @@ class BuscasController < InheritedResources::Base
         redirect_to usuario_minhas_buscas_path(current_usuario), :notice => 'Busca cadastrada no servico de mala direta'
       end
     end
-
   end
 
   def remover_mala_direta
