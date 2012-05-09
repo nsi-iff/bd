@@ -2,10 +2,11 @@
   %h3 Escrivaninha
   - current_usuario.escrivaninha.each do |conteudo|
     .item
-      = link_to conteudo.titulo, conteudo_path(conteudo)
+      = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
       - if conteudo.pendente?
         %span.info{ id: "pendente[#{conteudo.id}]" } Pendente
       %span.info
         = "#{conteudo.created_at.strftime('%d/%m/%Y')}"
   - if current_usuario.escrivaninha.blank?
     %p Não há nenhum conteúdo editável.
+

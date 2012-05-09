@@ -14,10 +14,18 @@ describe ApplicationHelper do
 
     context 'com @title' do
       before(:each) { helper.instance_eval { @title = 'dummy' } }
-      
+
       it 'concatena o @title com o título base' do
         helper.title.should == "dummy | #{titulo_base}"
       end
+    end
+  end
+
+  describe 'conteudo_tag' do
+    it 'produz um span com as classes "conteudo" e tipo do conteudo' do
+      helper.conteudo_tag(
+        ObjetoDeAprendizagem.new(titulo: "Hey ho, let's go")).should ==
+        "<span class='conteudo_tag conteudo-objeto_de_aprendizagem'>Hey ho, let's go</span>"
     end
   end
 end

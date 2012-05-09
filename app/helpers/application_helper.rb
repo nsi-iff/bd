@@ -38,4 +38,8 @@ module ApplicationHelper
       conteudo_path(@conteudo)
     end
   end
+
+  def conteudo_tag(conteudo)
+    "<span class='conteudo_tag conteudo-#{conteudo.class.name.to_s.underscore}'>#{conteudo.titulo}</span>".html_safe
+  end
 end

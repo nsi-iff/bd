@@ -7,7 +7,7 @@
         = item.tipo_humanizado
         = "#{item.created_at.strftime('%d/%m/%Y')}"
       - else
-        = link_to item.titulo, conteudo_path(item)
+        = link_to conteudo_tag(item), conteudo_path(item)
         %span.info
           = "#{item.nome_contribuidor} - #{item.created_at.strftime('%d/%m/%Y')}"
         - if current_usuario.conteudos_favoritos.include? item

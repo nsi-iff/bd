@@ -7,8 +7,9 @@
     - @estatisticas.documentos_mais_acessados.each do |d|
       %tr
         %td
-          = link_to d.titulo, "conteudos/#{d.id}"
+          = link_to conteudo_tag(d), "conteudos/#{d.id}"
         %td
           = d.numero_de_acessos
 %br
 = link_to "Voltar", :back
+

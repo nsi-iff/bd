@@ -14,9 +14,10 @@
               %span.info
               = "#{item.created_at.strftime('%d/%m/%Y')}"
             - else
-              = link_to item.titulo, conteudo_path(item)
+              = link_to conteudo_tag(item), conteudo_path(item)
               %br
               %span.info
                 = "#{item.nome_contribuidor} - #{item.created_at.strftime('%d/%m/%Y')}"
 
         = link_to "Ver todos", estante_usuario_path(current_usuario)
+

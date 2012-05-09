@@ -4,9 +4,10 @@
     - Conteudo.all.reverse[0..2].each do |conteudo|
       - if conteudo.pendente?
         .item
-          = link_to conteudo.titulo, conteudo_path(conteudo)
+          = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
           %br
           %span.info
             = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
 
     = link_to "Ver todos", lista_de_revisao_usuario_path(current_usuario)
+

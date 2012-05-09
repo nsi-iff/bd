@@ -8,6 +8,7 @@
       %tbody
         - @conteudos.each do |conteudo|
           %tr
-            %td= conteudo.titulo
+            %td= conteudo_tag(conteudo)
     - else
       %p Não há nenhum conteúdo para revisão.
+

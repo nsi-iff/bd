@@ -1,0 +1,11 @@
+.conteudo_tag {
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+@each $tipo in artigo_de_evento, artigo_de_periodico, livro, objeto_de_aprendizagem, periodico_tecnico_cientifico, relatorio, trabalho_de_obtencao_de_grau {
+  .conteudo-#{$tipo} {
+    background-image: url('/assets/conteudos/#{$tipo}.png');
+    background-repeat: no-repeat;
+  }
+}

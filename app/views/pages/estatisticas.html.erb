@@ -17,7 +17,7 @@
         <th> Número de acessos </th>
         <% @estatisticas.cinco_documentos_mais_acessados.each do |d| %>
           <tr>
-            <td><%= link_to d.titulo, "conteudos/#{d.id}" %></td>
+            <td><%= link_to conteudo_tag(d), "conteudos/#{d.id}" %></td>
             <td><%= d.numero_de_acessos %></td>
           </tr>
         <% end %>
@@ -109,3 +109,4 @@
     <br><%= link_to 'Graficos', graficos_de_acessos_path %>
   <% end %>
 </div>
+
