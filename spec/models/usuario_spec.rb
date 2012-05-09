@@ -14,6 +14,7 @@ describe Usuario do
       Factory.create(:papel_gestor)
       Factory.create(:papel_contribuidor)
       Factory.create(:papel_admin)
+      Factory.create(:papel_instituicao_admin)
     end
 
     shared_examples 'adicionar e ler todos os tipos de conteudo' do
