@@ -3,8 +3,8 @@ $(document).ready(function() {
     selecionarAbaDe($('.sel_aba[data-padrao]'))
 
     $('.sel_aba').click(function() {
-        event.preventDefault()
         selecionarAbaDe($(this))
+        return false
     });
 
     function selecionarAbaDe(sel_aba) {
