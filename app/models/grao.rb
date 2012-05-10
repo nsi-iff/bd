@@ -12,4 +12,9 @@ class Grao < ActiveRecord::Base
   def tipo_humanizado
     arquivo? ? "arquivo" : (imagem? ? "imagem" : nil)
   end
+
+  def conteudo_base64
+    conteudo_base64 = sam.get(key)
+    conteudo_base64['data']
+  end
 end

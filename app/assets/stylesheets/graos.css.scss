@@ -1,0 +1,17 @@
+.grao_imagem {
+  float: left;
+  width: 143px;
+  height: 185px;
+  padding: 0px 6px 0px 9px;
+  margin: 0px;
+  background-image: url("/assets/fundo_grao.png");
+  text-align: center;
+
+  /*TODO: fazer HACK para ie*/
+  img {
+    max-width: 80%;
+    max-height: 80%;
+    border: 1px solid #CCC;
+    margin: 12px;
+  }
+}

@@ -46,7 +46,5 @@ feature 'aprovar conteúdo' do
     artigo.reload.estado.should == 'publicado'
     artigo.should have(2).graos_imagem
     artigo.should have(1).graos_arquivo
-
-    visit conteudo_path(artigo)
   end
 end

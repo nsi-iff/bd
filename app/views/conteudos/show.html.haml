@@ -16,8 +16,8 @@
 
 -if @conteudo.graos_imagem.present?
   #imagens.aba
-    - @conteudo.graos_imagem.each do |grao|
-      = render 'conteudos/grao', grao: grao
+    = render 'conteudos/graos_imagem', graos: @conteudo.graos_imagem
+    %span.clear
 
 - if @conteudo.graos_arquivo.present?
   #tabelas.aba
