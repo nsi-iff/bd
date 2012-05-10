@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'integration/fake_sam'
 require 'integration/fake_nsicloudooo'
 
 describe Conteudo do

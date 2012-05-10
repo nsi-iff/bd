@@ -51,7 +51,6 @@ Spork.prefork do
   end
 
   unless ENV["INTEGRACAO_SAM"]
-    require 'integration/fake_sam'
     require 'integration/fake_nsicloudooo'
   end
 

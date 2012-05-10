@@ -1,5 +1,3 @@
-require File.join(Rails.root, 'spec', 'integration', 'fake_sam')
-
 class ServiceRegistry
   def self.sam=(sam)
     @sam = sam
