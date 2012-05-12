@@ -5,7 +5,7 @@ require 'integration/fake_nsicloudooo'
 
 describe Conteudo do
   context 'workflow' do
-    let(:conteudo) { Factory.create(:conteudo) }
+    let(:conteudo) { FactoryGirl.create(:conteudo) }
 
     it 'possui estado inicial editavel' do
       conteudo.state.should == 'editavel'
@@ -147,10 +147,10 @@ describe Conteudo do
   end
 
   context 'mudança de estado' do
-    let(:conteudo) { Factory.create(:conteudo) }
+    let(:conteudo) { FactoryGirl.create(:conteudo) }
 
     it 'armazena seu estado corrente' do
-      c = Factory.create(:conteudo)
+      c = FactoryGirl.create(:conteudo)
       c.submeter!
       c.state.should == 'pendente'
 
@@ -246,13 +246,13 @@ describe Conteudo do
   end
 
   it 'retorna editaveis por contribuidor' do
-    contribuidor1, contribuidor2 = 2.times.map { Factory.create(:usuario_contribuidor) }
-    c1 = Factory.create(:livro, contribuidor: contribuidor1)
-    c2 = Factory.create(:relatorio, contribuidor: contribuidor1)
+    contribuidor1, contribuidor2 = 2.times.map { FactoryGirl.create(:usuario_contribuidor) }
+    c1 = FactoryGirl.create(:livro, contribuidor: contribuidor1)
+    c2 = FactoryGirl.create(:relatorio, contribuidor: contribuidor1)
     c2.submeter!
-    c3 = Factory.create(:artigo_de_evento, contribuidor: contribuidor2)
+    c3 = FactoryGirl.create(:artigo_de_evento, contribuidor: contribuidor2)
     c3.submeter!
-    c4 = Factory.create(:livro, contribuidor: contribuidor2)
+    c4 = FactoryGirl.create(:livro, contribuidor: contribuidor2)
     Conteudo.editaveis(contribuidor1).should == [c1]
     Conteudo.editaveis(contribuidor2).should == [c4]
   end
@@ -264,13 +264,13 @@ describe Conteudo do
   end
 
   it 'retorna pendentes por contribuidor' do
-    contribuidor1, contribuidor2 = 2.times.map { Factory.create(:usuario_contribuidor) }
-    c1 = Factory.create(:livro, contribuidor: contribuidor1)
-    c2 = Factory.create(:relatorio, contribuidor: contribuidor1)
+    contribuidor1, contribuidor2 = 2.times.map { FactoryGirl.create(:usuario_contribuidor) }
+    c1 = FactoryGirl.create(:livro, contribuidor: contribuidor1)
+    c2 = FactoryGirl.create(:relatorio, contribuidor: contribuidor1)
     c2.submeter!
-    c3 = Factory.create(:artigo_de_evento, contribuidor: contribuidor2)
+    c3 = FactoryGirl.create(:artigo_de_evento, contribuidor: contribuidor2)
     c3.submeter!
-    c4 = Factory.create(:livro, contribuidor: contribuidor2)
+    c4 = FactoryGirl.create(:livro, contribuidor: contribuidor2)
     Conteudo.pendentes(contribuidor1).should == [c2]
     Conteudo.pendentes(contribuidor2).should == [c3]
   end
@@ -281,10 +281,10 @@ describe Conteudo do
       type: 'text/plain',
       tempfile: File.new(Rails.root + 'spec/resources/arquivo.nsi')
     })
-    Factory.build(:conteudo, arquivo: arquivo, link: '').should be_valid
-    Factory.build(:conteudo, arquivo: nil,
+    FactoryGirl.build(:conteudo, arquivo: arquivo, link: '').should be_valid
+    FactoryGirl.build(:conteudo, arquivo: nil,
                   link: 'http://nsi.iff.edu.br').  should be_valid
-    conteudo = Factory.build(:conteudo, arquivo: arquivo,
+    conteudo = FactoryGirl.build(:conteudo, arquivo: arquivo,
                                         link: 'http://nsi.iff.edu.br')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
@@ -292,7 +292,7 @@ describe Conteudo do
   end
 
   it 'arquivo ou link devem existir' do
-    conteudo = Factory.build(:conteudo, arquivo: nil, link: '')
+    conteudo = FactoryGirl.build(:conteudo, arquivo: nil, link: '')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
     conteudo.errors[:link].should be_any
@@ -309,7 +309,7 @@ describe Conteudo do
           type: 'text/plain',
           tempfile: File.new(Rails.root + "spec/resources/#{arquivo_tipo}")
         })
-        Factory.build(tipo, link: '',
+        FactoryGirl.build(tipo, link: '',
                   arquivo: arquivo).should be_valid
       end
     end
@@ -320,24 +320,24 @@ describe Conteudo do
         type: 'text/plain',
         tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
       })
-      Factory.build(tipo, link: '',
+      FactoryGirl.build(tipo, link: '',
                 arquivo: arquivo).should_not be_valid
     end
    end
 
   it 'area deve ser a area ligada a sua subarea' do
-    area = Factory.create(:area)
-    subarea = Factory.create(:sub_area, area: area)
-    conteudo = Factory.build(:conteudo, sub_area: subarea)
+    area = FactoryGirl.create(:area)
+    subarea = FactoryGirl.create(:sub_area, area: area)
+    conteudo = FactoryGirl.build(:conteudo, sub_area: subarea)
 
     conteudo.area.should be(area)
   end
 
   it 'instituicao deve ser a instituicao ligada ao usuario contribuidor' do
-    usuario = Factory.create(:usuario_contribuidor)
+    usuario = FactoryGirl.create(:usuario_contribuidor)
     instituicao_usuario = usuario.campus.instituicao
-    campus = Factory.create(:campus, instituicao: instituicao_usuario)
-    conteudo = Factory.build(:conteudo, campus: campus)
+    campus = FactoryGirl.create(:campus, instituicao: instituicao_usuario)
+    conteudo = FactoryGirl.build(:conteudo, campus: campus)
 
     conteudo.campus.instituicao.should be(instituicao_usuario)
   end
@@ -357,7 +357,7 @@ describe Conteudo do
   end
 
   context 'granularizavel' do
-    let(:conteudo) { Factory.build(:conteudo) }
+    let(:conteudo) { FactoryGirl.build(:conteudo) }
 
     it 'nao granularizavel se é um link' do
       conteudo.set_arquivo(nil)
@@ -398,8 +398,8 @@ describe Conteudo do
 
     context 'indexação de atributos de relacionamentos' do
       before(:all) do
-        subject.autores = [Factory(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
-                           Factory(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
+        subject.autores = [FactoryGirl.create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
+                           FactoryGirl.create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
         Area.destroy_all
         SubArea.destroy_all
         area = Area.create(nome: 'Ciências Exatas e da Terra')
@@ -465,4 +465,3 @@ describe Conteudo do
     end
   end
 end
-

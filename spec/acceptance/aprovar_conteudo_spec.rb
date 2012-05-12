@@ -12,7 +12,7 @@ feature 'aprovar conteúdo' do
   tipos_de_conteudo.each do |tipo|
     scenario "gestor deve poder aprovar #{tipo} pendente" do
       user = autenticar_usuario(Papel.gestor)
-      conteudo = Factory.create(tipo)
+      conteudo = FactoryGirl.create(tipo)
       conteudo.submeter!
 
       visit lista_de_revisao_usuario_path(user)

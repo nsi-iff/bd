@@ -38,7 +38,7 @@ feature 'adicionar artigo de periódico' do
     criar_papeis
     autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(Factory.create :artigo_de_periodico)
+    visit edit_conteudo_path(FactoryGirl.create :artigo_de_periodico)
     fill_in 'Nome', with: 'artigo de periodico editado'
     click_button 'Salvar'
 
