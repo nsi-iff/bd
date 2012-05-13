@@ -24,4 +24,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.uncountable %w(campus cesta)
   inflect.plural /el$/i, 'eis'
   inflect.singular /eis$/i, 'el'
+  inflect.singular /ais$/i, 'al'
 end
