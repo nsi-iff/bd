@@ -34,7 +34,7 @@ end
 
 group :test, :development do
   gem 'sqlite3'
-  gem 'rspec-rails', '~> 2.9.0'
+  gem 'rspec-rails', '~> 2.10.0'
   gem 'capybara', '~> 1.1.2'
   gem 'capybara-webkit', '~> 0.9.0'
   gem 'poltergeist', '~> 0.6.0'

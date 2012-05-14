@@ -13,7 +13,7 @@
   = select_tag(:area, options_for_select(Area.all.map {|area| [area.nome, area.id] }), class: "areas")
   = f.input :sub_area, as: :select, input_html: { class: "sub_areas" },
       collection: Area.first.sub_areas.map {|sub_area| [sub_area.nome, sub_area.id] },
-      prompt: false, label: 'Área de Conhecimento'
+      include_blank: false, label: 'Área de Conhecimento'
   #autores
     = f.semantic_fields_for :autores do |autor|
       = render 'conteudos/autor_fields', :f => autor
