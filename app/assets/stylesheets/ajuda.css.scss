@@ -1,0 +1,30 @@
+#manuais, #tutoriais {
+  h1 {
+    color: #526B13;
+  }
+
+  a {
+  color: #526B13;
+  }
+
+  a:hover {
+  text-decoration: underline;
+  }
+
+  .descricao {
+  padding: 0px;
+  display: block;
+  margin-left: 20px;
+  font-size: 80%;
+  }
+
+  .tutorial {
+    border-top: solid 1px #526B13;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  .link_descricao {
+    font-size: 80%;
+  }
+}

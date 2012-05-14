@@ -18,6 +18,7 @@ DigitalLibrary::Application.routes.draw do
 
   root :to => 'pages#inicio'
   match "/ajuda",     :to => "pages#ajuda"
+  match "/ajuda/manuais", :to => "pages#manuais"
   match "/sobre",     :to => "pages#sobre"
   match "/noticias",  :to => "pages#noticias"
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
@@ -28,6 +29,9 @@ DigitalLibrary::Application.routes.draw do
     post :cadastrar_mala_direta, :to => 'buscas#cadastrar_mala_direta'
     post :remover_mala_direta, :to => 'buscas#remover_mala_direta'
   end
+
+  resources :tutoriais, :only => :index, :path => '/ajuda/tutoriais'
+  match 'ajuda/tutoriais/*tutorial' => 'tutoriais#show', :via => :get
 
   resources :conteudos, except: [:index, :delete] do
     member do
