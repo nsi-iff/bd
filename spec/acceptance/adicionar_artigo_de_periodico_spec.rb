@@ -34,7 +34,7 @@ feature 'adicionar artigo de periódico' do
     end
   end
 
-  scenario 'editar artigo de evento' do
+  scenario 'editar artigo de periodico' do
     criar_papeis
     usuario = autenticar_usuario(Papel.contribuidor)
 

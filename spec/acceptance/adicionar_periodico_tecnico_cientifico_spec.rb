@@ -22,7 +22,7 @@ feature 'adicionar periodico tecnico cientifico' do
     page.should have_content 'Ano do último volume: 2011'
   end
 
-  scenario 'editar artigo de evento' do
+  scenario 'editar periodico técnico cientifico' do
     criar_papeis
     usuario = autenticar_usuario(Papel.contribuidor)
 
