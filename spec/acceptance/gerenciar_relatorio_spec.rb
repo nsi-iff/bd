@@ -20,8 +20,9 @@ feature 'adicionar relatório' do
 
   scenario 'editar relatorio' do
     criar_papeis
-    usuario = autenticar_usuario(Papel.contribuidor)
-    visit edit_conteudo_path(FactoryGirl.create :relatorio, campus: usuario.campus)
+    autenticar_usuario(Papel.contribuidor)
+
+    visit edit_conteudo_path(FactoryGirl.create :relatorio)
     fill_in 'Local da publicação', with: 'relatório editado'
     click_button 'Salvar'
 

@@ -39,8 +39,8 @@ feature 'adicionar livro' do
 
   scenario 'editar livro' do
     criar_papeis
-    usuario = autenticar_usuario(Papel.contribuidor)
-    visit edit_conteudo_path(FactoryGirl.create :livro, campus: usuario.campus)
+    autenticar_usuario(Papel.contribuidor)
+    visit edit_conteudo_path(FactoryGirl.create :livro)
 
     fill_in 'Subtítulo', with: 'Metaprograming Rails'
     click_button 'Salvar'

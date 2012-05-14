@@ -24,10 +24,9 @@ feature 'adicionar periodico tecnico cientifico' do
 
   scenario 'editar periodico técnico cientifico' do
     criar_papeis
-    usuario = autenticar_usuario(Papel.contribuidor)
+    autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(FactoryGirl.create :periodico_tecnico_cientifico,
-                                                 campus: usuario.campus)
+    visit edit_conteudo_path(FactoryGirl.create :periodico_tecnico_cientifico)
     fill_in 'Editora', with: 'periodico tecnico cientifico editado'
     click_button 'Salvar'
 

@@ -67,8 +67,6 @@ Spork.prefork do
     end
   end
 
-  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
-
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -98,8 +96,6 @@ Spork.prefork do
     end
     Capybara.javascript_driver = js_driver
 
-    after(:each) { raise "erro" if Area.count > 0 }
-
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
@@ -124,3 +120,4 @@ Spork.each_run do
   end
 
 end
+

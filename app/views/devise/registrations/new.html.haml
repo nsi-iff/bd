@@ -10,7 +10,7 @@
     = f.input :campus, as: :select, input_html: { class: "campus", id: "select_campus" },
       collection: Instituicao.first.campus.map {|campus| [campus.nome, campus.id] },
       prompt: false, label: 'Campus'
-  = f.actions do
+  = f.buttons do
     = f.submit 'Registrar'
 
 = render 'links'

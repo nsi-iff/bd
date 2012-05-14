@@ -40,10 +40,9 @@ feature 'adicionar artigo de evento' do
 
   scenario 'editar artigo de evento' do
     criar_papeis
-    usuario = autenticar_usuario(Papel.contribuidor)
+    autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(FactoryGirl.create :artigo_de_evento,
-                                                 campus: usuario.campus)
+    visit edit_conteudo_path(FactoryGirl.create :artigo_de_evento)
     fill_in 'Nome', with: 'artigo de evento editado'
     click_button 'Salvar'
 
