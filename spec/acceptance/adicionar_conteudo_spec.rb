@@ -18,6 +18,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     fill_in 'Curriculum Lattes', with: 'http://lattes.cnpq.br/1234567890'
     fill_in 'Direitos', with: 'Direitos e esquerdos'
     fill_in 'Resumo', with: 'This work proposes an Ruby performance improvement'
+    page.should have_selector('a[href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar"]')
     click_button 'Salvar'
 
     page.should have_content 'Título: A Proposal for Ruby Performance Improvements'
