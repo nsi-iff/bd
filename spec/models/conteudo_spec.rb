@@ -400,10 +400,13 @@ describe Conteudo do
       before(:all) do
         subject.autores = [FactoryGirl.create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
                            FactoryGirl.create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
-        Area.destroy_all
-        SubArea.destroy_all
         area = Area.create(nome: 'Ciências Exatas e da Terra')
         subject.sub_area = area.sub_areas.create(nome: 'Ciência da Computação')
+      end
+
+      after(:all) do
+        SubArea.find_by_nome('Ciência da Computação').destroy
+        Area.find_by_nome('Ciências Exatas e da Terra').destroy
       end
 
       context 'dos autores' do

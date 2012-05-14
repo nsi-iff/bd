@@ -29,12 +29,11 @@ feature 'adicionar trabalho de obtençao de grau' do
 
   scenario 'editar trabalho de obtenção de grau' do
     criar_papeis
-    autenticar_usuario(Papel.contribuidor)
-
-    visit edit_conteudo_path(FactoryGirl.create :trabalho_de_obtencao_de_grau)
+    usuario = autenticar_usuario(Papel.contribuidor)
+    visit edit_conteudo_path(FactoryGirl.create(:trabalho_de_obtencao_de_grau,
+                                                campus: usuario.campus))
     fill_in 'Subtítulo', with: 'trabalho de obtenção de grau editado'
     click_button 'Salvar'
-
     page.should have_content 'Subtítulo: trabalho de obtenção de grau editado'
   end
 end
