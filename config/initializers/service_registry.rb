@@ -15,5 +15,3 @@ module ActiveRecord
     end
   end
 end
-
-ServiceRegistry.sam = NSISam::FakeClient.new unless ENV['INTEGRACAO_SAM']

@@ -50,9 +50,11 @@ Spork.prefork do
     require 'treetop/runtime'
   end
 
-  unless ENV["INTEGRACAO_SAM"]
+  unless ENV['INTEGRACAO_CLOUDOOO']
     require 'integration/fake_nsicloudooo'
   end
+
+  ServiceRegistry.sam = NSISam::FakeClient.new unless ENV['INTEGRACAO_SAM']
 
   # ver http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
   Devise.stretches = 1
@@ -75,7 +77,8 @@ Spork.prefork do
     config.include Devise::TestHelpers, :type => :controller
 
     # testes de busca são dependentes do elasticsearch
-    config.filter_run_excluding busca: true unless ENV['INTEGRACAO']
+    config.filter_run_excluding busca: true unless ENV['INTEGRACAO_TIRE']
+    config.filter_run_excluding sam: true unless ENV['INTEGRACAO_SAM']
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -103,7 +106,7 @@ Spork.prefork do
   end
 
   Tire.configure do
-    unless ENV['INTEGRACAO']
+    unless ENV['INTEGRACAO_TIRE']
       client Tire::Http::Client::MockClient
     end
   end
@@ -118,6 +121,4 @@ Spork.each_run do
   if Spork.using_spork?
     FactoryGirl.reload
   end
-
 end
-

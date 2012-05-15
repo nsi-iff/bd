@@ -12,7 +12,7 @@ feature 'Buscas' do
     usuario = autenticar_usuario(Papel.membro)
     livro = FactoryGirl.create(:livro, titulo: 'My book')
     livro2 = FactoryGirl.create(:livro, titulo: 'Outro book')
-    sleep(3) if ENV['INTEGRACAO'] # espera indexar
+    sleep(3) if ENV['INTEGRACAO_TIRE'] # espera indexar
     visit "/buscas"
     fill_in 'Busca', with: 'book'
     click_button 'Buscar'
@@ -83,7 +83,7 @@ feature 'Buscas' do
   #  artigo = FactoryGirl.create(:artigo_de_evento, titulo: 'artigo')
   #  artigo.submeter!
   #  artigo.aprovar!
-  #  sleep(2) if ENV['INTEGRACAO']
+  #  sleep(2) if ENV['INTEGRACAO']  Não há mais ENV['INTEGRACAO'], consertar isto quando resolver o TODO -- rodrigo
 
   #  busca = Busca.create(titulo: 'busca artigo', busca: 'artigo', usuario: usuario, mala_direta: true)
 
