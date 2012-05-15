@@ -3,4 +3,8 @@
     = f.input :nome, label: 'Autor'
     = f.input :lattes, label: 'Curriculum Lattes',
         hint: 'Link para o currículo do autor'
+    = link_to 'Abrir Lattes', 'http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar',
+      id: 'lattes-link', target: '_blank'
+    %br
+    %br
     = link_to_remove_association 'Remover autor', f
