@@ -59,7 +59,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                                                      campus: campos_centro,
                                                                      autores: [autor_1]
     # espera o elasticsearch indexar :(
-    sleep(2) if ENV['INTEGRACAO_TIRE']
+    sleep(3) if ENV['INTEGRACAO_TIRE']
   end
 
   scenario 'por título' do
