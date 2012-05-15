@@ -87,7 +87,7 @@ end
 
 def submeter_conteudo(tipo, opcoes = {})
   popular_area_sub_area
-  criar_papeis
+  Papel.criar_todos
   autenticar_usuario(Papel.contribuidor)
   visit new_conteudo_path(tipo: tipo)
   preencher_campos tipo, opcoes

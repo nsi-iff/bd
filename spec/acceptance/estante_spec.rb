@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'Estante' do
   before(:each) do
-    criar_papeis
+    Papel.criar_todos
     @usuario = autenticar_usuario(Papel.contribuidor)
     @outro_usuario = FactoryGirl.create(:usuario)
   end

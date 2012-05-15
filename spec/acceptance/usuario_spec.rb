@@ -5,7 +5,7 @@ require 'spec_helper'
 feature 'sessão e registro de usuário' do
 
   before(:each) do
-    criar_papeis
+    Papel.criar_todos
   end
 
   scenario 'modificar opções de campus ao modificar instituição', :js => true do

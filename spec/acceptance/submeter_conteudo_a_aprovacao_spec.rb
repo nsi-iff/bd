@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'submeter conteúdo a aprovação' do
   before (:each) do
-    criar_papeis
+    Papel.criar_todos
     popular_area_sub_area
     popular_eixos_tematicos_cursos
   end

@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'determinados usuários não podem acessar página de adicionar conteúdo' do
   before(:each) do
-    criar_papeis
+    Papel.criar_todos
   end
   scenario 'não cadastrado não pode ver link para adicionar conteúdo' do
     visit root_path
@@ -36,7 +36,7 @@ end
 feature 'verificar menu adicionar conteúdo' do
   before(:each) do
     popular_area_sub_area
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
   end
 

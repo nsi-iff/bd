@@ -28,7 +28,7 @@ feature 'adicionar trabalho de obtençao de grau' do
   end
 
   scenario 'editar trabalho de obtenção de grau' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
     visit edit_conteudo_path(FactoryGirl.create :trabalho_de_obtencao_de_grau)

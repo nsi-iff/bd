@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'Lista de Revisão' do
-  before(:each) { criar_papeis }
+  before(:each) { Papel.criar_todos }
 
   scenario 'mostra os conteúdos de todos usuários em estado pendente' do
     autenticar_usuario(Papel.gestor)

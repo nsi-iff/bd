@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'mudar papel do usuário' do
   scenario 'usuário não admin, não pode acessar página de manipulação de papéis' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.gestor)
     livro = FactoryGirl.create(:livro, titulo: 'programming')
     livro.submeter

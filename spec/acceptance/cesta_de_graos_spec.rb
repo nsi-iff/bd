@@ -116,7 +116,7 @@ feature 'cesta de grãos' do
 
   context 'usuário logado' do
     before :each do
-      criar_papeis
+      Papel.criar_todos
       @usuario = autenticar_usuario(Papel.membro)
     end
 

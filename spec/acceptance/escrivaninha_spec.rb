@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'Escrivaninha' do
-  before(:each) { criar_papeis }
+  before(:each) { Papel.criar_todos }
 
   scenario 'mostra os conteúdos do usuário em estado de edição' do
     usuario = autenticar_usuario(Papel.contribuidor)

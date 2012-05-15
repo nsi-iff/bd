@@ -31,14 +31,14 @@ feature 'adicionar livro' do
   end
 
   scenario 'sem tradução' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
     visit conteudo_path(FactoryGirl.create(:livro, traducao: false))
     page.should have_content 'Tradução: Não'
   end
 
   scenario 'editar livro' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
     visit edit_conteudo_path(FactoryGirl.create :livro)
 

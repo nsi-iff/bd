@@ -5,7 +5,7 @@ require 'spec_helper'
 feature 'controle de acesso' do
   context 'ver conteúdo' do
     before(:each) do
-      criar_papeis
+      Papel.criar_todos
     end
 
     scenario 'qualquer usuário inclusive convidados podem ver conteúdo publicado' do
@@ -34,7 +34,7 @@ feature 'controle de acesso' do
   end
   context 'adicionar conteudos' do
     before(:each) do
-      criar_papeis
+      Papel.criar_todos
     end
 
     scenario 'usuário contribuidor não pertencente a nenhum instituto não pode adicionar conteúdo' do

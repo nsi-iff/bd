@@ -5,7 +5,7 @@ require 'base64'
 
 feature 'apresentacao dos conteudos por abas' do
   scenario 'visao de conteudo sem graos deve mostrar somente aba padrao' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
     conteudo = FactoryGirl.create(:artigo_de_periodico)
@@ -18,7 +18,7 @@ feature 'apresentacao dos conteudos por abas' do
   end
 
   scenario 'conteudo com grao imagem deve ter aba imagens com visualizacao das imagens' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
     sam = ServiceRegistry.sam
@@ -45,7 +45,7 @@ feature 'apresentacao dos conteudos por abas' do
   end
 
   scenario 'conteudo com grao arquivo deve ter aba tabelas com visualizacao da chave do grao' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
     conteudo = FactoryGirl.create(:artigo_de_periodico)

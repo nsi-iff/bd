@@ -5,7 +5,7 @@ require 'spec_helper'
 feature 'adicionar conteudo (referente aos dados básicos)' do
   scenario 'adicionar dados basicos de conteudo', js: true do
     popular_area_sub_area
-    criar_papeis
+    Papel.criar_todos
     usuario = autenticar_usuario(Papel.contribuidor)
     visit new_conteudo_path(tipo: :artigo_de_evento)
     fill_in 'Título', with: 'A Proposal for Ruby Performance Improvements'
@@ -86,7 +86,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
 
   scenario "conteudo da área deve mudar quando grande área é selecionada", js: true do
     popular_area_sub_area
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
     visit new_conteudo_path(tipo: :artigo_de_evento)
 

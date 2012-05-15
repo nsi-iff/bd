@@ -35,7 +35,7 @@ feature 'adicionar artigo de periódico' do
   end
 
   scenario 'editar artigo de periodico' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
     visit edit_conteudo_path(FactoryGirl.create :artigo_de_periodico)

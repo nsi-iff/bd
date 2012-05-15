@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'adicionar relatório' do
   scenario 'padrao' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :relatorio do
       fill_in 'Local da publicação', with: 'Rio de Janeiro'
@@ -19,7 +19,7 @@ feature 'adicionar relatório' do
   end
 
   scenario 'editar relatorio' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
     visit edit_conteudo_path(FactoryGirl.create :relatorio)

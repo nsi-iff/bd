@@ -23,7 +23,7 @@ feature 'adicionar periodico tecnico cientifico' do
   end
 
   scenario 'editar periodico técnico cientifico' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
     visit edit_conteudo_path(FactoryGirl.create :periodico_tecnico_cientifico)

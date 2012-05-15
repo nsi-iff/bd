@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'mudar papel do usuário' do
   scenario 'usuário não admin, não pode acessar página de manipulação de papéis' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario
 
     visit usuarios_papeis_path
@@ -13,7 +13,7 @@ feature 'mudar papel do usuário' do
   end
 
   scenario 'administrador de instituição pode gerenciar apenas usuários de sua instituição' do
-    criar_papeis
+    Papel.criar_todos
     ins1 = Instituicao.create(nome: 'instituicao1')
     camp1 = ins1.campus.create(nome: 'campus1')
     ins2 = Instituicao.create(nome: 'instituicao2')
@@ -31,7 +31,7 @@ feature 'mudar papel do usuário' do
   end
 
   scenario 'admin pode acessar página de manipulação de papéis e alterar papéis de usuários' do
-    criar_papeis
+    Papel.criar_todos
     usuario = autenticar_usuario(Papel.admin)
 
     visit usuarios_papeis_path
@@ -48,7 +48,7 @@ feature 'mudar papel do usuário' do
   end
 
   scenario 'listar usuários por instituição' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario Papel.admin
     ins1 = Instituicao.create(nome: 'instituicao1')
     camp1 = ins1.campus.create(nome: 'campus1')
@@ -76,7 +76,7 @@ feature 'mudar papel do usuário' do
   end
 
   scenario 'buscar usuário' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario Papel.admin
     FactoryGirl.create(:usuario_gestor, nome_completo: 'Rodrigo Manhães', email: 'rodrigo@manhaes.com')
     FactoryGirl.create(:usuario_contribuidor, nome_completo: 'Priscila Manhães', email: 'priscila@manhaes.com')

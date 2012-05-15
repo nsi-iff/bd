@@ -5,7 +5,7 @@ require 'spec_helper'
 feature 'Buscas' do
   before(:all) do
     require Rails.root + 'db/criar_indices'
-    criar_papeis
+    Papel.criar_todos
   end
 
   scenario 'salvar busca' do

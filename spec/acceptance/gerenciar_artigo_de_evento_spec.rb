@@ -39,7 +39,7 @@ feature 'adicionar artigo de evento' do
   end
 
   scenario 'editar artigo de evento' do
-    criar_papeis
+    Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
     visit edit_conteudo_path(FactoryGirl.create :artigo_de_evento)

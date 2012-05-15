@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'Área Privada' do
-  before(:each) { criar_papeis }
+  before(:each) { Papel.criar_todos }
 
   scenario 'testar links na área privada' do
     usuario = autenticar_usuario(Papel.all)
