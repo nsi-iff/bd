@@ -86,7 +86,7 @@ FactoryGirl.define do
 
   %w(contribuidor gestor admin instituicao_admin).each do |papel|
     factory "usuario_#{papel}".to_sym, :parent => :usuario do
-      after_create do |u|
+      after :create do |u|
         hash = { nome: papel }
         u.papeis = [Papel.where(hash).first || Papel.create!(hash)]
         u.save!
