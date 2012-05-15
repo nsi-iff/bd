@@ -5,6 +5,9 @@ require 'spec_helper'
 feature 'Buscas' do
   before(:all) do
     require Rails.root + 'db/criar_indices'
+  end
+
+  before(:each) do
     Papel.criar_todos
   end
 

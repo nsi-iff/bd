@@ -5,9 +5,7 @@ require 'nsisam'
 require 'base64'
 
 feature 'Integração com o SAM', sam: true do
-  before(:all) do
-    @sam = ServiceRegistry.sam
-  end
+  let(:sam) { ServiceRegistry.sam }
 
   scenario 'padrão' do
     submeter_conteudo :artigo_de_evento, titulo: 'integracao sam', link: '', arquivo: Rails.root + 'spec/resources/manual.odt'
@@ -15,7 +13,7 @@ feature 'Integração com o SAM', sam: true do
 
     @artigo = ArtigoDeEvento.find_by_titulo('integracao sam')
 
-    response = @sam.get(@artigo.arquivo.key)
+    response = sam.get(@artigo.arquivo.key)
     response.should have(3).keys
 
     response.should have_key("from_user")

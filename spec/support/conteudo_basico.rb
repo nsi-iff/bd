@@ -1,42 +1,37 @@
 # encoding: utf-8
 
 def popular_area_sub_area
-  Area.destroy_all
-  SubArea.destroy_all
-  exatas = Area.create(nome: 'Ciências Exatas e da Terra')
-  exatas.sub_areas.create(nome: 'Ciência da Computação')
+  exatas = Area.create!(nome: 'Ciências Exatas e da Terra')
+  exatas.sub_areas.create!(nome: 'Ciência da Computação')
 
-  engenharia = Area.create(nome: 'Engenharias')
-  engenharia.sub_areas.create(nome: 'Engenharia de Produção')
+  engenharia = Area.create!(nome: 'Engenharias')
+  engenharia.sub_areas.create!(nome: 'Engenharia de Produção')
 
-  biologicas = Area.create(nome: 'Ciências Biológicas')
-  biologicas.sub_areas.create(nome: 'Biologia Geral')
+  biologicas = Area.create!(nome: 'Ciências Biológicas')
+  biologicas.sub_areas.create!(nome: 'Biologia Geral')
 
-  agrarias = Area.create(nome: 'Ciências Agrárias')
-  agrarias.sub_areas.create(nome: 'Agronomia')
+  agrarias = Area.create!(nome: 'Ciências Agrárias')
+  agrarias.sub_areas.create!(nome: 'Agronomia')
 
-  saude = Area.create(nome: 'Ciências da Saúde')
-  saude.sub_areas.create(nome: 'Enfermagem')
+  saude = Area.create!(nome: 'Ciências da Saúde')
+  saude.sub_areas.create!(nome: 'Enfermagem')
 
-  humanas = Area.create(nome: 'Ciências Humanas')
-  humanas.sub_areas.create(nome: 'Teologia')
+  humanas = Area.create!(nome: 'Ciências Humanas')
+  humanas.sub_areas.create!(nome: 'Teologia')
 
-  sociais_aplicadas = Area.create(nome: 'Ciências Sociais Aplicadas')
-  sociais_aplicadas.sub_areas.create(nome: 'Administração')
+  sociais_aplicadas = Area.create!(nome: 'Ciências Sociais Aplicadas')
+  sociais_aplicadas.sub_areas.create!(nome: 'Administração')
 
-  linguisticas = Area.create(nome: 'Linguística, Letras e Artes')
-  linguisticas.sub_areas.create(nome: 'Letras')
+  linguisticas = Area.create!(nome: 'Linguística, Letras e Artes')
+  linguisticas.sub_areas.create!(nome: 'Letras')
 
-  outras = Area.create(nome: 'Outras')
-  outras.sub_areas.create(nome: 'Biomedicina')
+  outras = Area.create!(nome: 'Outras')
+  outras.sub_areas.create!(nome: 'Biomedicina')
 end
 
 def popular_eixos_tematicos_cursos
-  EixoTematico.destroy_all
-  Curso.destroy_all
-
-  ambiente_saude = EixoTematico.create(nome: 'Ambiente e Saúde')
-  ambiente_saude.cursos.create([
+  ambiente_saude = EixoTematico.create!(nome: 'Ambiente e Saúde')
+  ambiente_saude.cursos.create!([
     { nome: 'Gestão Ambiental'    },
     { nome: 'Gestão Hospitalar'   },
     { nome: 'Oftálmica'           },
@@ -45,13 +40,13 @@ def popular_eixos_tematicos_cursos
     { nome: 'Sistemas Biomédicos' },
   ])
 
-  apoio_escolar = EixoTematico.create(nome: 'Apoio Escolar')
-  apoio_escolar.cursos.create([
+  apoio_escolar = EixoTematico.create!(nome: 'Apoio Escolar')
+  apoio_escolar.cursos.create!([
     { nome: 'Processos Escolares'},
   ])
 
-  militar = EixoTematico.create(nome: 'Militar')
-  militar.cursos.create([
+  militar = EixoTematico.create!(nome: 'Militar')
+  militar.cursos.create!([
     { nome: 'Comunicações Aeronáuticas'      },
     { nome: 'Fotointeligência'               },
     { nome: 'Gerenciamento de Tráfego Aéreo' },
@@ -62,11 +57,8 @@ def popular_eixos_tematicos_cursos
 end
 
 def popular_instituicao_campus
-  Instituicao.destroy_all
-  Campus.destroy_all
-
-  iffluminense = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense')
-  iffluminense.campus.create([
+  iffluminense = Instituicao.create!(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense')
+  iffluminense.campus.create!([
     { nome: 'Campus Bom Jesus de Itabapoana' },
     { nome: 'Campus Cabo Frio'               },
     { nome: 'Campus Campos Centro'           },
@@ -75,8 +67,8 @@ def popular_instituicao_campus
     { nome: 'Campus Macaé'                   }
   ])
 
-  ifamapa = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá')
-  ifamapa.campus.create([
+  ifamapa = Instituicao.create!(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá')
+  ifamapa.campus.create!([
     { nome: 'Campus Macapá' }
   ])
 end
@@ -86,8 +78,8 @@ def popular_graus
 end
 
 def submeter_conteudo(tipo, opcoes = {})
-  popular_area_sub_area
-  Papel.criar_todos
+  popular_area_sub_area if Area.count == 0
+  Papel.criar_todos if Papel.count == 0
   autenticar_usuario(Papel.contribuidor)
   visit new_conteudo_path(tipo: tipo)
   preencher_campos tipo, opcoes

@@ -117,9 +117,6 @@ describe Estatistica do
   end
 
   it 'deve retornar as cinco instituições com maior número de contribuições em um período de tempo' do
-    Instituicao.destroy_all
-    Campus.destroy_all
-
     instituicao1 = FactoryGirl.create(:instituicao, nome: "IFF")
     instituicao2 = FactoryGirl.create(:instituicao, nome: "IFRN")
 
@@ -142,9 +139,6 @@ describe Estatistica do
   end
 
   it 'deve retornar os cinco campus com maior número de contribuições em um período de tempo' do
-    Instituicao.destroy_all
-    Campus.destroy_all
-
     instituicao1 = FactoryGirl.create(:instituicao, nome: "IFF")
     instituicao2 = FactoryGirl.create(:instituicao, nome: "IFRN")
 

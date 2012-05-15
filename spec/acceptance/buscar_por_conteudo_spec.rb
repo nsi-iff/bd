@@ -3,11 +3,9 @@
 require "spec_helper"
 
 feature 'buscar todos os tipos de conteúdo', busca: true do
-  before(:all) do
+  before :each do
     Conteudo.index.delete
     require Rails.root + 'db/criar_indices'
-    Conteudo.destroy_all
-    Area.delete_all; SubArea.delete_all
     iff = Instituicao.create(nome: 'IFF')
     campos_centro = Campus.create nome: 'Campos Centro', instituicao: iff
     cabo_frio = Campus.create nome: 'Cabo Frio', instituicao: iff
