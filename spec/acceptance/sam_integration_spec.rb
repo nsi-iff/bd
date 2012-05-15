@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'nsisam'
 require 'base64'
 
-feature 'Integração com o SAM', :if => ENV['INTEGRACAO_SAM'] do
+feature 'Integração com o SAM', sam: true do
   before(:all) do
     @sam = ServiceRegistry.sam
   end

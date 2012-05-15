@@ -26,7 +26,7 @@ feature 'cesta de grãos' do
     @livro = FactoryGirl.create(:livro, titulo: 'Quantum Mechanics for Dummies')
     @grao1 = FactoryGirl.create(:grao_imagem, key: '12345', conteudo: @livro)
     @grao2 = FactoryGirl.create(:grao_arquivo, key: '67890', conteudo: @livro)
-    sleep(3) if ENV['INTEGRACAO'] # aguardar a indexacao
+    sleep(3) if ENV['INTEGRACAO_TIRE'] # aguardar a indexacao
   end
 
   def incluir_grao_na_cesta
