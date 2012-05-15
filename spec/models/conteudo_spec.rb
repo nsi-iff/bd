@@ -397,13 +397,11 @@ describe Conteudo do
     end
 
     context 'indexação de atributos de relacionamentos' do
-      before(:all) do
+      before(:each) do
         subject.autores = [FactoryGirl.create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
                            FactoryGirl.create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
-        Area.destroy_all
-        SubArea.destroy_all
-        area = Area.create(nome: 'Ciências Exatas e da Terra')
-        subject.sub_area = area.sub_areas.create(nome: 'Ciência da Computação')
+        area = Area.create!(nome: 'Ciências Exatas e da Terra')
+        sub_area = subject.sub_area = area.sub_areas.create!(nome: 'Ciência da Computação')
       end
 
       context 'dos autores' do
