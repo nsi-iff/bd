@@ -5,7 +5,7 @@ describe ConteudosController do
 
   before :each do
     autorizar_tudo
-    login Factory.create(:usuario_contribuidor)
+    login FactoryGirl.create(:usuario_contribuidor)
   end
 
   describe 'GET new' do

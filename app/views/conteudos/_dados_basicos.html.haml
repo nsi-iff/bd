@@ -13,7 +13,7 @@
   = select_tag(:area, options_for_select(Area.all.map {|area| [area.nome, area.id] }), class: "areas")
   = f.input :sub_area, as: :select, input_html: { class: "sub_areas" },
       collection: Area.first.sub_areas.map {|sub_area| [sub_area.nome, sub_area.id] },
-      prompt: false, label: 'Área de Conhecimento'
+      include_blank: false, label: 'Área de Conhecimento'
   #autores
     = f.semantic_fields_for :autores do |autor|
       = render 'conteudos/autor_fields', :f => autor
@@ -22,7 +22,7 @@
       = f.semantic_errors :autores
   = f.input :campus, as: :select, input_html: { class: "campus" },
       collection: current_usuario.campus.instituicao.campus.map {|campus| [campus.nome, campus.id] },
-      prompt: false, label: 'Campus da Instituição do Usuário'
+      include_blank: false, label: 'Campus da Instituição do Usuário'
   = f.input :resumo
   = f.input :direitos
-  = f.input :contribuidor_id, :as => :hidden, :value => current_usuario.id
+  = f.input :contribuidor_id, as: :hidden, input_html: { value: current_usuario.id }

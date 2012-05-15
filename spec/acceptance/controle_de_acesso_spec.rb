@@ -9,7 +9,7 @@ feature 'controle de acesso' do
     end
 
     scenario 'qualquer usuário inclusive convidados podem ver conteúdo publicado' do
-      livro = Factory.create(:livro)
+      livro = FactoryGirl.create(:livro)
       livro.submeter!
       livro.aprovar!
 
@@ -21,7 +21,7 @@ feature 'controle de acesso' do
 
     scenario 'apenas dono do conteúdo pode vê-lo em estado editavel' do
       usuario1 = autenticar_usuario(Papel.contribuidor)
-      livro = Factory.create(:livro, contribuidor: usuario1)
+      livro = FactoryGirl.create(:livro, contribuidor: usuario1)
 
       visit conteudo_path(livro)
       page.should have_content 'Metadados'

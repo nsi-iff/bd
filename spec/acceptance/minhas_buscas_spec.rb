@@ -10,8 +10,8 @@ feature 'Buscas' do
 
   scenario 'salvar busca' do
     usuario = autenticar_usuario(Papel.membro)
-    livro = Factory.create(:livro, titulo: 'My book')
-    livro2 = Factory.create(:livro, titulo: 'Outro book')
+    livro = FactoryGirl.create(:livro, titulo: 'My book')
+    livro2 = FactoryGirl.create(:livro, titulo: 'Outro book')
     sleep(3) if ENV['INTEGRACAO'] # espera indexar
     visit "/buscas"
     fill_in 'Busca', with: 'book'
@@ -30,7 +30,7 @@ feature 'Buscas' do
     usuario = autenticar_usuario(Papel.membro)
     page.should_not have_link 'Gerenciar buscas'
 
-    livro = Factory.create(:livro, titulo: 'livro')
+    livro = FactoryGirl.create(:livro, titulo: 'livro')
 
     visit "/buscas"
     fill_in 'Busca', with: 'livro'
@@ -80,7 +80,7 @@ feature 'Buscas' do
   #scenario 'as 2:00 o servico de mala direta envia emails' do
   #  usuario = autenticar_usuario(Papel.all)
 
-  #  artigo = Factory.create(:artigo_de_evento, titulo: 'artigo')
+  #  artigo = FactoryGirl.create(:artigo_de_evento, titulo: 'artigo')
   #  artigo.submeter!
   #  artigo.aprovar!
   #  sleep(2) if ENV['INTEGRACAO']

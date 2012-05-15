@@ -35,7 +35,7 @@ feature 'sessão e registro de usuário' do
   end
 
   scenario 'acessar sistema' do
-    usuario = Factory.create :usuario, password: 'foobar', password_confirmation: 'foobar'
+    usuario = FactoryGirl.create :usuario, password: 'foobar', password_confirmation: 'foobar'
 
     visit root_path
     click_link 'Acessar'

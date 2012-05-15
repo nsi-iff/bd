@@ -33,14 +33,14 @@ feature 'adicionar livro' do
   scenario 'sem tradução' do
     criar_papeis
     autenticar_usuario(Papel.contribuidor)
-    visit conteudo_path(Factory.create(:livro, traducao: false))
+    visit conteudo_path(FactoryGirl.create(:livro, traducao: false))
     page.should have_content 'Tradução: Não'
   end
 
   scenario 'editar livro' do
     criar_papeis
     autenticar_usuario(Papel.contribuidor)
-    visit edit_conteudo_path(Factory.create :livro)
+    visit edit_conteudo_path(FactoryGirl.create :livro)
 
     fill_in 'Subtítulo', with: 'Metaprograming Rails'
     click_button 'Salvar'

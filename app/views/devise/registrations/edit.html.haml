@@ -18,7 +18,7 @@
     = select_tag(:campus, options_for_select(current_usuario.campus.instituicao.campus.map {|campus| [campus.nome, campus.id] }),
       class: "campus", id: "select_campus")
 
-  = f.buttons do
+  = f.actions do
     = f.submit 'Atualizar'
 
 = render 'links'

@@ -22,11 +22,11 @@ feature 'adicionar periodico tecnico cientifico' do
     page.should have_content 'Ano do último volume: 2011'
   end
 
-  scenario 'editar artigo de evento' do
+  scenario 'editar periodico técnico cientifico' do
     criar_papeis
     autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(Factory.create :periodico_tecnico_cientifico)
+    visit edit_conteudo_path(FactoryGirl.create :periodico_tecnico_cientifico)
     fill_in 'Editora', with: 'periodico tecnico cientifico editado'
     click_button 'Salvar'
 
