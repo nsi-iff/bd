@@ -1,5 +1,3 @@
-require "nsisam"
-
 class ServiceRegistry
   def self.sam=(sam)
     @sam = sam
