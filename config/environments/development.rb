@@ -51,5 +51,5 @@ end
 
 unless ENV['INTEGRACAO_SAM']
   require Rails.root + "config/initializers/service_registry"
-  ServiceRegistry.sam = NSISam::FakeClient.new unless ENV['INTEGRACAO_SAM']
+  ServiceRegistry.sam = NSISam::FakeClient.new
 end
