@@ -48,3 +48,8 @@ Tire.configure do
     client Tire::Http::Client::MockClient
   end
 end
+
+unless ENV['INTEGRACAO_SAM']
+  require Rails.root + "config/initializers/service_registry"
+  ServiceRegistry.sam = NSISam::FakeClient.new unless ENV['INTEGRACAO_SAM']
+end

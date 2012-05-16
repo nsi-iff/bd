@@ -17,4 +17,3 @@ class Papel < ActiveRecord::Base
     where(nome: method_name).first || super
   end
 end
-
