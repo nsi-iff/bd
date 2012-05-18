@@ -148,10 +148,11 @@ feature 'cesta de grãos' do
     scenario 'acessar visão da cesta', js: true do
       acessar_visao_da_cesta
     end
-    
+
     scenario 'editar grão da cesta' do
-      criar_cesta @usuario, recurso('grao_teste_0.jpg'), 
-                            recurso('grao_teste_1.jpg'), 
+      criar_cesta @usuario, FactoryGirl.create(:conteudo),
+                            recurso('grao_teste_0.jpg'),
+                            recurso('grao_teste_1.jpg'),
                             recurso('grao_teste_2.odt')
       visit root_path
       within('#cesta') { click_link 'Editar' }
