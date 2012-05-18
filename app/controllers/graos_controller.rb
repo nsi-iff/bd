@@ -18,7 +18,7 @@ class GraosController < ApplicationController
   def baixar_conteudo
     unless current_usuario.cesta.blank?
       @sam = ServiceRegistry.sam
-      t = Tempfile.new("cesta_temporaria", tmpdir="#{Rails.root}/tmp/downloads")
+      t = Tempfile.new("cesta_temporaria", tmpdir="#{Rails.root}/tmp")
       Zip::ZipOutputStream.open(t.path) do |z|
         current_usuario.cesta.all.map(&:key).each_with_index do |key, index|
           objeto_grao = Grao.where(:key => key).first
