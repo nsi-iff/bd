@@ -48,13 +48,16 @@ DigitalLibrary::Application.routes.draw do
       put :adicionar_a_cesta
       delete :remover_da_cesta
     end
-    get :cesta, on: :collection
+    collection do
+      get :cesta
+      post :editar
+    end
   end
   get :favoritar_graos, :to => 'graos#favoritar_graos'
 
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
-  get '/editor' => 'editor#index'
+  get '/editor' => 'editor#index', as: :editor
   post '/editor' => 'editor#download'
 end

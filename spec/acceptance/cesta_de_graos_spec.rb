@@ -148,9 +148,24 @@ feature 'cesta de grãos' do
     scenario 'acessar visão da cesta', js: true do
       acessar_visao_da_cesta
     end
-  end
+    
+    scenario 'editar grão da cesta' do
+      criar_cesta @usuario, recurso('grao_teste_0.jpg'), 
+                            recurso('grao_teste_1.jpg'), 
+                            recurso('grao_teste_2.odt')
+      visit root_path
+      within('#cesta') { click_link 'Editar' }
+      within '#documento' do
+        page.should have_selector "img[src^='data:image/xyz;base64']"
+      end
+    end
+  end  
 end
 
 def representacao_grao(grao)
   "%s %s" % [grao.key, grao.tipo_humanizado]
+end
+
+def recurso(nome)
+  File.join(Rails.root, 'spec', 'resources', nome)
 end

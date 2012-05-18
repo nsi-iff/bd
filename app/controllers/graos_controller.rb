@@ -22,6 +22,10 @@ class GraosController < ApplicationController
     current_usuario.cesta = []
     redirect_to :back
   end
+  
+  def editar
+    respond_to &:js
+  end
 
   private
 
