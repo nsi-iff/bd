@@ -11,3 +11,4 @@
           = "#{grao.created_at.strftime('%d/%m/%Y')}"
           = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete,
               remote: true
+  = link_to 'baixar conteudo da cesta', '/cesta/baixar_conteudo'
