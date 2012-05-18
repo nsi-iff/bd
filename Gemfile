@@ -50,4 +50,5 @@ group :test, :development do
   gem 'debugger'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
+  gem 'zippy'
 end

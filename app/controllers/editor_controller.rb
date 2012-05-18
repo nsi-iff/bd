@@ -2,6 +2,7 @@
 
 class EditorController < ApplicationController
   def index
+    @inclui_graos = params['graos']
   end
 
   def download
