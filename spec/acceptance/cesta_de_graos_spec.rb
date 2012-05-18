@@ -166,8 +166,8 @@ feature 'cesta de grãos' do
       visit @usuario_path
       click_link 'baixar conteudo da cesta'
 
-      arquivo_cesta = open('|ls /tmp').read.split("\n").first
-      Zip::ZipFile.open("/tmp/#{arquivo_cesta}") { |zip_file|
+      arquivo_cesta = open("|ls #{Rails.root}/tmp/").read.split("\n").select{|v| v =~ /cesta/}.last
+      Zip::ZipFile.open("#{Rails.root}/tmp/#{arquivo_cesta}") { |zip_file|
         zip_file.each { |f|
           f_path=File.join("#{Rails.root}/spec/resources/downloads/", f.name)
           FileUtils.mkdir_p(File.dirname(f_path))
