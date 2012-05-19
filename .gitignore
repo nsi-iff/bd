@@ -16,3 +16,5 @@
 
 # ignore personal TODO file
 .todo
+
+spec/resources/downloads

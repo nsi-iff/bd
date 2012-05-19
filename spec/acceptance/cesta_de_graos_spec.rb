@@ -26,7 +26,7 @@ feature 'cesta de grãos' do
     @livro = FactoryGirl.create(:livro, titulo: 'Quantum Mechanics for Dummies')
     @grao1 = FactoryGirl.create(:grao_imagem, key: '12345', conteudo: @livro)
     @grao2 = FactoryGirl.create(:grao_arquivo, key: '67890', conteudo: @livro)
-    sleep(3) if ENV['INTEGRACAO_TIRE'] # aguardar a indexacao
+    sleep(1) if ENV['INTEGRACAO_TIRE'] # aguardar a indexacao
   end
 
   def incluir_grao_na_cesta
@@ -148,9 +148,43 @@ feature 'cesta de grãos' do
     scenario 'acessar visão da cesta', js: true do
       acessar_visao_da_cesta
     end
+
+    scenario 'editar grão da cesta' do
+      criar_cesta @usuario, FactoryGirl.create(:conteudo),
+                            recurso('grao_teste_0.jpg'),
+                            recurso('grao_teste_1.jpg'),
+                            recurso('grao_teste_2.odt')
+      visit root_path
+      within('#cesta') { click_link 'Editar' }
+      within '#documento' do
+        page.should have_selector "img[src^='data:image/xyz;base64']"
+      end
+    end
+
+    scenario 'baixar conteudo da cesta', js: true do
+      criar_cesta(@usuario, @livro, *%w(./spec/resources/grao_teste_2.odt))
+      visit @usuario_path
+      click_link 'baixar conteudo da cesta'
+
+      Zip::ZipFile.open(Dir["#{Rails.root}/tmp/cesta_tempo*"].last) { |zip_file|
+        zip_file.each { |f|
+          f_path=File.join("#{Rails.root}/spec/resources/downloads/", f.name)
+          FileUtils.mkdir_p(File.dirname(f_path))
+          zip_file.extract(f, f_path) unless File.exist?(f_path)
+        }
+      }
+
+      grao_armazenado = Digest::MD5.hexdigest(File.read('./spec/resources/grao_teste_2.odt'))
+      grao_extraido = Digest::MD5.hexdigest(File.read("#{Rails.root}/spec/resources/downloads/grao_Quantum Mechanics for Dummies_0.odt"))
+      grao_armazenado.should == grao_extraido
+    end
   end
 end
 
 def representacao_grao(grao)
   "%s %s" % [grao.key, grao.tipo_humanizado]
+end
+
+def recurso(nome)
+  File.join(Rails.root, 'spec', 'resources', nome)
 end

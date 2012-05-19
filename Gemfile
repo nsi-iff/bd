@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
-gem 'devise'
-gem 'cancan'
+gem 'devise', '~>2.1.0'
+gem 'cancan', '~>1.6.7'
 gem 'pg', '~> 0.13.2'
 gem 'nsisam'
 gem 'nsicloudooo'
@@ -50,4 +50,5 @@ group :test, :development do
   gem 'debugger'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
+  gem 'zippy'
 end
