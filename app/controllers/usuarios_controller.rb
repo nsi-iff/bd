@@ -14,13 +14,7 @@ class UsuariosController < ApplicationController
   end
 
   def buscar_por_nome
-    @usuarios = []
-    if current_usuario.admin?
-      @usuarios = Usuario.where('nome_completo like ?', "%#{params['buscar_nome']}%")
-    else
-      usuarios = current_usuario.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
-      usuarios.map {|usuario| @usuarios << usuario if params['buscar_nome'].in? usuario.nome_completo }
-    end
+    @usuarios = Usuario.buscar_por_nome(params[:buscar_nome], current_usuario)
     render action: 'papeis'
   end
 
