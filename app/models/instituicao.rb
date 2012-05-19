@@ -3,6 +3,10 @@ class Instituicao < ActiveRecord::Base
 
   validates :nome, presence: true, uniqueness: true
 
+  def usuarios
+    campus.map { |campus| campus.usuarios }.flatten
+  end
+
   def to_s
     self.nome
   end
