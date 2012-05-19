@@ -7,7 +7,7 @@ class UsuariosController < ApplicationController
 
   def papeis
     if current_usuario.admin?
-      @usuarios = Usuario.all
+      @usuarios = Usuario.includes(:papeis).all
     else
       @usuarios = current_usuario.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
     end
