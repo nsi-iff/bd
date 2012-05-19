@@ -25,7 +25,7 @@ class UsuariosController < ApplicationController
 
   def atualizar_papeis
     params[:papeis] ||= {}
-    Usuario.all.each do |usuario|
+    Usuario.includes(:papeis).all.each do |usuario|
       usuario.update_attributes papel_ids: params[:papeis]["#{usuario.id}"] || []
     end
     redirect_to action: 'index'
