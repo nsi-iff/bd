@@ -21,6 +21,10 @@ class Usuario < ActiveRecord::Base
     Conteudo.editaveis(self) + Conteudo.pendentes(self)
   end
 
+  def instituicao
+    self.campus.instituicao
+  end
+
   def usuarios_gerenciaveis
     if self.admin?
       return Usuario.includes(:papeis).all
@@ -36,6 +40,7 @@ class Usuario < ActiveRecord::Base
   end
 
   def self.buscar_por_nome(nome, current_usuario)
+    # can't use self instead of current_usuario, because this is a class method =/
     usuarios = []
     if current_usuario.admin?
       usuarios = Usuario.where('nome_completo like ?', "%#{nome}%")
