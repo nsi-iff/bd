@@ -27,9 +27,9 @@ class Usuario < ActiveRecord::Base
 
   def usuarios_gerenciaveis
     if self.admin?
-      return Usuario.includes(:papeis).all
+      Usuario.includes(:papeis).all
     else
-      return self.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
+      self.campus.instituicao.campus.map &:usuarios
     end
   end
 
