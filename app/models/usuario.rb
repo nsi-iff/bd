@@ -40,15 +40,13 @@ class Usuario < ActiveRecord::Base
   end
 
   def self.buscar_por_nome(nome, current_usuario)
-    # can't use self instead of current_usuario, because this is a class method =/
-    usuarios = []
+    # can't use "self" instead of "current_usuario", because this is a class method =/
+    usuarios = Usuario.where('nome_completo like ?', "%#{nome}%")
     if current_usuario.admin?
-      usuarios = Usuario.where('nome_completo like ?', "%#{nome}%")
+      usuarios
     else
-      instituicao_usuarios = current_usuario.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
-      instituicao_usuarios.map {|usuario| usuarios << usuario if usuario.nome_completo.include? nome }
+      usuarios.where('campus.instituicao' => current_usuario.instituicao)
     end
-    usuarios
   end
 
   def method_missing(method_name, *params)
