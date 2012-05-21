@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'Buscas' do
   before(:all) do
-    Tire.criar_indices
+    Tire.criar_indices if ENV['INTEGRACAO_TIRE']
   end
 
   before(:each) do

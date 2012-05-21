@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'cesta de grãos' do
   before :all do
-    require File.join(Rails.root, *%w(db criar_indices))
+    require File.join(Rails.root, *%w(db criar_indices)) if ENV['INTEGRACAO_TIRE']
 
     # monkeypatch temporario para passar no teste sem o Elastic Search
     # TODO: remover depois que funcionarem buscas básicas com o ES fake
