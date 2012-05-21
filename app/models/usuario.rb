@@ -21,19 +21,27 @@ class Usuario < ActiveRecord::Base
     Conteudo.editaveis(self) + Conteudo.pendentes(self)
   end
 
+  def usuarios_gerenciaveis
+    if self.admin?
+      return Usuario.includes(:papeis).all
+    else
+      return self.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
+    end
+  end
+
   def estante
     Conteudo.publicados(self) +
     self.graos_favoritos +
     self.conteudos_favoritos
   end
 
-  def self.buscar_por_nome(nome)
+  def self.buscar_por_nome(nome, current_usuario)
     usuarios = []
-    if self.admin?
+    if current_usuario.admin?
       usuarios = Usuario.where('nome_completo like ?', "%#{nome}%")
     else
-      instituicao_usuarios = self.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
-      instituicao_usuarios.map {|usuario| @usuarios << usuario if params['buscar_nome'].in? usuario.nome_completo }
+      instituicao_usuarios = current_usuario.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
+      instituicao_usuarios.map {|usuario| usuarios << usuario if usuario.nome_completo.include? nome }
     end
     usuarios
   end

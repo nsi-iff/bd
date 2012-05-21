@@ -3,7 +3,7 @@
   = text_field_tag 'buscar_nome'
   = submit_tag 'Buscar'
 
-- if current_usuario.admin?
+- if can? :usuarios_instituicao, current_usuario
   = form_tag usuarios_instituicao_usuarios_path, method: 'get' do
     = label_tag 'usuarios_instituicao', 'Listar usuários do Instituicao'
     = select_tag 'usuarios_instituicao', options_for_select(Instituicao.all.map { |instituicao| [instituicao.nome, instituicao.id] })

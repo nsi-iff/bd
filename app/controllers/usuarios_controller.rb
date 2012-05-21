@@ -6,11 +6,7 @@ class UsuariosController < ApplicationController
   end
 
   def papeis
-    if current_usuario.admin?
-      @usuarios = Usuario.includes(:papeis).all
-    else
-      @usuarios = current_usuario.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
-    end
+    @usuarios = current_usuario.usuarios_gerenciaveis
   end
 
   def buscar_por_nome
