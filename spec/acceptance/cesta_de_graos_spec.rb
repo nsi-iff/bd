@@ -180,11 +180,3 @@ feature 'cesta de grãos' do
     end
   end
 end
-
-def representacao_grao(grao)
-  "%s %s" % [grao.key, grao.tipo_humanizado]
-end
-
-def recurso(nome)
-  File.join(Rails.root, 'spec', 'resources', nome)
-end
