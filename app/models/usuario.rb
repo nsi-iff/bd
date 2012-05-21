@@ -27,13 +27,12 @@ class Usuario < ActiveRecord::Base
     self.conteudos_favoritos
   end
 
-  def self.buscar_por_nome(nome, current_usuario)
-    # TODO: um meio melhor de pegar o "current_usuario" ?
+  def self.buscar_por_nome(nome)
     usuarios = []
-    if current_usuario.admin?
+    if self.admin?
       usuarios = Usuario.where('nome_completo like ?', "%#{nome}%")
     else
-      instituicao_usuarios = current_usuario.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
+      instituicao_usuarios = self.campus.instituicao.campus.map { |campus| campus.usuarios }.flatten
       instituicao_usuarios.map {|usuario| @usuarios << usuario if params['buscar_nome'].in? usuario.nome_completo }
     end
     usuarios
