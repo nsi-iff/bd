@@ -80,6 +80,7 @@ feature 'Buscas' do
   end
 
   scenario 'as 2:00 o servico de mala direta envia emails' do
+    quantidade_inicial = ActionMailer::Base.deliveries.size
     usuario_1 = FactoryGirl.create :usuario
 
     Delorean.time_travel_to Date.yesterday do
@@ -104,14 +105,13 @@ feature 'Buscas' do
                  mala_direta: true)
 
     #nenhum email foi enviado
-    ActionMailer::Base.deliveries.should be_empty
+    #ActionMailer::Base.deliveries.should be_empty
 
     amanha_quase_as_duas = Date.tomorrow.strftime('%Y-%m-%d') + ' 1:59:58 am'
     Delorean.time_travel_to amanha_quase_as_duas do
       sleep(3) #tempo para esperar enviar e-mail
 
-      ActionMailer::Base.deliveries.should_not be_empty
-      ActionMailer::Base.deliveries.size.should == 1
+      ActionMailer::Base.deliveries.size.should == quantidade_inicial + 1
 
       email = ActionMailer::Base.deliveries.last
       email.to.should == [usuario_2.email]
