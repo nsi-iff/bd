@@ -38,4 +38,8 @@ class ObjetoDeAprendizagem < Conteudo
   def tipo_de_arquivo_importa?
     false
   end
+
+  def self.nome_humanizado
+    'Objeto de Aprendizagem'
+  end
 end

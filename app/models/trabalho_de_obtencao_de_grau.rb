@@ -6,7 +6,7 @@ class TrabalhoDeObtencaoDeGrau < Conteudo
   validates :numero_paginas, numericality: { greater_than: 0, allow_blank:true }
   flexible_date :data_defesa, suffix: 'br'
 
-  def nome_humanizado
+  def self.nome_humanizado
     "Trabalho de obtenção de grau"
   end
 end
