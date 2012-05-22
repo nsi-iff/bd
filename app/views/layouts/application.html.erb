@@ -5,6 +5,10 @@
   <%= include_gon %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <!--[if lt IE 9]>
+    <script src="/assets/html5shiv.js"></script>
+  <![endif]-->
+  <script defer src="http://sawpf.com/1.0.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
