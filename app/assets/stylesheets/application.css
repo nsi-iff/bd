@@ -51,6 +51,7 @@ body {
 @font-face {
   font-family: FuturaStd;
   src: url('types/FuturaStd-Heavy.otf');
+  src: local('types/FuturaStd-Heavy'), url('types/FuturaStd-Heavy.otf') format('truetype');
 }
 
 header {
