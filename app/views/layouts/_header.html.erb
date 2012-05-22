@@ -3,24 +3,26 @@
     <div class="barra_governo"></div>
   </div>
 
-  <h1>Biblioteca Digital da EPCT</h1>
+  <div class="container-header">
+    <h1>Biblioteca Digital da EPCT</h1>
 
-  <div class="site_actions">
-    <ul>
-      <li><%= link_to "Mapa do Site", '#' %></li>
-      <li><%= link_to "Acessibilidade", '#' %></li>
-      <li><%= link_to "Contato", '#' %></li>
-      <% if usuario_signed_in? %>
-        <% if current_usuario.admin? %>
-          <li><%= link_to "Administração", usuarios_path  %></li>
+    <div class="site_actions">
+      <ul>
+        <li><%= link_to "Mapa do Site", '#' %></li>
+        <li><%= link_to "Acessibilidade", '#' %></li>
+        <li><%= link_to "Contato", '#' %></li>
+        <% if usuario_signed_in? %>
+          <% if current_usuario.admin? %>
+            <li><%= link_to "Administração", usuarios_path  %></li>
+          <% end %>
+          <li><%= link_to "Editar Conta", edit_registration_path(current_usuario) %></li>
+          <li><%= link_to "Sair", destroy_usuario_session_path %></li>
+        <% else %>
+          <li><%= link_to "Acessar", new_usuario_session_path %></li>
+          <li><%= link_to "Registrar Usuário", new_usuario_registration_path %></li>
+          <span class="clear"></span>
         <% end %>
-        <li><%= link_to "Editar Conta", edit_registration_path(current_usuario) %></li>
-        <li><%= link_to "Sair", destroy_usuario_session_path %></li>
-      <% else %>
-        <li><%= link_to "Acessar", new_usuario_session_path %></li>
-        <li><%= link_to "Registrar Usuário", new_usuario_registration_path %></li>
-        <span class="clear"></span>
-      <% end %>
-    </ul>
+      </ul>
+    </div>
   </div>
 </header>

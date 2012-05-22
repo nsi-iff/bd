@@ -53,11 +53,20 @@ body {
   src: url('types/FuturaStd-Heavy.otf');
 }
 
+header {
+  overflow: auto;
+}
+
 header h1 {
   font-family: FuturaStd;
   color: #FFF;
   font-size: 36px;
-  padding-left: 150px;
+  float: left;
+}
+
+header .container-header {
+  width: 940px;
+  margin: 0 auto;
 }
 
 header .site_actions a {
@@ -93,10 +102,9 @@ header .site_actions {
   background: url("/assets/bg_site_actions.png") 0 0 no-repeat;
   float: right;
   height: 30px;
-  width: 500px;
-  margin-top: -70px;
-  margin-right: 200px;
+  margin-top: 30px;
 }
+
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
