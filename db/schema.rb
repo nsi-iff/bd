@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120502215843) do
+ActiveRecord::Schema.define(:version => 20120522174451) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -223,6 +223,10 @@ ActiveRecord::Schema.define(:version => 20120502215843) do
     t.datetime "updated_at",                             :null => false
     t.string   "nome_completo"
     t.integer  "campus_id"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true

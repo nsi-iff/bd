@@ -10,7 +10,7 @@ class PeriodicoTecnicoCientifico < Conteudo
     numericality: { greater_than: 0, less_than_or_equal_to: this_year,
                     allow_blank: true }
 
-  def nome_humanizado
-    "Periódico técnico-científico"
+  def self.nome_humanizado
+    "Periódico Técnico-Científico"
   end
 end

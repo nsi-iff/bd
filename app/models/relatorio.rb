@@ -6,7 +6,7 @@ class Relatorio < Conteudo
   validates :ano_publicacao,
     numericality: { less_than_or_equal_to: Time.now.year, allow_blank: true }
 
-  def nome_humanizado
+  def self.nome_humanizado
     "Relatório"
   end
 end

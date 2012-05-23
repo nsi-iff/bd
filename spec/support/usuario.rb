@@ -27,3 +27,4 @@ def criar_usuario(*papeis)
   end
   usuario
 end
+

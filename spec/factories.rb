@@ -76,6 +76,7 @@ FactoryGirl.define do
     password '12345678'
     password_confirmation '12345678'
     nome_completo 'Linus Torvalds'
+    confirmed_at Time.now
     campus
   end
 

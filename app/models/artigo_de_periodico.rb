@@ -5,7 +5,7 @@ class ArtigoDePeriodico < Conteudo
   validates :volume_publicacao, numericality: { greater_than: 0, allow_blank: true}
   flexible_date :data_publicacao, suffix: 'br'
 
-  def nome_humanizado
+  def self.nome_humanizado
     "Artigo de periódico"
   end
 end

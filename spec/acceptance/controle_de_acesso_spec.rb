@@ -68,4 +68,21 @@ feature 'controle de acesso' do
       end
     end
   end
+  context 'criar usuário' do
+    before(:each) do
+      Papel.criar_todos
+    end
+    scenario 'usuário criado não tem o acesso liberado antes de confirmar sua conta' do
+      usuario = FactoryGirl.create(:usuario, confirmed_at: nil)
+      autenticar(usuario)
+      page.should have_content 'Antes de continuar, confirme a sua conta'
+
+      usuario.confirm!
+      autenticar(usuario)
+
+      page.should_not have_content 'Antes de continuar, confirme a sua conta'
+      page.should have_content 'sucesso'
+    end
+  end
 end
+

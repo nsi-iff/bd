@@ -24,7 +24,7 @@ class ConteudosController < ApplicationController
 
     if @conteudo.save
       redirect_to conteudo_path(@conteudo),
-                  notice: "#{@conteudo.nome_humanizado} enviado com sucesso"
+                  notice: "#{@conteudo.class.nome_humanizado} enviado com sucesso"
     else
       render action: 'new'
     end
@@ -40,7 +40,7 @@ class ConteudosController < ApplicationController
     @conteudo = obter_conteudo
     if @conteudo.update_attributes(conteudo_da_requisicao)
       redirect_to conteudo_path(@conteudo),
-                  notice: "#{@conteudo.nome_humanizado} alterado com sucesso"
+                  notice: "#{@conteudo.class.nome_humanizado} alterado com sucesso"
     else
       render action: 'edit'
     end

@@ -21,12 +21,12 @@ describe Acesso do
     acesso.save
     Acesso.total_de_acessos.should == 8
   end
+
   it 'gera nova estatistica todo dia as 23:58' do
     total_acessos = Acesso.count
     Delorean.time_travel_to Date.today.strftime('%Y-%m-%d') + ' 11:58 pm'
     sleep(1)
     Acesso.count.should == total_acessos + 1
-
     Delorean.back_to_the_present
   end
 end
