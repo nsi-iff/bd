@@ -7,6 +7,6 @@ class TrabalhoDeObtencaoDeGrau < Conteudo
   flexible_date :data_defesa, suffix: 'br'
 
   def self.nome_humanizado
-    "Trabalho de obtenção de grau"
+    "Trabalho de Obtenção de Grau"
   end
 end
