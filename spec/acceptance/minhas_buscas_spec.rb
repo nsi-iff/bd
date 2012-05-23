@@ -105,11 +105,10 @@ feature 'Buscas' do
                  mala_direta: true)
 
     #nenhum email foi enviado
-    #ActionMailer::Base.deliveries.should be_empty
 
-    amanha_quase_as_duas = Date.tomorrow.strftime('%Y-%m-%d') + ' 1:59:58 am'
+    amanha_quase_as_duas = Date.tomorrow.strftime('%Y-%m-%d') + ' 1:59:57 am'
     Delorean.time_travel_to amanha_quase_as_duas do
-      sleep(3) #tempo para esperar enviar e-mail
+      sleep(5) #tempo para esperar enviar e-mail
 
       ActionMailer::Base.deliveries.size.should == quantidade_inicial + 1
 
