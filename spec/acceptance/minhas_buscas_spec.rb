@@ -79,8 +79,7 @@ feature 'Buscas' do
     busca.mala_direta.should == true
   end
 
-  scenario 'as 2:00 o servico de mala direta envia emails' do
-    quantidade_inicial = ActionMailer::Base.deliveries.size
+  scenario 'as 2:00 o servico de mala direta envia emails', busca: true do
     usuario_1 = FactoryGirl.create :usuario
 
     Delorean.time_travel_to Date.yesterday do
@@ -107,15 +106,12 @@ feature 'Buscas' do
     #nenhum email foi enviado
 
     amanha_quase_as_duas = Date.tomorrow.strftime('%Y-%m-%d') + ' 1:59:57 am'
-    Delorean.time_travel_to amanha_quase_as_duas do
-      sleep(5) #tempo para esperar enviar e-mail
-
-      ActionMailer::Base.deliveries.size.should == quantidade_inicial + 1
-
-      email = ActionMailer::Base.deliveries.last
-      email.to.should == [usuario_2.email]
-      email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
-    end
+    expect {
+      Delorean.time_travel_to(amanha_quase_as_duas) { sleep(5) } # tempo para esperar enviar e-mail
+    }.to change { ActionMailer::Base.deliveries.size }.by 1
+    email = ActionMailer::Base.deliveries.last
+    email.to.should == [usuario_2.email]
+    email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
   end
 
   scenario 'nenhuma busca salva' do

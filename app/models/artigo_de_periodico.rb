@@ -6,6 +6,6 @@ class ArtigoDePeriodico < Conteudo
   flexible_date :data_publicacao, suffix: 'br'
 
   def self.nome_humanizado
-    "Artigo de periódico"
+    "Artigo de Periódico"
   end
 end
