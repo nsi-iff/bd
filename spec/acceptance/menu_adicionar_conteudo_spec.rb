@@ -45,7 +45,6 @@ feature 'verificar menu adicionar conteúdo' do
     within_fieldset 'Adicionar Conteúdo' do
       click_link 'Artigo de Evento'
     end
-    save_and_open_page
     page.should have_content 'Adicionar Artigo de Evento'
   end
 
