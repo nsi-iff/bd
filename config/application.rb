@@ -63,14 +63,9 @@ module DigitalLibrary
       symbolize_keys
 
     # Configuracoes do acesso ao Cloudooo
-    cloudooo_config = YAML.load(
-      File.read(File.join(Rails.root, 'config', 'cloudooo.yml')))[Rails.env]
-    config.cloudooo_user = cloudooo_config['user']
-    config.cloudooo_password = cloudooo_config['password']
-    config.cloudooo_host = cloudooo_config['host']
-    config.cloudooo_port = cloudooo_config['port']
-    config.cloudooo_callback_url = cloudooo_config['callback_url']
-    config.cloudooo_callback_verb = cloudooo_config['callback_verb']
+    config.cloudooo_configuration = YAML.load(
+      File.read(File.join(Rails.root, 'config', 'cloudooo.yml')))[Rails.env].
+      symbolize_keys
 
     # Configuracoes de acesso ao elasticsearch
     config.elasticsearch_config = YAML.load(
