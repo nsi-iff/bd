@@ -25,7 +25,7 @@ feature 'apresentacao dos conteudos por abas' do
 
     #submeter imagem
     conteudo_imagem = Base64.encode64(File.open('spec/resources/tela.png').read)
-    result = sam.store conteudo_imagem
+    result = sam.store file: conteudo_imagem, filename: 'tela.png'
 
     conteudo = FactoryGirl.create(:artigo_de_periodico)
     grao = FactoryGirl.create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])

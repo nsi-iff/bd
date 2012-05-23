@@ -14,7 +14,7 @@ class Grao < ActiveRecord::Base
   end
 
   def conteudo_base64
-    conteudo_base64 = sam.get(key)
-    conteudo_base64['data']
+    resposta = sam.get(key)
+    resposta['data']['file']
   end
 end
