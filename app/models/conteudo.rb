@@ -178,14 +178,12 @@ class Conteudo < ActiveRecord::Base
   private
 
   def granularizar
-    config = Rails.application.config
-    url = "http://#{config.cloudooo_user}:#{config.cloudooo_password}@#{config.cloudooo_host}:#{config.cloudooo_port}"
-    cloudooo = NSICloudooo::Client.new(url)
+    config = Rails.application.config.cloudooo_configuration
     cloudooo.granulate(
       sam_uid: arquivo.key,
       filename: arquivo.nome,
-      callback: config.cloudooo_callback_url,
-      verb: config.cloudooo_callback_verb)
+      callback: config[:callback_url],
+      verb: config[:callback_verb])
   end
 
   def criar_graos(dados_graos)
