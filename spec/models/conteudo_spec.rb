@@ -6,6 +6,7 @@ require 'integration/fake_nsicloudooo'
 describe Conteudo do
   context 'workflow' do
     let(:conteudo) { FactoryGirl.create(:conteudo) }
+    let(:cloudooo) { ServiceRegistry.cloudooo }
 
     it 'possui estado inicial editavel' do
       conteudo.state.should == 'editavel'
@@ -34,8 +35,8 @@ describe Conteudo do
           end
 
           it 'envia para granularização' do
-            NSICloudooo::Client.stub(:new).and_return(oo = stub)
-            oo.should_receive(:granulate)
+            cloudooo.stub(:new).and_return(oo = stub)
+            cloudooo.should_receive(:granulate)
             conteudo.aprovar!
           end
 
