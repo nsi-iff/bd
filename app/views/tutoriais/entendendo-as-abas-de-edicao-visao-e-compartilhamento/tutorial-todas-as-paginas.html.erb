@@ -1,0 +1,41 @@
+<div id="tutoriais">
+  <h4> Entendendo as abas de edição, visão e compartilhamento </h4>
+  <span class="dica"> aviso: Esta é a visão de impressão com todas as páginas do tutorial em uma página.
+    <%= link_to "A versão paginada está disponível aqui",
+        url_tutorial("entendendo-as-abas-de-edicao-visao-e-compartilhamento")%>, se você preferir esta.
+  </span>
+  <br /><br />
+  <span class="dica">
+    Este tutorial tem o objetivo de apresentar ao usuário do sistema como funcionam as abas de edição, visão e
+    compartilhamento localizadas em algumas páginas do portal.
+  </span>
+
+  <h4> Entendendo as abas </h4>
+
+  <p>
+    Primeiramente, para se ter acesso a essas abas, o usuário precisa ter um  privilégio adequado. Geralmente, ele
+    terá a responsabilidade apenas de acrescentar conteúdo ao site.
+  </p>
+  <p>
+    A aba "Visão" é responsável por mostrar como o conteúdo da página será mostrado para o usuário final. Assim,
+    quando ele for fazer alguma alteração, não é necessário sair da sessão e nem sair do seu login para ver o
+    resultado final.
+  </p>
+
+  <img src="<%= url_imagem("aba_visao.jpg")%>" alt="aba de visão" />
+
+  <p>
+    Na aba  "Edição" o usuário poderá editar o conteúdo da página, podendo  trocar o título, descrição e outros
+    itens além de acrescentar conteúdo ao corpo do texto. A área de edição é bem amigável, podendo utilizar
+    ferramentas de formatação te texto como negrito, itálico, inserção de figuras, etc.
+  </p>
+
+  <img src="<%= url_imagem("aba_edicao.jpg")%>" alt="aba de edição" />
+
+  <p>
+    Na aba "Compartilhamento" o usuário pode definir quais usuários poderão ter acesso ao conteúdo e quais tarefas
+    eles poderão realizar, como por exemplo, adicionar, ver, editar e revisar.
+  </p>
+
+  <img src="<%= url_imagem("aba_compartilhamento.jpg")%>" alt="aba compartilhamento" />
+</div>

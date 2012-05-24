@@ -1,0 +1,51 @@
+<div id="tutoriais">
+  <h4> Entendendo o workflow </h4>
+   <span class="dica"> aviso: Esta é a visão de impressão com todas as páginas do tutorial em uma página.
+    <%= link_to "A versão paginada está disponível aqui", url_tutorial("entendendo-o-workflow")%>,
+    se você preferir esta.
+  </span>
+  <br /><br />
+  <span class="dica">
+    Este tutorial descreve o básico do funcionamento do workflow do plone, ou seja, o seu fluxo de informações.
+  </span>
+
+  <h4> Funcionamento básico </h4>
+  <span class="dica"> Introdução aos conceitos básicos do fluxo de informações da Biblioteca Digital. </span>
+
+  <p>
+    A Biblioteca Digital trata o ciclo de vida dos documentos de uma maneira simples, onde os usuários tem Papeis,
+    com direitos e deveres. Estes papéis permitem que se alterem os estados dos documentos, através de transições.
+  </p>
+  <p>
+    Para isso, a Biblioteca Digital divide as informações em alguns estados básicos que são: editável, pendente,
+    aprovado, retraído e publicado.
+  </p>
+  <p>
+    A vida de um documento na biblioteca digital começa com o depósito do documento, que só pode ser feito por um
+    usuário com direitos de contribuição. Ao depositar um documento este assume imediatamente o estado de
+    "editável", que significa que somente o contribuidor que o depositou pode vê-lo ou editá-lo.
+  </p>
+  <p>
+    Editável - O documento está no estado editável quando seus dados estão sendo preenchidos. Este é o estado
+    inicial de um documento no portal da Biblioteca Digital.
+  </p>
+  <p>
+    Pendente - No estado pendente, o documento fica aguardando a moderação do revisor. Neste estado, o documento
+    pode ser aprovado, deletado ou retraído.
+  </p>
+  <p>
+    Aprovado - Neste estado, a moderação aprova o material enviado para a Biblioteca Digital e o documento é
+    automaticamente granuralizado e publicado.
+  </p>
+  <p>
+    Retraído - A moderação não aprova o material e, caso o documento esteja granularizado, ele é desgranularizado
+    voltando para o estado editável.
+  </p>
+  <p>
+    Publicado - O documento fica disponível no portal da Biblioteca Digital para que todos os usuários tenham acesso.
+     O documento pode ainda ser retraído para ser feito a desgranularização.
+  </p>
+  <p> Essa máquina de estados pode ser visualizada na figura abaixo: </p>
+
+  <img src="<%= url_imagem("workflow.png")%>" alt="workflow" />
+</div>

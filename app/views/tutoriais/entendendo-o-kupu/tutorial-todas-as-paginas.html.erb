@@ -1,0 +1,90 @@
+<div id="tutoriais">
+  <h4> Entendendo o editor de texto da Biblioteca Digital </h4>
+  <span class="dica"> aviso: Esta é a visão de impressão com todas as páginas do tutorial em uma página.
+    <%= link_to "A versão paginada está disponível aqui", url_tutorial("entendendo-o-kupu")%>,
+    se você preferir esta.
+  </span>
+  <br /><br />
+  <span class="dica">
+    Neste tutorial o usuário aprenderá como utilizar o editor de texto usado em algumas páginas do site da
+    Biblioteca Dogital.
+  </span>
+
+  <h4> Introdução </h4>
+  <span class="dica"> Conhecendo o editor de texto utilizado na Biblioteca Digital. </span>
+
+  <p>
+    O usuário aprenderá para que serve o editor de texto e como ele utilizará suas funcionalidades básicas.
+  </p>
+
+  <h4> Interface do Editor de Texto </h4>
+  <span class="dica"> O usuário conhecerá a interface do editor de texto utilizado na Biblioteca Digital. </span>
+
+  <p> O  editor de texto apresenta uma barra de ferramentas simples, como mostrado na figua abaixo: </p>
+
+  <img src="<%= url_imagem("interface_kupu.png")%>" alt="interface do kupu" />
+
+  <p>
+    O editor de texto conta com ferramentas como negrito, itálico, alinhamento de texto, inserção de figuras,
+    inserção de links, entre outros.
+  </p>
+
+  <h4> Adicionando uma imagem no texto </h4>
+  <span class="dica">
+    O usuário aprenderá a adicionar uma imagem no editor de texto usado na Biblioteca Digital.
+  </span>
+
+  <p> Para adicionar uma imagem no editor, clique no ícone "Inserir Imagem". </p>
+
+  <img src="<%= url_imagem("adicionar_img_kupu.png")%>" alt="adicionar uma imagem no kupu" />
+
+  <p> Após esta etapa, será exibida uma tela para inserir uma imagem, como mostrado abaixo: </p>
+
+  <img src="<%= url_imagem("enviar_img_kupu.png")%>" alt="enviar uma imagem para o kupu" />
+
+  <p>
+    Para inserí-la, clique no botão "Enviar imagem aqui...", em seguida clique no botão "Arquivo" e selecione a
+    imagem no seu computador.
+  </p>
+
+  <h4> Inserindo link no texto </h4>
+  <span class="dica"> O usuário aprenderá a inserir link interno e externo no texto </span>
+
+  <p> No editor de texto existe a opção de inserção para objetos internos e externos. </p>
+  <p>
+    <strong>Link Interno</strong>: Quando o usuário precisa colocar um link para um objeto que está inserido na
+    Biblioteca Digital, basta seguir os seguintes passos:
+  </p>
+  <ol>
+    <li>
+      Clicar no ícone "Inserir link interno", localizado na barra de ferramentas do editor.
+
+      <img src="<%= url_imagem("inserir_link_interno_kupu.png")%>" alt="inserir link interno no kupu" />
+    </li>
+    <li>
+      Uma tela aparecerá para o usuário procurar pelo objeto que deseja referenciar. Esta janela permite ao usuário
+      navegar pelo site e procurar pelo objeto que deseja fazer referência (ex: imagem, pasta).
+
+      <img src="<%= url_imagem("configurando_link_kupu.png")%>" alt="configurando link interno no kupu" />
+    </li>
+    <li>
+      Após selecionar o item desejado e clicar no botão "ok", o link aparecerá no texto.
+    </li>
+  </ol>
+
+  <p>
+    <strong>Link Externo</strong>: Todo link para uma página da internet é um link externo. Para adicionar um link externo, basta seguir os seguintes passos:
+  </p>
+  <ol>
+    <li>
+      Clicar no botão "inserir link externo", na barra de ferramentas do editor.
+      <img src="<%= url_imagem("inserir_link_externo_kupu.png")%>" alt="inserir link externo no kupu" />
+    </li>
+    <li>
+      Uma janela aparecerá para que o usuário coloque a página da internet desejada. Caso prefira, o usuário pode pré
+      -visualizar a página, clicando no botão "pré-visualização" no alto da página.
+      <img src="<%= url_imagem("pre_visualizacao_kupu.png")%>" alt="configurando link externo no kupu" />
+    </li>
+    <li> Colocado o endereço da pagina, clicar em ok e o link aparecerá no texto. </li>
+  </ol>
+</div>

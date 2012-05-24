@@ -13,7 +13,7 @@ describe TutoriaisController do
 
   describe 'retorna pagina requisitada quando caminho é valido' do
      before do
-      get :show, :tutorial => "usando_o_portal"
+      get :show, :tutorial => "usando-o-portal"
     end
 
     it { response.should be_success }
