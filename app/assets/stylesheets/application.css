@@ -61,7 +61,7 @@ header {
 header h1 {
   font-family: FuturaStd;
   color: #FFF;
-  font-size: 36px;
+  font-size: 32px;
   float: left;
 }
 
@@ -91,7 +91,7 @@ header .site_actions ul, ol {
 
 header .site_actions li {
   float: left;
-  padding: 0px 8px;
+  padding: 0px 5px;
   margin-top: -5px;
 }
 
@@ -100,7 +100,7 @@ header .site_actions {
   border: 1px solid rgba(255, 255, 255, .2);
   float: right;
   height: 30px;
-  margin-top: 30px;
+  margin-top: 20px;
   -moz-border-radius:    5px;
   -webkit-border-radius: 5px;
   border-radius:         5px;
