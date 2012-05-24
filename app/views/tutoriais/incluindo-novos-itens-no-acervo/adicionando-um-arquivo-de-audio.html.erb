@@ -1,0 +1,44 @@
+<div id="tutoriais">
+  <h1> Adicionando um arquivo de áudio </h1>
+  <p> É possível incluir arquivos de som e posteriormente executar o mesmo pela própria interface da biblioteca. </p>
+  <p> Arquivos de som devem ser adicionados através do Item "arquivo". </p>
+
+  <img src="<%= url_imagem("adicionar_video.jpg")%>" alt="adicionar um vídeo" />
+
+  <p>
+    Ao selecionar a opção "Arquivo", o usuário deverá entrar com o "Título" , o arquivo de som a ser carregado para
+    a internet e a área de conhecimento à qual o arquivo é integrante.
+  </p>
+
+  <img src="<%= url_imagem("adicionar_conteudo.png")%>" alt="adicionar conteúdo" />
+
+  <p> O usuário irá notar algumas abas no topo: </p>
+  <p> Padrão </p>
+  <p> Metadados </p>
+  <p> Categorização </p>
+  <p> Propriedade </p>
+  <p> Configurações </p>
+
+  <p>
+    Essas abas são padrões para todos os tipos de conteúdo, logo, o usuário irá encontrá-los em outros tipos de
+    conteúdo do acervo.
+  </p>
+  <p> Ao terminar de preencher os campos, clique no Botão "Salvar". </p>
+  <p>
+    Depois de clicar em "Salvar", dependendo do formato de som do arquivo, um dos dois comportamentos abaixo podem
+    ocorrer:
+  </p>
+  <ol>
+    <li>
+      Se o arquivo de som for no formato <strong>mp3</strong> ou no formato <strong>ogg</strong>, o "Título" deverá ser substituído pelo Título do
+      arquivo de áudio, que é encontrado incluído juntamente com o som. O título do arquivo não é a mesma coisa que
+      o nome do arquivo mp3/ogg. Um tocador de arquivos de áudio ficará disponível na página principal, permitindo
+      que este seja executado através da página, sem a necessidade de fazer download. Porém, se o usuário ainda
+      quiser fazer download do arquivo, este ficará disponível para tal de qualquer forma.
+    </li>
+    <li>
+      Arquivos de áudio com outras extensões serão adicionados, porém não terão o título automaticamente modificado
+      bem como o tocador de áudio online não será exibido, permitindo apenas o download do arquivo.
+    </li>
+  </ol>
+</div>

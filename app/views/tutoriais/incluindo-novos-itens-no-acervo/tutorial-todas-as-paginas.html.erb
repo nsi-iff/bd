@@ -1,0 +1,272 @@
+<div id="tutoriais">
+  <h4> Incluindo novos documentos no acervo </h4>
+  <span class="dica">
+    Aviso: Esta é a visão de impressão com todas as páginas do tutorial em uma página. <%= link_to "A versão
+      paginada está disponível aqui", url_tutorial("incluindo-novos-itens-no-acervo")%>, se você preferir esta.
+  </span>
+  <br />
+  <span class="dica">
+    Este documento descreve como adicionar itens no acervo da biblioteca digital.
+  </span>
+
+  <h4> Introdução </h4>
+  <span class="dica">
+    A biblioteca digital permite a inclusão de um conjunto vasto de tipos de arquivos e de conteúdo. Entenda como
+    adicioná-los, editá-los e removê-los.
+  </span>
+
+  <p>
+    Para a inclusão de novos exemplares de documentos e imagens à biblioteca, é necessário compreender os diversos
+    tipos de conteúdo providos pelo mesmo. Para a adição dos novos conteúdos, usa-se a própria interface de acesso
+    da biblioteca para a inclusão. Novos exemplares no acervo são adicionados através da página inicial da
+    biblioteca digital.
+  </p>
+
+  <img src="<%= url_imagem("busca_portal.jpg")%>" alt="página inicial" />
+
+  <h5> Tipos de item do acervo </h5>
+  <h5> Objeto de Aprendizagem </h5>
+
+  <p> Objetos de aprendizagem são recursos digitais que podem ser reutilizados e que ajudam no aprendizado. </p>
+  <h5> Arquivo </h5>
+
+  <p>
+    Tipo de conteúdo para armazenar na biblioteca Digital deferentes formatos de arquivos. É possível visualizar
+    vídeos, ouvir arquivos de som e pré-visualizar documentos como pdf,doc,odf, dentre outros.
+  </p>
+
+  <h5> Imagem </h5>
+
+  <p>
+    O tipo de exemplar imagem é usado para carregar arquivos de imagem(JPG,GIF,PNG). Assim o usuário pode inserí-lo
+    e reaproveitá-lo para construir outros tipos de conteúdo.
+  </p>
+
+  <h4> Trabalho de Conclusão de Curso </h4>
+  <p> Permite carregar um documento e identificá-lo como trabalho final de curso. </p>
+
+  <h5> Artigo Científico </h5>
+  <p>
+    Permite reutilizar um artigo científico extraindo suas partes. As partes do artigo podem ser referenciadas e/ou
+    usadas em outros documentos e artigos.
+  </p>
+
+  <h5> Entendendo os campos de um conteúdo </h5>
+  <p>
+    Todo tipo de conteúdo possui uma série de campos, que permitem descrevê-los de maneira correta.Todos os
+    exemplares na biblioteca possuem dois campos importantes em comum: <strong>Título</strong> e
+    <strong>Descrição.</strong>
+  </p>
+  <p>
+    De forma geral, outros campos vão variar de acordo com o tipo de conteúdo. Por exemplo, o tipo de conteúdo
+    "Trabalho de conclusão de curso" possui o campo "Área de conhecimento", o tipo de conteúdo "Objeto de aprendizagem" possui o campo "Nível de educação", e assim continuamente.
+
+  </p>
+
+  <h5> Título </h5>
+  <p>
+    Pode-se usar qualquer caractere do teclado, incluindo espaços em branco. O Título se torna parte do endereço
+    web de cada exemplar que é criado na biblioteca. Endereços web, conhecidos como URL, são o que você digita em
+    um navegador quando deseja ir a uma específica localização em uma página web(Ou onde voce gostaria de clicar e
+    visitar, como:
+  </p>
+  <p> www.mysite.com/about/personnel/sally/bio </p>
+  <p> ou </p>
+  <p> www.mysite.com/images/butterflies/skippers/long-tailed-skippers </p>
+
+  <p>
+    Endereços web tem restrições com relação aos caracteres permitidos, e espaços não são permitidos. Logo, o
+    sistema converte o título corretamente para um endereço válido trocando os caracteres inválidos para
+    correspondentes válidos, quando os mesmos estão presentes no Título.
+  </p>
+
+  <p>
+    O endereço web de um determinado exemplar é referido como <strong>nome curto</strong>. Ao usar a função
+    <strong>Renomear</strong>, o usuário irá ver o nome curto juntamente com o Título.
+  </p>
+
+  <h5> Descrição </h5>
+  <p>
+    A Descrição aparece em todas as página de edição, como o Título. Descrições são usadas como um breve resumo do
+    exemplar. A descrição é usada em uma série de visualizações, como um em uma página de resulados de busca.
+  </p>
+
+  <h4> Incluindo um documento </h4>
+  <p>
+    Um documento pode ser um artigo, trabalho de conclusão de curso ou objeto de aprendizado. Ao incluir um
+    documento, preencha os seus metadados obrigatórios bem como todos os outros pertinentes.
+  </p>
+  <p>
+    É importante ressaltar que quando um documento é inserido, pode levar algum tempo até que ele seja aprovado por
+    um bibliotecário.
+  </p>
+
+  <img src="<%= url_imagem("adicionar_itens.jpg")%>" alt="adicionar conteúdos" />
+
+  <p>
+    Quando o documento enviado for aprovado para publicação no acervo, suas tabelas e suas imagens serão extraídas
+    e disponibilizadas como grãos, como mostrado nas figuras abaixo:
+  </p>
+
+  <h5> Tabela de grãos </h5>
+  <br />
+  <img src="<%= url_imagem("tabela_graos.jpg")%>" alt="tabela de grãos" />
+
+  <h4> Adicionando um vídeo </h4>
+  <p>
+    A Biblioteca permite incluir vídeos em diversos formatos e posteriormente visualizá-los pelo acesso da
+    biblioteca digital.
+  </p>
+  <p>
+    Para adicionar um Vídeo ao acervo, deve-se clicar na opção para adicionar um Arquivo, que fica no menu
+    "Adicionar item no Portal".
+  </p>
+
+  <img src="<%= url_imagem("adicionar_video.jpg")%>" alt="adicionar um vídeo" />
+
+  <p>
+    Após isso, preencha os campos "Título", "Grande Área" e "Área" e selecione o arquivo de vídeo da sua máquina que deseja enviar.
+  </p>
+
+  <img src="<%= url_imagem("adicionar_conteudo.png")%>" alt="adicionar conteúdo" />
+
+  <p>
+    Depois de incluído todos os campos necessários, deve-se clicar em "Salvar". Após isso, deverá aparecer um tela
+    com um tocador de vídeo, permitindo exibí-lo. A exbição vai depender se o sistema em que está sendo usado
+    possui recursos de exibição de vídeos, chamados de <em>plugins</em>. De modo geral, os <em>plugins</em>
+    permitem visualizar, e muitas vezes editar e/ou executar arquivos em que não possuem compatibilidade com o seu
+    navegador.
+  </p>
+  <p>
+    Arquivos de vídeo possuem diversos formatos e extensões de arquivo, em que cada um deles permite uma melhor
+    qualidade ou um menor tamanho de arquivo.
+  </p>
+
+  <img src="<%= url_imagem("exemplo_video.png")%>" alt="exemplo de vídeo" />
+
+  <h4> Adicionando um arquivo de áudio </h4>
+  <p> É possível incluir arquivos de som e posteriormente executar o mesmo pela própria interface da biblioteca. </p>
+  <p> Arquivos de som devem ser adicionados através do Item "arquivo". </p>
+
+  <img src="<%= url_imagem("adicionar_video.jpg")%>" alt="adicionar um vídeo" />
+
+  <p>
+    Ao selecionar a opção "Arquivo", o usuário deverá entrar com o "Título" , o arquivo de som a ser carregado para
+    a internet e a área de conhecimento à qual o arquivo é integrante.
+  </p>
+
+  <img src="<%= url_imagem("adicionar_conteudo.png")%>" alt="adicionar conteúdo" />
+
+  <p> O usuário irá notar algumas abas no topo: </p>
+  <p> Padrão </p>
+  <p> Metadados </p>
+  <p> Categorização </p>
+  <p> Propriedade </p>
+  <p> Configurações </p>
+
+  <p>
+    Essas abas são padrões para todos os tipos de conteúdo, logo, o usuário irá encontrá-los em outros tipos de
+    conteúdo do acervo.
+  </p>
+  <p> Ao terminar de preencher os campos, clique no Botão "Salvar". </p>
+  <p>
+    Depois de clicar em "Salvar", dependendo do formato de som do arquivo, um dos dois comportamentos abaixo podem
+    ocorrer:
+  </p>
+  <ol>
+    <li>
+      Se o arquivo de som for no formato <strong>mp3</strong> ou no formato <strong>ogg</strong>, o "Título"
+      deverá ser substituído pelo Título do
+      arquivo de áudio, que é encontrado incluído juntamente com o som. O título do arquivo não é a mesma coisa que
+      o nome do arquivo mp3/ogg. Um tocador de arquivos de áudio ficará disponível na página principal, permitindo
+      que este seja executado através da página, sem a necessidade de fazer download. Porém, se o usuário ainda
+      quiser fazer download do arquivo, este ficará disponível para tal de qualquer forma.
+    </li>
+    <li>
+      Arquivos de áudio com outras extensões serão adicionados, porém não terão o título automaticamente modificado
+      bem como o tocador de áudio online não será exibido, permitindo apenas o download do arquivo.
+    </li>
+  </ol>
+
+  <h4> Adicionando um objeto de aprendizagem </h4>
+
+  <p> Objetos de aprendizagem são recursos digitais que podem ser reutilizados e que ajudam no aprendizado. </p>
+  <p>
+    Para adicionar um Objeto de aprendizagem basta clicar em "Adicionar Item" e logo em seguida clicar em "objeto de
+    aprendizagem", como mostra a figura a seguir:
+  </p>
+
+  <img src="<%= url_imagem("add_objeto_aprendizagem.jpg")%>" alt="adicionar objeto de aprendizagem" />
+
+  <p>
+    Logo em seguida é preciso preencher alguns campos. Na aba "Padrão" há campos obrigatórios. Os campos
+    obrigatórios são seguidos de um pequeno quadrado vermelho como mostra a figura a seguir:
+  </p>
+
+  <img src="<%= url_imagem("adicionar_conteudo.png")%>" alt="adicionar conteúdo" />
+
+  <p>  Após preenchidos os campos, basta clicar em "salvar". </p>
+
+  <h5> Incluindo um artigo </h5>
+  <p>
+    Para adicionar um Artigo, basta clicar em "Adicionar Item" e logo em seguida clicar em "artigo", como mostra a
+    figura a seguir:
+  </p>
+
+  <img src="<%= url_imagem("add_artigo.jpg")%>" alt="artigo" />
+
+  <p>
+    Logo em seguida é preciso preencher alguns campos. Na aba "Padrão" há campos obrigatórios. Os campos
+    obrigatórios são seguidos de um pequeno quadrado vermelho como mostra a figura a seguir:
+  </p>
+
+  <img src="<%= url_imagem("adicionar_conteudo.png")%>" alt="adicionar conteúdo" />
+
+  <p> Após preenchidos os campos, basta clicar em "salvar". </p>
+
+  <h4> Adicionando uma imagem ao acervo </h4>
+  <p>
+    Para incluir uma imagem , clique em "imagem" no menu "adicionar item" ao portal. É importante lembrar que esse
+    menu só aparece após estar logado na biblioteca:
+  </p>
+
+  <img src="<%= url_imagem("add_imagem.jpg")%>" alt="adicionar imagem" />
+
+  <p> Após clicar, o usuário irá ver um painel de adição de Imagem: </p>
+
+  <img src="<%= url_imagem("adicionar_conteudo.png")%>" alt="adicionar conteúdo" />
+
+  <p>
+    Na aba Padrão é necessário preencher os campos "Título", "Grande Área", "Área" e fazer o upload do arquivo desejado.
+  </p>
+  <p>
+    No campo Imagem o usuário precisará escolher uma imagem armazenada do seu computador. Nos campos "Grande Área"
+    e "Área" é necessário selecionar quais área e subárea do conhecimento o arquivo de imagem pertence . Após
+    preencher os campos necessários, clique no botão "salvar" para enviar a imagem para a biblioteca. Após isso deve
+    -se esperar alguns segundos(ou até um minuto se o usuário tiver uma conexão de internet lenta e dependendo do
+    tamanho do arquivo de imagem ) até o envio da imagem estar completo. Uma pré-visualização da imagem será
+    mostrada na tela de visão após a conclusão.
+  </p>
+  <p>
+    Caso a imagem que o usuário inseriu seja do tipo SVG, ela será separada em partes automaticamente, ou seja,
+    granularizada logo após a imagem ser aprovada pela moderação do portal.
+  </p>
+
+  <h4> Adicionando um trabalho de conclusão de curso </h4>
+
+  <p>
+    Para adicionar um Trabalho de Conclusão de Curso basta clicar em "adicionar item" e logo em seguida clicar em
+    "trabalho de conclusão de curso", como mostra a figura a seguir:
+  </p>
+
+  <img src="<%= url_imagem("add_trab_conclusao.jpg")%>" alt="adicionar trabalho de conclusão" />
+
+  <p>
+    Logo em seguida é preciso preencher alguns campos. Na aba "Padrão" há campos obrigatórios. Os campos
+    obrigatórios são seguidos de um pequeno quadrado vermelho como mostra a figura a seguir:
+  </p>
+
+  <img src="<%= url_imagem("adicionar_conteudo.png")%>" alt="adicionar conteúdo" />
+
+  <p>  Após preenchidos os campos, basta clicar em "salvar". </p>
+</div>

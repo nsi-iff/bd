@@ -1,0 +1,29 @@
+<div id="tutoriais">
+  <h1> Adicionando uma imagem ao acervo </h1>
+  <p>
+    Para incluir uma imagem , clique em "imagem" no menu "adicionar item" ao portal. É importante lembrar que esse
+    menu só aparece após estar logado na biblioteca:
+  </p>
+
+  <img src="<%= url_imagem("add_imagem.jpg")%>" alt="adicionar imagem" />
+
+  <p> Após clicar, o usuário irá ver um painel de adição de Imagem: </p>
+
+  <img src="<%= url_imagem("adicionar_conteudo.png")%>" alt="adicionar conteúdo" />
+
+  <p>
+    Na aba Padrão é necessário preencher os campos "Título", "Grande Área", "Área" e fazer o upload do arquivo desejado.
+  </p>
+  <p>
+    No campo Imagem o usuário precisará escolher uma imagem armazenada do seu computador. Nos campos "Grande Área"
+    e "Área" é necessário selecionar quais área e subárea do conhecimento o arquivo de imagem pertence . Após
+    preencher os campos necessários, clique no botão "salvar" para enviar a imagem para a biblioteca. Após isso deve
+    -se esperar alguns segundos(ou até um minuto se o usuário tiver uma conexão de internet lenta e dependendo do
+    tamanho do arquivo de imagem ) até o envio da imagem estar completo. Uma pré-visualização da imagem será
+    mostrada na tela de visão após a conclusão.
+  </p>
+  <p>
+    Caso a imagem que o usuário inseriu seja do tipo SVG, ela será separada em partes automaticamente, ou seja,
+    granularizada logo após a imagem ser aprovada pela moderação do portal.
+  </p>
+</div>
