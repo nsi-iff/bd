@@ -1,5 +1,5 @@
 class Mailer < ActionMailer::Base
-  default from: "mala_direta@bd.com"
+  default from: "mala_direta@iff.edu.br"
 
   def notificar_usuario_sobre_conteudos(usuario_email, conteudos)
     @usuario = Usuario.find_by_email(usuario_email)
