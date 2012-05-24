@@ -16,9 +16,6 @@ test:
   enable_starttls_auto: true
 
 production:
-  address:
-  port:
-  authentication: plain
-  user_name:
-  password:
-  enable_starttls_auto: true
+  address: '200.167.129.65'
+  port: '25'
+  domain: 'iff.edu.br'
