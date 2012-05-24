@@ -15,21 +15,26 @@ class GraosController < ApplicationController
     respond_to &:js
   end
 
-  def baixar_conteudo
+   def baixar_conteudo
     unless current_usuario.cesta.blank?
       @sam = ServiceRegistry.sam
       t = Tempfile.new("cesta_temporaria", tmpdir="#{Rails.root}/tmp")
       Zip::ZipOutputStream.open(t.path) do |z|
         current_usuario.cesta.all.map(&:key).each_with_index do |key, index|
-          objeto_grao = Grao.where(:key => key).first
-          tipo_grao = objeto_grao.tipo
-          conteudo_id = objeto_grao.conteudo_id
-          title = 'grao_' + Conteudo.where(:id => conteudo_id).first.titulo +  '_' + index.to_s
-          if tipo_grao == 'files' then title += '.odt' else title += '.jpg' end
-          grao = @sam.get(key)
-          grao = Base64.decode64(grao['data'])
+          grao = Grao.where(:key => key).first
+          conteudo_que_gerou_o_grao = Conteudo.where(:id => grao.conteudo_id).first
+          tipo_grao = grao.tipo
+          dados_grao = @sam.get(key)['data']
+          title = 'grao_' + conteudo_que_gerou_o_grao.titulo +  '_' + index.to_s
+          if tipo_grao == 'images'
+            nome_grao = dados_grao['filename']
+            formato_grao = nome_grao[-4..-1]
+            title += formato_grao
+          else
+            title += '.odt'
+          end
           z.put_next_entry(title)
-          z.print grao
+          z.print Base64.decode64(dados_grao['file'])
         end
       end
     end
@@ -59,3 +64,4 @@ class GraosController < ApplicationController
     @grao = Grao.find(params[:id]) if params[:id]
   end
 end
+

@@ -61,3 +61,4 @@ feature 'apresentacao dos conteudos por abas' do
     page.should have_content grao.key
   end
 end
+
