@@ -1,0 +1,55 @@
+<div id="tutoriais">
+  <h4> Inserindo Referências Bibliográficas </h4>
+  <span class="dica"> aviso: Esta é a visão de impressão com todas as páginas do tutorial em uma página.
+    <%= link_to "A versão paginada está disponível aqui", url_tutorial("inserindo-referencias-bibliograficas")%>,
+    se você preferir esta.
+  </span>
+  <br /><br />
+  <span class="dica">
+    Este tutorial ajuda o usuário a inserir no texto referências de itens que já existem na biblioteca.
+  </span>
+
+  <h4> Introdução </h4>
+  <span class="dica">
+    Neste tutorial o usuário aprenderá a inserir referências de itens existentes na biblioteca digital em seus
+    textos.
+  </span>
+
+  <p>
+    Este tutorial tem como objetivo ajudar o usuário a inserir referências bibliográficas dos item que foram
+    inseridos na Biblioteca Digital.
+  </p>
+
+  <h4> Inserindo referências bibliográficas </h4>
+  <span class="dica"> O usuário aprenderá como inserir referências no texto </span>
+
+  <p>
+    Para inserir uma referência para um item do acervo digital, basta que o usuário clique no ícone "GRÃO", que se
+    encontra na barra de ferramentas do editor de texto da Biblioteca Digital.
+  </p>
+
+  <img src="<%= url_imagem("botao_grao.png")%>" alt="botão grão" />
+
+  <p>
+    Clicando neste ícone, uma janela aparecerá. Nela o usuário poderá navegar pelo acervo da biblioteca digital e
+    escolher o grão que deseja fazer a referência.
+  </p>
+
+  <img src="<%= url_imagem("grao_oceanografia.png")%>" alt="grão de oceanografia" />
+
+  <p>
+    A janela está dividida em 3 colunas. Na 1ª, aparece um item que representa a coleção de grãos. Na 2ª coluna, é
+    mostrado os grãos que podem ser utilizados como referência. E a 3ª coluna mostra o grão selecionado, podendo
+    escolher a posição do grão (right, se quiser o texto a direita; left, se quiser o texto a esquerda; inline, se
+    quiser o texto na linha onde o cursor se encontra), o tamanho do grão e o texto equivalente a referência. Após
+    definir todas as configurações, clique em "OK", e a referência aparecerá no final do texto, como mostra a figura
+    a seguir:
+  </p>
+
+  <img src="<%= url_imagem("bibliografia.png")%>" alt="bibliografia" />
+
+  <p>
+    em que é mostrado o usuário que criou a referência, a data da criação, o texto da referência e o endereço da
+    imagem.
+  </p>
+</div>
