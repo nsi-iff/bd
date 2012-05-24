@@ -1,0 +1,174 @@
+<div id="tutoriais">
+  <h4> Utilizando as Buscas </h4>
+  <span class="dica"> aviso: Esta é a visão de impressão com todas as páginas do tutorial em uma página.
+    <%= link_to "A versão paginada está disponível aqui", url_tutorial("utilizando-a-busca")%>,
+    se você preferir esta.
+  </span>
+  <br /><br />
+  <span class="dica"> Tutorial de como utilizar a busca por itens do acervo da biblioteca digital </span>
+
+  <h4> Busca Avançada </h4>
+  <span class="dica">
+    Tutorial de como realizar buscas no portal utilizando diferentes parâmetros para refinamento da pesquisa.
+  </span>
+
+   <p>
+    A busca avançada pode ser acessada através do menu de navegação existente na lateral esquerda da página do
+    portal da Biblioteca Digital. Essa permite que o usuário realize uma consulta no Acervo por conteúdos que sejam
+    de seu interesse, com algumas opções de filtros que podem ser adicionados à busca para refinamento do resultado
+    suportando, inclusive, combinações de filtros para uma busca mais específica.
+  </p>
+  <p> A sua interface é composta dos seguintes filtros de busca: </p>
+  <p>
+    Área: Este filtro é utilizado quando se deseja buscar no acervo os conteúdos pertencentes a uma dada área de conhecimento. Por exemplo, se for selecionado o item "Engenharias", irão aparecer nos resultados apenas os conteúdos que pertencerem a esta área de conhecimento.
+  </p>
+  <p>
+    Sub Área: Este filtro é utilizado, em conjunto com o filtro de Área, quando se deseja buscar no acervo os
+    conteúdos pertencentes a uma dada sub área pertencente a uma determinada área de conhecimento. Por exemplo, se
+    for selecionado o item "Engenharias" como área e o item "Engenharia Civil" como sub área de conhecimento, irão
+    aparecer nos resultados apenas os conteúdos que pertencerem a sub área "Engenharia Civil", que por sua vez
+    pertence a área de conhecimento "Engenharia". Este campo pode ser omitido, selecionando a opção "Todas",
+    fazendo com que a busca leve em conta apenas a Área, no caso "Engenharias".
+  </p>
+  <p>
+    Tipos de conteúdo: Estes filtros são utilizados quando se deseja buscar no acervo os conteúdos do tipo
+    selecionado. As opções deste tipo de filtro são mostradas na figura abaixo:
+  </p>
+
+  <img src="<%= url_imagem("tipos_conteudo.png")%>" alt="tipos de conteudo" />
+
+  <p> Artigo: Retorna como resultado da busca todos os artigos do acervo. </p>
+  <p>
+    Trabalho de Conclusão de Curso: Retorna como resultado da busca todos os trabalhos de conclusão de curso do
+    acervo.
+  </p>
+  <p> Imagens: Retorna como resultado da busca todas as imagens do acervo. </p>
+  <p> Objeto de Aprendizagem: Retorna como resultado da busca todos os objetos de aprendizagem do acervo. </p>
+  <p> Arquivo: Retorna como resultado da busca todos os arquivo do acervo, incluindo conteúdo multimídia. </p>
+  <p>
+    Caso nenhum dos filtros por tipo de conteúdo seja selecionado, a busca será realizada considerando todos os
+    tipos de conteúdo do acervo, da mesma forma que acontece quando eles são selecionados.
+  </p>
+  <p>
+    Título: Este filtro é utilizado quando se deseja buscar no acervo os conteúdos nos quais o título seja igual ao
+    texto informado.
+  </p>
+  <p>
+    Autor: Este filtro é utilizado quando se deseja buscar no acervo os conteúdos criados pelo autor informado.
+  </p>
+  <p>
+    Texto Completo: Este filtro é utilizado quando se deseja buscar no acervo os conteúdos que contenham, em
+    qualquer parte, o texto informado.
+  </p>
+  <p>
+    Além das opções de busca mostradas acima, existe ainda a possibilidade de realizar a busca através de duas caixas de acesso rápido, que estão localizadas na lateral esquerda da página do acervo.
+  </p>
+  <p>
+    Na primeira caixa, a busca é feita apenas clicando na letra desejada do alfabeto. Esta busca tem como resultado
+    todos os conteúdos que tenham o título iniciado com a letra selecionada.
+  </p>
+  <p>
+    Na segunda caixa, é possível fazer a busca por uma área de conhecimento desejada, tendo como resultado todos os
+    conteúdos que estejam relecionados àquela área. Existe no lado esquerdo de cada área o símbolo "+"; clicando
+    sobre ele, serão exibidas as opções de sub área de conhecimento daquela área, podendo ser realizada uma busca
+    pela sub área desejada, resultando todos os conteúdos relacionados.
+  </p>
+
+  <h5> Adicionando uma busca estendida </h5>
+
+  <p> Para adicionar uma busca estendida basta clicar na aba "adicionar item", na parte superior direita da página principal e
+    escolher o item 'busca estendida'. </p>
+
+  <img src="<%= url_imagem("adicionarbusca.jpg")%>" alt="adicionando busca" />
+
+  <h5> Adicionando sua busca estendida </h5>
+
+  <p> Nesta página o usuário poderá dar a sua busca um título e uma descrição. O título é obrigatório. </p>
+  <p>
+    Logo abaixo, o usuário terá a opção de limitar os resultados que serão mostrados na página da busca estendida. Logo após,
+    o usuário definirá a quantidade de itens que aparecerão.
+  </p>
+
+  <img src="<%= url_imagem("editarbusca.jpg")%>" alt="editando a busca" />
+
+  <p>
+    Após, existe a opção de exibir os resultados em tabela. Marcando esta opção, o usuário colocará os campos da tabela. Para
+    adicionar um campo na tabela, basta escolher o campo desejado e clicar 2 vezes nele, ou selecioná-lo com um clique e
+    clicar no botão “>>" ao lado. Para retirar um campo, basta repetir os procedimentos acima, porém na janela ao lado.
+  </p>
+
+  <img src="<%= url_imagem("itens_da_coluna.jpg")%>" alt="selecionando itens das coluna" />
+
+  <p>
+    Terminada as configurações, basta clicar no botão "salvar" e o usuário será redirecionado para uma página onde aparecerão
+    os resultados da busca.
+  </p>
+
+  <img src="<%= url_imagem("visualizacao_busca.jpg")%>" alt="tela de visualização da busca estendida" />
+
+  <h5> Adicionando um Critério </h5>
+
+  <p>
+    Após o termino da edição da busca estendida, uma tela aparecerá, porém nenhum item será retornado, porque não foi
+    definido os critérios da busca. Para defini-los, basta clicar na aba critério e uma página aparecerá para que possa ser
+    acrescentado critérios para a busca.
+  </p>
+
+  <p>
+    Para adicionar um critério, primeiro, o usuário terá de definir qual campo irá pesquisar (Ex.: Título) e depois colocar
+    pelo que procurar (Ex.: Texto). Feito isso, basta clicar no botão "Adicionar Critério".
+  </p>
+
+  <img src="<%= url_imagem("adicionando_criterio.jpg")%>" alt="adicionando critério" />
+
+  <p> Após fazer isso, uma tabela aparecerá no topo da página. Nela existem 2 colunas, "Campo" e "Detalhes do Critério". </p>
+  <p>
+    Na primeira coluna fica o campo selecionado anteriormente. Na segunda coluna, existe um campo para que se digite o valor
+    desejado para a busca. Feito isso, basta clicar no botão 'salvar'.
+  </p>
+  <p> Caso queira adicionar outro critério, basta seguir os passos descritos acima. </p>
+
+  <img src="<%= url_imagem("criterio_adicionado.jpg")%>" alt="critério adicionado" />
+
+  <p>
+    Após ter adicionado todos os critérios, o usuário poderá definir como deseja ordenar os resultados da sua busca (Ex.:
+    Tipo do Item). E também, existe a opção de apresentar os item em ordem inversa. Tendo definido todas as opções, basta
+    clicar no botão 'salvar'.
+  </p>
+
+  <img src="<%= url_imagem("usando_busca_estendida.jpg")%>" alt="Ordem de classificação" />
+
+  <h5> Buscando Critério </h5>
+
+  <p>
+    Após o usuário salvar suas configurações, ele clica na aba visão para realizar sua busca com os critérios definidos. Para
+    executar a busca, clique no botão "search".
+  </p>
+
+  <img src="<%= url_imagem("buscando_criterio.jpg")%>" alt="buscando um critério" />
+
+  <h5> Busca Rápida </h5>
+
+  <span class="dica">
+    Tutorial para apresentar a forma mais simples de fazer uma busca no acervo da Biblioteca Digital.
+  </span>
+  <p>
+    Para buscar um conteúdo no portal da Biblioteca Digital, basta digitar a palavra no campo de busca no topo da página e
+    clicar no botão "BUSCAR".
+  </p>
+
+  <img src="<%= url_imagem("busca_rapida.jpg")%>" alt="buscando no acervo" />
+
+  <h5> Busca por letra </h5>
+  <span class="dica">
+    Tutorial que apresenta a busca no acervo bibliográfico utilizando a primeira letra do título de um conteúdo
+    como critério de refinamento.
+  </span>
+  <p>
+    Esta funcionalidade de busca se encontra em uma caixa de acesso rápido localizada na lateral esquerda da página do acervo.
+  </p>
+  <p>
+    A busca é feita apenas clicando na letra desejada do alfabeto. Esta busca tem como resultado todos os conteúdos que tenham
+    o título iniciado com a letra selecionada.
+  </p>
+</div>
