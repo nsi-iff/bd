@@ -1,12 +1,104 @@
 <div id="tutoriais">
   <h1> Tutoriais </h1>
   <div class="tutorial">
-    <%= link_to "Usando o Portal", url_para("usando_o_portal") %>
+    <%= link_to "Usando o Portal", url_para("usando-o-portal"), class: "titulo" %>
     <span class="descricao"> Descreve como usar o Portal </span>
+    <%= link_to "Ler mais...", url_para("usando-o-portal"), class: "ler_mais" %>
   </div>
 
   <div class="tutorial">
-    <%= link_to "Tipos de usuários", url_para("tipos_de_usuarios") %>
+    <%= link_to "Tipos de usuários", url_para("tipos-de-usuarios"), class: "titulo" %>
     <span class="descricao"> Este tutorial descreve os tipos de usuários, seus direitos e permissões. </span>
+    <%= link_to "Ler mais...", url_para("tipos-de-usuarios"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Utilizando as Buscas", url_para("utilizando-a-busca"), class: "titulo" %>
+    <span class="descricao"> Tutorial de como utilizar a busca por itens do acervo da biblioteca digital. </span>
+    <%= link_to "Ler mais...", url_para("utilizando-a-busca"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Salvando Buscas", url_para("salvando-buscas"), class: "titulo" %>
+    <span class="descricao">
+      A biblioteca digital permite salvar suas buscas para que você possa reutilizar os resultados futuramente.
+      Entenda como salvar-los e reutiliza-los.
+     </span>
+    <%= link_to "Ler mais...", url_para("salvando-buscas"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Incluindo novos documentos no acervo",
+    url_para("incluindo-novos-itens-no-acervo"), class: "titulo" %>
+    <span class="descricao"> Este documento descreve como adicionar itens no acervo da biblioteca digital. </span>
+    <%= link_to "Ler mais...", url_para("incluindo-novos-itens-no-acervo"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to 'Separando partes de um documentos em "grãos"',
+    url_para("separando-partes-de-um-item-em-graos"), class: "titulo" %>
+    <span class="descricao"> O usuário aprenderá o que é um grão, como criá-lo e gerenciá-lo. </span>
+    <%= link_to "Ler mais...", url_para("separando-partes-de-um-item-em-graos"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Usando o Favoritos",
+    url_para("usando-o-favoritos"), class: "titulo" %>
+    <span class="descricao"> Tutorial de como adicionar um documento ou partes dele no Favoritos do usuário. </span>
+    <%= link_to "Ler mais...", url_para("usando-o-favoritos"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Usando o Carrinho de Grãos",
+    url_para("usando-o-carrinho-de-graos"), class: "titulo" %>
+    <span class="descricao">
+      Usando o carrinho de grãos para gerar documento a partir de partes extraídas de outros documentos.
+    </span>
+    <%= link_to "Ler mais...", url_para("usando-o-carrinho-de-graos"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Usando a pasta do usuário",
+    url_para("usando-a-pasta-do-usuario"), class: "titulo" %>
+    <span class="descricao"> Este tutorial ensina a utilizar a pasta de usuário </span>
+    <%= link_to "Ler mais...", url_para("usando-a-pasta-do-usuario"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Inserindo Referências Bibliográficas",
+    url_para("inserindo-referencias-bibliograficas"), class: "titulo" %>
+    <span class="descricao">
+      Este tutorial ajuda o usuário a inserir no texto referências de itens que já existem na biblioteca.
+    </span>
+    <%= link_to "Ler mais...", url_para("inserindo-referencias-bibliograficas"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Entendendo o editor de texto da Biblioteca Digital",
+    url_para("entendendo-o-kupu"), class: "titulo" %>
+    <span class="descricao">
+      Neste tutorial o usuário aprenderá como utilizar o editor de texto usado em algumas páginas do site da
+      Biblioteca Dogital.
+    </span>
+    <%= link_to "Ler mais...", url_para("entendendo-o-kupu"), class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Entendendo as abas de edição, visão e compartilhamento",
+    url_para("entendendo-as-abas-de-edicao-visao-e-compartilhamento"), class: "titulo" %>
+    <span class="descricao">
+      Este tutorial tem o objetivo de apresentar ao usuário do sistema como funcionam as abas de edição, visão e
+      compartilhamento localizadas em algumas páginas do portal.
+    </span>
+    <%= link_to "Ler mais...", url_para("entendendo-as-abas-de-edicao-visao-e-compartilhamento"),
+        class: "ler_mais" %>
+  </div>
+
+  <div class="tutorial">
+    <%= link_to "Entendendo o workflow", url_para("entendendo-o-workflow"), class: "titulo" %>
+    <span class="descricao">
+      Este tutorial descreve o básico do funcionamento do workflow do plone, ou seja, o seu fluxo de informações.
+    </span>
+    <%= link_to "Ler mais...", url_para("entendendo-o-workflow"), class: "ler_mais" %>
   </div>
 </div>
