@@ -6,11 +6,8 @@ ActionMailer::Base.delivery_method = :test if Rails.env.test? || Rails.env.devel
 ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.smtp_settings = {
-  :enable_starttls_auto => mail['enable_starttls_auto'] == true,
+  :enable_starttls_auto => false,
   :address        => mail['address'],
   :port           => mail['port'].to_i,
   :domain         => mail['domain'],
-  :authentication => mail['authentication'],
-  :user_name      => mail['user_name'],
-  :password       => mail['password']
 }

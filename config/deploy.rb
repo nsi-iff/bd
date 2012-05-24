@@ -34,6 +34,7 @@ namespace :utils do
     run "cat ~/.nsi/sam.yml > #{latest_release}/config/sam.yml"
     run "cat ~/.nsi/elasticsearch.yml > #{latest_release}/config/elasticsearch.yml"
     run "cat ~/.nsi/cloudooo.yml > #{latest_release}/config/cloudooo.yml"
+    run "cat ~/.nsi/mail.yml > #{latest_release}/config/mail.yml"
   end
 end
 
