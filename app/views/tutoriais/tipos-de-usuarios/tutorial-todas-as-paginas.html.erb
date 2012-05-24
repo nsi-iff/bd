@@ -1,0 +1,35 @@
+<div id="tutoriais">
+  <h4> Tipos de usuários </h4>
+  <span class="dica">Aviso: Esta é a visão de impressão com todas as páginas do tutorial em uma página.
+    <%= link_to "A versão paginada está disponível aqui", url_tutorial("tipos-de-usuarios")%>,
+    se você preferir esta. </span>
+  </br></br>
+  <span class="dica"> Este tutorial descreve os tipos de usuários, seus direitos e permissões. </span>
+
+  <h4> Tipos de usuários </h4>
+  <span class="dica"> Descrição dos tipos de usuários do portal da Biblioteca Digital. </span>
+
+  <p>
+    O portal da Biblioteca Digital disponibiliza diversas funcionalidades para os seus usuários. Contudo, para
+    cada usuário existe um conjunto de permissões que pode limitar as funcionalidades acessadas pelo mesmo.
+    Este conjunto é definido pelo tipo de usuário que faz uso do portal.
+  </p>
+  <p>
+    Os tipos de usuários existentes no portal da Biblioteca Digital são: o Bibliotecário(Gerente), o Usuário
+    Membro (usuário cadastrado) e o Usuário Visitante (usuário sem cadastro). O Bibliotecário tem a responsabilidade
+    de administrar o portal avaliando os conteúdos enviados para publicação, aprovando, reprovando ou excluindo
+    estes conteúdos.
+  </p>
+  <p>
+    O Usuário Membro possui cadastro na Biblioteca Digital, podendo desta forma utilizar recursos
+    que demandem armazenamento de informação, tais como conteúdos favoritos, carrinho de grãos, etc. O Usuário
+    Visitante não possui cadastro na Biblioteca Digital, porém pode acessar de forma integral os conteúdos do
+    acervo bibliográfico.
+  </p>
+
+  <p> Na tabela abaixo estão relacionados os diferentes tipos de usuários da BD e as suas permissões de uso: </p>
+
+  <img src=<%= url_imagem("usuarios.png") %> alt="tabela" />
+
+  <p> Para virar usuário membro da Biblioteca Digital <%= link_to "clique aqui", new_usuario_registration_path %>. </p>
+</div>
