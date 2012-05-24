@@ -70,7 +70,9 @@ module DigitalLibrary
     # Configuracoes de acesso ao elasticsearch
     config.elasticsearch_config = YAML.load(
       File.read(File.join(Rails.root, 'config', 'elasticsearch.yml')))[Rails.env]
-    config.action_mailer.default_url_options = { :host => "iff.edu.br" }
+
+    # Host para mailer
+    config.action_mailer.default_url_options = { :host => "bd.iff.edu.br" }
   end
 end
 

@@ -1,11 +1,8 @@
 development:
-  address: 'smtp.gmail.com'
+  address: '200.167.129.65'
   port: '25'
-  authentication: 'plain'
-  domain: 'meu_dominio'
-  user_name: 'usuario'
-  password: 'senha'
-  enable_starttls_auto: true
+  domain: 'iff.edu.br'
+  enable_starttls_auto: false
 
 test:
   address:
@@ -13,7 +10,7 @@ test:
   authentication: plain
   user_name:
   password:
-  enable_starttls_auto: true
+  enable_starttls_auto: false
 
 production:
   address: '200.167.129.65'

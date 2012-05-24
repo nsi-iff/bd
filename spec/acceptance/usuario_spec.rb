@@ -52,5 +52,18 @@ feature 'sessão e registro de usuário' do
 
     page.should have_content 'Logout efetuado com sucesso'
   end
+
+  scenario 'solicitar alteração e senha' do
+    usuario = FactoryGirl.create :usuario
+    visit root_path
+    click_link 'Acessar'
+    click_link 'Esqueceu a senha?'
+    fill_in 'Email', with: usuario.email
+    click_button 'Envie as instruções de mudança de senha'
+    sleep(3) #tempo para esperar enviar e-mail
+    page.should have_content("Dentro de minutos, você receberá um email com as instruções de reinicialização da sua senha.")
+    last_email = ActionMailer::Base.deliveries.last
+    last_email.to.should include(usuario.email)
+  end
 end
 
