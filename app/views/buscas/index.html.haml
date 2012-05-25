@@ -1,6 +1,21 @@
-= form_tag "/buscas", :method => :get do
-  = label_tag :busca, "Busca"
-  = text_field_tag :busca, params[:busca]
+%h2 Busca Avançada
+= form_tag busca_avancada_path, :method => :get do
+  = label_tag 'Área'
+  = select_tag 'area', options_for_select(@areas.map {|area| [area.nome, area.id]})
+  = label_tag 'Subárea'
+  = select_tag 'sub_area', options_for_select(@sub_areas.map {|sub_area| [sub_area.nome, sub_area.id]})
+  = label_tag 'Tipos de conteúdo'
+  - @tipos_conteudo.each do |tipo|
+    = label_tag tipo.nome_humanizado
+    = check_box_tag 'tipo_conteudo', tipo.name
+  = label_tag 'Titulo'
+  = text_field_tag :titulo
+  = label_tag 'Autor'
+  = text_field_tag :autor
+  = label_tag 'Conteúdo (texto integral)'
+  = text_field_tag :conteudo
+  = label_tag 'Instituição'
+  = select_tag 'instituicao', options_for_select(@instituicoes.map {|ins| [ins.nome, ins.id]})
   = submit_tag "Buscar", name: nil
 
 - if @conteudos.blank?
