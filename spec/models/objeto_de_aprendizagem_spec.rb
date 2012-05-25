@@ -32,4 +32,5 @@ describe ObjetoDeAprendizagem do
     FactoryGirl.build(:objeto_de_aprendizagem, link: '',
                   arquivo: arquivo).should be_valid
   end
+
 end

@@ -8,5 +8,10 @@ class Arquivo < ActiveRecord::Base
   def odt?
     nome =~ /\.odt$/i
   end
+
+  def video?
+    mime_type.start_with? 'video'
+  end
+
 end
 

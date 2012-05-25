@@ -31,6 +31,11 @@ class ObjetoDeAprendizagem < Conteudo
     end
   end
 
+  def arquivo=(uploaded)
+    @arquivo_uploaded = uploaded
+    @arquivo_base64 = Base64.encode64(@arquivo_uploaded.read) if @arquivo_uploaded
+  end
+
   def descricao_idioma
     idioma.try(:descricao)
   end

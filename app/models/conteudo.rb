@@ -194,7 +194,7 @@ class Conteudo < ActiveRecord::Base
 
   def vincular_arquivo
     if @arquivo_uploaded.present?
-      set_arquivo(Arquivo.new(nome: @arquivo_uploaded.original_filename, conteudo: self))
+      set_arquivo(Arquivo.new(nome: @arquivo_uploaded.original_filename, conteudo: self, mime_type: @arquivo_uploaded.content_type))
     end
   end
 
