@@ -1,4 +1,5 @@
 require './lib/zip_entry.rb'
+require 'extend_string'
 
 class GraosController < ApplicationController
   before_filter :carregar_grao, :if => :current_usuario
@@ -23,9 +24,10 @@ class GraosController < ApplicationController
         current_usuario.cesta.all.map(&:key).each_with_index do |key, index|
           grao = Grao.where(:key => key).first
           conteudo_que_gerou_o_grao = Conteudo.where(:id => grao.conteudo_id).first
+          nome_conteudo = conteudo_que_gerou_o_grao.titulo.removeaccents.titleize.delete(" ").underscore
           tipo_grao = grao.tipo
           dados_grao = @sam.get(key)['data']
-          title = 'grao_' + conteudo_que_gerou_o_grao.titulo +  '_' + index.to_s
+          title = 'grao_' + nome_conteudo +  '_' + index.to_s
           if tipo_grao == 'images'
             nome_grao = dados_grao['filename']
             formato_grao = nome_grao[-4..-1]
