@@ -11,6 +11,19 @@ feature 'Buscas' do
     Papel.criar_todos
   end
 
+  scenario 'busca avançada (busca no acervo)' do
+    livro = FactoryGirl.create(:livro)
+    livro.submeter! && livro.aprovar!
+
+    visit buscas_path
+    check livro.class.nome_humanizado
+    select livro.sub_area.nome, from: 'sub_area'
+    fill_in 'titulo', with: livro.titulo
+    click_button 'Buscar'
+
+    page.should have_content livro.titulo
+  end
+
   scenario 'salvar busca' do
     usuario = autenticar_usuario(Papel.membro)
     livro = FactoryGirl.create(:livro, titulo: 'My book')

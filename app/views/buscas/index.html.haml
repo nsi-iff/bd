@@ -5,9 +5,11 @@
   = label_tag 'Subárea'
   = select_tag 'sub_area', options_for_select(['Todas'] + @sub_areas.map {|sub_area| [sub_area.nome, sub_area.id]})
   = label_tag 'Tipos de conteúdo'
-  - @tipos_conteudo.each do |tipo|
-    = label_tag tipo.nome_humanizado
-    = check_box_tag 'tipo_conteudo', tipo.name
+  %ul#tipos_de_conteudo
+    - @tipos_conteudo.each do |tipo|
+      %li
+        = label_tag tipo.nome_humanizado
+        = check_box_tag tipo.nome_humanizado
   = label_tag 'Titulo'
   = text_field_tag :titulo
   = label_tag 'Autor'
