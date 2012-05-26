@@ -16,7 +16,7 @@ feature 'Buscas' do
     livro = FactoryGirl.create(:livro, titulo: 'My book')
     livro2 = FactoryGirl.create(:livro, titulo: 'Outro book')
     sleep(3) if ENV['INTEGRACAO_TIRE'] # espera indexar
-    visit "/buscas"
+    visit root_path
     fill_in 'Busca', with: 'book'
     click_button 'Buscar'
     click_link 'Salvar Busca'
@@ -35,7 +35,7 @@ feature 'Buscas' do
 
     livro = FactoryGirl.create(:livro, titulo: 'livro')
 
-    visit "/buscas"
+    visit root_path
     fill_in 'Busca', with: 'livro'
     click_button 'Buscar'
     click_link 'Salvar Busca'
@@ -58,7 +58,7 @@ feature 'Buscas' do
     usuario = autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'link', arquivo: ''
     page.should have_content 'com sucesso'
-    visit "/buscas"
+    visit root_path
     fill_in 'Busca', with: 'livro'
     click_button 'Buscar'
     click_link 'Salvar Busca'

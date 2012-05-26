@@ -1,6 +1,6 @@
 class BuscasController < InheritedResources::Base
   actions :all, :except => [:index, :show]
-  before_filter :authenticate_usuario!, except: [:index, :busca_avancada]
+  before_filter :authenticate_usuario!, except: [:index, :busca_avancada, :busca_normal, :resultado_busca]
 
   def index
     @tipos_conteudo = Conteudo.tipos
@@ -31,10 +31,16 @@ class BuscasController < InheritedResources::Base
 
     @conteudos = conteudos
     session[:ultima_busca] = params
-    render action: 'resultado_busca_avancada'
+    render action: 'resultado_busca'
   end
 
-  def resultado_busca_avancada
+  def resultado_busca
+  end
+
+  def busca_normal
+    @conteudos = Conteudo.search params[:busca]
+    session[:ultima_busca] = params[:busca]
+    render action: 'resultado_busca'
   end
 
   def create
@@ -45,7 +51,7 @@ class BuscasController < InheritedResources::Base
   def show
     busca = Busca.find(params[:id]).busca
     @conteudos = Conteudo.search(busca)
-    render :index
+    render :resultado_busca
   end
 
   def cadastrar_mala_direta

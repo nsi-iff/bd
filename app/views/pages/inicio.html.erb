@@ -1,7 +1,7 @@
 <div class="home">
   <h1>Pages#inicio</h1>
 
-  <%= form_tag "/buscas", :method => :get do %>
+  <%= form_tag busca_normal_path, :method => :get do %>
     <%= label_tag :busca, "Busca" %>
     <%= text_field_tag :busca, params[:busca] %>
     <%= submit_tag "Buscar", name: nil %>

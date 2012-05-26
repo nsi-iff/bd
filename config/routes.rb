@@ -30,6 +30,7 @@ DigitalLibrary::Application.routes.draw do
     post :remover_mala_direta, :to => 'buscas#remover_mala_direta'
   end
   get :busca_avancada, to: 'buscas#busca_avancada'
+  get :busca_normal, to: 'buscas#busca_normal'
 
   resources :tutoriais, :only => :index, :path => '/ajuda/tutoriais'
   match 'ajuda/tutoriais/*tutorial' => 'tutoriais#show', :via => :get
