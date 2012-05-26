@@ -1,0 +1,14 @@
+- if @conteudos.blank?
+  %p Não foi encontrado resultado para sua busca.
+- else
+  %ul#resultado
+    - @conteudos.each do |conteudo|
+      %li
+        = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
+        #graos
+          - conteudo.graos.each do |grao|
+            .grao
+              = grao.key
+              = link_to 'Adicionar à cesta', adicionar_a_cesta_grao_path(grao), method: :put, remote: true
+
+= link_to 'Salvar Busca', new_busca_path if current_usuario

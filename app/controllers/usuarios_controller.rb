@@ -36,6 +36,7 @@ class UsuariosController < ApplicationController
 
   def lista_de_revisao
     @conteudos = []
+    # TODO: refactoring
     Conteudo.all.map { |conteudo| @conteudos << conteudo if conteudo.pendente? }
   end
 
