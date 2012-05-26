@@ -9,7 +9,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
     iff = Instituicao.create(nome: 'IFF')
     campos_centro = Campus.create nome: 'Campos Centro', instituicao: iff
     cabo_frio = Campus.create nome: 'Cabo Frio', instituicao: iff
-    autor_1       = Autor.create nome: "Yukihiro Matsumoto",
+    autor_1       = Autor.create nome: 'Yukihiro Matsumoto',
                                  lattes: "http://lattes.cnpq.br/1234567890"
     autor_2       = Autor.create nome: "Why, the Lucky Stiff",
                                  lattes: "lattes.cnpq.br/6666666666"
