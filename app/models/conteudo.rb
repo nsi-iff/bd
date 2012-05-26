@@ -87,6 +87,11 @@ class Conteudo < ActiveRecord::Base
     super
   end
 
+  def self.tipos
+    [Relatorio, TrabalhoDeObtencaoDeGrau, ArtigoDePeriodico, ArtigoDeEvento,
+     Livro, ObjetoDeAprendizagem, PeriodicoTecnicoCientifico]
+  end
+
   def granularizou(*args)
     options = args.first
     graos_response = options.delete(:graos)
