@@ -95,7 +95,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
   end
 
   def testar_busca(texto, *resultados)
-    visit "/buscas"
+    visit root_path
     fill_in "Busca", with: texto
     click_button "Buscar"
     resultados.each do |resultado|
