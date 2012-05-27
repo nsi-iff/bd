@@ -13,6 +13,7 @@ feature 'Buscas' do
 
   scenario 'busca avançada (busca no acervo)' do
     livro = FactoryGirl.create(:livro)
+    sleep(3) if ENV['INTEGRACAO_TIRE'] # aguardar a indexacao
     livro.submeter! && livro.aprovar!
 
     visit buscas_path
