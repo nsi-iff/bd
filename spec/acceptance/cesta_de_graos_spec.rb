@@ -182,10 +182,10 @@ feature 'cesta de grãos' do
       }
 
       grao_armazenado = Digest::MD5.hexdigest(File.read('./spec/resources/grao_teste_2.odt'))
-      grao_extraido = Digest::MD5.hexdigest(File.read("#{Rails.root}/spec/resources/downloads/grao_Quantum Mechanics for Dummies_0.odt"))
+      grao_extraido = Digest::MD5.hexdigest(File.read("#{Rails.root}/spec/resources/downloads/grao_quantum_mechanics_for_dummies_0.odt"))
       grao_armazenado.should == grao_extraido
       referencia_abnt = File.read("#{Rails.root}/spec/resources/downloads/referencias_ABNT.txt")
-      referencia_abnt.should match "grao_Quantum Mechanics for Dummies_0.odt: #{@livro.referencia_abnt}"
+      referencia_abnt.should match "grao_quantum_mechanics_for_dummies_0.odt: #{@livro.referencia_abnt}"
     end
   end
 end
