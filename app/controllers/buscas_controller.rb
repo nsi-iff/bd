@@ -3,7 +3,7 @@ class BuscasController < InheritedResources::Base
   before_filter :authenticate_usuario!, except: [:index, :busca_avancada, :busca_normal, :resultado_busca]
 
   def index
-    @tipos_conteudo = Conteudo.tipos
+    @tipos_conteudo = Conteudo.subclasses
     @areas = Area.all
     @sub_areas = SubArea.all
     @instituicoes = Instituicao.all

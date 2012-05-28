@@ -26,6 +26,7 @@ class GraosController < ApplicationController
           grao = Grao.where(:key => key).first
           conteudo_que_gerou_o_grao = Conteudo.where(:id => grao.conteudo_id).first
           nome_conteudo = conteudo_que_gerou_o_grao.titulo.removeaccents.titleize.delete(" ").underscore
+          binding.pry
           tipo_grao = grao.tipo
           dados_grao = @sam.get(key)['data']
           title = 'grao_' + nome_conteudo +  '_' + index.to_s
