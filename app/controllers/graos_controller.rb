@@ -20,6 +20,7 @@ class GraosController < ApplicationController
     unless current_usuario.cesta.blank?
       @sam = ServiceRegistry.sam
       t = Tempfile.new("cesta_temporaria", tmpdir="#{Rails.root}/tmp")
+      @referencias_abnt = ""
       Zip::ZipOutputStream.open(t.path) do |z|
         current_usuario.cesta.all.map(&:key).each_with_index do |key, index|
           grao = Grao.where(:key => key).first
@@ -35,9 +36,12 @@ class GraosController < ApplicationController
           else
             title += '.odt'
           end
+          @referencias_abnt << "#{title}: #{conteudo_que_gerou_o_grao.referencia_abnt}\n"
           z.put_next_entry(title)
           z.print Base64.decode64(dados_grao['file'])
         end
+        z.put_next_entry "referencias_ABNT.txt"
+        z.print @referencias_abnt
       end
     end
     send_file t.path, :type => 'application/zip',
@@ -66,4 +70,3 @@ class GraosController < ApplicationController
     @grao = Grao.find(params[:id]) if params[:id]
   end
 end
-
