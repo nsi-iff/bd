@@ -8,6 +8,8 @@ fieldset {
 label {
   display: block;
   font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 input[type="text"] {
@@ -27,6 +29,7 @@ input[type="checkbox"] {
 
 input[type="submit"] {
   width: 80px;
+  margin-bottom: 20px;
 }
 
 .hint {
