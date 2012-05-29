@@ -32,6 +32,10 @@ input[type="submit"] {
   margin-bottom: 20px;
 }
 
+.inline-hints {
+  margin-top: 0;
+}
+
 .hint {
   display: block;
 }
