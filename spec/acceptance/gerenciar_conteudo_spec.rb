@@ -12,8 +12,8 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     fill_in 'Link', with: 'http://www.rubyconf.org/articles/1'
     select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
     select('Ciência da Computação', from: 'Área de Conhecimento*')
-    select(usuario.campus.nome, from: 'Campus da Instituição do Usuário')
-    click_link 'Adicionar autor'
+    select(usuario.campus.nome, from: 'Campus da Instituição do Autor')
+    click_link 'Adicionar outro autor'
     fill_in 'Autor', with: 'Yukihiro Matsumoto'
     fill_in 'Curriculum Lattes', with: 'http://lattes.cnpq.br/1234567890'
     fill_in 'Direitos', with: 'Direitos e esquerdos'
@@ -57,7 +57,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
       ['Linus Torvalds',
        'Yukihiro Matsumoto',
        'Guido van Rossum'].each_with_index do |autor, i|
-        click_link 'Adicionar autor'
+        click_link 'Adicionar outro autor'
         within "#autores .nested-fields:nth-child(#{i + 1})" do
           fill_in 'Autor', with: autor
           fill_in 'Curriculum Lattes',

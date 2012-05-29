@@ -101,7 +101,7 @@ def preencher_campos(tipo, opcoes = {})
   select('Ciência da Computação', from: "#{tipo}_sub_area_id")
 
   unless opcoes[:autores] == false
-    click_link 'Adicionar autor'
+    click_link 'Adicionar outro autor'
     fill_in 'Autor', with: opcoes[:nome_autor] || 'Yukihiro Matsumoto'
     fill_in 'Curriculum Lattes',
       with: opcoes[:lattes_autor] || 'http://lattes.cnpq.br/1234567890'
