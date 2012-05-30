@@ -17,8 +17,20 @@ class Usuario < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :nome_completo, presence: true, allow_blank: true
 
+  def conteudos_editaveis
+    Conteudo.where(contribuidor_id: self.id, state: 'editavel')
+  end
+
+  def conteudos_pendentes
+    Conteudo.where(contribuidor_id: self.id, state: 'pendente')
+  end
+
+  def conteudos_publicados
+    Conteudo.where(contribuidor_id: self.id, state: 'publicado')
+  end
+
   def escrivaninha
-    Conteudo.editaveis(self) + Conteudo.pendentes(self)
+    self.conteudos_editaveis + self.conteudos_pendentes
   end
 
   def instituicao
@@ -34,7 +46,7 @@ class Usuario < ActiveRecord::Base
   end
 
   def estante
-    Conteudo.publicados(self) +
+    self.conteudos_publicados +
     self.graos_favoritos +
     self.conteudos_favoritos
   end
