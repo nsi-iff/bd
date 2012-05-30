@@ -29,10 +29,6 @@ class Ability
       can [:atualizar_papeis, :index, :buscar_por_nome, :usuarios_instituicao, :papeis], Usuario
     end
 
-    if usuario.instituicao_admin?
-      can [:atualizar_papeis, :index, :buscar_por_nome, :papeis], Usuario
-    end
-
     can [:area_privada, :escrivaninha, :estante, :minhas_buscas], Usuario, { :id => usuario.id }
     can [:favoritar, :remover_favorito], Conteudo
     can [:favoritar], Grao

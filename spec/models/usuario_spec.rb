@@ -14,7 +14,6 @@ describe Usuario do
       FactoryGirl.create(:papel_gestor)
       FactoryGirl.create(:papel_contribuidor)
       FactoryGirl.create(:papel_admin)
-      FactoryGirl.create(:papel_instituicao_admin)
     end
 
     shared_examples 'adicionar e ler todos os tipos de conteudo' do
