@@ -31,7 +31,7 @@ class UsuariosController < ApplicationController
   end
 
   def escrivaninha
-    @conteudos = Conteudo.editaveis(current_usuario)
+    @conteudos = current_usuario.escrivaninha
   end
 
   def lista_de_revisao

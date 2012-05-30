@@ -248,34 +248,10 @@ describe Conteudo do
     end
   end
 
-  it 'retorna editaveis por contribuidor' do
-    contribuidor1, contribuidor2 = 2.times.map { FactoryGirl.create(:usuario_contribuidor) }
-    c1 = FactoryGirl.create(:livro, contribuidor: contribuidor1)
-    c2 = FactoryGirl.create(:relatorio, contribuidor: contribuidor1)
-    c2.submeter!
-    c3 = FactoryGirl.create(:artigo_de_evento, contribuidor: contribuidor2)
-    c3.submeter!
-    c4 = FactoryGirl.create(:livro, contribuidor: contribuidor2)
-    Conteudo.editaveis(contribuidor1).should == [c1]
-    Conteudo.editaveis(contribuidor2).should == [c4]
-  end
-
   it 'fornece o nome do contribuidor' do
     conteudo = Conteudo.new(
       contribuidor: stub_model(Usuario, nome_completo: 'Linus Torvalds'))
     conteudo.nome_contribuidor.should == 'Linus Torvalds'
-  end
-
-  it 'retorna pendentes por contribuidor' do
-    contribuidor1, contribuidor2 = 2.times.map { FactoryGirl.create(:usuario_contribuidor) }
-    c1 = FactoryGirl.create(:livro, contribuidor: contribuidor1)
-    c2 = FactoryGirl.create(:relatorio, contribuidor: contribuidor1)
-    c2.submeter!
-    c3 = FactoryGirl.create(:artigo_de_evento, contribuidor: contribuidor2)
-    c3.submeter!
-    c4 = FactoryGirl.create(:livro, contribuidor: contribuidor2)
-    Conteudo.pendentes(contribuidor1).should == [c2]
-    Conteudo.pendentes(contribuidor2).should == [c3]
   end
 
   it 'nao pode possuir simultaneamente arquivo e link' do
