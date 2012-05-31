@@ -27,4 +27,10 @@ $(document).ready(function() {
         var id = this.value;
         $.post("/instituicoes/" + id + "/campus");
     });
+
+    $("#check-all").change(function() {
+        for(i=0; i<$(".check-one").length; i++) {
+          $(".check-one")[i].checked = this.checked;
+        }
+    });
 });

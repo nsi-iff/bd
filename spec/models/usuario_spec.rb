@@ -14,6 +14,7 @@ describe Usuario do
       create(:papel_gestor)
       create(:papel_contribuidor)
       create(:papel_admin)
+      create(:papel_instituicao_admin)
     end
 
     shared_examples 'adicionar e ler todos os tipos de conteudo' do
