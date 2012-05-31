@@ -11,16 +11,20 @@
     %br
     %br
 
-= form_tag atualizar_papeis_usuarios_path, method: 'put' do
+= form_tag atualizar_papeis_usuarios_path, method: 'put', :id => 'papeis-usuarios' do
   %table{ border: '1', id: 'usuarios' }
     %thead
       %tr
+        %th
+          = check_box_tag "check-all", checked = false
         %th E-mail
         - Papel.all.each do |papel|
           %th #{papel.nome}
     %tbody
       - @usuarios.each do |usuario|
         %tr
+          %td
+            = check_box_tag 'check-one', '', false, :class => 'check-one'
           %td
             = usuario.nome_completo
             %br
