@@ -70,6 +70,14 @@ class Conteudo < ActiveRecord::Base
     before_transition :pendente => :granularizando, :do => :granularizar
   end
 
+  def self.estados
+    [:editavel, :pendente, :recolhido, :publicado]
+  end
+
+  def estados
+    self.class.estados
+  end
+
   def remover(*args)
     raise "O motivo é obrigatório" unless args.present? && args.first.has_key?(:motivo)
     super
