@@ -40,8 +40,8 @@ describe Usuario do
   context 'escrivaninha' do
     it 'retorna os conteudos do usuario que sao editaveis' do
       usuario = Usuario.new
-      Conteudo.should_receive(:pendentes).with(usuario).and_return('pendentes')
-      Conteudo.should_receive(:editaveis).with(usuario).and_return('editaveis')
+      usuario.should_receive(:conteudos_pendentes).and_return('pendentes')
+      usuario.should_receive(:conteudos_editaveis).and_return('editaveis')
       usuario.escrivaninha.should == 'editaveispendentes'
     end
   end
@@ -49,7 +49,7 @@ describe Usuario do
   context 'estante' do
     it 'retorna os conteudos aprovados do usuario' do
       usuario = Usuario.new
-      Conteudo.should_receive(:publicados).with(usuario).and_return([:publicados])
+      usuario.should_receive(:conteudos_publicados).and_return([:publicados])
       usuario.should_receive(:graos_favoritos).and_return([:graos_favoritos])
       usuario.should_receive(:conteudos_favoritos).and_return([:conteudos_favoritos])
       usuario.estante.should == [:publicados, :graos_favoritos, :conteudos_favoritos]

@@ -70,18 +70,6 @@ class Conteudo < ActiveRecord::Base
     before_transition :pendente => :granularizando, :do => :granularizar
   end
 
-  scope :editaveis, lambda {|contribuidor|
-    where(:contribuidor_id => contribuidor.id, :state => 'editavel')
-  }
-
-  scope :pendentes, lambda {|contribuidor|
-    where(:contribuidor_id => contribuidor.id, :state => 'pendente')
-  }
-
-  scope :publicados, lambda {|contribuidor|
-    where(:contribuidor_id => contribuidor.id, :state => 'publicado')
-  }
-
   def remover(*args)
     raise "O motivo é obrigatório" unless args.present? && args.first.has_key?(:motivo)
     super
