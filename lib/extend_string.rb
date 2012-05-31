@@ -83,4 +83,3 @@ class String
     str.gsub(options[:regexp], '')
   end
 end
-

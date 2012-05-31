@@ -8,7 +8,7 @@ feature 'apresentacao dos conteudos por abas' do
     Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
-    conteudo = FactoryGirl.create(:artigo_de_periodico)
+    conteudo = create(:artigo_de_periodico)
 
     visit conteudo_path(conteudo)
 
@@ -27,8 +27,8 @@ feature 'apresentacao dos conteudos por abas' do
     conteudo_imagem = Base64.encode64(File.open('spec/resources/tela.png').read)
     result = sam.store file: conteudo_imagem, filename: 'tela.png'
 
-    conteudo = FactoryGirl.create(:artigo_de_periodico)
-    grao = FactoryGirl.create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])
+    conteudo = create(:artigo_de_periodico)
+    grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])
 
     visit conteudo_path(conteudo)
 
@@ -48,8 +48,8 @@ feature 'apresentacao dos conteudos por abas' do
     Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
-    conteudo = FactoryGirl.create(:artigo_de_periodico)
-    grao = FactoryGirl.create(:grao, tipo: 'files', conteudo: conteudo)
+    conteudo = create(:artigo_de_periodico)
+    grao = create(:grao, tipo: 'files', conteudo: conteudo)
 
     visit conteudo_path(conteudo)
 

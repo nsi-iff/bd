@@ -7,10 +7,10 @@ feature 'Escrivaninha' do
 
   scenario 'mostra os conteúdos do usuário em estado de edição' do
     usuario = autenticar_usuario(Papel.contribuidor)
-    outro = FactoryGirl.create(:usuario_contribuidor)
-    artigo = FactoryGirl.create(:artigo_de_evento, titulo: 'Ruby is cool!', contribuidor: usuario)
-    livro = FactoryGirl.create(:livro, titulo: 'Agile rulz!', contribuidor: usuario)
-    relatorio = FactoryGirl.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: outro)
+    outro = create(:usuario_contribuidor)
+    artigo = create(:artigo_de_evento, titulo: 'Ruby is cool!', contribuidor: usuario)
+    livro = create(:livro, titulo: 'Agile rulz!', contribuidor: usuario)
+    relatorio = create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: outro)
 
     visit root_path
     within '#escrivaninha' do
