@@ -260,10 +260,10 @@ describe Conteudo do
       type: 'text/plain',
       tempfile: File.new(Rails.root + 'spec/resources/arquivo.nsi')
     })
-    FactoryGirl.build(:conteudo, arquivo: arquivo, link: '').should be_valid
-    FactoryGirl.build(:conteudo, arquivo: nil,
+    build(:conteudo, arquivo: arquivo, link: '').should be_valid
+    build(:conteudo, arquivo: nil,
                   link: 'http://nsi.iff.edu.br').  should be_valid
-    conteudo = FactoryGirl.build(:conteudo, arquivo: arquivo,
+    conteudo = build(:conteudo, arquivo: arquivo,
                                         link: 'http://nsi.iff.edu.br')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
@@ -271,7 +271,7 @@ describe Conteudo do
   end
 
   it 'arquivo ou link devem existir' do
-    conteudo = FactoryGirl.build(:conteudo, arquivo: nil, link: '')
+    conteudo = build(:conteudo, arquivo: nil, link: '')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
     conteudo.errors[:link].should be_any
@@ -288,7 +288,7 @@ describe Conteudo do
           type: 'text/plain',
           tempfile: File.new(Rails.root + "spec/resources/#{arquivo_tipo}")
         })
-        FactoryGirl.build(tipo, link: '',
+        build(tipo, link: '',
                   arquivo: arquivo).should be_valid
       end
     end
@@ -299,7 +299,7 @@ describe Conteudo do
         type: 'text/plain',
         tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
       })
-      FactoryGirl.build(tipo, link: '',
+      build(tipo, link: '',
                 arquivo: arquivo).should_not be_valid
     end
    end
@@ -307,7 +307,7 @@ describe Conteudo do
   it 'area deve ser a area ligada a sua subarea' do
     area = create(:area)
     subarea = create(:sub_area, area: area)
-    conteudo = FactoryGirl.build(:conteudo, sub_area: subarea)
+    conteudo = build(:conteudo, sub_area: subarea)
 
     conteudo.area.should be(area)
   end
@@ -316,7 +316,7 @@ describe Conteudo do
     usuario = create(:usuario_contribuidor)
     instituicao_usuario = usuario.campus.instituicao
     campus = create(:campus, instituicao: instituicao_usuario)
-    conteudo = FactoryGirl.build(:conteudo, campus: campus)
+    conteudo = build(:conteudo, campus: campus)
 
     conteudo.campus.instituicao.should be(instituicao_usuario)
   end
@@ -336,7 +336,7 @@ describe Conteudo do
   end
 
   context 'granularizavel' do
-    let(:conteudo) { FactoryGirl.build(:conteudo) }
+    let(:conteudo) { build(:conteudo) }
 
     it 'nao granularizavel se é um link' do
       conteudo.set_arquivo(nil)
