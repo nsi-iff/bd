@@ -51,4 +51,5 @@ group :test, :development do
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
   gem 'zippy'
+  gem 'toothbrush'
 end

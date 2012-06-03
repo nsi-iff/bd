@@ -44,12 +44,17 @@ feature 'apresentacao dos conteudos por abas' do
     sam.delete grao.key
   end
 
-  scenario 'conteudo com grao arquivo deve ter aba tabelas com visualizacao da chave do grao' do
+  scenario 'conteudo com grao arquivo deve ter aba tabelas com visualizacao das tabelas' do
     Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
+    sam = ServiceRegistry.sam
+
+    conteudo_odt = Base64.encode64(File.open('spec/resources/grao_teste_2.odt').read)
+    result = sam.store(file: conteudo_odt, filename: 'grao.odt')
+
     conteudo = create(:artigo_de_periodico)
-    grao = create(:grao, tipo: 'files', conteudo: conteudo)
+    grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
 
     visit conteudo_path(conteudo)
 
@@ -58,7 +63,19 @@ feature 'apresentacao dos conteudos por abas' do
     page.should have_content 'Tabelas'
 
     click_link 'Tabelas'
-    page.should have_content grao.key
+    ensure_table '#extracted_table_1',
+      [[ 'Funcionalidade',            'Não cadastrado', 'Cadastrado', 'Contribuidor', 'Bibliotecário'],
+       ['Navegar no portal',         'X', 'X', 'X', 'X'],
+       ['Realizar buscas no acervo', 'X', 'X', 'X', 'X'],
+       ['Realizar buscas avançadas', 'X', 'X', 'X', 'X'],
+       ['Salvar buscas',             '',  'X', 'X', 'X'],
+       ['Realizar downloads',        'X', 'X', 'X', 'X'],
+       ['Adicionar conteúdo',        '',  '',  'X', 'X'],
+       ['Visualizar usuários',       'X', 'X', 'X', 'X'],
+       ['Adicionar favoritos',       '',  'X', 'X', 'X'],
+       ['Adicionar grãos à cesta',   '',  'X', 'X', 'X'],
+       ['Aprovar conteúdos',         '',  '',  '',  'X'],
+       ['Reprovar conteúdos',        '',  '',  '',  'X'],
+       ['Excluir conteúdos',         '',  '',  '',  'X']]
   end
 end
-

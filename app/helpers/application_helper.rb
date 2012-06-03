@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'base64'
+
 module ApplicationHelper
   def title
     base_title = "Biblioteca Digital da EPCT"
@@ -41,5 +43,9 @@ module ApplicationHelper
 
   def conteudo_tag(conteudo)
     "<span class='conteudo_tag conteudo-#{conteudo.class.name.to_s.underscore}'>#{conteudo.titulo}</span>".html_safe
+  end
+
+  def tabela_grao(grao)
+    extract_tables(Base64.decode64(grao.conteudo_base64))[0].html_safe
   end
 end

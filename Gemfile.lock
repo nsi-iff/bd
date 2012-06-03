@@ -265,6 +265,9 @@ GEM
       multi_json (~> 1.0)
       rake
       rest-client (~> 1.6)
+    toothbrush (0.1.1)
+      capybara (~> 1.0)
+      toothbrush
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -327,6 +330,7 @@ DEPENDENCIES
   timecop (~> 0.3.5)
   tire
   tire-mock_client!
+  toothbrush
   uglifier (>= 1.0.3)
   valid_attribute (~> 1.2.0)
   zippy
