@@ -102,6 +102,16 @@ class Conteudo < ActiveRecord::Base
     contribuidor.try(:nome_completo)
   end
 
+  def self.busca(params)
+    s = Tire.search 'conteudos' do
+      query do
+        string "titulo:#{params[:titulo]}" if params[:titulo]
+        string "sub_area:#{params[:sub_area]}" if params[:sub_area]
+      end
+    end
+    s.results
+  end
+
   def self.search(busca)
     s = Tire.search 'conteudos' do
       query { string busca }

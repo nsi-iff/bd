@@ -10,26 +10,20 @@ class BuscasController < InheritedResources::Base
   end
 
   def busca_avancada
-    # XXX: Use TIRE (this is a really ugly solution)
-    area = params[:area] || nil
-    area != 'Todas' || area = nil
-    sub_area = params[:sub_area] || nil
-    sub_area != 'Todas' || sub_area = nil
-    instituicao = params[:instituicao] || nil
-    instituicao != 'Todas' || instituicao = nil
-    tipo_conteudo = params[:tipo_conteudo] || nil
-    titulo = params[:titulo] || nil
-    autor = params[:autor] || nil
+    # TODO: Achar uma melhor maneira de tratar isso
+    new_params = {}
+    new_params[:area] = params[:area] || nil
+    new_params[:area] != 'Todas' || area = nil
+    new_params[:sub_area] = params[:sub_area] || nil
+    new_params[:sub_area] != 'Todas' || sub_area = nil
+    new_params[:instituicao] = params[:instituicao] || nil
+    new_params[:instituicao] != 'Todas' || instituicao = nil
+    new_params[:tipo_conteudo] = params[:tipo_conteudo] || nil
+    new_params[:titulo] = params[:titulo] || nil
+    new_params[:autor] = params[:autor] || nil
 
-    conteudos = Conteudo.scoped
-    #conteudos = conteudos.where('area_id = ?', area) if area
-    conteudos = conteudos.where('sub_area_id = ?', sub_area) if sub_area
-    #conteudos = conteudos.where('instituicao_id = ?', instituicao) if instituicao
-    conteudos = conteudos.where('type = ?', tipo_conteudo) if tipo_conteudo
-    conteudos = conteudos.where('titulo = ?', titulo) if titulo
-    #conteudos = conteudos.where('autor = ?', autor) if autor
+    @conteudos = Conteudo.busca(new_params)
 
-    @conteudos = conteudos
     session[:ultima_busca] = params
     render action: 'resultado_busca'
   end
