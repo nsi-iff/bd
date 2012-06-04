@@ -15,22 +15,29 @@
   %table{ border: '1', id: 'usuarios' }
     %thead
       %tr
-        %th
-          = check_box_tag "check-all", checked = false
-        %th E-mail
-        - Papel.all.each do |papel|
-          %th #{papel.nome}
+        %th{:rowspan => "2"} Usuário
+        %th{:colspan => "5"} Papéis
+        %th{:rowspan => "2"} Limpar<br>Senha
+        %th{:rowspan => "2"} Excluir<br>usuário
+      %tr
+        %th Membro
+        %th Contrib.<br>de<br>Conteúdo
+        %th Gestor<br>de<br>Conteúdo
+        %th Admin.
+        %th Admin.<br>de<br>Instituição
     %tbody
       - @usuarios.each do |usuario|
         %tr
-          %td
-            = check_box_tag 'check-one', '', false, :class => 'check-one'
           %td
             = usuario.nome_completo
             %br
             = usuario.email
           - Papel.all.each do |papel|
-            %td= check_box_tag "papeis[#{usuario.id}][]", papel.id,
-              usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}"
-
-  = submit_tag 'Salvar'
+            %td
+              = check_box_tag "papeis[#{usuario.id}][]", papel.id, usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}"
+          %td
+            = check_box_tag '', '', selected = false
+          %td
+            = check_box_tag '', '', selected = false
+  %br
+  = submit_tag 'Aplicar'
