@@ -46,6 +46,6 @@ module ApplicationHelper
   end
 
   def tabela_grao(grao)
-    extract_tables(Base64.decode64(grao.conteudo_base64))[0].html_safe
+    extract_table(Base64.decode64(grao.conteudo_base64)).html_safe
   end
 end

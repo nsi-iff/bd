@@ -24,6 +24,7 @@ gem 'rabl'
 gem 'gon'
 gem 'multi_json', '~>1.3.0'
 gem 'nsi-abntformat', '~>1.0.3'
+gem 'odt2html'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
