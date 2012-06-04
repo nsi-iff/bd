@@ -48,4 +48,13 @@ module ApplicationHelper
   def tabela_grao(grao)
     extract_table(Base64.decode64(grao.conteudo_base64)).html_safe
   end
+  
+  def renderizar_graos_da_cesta(cesta)
+    cesta.
+      map {|grao_id| Grao.find(grao_id) }.
+      reject(&:arquivo?).
+      map {|grao| "<img src='data:image/xyz;base64,#{grao.conteudo_base64}'>" }.
+      join.
+      html_safe
+  end
 end

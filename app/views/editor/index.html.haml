@@ -1,4 +1,3 @@
 = form_tag "/editor" do
-  = cktext_area_tag("documento",
-    @inclui_graos ? @cesta.map {|grao_id| Grao.find(grao_id) }.reject(&:arquivo?).map {|grao| "<img src='data:image/xyz;base64,#{grao.conteudo_base64}'>" }.join.html_safe : "")
+  = cktext_area_tag("documento", @inclui_graos ? renderizar_graos_da_cesta(@cesta) : "")
   = submit_tag "Download"

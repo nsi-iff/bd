@@ -159,7 +159,7 @@ feature 'cesta de grãos' do
       criar_cesta @usuario, create(:conteudo),
                             recurso('grao_teste_0.jpg'),
                             recurso('grao_teste_1.jpg'),
-                            recurso('grao_teste_2.odt')
+                            recurso('grao_tabela.odt')
       visit root_path
       within('#cesta') { click_link 'Editar' }
       within '#documento' do
