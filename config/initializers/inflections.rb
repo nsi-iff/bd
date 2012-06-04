@@ -25,4 +25,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural /el$/i, 'eis'
   inflect.singular /eis$/i, 'el'
   inflect.singular /ais$/i, 'al'
+  inflect.plural /ia$/i, 'ias'
 end
