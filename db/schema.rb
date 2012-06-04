@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120522174451) do
+ActiveRecord::Schema.define(:version => 20120604193515) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -199,6 +199,16 @@ ActiveRecord::Schema.define(:version => 20120522174451) do
   create_table "papeis_usuarios", :id => false, :force => true do |t|
     t.integer "usuario_id"
     t.integer "papel_id"
+  end
+
+  create_table "referencias", :force => true do |t|
+    t.string   "abnt"
+    t.string   "tipo_do_grao"
+    t.integer  "usuario_id"
+    t.integer  "referenciavel_id"
+    t.string   "referenciavel_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "sub_areas", :force => true do |t|

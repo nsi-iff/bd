@@ -1,5 +1,6 @@
 class Grao < ActiveRecord::Base
   belongs_to :conteudo
+  has_many :referencias, :as => :referenciavel
 
   def arquivo?
     tipo == 'files'
