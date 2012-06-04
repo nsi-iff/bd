@@ -9,7 +9,7 @@ feature 'Editar Conteúdo' do
       autenticar_usuario(Papel.contribuidor)
 
       tipos_de_conteudo.each do |tipo|
-        conteudo = FactoryGirl.create tipo
+        conteudo = create tipo
         conteudo.submeter
         visit edit_conteudo_path(conteudo)
         page.should have_content 'Conteúdo não pode ser editado'

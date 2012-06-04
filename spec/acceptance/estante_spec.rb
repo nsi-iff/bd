@@ -6,12 +6,12 @@ feature 'Estante' do
   before(:each) do
     Papel.criar_todos
     @usuario = autenticar_usuario(Papel.contribuidor)
-    @outro_usuario = FactoryGirl.create(:usuario)
+    @outro_usuario = create(:usuario)
   end
 
   scenario 'mostra os conteúdos aprovados do usuário' do
-    artigo = FactoryGirl.create(:artigo_de_evento, titulo: 'Ruby is cool!', contribuidor: @usuario)
-    relatorio = FactoryGirl.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: @outro_usuario)
+    artigo = create(:artigo_de_evento, titulo: 'Ruby is cool!', contribuidor: @usuario)
+    relatorio = create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: @outro_usuario)
 
     artigo.submeter!
     visit root_path
@@ -41,7 +41,7 @@ feature 'Estante' do
   end
 
   scenario 'mostra conteudos favoritos do usuário' do
-    relatorio = FactoryGirl.create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: @outro_usuario)
+    relatorio = create(:relatorio, titulo: 'We love Ruby and Agile!', contribuidor: @outro_usuario)
     relatorio.submeter!
     relatorio.aprovar!
 
@@ -87,7 +87,7 @@ feature 'Estante' do
 
   scenario 'mostrar graos favoritos do usuário' do
     # TODO: teste seguinte é de aceitação ou de model ?
-    @usuario.graos_favoritos << FactoryGirl.create(:grao)
+    @usuario.graos_favoritos << create(:grao)
     visit root_path
     within '#estante' do
       page.should have_content 'key imagem'
@@ -95,7 +95,7 @@ feature 'Estante' do
   end
 
   scenario 'move graos da cesta para estante (como graos favoritos)' do
-    @usuario.cesta << FactoryGirl.create(:grao)
+    @usuario.cesta << create(:grao)
 
     visit estante_usuario_path(@usuario)
 

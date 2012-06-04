@@ -26,7 +26,7 @@ feature 'adicionar periodico tecnico cientifico' do
     Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(FactoryGirl.create :periodico_tecnico_cientifico)
+    visit edit_conteudo_path(create :periodico_tecnico_cientifico)
     fill_in 'Editora', with: 'periodico tecnico cientifico editado'
     click_button 'Salvar'
 

@@ -16,7 +16,7 @@ FactoryGirl.define do
     titulo "Conteudo interessante"
     sub_area
     campus
-    autores { [FactoryGirl.create(:autor)] }
+    autores { [create(:autor)] }
     link 'http://something.com'
   end
 
@@ -50,7 +50,7 @@ FactoryGirl.define do
   end
 
   factory :trabalho_de_obtencao_de_grau, :parent => :conteudo, :class => TrabalhoDeObtencaoDeGrau do
-    grau { FactoryGirl.create(:grau) }
+    grau { create(:grau) }
   end
 
   factory :periodico_tecnico_cientifico, :parent => :conteudo, :class => PeriodicoTecnicoCientifico do
@@ -85,7 +85,7 @@ FactoryGirl.define do
     descricao 'um papel'
   end
 
-  %w(contribuidor gestor admin).each do |papel|
+  %w(contribuidor gestor admin instituicao_admin).each do |papel|
     factory "usuario_#{papel}".to_sym, :parent => :usuario do
       after :create do |u|
         hash = { nome: papel }

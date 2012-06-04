@@ -13,7 +13,7 @@ feature 'submeter conteúdo a aprovação' do
 
   tipos_de_conteudo.each do |tipo|
       scenario "dono do #{tipo} pode submetê-lo a aprovação" do
-        conteudo = FactoryGirl.create(tipo, contribuidor: user)
+        conteudo = create(tipo, contribuidor: user)
 
         visit conteudo_path(conteudo)
         click_link 'Submeter'

@@ -7,11 +7,11 @@ feature 'Lista de Revisão' do
 
   scenario 'mostra os conteúdos de todos usuários em estado pendente' do
     autenticar_usuario(Papel.gestor)
-    outro = FactoryGirl.create(:usuario)
+    outro = create(:usuario)
 
-    artigo = FactoryGirl.create(:artigo_de_evento, titulo: 'artigo de evento')
-    livro = FactoryGirl.create(:livro, titulo: 'livro')
-    relatorio = FactoryGirl.create(:relatorio, titulo: 'relatório', contribuidor: outro)
+    artigo = create(:artigo_de_evento, titulo: 'artigo de evento')
+    livro = create(:livro, titulo: 'livro')
+    relatorio = create(:relatorio, titulo: 'relatório', contribuidor: outro)
 
     relatorio.submeter!
     visit root_path

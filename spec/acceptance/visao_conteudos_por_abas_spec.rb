@@ -8,7 +8,7 @@ feature 'apresentacao dos conteudos por abas' do
     Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
-    conteudo = FactoryGirl.create(:artigo_de_periodico)
+    conteudo = create(:artigo_de_periodico)
 
     visit conteudo_path(conteudo)
 
@@ -27,8 +27,8 @@ feature 'apresentacao dos conteudos por abas' do
     conteudo_imagem = Base64.encode64(File.open('spec/resources/tela.png').read)
     result = sam.store file: conteudo_imagem, filename: 'tela.png'
 
-    conteudo = FactoryGirl.create(:artigo_de_periodico)
-    grao = FactoryGirl.create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])
+    conteudo = create(:artigo_de_periodico)
+    grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])
 
     visit conteudo_path(conteudo)
 
@@ -44,12 +44,17 @@ feature 'apresentacao dos conteudos por abas' do
     sam.delete grao.key
   end
 
-  scenario 'conteudo com grao arquivo deve ter aba tabelas com visualizacao da chave do grao' do
+  scenario 'conteudo com grao arquivo deve ter aba tabelas com visualizacao das tabelas' do
     Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
-    conteudo = FactoryGirl.create(:artigo_de_periodico)
-    grao = FactoryGirl.create(:grao, tipo: 'files', conteudo: conteudo)
+    sam = ServiceRegistry.sam
+
+    conteudo_odt = Base64.encode64(File.open('spec/resources/grao_tabela.odt').read)
+    result = sam.store(file: conteudo_odt, filename: 'grao.odt')
+
+    conteudo = create(:artigo_de_periodico)
+    grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
 
     visit conteudo_path(conteudo)
 
@@ -58,7 +63,9 @@ feature 'apresentacao dos conteudos por abas' do
     page.should have_content 'Tabelas'
 
     click_link 'Tabelas'
-    page.should have_content grao.key
+    ensure_table '.grao_imagem table',
+      [%w(1 2 3),
+       %w(4 5 6),
+       %w(7 8 9)]
   end
 end
-

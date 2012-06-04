@@ -21,8 +21,7 @@
 
 - if @conteudo.graos_arquivo.present?
   #tabelas.aba
-    - @conteudo.graos_arquivo.each do |grao|
-      = render 'conteudos/grao', grao: grao
+    = render 'conteudos/graos_arquivo', graos: @conteudo.graos_arquivo
 
 = link_to "Editar", edit_conteudo_path(@conteudo)
 %br

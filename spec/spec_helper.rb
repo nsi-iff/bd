@@ -76,6 +76,8 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.include Devise::TestHelpers, :type => :controller
+    config.include FactoryGirl::Syntax::Methods
+    config.include Toothbrush::Helpers
 
     # testes de busca são dependentes do elasticsearch
     config.filter_run_excluding busca: true unless ENV['INTEGRACAO_TIRE']
