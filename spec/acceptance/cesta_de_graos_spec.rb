@@ -26,7 +26,7 @@ feature 'cesta de grãos' do
     @livro = create(:livro, titulo: 'Quantum Mechanics for Dummies')
     @grao1 = create(:grao_imagem, key: '12345', conteudo: @livro)
     @grao2 = create(:grao_arquivo, key: '67890', conteudo: @livro)
-    sleep(1) if ENV['INTEGRACAO_TIRE'] # aguardar a indexacao
+    Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
   end
 
   def incluir_grao_na_cesta

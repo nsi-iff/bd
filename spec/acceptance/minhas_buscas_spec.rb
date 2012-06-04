@@ -5,15 +5,12 @@ require 'spec_helper'
 feature 'Buscas' do
   before(:each) do
     Tire.criar_indices and sleep(3) if ENV['INTEGRACAO_TIRE']
-  end
-
-  before(:each) do
     Papel.criar_todos
   end
 
   scenario 'busca avançada (busca no acervo)' do
     livro = create(:livro)
-    sleep(3) if ENV['INTEGRACAO_TIRE'] # aguardar a indexacao
+    Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
     livro.submeter! && livro.aprovar!
 
     visit buscas_path
@@ -29,7 +26,7 @@ feature 'Buscas' do
     usuario = autenticar_usuario(Papel.membro)
     livro = create(:livro, titulo: 'My book')
     livro2 = create(:livro, titulo: 'Outro book')
-    sleep(3) if ENV['INTEGRACAO_TIRE'] # espera indexar
+    Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
     visit root_path
     fill_in 'Busca', with: 'book'
     click_button 'Buscar'
