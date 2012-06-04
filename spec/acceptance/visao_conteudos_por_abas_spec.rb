@@ -50,7 +50,7 @@ feature 'apresentacao dos conteudos por abas' do
 
     sam = ServiceRegistry.sam
 
-    conteudo_odt = Base64.encode64(File.open('spec/resources/grao_teste_2.odt').read)
+    conteudo_odt = Base64.encode64(File.open('spec/resources/grao_tabela.odt').read)
     result = sam.store(file: conteudo_odt, filename: 'grao.odt')
 
     conteudo = create(:artigo_de_periodico)
@@ -64,18 +64,8 @@ feature 'apresentacao dos conteudos por abas' do
 
     click_link 'Tabelas'
     ensure_table '#extracted_table_1',
-      [[ 'Funcionalidade',            'Não cadastrado', 'Cadastrado', 'Contribuidor', 'Bibliotecário'],
-       ['Navegar no portal',         'X', 'X', 'X', 'X'],
-       ['Realizar buscas no acervo', 'X', 'X', 'X', 'X'],
-       ['Realizar buscas avançadas', 'X', 'X', 'X', 'X'],
-       ['Salvar buscas',             '',  'X', 'X', 'X'],
-       ['Realizar downloads',        'X', 'X', 'X', 'X'],
-       ['Adicionar conteúdo',        '',  '',  'X', 'X'],
-       ['Visualizar usuários',       'X', 'X', 'X', 'X'],
-       ['Adicionar favoritos',       '',  'X', 'X', 'X'],
-       ['Adicionar grãos à cesta',   '',  'X', 'X', 'X'],
-       ['Aprovar conteúdos',         '',  '',  '',  'X'],
-       ['Reprovar conteúdos',        '',  '',  '',  'X'],
-       ['Excluir conteúdos',         '',  '',  '',  'X']]
+      [%w(1 2 3),
+       %w(4 5 6),
+       %w(7 8 9)]
   end
 end
