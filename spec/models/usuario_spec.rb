@@ -51,9 +51,8 @@ describe Usuario do
     it 'retorna os conteudos aprovados do usuario' do
       usuario = Usuario.new
       usuario.should_receive(:conteudos_publicados).and_return([:publicados])
-      usuario.should_receive(:graos_favoritos).and_return([:graos_favoritos])
-      usuario.should_receive(:conteudos_favoritos).and_return([:conteudos_favoritos])
-      usuario.estante.should == [:publicados, :graos_favoritos, :conteudos_favoritos]
+      usuario.should_receive(:favoritos).and_return([:favoritos])
+      usuario.estante.should == [:publicados, :favoritos]
     end
   end
 
@@ -83,5 +82,23 @@ describe Usuario do
       usuario.cesta << stub_model(Grao)
       usuario.cesta.should have(2).graos
     end
+  end
+
+  it 'pode favoritar graos' do
+    grao = create(:grao)
+    usuario = create(:usuario)
+    Referencia.any_instance.should_receive(:valid?).twice.and_return(true)
+    usuario.favoritar(grao).should be_true
+    usuario.favoritos.last.should be_a(Referencia)
+    usuario.favoritos.last.referenciavel.should == grao
+  end
+
+  it 'pode favoritar conteudos' do
+    conteudo = create(:livro)
+    usuario = create(:usuario)
+    Referencia.any_instance.should_receive(:valid?).twice.and_return(true)
+    usuario.favoritar(conteudo).should be_true
+    usuario.favoritos.last.should be_a(Referencia)
+    usuario.favoritos.last.referenciavel.should == conteudo
   end
 end
