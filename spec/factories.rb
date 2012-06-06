@@ -108,4 +108,10 @@ FactoryGirl.define do
     data "2012-03-27"
     quantidade 1
   end
+
+  factory :referencia do
+    abnt "abnt"
+    usuario
+    referenciavel { create(:artigo_de_evento) }
+  end
 end
