@@ -38,6 +38,6 @@
           %td
             = check_box_tag '', '', selected = false
           %td
-            = check_box_tag '', '', selected = false
+            = check_box_tag "excluir_usuario[]", usuario.id, checked = false, id: "excluir-#{usuario.id}"
   %br
   = submit_tag 'Aplicar'

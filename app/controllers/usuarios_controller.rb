@@ -26,6 +26,11 @@ class UsuariosController < ApplicationController
     Usuario.includes(:papeis).all.each do |usuario|
       usuario.update_attributes papel_ids: params[:papeis]["#{usuario.id}"] || []
     end
+    unless params[:excluir_usuario].nil?
+      params[:excluir_usuario].each do |u|
+        Usuario.find(u.to_i).delete
+      end
+    end
     redirect_to '/usuarios/papeis', :notice => 'Usuários atualizados com sucesso.'
   end
 
