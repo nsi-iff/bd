@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe SubArea do
   it "deve ser valido quando associado a uma área" do
-    area = FactoryGirl.create(:area)
+    area = create(:area)
 
     sub = SubArea.create(nome: "subarea", area: area)
     sub.should be_valid

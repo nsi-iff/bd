@@ -11,10 +11,10 @@ describe Usuario do
     end
 
     before(:each) do
-      FactoryGirl.create(:papel_gestor)
-      FactoryGirl.create(:papel_contribuidor)
-      FactoryGirl.create(:papel_admin)
-      FactoryGirl.create(:papel_instituicao_admin)
+      create(:papel_gestor)
+      create(:papel_contribuidor)
+      create(:papel_admin)
+      create(:papel_instituicao_admin)
     end
 
     shared_examples 'adicionar e ler todos os tipos de conteudo' do
@@ -32,7 +32,7 @@ describe Usuario do
     end
 
     context 'contribuidor de conteudo' do
-      let(:usuario) { FactoryGirl.create(:usuario_contribuidor) }
+      let(:usuario) { create(:usuario_contribuidor) }
 
       include_examples 'adicionar e ler todos os tipos de conteudo'
     end
@@ -76,7 +76,7 @@ describe Usuario do
   end
 
   context 'cesta' do
-    let(:usuario) { FactoryGirl.create(:usuario) }
+    let(:usuario) { create(:usuario) }
 
     it 'permite adicionar graos' do
       usuario.cesta << stub_model(Grao)

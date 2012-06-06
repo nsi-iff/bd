@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'base64'
+
 module ApplicationHelper
   def title
     base_title = "Biblioteca Digital da EPCT"
@@ -41,5 +43,27 @@ module ApplicationHelper
 
   def conteudo_tag(conteudo)
     "<span class='conteudo_tag conteudo-#{conteudo.class.name.to_s.underscore}'>#{conteudo.titulo}</span>".html_safe
+  end
+
+  def tabela_grao(grao)
+    extract_table(Base64.decode64(grao.conteudo_base64)).html_safe
+  end
+  
+  def renderizar_graos_da_cesta(cesta)
+    cesta.
+      map {|grao_id| Grao.find(grao_id) }.
+      map {|grao| renderizar_grao(grao) }.
+      join.
+      html_safe
+  end
+  
+  private
+  
+  def renderizar_grao(grao)
+    if grao.imagem?
+      "<img src='data:image/xyz;base64,#{grao.conteudo_base64}'>"
+    elsif grao.arquivo?
+      tabela_grao(grao)
+    end
   end
 end

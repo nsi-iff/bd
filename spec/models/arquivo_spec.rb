@@ -11,9 +11,9 @@ describe Arquivo do
   end
 
   it 'informa se é um video' do
-    arquivo = Arquivo.create nome: :nome, conteudo: FactoryGirl.create(:conteudo), mime_type: 'video/ogg'
+    arquivo = Arquivo.create nome: :nome, conteudo: create(:conteudo), mime_type: 'video/ogg'
     arquivo.video?.should be_true
-    arquivo = Arquivo.create nome: :nome, conteudo: FactoryGirl.create(:conteudo), mime_type: 'text/plain'
+    arquivo = Arquivo.create nome: :nome, conteudo: create(:conteudo), mime_type: 'text/plain'
     arquivo.video?.should be_false
   end
 end

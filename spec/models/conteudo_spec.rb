@@ -5,7 +5,7 @@ require 'integration/fake_nsicloudooo'
 
 describe Conteudo do
   context 'workflow' do
-    let(:conteudo) { FactoryGirl.create(:conteudo) }
+    let(:conteudo) { create(:conteudo) }
     let(:cloudooo) { ServiceRegistry.cloudooo }
 
     it 'possui estado inicial editavel' do
@@ -149,10 +149,10 @@ describe Conteudo do
   end
 
   context 'mudança de estado' do
-    let(:conteudo) { FactoryGirl.create(:conteudo) }
+    let(:conteudo) { create(:conteudo) }
 
     it 'armazena seu estado corrente' do
-      c = FactoryGirl.create(:conteudo)
+      c = create(:conteudo)
       c.submeter!
       c.state.should == 'pendente'
 
@@ -260,10 +260,10 @@ describe Conteudo do
       type: 'text/plain',
       tempfile: File.new(Rails.root + 'spec/resources/arquivo.nsi')
     })
-    FactoryGirl.build(:conteudo, arquivo: arquivo, link: '').should be_valid
-    FactoryGirl.build(:conteudo, arquivo: nil,
+    build(:conteudo, arquivo: arquivo, link: '').should be_valid
+    build(:conteudo, arquivo: nil,
                   link: 'http://nsi.iff.edu.br').  should be_valid
-    conteudo = FactoryGirl.build(:conteudo, arquivo: arquivo,
+    conteudo = build(:conteudo, arquivo: arquivo,
                                         link: 'http://nsi.iff.edu.br')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
@@ -271,7 +271,7 @@ describe Conteudo do
   end
 
   it 'arquivo ou link devem existir' do
-    conteudo = FactoryGirl.build(:conteudo, arquivo: nil, link: '')
+    conteudo = build(:conteudo, arquivo: nil, link: '')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
     conteudo.errors[:link].should be_any
@@ -288,7 +288,7 @@ describe Conteudo do
           type: 'text/plain',
           tempfile: File.new(Rails.root + "spec/resources/#{arquivo_tipo}")
         })
-        FactoryGirl.build(tipo, link: '',
+        build(tipo, link: '',
                   arquivo: arquivo).should be_valid
       end
     end
@@ -299,24 +299,24 @@ describe Conteudo do
         type: 'text/plain',
         tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
       })
-      FactoryGirl.build(tipo, link: '',
+      build(tipo, link: '',
                 arquivo: arquivo).should_not be_valid
     end
    end
 
   it 'area deve ser a area ligada a sua subarea' do
-    area = FactoryGirl.create(:area)
-    subarea = FactoryGirl.create(:sub_area, area: area)
-    conteudo = FactoryGirl.build(:conteudo, sub_area: subarea)
+    area = create(:area)
+    subarea = create(:sub_area, area: area)
+    conteudo = build(:conteudo, sub_area: subarea)
 
     conteudo.area.should be(area)
   end
 
   it 'instituicao deve ser a instituicao ligada ao usuario contribuidor' do
-    usuario = FactoryGirl.create(:usuario_contribuidor)
+    usuario = create(:usuario_contribuidor)
     instituicao_usuario = usuario.campus.instituicao
-    campus = FactoryGirl.create(:campus, instituicao: instituicao_usuario)
-    conteudo = FactoryGirl.build(:conteudo, campus: campus)
+    campus = create(:campus, instituicao: instituicao_usuario)
+    conteudo = build(:conteudo, campus: campus)
 
     conteudo.campus.instituicao.should be(instituicao_usuario)
   end
@@ -336,7 +336,7 @@ describe Conteudo do
   end
 
   context 'granularizavel' do
-    let(:conteudo) { FactoryGirl.build(:conteudo) }
+    let(:conteudo) { build(:conteudo) }
 
     it 'nao granularizavel se é um link' do
       conteudo.set_arquivo(nil)
@@ -377,8 +377,8 @@ describe Conteudo do
 
     context 'indexação de atributos de relacionamentos' do
       before(:each) do
-        subject.autores = [FactoryGirl.create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
-                           FactoryGirl.create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
+        subject.autores = [create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
+                           create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
         area = Area.create!(nome: 'Ciências Exatas e da Terra')
         sub_area = subject.sub_area = area.sub_areas.create!(nome: 'Ciência da Computação')
       end

@@ -16,7 +16,7 @@ FactoryGirl.define do
     titulo "Conteudo interessante"
     sub_area
     campus
-    autores { [FactoryGirl.create(:autor)] }
+    autores { [create(:autor)] }
     link 'http://something.com'
   end
 
@@ -50,7 +50,7 @@ FactoryGirl.define do
   end
 
   factory :trabalho_de_obtencao_de_grau, :parent => :conteudo, :class => TrabalhoDeObtencaoDeGrau do
-    grau { FactoryGirl.create(:grau) }
+    grau { create(:grau) }
   end
 
   factory :periodico_tecnico_cientifico, :parent => :conteudo, :class => PeriodicoTecnicoCientifico do

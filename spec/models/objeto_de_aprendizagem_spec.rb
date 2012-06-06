@@ -29,7 +29,7 @@ describe ObjetoDeAprendizagem do
       type: 'text/plain',
       tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
     })
-    FactoryGirl.build(:objeto_de_aprendizagem, link: '',
+    build(:objeto_de_aprendizagem, link: '',
                   arquivo: arquivo).should be_valid
   end
 

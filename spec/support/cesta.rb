@@ -17,7 +17,7 @@ def criar_cesta(usuario, conteudo, *grain_files)
       sam.store('file' => Base64.encode64(File.read(file)), 'filename' => "filename.#{extensao}")
     end
     sleep(1)
-    grao = FactoryGirl.create(tipo_grao, key: result['key'], conteudo: conteudo)
+    grao = create(tipo_grao, key: result['key'], conteudo: conteudo)
     usuario.cesta << grao
   end
   usuario.cesta

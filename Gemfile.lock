@@ -9,31 +9,31 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (3.2.3)
-      actionpack (= 3.2.3)
+    actionmailer (3.2.5)
+      actionpack (= 3.2.5)
       mail (~> 2.4.4)
-    actionpack (3.2.3)
-      activemodel (= 3.2.3)
-      activesupport (= 3.2.3)
+    actionpack (3.2.5)
+      activemodel (= 3.2.5)
+      activesupport (= 3.2.5)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.1)
       rack (~> 1.4.0)
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
-      sprockets (~> 2.1.2)
-    activemodel (3.2.3)
-      activesupport (= 3.2.3)
+      sprockets (~> 2.1.3)
+    activemodel (3.2.5)
+      activesupport (= 3.2.5)
       builder (~> 3.0.0)
-    activerecord (3.2.3)
-      activemodel (= 3.2.3)
-      activesupport (= 3.2.3)
+    activerecord (3.2.5)
+      activemodel (= 3.2.5)
+      activesupport (= 3.2.5)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.3)
-      activemodel (= 3.2.3)
-      activesupport (= 3.2.3)
-    activesupport (3.2.3)
+    activeresource (3.2.5)
+      activemodel (= 3.2.5)
+      activesupport (= 3.2.5)
+    activesupport (3.2.5)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.8)
@@ -55,7 +55,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    capybara-webkit (0.12.0)
+    capybara-webkit (0.12.1)
       capybara (>= 1.0.0, < 1.2)
       json
     childprocess (0.3.2)
@@ -81,7 +81,7 @@ GEM
       debugger-ruby_core_source (~> 1.1.2)
     debugger-linecache (1.1.1)
       debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.2)
+    debugger-ruby_core_source (1.1.3)
     delorean (1.2.0)
       chronic
     devise (2.1.0)
@@ -106,7 +106,7 @@ GEM
       activerecord (~> 3.0)
     formtastic (2.2.0)
       actionpack (>= 3.0)
-    gon (3.0.3)
+    gon (3.0.4)
       actionpack (>= 2.3.0)
       json
     haml (3.1.6)
@@ -143,7 +143,7 @@ GEM
     net-ssh (2.5.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    nokogiri (1.5.2)
+    nokogiri (1.5.3)
     nsi-abntformat (1.0.3)
       unicode
     nsicloudooo (0.3.1)
@@ -151,6 +151,8 @@ GEM
     nsisam (0.5.4)
       json
       sinatra
+    odt2html (0.1.1)
+      rubyzip
     orm_adapter (0.0.7)
     paperclip (3.0.4)
       activemodel (>= 3.0.0)
@@ -184,21 +186,21 @@ GEM
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
-    rails (3.2.3)
-      actionmailer (= 3.2.3)
-      actionpack (= 3.2.3)
-      activerecord (= 3.2.3)
-      activeresource (= 3.2.3)
-      activesupport (= 3.2.3)
+    rails (3.2.5)
+      actionmailer (= 3.2.5)
+      actionpack (= 3.2.5)
+      activerecord (= 3.2.5)
+      activeresource (= 3.2.5)
+      activesupport (= 3.2.5)
       bundler (~> 1.0)
-      railties (= 3.2.3)
-    railties (3.2.3)
-      actionpack (= 3.2.3)
-      activesupport (= 3.2.3)
+      railties (= 3.2.5)
+    railties (3.2.5)
+      actionpack (= 3.2.5)
+      activesupport (= 3.2.5)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
-      thor (~> 0.14.6)
+      thor (>= 0.14.6, < 2.0)
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
@@ -227,7 +229,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.22.0)
+    selenium-webdriver (2.22.1)
       childprocess (>= 0.2.5)
       ffi (~> 1.0)
       libwebsocket (~> 0.1.3)
@@ -256,7 +258,7 @@ GEM
     state_machine (1.1.2)
     therubyracer (0.10.1)
       libv8 (~> 3.3.10)
-    thor (0.14.6)
+    thor (0.15.2)
     tilt (1.3.3)
     timecop (0.3.5)
     tire (0.4.2)
@@ -265,6 +267,9 @@ GEM
       multi_json (~> 1.0)
       rake
       rest-client (~> 1.6)
+    toothbrush (0.1.1)
+      capybara (~> 1.0)
+      toothbrush
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -308,13 +313,14 @@ DEPENDENCIES
   nsi-abntformat (~> 1.0.3)
   nsicloudooo
   nsisam
+  odt2html
   paperclip
   pg (~> 0.13.2)
   poltergeist (~> 0.6.0)
   pry
   pry-rails
   rabl
-  rails (= 3.2.3)
+  rails (= 3.2.5)
   rspec-rails (~> 2.10.0)
   rufus-scheduler
   sass-rails (~> 3.2.3)
@@ -327,6 +333,7 @@ DEPENDENCIES
   timecop (~> 0.3.5)
   tire
   tire-mock_client!
+  toothbrush
   uglifier (>= 1.0.3)
   valid_attribute (~> 1.2.0)
   zippy

@@ -75,4 +75,3 @@ module DigitalLibrary
     config.action_mailer.default_url_options = { :host => "bd.iff.edu.br" }
   end
 end
-

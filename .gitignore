@@ -18,3 +18,5 @@
 .todo
 
 spec/resources/downloads
+
+.~lock*

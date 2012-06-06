@@ -20,7 +20,7 @@ def deslogar
 end
 
 def criar_usuario(*papeis)
-  usuario = FactoryGirl.create(:usuario)
+  usuario = create(:usuario)
   papeis.each do |papel|
     usuario.papeis << papel
     usuario.save!

@@ -18,10 +18,10 @@ feature 'mudar papel do usuário' do
     camp1 = ins1.campus.create(nome: 'campus1')
     ins2 = Instituicao.create(nome: 'instituicao2')
     camp2 = ins2.campus.create(nome: 'campus2')
-    usuario = FactoryGirl.create(:usuario, campus: camp1)
+    usuario = create(:usuario, campus: camp1)
     usuario.papeis << Papel.instituicao_admin
-    FactoryGirl.create(:usuario, nome_completo: 'Rodrigo', campus: camp1)
-    FactoryGirl.create(:usuario, nome_completo: 'Priscila', campus: camp2)
+    create(:usuario, nome_completo: 'Rodrigo', campus: camp1)
+    create(:usuario, nome_completo: 'Priscila', campus: camp2)
     autenticar(usuario)
 
     visit usuarios_papeis_path
@@ -71,8 +71,8 @@ feature 'mudar papel do usuário' do
     ins2 = Instituicao.create(nome: 'instituicao2')
     camp2 = ins2.campus.create(nome: 'campus2')
 
-    FactoryGirl.create(:usuario_gestor, nome_completo: 'Rodrigo', campus: camp1)
-    FactoryGirl.create(:usuario_contribuidor, nome_completo: 'Priscila', campus: camp2)
+    create(:usuario_gestor, nome_completo: 'Rodrigo', campus: camp1)
+    create(:usuario_contribuidor, nome_completo: 'Priscila', campus: camp2)
 
     visit usuarios_papeis_path
     page.should have_content 'Rodrigo'
@@ -94,9 +94,9 @@ feature 'mudar papel do usuário' do
   scenario 'buscar usuário' do
     Papel.criar_todos
     autenticar_usuario Papel.admin
-    FactoryGirl.create(:usuario_gestor, nome_completo: 'Rodrigo Manhães', email: 'rodrigo@manhaes.com')
-    FactoryGirl.create(:usuario_contribuidor, nome_completo: 'Priscila Manhães', email: 'priscila@manhaes.com')
-    FactoryGirl.create(:usuario_gestor, nome_completo: 'Larva Fire')
+    create(:usuario_gestor, nome_completo: 'Rodrigo Manhães', email: 'rodrigo@manhaes.com')
+    create(:usuario_contribuidor, nome_completo: 'Priscila Manhães', email: 'priscila@manhaes.com')
+    create(:usuario_gestor, nome_completo: 'Larva Fire')
 
     visit usuarios_papeis_path
     fill_in 'Buscar por nome', with: 'Manhães'

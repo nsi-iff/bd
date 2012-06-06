@@ -6,7 +6,7 @@ feature 'mudar papel do usuário' do
   scenario 'usuário não admin, não pode acessar página de manipulação de papéis' do
     Papel.criar_todos
     autenticar_usuario(Papel.gestor)
-    livro = FactoryGirl.create(:livro, titulo: 'programming')
+    livro = create(:livro, titulo: 'programming')
     livro.submeter
 
     visit conteudos_pendentes_path

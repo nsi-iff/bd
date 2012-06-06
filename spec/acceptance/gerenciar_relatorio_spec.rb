@@ -22,7 +22,7 @@ feature 'adicionar relatório' do
     Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(FactoryGirl.create :relatorio)
+    visit edit_conteudo_path(create :relatorio)
     fill_in 'Local da publicação', with: 'relatório editado'
     click_button 'Salvar'
 

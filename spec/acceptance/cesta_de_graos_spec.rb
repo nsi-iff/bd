@@ -23,9 +23,9 @@ feature 'cesta de grãos' do
   end
 
   before(:each) do
-    @livro = FactoryGirl.create(:livro, titulo: 'Quantum Mechanics for Dummies')
-    @grao1 = FactoryGirl.create(:grao_imagem, key: '12345', conteudo: @livro)
-    @grao2 = FactoryGirl.create(:grao_arquivo, key: '67890', conteudo: @livro)
+    @livro = create(:livro, titulo: 'Quantum Mechanics for Dummies')
+    @grao1 = create(:grao_imagem, key: '12345', conteudo: @livro)
+    @grao2 = create(:grao_arquivo, key: '67890', conteudo: @livro)
     sleep(1) if ENV['INTEGRACAO_TIRE'] # aguardar a indexacao
   end
 
@@ -156,14 +156,18 @@ feature 'cesta de grãos' do
     end
 
     scenario 'editar grão da cesta' do
-      criar_cesta @usuario, FactoryGirl.create(:conteudo),
+      criar_cesta @usuario, create(:conteudo),
                             recurso('grao_teste_0.jpg'),
                             recurso('grao_teste_1.jpg'),
-                            recurso('grao_teste_2.odt')
+                            recurso('grao_tabela.odt')
       visit root_path
       within('#cesta') { click_link 'Editar' }
       within '#documento' do
         page.should have_selector "img[src^='data:image/xyz;base64']"
+        ensure_table 'table',
+          [%w(1 2 3),
+           %w(4 5 6),
+           %w(7 8 9)]
       end
     end
 
