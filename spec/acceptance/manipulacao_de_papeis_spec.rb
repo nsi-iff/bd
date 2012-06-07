@@ -35,9 +35,10 @@ feature 'mudar papel do usuário' do
     usuario = autenticar_usuario(Papel.admin)
 
     visit usuarios_papeis_path
+
     check "#{usuario.email}[\"membro\"]"
     check "#{usuario.email}[\"gestor\"]"
-    click_button 'Salvar'
+    click_button 'Aplicar'
 
     foobar = usuario.reload
     foobar.membro?.should == true
@@ -45,6 +46,21 @@ feature 'mudar papel do usuário' do
     visit usuarios_papeis_path
     page.should have_checked_field "#{usuario.email}[\"membro\"]"
     page.should have_checked_field "#{usuario.email}[\"gestor\"]"
+  end
+
+  scenario 'admin pode acessar página de manipulação de papéis e alterar papéis de usuários' do
+    Papel.criar_todos
+    usuario = autenticar_usuario(Papel.admin)
+
+    u = FactoryGirl.create(:usuario, nome_completo: 'Rodrigo')
+
+    visit usuarios_papeis_path
+    check "excluir-#{u.id}"
+    click_button 'Aplicar'
+
+    visit usuarios_papeis_path
+    page.should_not have_content "Rodrigo"
+
   end
 
   scenario 'listar usuários por instituição' do
