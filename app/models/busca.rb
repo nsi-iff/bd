@@ -1,6 +1,8 @@
 class Busca < ActiveRecord::Base
   belongs_to :usuario
   validates :titulo, presence: true
+  attr_accessor :parametros
+  attr_accessible :parametros, :busca, :titulo, :descricao
 
   def self.enviar_email_mala_direta
     ontem = Date.yesterday.strftime("%d/%m/%y")
@@ -17,10 +19,22 @@ class Busca < ActiveRecord::Base
   end
 
   def resultados(filtros = nil)
-    busca = self.busca
-    Tire.search('conteudos') {
-      query { string busca }
-      filter(:term, filtros) if filtros
+    Tire.search('conteudos') { |t|
+      t.query { |q| q.string busca } if busca
+      t.query { |q| q.string string_queries } if string_queries
+      t.filter(:term, filtros) if filtros
     }.results.to_a
+  end
+
+  def parametros
+    @parametros || {}
+  end
+
+  def parametros=(param)
+    @parametros = param.delete_if { |key| param.fetch(key).blank? }
+  end
+
+  def string_queries
+    parametros.map { |tupla| tupla.join(':') }.join(' ')
   end
 end

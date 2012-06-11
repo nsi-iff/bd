@@ -10,21 +10,8 @@ class BuscasController < InheritedResources::Base
   end
 
   def busca_avancada
-    # TODO: Achar uma melhor maneira de tratar isso
-    new_params = {}
-    new_params[:area] = params[:area] || nil
-    new_params[:area] != 'Todas' || area = nil
-    new_params[:sub_area] = params[:sub_area] || nil
-    new_params[:sub_area] != 'Todas' || sub_area = nil
-    new_params[:instituicao] = params[:instituicao] || nil
-    new_params[:instituicao] != 'Todas' || instituicao = nil
-    new_params[:tipo_conteudo] = params[:tipo_conteudo] || nil
-    new_params[:titulo] = params[:titulo] || nil
-    new_params[:autor] = params[:autor] || nil
-
-    @conteudos = Conteudo.busca(new_params)
-
-    session[:ultima_busca] = params
+    @busca = Busca.new({busca: params[:busca], parametros: params[:parametros]})
+    @resultados = @busca.resultados
     render action: 'resultado_busca'
   end
 
@@ -32,7 +19,7 @@ class BuscasController < InheritedResources::Base
   end
 
   def busca_normal
-    @conteudos = Conteudo.search params[:busca]
+    @resultados = Conteudo.search(params[:busca])
     session[:ultima_busca] = params[:busca]
     render action: 'resultado_busca'
   end

@@ -102,21 +102,10 @@ class Conteudo < ActiveRecord::Base
     contribuidor.try(:nome_completo)
   end
 
-  def self.busca(params)
-    s = Tire.search 'conteudos' do
-      query do
-        string "titulo:#{params[:titulo]}" if params[:titulo]
-        string "sub_area:#{params[:sub_area]}" if params[:sub_area]
-      end
-    end
-    s.results
-  end
-
   def self.search(busca)
-    s = Tire.search 'conteudos' do
-      query { string busca }
-    end
-    s.results
+    Tire.search('conteudos') {
+      query { string busca if busca }
+    }.results
   end
 
   def arquivo_base64
@@ -136,10 +125,23 @@ class Conteudo < ActiveRecord::Base
 
   def to_indexed_json
     to_json(include: {autores: { only: [:nome, :lattes]},
-                      sub_area: { only: [:nome], include: {area: {only: [:nome]}}},
                       campus: { only: [:nome]},
                       graos: { only: [:tipo, :key] } },
-            methods: [:arquivo_base64, :data_publicado])
+            methods: [:arquivo_base64, :data_publicado,
+                      :area_nome, :sub_area_nome, :instituicao_nome])
+  end
+
+  # TODO: refatorar
+  def area_nome
+    self.try(:sub_area).try(:area).try(:nome)
+  end
+
+  def sub_area_nome
+    self.try(:sub_area).try(:nome)
+  end
+
+  def instituicao_nome
+    self.try(:campus).try(:instituicao).try(:nome)
   end
 
   alias  :set_arquivo :arquivo=
