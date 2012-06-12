@@ -1,10 +1,18 @@
 -#TODO: talvez melhorar layout do tr do eixos tematicos transformando-o em divs, como visto em http://blog.jeremymartin.name/2008/02/easy-multi-select-transfer-with-jquery.html (2012-04-13, 03:28, ciberglo)`
+
+
 = semantic_form_for @conteudo, url: url_para_form_conteudo(@conteudo) do |f|
-  = render 'conteudos/dados_basicos', :f => f
-  %br
-  %fieldset{:id => "dados_complementares"}
-    %legend
-      Dados Complementares
+  %nav{ id: 'menu_abas'}
+    %ul
+      %li{ class: 'sel_aba', data: { padrao: '' }}
+        %a{:href=>"#metadados_basicos"} Dados Básicos
+      %li{ class: 'sel_aba'}
+        %a{:href=>"#metadados_complementares"} Dados Complementares
+
+  #metadados_basicos.aba
+    = render 'conteudos/dados_basicos', :f => f
+
+  #metadados_complementares.aba
     = f.input :palavras_chave, label: 'Palavras-chave',
         hint: 'Palavras-chave do documento, separadas por vírgula'
     = f.input :tempo_aprendizagem, label: 'Tempo de aprendizagem típico',
@@ -31,4 +39,6 @@
     = f.input :idioma, :member_label => :descricao
     = f.input :resumo
     = f.input :direitos
+    %span.clear
+
   = f.submit 'Salvar', onclick: 'enviar_cursos_selecionados()'

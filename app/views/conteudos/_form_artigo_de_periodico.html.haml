@@ -1,9 +1,15 @@
 = semantic_form_for @conteudo, url: url_para_form_conteudo(@conteudo) do |f|
-  = render 'conteudos/dados_basicos', :f => f
-  %br
-  %fieldset{:id => "dados_complementares"}
-    %legend
-      Dados Complementares
+  %nav{ id: 'menu_abas'}
+    %ul
+      %li{ class: 'sel_aba', data: { padrao: '' }}
+        %a{:href=>"#metadados_basicos"} Dados Básicos
+      %li{ class: 'sel_aba'}
+        %a{:href=>"#metadados_complementares"} Dados Complementares
+
+  #metadados_basicos.aba
+    = render 'conteudos/dados_basicos', :f => f
+
+  #metadados_complementares.aba
     = f.input :subtitulo, label: 'Subtítulo'
     = f.input :nome_periodico, label: 'Nome',
       hint: 'Nome do periódico no qual o artigo foi publicado'
@@ -21,4 +27,6 @@
         hint: 'Página final da publicação do artigo'
     = f.input :resumo
     = f.input :direitos
+    %span.clear
+
   = f.submit 'Salvar'
