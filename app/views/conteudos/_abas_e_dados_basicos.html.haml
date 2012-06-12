@@ -1,0 +1,9 @@
+%nav{ id: 'menu_abas'}
+  %ul
+    %li{ class: 'sel_aba', data: { padrao: '' }}
+      %a{:href=>"#metadados_basicos"} Dados Básicos
+    %li{ class: 'sel_aba'}
+      %a{:href=>"#metadados_complementares"} Dados Complementares
+
+#metadados_basicos.aba
+  = render 'conteudos/dados_basicos', :f => f

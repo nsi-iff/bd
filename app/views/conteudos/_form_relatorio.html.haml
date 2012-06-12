@@ -1,13 +1,5 @@
 = semantic_form_for @conteudo, url: url_para_form_conteudo(@conteudo) do |f|
-  %nav{ id: 'menu_abas'}
-    %ul
-      %li{ class: 'sel_aba', data: { padrao: '' }}
-        %a{:href=>"#metadados_basicos"} Dados Básicos
-      %li{ class: 'sel_aba'}
-        %a{:href=>"#metadados_complementares"} Dados Complementares
-
-  #metadados_basicos.aba
-    = render 'conteudos/dados_basicos', :f => f
+  = render 'conteudos/abas_e_dados_basicos', :f => f
 
   #metadados_complementares.aba
     = f.input :local_publicacao, label: 'Local da publicação'
