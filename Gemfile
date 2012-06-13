@@ -25,6 +25,8 @@ gem 'gon'
 gem 'multi_json', '~>1.3.0'
 gem 'nsi-abntformat', '~>1.0.3'
 gem 'odt2html'
+gem 'mail_form'
+gem 'erb2haml'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

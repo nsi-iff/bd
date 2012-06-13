@@ -19,6 +19,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'trabalho_de_obtencao_de_grau', 'trabalhos_de_obtencao_de_grau'
   inflect.irregular 'MudancaDeEstado', 'MudancasDeEstado'
   inflect.irregular 'mudanca_de_estado', 'mudancas_de_estado'
+  inflect.irregular 'formulario_contato', 'formularios_contato'
+  inflect.irregular 'FormularioContato', 'FormulariosContato'
   inflect.plural /cao$/i, 'coes'
   inflect.singular /coes$/i, 'cao'
   inflect.uncountable %w(campus cesta)
