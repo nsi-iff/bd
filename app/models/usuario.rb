@@ -62,6 +62,15 @@ class Usuario < ActiveRecord::Base
     self.favoritos.create(referenciavel: referenciavel).valid?
   end
 
+  def favorito?(referenciavel)
+    self.favoritos.any? { |favorito| favorito.referenciavel == referenciavel }
+  end
+
+  def remover_favorito(referenciavel)
+    referenciavel.referencias.find_by_usuario_id(self).try(:destroy)
+    self.favoritos(true)
+  end
+
   def method_missing(method_name, *params)
     nome_papel = method_name.to_s.chop
     todos = Papel.all.map(&:nome)

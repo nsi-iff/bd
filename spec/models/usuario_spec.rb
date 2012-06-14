@@ -54,6 +54,18 @@ describe Usuario do
       usuario.should_receive(:favoritos).and_return([:favoritos])
       usuario.estante.should == [:publicados, :favoritos]
     end
+
+    it 'retorna true se conteudo ou grao esta na estante' do
+      usuario = create(:usuario)
+      conteudo = create(:livro)
+      grao = create(:grao, conteudo: conteudo)
+      usuario.favoritar conteudo
+      usuario.favorito?(conteudo).should be_true
+      usuario.favorito?(grao).should be_false
+
+      usuario.favoritar grao
+      usuario.favorito?(grao).should be_true
+    end
   end
 
   it { should have_valid(:email).when 'bernardo.fire@gmail.com', 'aeiou@abcd.com' }
@@ -101,4 +113,12 @@ describe Usuario do
     usuario.favoritos.last.should be_a(Referencia)
     usuario.favoritos.last.referenciavel.should == conteudo
   end
+
+  it 'pode remover favorito da estante' do
+      usuario = create(:usuario)
+      conteudo = create(:livro)
+      usuario.favoritar conteudo
+      usuario.remover_favorito(conteudo).should be_true
+      usuario.favoritos.should be_empty
+    end
 end
