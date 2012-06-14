@@ -94,11 +94,9 @@ Spork.prefork do
     def is_command_available(command)
       system("which #{command} > /dev/null 2>&1")
     end
-    js_driver = is_command_available(:phantomjs) ?
-                 (js_driver = :poltergeist) :
-                 (js_driver = :webkit)
 
-    Capybara.javascript_driver = js_driver
+    Capybara.javascript_driver = is_command_available(:phantomjs) ?
+							      :poltergeist : :webkit
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
