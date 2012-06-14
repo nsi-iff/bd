@@ -20,3 +20,5 @@
 spec/resources/downloads
 
 .~lock*
+
+coverage
