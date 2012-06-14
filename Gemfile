@@ -42,7 +42,7 @@ group :test, :development do
   gem 'capybara-webkit', '~> 0.12.0'
   gem 'poltergeist', '~> 0.6.0'
   gem 'launchy', '~> 2.1.0'
-  gem 'factory_girl_rails', '~> 3.3.0'
+  gem 'factory_girl_rails', '~> 3.4.0'
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
   gem 'pry'
