@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.5'
+gem 'rails', '3.2.6'
 
 gem 'devise', '~>2.1.0'
 gem 'cancan', '~>1.6.7'
@@ -25,6 +25,8 @@ gem 'gon'
 gem 'multi_json', '~>1.3.0'
 gem 'nsi-abntformat', '~>1.0.4'
 gem 'odt2html'
+gem 'mail_form'
+gem 'erb2haml'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -40,7 +42,7 @@ group :test, :development do
   gem 'capybara-webkit', '~> 0.12.0'
   gem 'poltergeist', '~> 0.6.0'
   gem 'launchy', '~> 2.1.0'
-  gem 'factory_girl_rails', '~> 3.3.0'
+  gem 'factory_girl_rails', '~> 3.4.0'
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
   gem 'pry'

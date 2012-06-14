@@ -159,11 +159,15 @@ feature 'cesta de grãos' do
       criar_cesta @usuario, create(:conteudo),
                             recurso('grao_teste_0.jpg'),
                             recurso('grao_teste_1.jpg'),
-                            recurso('grao_teste_2.odt')
+                            recurso('grao_tabela.odt')
       visit root_path
       within('#cesta') { click_link 'Editar' }
       within '#documento' do
         page.should have_selector "img[src^='data:image/xyz;base64']"
+        ensure_table 'table',
+          [%w(1 2 3),
+           %w(4 5 6),
+           %w(7 8 9)]
       end
     end
 

@@ -1,12 +1,12 @@
 = semantic_form_for @conteudo, url: url_para_form_conteudo(@conteudo) do |f|
-  = render 'conteudos/dados_basicos', :f => f
-  %br
-  %fieldset{:id => "dados_complementares"}
-    %legend
-      Dados Complementares
+  = render 'conteudos/abas_e_dados_basicos', :f => f
+
+  #metadados_complementares.aba
     = f.input :local_publicacao, label: 'Local da publicação'
     = f.input :ano_publicacao, label: 'Ano'
     = f.input :numero_paginas, label: 'Número de páginas'
     = f.input :resumo
     = f.input :direitos
+    %span.clear
+
   = f.submit 'Salvar'

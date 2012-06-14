@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class UsuariosController < ApplicationController
   before_filter :authenticate_usuario!
   load_and_authorize_resource
@@ -24,7 +26,12 @@ class UsuariosController < ApplicationController
     Usuario.includes(:papeis).all.each do |usuario|
       usuario.update_attributes papel_ids: params[:papeis]["#{usuario.id}"] || []
     end
-    redirect_to action: 'index'
+    unless params[:excluir_usuario].nil?
+      params[:excluir_usuario].each do |u|
+        Usuario.find(u.to_i).delete
+      end
+    end
+    redirect_to '/usuarios/papeis', :notice => 'Usuários atualizados com sucesso.'
   end
 
   def area_privada
