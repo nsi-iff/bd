@@ -244,6 +244,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
     sexp_processor (3.2.0)
+    simple-navigation (3.7.0)
+      activesupport (>= 2.3.2)
     simplecov (0.6.4)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -335,6 +337,7 @@ DEPENDENCIES
   rspec-rails (~> 2.10.0)
   rufus-scheduler
   sass-rails (~> 3.2.3)
+  simple-navigation
   simplecov
   simplecov-rcov
   spork-rails (~> 3.2.0)
