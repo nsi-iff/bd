@@ -13,7 +13,8 @@ module Tire
   def self.criar_indices
     properties = {
       :id               => {:type => 'string', :index => :not_analyzed},
-      :arquivo_base64   => { :type => 'attachment'},
+      :arquivo_base64   => {:type => 'attachment'},
+      :titulo           => { type: 'string' },
     }
 
     Tire.index 'conteudos' do

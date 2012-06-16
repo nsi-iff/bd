@@ -1,35 +1,110 @@
 # encoding: utf-8
 
 require 'spec_helper'
+Dir.glob(Rails.root + '/app/models/*.rb').each { |file| require file }
 
 feature 'Buscas' do
   before(:each) do
-    Tire.criar_indices and sleep(3) if ENV['INTEGRACAO_TIRE']
-  end
-
-  before(:each) do
+    Tire.criar_indices if ENV['INTEGRACAO_TIRE']
     Papel.criar_todos
   end
 
-  scenario 'busca avançada (busca no acervo)' do
-    livro = create(:livro)
-    sleep(3) if ENV['INTEGRACAO_TIRE'] # aguardar a indexacao
-    livro.submeter! && livro.aprovar!
+  context 'busca avançada (busca no acervo)', busca: true do
+    scenario 'deve buscar por título' do
+      livro = create(:livro)
+      livro.submeter! && livro.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
 
-    visit buscas_path
-    check livro.class.nome_humanizado
-    select livro.sub_area.nome, from: 'sub_area'
-    fill_in 'titulo', with: livro.titulo
-    click_button 'Buscar'
+      visit buscas_path
+      fill_in 'parametros[titulo]', with: livro.titulo
+      click_button 'Buscar'
 
-    page.should have_content livro.titulo
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
+    scenario 'busca pelo nome do autor' do
+      livro = create(:livro)
+      livro.submeter! && livro.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      fill_in 'parametros[nome]', with: livro.autores.first.nome
+      click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
+    scenario 'busca por tipo de conteúdo' do
+      livro = create(:livro, titulo: "teste livro")
+      artigo = create(:artigo_de_periodico, titulo: "teste artigo")
+      livro.submeter! && livro.aprovar!
+      artigo.submeter! && artigo.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      fill_in 'parametros[titulo]', with: livro.titulo
+      #check 'parametros[_type][livro]'
+      find(:css, "#parametros__type[value='livro']").set(true)
+      click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
+    scenario 'busca pelo nome da área' do
+      livro = create(:livro, titulo: "teste livro")
+      livro.submeter! && livro.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      select livro.area.nome, from: 'parametros[area_nome]'
+      click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
+    scenario 'busca pelo nome da sub-área' do
+      livro = create(:livro, titulo: "teste livro")
+      livro.submeter! && livro.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      select livro.sub_area.nome, from: 'parametros[sub_area_nome]'
+      click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
+    scenario 'busca pelo nome da sub-área' do
+      livro = create(:livro, titulo: "teste livro")
+      livro.submeter! && livro.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      select livro.sub_area.nome, from: 'parametros[sub_area_nome]'
+      click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
+    scenario 'busca pelo nome da instituição' do
+      livro = create(:livro, titulo: "teste livro")
+      livro.submeter! && livro.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      select livro.campus.instituicao.nome, from: 'parametros[instituicao_nome]'
+      click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
   end
 
   scenario 'salvar busca' do
     usuario = autenticar_usuario(Papel.membro)
     livro = create(:livro, titulo: 'My book')
     livro2 = create(:livro, titulo: 'Outro book')
-    sleep(3) if ENV['INTEGRACAO_TIRE'] # espera indexar
+    Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
     visit root_path
     fill_in 'Busca', with: 'book'
     click_button 'Buscar'

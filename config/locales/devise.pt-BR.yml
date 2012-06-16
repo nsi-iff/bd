@@ -35,6 +35,7 @@ pt-BR:
       signed_up_but_inactive: 'A sua conta foi criada com sucesso. No entanto, não foi possível fazer login, pois ela está inativa.'
       signed_up_but_locked: 'A sua conta foi criada com sucesso. No entanto, não foi possível fazer login, pois ela está bloqueada.'
       updated: 'A sua conta foi atualizada com sucesso.'
+      update_needs_confirmation: "Você atualizou sua conta com sucesso, entretanto, precisamos confirmar o seu novo endereço de email. Por favor acesse seu email e clique no link de confirmação para confirmar seu novo endereço de email."
       destroyed: 'Adeus! A sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
     unlocks:
       send_instructions: 'Dentro de minutos, você receberá um email com instruções de desbloqueio da sua conta.'

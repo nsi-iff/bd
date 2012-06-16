@@ -2,7 +2,7 @@
   #lista_de_revisao.portlet
     %h3 Lista de Revisão
     - if Conteudo.where(state: :pendente).blank?
-      %p Não há nenhum conteúdo pendente
+      %p Não há nenhum conteúdo para revisão.
     - else
       - Conteudo.where(state: :pendente).reverse[0..2].each do |conteudo|
         .item

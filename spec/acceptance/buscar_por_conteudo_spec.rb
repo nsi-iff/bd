@@ -58,8 +58,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                                                      sub_area: sub_area_2,
                                                                      campus: campos_centro,
                                                                      autores: [autor_1]
-    # espera o elasticsearch indexar :(
-    sleep(3) if ENV['INTEGRACAO_TIRE']
+    Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
   end
 
   scenario 'por título' do

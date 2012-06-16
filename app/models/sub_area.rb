@@ -1,6 +1,8 @@
 class SubArea < ActiveRecord::Base
   belongs_to :area
   has_many :conteudos
+  
+  attr_accessible :nome, :area
 
   validates :nome, presence: true, uniqueness: true
   validates :area_id, presence: true
