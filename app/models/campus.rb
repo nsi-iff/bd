@@ -7,7 +7,7 @@ class Campus < ActiveRecord::Base
   validates :instituicao_id, presence: true
   validates_associated :instituicao
   
-  attr_accessible :nome
+  attr_accessible :nome, :instituicao
 
   def to_s
     self.nome
