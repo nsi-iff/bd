@@ -18,7 +18,7 @@ class Conteudo < ActiveRecord::Base
   
   attr_accessible :arquivo, :contribuidor, :titulo, :link, :sub_area_id, 
                   :autores_attributes, :campus_id, :contribuidor_id, :subtitulo,
-                  :resumo, :direitos
+                  :resumo, :direitos, :sub_area, :campus, :autores
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
            :arquivo_ou_link_devem_existir
