@@ -5,6 +5,8 @@ class Referencia < ActiveRecord::Base
   validates :referenciavel, presence: true, :if => :new_record?
   before_validation :criar_referencia_abnt, :if => :referenciavel
   before_save :criar_tipo_do_grao, :if => lambda { |r| r.referenciavel_type == 'Grao' }
+  
+  attr_accessible :referenciavel
 
   private
 
