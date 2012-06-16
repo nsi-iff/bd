@@ -10,27 +10,8 @@ class BuscasController < InheritedResources::Base
   end
 
   def busca_avancada
-    # XXX: Use TIRE (this is a really ugly solution)
-    area = params[:area] || nil
-    area != 'Todas' || area = nil
-    sub_area = params[:sub_area] || nil
-    sub_area != 'Todas' || sub_area = nil
-    instituicao = params[:instituicao] || nil
-    instituicao != 'Todas' || instituicao = nil
-    tipo_conteudo = params[:tipo_conteudo] || nil
-    titulo = params[:titulo] || nil
-    autor = params[:autor] || nil
-
-    conteudos = Conteudo.scoped
-    #conteudos = conteudos.where('area_id = ?', area) if area
-    conteudos = conteudos.where('sub_area_id = ?', sub_area) if sub_area
-    #conteudos = conteudos.where('instituicao_id = ?', instituicao) if instituicao
-    conteudos = conteudos.where('type = ?', tipo_conteudo) if tipo_conteudo
-    conteudos = conteudos.where('titulo = ?', titulo) if titulo
-    #conteudos = conteudos.where('autor = ?', autor) if autor
-
-    @conteudos = conteudos
-    session[:ultima_busca] = params
+    @busca = Busca.new({busca: params[:busca], parametros: params[:parametros]})
+    @resultados = @busca.resultados
     render action: 'resultado_busca'
   end
 
@@ -38,7 +19,7 @@ class BuscasController < InheritedResources::Base
   end
 
   def busca_normal
-    @conteudos = Conteudo.search params[:busca]
+    @resultados = Conteudo.search(params[:busca])
     session[:ultima_busca] = params[:busca]
     render action: 'resultado_busca'
   end

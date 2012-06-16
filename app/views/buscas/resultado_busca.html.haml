@@ -1,8 +1,8 @@
-- if @conteudos.blank?
+- if @resultados.blank?
   %p Não foi encontrado resultado para sua busca.
 - else
   %ul#resultado
-    - @conteudos.each do |conteudo|
+    - @resultados.each do |conteudo|
       %li
         = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
         #graos

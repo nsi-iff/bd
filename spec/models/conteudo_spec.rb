@@ -398,11 +398,11 @@ describe Conteudo do
       end
 
       it "deve incluir o nome da sub-área" do
-        campos_a_serem_indexados['sub_area']['nome'].should == 'Ciência da Computação'
+        campos_a_serem_indexados['sub_area_nome'].should == 'Ciência da Computação'
       end
 
       it "deve incluir o nome da área da sub-área" do
-        campos_a_serem_indexados['sub_area']['area']['nome'].should == 'Ciências Exatas e da Terra'
+        campos_a_serem_indexados['area_nome'].should == 'Ciências Exatas e da Terra'
       end
     end
 

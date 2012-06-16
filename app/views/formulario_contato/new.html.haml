@@ -1,0 +1,7 @@
+= semantic_form_for @formulario_contato, url: :formulario_contato_create do |f|
+  = f.input :nome, required: true
+  = f.input :email, required: true
+  = f.input :assunto, required: true
+  = f.input :mensagem, as: :text, required: true
+
+  = f.submit 'Enviar'

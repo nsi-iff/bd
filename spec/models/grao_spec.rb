@@ -18,4 +18,11 @@ describe Grao do
     build(:grao_arquivo).tipo_humanizado.should == 'arquivo'
     Grao.new(tipo: 'outra coisa').tipo_humanizado.should be_nil
   end
+
+  it 'possui metodo referencia_abnt referenciando seu conteudo' do
+    conteudo = create(:livro)
+    conteudo.should_receive(:referencia_abnt).and_return('referencia abnt')
+    grao = create(:grao, conteudo: conteudo)
+    grao.referencia_abnt.should == 'referencia abnt'
+  end
 end

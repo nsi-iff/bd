@@ -9,11 +9,11 @@ class Conteudo < ActiveRecord::Base
   has_many :graos
   has_many :autores
   has_many :mudancas_de_estado
+  has_many :referencias, :as => :referenciavel
   belongs_to :sub_area
   has_one :arquivo
   belongs_to :contribuidor, :class_name => 'Usuario'
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
-  has_and_belongs_to_many :usuarios
   belongs_to :campus
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
@@ -111,10 +111,9 @@ class Conteudo < ActiveRecord::Base
   end
 
   def self.search(busca)
-    s = Tire.search 'conteudos' do
-      query { string busca }
-    end
-    s.results
+    Tire.search('conteudos') {
+      query { string busca if busca }
+    }.results
   end
 
   def arquivo_base64
@@ -134,10 +133,23 @@ class Conteudo < ActiveRecord::Base
 
   def to_indexed_json
     to_json(include: {autores: { only: [:nome, :lattes]},
-                      sub_area: { only: [:nome], include: {area: {only: [:nome]}}},
                       campus: { only: [:nome]},
                       graos: { only: [:tipo, :key] } },
-            methods: [:arquivo_base64, :data_publicado])
+            methods: [:arquivo_base64, :data_publicado,
+                      :area_nome, :sub_area_nome, :instituicao_nome])
+  end
+
+  # TODO: refatorar
+  def area_nome
+    self.try(:sub_area).try(:area).try(:nome)
+  end
+
+  def sub_area_nome
+    self.try(:sub_area).try(:nome)
+  end
+
+  def instituicao_nome
+    self.try(:campus).try(:instituicao).try(:nome)
   end
 
   alias  :set_arquivo :arquivo=
