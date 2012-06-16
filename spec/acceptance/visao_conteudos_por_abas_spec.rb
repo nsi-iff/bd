@@ -63,7 +63,7 @@ feature 'apresentacao dos conteudos por abas' do
     page.should have_content 'Tabelas'
 
     click_link 'Tabelas'
-    ensure_table '.grao_imagem table',
+    ensure_table '.grao_arquivo table',
       [%w(1 2 3),
        %w(4 5 6),
        %w(7 8 9)]

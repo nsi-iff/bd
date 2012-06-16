@@ -5,12 +5,10 @@ require 'spec_helper'
 feature 'adicionar periodico tecnico cientifico' do
   scenario 'padrao' do
     submeter_conteudo :periodico_tecnico_cientifico do
-      within_fieldset 'Dados Complementares' do
-        fill_in 'Editora', with: 'Bookmam'
-        fill_in 'Local', with: 'Campos dos Goytacazes'
-        fill_in 'Ano do primeiro volume', with: '2007'
-        fill_in 'Ano do último volume', with: '2011'
-      end
+      fill_in 'Editora', with: 'Bookmam'
+      fill_in 'Local', with: 'Campos dos Goytacazes'
+      fill_in 'Ano do primeiro volume', with: '2007'
+      fill_in 'Ano do último volume', with: '2011'
     end
 
     validar_conteudo

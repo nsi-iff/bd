@@ -9,11 +9,11 @@ class Conteudo < ActiveRecord::Base
   has_many :graos
   has_many :autores
   has_many :mudancas_de_estado
+  has_many :referencias, :as => :referenciavel
   belongs_to :sub_area
   has_one :arquivo
   belongs_to :contribuidor, :class_name => 'Usuario'
   accepts_nested_attributes_for :autores, :reject_if => :all_blank
-  has_and_belongs_to_many :usuarios
   belongs_to :campus
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
@@ -68,6 +68,14 @@ class Conteudo < ActiveRecord::Base
 
     after_transition any => :editavel, :do => :destruir_graos
     before_transition :pendente => :granularizando, :do => :granularizar
+  end
+
+  def self.estados
+    [:editavel, :pendente, :recolhido, :publicado]
+  end
+
+  def estados
+    self.class.estados
   end
 
   def remover(*args)

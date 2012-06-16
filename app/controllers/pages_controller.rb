@@ -48,4 +48,8 @@ class PagesController < ApplicationController
 
   def adicionar_conteudo
   end
+  
+  def mapa_do_site
+    @title = "Mapa do Site"
+  end
 end

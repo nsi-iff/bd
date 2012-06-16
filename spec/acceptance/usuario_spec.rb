@@ -66,4 +66,3 @@ feature 'sessão e registro de usuário' do
     last_email.to.should include(usuario.email)
   end
 end
-

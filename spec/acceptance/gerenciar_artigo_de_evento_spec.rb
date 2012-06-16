@@ -5,7 +5,6 @@ require 'spec_helper'
 feature 'adicionar artigo de evento' do
   scenario 'padrao' do
     submeter_conteudo :artigo_de_evento do
-      within_fieldset 'Dados Complementares' do
         fill_in 'Subtítulo', with: 'Ruby Becomes The Flash'
         fill_in 'Nome', with: 'NSI Ruby Conf'
         fill_in 'Local do Evento', with: 'Campos dos Goytacazes, Rio de Janeiro, Brazil'
@@ -17,7 +16,6 @@ feature 'adicionar artigo de evento' do
         fill_in 'Título dos anais', with: 'Proceedings of the 1st NSI Ruby Conf'
         fill_in 'Página inicial do trabalho', with: '10'
         fill_in 'Página final do trabalho', with: '25'
-      end
     end
 
     validar_conteudo

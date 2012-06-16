@@ -2,13 +2,12 @@ require 'spork'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
-
 Spork.prefork do
   require 'rubygems'
   ENV["RAILS_ENV"] ||= 'test'
 
   # inicia simplecov (coverage) se não estiver usando spork, e com COVERAGE=true
-  if !Spork.using_spork? && ENV["COVERAGE"]
+  unless Spork.using_spork? && ENV["COVERAGE"]
     puts "Running Coverage Tool\n"
     require 'simplecov'
     require 'simplecov-rcov'
@@ -92,14 +91,13 @@ Spork.prefork do
     config.use_transactional_fixtures = true
 
     # check phantomjs availability in order to use poltergeist driver on capybara
-    def is_command_available command
+    def is_command_available(command)
       system("which #{command} > /dev/null 2>&1")
     end
-    if is_command_available(:phantomjs)
-      js_driver = :poltergeist
-    else
-      js_driver = :webkit
-    end
+    js_driver = is_command_available(:phantomjs) ?
+                 (js_driver = :poltergeist) :
+                 (js_driver = :webkit)
+
     Capybara.javascript_driver = js_driver
 
     # If true, the base class of anonymous controllers will be inferred
@@ -121,7 +119,5 @@ Spork.each_run do
   ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
   # This steps will only be runned when using spork
-  if Spork.using_spork?
-    FactoryGirl.reload
-  end
+  FactoryGirl.reload if Spork.using_spork?
 end

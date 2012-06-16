@@ -1,4 +1,7 @@
 DigitalLibrary::Application.routes.draw do
+  get "formulario_contato/new"
+  post "formulario_contato/create"
+
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
