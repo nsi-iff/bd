@@ -1,0 +1,20 @@
+- if item.is_a? Conteudo
+  = link_to conteudo_tag(item), conteudo_path(item)
+  %br
+  %span.info
+  = "#{item.nome_contribuidor} - #{item.created_at.strftime('%d/%m/%Y')}"
+- else
+  - if item.referenciavel
+    - if item.referenciavel.is_a? Grao
+      = link_to item.referenciavel.key, conteudo_path(item.referenciavel.conteudo)
+      = item.referenciavel.tipo_humanizado
+      %br
+      %span.info
+        = "#{item.created_at.strftime('%d/%m/%Y')}"
+    - else
+      = link_to conteudo_tag(item.referenciavel), conteudo_path(item.referenciavel)
+      %br
+      %span.info
+        = "#{item.referenciavel.nome_contribuidor} - #{item.referenciavel.created_at.strftime('%d/%m/%Y')}"
+  - else
+    = item.abnt

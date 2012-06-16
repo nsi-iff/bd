@@ -87,7 +87,8 @@ feature 'Estante' do
 
   scenario 'mostrar graos favoritos do usuário' do
     # TODO: teste seguinte é de aceitação ou de model ?
-    @usuario.graos_favoritos << create(:grao)
+    conteudo = create(:livro)
+    @usuario.favoritar create(:grao, conteudo: conteudo)
     visit root_path
     within '#estante' do
       page.should have_content 'key imagem'
@@ -95,7 +96,8 @@ feature 'Estante' do
   end
 
   scenario 'move graos da cesta para estante (como graos favoritos)' do
-    @usuario.cesta << create(:grao)
+    conteudo = create(:livro)
+    @usuario.cesta << create(:grao, conteudo: conteudo)
 
     visit estante_usuario_path(@usuario)
 
@@ -120,6 +122,24 @@ feature 'Estante' do
 
     within '#cesta' do
       page.should_not have_content 'key imagem'
+    end
+  end
+
+  it 'quando referenciavel eh removido, a referencia abnt deve ser mostrada' do
+    conteudo = create(:livro)
+    conteudo_2 = create(:artigo_de_evento)
+    grao = create(:grao, conteudo: conteudo_2)
+
+    @usuario.favoritar conteudo
+    @usuario.favoritar grao
+
+    conteudo.destroy
+    grao.destroy
+
+    visit estante_usuario_path(@usuario)
+    within '#estante' do
+      page.should have_content conteudo.referencia_abnt
+      page.should have_content conteudo_2.referencia_abnt
     end
   end
 end

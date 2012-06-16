@@ -3,6 +3,9 @@ class ObjetoDeAprendizagem < Conteudo
   has_and_belongs_to_many :cursos
   has_many :eixos_tematicos, :through => :cursos, :uniq => true
   belongs_to :idioma
+  
+  attr_accessible :palavras_chave, :tempo_aprendizagem, :curso_ids, :novas_tags, 
+                  :idioma_id
 
   def nomes_dos_eixos_tematicos
     if eixos_tematicos.present?

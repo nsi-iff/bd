@@ -55,7 +55,9 @@ class GraosController < ApplicationController
 
   def favoritar_graos
     authorize! :favoritar, Grao
-    current_usuario.graos_favoritos << current_usuario.cesta.all
+    current_usuario.cesta.each do |grao|
+      current_usuario.favoritar grao
+    end
     current_usuario.cesta = []
     redirect_to :back
   end
