@@ -22,6 +22,7 @@ DigitalLibrary::Application.routes.draw do
   end
 
   root :to => 'pages#inicio'
+
   match "/ajuda",     :to => "pages#ajuda"
   match "/ajuda/manuais", :to => "pages#manuais"
   match "/sobre",     :to => "pages#sobre"

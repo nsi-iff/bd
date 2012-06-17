@@ -5,6 +5,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :inicio, 'Início', root_path do |sub|
       sub.item :ajuda, 'Ajuda', '/ajuda'
     end
+
     primary.item :usuarios, 'Usuários', usuarios_path do |u|
       u.item :buscar_por_nome, 'Busca por nome', buscar_por_nome_usuarios_path
       u.item :papeis, 'Papéis', papeis_usuarios_path
@@ -12,6 +13,10 @@ SimpleNavigation::Configuration.run do |navigation|
         u.item :area_privada, 'Área privada', area_privada_usuario_path(current_usuario)
         u.item :minhas_buscas, 'Minhas buscas', minhas_buscas_usuario_path(current_usuario)
       end
+    end
+
+    primary.item :ajuda, 'Ajuda', '/ajuda' do |ajuda|
+      ajuda.item :manuais, 'Manuais', '/ajuda/manuais'
     end
   end
   # Specify a custom renderer if needed.

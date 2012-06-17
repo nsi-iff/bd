@@ -39,4 +39,16 @@ feature 'apresentar breadcrumbs para' do
         minhas_buscas_usuario_path(@usuario), crumb_usuarios + 'Minhas buscas')
     end
   end
+
+  context 'ajuda' do
+    let(:crumb_ajuda) { 'Ajuda » ' }
+
+    scenario 'ajuda' do
+      verificar_breadcrumbs('/ajuda', 'Ajuda')
+    end
+
+    scenario 'manuais' do
+      verificar_breadcrumbs('/ajuda/manuais', crumb_ajuda + 'Manuais')
+    end
+  end
 end
