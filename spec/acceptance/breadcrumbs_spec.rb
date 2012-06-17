@@ -79,4 +79,21 @@ feature 'apresentar breadcrumbs para' do
       verificar_breadcrumbs '/graficos_de_acessos', crumb_paginas + 'Gráficos'
     end
   end
+
+  context 'buscas' do
+    let(:crumb_default) { 'Início » ' }
+
+    scenario 'normal' do
+      verificar_breadcrumbs(busca_normal_path, 'Busca normal') do |url|
+        visit root_path
+        fill_in "Busca", with: 'dummy '
+        click_button "Buscar"
+      end
+    end
+
+    scenario 'avançada' do
+      # TODO: implementar quando busca avançada estiver funcionando  (rodrigo, 17/06/2012 14:05)
+      # verificar_breadcrumbs busca_avancada_path, 'Busca avançada'
+    end
+  end
 end

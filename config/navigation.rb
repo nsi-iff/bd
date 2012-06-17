@@ -9,6 +9,8 @@ SimpleNavigation::Configuration.run do |navigation|
       sub.item :estatisticas, 'Estatísticas', '/estatisticas'
       sub.item :documentos_mais_acessados, 'Documentos mais acessados', '/documentos_mais_acessados'
       sub.item :graficos_de_acessos, 'Gráficos de acesso', '/graficos_de_acessos'
+      sub.item :busca_normal, 'Busca normal', busca_normal_path
+      sub.item :busca_avancada, 'Busca avançada', busca_avancada_path
     end
 
     primary.item :usuarios, 'Usuários', usuarios_path do |u|
