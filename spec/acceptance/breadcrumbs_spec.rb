@@ -5,11 +5,7 @@ require 'spec_helper'
 feature 'apresentar breadcrumbs para' do
   before(:each) do
     Papel.criar_todos
-    @usuario = autenticar_usuario(Papel.admin)
-  end
-
-  scenario 'home' do
-    verificar_breadcrumbs root_path, 'Início'
+    @usuario = autenticar_usuario(Papel.all)
   end
 
   context 'usuários' do
@@ -49,6 +45,38 @@ feature 'apresentar breadcrumbs para' do
 
     scenario 'manuais' do
       verificar_breadcrumbs('/ajuda/manuais', crumb_ajuda + 'Manuais')
+    end
+  end
+
+  context 'páginas' do
+    let(:crumb_paginas) { 'Início » ' }
+
+    scenario 'home' do
+      verificar_breadcrumbs root_path, 'Início'
+    end
+
+    scenario 'sobre' do
+      verificar_breadcrumbs '/sobre', crumb_paginas + 'Sobre'
+    end
+
+    scenario 'noticias' do
+      verificar_breadcrumbs '/noticias', crumb_paginas + 'Notícias'
+    end
+
+    scenario 'adicionar conteúdo' do
+      verificar_breadcrumbs '/adicionar_conteudo', crumb_paginas + 'Adicionar conteúdo'
+    end
+
+    scenario 'estatísticas' do
+      verificar_breadcrumbs '/estatisticas', crumb_paginas + 'Estatísticas'
+    end
+
+    scenario 'docmentos mais acessados' do
+      verificar_breadcrumbs '/documentos_mais_acessados', crumb_paginas + 'Documentos mais acessados'
+    end
+
+    scenario 'gráficos de acessos' do
+      verificar_breadcrumbs '/graficos_de_acessos', crumb_paginas + 'Gráficos'
     end
   end
 end

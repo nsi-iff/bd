@@ -3,7 +3,12 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :inicio, 'Início', root_path do |sub|
-      sub.item :ajuda, 'Ajuda', '/ajuda'
+      sub.item :sobre, 'Sobre', '/sobre'
+      sub.item :noticias, 'Notícias', '/noticias'
+      sub.item :adicionar_conteudo, 'Adicionar conteúdo', '/adicionar_conteudo'
+      sub.item :estatisticas, 'Estatísticas', '/estatisticas'
+      sub.item :documentos_mais_acessados, 'Documentos mais acessados', '/documentos_mais_acessados'
+      sub.item :graficos_de_acessos, 'Gráficos de acesso', '/graficos_de_acessos'
     end
 
     primary.item :usuarios, 'Usuários', usuarios_path do |u|
