@@ -1,23 +1,25 @@
 DigitalLibrary::Application.routes.draw do
-  get "formulario_contato/new"
-  post "formulario_contato/create"
+  resources :formulario_contato, only: [:new, :create]
 
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   resources :usuarios, only: [:index] do
-    put :atualizar_papeis, on: :collection
-    get :buscar_por_nome, on: :collection
-    get :usuarios_instituicao, on: :collection
+    collection do
+      put :atualizar_papeis
+      get :buscar_por_nome
+      get :usuarios_instituicao
+      get :papeis
+    end
     get :area_privada
     get :minhas_buscas, :to => 'usuarios#minhas_buscas'
+
     member do
       get :lista_de_revisao
       get :escrivaninha
       get :estante
     end
   end
-  get "usuarios/papeis", :to => "usuarios#papeis"
 
   root :to => 'pages#inicio'
   match "/ajuda",     :to => "pages#ajuda"
