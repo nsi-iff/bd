@@ -210,7 +210,7 @@ feature 'Buscas' do
     within '#minhas_buscas' do
       page.should have_content 'Não há buscas salvas.'
     end
-    visit usuario_minhas_buscas_path(usuario)
+    visit minhas_buscas_usuario_path(usuario)
     within '.content' do
       page.should have_content 'Não há buscas salvas.'
     end

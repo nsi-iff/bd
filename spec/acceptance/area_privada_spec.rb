@@ -8,19 +8,19 @@ feature 'Área Privada' do
   scenario 'testar links na área privada' do
     usuario = autenticar_usuario(Papel.all)
 
-    visit usuario_area_privada_path(usuario)
+    visit area_privada_usuario_path(usuario)
     click_link 'Escrivaninha'
     current_path.should == escrivaninha_usuario_path(usuario)
 
-    visit usuario_area_privada_path(usuario)
+    visit area_privada_usuario_path(usuario)
     click_link 'Estante'
     current_path.should == estante_usuario_path(usuario)
 
-    visit usuario_area_privada_path(usuario)
+    visit area_privada_usuario_path(usuario)
     click_link 'Minhas Buscas'
-    current_path.should == usuario_minhas_buscas_path(usuario)
+    current_path.should == minhas_buscas_usuario_path(usuario)
 
-    visit usuario_area_privada_path(usuario)
+    visit area_privada_usuario_path(usuario)
     click_link 'Lista de Revisão'
     current_path.should == lista_de_revisao_usuario_path(usuario)
   end
@@ -30,7 +30,7 @@ feature 'Área Privada' do
 
       usuario = autenticar_usuario(papel)
 
-      visit usuario_area_privada_path(usuario)
+      visit area_privada_usuario_path(usuario)
       page.should have_content 'Escrivaninha'
       page.should have_content 'Estante'
       page.should have_content 'Minhas Buscas'
@@ -39,7 +39,7 @@ feature 'Área Privada' do
 
     usuario = autenticar_usuario(Papel.gestor)
 
-    visit usuario_area_privada_path(usuario)
+    visit area_privada_usuario_path(usuario)
     page.should have_content 'Escrivaninha'
     page.should have_content 'Estante'
     page.should have_content 'Minhas Buscas'

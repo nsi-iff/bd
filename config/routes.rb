@@ -11,13 +11,13 @@ DigitalLibrary::Application.routes.draw do
       get :usuarios_instituicao
       get :papeis
     end
-    get :area_privada
-    get :minhas_buscas, :to => 'usuarios#minhas_buscas'
 
     member do
       get :lista_de_revisao
       get :escrivaninha
       get :estante
+      get :minhas_buscas
+      get :area_privada
     end
   end
 

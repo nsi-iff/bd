@@ -41,7 +41,7 @@ class BuscasController < InheritedResources::Base
         busca = Busca.find(params[:busca_id])
         busca.mala_direta = true
         busca.save
-        redirect_to usuario_minhas_buscas_path(current_usuario),
+        redirect_to minhas_buscas_usuario_path(current_usuario),
           :notice => 'Busca cadastrada no servico de mala direta'
       end
     end
@@ -53,7 +53,7 @@ class BuscasController < InheritedResources::Base
         busca = Busca.find(params[:busca_id])
         busca.mala_direta = false
         busca.save
-        redirect_to usuario_minhas_buscas_path(current_usuario),
+        redirect_to minhas_buscas_usuario_path(current_usuario),
           :notice => 'Busca removida do servido de mala direta'
       end
     end
