@@ -4,10 +4,12 @@ class FormularioContato < MailForm::Base
   attribute :assunto, validate: true
   attribute :mensagem, validate: true
 
+
   def headers
+    binding.pry
     {
-      subject: "Contato",
-      to: "bernardo.fire@gmail.com",
+      subject: "Contato BD",
+      to: YAML::load_file(File.join(Rails.root, 'config', 'contato.yml'))['contato']['email'],
       from: %("#{nome}" <#{email}>)
     }
   end

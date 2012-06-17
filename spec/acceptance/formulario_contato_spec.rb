@@ -12,7 +12,7 @@ feature "Formulário de contato" do
     click_button 'Enviar'
     page.body.should have_content('Obrigado por entrar em contato')
     last_email = ActionMailer::Base.deliveries.last
-    last_email.to.should include('bernardo.fire@gmail.com')
+    last_email.to.should include('foo@bar.com')
     last_email.from.should include('john-doe@foobar.com')
   end
 
