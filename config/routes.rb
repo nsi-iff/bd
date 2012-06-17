@@ -1,5 +1,5 @@
 DigitalLibrary::Application.routes.draw do
-  get "formulario_contato/new"
+  get '/contato', to: "formulario_contato#new"
   post "formulario_contato/create"
 
   mount Ckeditor::Engine => '/ckeditor'
