@@ -8,6 +8,8 @@ feature 'apresentar breadcrumbs para' do
     @usuario = autenticar_usuario(Papel.all)
   end
 
+  let(:crumb_default) { 'Início » ' }
+
   context 'usuários' do
     let(:crumb_usuarios) { 'Usuários » ' }
 
@@ -39,40 +41,36 @@ feature 'apresentar breadcrumbs para' do
   end
 
   context 'páginas' do
-    let(:crumb_paginas) { 'Início » ' }
-
     scenario 'home' do
       verificar_breadcrumbs root_path, 'Início'
     end
 
     scenario 'sobre' do
-      verificar_breadcrumbs '/sobre', crumb_paginas + 'Sobre'
+      verificar_breadcrumbs '/sobre', crumb_default + 'Sobre'
     end
 
     scenario 'noticias' do
-      verificar_breadcrumbs '/noticias', crumb_paginas + 'Notícias'
+      verificar_breadcrumbs '/noticias', crumb_default + 'Notícias'
     end
 
     scenario 'adicionar conteúdo' do
-      verificar_breadcrumbs '/adicionar_conteudo', crumb_paginas + 'Adicionar conteúdo'
+      verificar_breadcrumbs '/adicionar_conteudo', crumb_default + 'Adicionar conteúdo'
     end
 
     scenario 'estatísticas' do
-      verificar_breadcrumbs '/estatisticas', crumb_paginas + 'Estatísticas'
+      verificar_breadcrumbs '/estatisticas', crumb_default + 'Estatísticas'
     end
 
     scenario 'docmentos mais acessados' do
-      verificar_breadcrumbs '/documentos_mais_acessados', crumb_paginas + 'Documentos mais acessados'
+      verificar_breadcrumbs '/documentos_mais_acessados', crumb_default + 'Documentos mais acessados'
     end
 
     scenario 'gráficos de acessos' do
-      verificar_breadcrumbs '/graficos_de_acessos', crumb_paginas + 'Gráficos'
+      verificar_breadcrumbs '/graficos_de_acessos', crumb_default + 'Gráficos'
     end
   end
 
   context 'buscas' do
-    let(:crumb_default) { 'Início » ' }
-
     scenario 'normal' do
       verificar_breadcrumbs(busca_normal_path, 'Busca normal') do |url|
         visit root_path
@@ -88,8 +86,6 @@ feature 'apresentar breadcrumbs para' do
   end
 
   context 'conteúdos' do
-    let(:crumb_default) { 'Início » ' }
-
     scenario 'novo' do
       popular_area_sub_area
       verificar_breadcrumbs(
@@ -103,8 +99,6 @@ feature 'apresentar breadcrumbs para' do
   end
 
   context 'páginas do usuário' do
-    let(:crumb_default) { 'Início » ' }
-
     scenario 'área privada' do
       verificar_breadcrumbs(
         area_privada_usuario_path(@usuario), crumb_default + 'Área privada')
