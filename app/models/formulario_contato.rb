@@ -6,8 +6,8 @@ class FormularioContato < MailForm::Base
 
   def headers
     {
-      subject: "Contato",
-      to: "bernardo.fire@gmail.com",
+      subject: "Contato BD",
+      to: YAML::load_file(File.join(Rails.root, 'config', 'contato.yml'))['contato']['email'],
       from: %("#{nome}" <#{email}>)
     }
   end

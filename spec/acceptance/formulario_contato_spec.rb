@@ -4,7 +4,8 @@ require 'spec_helper'
 feature "Formulário de contato" do
   before(:each) { ActionMailer::Base.deliveries = [] }
   scenario "envia mensagem" do
-    visit new_formulario_contato_path
+    visit root_path
+    click_link 'Contato'
     fill_in 'Nome', :with => 'John Doe'
     fill_in 'Email', :with => 'john-doe@foobar.com'
     fill_in 'Assunto', :with => 'rails'
@@ -12,12 +13,13 @@ feature "Formulário de contato" do
     click_button 'Enviar'
     page.body.should have_content('Obrigado por entrar em contato')
     last_email = ActionMailer::Base.deliveries.last
-    last_email.to.should include('bernardo.fire@gmail.com')
+    last_email.to.should include('foo@bar.com')
     last_email.from.should include('john-doe@foobar.com')
   end
 
   scenario "não envia mensagem com campo faltando" do
-    visit new_formulario_contato_path
+    visit root_path
+    click_link 'Contato'
     fill_in 'Nome', :with => 'John Doe'
     fill_in 'Assunto', :with => 'rails'
     fill_in 'Mensagem', :with => 'campo faltando lek'
