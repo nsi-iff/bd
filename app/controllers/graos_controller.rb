@@ -77,9 +77,11 @@ class GraosController < ApplicationController
       body = root.elements[4]
       office_style = root.elements[3]
       text = body.elements[1]
+      referencias_abnt = []
       current_usuario.cesta.all.map(&:key).each do |key|
         grao = Grao.where(:key => key).first
         conteudo_que_gerou_o_grao = Conteudo.where(:id => grao.conteudo_id).first
+        referencias_abnt << conteudo_que_gerou_o_grao.referencia_abnt
         dados_grao = @sam.get(key)['data']
         if grao.tipo == "images"
           adicionar_imagem(dados_grao, odt, text)
@@ -89,6 +91,10 @@ class GraosController < ApplicationController
           File.new(file_name, "w").write(dados_grao.force_encoding('UTF-8'))
           adicionar_tabela(file_name, office_style, text)
         end
+      end
+      Element.new("text:p", text).add_text("Referências")
+      referencias_abnt.each do |referencia|
+        Element.new("text:p", text).add_text(referencia)
       end
       myfile = File.open("myfile.xml", "w")
       doc.write(myfile)
@@ -115,11 +121,11 @@ class GraosController < ApplicationController
   end
 
   def extrair_tabela(tabela, elemento_pai)
-    novo = novo_elemento tabela , elemento_pai
+    novo = novo_elemento(tabela , elemento_pai)
     tabela.children.each do |filho|
       if filho.namespace.prefix == 'text'
         texto = novo_elemento(filho, novo)
-        texto.add_text filho.text
+        texto.add_text(filho.text)
       else
         extrair_tabela(filho, novo)
       end
