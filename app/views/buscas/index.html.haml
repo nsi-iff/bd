@@ -8,8 +8,9 @@
   %ul#tipos_de_conteudo
     - @tipos_conteudo.each do |tipo|
       %li
-        = label_tag tipo.nome_humanizado
-        = check_box_tag "parametros[_type]", tipo.name.underscore
+        %label
+          = check_box_tag "parametros[tipos][]", tipo.name.underscore
+          = tipo.nome_humanizado
   = f.label 'Titulo'
   = f.text_field :titulo
   = f.label 'Autor'

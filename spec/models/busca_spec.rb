@@ -7,14 +7,15 @@ describe Busca do
                     autor: "Why",
                  sub_area: "Computação",
                      area: "Exatas",
-              instituicao: "IFF"}
+              instituicao: "IFF",
+              tipos: ["livro", "relatorio"]}
 
-    Busca.new(parametros: form_params).parametros.should
-      eq("titulo:linguagens dinâmicas "\
+    Busca.new(parametros: form_params).string_queries.should eq("titulo:linguagens dinâmicas "\
          "autor:Why "\
          "sub_area:Computação "\
          "area:Exatas "\
-         "instituicao:IFF")
+         "instituicao:IFF "\
+         "_type: livro OR relatorio")
   end
 
   it "set de 'parametros' filtra strings vazias" do

@@ -35,6 +35,9 @@ class Busca < ActiveRecord::Base
   end
 
   def string_queries
-    parametros.map { |tupla| tupla.join(':') }.join(' ')
+    tipos = parametros.delete(:tipos)
+    parametros.map { |tupla| tupla.join(':') }.join(' ').tap do |params|
+      params.concat " _type: #{tipos.join(" OR ")}" if tipos
+    end
   end
 end

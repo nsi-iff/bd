@@ -44,11 +44,29 @@ feature 'Buscas' do
 
       visit buscas_path
       fill_in 'parametros[titulo]', with: livro.titulo
-      find(:css, "#parametros__type[value='livro']").set(true)
+      find(:css, "#parametros_tipos_[value='livro']").set(true)
       click_button 'Buscar'
       page.should have_content livro.titulo
       page.should_not have_content("Não foi encontrado resultado para sua busca.")
     end
+
+    scenario 'busca por mais de tipo de conteúdo' do
+      livro = create(:livro, titulo: "teste livro")
+      artigo = create(:artigo_de_periodico, titulo: "teste artigo")
+      livro.submeter! && livro.aprovar!
+      artigo.submeter! && artigo.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      fill_in 'parametros[titulo]', with: livro.titulo
+      find(:css, "#parametros_tipos_[value='livro']").set(true)
+      find(:css, "#parametros_tipos_[value='artigo_de_periodico']").set(true)
+      click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should have_content artigo.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
 
     scenario 'busca pelo nome da área' do
       livro = create(:livro, titulo: "teste livro")
@@ -57,18 +75,6 @@ feature 'Buscas' do
 
       visit buscas_path
       select livro.area.nome, from: 'parametros[area_nome]'
-      click_button 'Buscar'
-      page.should have_content livro.titulo
-      page.should_not have_content("Não foi encontrado resultado para sua busca.")
-    end
-
-    scenario 'busca pelo nome da sub-área' do
-      livro = create(:livro, titulo: "teste livro")
-      livro.submeter! && livro.aprovar!
-      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
-
-      visit buscas_path
-      select livro.sub_area.nome, from: 'parametros[sub_area_nome]'
       click_button 'Buscar'
       page.should have_content livro.titulo
       page.should_not have_content("Não foi encontrado resultado para sua busca.")
