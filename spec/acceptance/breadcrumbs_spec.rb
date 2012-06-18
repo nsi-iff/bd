@@ -8,10 +8,10 @@ feature 'apresentar breadcrumbs para' do
     @usuario = autenticar_usuario(Papel.all)
   end
 
-  let(:crumb_default) { 'Início » ' }
+  let(:crumb_default) { "Início #{breadcrumb_separator} " }
 
   context 'usuários' do
-    let(:crumb_usuarios) { 'Usuários » ' }
+    let(:crumb_usuarios) { "Usuários #{breadcrumb_separator} " }
 
     scenario 'index' do
       verificar_breadcrumbs usuarios_path, 'Usuários'
@@ -29,7 +29,7 @@ feature 'apresentar breadcrumbs para' do
   end
 
   context 'ajuda' do
-    let(:crumb_ajuda) { 'Ajuda » ' }
+    let(:crumb_ajuda) { "Ajuda #{breadcrumb_separator} " }
 
     scenario 'ajuda' do
       verificar_breadcrumbs('/ajuda', 'Ajuda')

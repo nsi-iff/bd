@@ -25,7 +25,7 @@
       <% if alert %>
         <p id="alert"><span class='tipo'>Erro</span><%= alert %></p>
       <% end %>
-      <div id='breadcrumbs'><%= render_navigation renderer: :breadcrumbs, join_with: " &raquo; " %></div>
+      <div id='breadcrumbs'><%= render_navigation renderer: :breadcrumbs, join_with: " &raquo; ", static_leaf: true %></div>
       <%= yield %>
     </div>
     <div class="portlets">
