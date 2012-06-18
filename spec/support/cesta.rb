@@ -26,3 +26,4 @@ end
 def representacao_grao(grao)
   "%s %s" % [grao.key, grao.tipo_humanizado]
 end
+

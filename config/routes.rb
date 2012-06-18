@@ -63,6 +63,7 @@ DigitalLibrary::Application.routes.draw do
   end
   get :favoritar_graos, :to => 'graos#favoritar_graos'
   get "/cesta/baixar_conteudo", :to => 'graos#baixar_conteudo'
+  get "/cesta/baixar_conteudo_em_odt", :to => 'graos#baixar_conteudo_em_odt'
 
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"
@@ -70,3 +71,4 @@ DigitalLibrary::Application.routes.draw do
   get '/editor' => 'editor#index', as: :editor
   post '/editor' => 'editor#download'
 end
+
