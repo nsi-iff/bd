@@ -212,7 +212,7 @@ feature 'cesta de grãos' do
       click_link 'baixar conteudo da cesta em odt'
       grao_armazenado = "./spec/resources/tabela_coyote.odt"
       grao_baixado = "tmp/graos.odt"
-      File.delete('myfile.xml')
+      File.delete('myfile.xml') if File.exists?('myfile.xml')
       comparar_odt('//office:text', grao_baixado, grao_armazenado).should == true
 
       odt = Zip::ZipFile.open('tmp/graos.odt')
@@ -222,4 +222,3 @@ feature 'cesta de grãos' do
     end
   end
 end
-
