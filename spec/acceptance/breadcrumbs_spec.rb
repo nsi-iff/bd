@@ -96,4 +96,19 @@ feature 'apresentar breadcrumbs para' do
       # verificar_breadcrumbs busca_avancada_path, 'Busca avançada'
     end
   end
+
+  context 'conteúdos' do
+    let(:crumb_default) { 'Início » ' }
+
+    scenario 'novo' do
+      popular_area_sub_area
+      verificar_breadcrumbs(
+        new_conteudo_path(tipo: :livro), crumb_default + 'Adicionar conteúdo')
+    end
+
+    scenario 'editar' do
+      verificar_breadcrumbs(
+        edit_conteudo_path(create :livro), crumb_default + 'Editar conteúdo')
+    end
+  end
 end
