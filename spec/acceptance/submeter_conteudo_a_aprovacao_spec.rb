@@ -16,7 +16,7 @@ feature 'submeter conteúdo a aprovação' do
         conteudo = create(tipo, contribuidor: user)
 
         visit conteudo_path(conteudo)
-        click_link 'Submeter'
+        click_button 'Submeter'
         visit conteudo_path(conteudo)
 
         page.should_not have_content 'Submeter'

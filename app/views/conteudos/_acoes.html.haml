@@ -1,4 +1,4 @@
 - if can? :submeter, conteudo and conteudo.editavel?
-  = link_to 'Submeter', submeter_conteudo_path(conteudo), method: :put
+  = button_to 'Submeter', submeter_conteudo_path(conteudo), method: :put
 - if can? :aprovar, conteudo and conteudo.pendente?
   = link_to 'Aprovar', aprovar_conteudo_path(conteudo), method: :put
