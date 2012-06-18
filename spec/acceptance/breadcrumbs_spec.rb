@@ -24,16 +24,6 @@ feature 'apresentar breadcrumbs para' do
       verificar_breadcrumbs(
         papeis_usuarios_path, crumb_usuarios + 'Papéis')
     end
-
-    scenario 'área privada' do
-      verificar_breadcrumbs(
-        area_privada_usuario_path(@usuario), crumb_usuarios + 'Área privada')
-    end
-
-    scenario 'minhas buscas' do
-      verificar_breadcrumbs(
-        minhas_buscas_usuario_path(@usuario), crumb_usuarios + 'Minhas buscas')
-    end
   end
 
   context 'ajuda' do
@@ -109,6 +99,36 @@ feature 'apresentar breadcrumbs para' do
     scenario 'editar' do
       verificar_breadcrumbs(
         edit_conteudo_path(create :livro), crumb_default + 'Editar conteúdo')
+    end
+  end
+
+  context 'páginas do usuário' do
+    let(:crumb_default) { 'Início » ' }
+
+    scenario 'área privada' do
+      verificar_breadcrumbs(
+        area_privada_usuario_path(@usuario), crumb_default + 'Área privada')
+    end
+
+    scenario 'minhas buscas' do
+      verificar_breadcrumbs(
+        minhas_buscas_usuario_path(@usuario), crumb_default + 'Minhas buscas')
+    end
+
+    scenario 'estante' do
+      verificar_breadcrumbs(
+        estante_usuario_path(@usuario), crumb_default + 'Estante')
+    end
+
+    scenario 'escrivaninha' do
+      verificar_breadcrumbs(
+        escrivaninha_usuario_path(@usuario), crumb_default + 'Escrivaninha')
+    end
+
+    scenario 'lista de revisão' do
+      verificar_breadcrumbs(
+        lista_de_revisao_usuario_path(@usuario),
+        crumb_default + 'Lista de revisão')
     end
   end
 end

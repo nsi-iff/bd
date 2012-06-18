@@ -14,15 +14,19 @@ SimpleNavigation::Configuration.run do |navigation|
 
       sub.item :new_conteudo, 'Adicionar conteúdo', new_conteudo_path
       sub.item :edit_conteudo, 'Editar conteúdo', edit_conteudo_path(@conteudo) if @conteudo && !@conteudo.new_record?
+
+      if usuario_signed_in?
+        sub.item :area_privada, 'Área privada', area_privada_usuario_path(current_usuario)
+        sub.item :minhas_buscas, 'Minhas buscas', minhas_buscas_usuario_path(current_usuario)
+        sub.item :escrivaninha, 'Escrivaninha', escrivaninha_usuario_path(current_usuario)
+        sub.item :estante, 'Estante', estante_usuario_path(current_usuario)
+        sub.item :lista_de_revisao, 'Lista de revisão', lista_de_revisao_usuario_path(current_usuario)
+      end
     end
 
     primary.item :usuarios, 'Usuários', usuarios_path do |u|
       u.item :buscar_por_nome, 'Busca por nome', buscar_por_nome_usuarios_path
       u.item :papeis, 'Papéis', papeis_usuarios_path
-      if usuario_signed_in?
-        u.item :area_privada, 'Área privada', area_privada_usuario_path(current_usuario)
-        u.item :minhas_buscas, 'Minhas buscas', minhas_buscas_usuario_path(current_usuario)
-      end
     end
 
     primary.item :ajuda, 'Ajuda', '/ajuda' do |ajuda|
