@@ -8,7 +8,7 @@ feature 'apresentar breadcrumbs para' do
     @usuario = autenticar_usuario(Papel.all)
   end
 
-  let(:crumb_default) { "Início #{breadcrumb_separator} " }
+  let(:crumb_default) { "Você está aqui: Início #{breadcrumb_separator} " }
 
   context 'usuários' do
     let(:crumb_usuarios) { "Usuários #{breadcrumb_separator} " }

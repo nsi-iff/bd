@@ -27,7 +27,9 @@ gem 'nsi-abntformat', '~>1.0.4'
 gem 'odt2html'
 gem 'mail_form'
 gem 'erb2haml'
-gem 'simple-navigation'
+gem 'simple-navigation',
+  git: 'git://github.com/rodrigomanhaes/simple-navigation.git',
+  branch: 'preceding_text'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
