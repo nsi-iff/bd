@@ -9,11 +9,14 @@
     - @tipos_conteudo.each do |tipo|
       %li
         = label_tag tipo.nome_humanizado
-        = check_box_tag "parametros[_type]", tipo.name.underscore, label: tipo.nome_humanizado
+        = check_box_tag "parametros[_type]", tipo.name.underscore
   = f.label 'Titulo'
   = f.text_field :titulo
   = f.label 'Autor'
   = f.text_field :nome
   = f.label 'Instituição'
   = f.select 'instituicao_nome', options_for_select(['Todas'] + @instituicoes.map(&:nome) )
+  / = f.label 'Conteúdo (texto integral)'
+  = label_tag :busca, "Conteúdo (texto integral)"
+  = text_field_tag :busca
   = f.submit "Buscar", name: nil

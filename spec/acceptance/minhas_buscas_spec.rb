@@ -44,7 +44,6 @@ feature 'Buscas' do
 
       visit buscas_path
       fill_in 'parametros[titulo]', with: livro.titulo
-      #check 'parametros[_type][livro]'
       find(:css, "#parametros__type[value='livro']").set(true)
       click_button 'Buscar'
       page.should have_content livro.titulo
@@ -95,6 +94,19 @@ feature 'Buscas' do
       visit buscas_path
       select livro.campus.instituicao.nome, from: 'parametros[instituicao_nome]'
       click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
+    scenario 'deve buscar por texto-integral' do
+      livro = create(:livro, resumo: 'texto integral')
+      livro.submeter! && livro.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      fill_in 'busca', with: livro.resumo
+      click_button 'Buscar'
+
       page.should have_content livro.titulo
       page.should_not have_content("Não foi encontrado resultado para sua busca.")
     end
