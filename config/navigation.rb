@@ -22,6 +22,9 @@ SimpleNavigation::Configuration.run do |navigation|
         sub.item :estante, 'Estante', estante_usuario_path(current_usuario)
         sub.item :lista_de_revisao, 'Lista de revisão', lista_de_revisao_usuario_path(current_usuario)
       end
+
+      sub.item :contato, 'Contato', new_formulario_contato_path
+      sub.item :editor, 'Editor', '/editor'
     end
 
     primary.item :usuarios, 'Usuários', usuarios_path do |u|

@@ -125,4 +125,13 @@ feature 'apresentar breadcrumbs para' do
         crumb_default + 'Lista de revisão')
     end
   end
+
+  it 'formulário de contato' do
+    verificar_breadcrumbs(new_formulario_contato_path,
+      crumb_default + 'Contato')
+  end
+
+  it 'editor' do
+    verificar_breadcrumbs('/editor', crumb_default + 'Editor')
+  end
 end
