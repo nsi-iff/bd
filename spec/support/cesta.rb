@@ -7,14 +7,14 @@ end
 
 def criar_cesta(usuario, conteudo, *grain_files)
   sam = ServiceRegistry.sam
-  grain_files.each do |file|
+  grain_files.each_with_index do |file, index|
     tipo_grao = file.downcase.end_with?('odt') ? :grao_arquivo : :grao_imagem
     extensao = tipo_grao == :grao_arquivo ? "odt" : "png"
     # TODO: refatorar
     result = if ENV["INTEGRACAO_SAM"]
       sam.store(file: Base64.encode64(File.read(file)))
     else
-      sam.store('file' => Base64.encode64(File.read(file)), 'filename' => "filename.#{extensao}")
+      sam.store('file' => Base64.encode64(File.read(file)), 'filename' => "filename_#{index}.#{extensao}")
     end
     sleep(1)
     grao = create(tipo_grao, key: result['key'], conteudo: conteudo)

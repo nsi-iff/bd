@@ -91,6 +91,9 @@ class GraosController < ApplicationController
           File.new(file_name, "w").write(dados_grao.force_encoding('UTF-8'))
           adicionar_tabela(file_name, office_style, text)
         end
+        2.times{
+          Element.new("text:p", parent=text).add_attribute("text:style-name", "Standard")
+        }
       end
       Element.new("text:p", text).add_text("Referências")
       referencias_abnt.each do |referencia|
@@ -140,9 +143,6 @@ class GraosController < ApplicationController
     tabela = table_parsed.xpath('//table:table').first
     extrair_tabela(tabela, text)
     File.delete(grao)
-#    2.times{
-#      Element.new("text:p",parent = text).add_attribute "text:style-name","Standard"
-#    }
   end
 
   def adicionar_imagem(dados_grao, odt, content)
@@ -160,10 +160,10 @@ class GraosController < ApplicationController
     element = Element.new("text:p", parent = content)
     element.add_attribute "text:style-name","Standard"
     frame = Element.new("draw:frame",parent=element)
-    frame.add_attribute "text:anchor-type","paragraph"
-    frame.add_attribute "svg:width", width
-    frame.add_attribute "svg:height", height
-    Element.new("draw:image xlink:actuate='onLoad' xlink:href='#{imagem_odt}' xlink:show='embed' xlink:type='simple'",parent=frame)
+    frame.add_attribute("text:anchor-type", "as-char")
+    frame.add_attribute("svg:width", width)
+    frame.add_attribute("svg:height", height)
+    Element.new("draw:image xlink:actuate='onLoad' xlink:href='#{imagem_odt}' xlink:show='embed' xlink:type='simple'", parent=frame)
   end
 
   def cesta

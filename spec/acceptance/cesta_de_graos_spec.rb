@@ -99,37 +99,37 @@ feature 'cesta de grãos' do
   end
 
   def comparar_odt(tag, novo, grao)
-       test = open_xml(grao).xpath(tag)
-       tmp =  open_xml(novo).xpath(tag)
-       test.children.count == tmp.children.count
-      end
+    test = open_xml(grao).xpath(tag)
+    tmp =  open_xml(novo).xpath(tag)
+    test.children.count == tmp.children.count
+  end
 
   def open_xml(file)
     doc = ZipFile.open(file)
     Nokogiri::XML(doc.read("content.xml"))
   end
 
-# context 'usuário anônimo' do
-#   scenario 'incluir grão na cesta', js: true do
-#     incluir_grao_na_cesta
-#   end
+ context 'usuário anônimo' do
+   scenario 'incluir grão na cesta', js: true do
+     incluir_grao_na_cesta
+   end
 
-#   scenario 'excluir grão da cesta', js: true do
-#     excluir_grao_da_cesta
-#   end
+   scenario 'excluir grão da cesta', js: true do
+     excluir_grao_da_cesta
+   end
 
-#   scenario 'cesta é zerada em nova sessão', js: true do
-#     incluir_grao_na_cesta
-#     page.should have_selector '#cesta #items'
-#     autenticar_usuario
-#     deslogar
-#     page.should_not have_selector '#cesta #items'
-#   end
+   scenario 'cesta é zerada em nova sessão', js: true do
+     incluir_grao_na_cesta
+     page.should have_selector '#cesta #items'
+     autenticar_usuario
+     deslogar
+     page.should_not have_selector '#cesta #items'
+   end
 
-#   scenario 'acessar visão da cesta', js: true do
-#     acessar_visao_da_cesta
-#   end
-# end
+   scenario 'acessar visão da cesta', js: true do
+     acessar_visao_da_cesta
+   end
+ end
 
   context 'usuário logado' do
     before :each do
@@ -206,11 +206,12 @@ feature 'cesta de grãos' do
     scenario 'baixar conteudo da cesta em odt', js: true do
       # TODO: consertar bug na geração da referência ABNT do livro
       Livro.any_instance.stub(:referencia_abnt).and_return("Referências ABNT")
-      criar_cesta(@usuario, @livro, "./spec/resources/tabela.odt")
-      criar_cesta(@usuario, @livro, "./spec/resources/coyote.png")
+      criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt
+                                        ./spec/resources/biblioteca_digital.png
+                                        ./spec/resources/grao_teste_0.jpg))
       visit @usuario_path
       click_link 'baixar conteudo da cesta em odt'
-      grao_armazenado = "./spec/resources/tabela_coyote.odt"
+      grao_armazenado = "./spec/resources/tabela_e_imagens.odt"
       grao_baixado = "tmp/graos.odt"
       File.delete('myfile.xml') if File.exists?('myfile.xml')
       comparar_odt('//office:text', grao_baixado, grao_armazenado).should == true
@@ -222,3 +223,4 @@ feature 'cesta de grãos' do
     end
   end
 end
+
