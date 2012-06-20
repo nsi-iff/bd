@@ -59,4 +59,3 @@ group :test, :development do
   gem 'zippy'
   gem 'toothbrush'
 end
-

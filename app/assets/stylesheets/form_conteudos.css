@@ -81,3 +81,8 @@ form a {
 form li {
   list-style: none;
 }
+
+/* tornando asterisco de campo obrigatorio invisivel para forms de conteudo */
+#metadados_basicos label abbr {
+  display: none;
+}
