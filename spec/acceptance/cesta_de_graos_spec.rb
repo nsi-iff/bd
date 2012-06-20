@@ -101,7 +101,7 @@ feature 'cesta de grãos' do
   def comparar_odt(tag, novo, grao)
     test = open_xml(grao).xpath(tag)
     tmp =  open_xml(novo).xpath(tag)
-    test.children.count == tmp.children.count
+    test.children.count.should == tmp.children.count
   end
 
   def open_xml(file)
@@ -214,7 +214,7 @@ feature 'cesta de grãos' do
       grao_armazenado = "./spec/resources/tabela_e_imagens.odt"
       grao_baixado = "tmp/graos.odt"
       File.delete('myfile.xml') if File.exists?('myfile.xml')
-      comparar_odt('//office:text', grao_baixado, grao_armazenado).should == true
+      comparar_odt('//office:text', grao_baixado, grao_armazenado)
 
       odt = Zip::ZipFile.open('tmp/graos.odt')
       doc = Document.new(odt.read("content.xml"))
@@ -223,4 +223,3 @@ feature 'cesta de grãos' do
     end
   end
 end
-
