@@ -11,12 +11,7 @@ def criar_cesta(usuario, conteudo, *grain_files)
     tipo_grao = file.downcase.end_with?('odt') ? :grao_arquivo : :grao_imagem
     extensao = tipo_grao == :grao_arquivo ? "odt" : "png"
     # TODO: refatorar
-    result = if ENV["INTEGRACAO_SAM"]
-      sam.store(file: Base64.encode64(File.read(file)))
-    else
-      sam.store('file' => Base64.encode64(File.read(file)), 'filename' => "filename_#{index}.#{extensao}")
-    end
-    sleep(1)
+    result = sam.store('file' => Base64.encode64(File.read(file)), 'filename' => "filename_#{index}.#{extensao}")
     grao = create(tipo_grao, key: result['key'], conteudo: conteudo)
     usuario.cesta << grao
   end
@@ -26,4 +21,3 @@ end
 def representacao_grao(grao)
   "%s %s" % [grao.key, grao.tipo_humanizado]
 end
-
