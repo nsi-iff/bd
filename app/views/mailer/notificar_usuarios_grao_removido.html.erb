@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>
+      Caro <%= @usuario.nome_completo %>,
+    </p>
+
+    <p> O grão com a seguinte referência: </p>
+    <br />
+    <p> <%= @grao.referencia_abnt %> </p>
+    <br />
+    <p>
+      foi removido da Base da BD-EPCT devido à remoção do conteúdo a qual o mesmo pertencia,
+      mantivemos a referência original em sua estante para que você possa recuperar a
+      nova versão do conteúdo quando, e se, este estiver disponível.
+    </p>
+
+    <br />
+    <p>
+      Atenciosamente, <br/>
+      Biblioteca Digital da EPCT.
+    </p>
+  </body>
+</html>

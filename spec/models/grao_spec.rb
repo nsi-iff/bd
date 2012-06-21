@@ -25,4 +25,23 @@ describe Grao do
     grao = create(:grao, conteudo: conteudo)
     grao.referencia_abnt.should == 'referencia abnt'
   end
+
+  it 'deve executar metodo notificar_usuarios_sobre_remocao quando for removido' do
+    conteudo = create(:livro)
+    grao = create(:grao, conteudo: conteudo)
+    grao.should_receive(:notificar_usuarios_sobre_remocao)
+    grao.destroy
+  end
+
+  it 'deve enviar email para usuarios que o favoritaram quando for removido' do
+    usuario = create(:usuario)
+    conteudo = create(:livro)
+    grao = create(:grao, conteudo: conteudo)
+    usuario.favoritos.create(referenciavel: grao)
+    expect { grao.destroy }.to change { ActionMailer::Base.deliveries.size }.by 1
+
+    email = ActionMailer::Base.deliveries.last
+    email.to.should == [usuario.email]
+    email.subject.should == 'Biblioteca Digital: Notificação sobre grão removido'
+  end
 end
