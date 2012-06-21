@@ -1,9 +1,0 @@
-%div#conteudos
-  - if @conteudos.blank?
-    %h3 Não há conteúdo para área selecionada.
-  - else
-    %ul
-      - @conteudos.each do |conteudo|
-        %li
-          = link_to conteudo.titulo, conteudo_path(conteudo)
-

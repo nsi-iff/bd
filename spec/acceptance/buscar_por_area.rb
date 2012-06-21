@@ -7,6 +7,7 @@ feature 'buscar conteúdo por área' do
     conteudo1 = FactoryGirl.create(:conteudo)
     visit root_path
     click_link conteudo1.sub_area.area.nome
+    page.should have_content "Resultados da Busca — 1 itens correspondentes aos termos da busca"
     page.should have_content conteudo1.titulo
   end
 

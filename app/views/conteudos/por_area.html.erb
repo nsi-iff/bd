@@ -1,0 +1,13 @@
+<div id="conteudos">
+  <% if @conteudos.blank? %>
+    <h3> Não há conteúdo para área selecionada. </h3>
+  <% else %>
+    <h2> Resultados da Busca — <%= @conteudos.size %> itens correspondentes aos termos da busca </h2>
+    <ul>
+      <% @conteudos.each do |conteudo| %>
+        <li> <%= link_to conteudo.titulo, conteudo_path(conteudo) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
