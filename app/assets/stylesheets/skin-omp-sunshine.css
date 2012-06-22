@@ -1,0 +1,389 @@
+.video_container{
+    display: block;
+    background: transparent;
+    overflow: hidden;
+}
+
+.video-play, .volume-button, .fullscreen-button, .light-button {
+    cursor: pointer;
+}
+
+.video-timer {
+    cursor: default;
+}
+
+.video-duration {
+    cursor: default;
+}
+
+.video-player-omp-sunshine {
+    float: left;
+    position: relative;
+    background: #000000;
+}
+
+.video-player-omp-sunshine video:hover + .video-controls {
+    bottom: 0px;
+}
+
+.video-player-omp-sunshine .video-controls:hover {
+    bottom: 0px;
+}
+
+.video-player-omp-sunshine .video-controls {
+    position: absolute;
+    bottom: -30px;
+    float: left;
+    height: 30px;
+    width: 100%;
+    opacity: 0.6;
+    background: #000;
+
+    -moz-transition: all 0.7s ease-in-out; /* Firefox */
+    -webkit-transition: all 0.7s ease-in-out; /* Safari and Chrome */
+    -o-transition: all 0.7s ease-in-out;  /* Opera */
+    transition: all 0.7s ease-in-out; 
+}
+
+.video-player-omp-sunshine.not-played .video-controls {
+    bottom: 0px;
+}
+
+.video-player-omp-sunshine .video-play, .video-player-omp-sunshine .video-seek, .video-player-omp-sunshine .volume-box, .video-timer {
+    float: left;
+}
+
+/* play, pause */
+.video-player-omp-sunshine .video-play {
+    display: block;
+    margin-left:1%;
+    width: 22px;
+    height: 22px;
+    margin-top:4px;
+    margin-right: 15px;
+    background: url(play-icon.png) no-repeat;
+
+    opacity: 0.7;
+}
+
+.video-player-omp-sunshine .paused-button {
+    background: url(pause-icon.png) no-repeat;
+}
+
+.video-player-omp-sunshine .video-play:hover {
+    opacity: 1;
+}
+
+.video-player-omp-sunshine .balloon {
+    position: relative;
+    color: #FFFFFF;
+    line-height: 30px;
+    font-size: 0.7em;
+    font-weight: bold;
+    opacity: 0;
+    visibility:hidden;
+    top: -30px;
+    width: 32px;
+    height: 30px;
+    background: url(balloon.png) no-repeat;
+
+    -moz-transition: opacity 0.7s ease-in-out; /* Firefox */
+    -webkit-transition: opacity 0.7s ease-in-out; /* Safari and Chrome */
+    -o-transition: opacity 0.7s ease-in-out;  /* Opera */
+    transition: opacity 0.7s ease-in-out; 
+}
+
+.video-player-omp-sunshine .video-seek:hover .balloon {
+    visibility: visible;
+    opacity: 0.8;
+}
+
+/* seek */
+.video-player-omp-sunshine .video-seek {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    margin-top: -5px;
+    border: 1px 0px solid #494949;
+    background: #9A9A9A;
+}
+
+.video-player-omp-sunshine .video-seek:hover {
+    height: 10px;
+    margin-top: -10px;
+}
+
+.video-player-omp-sunshine .video-seek .ui-slider-handle {
+	width: 6px;
+	height: 6px;
+	border: 4px solid #ddf;
+	top: -2px;
+    opacity: 0;
+    visibility: hidden;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;	
+	
+	background: #555566;
+}
+
+.video-player-omp-sunshine .video-seek:hover .ui-slider-handle {
+    visibility: visible;
+    opacity: 1.0;
+}
+
+.video-player-omp-sunshine .video-seek .ui-slider-handle.ui-state:hover {
+	background: #ddf;
+}
+
+.video-player-omp-sunshine .video-seek .ui-slider-range {
+    background: #DD0000;
+}
+
+
+/* timer */
+.video-player-omp-sunshine .video-timer {
+    margin-top: 7px;
+    margin-left: 10px;
+    color: #FFFFFF;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.video-player-omp-sunshine .video-duration {
+    margin-top: 7px;
+    margin-left: 10px;
+    color: #FFFFFF;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* volume */
+.video-player-omp-sunshine .volume-box {
+	position: absolute;
+	top: -4px;
+    right: 8%;
+	overflow: hidden;
+	width: 20px;
+	height: 30px;
+	color: #fff;
+	padding: 0px 10px;
+
+	-moz-transition: all 0.3s ease-in-out; /* Firefox */
+	-webkit-transition: all 0.3s ease-in-out; /* Safari and Chrome */
+	-o-transition: all 0.3s ease-in-out;  /* Opera */
+	transition: all 0.3s ease-in-out; 
+}
+
+.video-player-omp-sunshine .volume-box:hover {
+	width: 100px;
+}
+
+
+.video-player-omp-sunshine .volume-box:hover .volume-slider {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+    
+}
+
+.video-player-omp-sunshine .volume-slider {
+    position: relative;
+    width: 70px;
+    top: 15px;
+    left: 25px;
+    height: 7px;
+    visiblity: hidden;
+    opacity: 0;
+    border: 1px solid #444;
+
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+
+    background: #535353;
+
+    box-shadow: inset 0 3px 3px #333333;
+
+    -moz-transition: all 0.3s ease-in-out; /* Firefox */
+    -webkit-transition: all 0.3s ease-in-out; /* Safari and Chrome */
+    -o-transition: all 0.3s ease-in-out;  /* Opera */
+    transition: all 0.3s ease-in-out; 
+}
+
+.video-player-omp-sunshine .volume-slider .ui-slider-handle {
+	width: 6px;
+	height: 6px;
+	left: -4px;
+    bottom: -4px;
+	left: -4;
+	border: 4px solid #DDF;	
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;	
+
+	background: #555566;
+}
+
+.video-player-omp-sunshine .volume-slider .ui-slider-handle.ui-state-hover {
+	background: #fff;
+}
+
+.video-player-omp-sunshine .volume-slider .ui-slider-range {
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	
+	background: #DD0000;
+}
+
+/* volume button */
+
+.video-player-omp-sunshine .volume-button {
+	position: absolute;
+	bottom: 0px;
+	display: block;
+	width: 22px;
+	height: 22px;
+	background: url(volume-full-icon.png) no-repeat;
+	text-indent: -9999px;
+	
+	opacity: 0.8;
+}
+
+.video-player-omp-sunshine .volume-button:hover {
+	opacity: 1;
+}
+
+.video-player-omp-sunshine .volume-mute {
+	background: url(volume-mute-icon.png) no-repeat;
+}
+
+.video-player-omp-sunshine .fullscreen-button {
+	position: absolute;
+	top: 5px;
+	display: block;
+    right: 1%;
+	width: 22px;
+	height: 22px;
+	background: url(fulloff.png) no-repeat;
+	text-indent: -9999px;
+	opacity: 0.8;
+}
+
+.video-player-omp-sunshine .fullscreen-button:hover {
+	opacity: 1;
+}
+
+.video-player-omp-sunshine.fullscreenOn .fullscreen-button {
+	background: url(fullon.png) no-repeat;
+}
+
+.video-player-omp-sunshine.fullscreenOn {
+    position: fixed;
+    z-index: 3;
+    width:100%;
+    height:100%;
+    left: 0px;
+    top: 0px;
+}
+
+.video-player-omp-sunshine.fullscreenOn .OMP{
+    width:100%;
+    height:100%;
+}
+
+.video-player-omp-sunshine .mask{
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    background:#000;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    -moz-transition: all 0.7s ease-in-out;
+    -webkit-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
+.video-player-omp-sunshine.light-off .mask{
+    opacity: 0.8;
+    visibility: visible;
+}
+
+.video-player-omp-sunshine:hover .toolbar {
+    opacity: 0.6;
+}
+
+.video-player-omp-sunshine .toolbar:hover {
+    opacity: 0.6;
+}
+
+.video-player-omp-sunshine .toolbar {
+    position: absolute;
+    right: 0px;
+    width: 30px;
+    top: 20px;
+    opacity: 0;
+    background: #000;
+
+    -moz-transition: opacity 0.7s ease-in-out; /* Firefox */
+    -webkit-transition: opacity 0.7s ease-in-out; /* Safari and Chrome */
+    -o-transition: opacity 0.7s ease-in-out;  /* Opera */
+    transition: opacity 0.7s ease-in-out; 
+}
+
+.video-player-omp-sunshine .light-button:hover {
+    opacity: 1;
+}
+
+.video-player-omp-sunshine .light-button {
+    position: absolute;
+    right: 1%;
+    width: 22px;
+    height: 22px;
+    background: url(light.png) no-repeat;
+    opacity: 0.6;
+    margin-bottom: 5px;
+    width:20px;
+    background-position: center;
+    right: 5px;
+}
+
+.video-player-omp-sunshine.light-off .toolbar,.video-player-omp-sunshine.light-off .video-controls{
+    z-index: 3;
+}
+
+.video-player-omp-sunshine.light-off .OMP{
+    position: relative;
+    z-index: 3;
+}
+
+.ui-slider-handle {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    margin-left:-0.6em; 
+    cursor: pointer;
+    outline: none;
+}
+
+.ui-slider-range {
+    display:block;
+    width:100%;
+    height:100%;
+    left:0; 
+    bottom: 0;
+    border:0 none;
+    position:absolute;
+    z-index:1;
+}
