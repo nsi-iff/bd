@@ -1,43 +1,67 @@
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo
 
 %p
+%b
   Subtítulo:
-  = @conteudo.subtitulo
-
-%fieldset
-  %legend Dados do evento
-  %p
-    Nome:
-    = @conteudo.nome_evento
-  %p
-    Local:
-    = @conteudo.local_evento
-  %p
-    Número:
-    = @conteudo.numero_evento
-  %p
-    Ano:
-    = @conteudo.ano_evento
-
-%fieldset
-  %legend Publicação
-  %p
-    Editora:
-    = @conteudo.editora
-  %p
-    Ano:
-    = @conteudo.ano_publicacao
-  %p
-    Local:
-    = @conteudo.local_publicacao
-  %p
-    Título dos anais:
-    = @conteudo.titulo_anais
+  %br
+= @conteudo.subtitulo.blank? ? "Não informado" : @conteudo.subtitulo
 
 %p
+%b
+  Nome do Evento:
+  %br
+= @conteudo.nome_evento.blank? ? "Não informado" : @conteudo.nome_evento
+
+%p
+%b
+  Local do Evento:
+  %br
+= @conteudo.local_evento.blank? ? "Não informado" : @conteudo.local_evento
+
+%p
+%b
+  Número do Evento:
+  %br
+= @conteudo.numero_evento.blank? ? "Não informado" : @conteudo.numero_evento
+
+%p
+%b
+  Ano do Evento:
+  %br
+= @conteudo.ano_evento.blank? ? "Não informado" : @conteudo.ano_evento
+
+%p
+%b
+  Editora:
+  %br
+= @conteudo.editora.blank? ? "Não informado" : @conteudo.editora
+
+%p
+%b
+  Ano:
+  %br
+= @conteudo.ano_publicacao.blank? ? "Não informado" : @conteudo.ano_publicacao
+
+%p
+%b
+  Local:
+  %br
+= @conteudo.local_publicacao.blank? ? "Não informado" : @conteudo.local_publicacao
+
+%p
+%b
+  Título dos Anais:
+  %br
+= @conteudo.titulo_anais.blank? ? "Não informado" : @conteudo.titulo_anais
+
+%p
+%b
   Página inicial do trabalho:
-  = @conteudo.pagina_inicial
+  %br
+= @conteudo.pagina_inicial.blank? ? "Não informado" : @conteudo.pagina_inicial
 
 %p
+%b
   Página final do trabalho:
-  = @conteudo.pagina_final
+  %br
+= @conteudo.pagina_final.blank? ? "Não informado" : @conteudo.pagina_final

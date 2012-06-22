@@ -1,23 +1,43 @@
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo
 
 %p
+%b
   Subtítulo:
-  = @conteudo.subtitulo
+  %br
+= @conteudo.subtitulo.blank? ? "Não informado" : @conteudo.subtitulo
+
 %p
+%b
   Tradução:
-  = @conteudo.traducao ? 'Sim' : 'Não'
+  %br
+= @conteudo.traducao ? 'Sim' : 'Não'
+
 %p
+%b
   Número da Edição:
-  = @conteudo.numero_edicao
+  %br
+= @conteudo.numero_edicao.blank? ? "Não informado" : @conteudo.numero_edicao
+
 %p
+%b
   Local da Publicação:
-  = @conteudo.local_publicacao
+  %br
+= @conteudo.local_publicacao.blank? ? "Não informado" : @conteudo.local_publicacao
+
 %p
+%b
   Editora:
-  = @conteudo.editora
+  %br
+= @conteudo.editora.blank? ? "Não informado" : @conteudo.editora
+
 %p
+%b
   Ano de Publicação:
-  = @conteudo.ano_publicacao
+  %br
+= @conteudo.ano_publicacao.blank? ? "Não informado" : @conteudo.ano_publicacao
+
 %p
+%b
   Número de Páginas:
-  = @conteudo.numero_paginas
+  %br
+= @conteudo.numero_paginas.blank? ? "Não informado" : @conteudo.numero_paginas

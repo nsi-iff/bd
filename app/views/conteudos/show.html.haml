@@ -1,3 +1,12 @@
+%h1{ id: 'titulo-conteudo' }
+  = @conteudo.titulo
+
+%b
+  Resumo:
+%br
+  %p{ id: 'resumo-conteudo' }
+    = @conteudo.resumo.blank? ? "Não informado" : @conteudo.resumo
+
 %nav{ id: 'menu_abas'}
   %ul
     %li{ class: 'sel_aba', data: { padrao: '' }}
@@ -13,6 +22,11 @@
 
 #metadados.aba
   = render "metadados_#{@conteudo.nome_como_simbolo}"
+  %p
+  %b
+    Direitos:
+  %br
+  = @conteudo.direitos.blank? ? "Não informado" : @conteudo.direitos
 
 -if @conteudo.graos_imagem.present?
   #imagens.aba
@@ -22,6 +36,12 @@
 - if @conteudo.graos_arquivo.present?
   #tabelas.aba
     = render 'conteudos/graos_arquivo', graos: @conteudo.graos_arquivo
+
+- if current_usuario
+  - if current_usuario.favorito? @conteudo
+    = link_to 'Remover favorito', remover_favorito_conteudo_path(@conteudo), method: :put
+  - else
+    = link_to 'Favoritar', favoritar_conteudo_path(@conteudo), method: :put
 
 = button_to "Editar", edit_conteudo_path(@conteudo), method: 'get'
 = render 'conteudos/acoes', :conteudo => @conteudo

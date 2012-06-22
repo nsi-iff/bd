@@ -19,15 +19,15 @@ feature 'adicionar livro' do
 
     validar_conteudo
     page.should have_content 'Livro enviado com sucesso'
-    page.should have_content 'Direitos: Direitos e esquerdos'
-    page.should have_content 'Subtítulo: Rails Rocks'
-    page.should have_content 'Resumo: Ruby on Rails helps you produce high-quality, beautiful-looking web applications quickly.'
-    page.should have_content 'Tradução: Sim'
-    page.should have_content 'Número da Edição: 4'
-    page.should have_content 'Local da Publicação: New York: Manhattan'
-    page.should have_content 'Editora: The Pragmatic Bookshelf'
-    page.should have_content 'Ano de Publicação: 2011'
-    page.should have_content 'Número de Páginas: 480'
+    page.should have_content 'Direitos e esquerdos'
+    page.should have_content 'Rails Rocks'
+    page.should have_content 'Ruby on Rails helps you produce high-quality, beautiful-looking web applications quickly.'
+    page.should have_content 'Sim'
+    page.should have_content '4'
+    page.should have_content 'New York: Manhattan'
+    page.should have_content 'The Pragmatic Bookshelf'
+    page.should have_content '2011'
+    page.should have_content '480'
   end
 
   scenario 'sem tradução' do
@@ -45,6 +45,6 @@ feature 'adicionar livro' do
     fill_in 'Subtítulo', with: 'Metaprograming Rails'
     click_button 'Salvar'
 
-    page.should have_content 'Subtítulo: Metaprograming Rails'
+    page.should have_content 'Metaprograming Rails'
   end
 end
