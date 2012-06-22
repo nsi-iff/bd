@@ -1,5 +1,11 @@
 %h2 Busca Avançada
 = form_for :parametros, url: busca_avancada_path, method: 'get' do |f|
+  = f.label 'Titulo'
+  = f.text_field :titulo
+  = f.label 'Autor'
+  = f.text_field :nome
+  = f.label 'Instituição'
+  = f.select 'instituicao_nome', options_for_select(['Todas'] + @instituicoes.map(&:nome) )
   = f.label 'Área'
   = f.select 'area_nome', options_for_select(['Todas'] + @areas.map(&:nome) )
   = f.label 'Subárea'
@@ -11,13 +17,6 @@
         %label
           = check_box_tag "parametros[tipos][]", tipo.name.underscore
           = tipo.nome_humanizado
-  = f.label 'Titulo'
-  = f.text_field :titulo
-  = f.label 'Autor'
-  = f.text_field :nome
-  = f.label 'Instituição'
-  = f.select 'instituicao_nome', options_for_select(['Todas'] + @instituicoes.map(&:nome) )
-  / = f.label 'Conteúdo (texto integral)'
   = label_tag :busca, "Conteúdo (texto integral)"
   = text_field_tag :busca
   = f.submit "Buscar", name: nil
