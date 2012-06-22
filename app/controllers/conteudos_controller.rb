@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class ConteudosController < ApplicationController
-  before_filter :authenticate_usuario!, except: [:granularizou, :show]
+  before_filter :authenticate_usuario!, except: [:granularizou, :show, :por_area]
   before_filter :pode_editar, only: [:edit, :update]
 
   def new
@@ -88,6 +88,11 @@ class ConteudosController < ApplicationController
     conteudo = Conteudo.encontrar_por_id_sam(params['doc_key'])
     conteudo.granularizou!(graos: params['grains_keys'])
     render nothing: true
+  end
+
+  def por_area
+    area = Area.find(params[:area_id])
+    @conteudos = area.conteudos[0..20]
   end
 
   private

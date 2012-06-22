@@ -205,7 +205,7 @@ header .site_actions {
   font-size: 15px;
 }
 
-.container .searchbyarea .areas li p {
+.container .searchbyarea .areas li p a {
   color: #000;
   font-size: 12px;
 }
