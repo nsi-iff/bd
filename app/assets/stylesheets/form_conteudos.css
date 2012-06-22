@@ -17,6 +17,7 @@ input[type="text"] {
   font-family: "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
   font-weight: normal;
   width: 60%;
+  display: block;
 }
 
 input:focus {
