@@ -1,26 +1,37 @@
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo
 
 %p
+%b
   Subtítulo:
-  = @conteudo.subtitulo
+  %br
+= @conteudo.subtitulo.blank? ? "Não informado" : @conteudo.subtitulo
 
-%fieldset
-  %legend Dados do trabalho
-  %p
-    Número de páginas:
-    = @conteudo.numero_paginas
-  %p
-    Instituição:
-    = @conteudo.instituicao
-  %p
-    Grau:
-    = @conteudo.grau.nome
+%p
+%b
+  Data da Defesa:
+  %br
+= @conteudo.data_defesa_br.blank? ? "Não informado" : @conteudo.data_defesa_br
 
-%fieldset
-  %legend Defesa
-  %p
-    Data da Defesa:
-    = @conteudo.data_defesa_br
-  %p
-    Local de Defesa:
-    = @conteudo.local_defesa
+%p
+%b
+  Número de páginas:
+  %br
+= @conteudo.numero_paginas.blank? ? "Não informado" : @conteudo.numero_paginas
+
+%p
+%b
+  Grau:
+  %br
+= @conteudo.grau.nome.blank? ? "Não informado" : @conteudo.grau.nome
+
+%p
+%b
+  Instituição:
+  %br
+= @conteudo.instituicao.blank? ? "Não informado" : @conteudo.instituicao
+
+%p
+%b
+  Local de Defesa:
+  %br
+= @conteudo.local_defesa.blank? ? "Não informado" : @conteudo.local_defesa

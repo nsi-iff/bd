@@ -12,12 +12,10 @@ feature 'adicionar periodico tecnico cientifico' do
     end
 
     validar_conteudo
-    within_fieldset 'Publicação' do
-      page.should have_content 'Editora: Bookmam'
-      page.should have_content 'Local: Campos dos Goytacazes'
-    end
-    page.should have_content 'Ano do primeiro volume: 2007'
-    page.should have_content 'Ano do último volume: 2011'
+    page.should have_content 'Bookmam'
+    page.should have_content 'Campos dos Goytacazes'
+    page.should have_content '2007'
+    page.should have_content '2011'
   end
 
   scenario 'editar periodico técnico cientifico' do
@@ -28,6 +26,6 @@ feature 'adicionar periodico tecnico cientifico' do
     fill_in 'Editora', with: 'periodico tecnico cientifico editado'
     click_button 'Salvar'
 
-    page.should have_content 'Editora: periodico tecnico cientifico editado'
+    page.should have_content 'periodico tecnico cientifico editado'
   end
 end

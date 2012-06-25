@@ -13,9 +13,9 @@ feature 'adicionar relatório' do
     end
 
     validar_conteudo
-    page.should have_content 'Local da publicação: Rio de Janeiro'
-    page.should have_content 'Ano: 1998'
-    page.should have_content 'Número de páginas: 427'
+    page.should have_content 'Rio de Janeiro'
+    page.should have_content '1998'
+    page.should have_content '427'
   end
 
   scenario 'editar relatorio' do
@@ -26,6 +26,6 @@ feature 'adicionar relatório' do
     fill_in 'Local da publicação', with: 'relatório editado'
     click_button 'Salvar'
 
-    page.should have_content 'Local da publicação: relatório editado'
+    page.should have_content 'relatório editado'
   end
 end

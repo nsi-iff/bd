@@ -9,3 +9,30 @@
     background-repeat: no-repeat;
   }
 }
+
+h1#titulo-conteudo {
+  color: #526B13;
+}
+
+p#resumo-conteudo {
+  font-size: 10px;
+  text-align: justify;
+  margin-right: 10px;
+}
+
+#autores-conteudo {
+  border-collapse: collapse;
+}
+
+#autores-conteudo th {
+  background: #9ACD32;
+  width: 300px;
+}
+
+#autores-conteudo td {
+  text-align: center;
+}
+
+#autores-conteudo tr:nth-child(even) {
+  background-color: #CFCFCF;
+}

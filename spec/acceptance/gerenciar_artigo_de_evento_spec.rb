@@ -19,21 +19,17 @@ feature 'adicionar artigo de evento' do
     end
 
     validar_conteudo
-    page.should have_content 'Subtítulo: Ruby Becomes The Flash'
-    page.should have_content 'Página inicial do trabalho: 10'
-    page.should have_content 'Página final do trabalho: 25'
-    within_fieldset 'Dados do evento' do
-      page.should have_content 'Nome: NSI Ruby Conf'
-      page.should have_content 'Local: Campos dos Goytacazes, Rio de Janeiro, Brazil'
-      page.should have_content 'Número: 1'
-      page.should have_content 'Ano: 2012'
-    end
-    within_fieldset 'Publicação' do
-     page.should have_content 'Editora: Essentia'
-     page.should have_content 'Ano: 2013'
-     page.should have_content 'Local: Campos dos Goytacazes (RJ)'
-     page.should have_content 'Título dos anais: Proceedings of the 1st NSI Ruby Conf'
-    end
+    page.should have_content 'Ruby Becomes The Flash'
+    page.should have_content '10'
+    page.should have_content '25'
+    page.should have_content 'NSI Ruby Conf'
+    page.should have_content 'Campos dos Goytacazes, Rio de Janeiro, Brazil'
+    page.should have_content '1'
+    page.should have_content '2012'
+    page.should have_content 'Essentia'
+    page.should have_content '2013'
+    page.should have_content 'Campos dos Goytacazes (RJ)'
+    page.should have_content 'Proceedings of the 1st NSI Ruby Conf'
   end
 
   scenario 'editar artigo de evento' do
@@ -44,6 +40,6 @@ feature 'adicionar artigo de evento' do
     fill_in 'Nome', with: 'artigo de evento editado'
     click_button 'Salvar'
 
-    page.should have_content 'Nome: artigo de evento editado'
+    page.should have_content 'artigo de evento editado'
   end
 end

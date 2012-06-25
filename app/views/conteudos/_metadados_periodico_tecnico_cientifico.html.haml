@@ -1,19 +1,25 @@
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo
 
-
-%fieldset
-  %legend Publicação
-  %p
-    Editora:
-    = @conteudo.editora
-  %p
-    Local:
-    = @conteudo.local_publicacao
+%p
+%b
+  Editora
+  %br
+= @conteudo.editora.blank? ? "Não informado" : @conteudo.editora
 
 %p
-  Ano do primeiro volume:
-  = @conteudo.ano_primeiro_volume
+%b
+  Ano do Primeiro Volume:
+  %br
+= @conteudo.ano_primeiro_volume.blank? ? "Não informado" : @conteudo.ano_primeiro_volume
 
 %p
-  Ano do último volume:
-  = @conteudo.ano_ultimo_volume
+%b
+  Ano do Último Volume: 
+  %br
+= @conteudo.ano_ultimo_volume.blank? ? "Não informado" : @conteudo.ano_ultimo_volume
+
+%p
+%b
+  Local da Publicação:
+  %br
+= @conteudo.local_publicacao
