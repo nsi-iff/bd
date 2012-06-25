@@ -30,6 +30,7 @@ gem 'erb2haml'
 gem 'simple-navigation',
   git: 'git://github.com/rodrigomanhaes/simple-navigation.git',
   branch: 'preceding_text'
+gem 'nokogiri'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
