@@ -1,3 +1,7 @@
+- if @conteudo.arquivo.video?
+  = render 'conteudos/show_video_player'
+
+
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo
 
 %p
