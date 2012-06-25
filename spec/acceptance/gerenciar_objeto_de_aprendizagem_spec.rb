@@ -23,12 +23,12 @@ feature 'adicionar objeto de aprendizagem' do
     end
 
     validar_conteudo
-    page.should have_content 'Palavras-chave: programação, orientação a objetos, classe'
-    page.should have_content 'Tempo de aprendizagem típico: 2 meses'
-    page.should have_content 'Eixos temáticos: Ambiente e Saúde'
-    page.should have_content 'Cursos selecionados: Radiologia'
-    page.should have_content 'Novas tags: Técnicas de programação, OO e Testes'
-    page.should have_content 'Idioma: Português (Brasil)'
+    page.should have_content 'programação, orientação a objetos, classe'
+    page.should have_content '2 meses'
+    page.should have_content 'Ambiente e Saúde'
+    page.should have_content 'Radiologia'
+    page.should have_content 'Técnicas de programação, OO e Testes'
+    page.should have_content 'Português (Brasil)'
   end
 
   scenario 'selecionar dois cursos de um mesmo eixo', javascript: true do
@@ -47,12 +47,12 @@ feature 'adicionar objeto de aprendizagem' do
     end
 
     validar_conteudo
-    page.should have_content 'Palavras-chave: programação, orientação a objetos, classe'
-    page.should have_content 'Tempo de aprendizagem típico: 2 meses'
-    page.should have_content 'Eixos temáticos: Ambiente e Saúde'
-    page.should have_content 'Cursos selecionados: Radiologia e Saneamento Ambiental'
-    page.should have_content 'Novas tags: Técnicas de programação, OO e Testes'
-    page.should have_content 'Idioma: Português (Brasil)'
+    page.should have_content 'programação, orientação a objetos, classe'
+    page.should have_content '2 meses'
+    page.should have_content 'Ambiente e Saúde'
+    page.should have_content 'Radiologia e Saneamento Ambiental'
+    page.should have_content 'Técnicas de programação, OO e Testes'
+    page.should have_content 'Português (Brasil)'
   end
 
   scenario 'selecionar diversos cursos de eixos diferentes', javascript: true do
@@ -76,11 +76,11 @@ feature 'adicionar objeto de aprendizagem' do
       select 'Português (Brasil)', on: 'Idioma'
     end
     validar_conteudo
-    page.should have_content 'Palavras-chave: programação, orientação a objetos, classe'
-    page.should have_content 'Tempo de aprendizagem típico: 2 meses'
-    page.should have_content 'Eixos temáticos: Ambiente e Saúde e Militar'
-    page.should have_content 'Cursos selecionados: Fotointeligência, Gestão Ambiental, Radiologia e Sistemas de Armas'
-    page.should have_content 'Novas tags: Técnicas de programação, OO e Testes'
-    page.should have_content 'Idioma: Português (Brasil)'
+    page.should have_content 'programação, orientação a objetos, classe'
+    page.should have_content '2 meses'
+    page.should have_content 'Ambiente e Saúde e Militar'
+    page.should have_content 'Fotointeligência, Gestão Ambiental, Radiologia e Sistemas de Armas'
+    page.should have_content 'Técnicas de programação, OO e Testes'
+    page.should have_content 'Português (Brasil)'
   end
 end

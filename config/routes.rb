@@ -23,6 +23,7 @@ DigitalLibrary::Application.routes.draw do
 
   root :to => 'pages#inicio'
 
+  get   "/areas/:area_id/conteudos", to: "conteudos#por_area", as: :conteudos_por_area
   match "/ajuda",     :to => "pages#ajuda"
   match "/ajuda/manuais", :to => "pages#manuais"
   match "/sobre",     :to => "pages#sobre"

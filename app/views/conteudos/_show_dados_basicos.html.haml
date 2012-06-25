@@ -1,42 +1,53 @@
-- if current_usuario
-  - if current_usuario.favorito? conteudo
-    = link_to 'Remover favorito', remover_favorito_conteudo_path(conteudo), method: :put
-  - else
-    = link_to 'Favoritar', favoritar_conteudo_path(conteudo), method: :put
-
 %p
-  Título:
-  = conteudo.titulo
-%p
+%b
   Arquivo:
-  = conteudo.arquivo
+  %br
+= @conteudo.arquivo.nil? ? "Não informado" : @conteudo.arquivo.nome
+
 %p
-  Link:
-  = conteudo.link
+%b
+  Link para o arquivo:
+  %br
+= conteudo.link.blank? ? "Não informado" : conteudo.link
+
 %p
-  Grande Área de Conhecimento:
-  = conteudo.area
+%b
+  Grande Área do Conhecimento:
+  %br
+= conteudo.area
+
 %p
-  Área de Conhecimento:
-  = conteudo.sub_area
-- conteudo.autores.each do |autor|
-  %p
-    Autor:
-    = autor.nome
-  %p
-    Curriculum Lattes:
-    = autor.lattes
+%b
+  Área do Conhecimento:
+  %br
+= conteudo.sub_area
+
 %p
+%b
+  Autor(es):
+  %br
+  %br
+
+%table{ border: '1', id: 'autores-conteudo' }
+  %thead
+    %tr
+      %th Autor
+      %th Curriculum Lattes
+    %tbody
+      - conteudo.autores.each do |autor|
+        %tr
+          %td
+            = autor.nome
+          %td
+            = link_to autor.lattes, autor.lattes
+%p
+%b
+  Instituição:
+  %br
+= conteudo.campus.instituicao
+
+%p
+%b
   Campus:
-  = conteudo.campus
-%p
-  Resumo:
-  = conteudo.resumo
-%p
-  Direitos:
-  = conteudo.direitos
-
-%p
-  Contribuidor:
-  = conteudo.contribuidor.try(:nome_completo)
-
+  %br
+= conteudo.campus

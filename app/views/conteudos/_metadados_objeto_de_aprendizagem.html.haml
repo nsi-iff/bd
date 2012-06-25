@@ -5,20 +5,37 @@
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo
 
 %p
+%b
   Palavras-chave:
-  = @conteudo.palavras_chave
+  %br
+= @conteudo.palavras_chave.blank? ? "Não informado" : @conteudo.palavras_chave
+
 %p
+%b
   Tempo de aprendizagem típico:
-  = @conteudo.tempo_aprendizagem
+  %br
+= @conteudo.tempo_aprendizagem.blank? ? "Não informado" : @conteudo.tempo_aprendizagem
+
 %p
+%b
   Eixos temáticos:
-  = @conteudo.nomes_dos_eixos_tematicos
+  %br
+= @conteudo.nomes_dos_eixos_tematicos
+
 %p
+%b
   Cursos selecionados:
-  = @conteudo.nome_dos_cursos
+  %br
+= @conteudo.nome_dos_cursos
+
 %p
+%b
   Novas tags:
-  = @conteudo.nomes_das_novas_tags
+  %br
+= @conteudo.nomes_das_novas_tags.blank? ? "Não informado" : @conteudo.nomes_das_novas_tags
+
 %p
+%b
   Idioma:
-  = @conteudo.descricao_idioma
+  %br
+= @conteudo.descricao_idioma.blank? ? "Não informado" : @conteudo.descricao_idioma

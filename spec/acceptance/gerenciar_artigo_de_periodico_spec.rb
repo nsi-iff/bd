@@ -17,19 +17,15 @@ feature 'adicionar artigo de periódico' do
     end
 
     validar_conteudo
-    page.should have_content 'Subtítulo: Adicionando artigo de periódico'
-    page.should have_content 'Página inicial da publicação: 10'
-    page.should have_content 'Página final da publicação: 25'
-    within_fieldset 'Dados do periódico' do
-      page.should have_content 'Nome: Nome teste do periódico'
-    end
-    within_fieldset 'Publicação' do
-     page.should have_content 'Editora: Essentia'
-     page.should have_content 'Fascículo: Fascículo do periódico'
-     page.should have_content 'Volume: 2'
-     page.should have_content 'Data: 02/10/2011'
-     page.should have_content 'Local: Campos dos Goytacazes (RJ)'
-    end
+    page.should have_content 'Adicionando artigo de periódico'
+    page.should have_content '10'
+    page.should have_content '25'
+    page.should have_content 'Nome teste do periódico'
+    page.should have_content 'Essentia'
+    page.should have_content 'Fascículo do periódico'
+    page.should have_content '2'
+    page.should have_content '02/10/2011'
+    page.should have_content 'Campos dos Goytacazes (RJ)'
   end
 
   scenario 'editar artigo de periodico' do
@@ -40,6 +36,6 @@ feature 'adicionar artigo de periódico' do
     fill_in 'Nome', with: 'artigo de periodico editado'
     click_button 'Salvar'
 
-    page.should have_content 'Nome: artigo de periodico editado'
+    page.should have_content 'artigo de periodico editado'
   end
 end

@@ -1,12 +1,19 @@
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo
 
 %p
-  Local da publicação:
-  = @conteudo.local_publicacao
-%p
-  Ano:
-  = @conteudo.ano_publicacao
+%b
+  Local da Publicação:
+  %br
+= @conteudo.local_publicacao.blank? ? "Não informado" : @conteudo.local_publicacao
 
 %p
+%b
+  Ano:
+  %br
+= @conteudo.ano_publicacao.blank? ? "Não informado" : @conteudo.ano_publicacao
+
+%p
+%b
   Número de páginas:
-  = @conteudo.numero_paginas
+  %br
+= @conteudo.numero_paginas.blank? ? "Não informado" : @conteudo.numero_paginas

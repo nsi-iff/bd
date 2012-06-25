@@ -15,16 +15,12 @@ feature 'adicionar trabalho de obtençao de grau' do
     end
 
     validar_conteudo
-    page.should have_content 'Subtítulo: Adicionando trabalho de obtenção de grau'
-    within_fieldset 'Dados do trabalho' do
-      page.should have_content 'Número de páginas: 20'
-      page.should have_content 'Instituição: IFF'
-      page.should have_content 'Grau: Graduação'
-    end
-    within_fieldset 'Defesa' do
-     page.should have_content 'Data da Defesa: 02/10/2011'
-     page.should have_content 'Local de Defesa: Campos dos Goytacazes (RJ)'
-    end
+    page.should have_content 'Adicionando trabalho de obtenção de grau'
+    page.should have_content '20'
+    page.should have_content 'IFF'
+    page.should have_content 'Graduação'
+    page.should have_content '02/10/2011'
+    page.should have_content 'Campos dos Goytacazes (RJ)'
   end
 
   scenario 'editar trabalho de obtenção de grau' do
@@ -35,6 +31,6 @@ feature 'adicionar trabalho de obtençao de grau' do
     fill_in 'Subtítulo', with: 'trabalho de obtenção de grau editado'
     click_button 'Salvar'
 
-    page.should have_content 'Subtítulo: trabalho de obtenção de grau editado'
+    page.should have_content 'trabalho de obtenção de grau editado'
   end
 end

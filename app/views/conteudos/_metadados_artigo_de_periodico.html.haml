@@ -1,36 +1,62 @@
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo
 
 %p
+%b
+  Local da Publicação:
+  %br
+= @conteudo.local_publicacao.blank? ? "Não informado" : @conteudo.local_publicacao
+
+%p
+%b
+  Volume da Publicação:
+  %br
+= @conteudo.volume_publicacao.blank? ? "Não informado" : @conteudo.volume_publicacao
+
+%p
+%b
+  Página Inicial da Publicação:
+  %br
+= @conteudo.pagina_inicial.blank? ? "Não informado" : @conteudo.pagina_inicial
+
+%p
+%b
+  Página Final da Publicação:
+  %br
+= @conteudo.pagina_final.blank? ? "Não informado" : @conteudo.pagina_final
+
+%p
+%b
+  Data de Publicação:
+  %br
+= @conteudo.data_publicacao_br.blank? ? "Não informado" : @conteudo.data_publicacao_br
+
+%p
+%b
   Subtítulo:
-  = @conteudo.subtitulo
-
-%fieldset
-  %legend Dados do periódico
-  %p
-    Nome:
-    = @conteudo.nome_periodico
-
-%fieldset
-  %legend Publicação
-  %p
-    Editora:
-    = @conteudo.editora
-  %p
-    Volume:
-    = @conteudo.volume_publicacao
-  %p
-    Data:
-    = @conteudo.data_publicacao_br
-  %p
-    Local:
-    = @conteudo.local_publicacao
-  %p
-    Fascículo:
-    = @conteudo.fasciculo
-%p
-  Página inicial da publicação:
-  = @conteudo.pagina_inicial
+  %br
+= @conteudo.subtitulo.blank? ? "Não informado" : @conteudo.subtitulo
 
 %p
-  Página final da publicação:
-  = @conteudo.pagina_final
+%b
+  Resumo:
+  %br
+= @conteudo.resumo.blank? ? "Não informado" : @conteudo.resumo
+
+%p
+%b
+  Editora:
+  %br
+= @conteudo.editora.blank? ? "Não informado" : @conteudo.editora
+
+%p
+%b
+  Nome do Periódico:
+  %br
+= @conteudo.nome_periodico.blank? ? "Não informado" : @conteudo.nome_periodico
+
+
+%p
+%b
+  Fascículo:
+  %br
+= @conteudo.fasciculo.blank? ? "Não informado" : @conteudo.fasciculo

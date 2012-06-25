@@ -109,14 +109,14 @@ def preencher_campos(tipo, opcoes = {})
 end
 
 def validar_conteudo(opcoes = {})
-  page.should have_content opcoes[:titulo] || 'Título: A Proposal for Ruby Performance Improvements'
+  page.should have_content 'A Proposal for Ruby Performance Improvements'
   (page.should have_content opcoes[:link] || 'http://www.rubyconf.org/articles/1') unless opcoes[:arquivo]
   page.should have_content opcoes[:arquivo] || ''
-  page.should have_content opcoes[:grande_area_de_conhecimento] || 'Grande Área de Conhecimento: Ciências Exatas e da Terra'
-  page.should have_content opcoes[:area_de_conhecimento] || 'Área de Conhecimento: Ciência da Computação'
+  page.should have_content 'Ciências Exatas e da Terra'
+  page.should have_content 'Ciência da Computação'
   unless opcoes[:autores] == false
-    page.should have_content opcoes[:nome_autor] || 'Autor: Yukihiro Matsumoto'
-    page.should have_content opcoes[:lattes_autor] || 'Curriculum Lattes: http://lattes.cnpq.br/1234567890'
+    page.should have_content 'Yukihiro Matsumoto'
+    page.should have_content 'http://lattes.cnpq.br/1234567890'
   end
 end
 
