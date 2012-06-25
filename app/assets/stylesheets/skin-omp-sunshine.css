@@ -108,6 +108,12 @@
     background: #9A9A9A;
 }
 
+.video-player-omp-sunshine .buffered {
+    position: absolute;
+    height: 100%;
+    background: #EEEEEE;
+}
+
 .video-player-omp-sunshine .video-seek:hover {
     height: 10px;
     margin-top: -10px;
