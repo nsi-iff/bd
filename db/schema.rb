@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604205705) do
+ActiveRecord::Schema.define(:version => 20120625202857) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20120604205705) do
     t.integer  "numero_de_acessos",   :default => 0
     t.integer  "campus_id"
     t.string   "tipo_trabalho"
+    t.boolean  "pronatec"
   end
 
   create_table "cursos", :force => true do |t|
