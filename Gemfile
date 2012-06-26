@@ -31,6 +31,7 @@ gem 'simple-navigation',
   git: 'git://github.com/rodrigomanhaes/simple-navigation.git',
   branch: 'preceding_text'
 gem 'nokogiri'
+gem 'mime-types'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

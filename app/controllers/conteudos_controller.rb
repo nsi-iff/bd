@@ -96,6 +96,15 @@ class ConteudosController < ApplicationController
     @conteudos = area.conteudos[0..20]
   end
 
+  def baixar_conteudo
+    conteudo = Conteudo.find(params[:conteudo_id])
+    @sam = ServiceRegistry.sam
+    string = @sam.get(conteudo.arquivo.key)['data']['doc']
+    file = "#{Rails.root}/tmp/#{conteudo.titulo}.odt"
+    File.open(file, "wb").write(Base64.decode64(string))
+    send_file file
+  end
+
   private
 
   def klass

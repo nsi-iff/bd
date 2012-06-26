@@ -50,6 +50,7 @@ DigitalLibrary::Application.routes.draw do
       put :remover_favorito
     end
     post :granularizou, on: :collection
+    get "/baixar_conteudo" , :to => 'conteudos#baixar_conteudo'
   end
 
   resources :graos, :except => :all  do
@@ -66,6 +67,7 @@ DigitalLibrary::Application.routes.draw do
   get :favoritar_graos, :to => 'graos#favoritar_graos'
   get "/cesta/baixar_conteudo", :to => 'graos#baixar_conteudo'
   get "/cesta/baixar_conteudo_em_odt", :to => 'graos#baixar_conteudo_em_odt'
+
 
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"

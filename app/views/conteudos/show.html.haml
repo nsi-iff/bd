@@ -44,4 +44,6 @@
     = link_to 'Favoritar', favoritar_conteudo_path(@conteudo), method: :put
 
 = button_to "Editar", edit_conteudo_path(@conteudo), method: 'get'
+- if @conteudo.estado == 'publicado'
+  = link_to "Download" , conteudo_baixar_conteudo_path(@conteudo)
 = render 'conteudos/acoes', :conteudo => @conteudo
