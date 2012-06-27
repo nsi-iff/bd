@@ -81,6 +81,15 @@ feature 'verificar menu adicionar conteúdo' do
     page.should have_content 'Adicionar Periódico Técnico-Científico'
   end
 
+  scenario 'link para adicionar PRONATEC' do
+    popular_eixos_tematicos_cursos
+    visit adicionar_conteudo_path
+    within_fieldset 'Adicionar Conteúdo' do
+      click_link 'PRONATEC'
+    end
+    page.should have_content 'Adicionar PRONATEC'
+  end
+
   scenario 'link para adicionar relatório' do
     visit adicionar_conteudo_path
     within_fieldset 'Adicionar Conteúdo' do
@@ -97,3 +106,4 @@ feature 'verificar menu adicionar conteúdo' do
     page.should have_content 'Adicionar Trabalho de Obtenção de Grau'
   end
 end
+

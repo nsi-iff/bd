@@ -1,4 +1,5 @@
-<ul class="itens">
+<ul class="itens" id="navegacao" accesskey="3">
+  <p class="texto-acessibilidade">Início da Navegação</p>
   <a href="/"><li id="home"><p>Página Inicial</p></li></a>
   <a href="/buscas"><li id="busca"><p>Busca Avançada</p></li></a>
   <% if current_usuario and can? :adicionar_conteudo, Usuario %>
@@ -11,4 +12,5 @@
   <a href="/noticias"><li id="noticias"><p>Notícias</p></li></a>
   <a href="/estatisticas"><li id="estatisticas"><p>Estatísticas</p></li></a>
   <a href="/editor"><li id="editor_online"><p>Editor online</p></li></a>
+  <p class="texto-acessibilidade">Fim da Navegação</p>
 </ul>

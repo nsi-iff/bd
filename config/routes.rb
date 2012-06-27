@@ -32,6 +32,7 @@ DigitalLibrary::Application.routes.draw do
   match '/estatisticas', :to => "pages#estatisticas"
   match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
   match '/graficos_de_acessos', :to => 'pages#graficos_de_acessos'
+  match '/mapa_do_site', :to => 'pages#mapa_do_site'
   resources :buscas do
     post :cadastrar_mala_direta, :to => 'buscas#cadastrar_mala_direta'
     post :remover_mala_direta, :to => 'buscas#remover_mala_direta'
@@ -50,6 +51,7 @@ DigitalLibrary::Application.routes.draw do
       put :remover_favorito
     end
     post :granularizou, on: :collection
+    get "/baixar_conteudo" , :to => 'conteudos#baixar_conteudo'
   end
 
   resources :graos, :except => :all  do
@@ -62,9 +64,11 @@ DigitalLibrary::Application.routes.draw do
       post :editar
     end
   end
+
   get :favoritar_graos, :to => 'graos#favoritar_graos'
   get "/cesta/baixar_conteudo", :to => 'graos#baixar_conteudo'
   get "/cesta/baixar_conteudo_em_odt", :to => 'graos#baixar_conteudo_em_odt'
+
 
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"

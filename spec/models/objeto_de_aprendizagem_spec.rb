@@ -23,6 +23,12 @@ describe ObjetoDeAprendizagem do
     subject.descricao_idioma.should == 'Português (Brasil)'
   end
 
+  it 'fornece o estado da flag pronatec' do
+    subject.pronatec.should be_nil
+    subject.pronatec = true
+    subject.pronatec.should == true
+  end
+
   it 'tipo de arquivo não importa' do
     arquivo = ActionDispatch::Http::UploadedFile.new({
       filename: 'arquivo.nsi',
@@ -32,5 +38,4 @@ describe ObjetoDeAprendizagem do
     build(:objeto_de_aprendizagem, link: '',
                   arquivo: arquivo).should be_valid
   end
-
 end

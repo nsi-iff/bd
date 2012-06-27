@@ -3,12 +3,16 @@
     <div class="barra_governo"></div>
   </div>
 
+  <div class="texto-acessibilidade">
+    <a href="#content">Ir para o conteúdo</a> | <a href="#navegacao"> Ir para navegação</a>
+  </div>
+
   <div class="container-header">
-    <a href="/"><h1>Biblioteca Digital da EPCT</h1></a>
+    <a href="/" accesskey="1"><h1>Biblioteca Digital da EPCT</h1></a>
 
     <div class="site_actions">
       <ul>
-        <li><%= link_to "Mapa do Site", "/mapa_do_site" %></li>
+        <li><%= link_to "Mapa do Site", "/mapa_do_site", :accesskey => 5 %></li>
         <li><%= link_to "Acessibilidade", '#' %></li>
         <li><%= link_to "Contato", new_formulario_contato_path %></li>
         <% if usuario_signed_in? %>

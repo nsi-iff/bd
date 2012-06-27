@@ -5,6 +5,7 @@
   = render 'conteudos/abas_e_dados_basicos', :f => f
 
   #metadados_complementares.aba
+    = f.input :pronatec, as: 'hidden'
     = f.input :palavras_chave, label: 'Palavras-chave',
         hint: 'Palavras-chave do documento, separadas por vírgula'
     = f.input :tempo_aprendizagem, label: 'Tempo de aprendizagem típico',
@@ -34,3 +35,4 @@
     %span.clear
 
   = f.submit 'Salvar', onclick: 'enviar_cursos_selecionados()'
+

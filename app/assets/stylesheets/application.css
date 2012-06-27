@@ -225,6 +225,10 @@ header .site_actions {
   float: left;
 }
 
+.texto-acessibilidade {
+  display: none;
+}
+
 footer {
   width: 973px;
   height: 28px;

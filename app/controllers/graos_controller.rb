@@ -149,9 +149,6 @@ class GraosController < ApplicationController
     nome_grao = dados_grao['filename']
     path_imagem = "#{Rails.root}/tmp/#{nome_grao}"
     File.new(path_imagem, 'w').write(Base64.decode64(dados_grao['file']).force_encoding('UTF-8'))
-    tempfile = Tempfile.new([nome_grao[0..-5], nome_grao[-4..-1]], "#{Rails.root}/tmp")
-    tempfile.write(Base64.decode64(dados_grao['file']).force_encoding('UTF-8'))
-    tempfile.close()
     imagem_odt = "Pictures/" + nome_grao
     odt.add(imagem_odt, path_imagem)
     size = IO.read(path_imagem)[0x10..0x18].unpack('NN')

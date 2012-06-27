@@ -18,7 +18,8 @@
       <%= render 'layouts/navigation' %>
       <%= render 'layouts/searchbyarea' %>
     </div>
-    <div class="content">
+    <div class="content" id="content" accesskey="2">
+      <p class="texto-acessibilidade">Início do Conteúdo</p>
       <% if notice %>
         <p id="notice"><span class='tipo'>Aviso</span><%= notice %></p>
       <% end %>
@@ -31,6 +32,7 @@
             preceding_text: 'Você está aqui: ' %>
         </div>
       <%= yield %>
+      <p class="texto-acessibilidade">Fim do Conteúdo</p>
     </div>
     <div class="portlets">
       <%= render 'portlets/index' %>
