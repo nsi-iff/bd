@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class ConteudosController < ApplicationController
-  before_filter :authenticate_usuario!, except: [:granularizou, :show, :por_area]
+  before_filter :authenticate_usuario!, except: [:granularizou, :show, :por_area, :por_sub_area]
   before_filter :pode_editar, only: [:edit, :update]
 
   def new
@@ -94,6 +94,11 @@ class ConteudosController < ApplicationController
   def por_area
     area = Area.find(params[:area_id])
     @conteudos = area.conteudos[0..20]
+  end
+
+  def por_sub_area
+    sub_area = SubArea.find(params[:sub_area_id])
+    @conteudos = sub_area.conteudos[0..20]
   end
 
   def baixar_conteudo

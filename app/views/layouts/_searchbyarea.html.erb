@@ -5,6 +5,9 @@
     <%- Area.all.each do |area| %>
       <li><p><%= link_to area.nome, conteudos_por_area_path(area) %></p></li>
       <ul class="subAreas">
+        <%- area.sub_areas.each do |sub_area| %>
+          <li><p><%= link_to sub_area.nome, conteudos_por_sub_area_path(sub_area) %></p></li>
+        <% end %>
       </ul>
     <% end %>
   </ul>

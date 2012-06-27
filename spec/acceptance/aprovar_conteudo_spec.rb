@@ -19,7 +19,7 @@ feature 'aprovar conteúdo' do
       page.should have_content conteudo.titulo
 
       visit conteudo_path(conteudo)
-      click_link 'Aprovar'
+      click_button 'Aprovar'
 
       visit lista_de_revisao_usuario_path(user)
       page.should_not have_content conteudo.titulo
@@ -35,7 +35,7 @@ feature 'aprovar conteúdo' do
 
     autenticar_usuario(Papel.gestor)
     visit conteudo_path(artigo)
-    click_link 'Aprovar'
+    click_button 'Aprovar'
     artigo.reload.estado.should == 'granularizando'
     page.driver.post(granularizou_conteudos_path,
                      doc_key: artigo.arquivo.key,
