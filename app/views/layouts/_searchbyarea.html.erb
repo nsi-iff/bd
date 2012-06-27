@@ -3,10 +3,17 @@
 
   <ul class="areas">
     <%- Area.all.each do |area| %>
-      <li><p><%= link_to area.nome, conteudos_por_area_path(area) %></p></li>
-      <ul class="subAreas">
+      <li>
+        <p>
+        <span class="toggler" id="<%= area.underscored_nome %>"> > </span>
+        <%= link_to area.nome, conteudos_por_area_path(area) %>
+        </p>
+      </li>
+      <ul class="subareas">
         <%- area.sub_areas.each do |sub_area| %>
-          <li><p><%= link_to sub_area.nome, conteudos_por_sub_area_path(sub_area) %></p></li>
+          <li class="<%= area.underscored_nome + '_sub_area' %> sub_area">
+            <p><%= link_to sub_area.nome, conteudos_por_sub_area_path(sub_area) %></p>
+          </li>
         <% end %>
       </ul>
     <% end %>

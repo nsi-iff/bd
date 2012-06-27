@@ -13,4 +13,8 @@ class Area < ActiveRecord::Base
   def to_s
     self.nome
   end
+
+  def underscored_nome
+    self.nome.removeaccents.titleize.delete(" ").underscore
+  end
 end
