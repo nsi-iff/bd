@@ -28,7 +28,7 @@ gem 'odt2html'
 gem 'mail_form'
 gem 'erb2haml'
 gem 'simple-navigation',
-  git: 'git://github.com/rodrigomanhaes/simple-navigation.git',
+  github: 'rodrigomanhaes/simple-navigation',
   branch: 'preceding_text'
 gem 'nokogiri'
 gem 'mime-types'
@@ -53,7 +53,7 @@ group :test, :development do
   gem 'pry'
   gem 'pry-rails'
   gem 'capistrano'
-  gem 'tire-mock_client', git: 'git://github.com/natanael-araujo/tire-mock_client.git'
+  gem 'tire-mock_client', github: 'natanael-araujo/tire-mock_client'
   gem 'spork-rails', '~> 3.2.0'
   gem 'debugger'
   gem 'simplecov', require: false
