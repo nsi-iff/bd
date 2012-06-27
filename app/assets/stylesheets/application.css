@@ -210,10 +210,17 @@ header .site_actions {
   font-size: 10px;
 }
 
-.container .searchbyarea .subAreas li {
+.container .searchbyarea .areas li span {
   color: #000;
-  font-size: 12px;
+  font-size: 10px;
+}
+
+.container .searchbyarea .subareas li {
   margin-left: 30px;
+}
+
+.container .searchbyarea .subareas li.sub_area {
+  display: none;
 }
 
 .container .content {
