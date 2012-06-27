@@ -2,17 +2,17 @@
   <h1> Mapa do Site </h1>
   <p>Uma visão geral do conteúdo disponível no site. Mantenha o ponteiro do mouse sobre o item por alguns segundos para visualizar sua descrição.</p>
   <div id="conteudo_mapa_do_site">
-    <a href="/" title="Página Inicial da Biblioteca Digital da EPCT."><p>Biblioteca Digital da EPCT</p></a>
-    <a href="/buscas" title="Busca no Acervo"><p>Busca no Acervo</p></a>
+    <a href="/" alt="Página Inicial da Biblioteca Digital da EPCT."><p>Biblioteca Digital da EPCT</p></a>
+    <a href="/buscas" alt="Busca no Acervo"><p>Busca no Acervo</p></a>
     <% if current_usuario and can? :adicionar_conteudo, Usuario %>
-      <a href="/adicionar_conteudo" title="Adicionar conteúdo"><p>Adicionar Conteúdo</p></a>
+      <a href="/adicionar_conteudo" alt="Adicionar conteúdo"><p>Adicionar Conteúdo</p></a>
     <% end %>
-    <a href="/ajuda" title="Ajuda"><p>Ajuda</p></a>
-    <a href="/ajuda/manuais" id="link-manuais"><p>Manuais de Ajuda</p></a>
-    <a href="/arquivos/manuais/manual_do_bibliotecario.pdf" id="link-bibliotecario"><p>Manual do Bibliotecário</p></a>
-    <a href="/arquivos/manuais/manual_do_usuario.pdf" id="link-usuario"><p>Manual do Usuário</p></a>
-    <a href="/ajuda/tutoriais" id="link-tutoriais"><p>Tutoriais</p></a>
-    <a href="/noticias"><p>Notícias</p></a>
-    <a href="/estatisticas"><p>Estatísticas</p></a>
+    <a href="/ajuda" alt="Ajuda"><p>Ajuda</p></a>
+    <a href="/ajuda/manuais" id="link-manuais" alt="Manuais de Ajuda"><p>Manuais de Ajuda</p></a>
+    <a href="/arquivos/manuais/manual_do_bibliotecario.pdf" id="link-bibliotecario" alt="Manual do Bibliotecário"><p>Manual do Bibliotecário</p></a>
+    <a href="/arquivos/manuais/manual_do_usuario.pdf" alt="Manual do Usuário" id="link-usuario"><p>Manual do Usuário</p></a>
+    <a href="/ajuda/tutoriais" alt="Tutoriais" id="link-tutoriais"><p>Tutoriais</p></a>
+    <a href="/noticias" alt="Notícias"><p>Notícias</p></a>
+    <a href="/estatisticas" alt="Estatísticas"><p>Estatísticas</p></a>
   </div>
 </div>
