@@ -6,6 +6,7 @@
 
   %h4 Buscas salvas
   - if @buscas.present?
+    %csrf_method_tag
     %table
       - @buscas.each do |busca|
         %tr

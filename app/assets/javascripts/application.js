@@ -23,6 +23,11 @@ $(document).ready(function() {
         $.post("/buscas/" + busca_id + acao + "_mala_direta");
     });
 
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }});
+
     $("#instituicao").change(function() {
         var id = this.value;
         $.post("/instituicoes/" + id + "/campus");
