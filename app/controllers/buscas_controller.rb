@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class BuscasController < InheritedResources::Base
   actions :all, :except => [:index, :show]
   before_filter :authenticate_usuario!, except: [:index, :busca_avancada, :busca_normal, :resultado_busca]
@@ -11,8 +13,13 @@ class BuscasController < InheritedResources::Base
 
   def busca_avancada
     @busca = Busca.new({busca: params[:busca], parametros: params[:parametros]})
-    @resultados = @busca.resultados
-    render action: 'resultado_busca'
+    if @busca.parametros.empty?
+      redirect_to buscas_path,
+        :notice => "Busca não realizada. Favor preencher algum critério de busca"
+    else
+      @resultados = @busca.resultados
+      render action: 'resultado_busca'
+    end
   end
 
   def resultado_busca

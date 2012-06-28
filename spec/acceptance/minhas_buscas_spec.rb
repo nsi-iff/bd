@@ -238,4 +238,9 @@ feature 'Buscas' do
     visit buscas_path
     page.should_not have_content "Salvar Busca"
   end
+  scenario "em uma busca vazia não retornar resultados" do
+    visit buscas_path
+    click_button 'Buscar'
+    page.should have_content "Busca não realizada. Favor preencher algum critério de busca"
+  end
 end
