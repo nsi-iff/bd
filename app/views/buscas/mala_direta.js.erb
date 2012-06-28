@@ -1,0 +1,9 @@
+(function(){
+  $('#loader-<%=@busca.id%>').remove();
+  $("<span><img src=<%= asset_path 'ajax-loader.gif'%> id=\"loader-<%=@busca.id%>\"/></span>")
+  .insertAfter("#busca-<%= @busca.id %>");
+
+  setTimeout(function() {
+    $('#loader-<%=@busca.id%>').remove();
+  }, 600);
+})();
