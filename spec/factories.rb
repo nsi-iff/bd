@@ -38,6 +38,10 @@ FactoryGirl.define do
     tipo 'files'
   end
 
+  factory :pronatec, parent: :conteudo, class: ObjetoDeAprendizagem do
+    pronatec true
+  end
+
   factory :livro, :parent => :conteudo, :class => Livro do
     numero_paginas 200
     numero_edicao 1
