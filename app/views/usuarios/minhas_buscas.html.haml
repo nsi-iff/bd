@@ -1,18 +1,21 @@
 .minhas_buscas.index
   %h3 Minhas Buscas
 
-  - if current_usuario.buscas.present?
-    - current_usuario.buscas.each do |busca|
-      .item
-        = link_to busca.titulo, busca_path(busca)
-        - if busca.descricao.present?
-          %p #{busca.descricao}
-        %br
-        %span
-          =check_box_tag :mala_direta, busca.id, busca.mala_direta, :class => 'mala_direta_checkbox'
-          = label_tag :mala_direta, 'Me envie um e-mail avisando sobre a publicação de novos documentos contemplados por esta busca'
-        .links
-          = link_to 'Editar', edit_busca_path(busca)
-          = link_to 'Deletar', busca_path(busca), method: 'delete', :data => { confirm: 'Tem certeza?' }
+  Marque o check-box da busca que deseje adicionar no serviço de mala direta. Esse serviço lhe avisará,
+  através de um e-mail, quando um novo documento que contemple sua busca for publicado.
+
+  %h4 Buscas salvas
+  - if @buscas.present?
+    %csrf_method_tag
+    %table
+      - @buscas.each do |busca|
+        %tr
+          %td.check
+            =check_box_tag :mala_direta, busca.id, busca.mala_direta, :class => 'mala_direta_checkbox'
+          %td
+            = link_to busca.titulo, busca_path(busca), id: "busca-#{busca.id}", title: busca.descricao
+            = link_to '', edit_busca_path(busca), class: 'link_editar', title: 'Editar'
+            = link_to '', busca_path(busca), class: 'link_deletar', method: 'delete', title: 'Deletar',
+            :data => { confirm: 'Tem certeza?' }
   - else
     %p Não há buscas salvas.

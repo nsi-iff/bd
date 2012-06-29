@@ -1,0 +1,59 @@
+.minhas_buscas.index {
+  table {
+    width: 90%;
+    border: 0px;
+    margin-top: 10px;
+    background-color: #DDF3A6;
+    border-collapse: collapse;
+
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-box-shadow: 1px 1px 5px rgba(0, 200, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 1px 5px rgba(0, 200, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px rgba(0, 200, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1) ;
+
+    tr:nth-child(2n+1) {
+      background-color: #EBFFB8;
+    }
+
+    td {
+      margin: 0px;
+
+      span {
+        margin-left: 10px;
+
+        img {
+          height: 90%;
+        }
+      }
+    }
+  }
+
+   a {
+    font-size: medium;
+  }
+
+  .check {
+    width: 5%;
+  }
+
+  .link_deletar, .link_editar {
+    float: right;
+    margin: 2px;
+    margin-right: 3px;
+  }
+
+  .link_deletar {
+    background: url('deletar_busca.gif') no-repeat;
+    width: 16px;
+    height: 16px;
+  }
+
+  .link_editar {
+    background: url('editar_busca.png') no-repeat;
+    width: 16px;
+    height: 16px;
+  }
+}

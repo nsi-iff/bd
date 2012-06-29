@@ -48,5 +48,6 @@ class UsuariosController < ApplicationController
   end
 
   def minhas_buscas
+    @buscas = Busca.where(usuario_id: current_usuario.id).order(:titulo)
   end
 end

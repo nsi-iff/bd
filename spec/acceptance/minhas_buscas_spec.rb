@@ -43,10 +43,11 @@ feature 'Buscas' do
       Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
 
       visit buscas_path
-      fill_in 'parametros[titulo]', with: livro.titulo
+      fill_in 'parametros[titulo]', with: "teste"
       find(:css, "#parametros_tipos_[value='livro']").set(true)
       click_button 'Buscar'
       page.should have_content livro.titulo
+      page.should_not have_content artigo.titulo
       page.should_not have_content("Não foi encontrado resultado para sua busca.")
     end
 
@@ -58,7 +59,7 @@ feature 'Buscas' do
       Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
 
       visit buscas_path
-      fill_in 'parametros[titulo]', with: livro.titulo
+      fill_in 'parametros[titulo]', with: "teste"
       find(:css, "#parametros_tipos_[value='livro']").set(true)
       find(:css, "#parametros_tipos_[value='artigo_de_periodico']").set(true)
       click_button 'Buscar'
@@ -115,6 +116,12 @@ feature 'Buscas' do
 
       page.should have_content livro.titulo
       page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
+    scenario "em uma busca vazia não retornar resultados" do
+      visit buscas_path
+      click_button 'Buscar'
+      page.should have_content "Busca não realizada. Favor preencher algum critério de busca"
     end
   end
 

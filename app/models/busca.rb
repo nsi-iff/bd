@@ -21,8 +21,9 @@ class Busca < ActiveRecord::Base
   def resultados(filtros = nil)
     Tire.search('conteudos') { |t|
       t.query { |q| q.string busca } unless busca.blank?
-      t.query { |q| q.string string_queries } unless string_queries.blank?
+      t.query { |q| q.string query_parametros } unless query_parametros.blank?
       t.filter(:term, filtros) if filtros
+      t.filter(:terms, _type: parametros[:tipos]) if parametros[:tipos]
     }.results.to_a
   end
 
@@ -34,10 +35,7 @@ class Busca < ActiveRecord::Base
     @parametros = param.delete_if { |key| param.fetch(key).blank? || param.fetch(key) == 'Todas' }
   end
 
-  def string_queries
-    tipos = parametros.delete(:tipos)
-    parametros.map { |tupla| tupla.join(':') }.join(' ').tap do |params|
-      params.concat " _type: #{tipos.join(" OR ")}" if tipos
-    end
+  def query_parametros
+    parametros.except(:tipos).map { |tupla| tupla.join(':') }.join(' ')
   end
 end

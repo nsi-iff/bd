@@ -69,8 +69,10 @@
   display: inline;
 }
 
-.estatisticas table, th, td {
-  border: 1px solid black;
+.estatisticas {
+  table, th, td {
+    border: 1px solid black;
+  }
 }
 
 .estatisticas th {
