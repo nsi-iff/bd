@@ -11,7 +11,7 @@ feature 'adicionar artigo de evento' do
         fill_in 'Número', with: '1'
         fill_in 'Ano do Evento', with: '2012'
         fill_in 'Editora', with: 'Essentia'
-        fill_in 'Ano da Publicação', with: '2013'
+        fill_in 'Ano da Publicação', with: '2012'
         fill_in 'Local da Publicação', with: 'Campos dos Goytacazes (RJ)'
         fill_in 'Título dos anais', with: 'Proceedings of the 1st NSI Ruby Conf'
         fill_in 'Página inicial do trabalho', with: '10'
@@ -27,7 +27,7 @@ feature 'adicionar artigo de evento' do
     page.should have_content '1'
     page.should have_content '2012'
     page.should have_content 'Essentia'
-    page.should have_content '2013'
+    page.should have_content '2012'
     page.should have_content 'Campos dos Goytacazes (RJ)'
     page.should have_content 'Proceedings of the 1st NSI Ruby Conf'
   end
