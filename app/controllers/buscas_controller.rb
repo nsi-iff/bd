@@ -2,7 +2,8 @@
 
 class BuscasController < InheritedResources::Base
   actions :all, :except => [:index, :show]
-  before_filter :authenticate_usuario!, except: [:index, :busca_avancada, :busca_normal, :resultado_busca]
+  before_filter :authenticate_usuario!, except: [:index, :busca_avancada, :busca_normal,
+                                                 :busca_pronatec, :buscar_pronatec, :resultado_busca]
 
   respond_to :js, :only => [:cadastrar_mala_direta, :remover_mala_direta]
 
@@ -22,6 +23,17 @@ class BuscasController < InheritedResources::Base
       @resultados = @busca.resultados
       render :resultado_busca
     end
+  end
+
+  def busca_pronatec
+  end
+
+  def buscar_pronatec
+    @resultados = Conteudo.where('pronatec = ?', true).where('titulo = ?', params[:busca])
+    #TODO: usar implementação seguinte quando busca avançada voltar a funcionar corretamente
+    #@busca = Busca.new(busca: params[:busca], parametros: { pronatec: true })
+    #@resultados = @busca.resultados
+    render :resultado_busca
   end
 
   def resultado_busca

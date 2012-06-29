@@ -1,0 +1,5 @@
+%h2 Busca PRONATEC
+= form_tag buscar_pronatec_path, :method => :get, :accesskey => "4" do
+  = label_tag :busca, "Busca"
+  = text_field_tag :busca, params[:busca]
+  = submit_tag "Buscar", name: nil

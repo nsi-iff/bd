@@ -40,6 +40,8 @@ DigitalLibrary::Application.routes.draw do
   end
   get :busca_avancada, to: 'buscas#busca_avancada'
   get :busca_normal, to: 'buscas#busca_normal'
+  get :busca_pronatec, to: 'buscas#busca_pronatec'
+  get :buscar_pronatec, to: 'buscas#buscar_pronatec'
 
   resources :tutoriais, :only => :index, :path => '/ajuda/tutoriais'
   match 'ajuda/tutoriais/*tutorial' => 'tutoriais#show', :via => :get
