@@ -167,6 +167,9 @@ header .site_actions {
 
 .container .navigation li#busca_pronatec {
   background-image: url("/assets/menu_cinza.jpg");
+
+.container .navigation li#busca_imagem {
+  background-image: url("/assets/menu_verde_escuro.jpg");
 }
 
 .container .navigation li#adicionar_conteudo {

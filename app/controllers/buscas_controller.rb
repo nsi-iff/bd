@@ -2,7 +2,7 @@
 
 class BuscasController < InheritedResources::Base
   actions :all, :except => [:index, :show]
-  before_filter :authenticate_usuario!, except: [:index, :busca_avancada, :busca_normal,
+  before_filter :authenticate_usuario!, except: [:index, :busca_avancada, :busca_normal, :busca_por_imagem,
                                                  :busca_pronatec, :buscar_pronatec, :resultado_busca]
 
   respond_to :js, :only => [:cadastrar_mala_direta, :remover_mala_direta]
@@ -68,5 +68,8 @@ class BuscasController < InheritedResources::Base
     @busca.mala_direta = false
     @busca.save
     render :template => 'buscas/mala_direta'
+  end
+
+  def busca_por_imagem
   end
 end
