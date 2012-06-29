@@ -1,0 +1,6 @@
+.busca_por_imagem_form
+	= image_tag('busca_por_imagem.png')
+	= form_tag url: busca_por_imagem_path, method: 'post' do
+		.envia_imagem
+			%input{:type => 'file'}
+		%input{:type => 'submit',:value => ''}

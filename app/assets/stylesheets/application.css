@@ -165,6 +165,10 @@ header .site_actions {
   background-image: url("/assets/menu_azul.jpg");
 }
 
+.container .navigation li#busca_imagem {
+  background-image: url("/assets/menu_verde_escuro.jpg");
+}
+
 .container .navigation li#adicionar_conteudo {
   background-image: url("/assets/menu_amarelo.jpg");
 }
