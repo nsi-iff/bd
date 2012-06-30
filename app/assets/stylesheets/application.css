@@ -1,20 +1,20 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require_self
+*= require_tree .
 */
 
 * {
-    padding: 0;
-    font-family: Verdana, "Bitstream Vera Sans", Arial, sans-serif;
+  padding: 0;
+  font-family: Verdana, "Bitstream Vera Sans", Arial, sans-serif;
 }
 
 a {
@@ -167,7 +167,7 @@ header .site_actions {
 
 .container .navigation li#busca_pronatec {
   background-image: url("/assets/menu_cinza.jpg");
-
+}
 .container .navigation li#busca_imagem {
   background-image: url("/assets/menu_verde_escuro.jpg");
 }
@@ -261,24 +261,24 @@ footer p {
 }
 
 footer p strong {
-    color: #fff;
+  color: #fff;
 }
 
 footer p span a {
-    font-weight: bold;
-    color: #ffcc00;
+  font-weight: bold;
+  color: #ffcc00;
 }
 
 footer a.topo {
-    background: url("/assets/topo.gif") no-repeat right 0;
-    color: #FFFFFF;
-    display: inline;
-    float: right;
-    font-size: 1.1em;
-    height: 16px;
-    margin: 3px 3px 0 24px;
-    padding: 3px 28px 4px 0;
-    text-decoration: none;
+  background: url("/assets/topo.gif") no-repeat right 0;
+  color: #FFFFFF;
+  display: inline;
+  float: right;
+  font-size: 1.1em;
+  height: 16px;
+  margin: 3px 3px 0 24px;
+  padding: 3px 28px 4px 0;
+  text-decoration: none;
 }
 
 #select_instituicao, #select_campus {
