@@ -25,6 +25,43 @@ class BuscasController < InheritedResources::Base
     end
   end
 
+  def busca_avancada
+    @busca = Busca.new(busca: params[:busca], parametros: params[:parametros])
+    if !@busca.busca? && @busca.parametros.empty?
+      redirect_to buscas_path,
+        :notice => "Busca não realizada. Favor preencher algum critério de busca"
+    else
+      if @busca.parametros['tipos']
+        @tipos = @busca.parametros['tipos']
+        @resultados = []
+        if @tipos.count("objeto_de_aprendizagem") == 1
+          if "pronatec".in? @tipos
+            @busca.resultados.each do |conteudo|
+              if conteudo.pronatec
+                @resultados << conteudo
+              elsif conteudo.class.name != "ObjetoDeAprendizagem"
+                  @resultados << conteudo
+              end
+            end
+          else
+            @busca.resultados.each do |conteudo|
+              if conteudo.class.name == "ObjetoDeAprendizagem" and conteudo.pronatec != true
+                @resultados << conteudo
+              elsif conteudo.class.name != "ObjetoDeAprendizagem"
+                @resultados << conteudo
+              end
+            end
+          end
+        else
+          @resultados = @busca.resultados
+        end
+      else
+        @resultados = @busca.resultados
+      end
+      render :resultado_busca
+    end
+  end
+
   def busca_pronatec
   end
 

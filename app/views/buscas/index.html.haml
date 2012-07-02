@@ -17,6 +17,10 @@
         %label
           = check_box_tag "parametros[tipos][]", tipo.name.underscore
           = tipo.nome_humanizado
+    %li
+      %label
+        = check_box_tag "parametros[tipos][]", "pronatec"
+        = "PRONATEC"
   = label_tag :busca, "Conteúdo (texto integral)"
   = text_field_tag :busca
   = f.submit "Buscar", name: nil
