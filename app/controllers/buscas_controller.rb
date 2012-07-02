@@ -20,7 +20,7 @@ class BuscasController < InheritedResources::Base
       redirect_to buscas_path,
         :notice => "Busca não realizada. Favor preencher algum critério de busca"
     else
-      @resultados = @busca.resultados
+      @resultados = @busca.resultados(:pronatec => true)
       render :resultado_busca
     end
   end
@@ -32,26 +32,15 @@ class BuscasController < InheritedResources::Base
         :notice => "Busca não realizada. Favor preencher algum critério de busca"
     else
       if @busca.parametros['tipos']
-        @tipos = @busca.parametros['tipos']
         @resultados = []
+        @tipos = @busca.parametros['tipos']
         if @tipos.count("objeto_de_aprendizagem") == 1
           if "pronatec".in? @tipos
-            @busca.resultados.each do |conteudo|
-              if conteudo.pronatec
-                @resultados << conteudo
-              elsif conteudo.class.name != "ObjetoDeAprendizagem"
-                  @resultados << conteudo
-              end
-            end
+            @busca.resultados.map{|conteudo| @resultados << conteudo if conteudo.pronatec == true}
           else
-            @busca.resultados.each do |conteudo|
-              if conteudo.class.name == "ObjetoDeAprendizagem" and conteudo.pronatec != true
-                @resultados << conteudo
-              elsif conteudo.class.name != "ObjetoDeAprendizagem"
-                @resultados << conteudo
-              end
-            end
+            @busca.resultados.map{|conteudo| @resultados << conteudo if conteudo.pronatec != true and conteudo.class.name != "ObjetoDeAprendizagem"}
           end
+          @busca.resultados.map{|conteudo| @resultados << conteudo if conteudo.class.name != "ObjetoDeAprendizagem"}
         else
           @resultados = @busca.resultados
         end
