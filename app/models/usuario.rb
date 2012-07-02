@@ -80,4 +80,18 @@ class Usuario < ActiveRecord::Base
       super
     end
   end
+
+  def lista_de_revisao
+    Conteudo.pendentes_da_instituicao(campus.instituicao)
+  end
+
+  def pode_aprovar?(conteudo)
+    mesma_instituicao? conteudo
+  end
+
+  def mesma_instituicao?(conteudo)
+    camp1 = Campus.find(self.campus_id)
+    camp2 = Campus.find(conteudo.campus_id)
+    camp1.instituicao_id == camp2.instituicao_id
+  end
 end

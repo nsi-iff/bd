@@ -1,12 +1,13 @@
 - if current_usuario.present? && can?(:ter_lista_de_revisao, current_usuario)
+  - lista_de_revisao = current_usuario.lista_de_revisao
   %h3 Lista de Revisão
-  - if @conteudos.present?
+  - if lista_de_revisao.present?
     %table
       %thead
         %tr
           %th Título
       %tbody
-        - @conteudos.each do |conteudo|
+        - lista_de_revisao.each do |conteudo|
           %tr
             %td= conteudo_tag(conteudo)
     - else

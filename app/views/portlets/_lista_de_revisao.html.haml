@@ -1,10 +1,11 @@
 - if current_usuario.present? && can?(:ter_lista_de_revisao, current_usuario)
   #lista_de_revisao.portlet
     %h3 Lista de Revisão
-    - if Conteudo.where(state: :pendente).blank?
+    - lista_de_revisao = current_usuario.lista_de_revisao
+    - if lista_de_revisao.blank?
       %p Não há nenhum conteúdo para revisão.
     - else
-      - Conteudo.where(state: :pendente).reverse[0..2].each do |conteudo|
+      - lista_de_revisao.each do |conteudo|
         .item
           = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
           %br

@@ -21,7 +21,9 @@ class Ability
     end
 
     if usuario.gestor?
-      can [:aprovar], Conteudo
+      can :aprovar, Conteudo do |conteudo|
+        usuario.pode_aprovar? conteudo
+      end
       can [:lista_de_revisao, :ter_lista_de_revisao], Usuario
     end
 
