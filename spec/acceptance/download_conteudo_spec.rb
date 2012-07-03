@@ -20,9 +20,7 @@ feature 'baixar conteúdo' do
       artigo = ArtigoDeEvento.last
       artigo.submeter!
       artigo.aprovar!
-      artigo.reload.estado == 'publicado'
       visit conteudo_path(artigo)
-      page.should have_link 'Download'
       click_link 'Download'
       baixado = "#{Rails.root}/tmp/#{artigo.titulo}.odt"
       postado = "#{Rails.root}/spec/resources/arquivo.doc"
@@ -30,4 +28,4 @@ feature 'baixar conteúdo' do
     end
   end
 end
-	
+
