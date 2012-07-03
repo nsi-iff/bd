@@ -196,7 +196,7 @@ header .site_actions {
   background-image: url("/assets/menu_azul_claro.jpg");
 }
 
-.container .searchbyarea {
+.container .busca_por_area {
   margin-top: 20px;
   margin-left: 5px;
   width: 200px;
@@ -204,7 +204,7 @@ header .site_actions {
   background-image: url("/assets/menu_verde.gif");
 }
 
-.container .searchbyarea #title {
+.container .busca_por_area #title {
   color: #fff;
   margin: 5px;
   font-weight: bold;
@@ -212,21 +212,21 @@ header .site_actions {
   font-size: 15px;
 }
 
-.container .searchbyarea .areas li p a {
+.container .busca_por_area .areas li p a {
   color: #000;
   font-size: 10px;
 }
 
-.container .searchbyarea .areas li span {
+.container .busca_por_area .areas li span {
   color: #000;
   font-size: 10px;
 }
 
-.container .searchbyarea .subareas li {
+.container .busca_por_area .subareas li {
   margin-left: 30px;
 }
 
-.container .searchbyarea .subareas li.sub_area {
+.container .busca_por_area .subareas li.sub_area {
   display: none;
 }
 
