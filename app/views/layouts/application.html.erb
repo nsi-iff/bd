@@ -5,10 +5,10 @@
   <%= include_gon %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "sawpf" %>
   <!--[if lt IE 9]>
     <script src="/assets/html5shiv.js"></script>
   <![endif]-->
-  <script defer src="http://sawpf.com/1.0.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -16,7 +16,7 @@
   <div class="container round">
     <div class="navigation">
       <%= render 'layouts/navigation' %>
-      <%= render 'layouts/searchbyarea' %>
+      <%= render 'layouts/busca_por_area' %>
     </div>
     <div class="content" id="content" accesskey="2">
       <p class="texto-acessibilidade">Início do Conteúdo</p>
