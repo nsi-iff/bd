@@ -48,7 +48,7 @@ DigitalLibrary::Application.routes.draw do
   resources :tutoriais, :only => :index, :path => '/ajuda/tutoriais'
   match 'ajuda/tutoriais/*tutorial' => 'tutoriais#show', :via => :get
 
-  resources :conteudos, except: [:index, :delete] do
+  resources :conteudos, except: [:index] do
     member do
       put :aprovar
       put :submeter

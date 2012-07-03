@@ -18,6 +18,10 @@ class Ability
         can [:adicionar_conteudo], Usuario
       end
       can [:create, :submeter], Conteudo
+      can [:destroy], Conteudo do |conteudo|
+        conteudo.editavel?
+        conteudo.contribuidor_id == usuario.id
+      end
     end
 
     if usuario.gestor?

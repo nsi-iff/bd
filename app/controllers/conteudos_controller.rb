@@ -55,6 +55,12 @@ class ConteudosController < ApplicationController
     incrementar_numero_de_acessos
   end
 
+  def destroy
+    authorize! :destroy, Conteudo
+    Conteudo.find(params[:id]).destroy
+    redirect_to root_path
+  end
+
   def submeter
     authorize! :submeter, Conteudo
     conteudo = obter_conteudo
