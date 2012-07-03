@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 require 'spec_helper'
 
 describe Usuario do
@@ -121,4 +123,14 @@ describe Usuario do
       usuario.remover_favorito(conteudo).should be_true
       usuario.favoritos.should be_empty
     end
+
+  context 'lista de revisão' do
+    it 'solicita a Conteudo os conteudos pendentes em sua instituicao' do
+      usuario = create(:usuario_gestor)
+      Conteudo.should_receive(:pendentes_da_instituicao).
+               with(usuario.campus.instituicao).
+               and_return(:isso)
+      usuario.lista_de_revisao.should == :isso
+    end
+  end
 end

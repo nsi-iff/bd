@@ -51,6 +51,21 @@ feature 'Buscas' do
       page.should_not have_content("Não foi encontrado resultado para sua busca.")
     end
 
+    scenario 'busca por tipo de conteúdo PRONATEC' do
+      pronatec = create(:pronatec, titulo: "teste pronatec")
+      objeto_de_aprendizagem = create(:objeto_de_aprendizagem, titulo: "teste aprendizagem")
+      pronatec.submeter! && pronatec.aprovar!
+      objeto_de_aprendizagem.submeter! && objeto_de_aprendizagem.aprovar!
+      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+
+      visit buscas_path
+      find(:css, "#parametros_tipos_[value='pronatec']").set(true)
+      click_button 'Buscar'
+      page.should have_content pronatec.titulo
+      page.should_not have_content objeto_de_aprendizagem.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
     scenario 'busca por mais de tipo de conteúdo' do
       livro = create(:livro, titulo: "teste livro")
       artigo = create(:artigo_de_periodico, titulo: "teste artigo")

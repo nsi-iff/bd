@@ -63,8 +63,8 @@ class ConteudosController < ApplicationController
   end
 
   def aprovar
-    authorize! :aprovar, Conteudo
     conteudo = obter_conteudo
+    authorize! :aprovar, conteudo
     conteudo.aprovar
     redirect_to conteudo_path(conteudo)
   end

@@ -441,4 +441,27 @@ describe Conteudo do
       conteudo.graos_arquivo.should =~ [@grao2, @grao3]
     end
   end
+
+  it 'retorna os conteudos pendentes para uma dada instituicao' do
+    meu_campus, outro_campus = create(:campus), create(:campus)
+    outro_campus_da_minha_instituicao = create(:campus, instituicao: meu_campus.instituicao)
+    usuario_gestor = create(:usuario_gestor, campus: meu_campus)
+
+    outro_artigo_pendente = create(:artigo_de_evento, campus: outro_campus)
+    outro_artigo_pendente.submeter!
+
+    meu_artigo_pendente = create(:artigo_de_evento, campus: meu_campus)
+    meu_artigo_pendente.submeter!
+
+    meu_outro_artigo_pendente = create(:artigo_de_evento, campus: outro_campus_da_minha_instituicao)
+    meu_outro_artigo_pendente.submeter!
+
+    editavel = create(:artigo_de_evento, campus: meu_campus)
+    aprovado = create(:relatorio, campus: meu_campus)
+    aprovado.submeter!
+    aprovado.aprovar!
+
+    usuario_gestor.lista_de_revisao.should have(2).itens
+    usuario_gestor.lista_de_revisao.should include meu_artigo_pendente, meu_outro_artigo_pendente
+  end
 end

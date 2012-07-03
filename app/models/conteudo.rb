@@ -187,6 +187,11 @@ class Conteudo < ActiveRecord::Base
     true
   end
 
+  def self.pendentes_da_instituicao(instituicao)
+    campi_ids = instituicao.campus.map(&:id)
+    where("campus_id IN (#{campi_ids.join(',')}) AND state = 'pendente'")
+  end
+
   private
 
   def granularizar
@@ -237,5 +242,11 @@ class Conteudo < ActiveRecord::Base
         errors.add(:arquivo, 'tipo de arquivo não suportado')
       end
     end
+  end
+
+  def mesma_instituicao?(user, conteudo)
+    camp1 = Campus.find(user.campus_id)
+    camp2 = Campus.find(conteudo.campus_id)
+    camp1.instituicao_id == camp2.instituicao_id
   end
 end

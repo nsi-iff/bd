@@ -33,6 +33,11 @@ class Busca < ActiveRecord::Base
 
   def parametros=(param)
     @parametros = param.delete_if { |key| param.fetch(key).blank? || param.fetch(key) == 'Todas' }
+    if @parametros['tipos']
+      if "pronatec".in? @parametros['tipos']
+        @parametros['tipos'] << "objeto_de_aprendizagem"
+      end
+    end
   end
 
   def query_parametros

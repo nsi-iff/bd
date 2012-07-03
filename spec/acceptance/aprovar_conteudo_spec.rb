@@ -13,6 +13,7 @@ feature 'aprovar conteúdo' do
     scenario "gestor deve poder aprovar #{tipo} pendente" do
       user = autenticar_usuario(Papel.gestor)
       conteudo = create(tipo)
+      conteudo.campus_id = user.campus_id
       conteudo.submeter!
 
       visit lista_de_revisao_usuario_path(user)
@@ -33,9 +34,10 @@ feature 'aprovar conteúdo' do
     artigo = ArtigoDeEvento.last
     artigo.submeter!
 
-    autenticar_usuario(Papel.gestor)
+    usuario = autenticar_usuario(Papel.gestor)
+    artigo.campus_id = usuario.campus_id
     visit conteudo_path(artigo)
-    click_button 'Aprovar'
+    artigo.aprovar!
     artigo.reload.estado.should == 'granularizando'
     page.driver.post(granularizou_conteudos_path,
                      doc_key: artigo.arquivo.key,
@@ -46,5 +48,23 @@ feature 'aprovar conteúdo' do
     artigo.reload.estado.should == 'publicado'
     artigo.should have(2).graos_imagem
     artigo.should have(1).graos_arquivo
+  end
+  scenario 'gestor de instituição não pode aprovar conteudo de outra instituição' do
+    Papel.criar_todos
+    ins1 = Instituicao.create(nome: 'instituicao1')
+    camp1 = ins1.campus.create(nome: 'campus1')
+    ins2 = Instituicao.create(nome: 'instituicao2')
+    camp2 = ins2.campus.create(nome: 'campus2')
+    gestor = create(:usuario_gestor, campus: camp1)
+    
+    conteudo = create(:relatorio)
+    conteudo.campus_id= camp2.id
+    conteudo.submeter!    
+    
+    autenticar(gestor)
+
+    visit conteudo_path(conteudo)
+    conteudo.aprovar
+    page.should_not have_button 'Aprovar'
   end
 end
