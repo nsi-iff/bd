@@ -1,12 +1,18 @@
 class Referencia < ActiveRecord::Base
   belongs_to :referenciavel, :polymorphic => true
-  belongs_to :usuario
-  validates :usuario, :abnt, presence: true
+  validates :abnt, presence: true
   validates :referenciavel, presence: true, :if => :new_record?
   before_validation :criar_referencia_abnt, :if => :referenciavel
   before_save :criar_tipo_do_grao, :if => lambda { |r| r.referenciavel_type == 'Grao' }
-  
+  has_and_belongs_to_many :favoritadores, class_name: 'Usuario', join_table: 'favoritos'
+
   attr_accessible :referenciavel
+
+  def referenciavel_removido!
+    favoritadores.each do |favoritador|
+      Mailer.notificar_usuarios_referenciavel_removido(favoritador, self.referenciavel).deliver
+    end
+  end
 
   private
 

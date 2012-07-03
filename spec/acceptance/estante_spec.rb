@@ -86,7 +86,6 @@ feature 'Estante' do
   end
 
   scenario 'mostrar graos favoritos do usuário' do
-    # TODO: teste seguinte é de aceitação ou de model ?
     conteudo = create(:livro)
     @usuario.favoritar create(:grao, conteudo: conteudo)
     visit root_path

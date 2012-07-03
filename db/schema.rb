@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625202857) do
+ActiveRecord::Schema.define(:version => 20120703025704) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -137,6 +137,11 @@ ActiveRecord::Schema.define(:version => 20120625202857) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "favoritos", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "referencia_id"
+  end
+
   create_table "graos", :force => true do |t|
     t.integer  "conteudo_id"
     t.datetime "created_at",  :null => false
@@ -195,7 +200,6 @@ ActiveRecord::Schema.define(:version => 20120625202857) do
   create_table "referencias", :force => true do |t|
     t.string   "abnt"
     t.string   "tipo_do_grao"
-    t.integer  "usuario_id"
     t.integer  "referenciavel_id"
     t.string   "referenciavel_type"
     t.datetime "created_at",         :null => false

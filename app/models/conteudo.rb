@@ -5,11 +5,11 @@ class Conteudo < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
   include ReferenciaBibliografica
+  include Referenciavel
 
   has_many :graos
   has_many :autores
   has_many :mudancas_de_estado
-  has_many :referencias, :as => :referenciavel
   belongs_to :sub_area
   has_one :arquivo
   belongs_to :contribuidor, :class_name => 'Usuario'

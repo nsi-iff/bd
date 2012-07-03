@@ -27,7 +27,7 @@ FactoryGirl.define do
   factory :grao do
     tipo "images"
     key "key"
-    conteudo
+    association :conteudo, factory: :relatorio
   end
 
   factory :grao_imagem, :parent => :grao, :class => Grao do
@@ -115,7 +115,6 @@ FactoryGirl.define do
 
   factory :referencia do
     abnt "abnt"
-    usuario
     referenciavel { create(:artigo_de_evento) }
   end
 end
