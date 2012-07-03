@@ -1,6 +1,6 @@
 class Arquivo < ActiveRecord::Base
   belongs_to :conteudo
-  
+
   attr_accessible :nome, :conteudo, :mime_type, :key
 
   def to_s
@@ -14,6 +14,5 @@ class Arquivo < ActiveRecord::Base
   def video?
     mime_type.start_with? 'video'
   end
-
 end
 
