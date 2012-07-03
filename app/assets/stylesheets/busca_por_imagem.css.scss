@@ -1,27 +1,29 @@
-.busca_por_imagem_form input[type='submit']{
-	position: relative;
-	float: right;
-	height: 36px;
-	width: 70px;
-	margin-top: -35px;
-	margin-right: 40px;
-	background-image: url('bt_buscar_verde.jpg');
-	border: 0px;
+.busca_por_imagem_form h1 {
+  font-family: FuturaStd;
+  text-align: center;
+  font-size: 48px;
+  color: #435e00;
 }
 
-.busca_por_imagem_form img{
-	width: 350px;
-	margin-left: 20px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+.busca_por_imagem_form input[type='submit']{
+  position: relative;
+  float: right;
+  height: 36px;
+  width: 70px;
+  margin-top: -35px;
+  margin-right: 40px;
+  background-image: url('bt_buscar_verde.jpg');
+  border: 0px;
 }
+
 .envia_imagem{
-	height: 36px;
-	width: 415px;
-	background-image: url('bg_input_busca_grande.gif');
-	input{
-		margin-top: 7px;
-		margin-left: 4px;
-		float: left;
-	}
+  height: 36px;
+  width: 415px;
+  background-image: url('bg_input_busca_grande.gif');
+  
+  input{
+    margin-top: 7px;
+    margin-left: 4px;
+    float: left;
+  }
 }
