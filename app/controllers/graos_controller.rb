@@ -17,17 +17,17 @@ require 'fileutils'
 require 'nokogiri'
 
 class GraosController < ApplicationController
-  before_filter :carregar_grao, :if => :current_usuario
+  before_filter :carregar_grao
 
   def adicionar_a_cesta
-    @cesta << params[:id]
-    current_usuario.cesta << @grao if current_usuario.present?
+    @cesta << @grao.referencia.id
+    current_usuario.cesta << @grao.referencia if current_usuario.present?
     respond_to &:js
   end
 
   def remover_da_cesta
-    @cesta.delete(params[:id])
-    current_usuario.cesta.delete(@grao) if current_usuario.present?
+    @cesta.delete(@grao.referencia.id)
+    current_usuario.cesta.delete(@grao.referencia) if current_usuario.present?
     respond_to &:js
   end
 
@@ -37,7 +37,9 @@ class GraosController < ApplicationController
       t = Tempfile.new("cesta_temporaria", tmpdir="#{Rails.root}/tmp")
       @referencias_abnt = ""
       Zip::ZipOutputStream.open(t.path) do |z|
-        current_usuario.cesta.all.map(&:key).each_with_index do |key, index|
+        current_usuario.cesta.all.map {|referencia|
+          referencia.referenciavel.key
+        }.each_with_index do |key, index|
           grao = Grao.where(:key => key).first
           conteudo_que_gerou_o_grao = Conteudo.where(:id => grao.conteudo_id).first
           nome_conteudo = conteudo_que_gerou_o_grao.titulo.removeaccents.titleize.delete(" ").underscore
@@ -78,7 +80,7 @@ class GraosController < ApplicationController
       office_style = root.elements[3]
       text = body.elements[1]
       referencias_abnt = []
-      current_usuario.cesta.all.map(&:key).each do |key|
+      current_usuario.cesta.map(&:referenciavel).map(&:key).each do |key|
         grao = Grao.where(:key => key).first
         conteudo_que_gerou_o_grao = Conteudo.where(:id => grao.conteudo_id).first
         referencias_abnt << conteudo_que_gerou_o_grao.referencia_abnt
@@ -168,8 +170,8 @@ class GraosController < ApplicationController
 
   def favoritar_graos
     authorize! :favoritar, Grao
-    current_usuario.cesta.each do |grao|
-      current_usuario.favoritar grao
+    current_usuario.cesta.each do |referencia|
+      current_usuario.favoritar(referencia)
     end
     current_usuario.cesta = []
     redirect_to :back
@@ -185,4 +187,3 @@ class GraosController < ApplicationController
     @grao = Grao.find(params[:id]) if params[:id]
   end
 end
-
