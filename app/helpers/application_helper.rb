@@ -61,9 +61,13 @@ module ApplicationHelper
 
   def renderizar_grao(grao)
     if grao.imagem?
-      "<img src='data:image/xyz;base64,#{grao.conteudo_base64}'>"
+      imagem_grao(grao)
     elsif grao.arquivo?
       tabela_grao(grao)
     end
+  end
+
+  def imagem_grao(grao)
+    "<img src='data:image/xyz;base64,#{grao.conteudo_base64}'>"
   end
 end
