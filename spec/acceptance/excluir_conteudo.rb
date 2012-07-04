@@ -8,7 +8,7 @@ feature 'Excluir conteúdo' do
 
   scenario 'excluir conteúdo' do
     usuario = criar_usuario(Papel.contribuidor)
-    livro = FactoryGirl.create(:livro, contribuidor: usuario)
+    livro = create(:livro, contribuidor: usuario)
     autenticar(usuario)
 
     visit conteudo_path(livro)
@@ -19,7 +19,7 @@ feature 'Excluir conteúdo' do
 
   scenario 'não pode excluir conteúdo sem estar editavel' do
     usuario = criar_usuario(Papel.contribuidor)
-    livro = FactoryGirl.create(:livro, contribuidor: usuario)
+    livro = create(:livro, contribuidor: usuario)
     livro.submeter!
     autenticar(usuario)
     visit conteudo_path(livro)

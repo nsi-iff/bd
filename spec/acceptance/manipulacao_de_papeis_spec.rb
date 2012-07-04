@@ -52,7 +52,7 @@ feature 'mudar papel do usuário' do
     Papel.criar_todos
     usuario = autenticar_usuario(Papel.admin)
 
-    u = FactoryGirl.create(:usuario, nome_completo: 'Rodrigo')
+    u = create(:usuario, nome_completo: 'Rodrigo')
 
     visit papeis_usuarios_path
     check "excluir-#{u.id}"
