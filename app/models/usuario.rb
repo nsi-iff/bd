@@ -1,6 +1,6 @@
 class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :papeis
-  has_and_belongs_to_many :cesta, class_name: 'Grao', join_table: 'graos_nas_cestas'
+  has_and_belongs_to_many :cesta, class_name: 'Referencia', join_table: 'referencias_nas_cestas'
   has_many :buscas
   has_and_belongs_to_many :favoritos, class_name: 'Referencia', join_table: 'favoritos'
   belongs_to :campus
@@ -58,16 +58,16 @@ class Usuario < ActiveRecord::Base
     end
   end
 
-  def favoritar(referenciavel)
-    self.favoritos << referenciavel.referencia
+  def favoritar(referencia)
+    favoritos << referencia
   end
 
-  def favorito?(referenciavel)
-    self.favoritos.any? { |favorito| favorito.referenciavel == referenciavel }
+  def favorito?(referencia)
+    favoritos.include?(referencia)
   end
 
-  def remover_favorito(referenciavel)
-    favoritos.delete(referenciavel.referencia)
+  def remover_favorito(referencia)
+    favoritos.delete(referencia)
   end
 
   def method_missing(method_name, *params)

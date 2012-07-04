@@ -59,6 +59,7 @@ feature 'cesta de grãos' do
 
     within item_de_busca(resultado: 1, grao: 1) do
       click_link 'Adicionar à cesta'
+      sleep(1)
     end
     within item_de_busca(resultado: 1, grao: 2) do
       click_link 'Adicionar à cesta'
@@ -73,6 +74,7 @@ feature 'cesta de grãos' do
     end
 
     within item_da_cesta(1) do
+      page.should have_content representacao_grao(@grao1)
       click_link 'Remover'
     end
     within '#cesta' do
@@ -167,7 +169,7 @@ feature 'cesta de grãos' do
     end
 
     scenario 'editar grão da cesta' do
-      criar_cesta @usuario, create(:conteudo),
+      criar_cesta @usuario, create(:livro),
                             recurso('grao_teste_0.jpg'),
                             recurso('grao_teste_1.jpg'),
                             recurso('grao_tabela.odt')
@@ -223,4 +225,3 @@ feature 'cesta de grãos' do
     end
   end
 end
-

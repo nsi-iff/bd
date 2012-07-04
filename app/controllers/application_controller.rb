@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def carregar_cesta
     @cesta = current_usuario.present? ?
-      current_usuario.cesta_ids.map(&:to_s) :
+      current_usuario.cesta_ids :
       (session[:cesta] ||= [])
   end
 end

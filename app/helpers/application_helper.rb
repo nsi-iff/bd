@@ -51,7 +51,7 @@ module ApplicationHelper
 
   def renderizar_graos_da_cesta(cesta)
     cesta.
-      map {|grao_id| Grao.find(grao_id) }.
+      map {|referencia_id| Referencia.find(referencia_id).referenciavel }.
       map {|grao| renderizar_grao(grao) }.
       join.
       html_safe

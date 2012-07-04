@@ -59,14 +59,14 @@ describe Usuario do
 
     it 'retorna true se conteudo ou grao esta na estante' do
       usuario = create(:usuario)
-      conteudo = create(:livro)
-      grao = create(:grao, conteudo: conteudo)
-      usuario.favoritar conteudo
-      usuario.favorito?(conteudo).should be_true
-      usuario.favorito?(grao).should be_false
+      referencia_conteudo = create(:livro).referencia
+      referencia_grao = create(:grao).referencia
+      usuario.favoritar(referencia_conteudo)
+      usuario.favorito?(referencia_conteudo).should be_true
+      usuario.favorito?(referencia_grao).should be_false
 
-      usuario.favoritar grao
-      usuario.favorito?(grao).should be_true
+      usuario.favoritar(referencia_grao)
+      usuario.favorito?(referencia_grao).should be_true
     end
   end
 
@@ -92,9 +92,9 @@ describe Usuario do
     let(:usuario) { create(:usuario) }
 
     it 'permite adicionar graos' do
-      usuario.cesta << stub_model(Grao)
-      usuario.cesta << stub_model(Grao)
-      usuario.cesta.should have(2).graos
+      usuario.cesta << stub_model(Referencia)
+      usuario.cesta << stub_model(Referencia)
+      usuario.cesta.should have(2).referencias
     end
   end
 
@@ -102,25 +102,26 @@ describe Usuario do
     grao = create(:grao)
     usuario = create(:usuario)
     Referencia.any_instance.should_receive(:valid?).twice.and_return(true)
-    usuario.favoritar(grao).should be_true
+    usuario.favoritar(grao.referencia).should be_true
     usuario.favoritos.last.should be_a(Referencia)
     usuario.favoritos.last.referenciavel.should == grao
   end
 
   it 'pode favoritar conteudos' do
     conteudo = create(:livro)
+    referencia_conteudo = conteudo.referencia
     usuario = create(:usuario)
-    Referencia.any_instance.should_receive(:valid?).twice.and_return(true)
-    usuario.favoritar(conteudo).should be_true
+    Referencia.any_instance.stub(:valid?).and_return(true)
+    usuario.favoritar(referencia_conteudo).should be_true
     usuario.favoritos.last.should be_a(Referencia)
     usuario.favoritos.last.referenciavel.should == conteudo
   end
 
   it 'pode remover favorito da estante' do
       usuario = create(:usuario)
-      conteudo = create(:livro)
-      usuario.favoritar conteudo
-      usuario.remover_favorito(conteudo).should be_true
+      referencia_conteudo = create(:livro).referencia
+      usuario.favoritar(referencia_conteudo)
+      usuario.remover_favorito(referencia_conteudo).should be_true
       usuario.favoritos.should be_empty
     end
 
