@@ -51,7 +51,7 @@ module ApplicationHelper
 
   def renderizar_graos_da_cesta(cesta)
     cesta.
-      map {|grao_id| Grao.find(grao_id) }.
+      map {|referencia_id| Referencia.find(referencia_id).referenciavel }.
       map {|grao| renderizar_grao(grao) }.
       join.
       html_safe
@@ -61,9 +61,13 @@ module ApplicationHelper
 
   def renderizar_grao(grao)
     if grao.imagem?
-      "<img src='data:image/xyz;base64,#{grao.conteudo_base64}'>"
+      imagem_grao(grao)
     elsif grao.arquivo?
       tabela_grao(grao)
     end
+  end
+
+  def imagem_grao(grao)
+    "<img src='data:image/xyz;base64,#{grao.conteudo_base64}'>"
   end
 end

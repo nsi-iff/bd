@@ -10,9 +10,9 @@ class Mailer < ActionMailer::Base
     mail(to: @usuario.email, subject: 'Biblioteca Digital: Novos documentos de seu interesse')
   end
 
-  def notificar_usuarios_grao_removido(usuario, grao)
+  def notificar_usuarios_referenciavel_removido(usuario, referenciavel)
     @usuario = usuario
-    @grao = grao
+    @referenciavel = referenciavel
 
     mail(from: "no_reply@iff.edu.br", to: @usuario.email,
          subject: 'Biblioteca Digital: Notificação sobre grão removido')

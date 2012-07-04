@@ -38,15 +38,14 @@
     = render 'conteudos/graos_arquivo', graos: @conteudo.graos_arquivo
 
 - if current_usuario
-  - if current_usuario.favorito? @conteudo
+  - if current_usuario.favorito? @conteudo.referencia
     = link_to 'Remover favorito', remover_favorito_conteudo_path(@conteudo), method: :put
   - else
     = link_to 'Favoritar', favoritar_conteudo_path(@conteudo), method: :put
 
 = button_to "Editar", edit_conteudo_path(@conteudo), method: 'get'
 - if can? :destroy, @conteudo
-  - if @conteudo.editavel?
-    = button_to "Excluir", conteudo_path(@conteudo), method: 'delete'
+  = button_to "Excluir", conteudo_path(@conteudo), method: 'delete'
 - if @conteudo.publicado?
   = link_to "Download" , conteudo_baixar_conteudo_path(@conteudo)
 = render 'conteudos/acoes', :conteudo => @conteudo

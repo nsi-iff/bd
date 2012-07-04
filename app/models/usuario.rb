@@ -1,8 +1,8 @@
 class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :papeis
-  has_and_belongs_to_many :cesta, class_name: 'Grao', join_table: 'graos_nas_cestas'
+  has_and_belongs_to_many :cesta, class_name: 'Referencia', join_table: 'referencias_nas_cestas'
   has_many :buscas
-  has_many :favoritos, class_name: 'Referencia'
+  has_and_belongs_to_many :favoritos, class_name: 'Referencia', join_table: 'favoritos'
   belongs_to :campus
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -58,17 +58,16 @@ class Usuario < ActiveRecord::Base
     end
   end
 
-  def favoritar(referenciavel)
-    self.favoritos.create(referenciavel: referenciavel).valid?
+  def favoritar(referencia)
+    favoritos << referencia
   end
 
-  def favorito?(referenciavel)
-    self.favoritos.any? { |favorito| favorito.referenciavel == referenciavel }
+  def favorito?(referencia)
+    favoritos.include?(referencia)
   end
 
-  def remover_favorito(referenciavel)
-    referenciavel.referencias.find_by_usuario_id(self).try(:destroy)
-    self.favoritos(true)
+  def remover_favorito(referencia)
+    favoritos.delete(referencia)
   end
 
   def method_missing(method_name, *params)

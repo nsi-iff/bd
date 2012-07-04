@@ -17,4 +17,17 @@ feature 'Editar Conteúdo' do
       end
     end
   end
+
+  context 'download na página de editar' do
+    scenario 'link para download com o nome do arquivo' do
+      Papel.criar_todos
+      submeter_conteudo :artigo_de_evento, link: '', arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
+      artigo = ArtigoDeEvento.last
+      visit edit_conteudo_path(artigo)
+      click_link "Download: #{artigo.arquivo.nome}"
+      baixado = "#{Rails.root}/tmp/#{artigo.titulo}.odt"
+      postado = "#{Rails.root}/spec/resources/arquivo.odt"
+      FileUtils.compare_file(baixado, postado).should == true
+    end
+  end
 end

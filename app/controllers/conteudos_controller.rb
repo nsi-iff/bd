@@ -79,7 +79,7 @@ class ConteudosController < ApplicationController
     authorize! :favoritar, Conteudo
     conteudo = obter_conteudo
     unless current_usuario.favorito? conteudo
-      current_usuario.favoritar conteudo
+      current_usuario.favoritar(conteudo.referencia)
     end
     redirect_to conteudo_path(conteudo)
   end
@@ -87,7 +87,7 @@ class ConteudosController < ApplicationController
   def remover_favorito
     authorize! :remover_favorito, Conteudo
     conteudo = obter_conteudo
-    current_usuario.remover_favorito conteudo
+    current_usuario.remover_favorito(conteudo.referencia)
     redirect_to conteudo_path(conteudo)
   end
 
@@ -145,4 +145,3 @@ class ConteudosController < ApplicationController
     end
   end
 end
-

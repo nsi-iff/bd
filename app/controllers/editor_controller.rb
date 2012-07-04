@@ -14,7 +14,7 @@ class EditorController < ApplicationController
       documento.write("REFERÊNCIAS".to_xs)
       documento.write("</b>")
       2.times{ documento.write("<br>") }
-      current_usuario.cesta.each do |grao|
+      current_usuario.cesta.map(&:referenciavel).each do |grao|
         conteudo_do_grao = Conteudo.find(grao.conteudo_id)
         documento.write(conteudo_do_grao.referencia_abnt)
         documento.write("<br>")
@@ -25,4 +25,3 @@ class EditorController < ApplicationController
     :type => 'text/html', :disposition => 'attachment')
   end
 end
-

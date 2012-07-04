@@ -86,9 +86,7 @@ feature 'Estante' do
   end
 
   scenario 'mostrar graos favoritos do usuário' do
-    # TODO: teste seguinte é de aceitação ou de model ?
-    conteudo = create(:livro)
-    @usuario.favoritar create(:grao, conteudo: conteudo)
+    @usuario.favoritar create(:grao).referencia
     visit root_path
     within '#estante' do
       page.should have_content 'key imagem'
@@ -97,7 +95,7 @@ feature 'Estante' do
 
   scenario 'move graos da cesta para estante (como graos favoritos)' do
     conteudo = create(:livro)
-    @usuario.cesta << create(:grao, conteudo: conteudo)
+    @usuario.cesta << create(:grao, conteudo: conteudo).referencia
 
     visit estante_usuario_path(@usuario)
 
@@ -130,8 +128,8 @@ feature 'Estante' do
     conteudo_2 = create(:artigo_de_evento)
     grao = create(:grao, conteudo: conteudo_2)
 
-    @usuario.favoritar conteudo
-    @usuario.favoritar grao
+    @usuario.favoritar(conteudo.referencia)
+    @usuario.favoritar(grao.referencia)
 
     conteudo.destroy
     grao.destroy

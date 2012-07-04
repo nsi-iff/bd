@@ -1,8 +1,9 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Referencia do
   it { should_not have_valid(:referenciavel).when nil }
-  it { should_not have_valid(:usuario).when nil }
   it { should_not have_valid(:abnt).when nil }
 
   it 'deve salvar refencia abnt do referenciavel quando criado' do
@@ -24,5 +25,18 @@ describe Referencia do
     grao = create(:grao, conteudo: conteudo)
     referencia = create(:referencia, referenciavel: grao)
     referencia.tipo_do_grao.should == grao.tipo
+  end
+
+  it 'deve enviar email para usuarios que o favoritaram' do
+    grao = create(:grao, conteudo: create(:livro))
+    usuario = create(:usuario)
+    usuario.favoritos.create(referenciavel: grao)
+    expect {
+      grao.referencia.referenciavel_removido!
+    }.to change { ActionMailer::Base.deliveries.size }.by 1
+
+    email = ActionMailer::Base.deliveries.last
+    email.to.should == [usuario.email]
+    email.subject.should == 'Biblioteca Digital: Notificação sobre grão removido'
   end
 end
