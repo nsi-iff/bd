@@ -19,8 +19,7 @@ class Ability
       end
       can [:create, :submeter], Conteudo
       can [:destroy], Conteudo do |conteudo|
-        conteudo.editavel?
-        conteudo.contribuidor_id == usuario.id
+        conteudo.editavel? && conteudo.contribuidor_id == usuario.id
       end
     end
 
