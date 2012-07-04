@@ -23,7 +23,6 @@ feature 'Editar Conteúdo' do
       Papel.criar_todos
       submeter_conteudo :artigo_de_evento, link: '', arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
       artigo = ArtigoDeEvento.last
-      autenticar(artigo.contribuidor)
       visit edit_conteudo_path(artigo)
       click_link "Download: #{artigo.arquivo.nome}"
       baixado = "#{Rails.root}/tmp/#{artigo.titulo}.odt"
