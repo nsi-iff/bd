@@ -1,11 +1,12 @@
 = f.input :titulo, label: 'Título'
 
-- if @conteudo.tipo_de_arquivo_importa?
-  = f.input :arquivo, as: :file, label: 'Arquivo',
-    hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
-- else
-  = f.input :arquivo, as: :file, label: 'Arquivo',
-    hint: 'É suportado qualquer formato de arquivo.'
+- unless @conteudo.arquivo
+  - if @conteudo.tipo_de_arquivo_importa?
+    = f.input :arquivo, as: :file, label: 'Arquivo',
+      hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
+  - else
+    = f.input :arquivo, as: :file, label: 'Arquivo',
+      hint: 'É suportado qualquer formato de arquivo.'
 
 - if controller.action_name == 'edit' && @conteudo.arquivo
   %br
@@ -13,6 +14,13 @@
   %br
   = label_tag 'excluir_arquivo_atual', 'Excluir arquivo atual'
   = check_box_tag 'excluir_arquivo_atual', 'excluir_arquivo_atual'
+
+  - if @conteudo.tipo_de_arquivo_importa?
+    = f.input :arquivo, as: :file, label: 'Substituir arquivo atual:',
+      hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
+  - else
+    = f.input :arquivo, as: :file, label: 'Substituir arquivo atual:',
+      hint: 'É suportado qualquer formato de arquivo.'
 
 = f.input :link,
   hint: 'Este campo somente deverá ser preenchido se o autor não dispuser dos devidos direitos para disponibilização do conteúdo, inviabilizando assim o preenchimento do campo “Arquivo”.'
