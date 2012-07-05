@@ -46,7 +46,16 @@ module ApplicationHelper
   end
 
   def tabela_grao(grao)
-    extract_table(Base64.decode64(grao.conteudo_base64)).html_safe
+    tabela = extract_table(Base64.decode64(grao.conteudo_base64)).html_safe
+    while "Pictures".in? tabela
+      index2 = index1 = tabela.index("Pictures")
+      while tabela[index2] != "\n"
+        index2 += 1
+      end
+      (index2 - index1).times{ tabela[index1] = "" }
+      tabela.insert(index1, "<span class='aviso_imagem'>AVISO: IMAGEM INDISPONÍVEL</span>")
+    end
+    tabela
   end
 
   def renderizar_graos_da_cesta(cesta)

@@ -68,4 +68,26 @@ feature 'apresentacao dos conteudos por abas' do
        %w(4 5 6),
        %w(7 8 9)]
   end
+
+  scenario 'tabelas contendo imagens devem apresentar a mensagem: "aviso: imagem indisponível"' do
+    Papel.criar_todos
+    autenticar_usuario(Papel.contribuidor)
+
+    sam = ServiceRegistry.sam
+
+    conteudo_odt = Base64.encode64(File.open('spec/resources/imagem_em_tabela.odt').read)
+    result = sam.store(file: conteudo_odt, filename: 'grao.odt')
+
+    conteudo = create(:artigo_de_periodico)
+    grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
+
+    visit conteudo_path(conteudo)
+
+    page.should have_content 'Metadados'
+    page.should_not have_content 'Imagens'
+    page.should have_content 'Tabelas'
+
+    click_link 'Tabelas'
+    page.should have_content 'AVISO: IMAGEM INDISPONÍVEL'
+  end
 end
