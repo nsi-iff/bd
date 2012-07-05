@@ -1,4 +1,5 @@
 = f.input :titulo, label: 'Título'
+
 - if @conteudo.tipo_de_arquivo_importa?
   = f.input :arquivo, as: :file, label: 'Arquivo',
     hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
@@ -7,7 +8,11 @@
     hint: 'É suportado qualquer formato de arquivo.'
 
 - if controller.action_name == 'edit' && @conteudo.arquivo
+  %br
   = link_to "Download: #{@conteudo.arquivo.nome}", conteudo_baixar_conteudo_path(@conteudo)
+  %br
+  = label_tag 'excluir_arquivo_atual', 'Excluir arquivo atual'
+  = check_box_tag 'excluir_arquivo_atual', 'excluir_arquivo_atual'
 
 = f.input :link,
   hint: 'Este campo somente deverá ser preenchido se o autor não dispuser dos devidos direitos para disponibilização do conteúdo, inviabilizando assim o preenchimento do campo “Arquivo”.'

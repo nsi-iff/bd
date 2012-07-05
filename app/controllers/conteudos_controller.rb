@@ -39,6 +39,7 @@ class ConteudosController < ApplicationController
   def update
     authorize! :update, Conteudo
     @conteudo = obter_conteudo
+    @conteudo.set_arquivo(nil) if params[:excluir_arquivo_atual]
     if @conteudo.update_attributes(conteudo_da_requisicao)
       redirect_to conteudo_path(@conteudo),
                   notice: "#{@conteudo.class.nome_humanizado} alterado com sucesso"
