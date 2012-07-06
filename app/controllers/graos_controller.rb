@@ -181,6 +181,10 @@ class GraosController < ApplicationController
     respond_to &:js
   end
 
+  def show
+    carregar_grao
+  end
+
   private
 
   def carregar_grao

@@ -70,6 +70,8 @@ DigitalLibrary::Application.routes.draw do
     end
   end
 
+  get "/graos/:grao_id" , :to => 'graos#show'
+
   get :favoritar_graos, :to => 'graos#favoritar_graos'
   get "/cesta/baixar_conteudo", :to => 'graos#baixar_conteudo'
   get "/cesta/baixar_conteudo_em_odt", :to => 'graos#baixar_conteudo_em_odt'

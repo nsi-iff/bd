@@ -1,3 +1,4 @@
 - graos.each do |grao|
   .grao_arquivo
     = tabela_grao(grao)
+    = link_to "nome grao", grao_path(grao.id)

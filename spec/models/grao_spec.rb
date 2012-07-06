@@ -25,4 +25,16 @@ describe Grao do
     grao = create(:grao, conteudo: conteudo)
     grao.referencia_abnt.should == 'referencia abnt'
   end
+
+  it 'retorna seu titulo' do
+    conteudo = create(:livro, titulo: 'Testando retorno do titulo do ')
+    grao = build(:grao_arquivo, id: 9, conteudo_id: conteudo.id)
+    grao.titulo.should == 'Testando retorno do titulo do _grao_files_9'
+  end
+
+  it 'informa a qual conteudo o grao pertence' do
+    conteudo = create(:livro, titulo: 'Testando retorno do titulo do ')
+    grao = build(:grao_arquivo, id: 9, conteudo_id: conteudo.id)
+    grao.conteudo.titulo.should == conteudo.titulo
+  end
 end

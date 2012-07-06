@@ -22,4 +22,9 @@ class Grao < ActiveRecord::Base
     resposta = sam.get(key)
     resposta['data']['file']
   end
-end
+
+  def titulo
+    conteudo = Conteudo.find(conteudo_id)
+    "#{conteudo.titulo}_grao_#{tipo}_#{id}"
+  end
+ end
