@@ -68,9 +68,10 @@ DigitalLibrary::Application.routes.draw do
       get :cesta
       post :editar
     end
+    get "/baixar_grao" , :to => 'graos#baixar_grao'
   end
 
-  get "/graos/:grao_id" , :to => 'graos#show'
+
 
   get :favoritar_graos, :to => 'graos#favoritar_graos'
   get "/cesta/baixar_conteudo", :to => 'graos#baixar_conteudo'

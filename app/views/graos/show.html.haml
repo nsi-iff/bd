@@ -1,0 +1,15 @@
+%h1{ id: 'titulo-grao' }
+  = @grao.titulo
+
+.grao_arquivo
+  Tabela originada da página X do conteúdo
+  %br
+  Conteudo:
+  %br
+    = @grao.conteudo.titulo
+  = tabela_grao(@grao)
+  = link_to "Download" , grao_baixar_grao_path(@grao)
+
+
+/ link para obtenção da tabela em formato ODT via download
+/ os links "Adicionar à Cesta de Grãos" e "Adicionar à Estante"
