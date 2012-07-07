@@ -9,7 +9,7 @@
     = @grao.conteudo.titulo
   = tabela_grao(@grao)
   = link_to "Download" , grao_baixar_grao_path(@grao)
+  = link_to 'Adicionar à cesta', adicionar_a_cesta_grao_path(@grao), method: :put, remote: true
 
 
-/ link para obtenção da tabela em formato ODT via download
 / os links "Adicionar à Cesta de Grãos" e "Adicionar à Estante"
