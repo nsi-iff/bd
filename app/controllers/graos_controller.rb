@@ -160,6 +160,15 @@ class GraosController < ApplicationController
     send_file template
   end
 
+  def favoritar
+    authorize! :favoritar, Grao
+    carregar_grao
+    unless current_usuario.favorito? @grao
+      current_usuario.favoritar(@grao.referencia)
+    end
+    redirect_to grao_path(@grao.id)
+  end
+
   private
 
   def carregar_grao

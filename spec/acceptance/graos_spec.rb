@@ -52,6 +52,17 @@ feature 'Visualizar grão' do
       click_link "Adicionar à cesta"
       grao.id.should == user.cesta[0].referenciavel_id
     end
+
+    scenario 'e adicionar grao a estante do usuario' do
+      Papel.criar_todos
+      user = autenticar_usuario(Papel.contribuidor)
+
+      grao = adicionar_grao
+      visit grao_path(grao)
+
+      click_link 'Adicionar à estante'
+      grao.id.should == user.estante[0].referenciavel_id
+    end
   end
 end
    

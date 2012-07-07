@@ -63,6 +63,7 @@ DigitalLibrary::Application.routes.draw do
     member do
       put :adicionar_a_cesta
       delete :remover_da_cesta
+      put :favoritar
     end
     collection do
       get :cesta
