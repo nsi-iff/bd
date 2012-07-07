@@ -15,5 +15,6 @@
   = link_to 'baixar conteudo da cesta em odt', '/cesta/baixar_conteudo_em_odt'
   %br
   = link_to "Ver todos", cesta_graos_path
-  = link_to "Mover para estante", favoritar_graos_path
+  - if current_usuario
+    = link_to "Mover para estante", favoritar_graos_path
   = link_to "Editar", editor_path(graos: true)

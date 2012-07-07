@@ -24,12 +24,16 @@ feature 'Visualizar grão' do
       grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
     end  
     scenario 'visualizar grao' do
+      Papel.criar_todos
+      user = autenticar_usuario(Papel.contribuidor)
       grao = adicionar_grao
       visit grao_path(grao)
 
       page.should have_content 'Tabela originada da página X do conteúdo'
       page.should have_content "Testando visualização de tabelas"
       page.should have_content "Download"
+      page.should have_content "Adicionar à cesta"
+      page.should have_content "Adicionar à estante"
     end
     scenario 'efetuar download do grao' do
       grao = adicionar_grao
@@ -62,6 +66,12 @@ feature 'Visualizar grão' do
 
       click_link 'Adicionar à estante'
       grao.id.should == user.estante[0].referenciavel_id
+    end
+    scenario 'se usuario anônimo não aparecer link para adicionar à estante' do
+      grao = adicionar_grao
+      visit grao_path(grao)
+
+      page.should_not have_content "Adicionar à estante"
     end
   end
 end
