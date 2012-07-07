@@ -48,7 +48,7 @@ feature 'Editar Conteúdo' do
                         arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
       artigo = ArtigoDeEvento.last
       visit edit_conteudo_path(artigo)
-      attach_file 'Substituir arquivo', File.join(Rails.root, *%w(spec resources outro_arquivo.odt))
+      attach_file 'Arquivo', File.join(Rails.root, *%w(spec resources outro_arquivo.odt))
       click_button 'Salvar'
 
       artigo.arquivo.nome.should == 'outro_arquivo.odt'
