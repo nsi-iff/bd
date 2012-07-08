@@ -9,13 +9,15 @@ class Ability
 
     if usuario.gestor? || usuario.contribuidor?
       can [:ter_escrivaninha, :ter_estante], Usuario
-      can [:read, :edit, :update], Conteudo
     end
 
     if usuario.contribuidor?
       instituicao = usuario.campus.instituicao.nome
       unless instituicao == 'Não pertenço a uma Instituição da Rede Federal de EPCT'
         can [:adicionar_conteudo], Usuario
+      end
+      can [:read, :edit, :update], Conteudo do |conteudo|
+        !conteudo.recolhido?
       end
       can [:create, :submeter], Conteudo
       can [:destroy], Conteudo do |conteudo|
@@ -24,8 +26,13 @@ class Ability
     end
 
     if usuario.gestor?
+      can [:read, :edit, :update], Conteudo
       can :aprovar, Conteudo do |conteudo|
         usuario.pode_aprovar? conteudo
+      end
+      can :recolher, Conteudo do |conteudo|
+        usuario.pode_recolher?(conteudo) &&
+        (conteudo.pendente? || conteudo.publicado?)
       end
       can [:lista_de_revisao, :ter_lista_de_revisao], Usuario
     end

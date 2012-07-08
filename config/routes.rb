@@ -50,6 +50,7 @@ DigitalLibrary::Application.routes.draw do
 
   resources :conteudos, except: [:index] do
     member do
+      put :recolher
       put :aprovar
       put :submeter
       put :favoritar
