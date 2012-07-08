@@ -22,7 +22,7 @@ feature 'baixar conteúdo' do
       artigo.aprovar!
       visit conteudo_path(artigo)
       click_link 'Download'
-      baixado = "#{Rails.root}/tmp/#{artigo.titulo}.odt"
+      baixado = "#{Rails.root}/tmp/#{artigo.titulo}.#{artigo.extensao}"
       postado = "#{Rails.root}/spec/resources/arquivo.doc"
       FileUtils.compare_file(baixado, postado).should == true
     end

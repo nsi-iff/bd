@@ -464,4 +464,10 @@ describe Conteudo do
     usuario_gestor.lista_de_revisao.should have(2).itens
     usuario_gestor.lista_de_revisao.should include meu_artigo_pendente, meu_outro_artigo_pendente
   end
+
+  it 'retorna a extensão do arquivo enviado' do
+    meu_arquivo = create(:livro)
+    meu_arquivo.set_arquivo(Arquivo.new(nome: 'file.doc'))
+    meu_arquivo.extensao.should == "doc"
+  end
 end

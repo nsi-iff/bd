@@ -1,0 +1,19 @@
+%h1{ id: 'titulo-grao' }
+  = @grao.titulo
+
+.grao_arquivo
+  Tabela originada da página X do conteúdo
+  %p
+.aba
+  %b
+    Conteudo:
+  %br
+    = @grao.conteudo.titulo
+  %br
+  = tabela_grao(@grao)
+  %p
+
+= link_to "Download" , grao_baixar_grao_path(@grao)
+= link_to 'Adicionar à cesta', adicionar_a_cesta_grao_path(@grao), method: :put, remote: true
+- if current_usuario
+  = link_to "Adicionar à estante", favoritar_grao_path(@grao), method: :put

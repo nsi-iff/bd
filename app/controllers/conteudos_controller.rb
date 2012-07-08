@@ -119,7 +119,8 @@ class ConteudosController < ApplicationController
     conteudo = Conteudo.find(params[:conteudo_id])
     @sam = ServiceRegistry.sam
     string = @sam.get(conteudo.arquivo.key)['data']['doc']
-    file = "#{Rails.root}/tmp/#{conteudo.titulo}.odt"
+    extensao = conteudo.extensao
+    file = "#{Rails.root}/tmp/#{conteudo.titulo}.#{extensao}"
     File.open(file, "wb").write(Base64.decode64(string))
     send_file file
   end

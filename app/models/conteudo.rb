@@ -196,6 +196,10 @@ class Conteudo < ActiveRecord::Base
     where("campus_id IN (#{campi_ids.join(',')}) AND state = 'pendente'")
   end
 
+  def extensao
+    arquivo.nome.split('.').last
+  end
+
   private
 
   def granularizar

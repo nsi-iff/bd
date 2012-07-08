@@ -110,6 +110,71 @@ class GraosController < ApplicationController
     end
   end
 
+
+  def cesta
+  end
+
+  def favoritar_graos
+    authorize! :favoritar, Grao
+    current_usuario.cesta.each do |referencia|
+      current_usuario.favoritar(referencia)
+    end
+    current_usuario.cesta = []
+    redirect_to :back
+  end
+
+  def editar
+    respond_to &:js
+  end
+
+  def show
+    carregar_grao
+  end
+
+  def baixar_grao
+    @grao = Grao.find(params[:grao_id])
+    @sam = ServiceRegistry.sam
+    template_modelo = "#{Rails.root}/public/template.odt"
+    template = File.join("#{Rails.root}/tmp/#{@grao.titulo}.odt")
+    FileUtils.cp(template_modelo, template)
+    odt = Zip::ZipFile.open(template)
+    doc = Document.new(odt.read("content.xml"))
+    root = doc.root
+    body = root.elements[4]
+    office_style = root.elements[3]
+    text = body.elements[1]
+    dados_grao = @grao.conteudo_base64
+    if @grao.tipo == "images"
+      adicionar_imagem(dados_grao, odt, text)
+    else
+      dados_grao = Base64.decode64(dados_grao)
+      file_name  = "#{Rails.root}/tmp/#{rand}.odt"
+      File.new(file_name, "w").write(dados_grao.force_encoding('UTF-8'))
+      adicionar_tabela(file_name, office_style, text)
+    end
+    myfile = File.open("myfile.xml", "w")
+    doc.write(myfile)
+    odt.replace("content.xml", "myfile.xml")
+    myfile.close
+    odt.close
+    send_file template
+  end
+
+  def favoritar
+    authorize! :favoritar, Grao
+    carregar_grao
+    unless current_usuario.favorito? @grao
+      current_usuario.favoritar(@grao.referencia)
+    end
+    redirect_to grao_path(@grao.id)
+  end
+
+  private
+
+  def carregar_grao
+    @grao = Grao.find(params[:id]) if params[:id]
+  end
+
   def novo_elemento(elemento, pai)
     novo = Element.new("#{elemento.namespace.prefix}:#{elemento.node_name}", pai)
     elemento.attribute_nodes.each do |node|
@@ -163,27 +228,5 @@ class GraosController < ApplicationController
     frame.add_attribute("svg:width", width)
     frame.add_attribute("svg:height", height)
     Element.new("draw:image xlink:actuate='onLoad' xlink:href='#{imagem_odt}' xlink:show='embed' xlink:type='simple'", parent=frame)
-  end
-
-  def cesta
-  end
-
-  def favoritar_graos
-    authorize! :favoritar, Grao
-    current_usuario.cesta.each do |referencia|
-      current_usuario.favoritar(referencia)
-    end
-    current_usuario.cesta = []
-    redirect_to :back
-  end
-
-  def editar
-    respond_to &:js
-  end
-
-  private
-
-  def carregar_grao
-    @grao = Grao.find(params[:id]) if params[:id]
   end
 end
