@@ -37,3 +37,21 @@
   font-weight: bold;
   color: #FF0000;
 }
+
+.fullscreenOn{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  left: 0px;
+  top: 0px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  img{
+    /*top: auto;
+    bottom: auto;*/
+    margin: auto auto auto auto;
+    vertical-align: middle;
+  }
+}
