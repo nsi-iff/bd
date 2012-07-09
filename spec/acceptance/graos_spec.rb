@@ -32,8 +32,8 @@ feature 'Visualizar grão' do
       page.should have_content 'Tabela originada da página X do conteúdo'
       page.should have_content "Testando visualização de tabelas"
       page.should have_content "Download"
-      page.should have_content "Adicionar à cesta"
-      page.should have_content "Adicionar à estante"
+      page.should have_content "Adicionar à Cesta de Grãos"
+      page.should have_content "Adicionar à Estante"
     end
     scenario 'efetuar download do grao' do
       grao = adicionar_grao
@@ -53,7 +53,7 @@ feature 'Visualizar grão' do
       visit grao_path(grao)
 
 
-      click_link "Adicionar à cesta"
+      click_link "Adicionar à Cesta de Grãos"
       grao.id.should == user.cesta[0].referenciavel_id
     end
 
@@ -64,7 +64,7 @@ feature 'Visualizar grão' do
       grao = adicionar_grao
       visit grao_path(grao)
 
-      click_link 'Adicionar à estante'
+      click_link 'Adicionar à Estante'
       grao.id.should == user.estante[0].referenciavel_id
     end
     scenario 'se usuario anônimo não aparecer link para adicionar à estante' do
