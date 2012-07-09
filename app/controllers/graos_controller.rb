@@ -134,30 +134,33 @@ class GraosController < ApplicationController
   def baixar_grao
     @grao = Grao.find(params[:grao_id])
     @sam = ServiceRegistry.sam
-    template_modelo = "#{Rails.root}/public/template.odt"
-    template = File.join("#{Rails.root}/tmp/#{@grao.titulo}.odt")
-    FileUtils.cp(template_modelo, template)
-    odt = Zip::ZipFile.open(template)
-    doc = Document.new(odt.read("content.xml"))
-    root = doc.root
-    body = root.elements[4]
-    office_style = root.elements[3]
-    text = body.elements[1]
     dados_grao = @grao.conteudo_base64
     if @grao.tipo == "images"
-      adicionar_imagem(dados_grao, odt, text)
+      dados_grao = Base64.decode64(dados_grao)
+      file_name  = "#{Rails.root}/tmp/#{@grao.titulo}.jpg"
+      File.new(file_name, "w").write(dados_grao.force_encoding('UTF-8'))
+      send_file file_name
     else
+      template_modelo = "#{Rails.root}/public/template.odt"
+      template = File.join("#{Rails.root}/tmp/#{@grao.titulo}.odt")
+      FileUtils.cp(template_modelo, template)
+      odt = Zip::ZipFile.open(template)
+      doc = Document.new(odt.read("content.xml"))
+      root = doc.root
+      body = root.elements[4]
+      office_style = root.elements[3]
+      text = body.elements[1]
       dados_grao = Base64.decode64(dados_grao)
       file_name  = "#{Rails.root}/tmp/#{rand}.odt"
       File.new(file_name, "w").write(dados_grao.force_encoding('UTF-8'))
       adicionar_tabela(file_name, office_style, text)
+      myfile = File.open("myfile.xml", "w")
+      doc.write(myfile)
+      odt.replace("content.xml", "myfile.xml")
+      myfile.close
+      odt.close
+      send_file template
     end
-    myfile = File.open("myfile.xml", "w")
-    doc.write(myfile)
-    odt.replace("content.xml", "myfile.xml")
-    myfile.close
-    odt.close
-    send_file template
   end
 
   def favoritar

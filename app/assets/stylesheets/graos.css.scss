@@ -16,19 +16,23 @@
   }
 }
 
-.grao_arquivo {
+.grao_arquivo{
   overflow: hidden;
   margin-bottom: 10px;
-}
-
-.tabela{
-  width: 100%;
-  td{
+   td{
     border-style:solid; 
     border-width:0.5px;
   }
 }
 
+.imagem{
+  img{
+    max-width: 90%;
+    max-height: 90%;
+    border: 1px solid #CCC;
+    margin: 12px;
+  }
+}
 .aviso_imagem {
   font-weight: bold;
   color: #FF0000;
