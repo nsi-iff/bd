@@ -13,22 +13,21 @@ class Conteudo < ActiveRecord::Base
   belongs_to :sub_area
   has_one :arquivo
   belongs_to :contribuidor, :class_name => 'Usuario'
-  accepts_nested_attributes_for :autores, :reject_if => :all_blank
+  accepts_nested_attributes_for :autores, :arquivo, :reject_if => :all_blank
   belongs_to :campus
 
   attr_accessible :arquivo, :contribuidor, :titulo, :link, :sub_area_id,
                   :autores_attributes, :campus_id, :contribuidor_id, :subtitulo,
-                  :resumo, :direitos, :sub_area, :campus, :autores, :pronatec
+                  :resumo, :direitos, :sub_area, :campus, :autores, :pronatec,
+                  :arquivo_attributes
+
+  validate :arquivo_deve_ser_valido, :if => :arquivo
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
            :arquivo_ou_link_devem_existir
-  validate :tipo_de_arquivo, :if => :tipo_de_arquivo_importa?
 
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
-
-  before_validation :vincular_arquivo
-  before_create :enviar_arquivo_ao_sam
 
   state_machine :state, :initial => :editavel do
     event :submeter do
@@ -114,14 +113,15 @@ class Conteudo < ActiveRecord::Base
     contribuidor.try(:nome_completo)
   end
 
+  # TODO: refatorar
   def self.search(busca)
-    Tire.search('conteudos') {
+    busca_conteudos = Tire.search('conteudos', load: true) {
       query { string busca if busca }
-    }.results
-  end
-
-  def arquivo_base64
-    @arquivo_base64 || ""
+    }.results.to_a
+    busca_arquivos = Tire.search('arquivos', load: true) {
+      query { string busca if busca }
+    }.results.to_a
+    (busca_conteudos + busca_arquivos.map(&:conteudo)).uniq
   end
 
   def data_publicado
@@ -139,8 +139,8 @@ class Conteudo < ActiveRecord::Base
     to_json(include: {autores: { only: [:nome, :lattes]},
                       campus: { only: [:nome]},
                       graos: { only: [:tipo, :key] } },
-            methods: [:arquivo_base64, :data_publicado,
-                      :area_nome, :sub_area_nome, :instituicao_nome])
+            methods: [:data_publicado, :area_nome,
+                      :sub_area_nome, :instituicao_nome])
   end
 
   # TODO: refatorar
@@ -156,11 +156,9 @@ class Conteudo < ActiveRecord::Base
     self.try(:campus).try(:instituicao).try(:nome)
   end
 
-  alias  :set_arquivo :arquivo=
-
   def arquivo=(uploaded)
-    @arquivo_uploaded = uploaded
-    @arquivo_base64 = Base64.encode64(@arquivo_uploaded.read) if @arquivo_uploaded
+    return super(Arquivo.new uploaded_file: uploaded) if uploaded.respond_to?(:read)
+    super
   end
 
   def self.encontrar_por_id_sam(id_sam)
@@ -213,19 +211,6 @@ class Conteudo < ActiveRecord::Base
     end
   end
 
-  def vincular_arquivo
-    if @arquivo_uploaded.present?
-      set_arquivo(Arquivo.new(nome: @arquivo_uploaded.original_filename, conteudo: self, mime_type: @arquivo_uploaded.content_type))
-    end
-  end
-
-  def enviar_arquivo_ao_sam
-    if arquivo.present?
-      result = sam.store(doc: arquivo_base64)
-      arquivo.key = result['key']
-    end
-  end
-
   def nao_pode_ter_arquivo_e_link_simultaneamente
     if arquivo.present? && link.present?
       errors.add(:arquivo, 'não pode existir simultaneamente a link')
@@ -240,11 +225,9 @@ class Conteudo < ActiveRecord::Base
     end
   end
 
-  def tipo_de_arquivo
-    if arquivo.present?
-      unless arquivo.nome =~/.*\.(pdf|rtf|odt|doc|ps)/
-        errors.add(:arquivo, 'tipo de arquivo não suportado')
-      end
+  def arquivo_deve_ser_valido
+    if !self.arquivo.valid? and tipo_de_arquivo_importa?
+      errors.add(:arquivo, "Arquivo inválido")
     end
   end
 

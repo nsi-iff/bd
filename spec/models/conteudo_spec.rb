@@ -73,7 +73,7 @@ describe Conteudo do
       before :each do
         conteudo.submeter!
         conteudo.stub(:granularizavel?).and_return(true)
-        conteudo.set_arquivo(Arquivo.create!(key: 'dummy_key', nome: 'file.odt'))
+        conteudo.arquivo = build(:arquivo)
         conteudo.link = nil
         conteudo.aprovar!
       end
@@ -86,7 +86,7 @@ describe Conteudo do
       end
 
       context 'granularização ok' do
-        before(:each) { Arquivo.create!(key: '1234', conteudo: conteudo) }
+        before(:each) { create(:arquivo) }
 
         it 'vai para publicado' do
           expect {
@@ -183,7 +183,7 @@ describe Conteudo do
     it 'gera um objeto para a mudança de estado a cada transição' do
       verificar(conteudo, :submeter!, 'editavel', 'pendente')
       conteudo.stub(:granularizavel?).and_return(true)
-      conteudo.set_arquivo(Arquivo.new(key: 'dummy', nome: 'file.odt'))
+      conteudo.arquivo = build(:arquivo)
       conteudo.link = nil
       verificar(conteudo, :aprovar!, 'pendente', 'granularizando')
       verificar(conteudo, :falhou_granularizacao!, 'granularizando', 'pendente')
@@ -232,9 +232,10 @@ describe Conteudo do
 
   context 'não deve rodar código relativo a arquivos e SAM ao validar #bugfix' do
     let :conteudo do
-      Conteudo.new(arquivo: stub(read: 'dummy value',
-                                 original_filename: 'another dummy',
-                                content_type: 'application/vnd.oasis.opendocument.text'))
+      Conteudo.new(arquivo: stub(
+        read: 'dummy value',
+        original_filename: 'another dummy',
+        content_type: 'application/vnd.oasis.opendocument.text'))
     end
 
     it 'não deve salvar arquivo' do
@@ -254,7 +255,7 @@ describe Conteudo do
     conteudo.nome_contribuidor.should == 'Linus Torvalds'
   end
 
-  it 'nao pode possuir simultaneamente arquivo e link' do
+  it 'não pode possuir simultaneamente arquivo e link' do
     arquivo = ActionDispatch::Http::UploadedFile.new({
       filename: 'arquivo.pdf',
       type: 'text/plain',
@@ -264,7 +265,7 @@ describe Conteudo do
     build(:conteudo, arquivo: nil,
                   link: 'http://nsi.iff.edu.br').  should be_valid
     conteudo = build(:conteudo, arquivo: arquivo,
-                                        link: 'http://nsi.iff.edu.br')
+                                link: 'http://nsi.iff.edu.br')
     conteudo.should_not be_valid
     conteudo.errors[:arquivo].should be_any
     conteudo.errors[:link].should be_any
@@ -277,32 +278,14 @@ describe Conteudo do
     conteudo.errors[:link].should be_any
   end
 
-  [:livro, :artigo_de_evento, :artigo_de_periodico, :periodico_tecnico_cientifico,
-   :relatorio, :trabalho_de_obtencao_de_grau].
-   each do |tipo|
-    it "#{tipo} deve permitir os formatos de arquivo: rtf, doc, odt, ps, pdf" do
-      ['arquivo.rtf', 'arquivo.doc', 'arquivo.odt', 'arquivo.ps', 'arquivo.pdf']
-      .each do |arquivo_tipo|
-        arquivo = ActionDispatch::Http::UploadedFile.new({
-          filename: arquivo_tipo,
-          type: 'text/plain',
-          tempfile: File.new(Rails.root + "spec/resources/#{arquivo_tipo}")
-        })
-        build(tipo, link: '',
-                  arquivo: arquivo).should be_valid
-      end
-    end
-
-    it "#{tipo} não deve permitir outros além de rtf, doc, odt, ps, pdf" do
-      arquivo = ActionDispatch::Http::UploadedFile.new({
-        filename: 'arquivo.nsi',
-        type: 'text/plain',
-        tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
-      })
-      build(tipo, link: '',
-                arquivo: arquivo).should_not be_valid
-    end
-   end
+  it "o arquivo deve ser de um tipo válido" do
+    conteudo = build(:conteudo, link: nil,
+                                arquivo: stub_model(Arquivo, valid?: true))
+    conteudo.should be_valid
+    conteudo.arquivo = stub_model(Arquivo, valid?: false)
+    conteudo.should_not be_valid
+    conteudo.errors[:arquivo].should be_any
+  end
 
   it 'area deve ser a area ligada a sua subarea' do
     area = create(:area)
@@ -339,40 +322,35 @@ describe Conteudo do
     let(:conteudo) { build(:conteudo) }
 
     it 'nao granularizavel se é um link' do
-      conteudo.set_arquivo(nil)
+      conteudo.arquivo = nil
       conteudo.link = 'um link'
       conteudo.should_not be_granularizavel
     end
 
     it 'por enquanto, apenas se o arquivo associado for um ODT' do
       conteudo.link = nil
-      conteudo.set_arquivo(stub_model(Arquivo, odt?: false))
+      conteudo.arquivo = (stub_model(Arquivo, odt?: false))
       conteudo.should_not be_granularizavel
-      conteudo.set_arquivo(stub_model(Arquivo, odt?: true))
+      conteudo.arquivo = (stub_model(Arquivo, odt?: true))
       conteudo.should be_granularizavel
     end
   end
 
-  context "codifica arquivo para base 64" do
-    it "retorna a string em base 64 do arquivo caso exista" do
-      subject.arquivo = ActionDispatch::Http::UploadedFile.new({
-        filename: 'arquivo.rtf',
-        type: 'text/rtf',
-        tempfile: File.new(Rails.root + 'spec/resources/arquivo.rtf')
-      })
-      subject.arquivo_base64.should match(/e1xydGYxXGFuc2lcYW5zaWNwZz/)
-    end
-
-    it "retorna string vazia caso o arquivo não exista" do
-      subject.arquivo_base64.should == ""
-    end
-  end
-
   context 'pesquisa por meta-dados' do
-    it "pesquisa no índice 'conteudos' do elasticsearch" do
+    it "pesquisa no índice 'conteudos' e 'arquivos' do elasticsearch" do
       result = mock(:result).as_null_object
-      Tire.should_receive('search').with('conteudos').and_return(result)
+      Tire.should_receive('search').with('conteudos', {load: true}).and_return(result)
+      Tire.should_receive('search').with('arquivos', {load: true}).and_return(result)
       Conteudo.search 'busca'
+    end
+
+    it "#search retorna a soma das buscas em 'arquivos' e 'conteudos'" do
+      result_conteudos = mock(:conteudos).as_null_object
+      result_arquivos = mock(:arquivos).as_null_object
+      result_conteudos.should_receive(:+).with(result_arquivos).and_return(['soma'])
+      Tire.should_receive('search').with('conteudos', {load: true}).and_return(result_conteudos)
+      Tire.should_receive('search').with('arquivos', {load: true}).and_return(result_arquivos)
+      Conteudo.search('busca').should eq(['soma'])
     end
 
     context 'indexação de atributos de relacionamentos' do

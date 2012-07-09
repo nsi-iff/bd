@@ -29,13 +29,22 @@ describe ObjetoDeAprendizagem do
     subject.pronatec.should == true
   end
 
+  its(:tipo_de_arquivo_importa?) { should be_false }
+
+  it "preenche de volta a associação 'conteudo' do arquivo em #arquivo_attributes=" do
+    subject.arquivo_attributes=(params = {})
+    params.fetch(:conteudo).should eq(subject)
+    subject.arquivo.conteudo.should eq(subject)
+  end
+
   it 'tipo de arquivo não importa' do
-    arquivo = ActionDispatch::Http::UploadedFile.new({
+    upload = ActionDispatch::Http::UploadedFile.new({
       filename: 'arquivo.nsi',
       type: 'text/plain',
       tempfile: File.new(Rails.root + "spec/resources/arquivo.nsi")
     })
-    build(:objeto_de_aprendizagem, link: '',
-                  arquivo: arquivo).should be_valid
+    conteudo = build(:objeto_de_aprendizagem, link: '',
+     arquivo_attributes: {uploaded_file: upload})
+    conteudo.should be_valid
   end
 end

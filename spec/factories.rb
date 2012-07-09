@@ -104,7 +104,7 @@ FactoryGirl.define do
   end
 
   factory :arquivo do
-    nome 'any name'
+    nome 'arquivo.rtf'
     key { rand.to_s.split('.')[1] }
   end
 
