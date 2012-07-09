@@ -443,9 +443,13 @@ describe Conteudo do
     usuario_gestor.lista_de_revisao.should include meu_artigo_pendente, meu_outro_artigo_pendente
   end
 
-  it 'retorna a extensão do arquivo enviado' do
-    meu_arquivo = create(:livro)
-    meu_arquivo.set_arquivo(Arquivo.new(nome: 'file.doc'))
-    meu_arquivo.extensao.should == "doc"
+  it "#extensao é delegada para o #arquivo" do
+    subject.arquivo = stub_model(Arquivo, :extensao => "odt")
+    subject.extensao.should eq("odt")
+  end
+
+  it "#extensao retorna nil caso #arquivo não exista" do
+    subject.arquivo.should be_nil
+    subject.extensao.should be_nil
   end
 end

@@ -12,6 +12,7 @@ class Conteudo < ActiveRecord::Base
   has_many :mudancas_de_estado
   belongs_to :sub_area
   has_one :arquivo
+  delegate :extensao, :to => :arquivo, :allow_nil => true
   belongs_to :contribuidor, :class_name => 'Usuario'
   accepts_nested_attributes_for :autores, :arquivo, :reject_if => :all_blank
   belongs_to :campus
@@ -188,10 +189,6 @@ class Conteudo < ActiveRecord::Base
   def self.pendentes_da_instituicao(instituicao)
     campi_ids = instituicao.campus.map(&:id)
     where("campus_id IN (#{campi_ids.join(',')}) AND state = 'pendente'")
-  end
-
-  def extensao
-    arquivo.nome.split('.').last
   end
 
   private

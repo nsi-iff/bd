@@ -141,4 +141,13 @@ describe Arquivo do
       Base64.encode64(upload.tempfile.read)
     )
   end
+
+  it 'retorna a extensão do arquivo enviado' do
+    arquivo = build(:arquivo, uploaded_file: ActionDispatch::Http::UploadedFile.new({
+      filename: 'arquivo.doc',
+      type: 'application/msword',
+      tempfile: File.new(Rails.root + 'spec/resources/arquivo.doc')
+    }))
+    arquivo.extensao.should eq("doc")
+  end
 end

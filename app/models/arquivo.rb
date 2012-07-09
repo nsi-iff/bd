@@ -50,4 +50,8 @@ class Arquivo < ActiveRecord::Base
   def tipo_importa?
     conteudo ? conteudo.tipo_de_arquivo_importa? : true
   end
+
+  def extensao
+    nome.split('.').last
+  end
 end
