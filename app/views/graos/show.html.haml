@@ -2,22 +2,10 @@
   = @grao.titulo
 
 .grao
-  Tabela originada da página X do conteúdo
-  %p
-.aba
-  %b
-    Conteudo:
-  %br
-    = @grao.conteudo.titulo
-  %br
   - if @grao.tipo == 'files'
-    .grao_arquivo
-      Atenção: as tabelas poderão ser apresentadas de forma parcial devido à limitações de layout.
-      = tabela_grao(@grao)
+    = render 'graos/show_tabela'
   - else
-    .imagem
-      %img{src: "data:image/xyz;base64,#{@grao.conteudo_base64}"}
-  %p
+    = render 'graos/show_imagem'
 
 = link_to "Download" , grao_baixar_grao_path(@grao)
 %br
