@@ -2,30 +2,7 @@
 
 #arquivo
 
-- unless controller.action_name == 'edit'
-  = f.semantic_fields_for :arquivo do |arquivo_f|
-    - if @conteudo.tipo_de_arquivo_importa?
-      = arquivo_f.input :uploaded_file, as: :file, label: 'Arquivo',
-        hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
-    - else
-      = arquivo_f.input :uploaded_file, as: :file, label: 'Arquivo',
-        hint: 'É suportado qualquer formato de arquivo.'
-    = f.semantic_errors :arquivo
-
-- if controller.action_name == 'edit' && @conteudo.arquivo
-  %br
-  = link_to "Download: #{@conteudo.arquivo.nome}", conteudo_baixar_conteudo_path(@conteudo)
-  %br
-  %div#opcoes_arquivo
-    = label_tag 'manter_arquivo_atual', 'Manter arquivo atual'
-    = check_box_tag 'manter_arquivo_atual', 'manter_arquivo_atual', true, class: 'opcoes_arquivo'
-
-    = label_tag 'excluir_arquivo_atual', 'Excluir arquivo atual'
-    = check_box_tag 'excluir_arquivo_atual', 'excluir_arquivo_atual', false, class: 'opcoes_arquivo'
-
-    = label_tag 'substituir_arquivo_atual', 'Substituir arquivo atual'
-    = check_box_tag 'substituir_arquivo_atual', 'substituir_arquivo_atual', false, class: 'opcoes_arquivo'
-
+  - if controller.action_name != 'edit' || @conteudo.link
     = f.semantic_fields_for :arquivo do |arquivo_f|
       - if @conteudo.tipo_de_arquivo_importa?
         = arquivo_f.input :uploaded_file, as: :file, label: 'Arquivo',
@@ -34,6 +11,29 @@
         = arquivo_f.input :uploaded_file, as: :file, label: 'Arquivo',
           hint: 'É suportado qualquer formato de arquivo.'
       = f.semantic_errors :arquivo
+
+  - if controller.action_name == 'edit' && @conteudo.arquivo
+    %br
+    = link_to "Download: #{@conteudo.arquivo.nome}", conteudo_baixar_conteudo_path(@conteudo)
+    %br
+    %div#opcoes_arquivo
+      = label_tag 'manter_arquivo_atual', 'Manter arquivo atual'
+      = check_box_tag 'manter_arquivo_atual', 'manter_arquivo_atual', true, class: 'opcoes_arquivo'
+
+      = label_tag 'excluir_arquivo_atual', 'Excluir arquivo atual'
+      = check_box_tag 'excluir_arquivo_atual', 'excluir_arquivo_atual', false, class: 'opcoes_arquivo'
+
+      = label_tag 'substituir_arquivo_atual', 'Substituir arquivo atual'
+      = check_box_tag 'substituir_arquivo_atual', 'substituir_arquivo_atual', false, class: 'opcoes_arquivo'
+
+      = f.semantic_fields_for :arquivo do |arquivo_f|
+        - if @conteudo.tipo_de_arquivo_importa?
+          = arquivo_f.input :uploaded_file, as: :file, label: 'Arquivo',
+            hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
+        - else
+          = arquivo_f.input :uploaded_file, as: :file, label: 'Arquivo',
+            hint: 'É suportado qualquer formato de arquivo.'
+        = f.semantic_errors :arquivo
 
 = f.input :link,
   hint: 'Este campo somente deverá ser preenchido se o autor não dispuser dos devidos direitos para disponibilização do conteúdo, inviabilizando assim o preenchimento do campo “Arquivo”.'
