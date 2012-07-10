@@ -1,8 +1,8 @@
 $(document).ready(function() {
     var opcoes_arquivo = $('#opcoes_arquivo input')
-    var arquivo = $('#livro_arquivo_input');
+    var arquivo = $('[id*=arquivo_input]');
 
-    if (opcoes_arquivo) {
+    if (opcoes_arquivo && window.location.href.indexOf('edit?') == 34) {
         apenas_um_checkbox();
         hide_arquivo();
         toggle_arquivo();

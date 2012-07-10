@@ -1,6 +1,6 @@
 = f.input :titulo, label: 'Título'
 
-- unless @conteudo.arquivo
+- unless controller.action_name == 'edit'
   - if @conteudo.tipo_de_arquivo_importa?
     = f.input :arquivo, as: :file, label: 'Arquivo',
       hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'
