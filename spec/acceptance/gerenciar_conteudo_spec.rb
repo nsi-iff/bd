@@ -46,7 +46,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     within '#artigo_de_evento_link_input' do
       page.should have_content 'não pode existir simultaneamente a arquivo'
     end
-    within '#artigo_de_evento_arquivo_input' do
+    within '#arquivo' do
       page.should have_content 'não pode existir simultaneamente a link'
     end
   end

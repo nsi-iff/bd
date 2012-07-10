@@ -3,8 +3,8 @@ class ObjetoDeAprendizagem < Conteudo
   has_and_belongs_to_many :cursos
   has_many :eixos_tematicos, :through => :cursos, :uniq => true
   belongs_to :idioma
-  
-  attr_accessible :palavras_chave, :tempo_aprendizagem, :curso_ids, :novas_tags, 
+
+  attr_accessible :palavras_chave, :tempo_aprendizagem, :curso_ids, :novas_tags,
                   :idioma_id
 
   def nomes_dos_eixos_tematicos
@@ -34,11 +34,6 @@ class ObjetoDeAprendizagem < Conteudo
     end
   end
 
-  def arquivo=(uploaded)
-    @arquivo_uploaded = uploaded
-    @arquivo_base64 = Base64.encode64(@arquivo_uploaded.read) if @arquivo_uploaded
-  end
-
   def descricao_idioma
     idioma.try(:descricao)
   end
@@ -49,5 +44,10 @@ class ObjetoDeAprendizagem < Conteudo
 
   def self.nome_humanizado
     'Objeto de Aprendizagem'
+  end
+
+  def arquivo_attributes=(args)
+    args.reverse_merge!(conteudo: self)
+    super
   end
 end

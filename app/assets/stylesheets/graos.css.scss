@@ -16,12 +16,45 @@
   }
 }
 
-.grao_arquivo {
+.grao_arquivo{
   overflow: hidden;
   margin-bottom: 10px;
+   td{
+    border-style:solid; 
+    border-width:0.5px;
+  }
 }
 
-.aviso_imagem {
-  font-weight: bold;
-  color: #FF0000;
+.imagem{
+  img{
+    max-width: 90%;
+    max-height: 90%;
+    border: 1px solid #CCC;
+    margin: 12px;
+  }
+}
+
+.imagem_em_tabela {
+  img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+}
+
+.fullscreenOn{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  left: 0px;
+  top: 0px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  img{
+    /*top: auto;
+    bottom: auto;*/
+    margin: auto auto auto auto;
+    vertical-align: middle;
+  }
 }

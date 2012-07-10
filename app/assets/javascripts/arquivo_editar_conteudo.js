@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var opcoes_arquivo = $('#opcoes_arquivo input')
-    var arquivo = $('[id*=arquivo_input]');
+    var arquivo = $('[id*=arquivo_attributes_uploaded_file_input]');
 
     if (opcoes_arquivo && window.location.href.indexOf('edit?') == 34) {
         apenas_um_checkbox();

@@ -6,6 +6,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
 
   before :each do
     Tire.criar_indices
+    Arquivo.index.delete; Arquivo.create_elasticsearch_index
     iff = Instituicao.create(nome: 'IFF')
     campos_centro = Campus.create nome: 'Campos Centro', instituicao: iff
     cabo_frio = Campus.create nome: 'Cabo Frio', instituicao: iff
@@ -30,11 +31,12 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                                     volume_publicacao: 10
     @livro = Livro.create titulo: "Livro",
                           link: "",
-                          arquivo: ActionDispatch::Http::UploadedFile.new({
-                            filename: 'arquivo.rtf',
-                            type: 'text/rtf',
-                            tempfile: File.new(Rails.root + 'spec/resources/arquivo.rtf')
-                          }),
+                          arquivo: Arquivo.new(
+                            uploaded_file: ActionDispatch::Http::UploadedFile.new({
+                              filename: 'arquivo.rtf',
+                              type: 'text/rtf',
+                              tempfile: File.new(Rails.root + 'spec/resources/arquivo.rtf')
+                            })),
                           sub_area: sub_area_1,
                           campus: campos_centro,
                           autores: [autor_1, autor_2]
@@ -59,6 +61,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                                                      campus: campos_centro,
                                                                      autores: [autor_1]
     Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+    Arquivo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
   end
 
   scenario 'por título' do

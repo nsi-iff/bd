@@ -1,7 +1,7 @@
 %h1{ id: 'titulo-grao' }
   = @grao.titulo
 
-.grao_arquivo
+.grao
   Tabela originada da página X do conteúdo
   %p
 .aba
@@ -10,10 +10,17 @@
   %br
     = @grao.conteudo.titulo
   %br
-  = tabela_grao(@grao)
+  - if @grao.tipo == 'files'
+    .grao_arquivo
+      Atenção: as tabelas poderão ser apresentadas de forma parcial devido à limitações de layout.
+      = tabela_grao(@grao)
+  - else
+    .imagem
+      %img{src: "data:image/xyz;base64,#{@grao.conteudo_base64}"}
   %p
 
 = link_to "Download" , grao_baixar_grao_path(@grao)
-= link_to 'Adicionar à cesta', adicionar_a_cesta_grao_path(@grao), method: :put, remote: true
+%br
+= link_to 'Adicionar à Cesta de Grãos', adicionar_a_cesta_grao_path(@grao), method: :put, remote: true
 - if current_usuario
-  = link_to "Adicionar à estante", favoritar_grao_path(@grao), method: :put
+  = link_to "Adicionar à Estante", favoritar_grao_path(@grao), method: :put

@@ -69,7 +69,7 @@ feature 'apresentacao dos conteudos por abas' do
        %w(7 8 9)]
   end
 
-  scenario 'tabelas contendo imagens devem apresentar a mensagem: "aviso: imagem indisponível"' do
+  scenario 'imagens inseridas em tabelas devem ser mostradas' do
     Papel.criar_todos
     autenticar_usuario(Papel.contribuidor)
 
@@ -80,6 +80,7 @@ feature 'apresentacao dos conteudos por abas' do
 
     conteudo = create(:artigo_de_periodico)
     grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
+    imagem = IO.read("#{Rails.root}/spec/resources/biblioteca_digital.png")
 
     visit conteudo_path(conteudo)
 
@@ -88,6 +89,7 @@ feature 'apresentacao dos conteudos por abas' do
     page.should have_content 'Tabelas'
 
     click_link 'Tabelas'
-    page.should have_content 'AVISO: IMAGEM INDISPONÍVEL'
+    page.should have_xpath("//img[@src]")
+    page.should_not have_content 'Pictures'
   end
 end

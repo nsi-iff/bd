@@ -7,6 +7,7 @@ class ConteudosController < ApplicationController
   def new
     authorize! :create, Conteudo
     @conteudo = klass.new
+    @conteudo.build_arquivo
     @conteudo.pronatec = true if params['pronatec']
     @conteudo.autores << Autor.new
   end
@@ -27,6 +28,7 @@ class ConteudosController < ApplicationController
       redirect_to conteudo_path(@conteudo),
                   notice: "#{@conteudo.class.nome_humanizado} enviado com sucesso"
     else
+      @conteudo.build_arquivo
       render action: 'new'
     end
   end
