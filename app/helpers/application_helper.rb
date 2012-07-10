@@ -1,6 +1,21 @@
 # encoding: utf-8
 
 require 'base64'
+require './lib/zip_entry.rb'
+require 'extend_string'
+
+require 'rubygems'
+require 'zip/zipfilesystem';
+require 'rexml/document';
+require 'fileutils'
+require 'zip/zip'
+
+include REXML
+
+require 'rexml/document'; include REXML
+require 'zip/zipfilesystem'; include Zip
+require 'fileutils'
+require 'nokogiri'
 
 module ApplicationHelper
   def title
@@ -52,8 +67,14 @@ module ApplicationHelper
       while tabela[index2] != "\n"
         index2 += 1
       end
+      nome_imagem = tabela[index1..index2-1]
+      arquivo_odt = Tempfile.new("#{Rails.root}/tmp/arquivo.odt", "w")
+      arquivo_odt.write(Base64.decode64(grao.conteudo_base64).force_encoding('UTF-8'))
+      arquivo_odt.close()
+      table = ZipFile.open(arquivo_odt.path)
+      imagem = table.read(nome_imagem)
       (index2 - index1).times{ tabela[index1] = "" }
-      tabela.insert(index1, "<span class='aviso_imagem'>AVISO: IMAGEM INDISPONÍVEL</span>")
+      tabela.insert(index1, "<span class='imagem_em_tabela'><img src='data:image/xyz;base64,#{Base64.encode64(imagem)}'></span>")
     end
     tabela
   end

@@ -33,9 +33,12 @@
     margin: 12px;
   }
 }
-.aviso_imagem {
-  font-weight: bold;
-  color: #FF0000;
+
+.imagem_em_tabela {
+  img {
+    max-width: 90%;
+    max-height: 90%;
+  }
 }
 
 .fullscreenOn{
