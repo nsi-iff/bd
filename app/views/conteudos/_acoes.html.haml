@@ -2,3 +2,5 @@
   = button_to 'Submeter', submeter_conteudo_path(conteudo), method: :put
 - if can? :aprovar, conteudo and conteudo.pendente?
   = button_to 'Aprovar', aprovar_conteudo_path(conteudo), method: :put
+- if can? :recolher, conteudo
+  = button_to 'Recolher', recolher_conteudo_path(conteudo), method: :put

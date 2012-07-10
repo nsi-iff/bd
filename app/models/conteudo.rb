@@ -57,7 +57,7 @@ class Conteudo < ActiveRecord::Base
     end
 
     event :recolher do
-      transition :publicado => :recolhido
+      transition [:publicado, :pendente] => :recolhido
     end
 
     event :publicar do

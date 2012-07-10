@@ -63,6 +63,13 @@ class ConteudosController < ApplicationController
     redirect_to root_path
   end
 
+  def recolher
+    conteudo = obter_conteudo
+    authorize! :recolher, conteudo
+    conteudo.recolher
+    redirect_to root_path
+  end
+
   def submeter
     authorize! :submeter, Conteudo
     conteudo = obter_conteudo

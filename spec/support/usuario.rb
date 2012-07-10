@@ -6,6 +6,7 @@ def autenticar_usuario(*papeis)
 end
 
 def autenticar(usuario)
+  visit '/usuarios/logout'
   visit '/usuarios/login'
   within_fieldset 'Entrar' do
     fill_in 'E-mail', with: usuario.email
