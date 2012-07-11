@@ -184,7 +184,7 @@ feature 'Buscas' do
   end
 
   scenario 'cadastrar busca salva no servico de mala direta' do
-    autenticar_usuario(Papel.contribuidor)
+    usuario = autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'link', arquivo: ''
     page.should have_content 'com sucesso'
     visit root_path

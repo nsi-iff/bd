@@ -44,10 +44,6 @@ class Conteudo < ActiveRecord::Base
       transition [:publicado, :recolhido, :pendente] => :editavel
     end
 
-    event :recolher do
-      transition [:publicado, :pendente] => :recolhido
-    end
-
     event :granularizou do
       transition :granularizando => :publicado
     end

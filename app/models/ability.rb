@@ -16,6 +16,7 @@ class Ability
       unless instituicao == 'Não pertenço a uma Instituição da Rede Federal de EPCT'
         can [:adicionar_conteudo], Usuario
       end
+
       can [:read, :edit, :update], Conteudo do |conteudo|
         !conteudo.recolhido?
       end
@@ -30,6 +31,7 @@ class Ability
       can :aprovar, Conteudo do |conteudo|
         usuario.pode_aprovar? conteudo
       end
+
       can :recolher, Conteudo do |conteudo|
         usuario.pode_recolher?(conteudo) &&
         (conteudo.pendente? || conteudo.publicado?)

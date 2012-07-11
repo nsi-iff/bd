@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $('.imagem').each(function(){
         var imagem = $(this);
+
         var fullscreenOn = false;
         var closefullscreen = function(){
             imagem.removeClass('fullscreenOn');
@@ -9,7 +10,7 @@ $(document).ready(function(){
         }
         var fullscreen = function() {
             if(fullscreenOn){
-                closefullscreen();       
+                closefullscreen();
             }
             else
             {
