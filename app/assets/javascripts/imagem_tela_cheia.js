@@ -1,7 +1,6 @@
 $(document).ready(function(){
     $('.imagem').each(function(){
         var imagem = $(this);
-        
         var fullscreenOn = false;
         var closefullscreen = function(){
             imagem.removeClass('fullscreenOn');

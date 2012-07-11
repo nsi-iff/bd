@@ -70,6 +70,10 @@ class Usuario < ActiveRecord::Base
     favoritos.delete(referencia)
   end
 
+  def pode_recolher?(conteudo)
+    mesma_instituicao? conteudo
+  end
+
   def method_missing(method_name, *params)
     nome_papel = method_name.to_s.chop
     todos = Papel.all.map(&:nome)

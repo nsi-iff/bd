@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require 'spec_helper'
-  
+
   def comparar_odt(tag, novo, grao)
     test = open_xml(grao).xpath(tag)
     tmp =  open_xml(novo).xpath(tag)
@@ -22,7 +22,7 @@ feature 'Visualizar grão' do
 
       conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de tabelas")
       grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
-    end  
+    end
     scenario 'visualizar grao' do
       Papel.criar_todos
       user = autenticar_usuario(Papel.contribuidor)
@@ -38,7 +38,7 @@ feature 'Visualizar grão' do
     scenario 'efetuar download do grao' do
       grao = adicionar_grao
       visit grao_path(grao)
-      
+
       click_link 'Download'
       grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}.odt"
       grao_postado = "#{Rails.root}/spec/resources/grao_tabela.odt"
@@ -61,7 +61,7 @@ feature 'Visualizar grão' do
       grao = adicionar_grao
       visit grao_path(grao)
 
-      page.should have_content 'Tabela originada da página X do conteúdo'
+      page.should have_content 'Imagem originada da página X do conteúdo'
       page.should have_content "Testando visualização de imagem"
       page.should have_content "Download"
       page.should have_content "Adicionar à Cesta de Grãos"
@@ -70,7 +70,7 @@ feature 'Visualizar grão' do
     scenario 'efetuar download do grao' do
       grao = adicionar_grao
       visit grao_path(grao)
-      
+
       click_link 'Download'
       grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}.jpg"
       grao_postado = "#{Rails.root}/spec/resources/grao_teste_1.jpg"
@@ -86,11 +86,11 @@ feature 'Visualizar grão' do
       conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de imagem")
       grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])
     end
-    
+
     scenario 'adiciondo-o à cesta de grão' do
       Papel.criar_todos
       user = autenticar_usuario(Papel.contribuidor)
-      
+
       grao = adicionar_grao
       visit grao_path(grao)
 
@@ -120,4 +120,4 @@ feature 'Visualizar grão' do
   end
 
 end
-   
+
