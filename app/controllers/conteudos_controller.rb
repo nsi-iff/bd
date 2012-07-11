@@ -41,7 +41,14 @@ class ConteudosController < ApplicationController
   def update
     authorize! :update, Conteudo
     @conteudo = obter_conteudo
-    if @conteudo.update_attributes(conteudo_da_requisicao)
+    requisicao = conteudo_da_requisicao
+    if params[:excluir_arquivo_atual]
+      @conteudo.arquivo = nil
+      Arquivo.find(requisicao[:arquivo_attributes][:id]).delete
+      requisicao.delete :arquivo_attributes
+    end
+
+    if @conteudo.update_attributes(requisicao)
       redirect_to conteudo_path(@conteudo),
                   notice: "#{@conteudo.class.nome_humanizado} alterado com sucesso"
     else
@@ -82,6 +89,20 @@ class ConteudosController < ApplicationController
     authorize! :aprovar, conteudo
     conteudo.aprovar
     redirect_to conteudo_path(conteudo)
+  end
+
+  def devolver
+    conteudo = obter_conteudo
+    authorize! :devolver, conteudo
+    conteudo.devolver
+    redirect_to root_path
+  end
+
+  def recolher
+    conteudo = obter_conteudo
+    authorize! :recolher, conteudo
+    conteudo.recolher
+    redirect_to root_path
   end
 
   def favoritar

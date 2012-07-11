@@ -55,6 +55,7 @@ DigitalLibrary::Application.routes.draw do
       put :submeter
       put :favoritar
       put :remover_favorito
+      put :devolver
     end
     post :granularizou, on: :collection
     get "/baixar_conteudo" , :to => 'conteudos#baixar_conteudo'
@@ -73,12 +74,9 @@ DigitalLibrary::Application.routes.draw do
     get "/baixar_grao" , :to => 'graos#baixar_grao'
   end
 
-
-
   get :favoritar_graos, :to => 'graos#favoritar_graos'
   get "/cesta/baixar_conteudo", :to => 'graos#baixar_conteudo'
   get "/cesta/baixar_conteudo_em_odt", :to => 'graos#baixar_conteudo_em_odt'
-
 
   match "/areas/:id/sub_areas" => "areas#sub_areas"
   match "/instituicoes/:id/campus" => "instituicoes#campus"
@@ -86,4 +84,3 @@ DigitalLibrary::Application.routes.draw do
   get '/editor' => 'editor#index', as: :editor
   post '/editor' => 'editor#download'
 end
-
