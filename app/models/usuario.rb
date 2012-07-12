@@ -100,6 +100,10 @@ class Usuario < ActiveRecord::Base
     mesma_instituicao? conteudo
   end
 
+  def pode_retornar_para_revisao?(conteudo)
+    mesma_instituicao? conteudo
+  end
+
   def mesma_instituicao?(conteudo)
     camp1 = Campus.find(self.campus_id)
     camp2 = Campus.find(conteudo.campus_id)

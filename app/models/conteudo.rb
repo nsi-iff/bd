@@ -64,6 +64,10 @@ class Conteudo < ActiveRecord::Base
       transition :recolhido => :publicado
     end
 
+    event :retornar_para_revisao do
+      transition [:publicado] => :pendente
+    end
+
     after_transition(any => any) do |conteudo, transicao|
       conteudo.mudancas_de_estado.create!(
         { de: transicao.from,

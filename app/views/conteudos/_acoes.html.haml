@@ -6,3 +6,5 @@
   = button_to 'Recolher', recolher_conteudo_path(conteudo), method: :put
 - if can? :devolver, conteudo
   = button_to 'Devolver', devolver_conteudo_path(conteudo), method: :put
+- if can? :retornar_para_revisao, conteudo
+  = button_to 'Retornar para revisão', retornar_para_revisao_conteudo_path, method: :put

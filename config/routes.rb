@@ -56,6 +56,7 @@ DigitalLibrary::Application.routes.draw do
       put :favoritar
       put :remover_favorito
       put :devolver
+      put :retornar_para_revisao
     end
     post :granularizou, on: :collection
     get "/baixar_conteudo" , :to => 'conteudos#baixar_conteudo'

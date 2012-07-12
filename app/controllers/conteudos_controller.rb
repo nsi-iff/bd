@@ -121,6 +121,13 @@ class ConteudosController < ApplicationController
     redirect_to conteudo_path(conteudo)
   end
 
+  def retornar_para_revisao
+    authorize! :retornar_para_revisao, Conteudo
+    conteudo = obter_conteudo
+    conteudo.retornar_para_revisao
+    redirect_to root_path
+  end
+
   def granularizou
     conteudo = Conteudo.encontrar_por_id_sam(params['doc_key'])
     conteudo.granularizou!(graos: params['grains_keys'])
