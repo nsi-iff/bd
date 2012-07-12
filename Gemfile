@@ -28,7 +28,7 @@ gem 'odt2html'
 gem 'mail_form'
 gem 'erb2haml'
 gem 'simple-navigation',
-  github: 'rodrigomanhaes/simple-navigation',
+  git: 'https://github.com/rodrigomanhaes/simple-navigation.git',
   branch: 'preceding_text'
 gem 'nokogiri'
 gem 'mime-types'
