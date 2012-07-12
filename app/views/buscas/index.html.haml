@@ -7,9 +7,9 @@
   = f.label 'Instituição'
   = f.select 'instituicao_nome', options_for_select(['Todas'] + @instituicoes.map(&:nome) )
   = f.label 'Área'
-  = f.select 'area_nome', options_for_select(['Todas'] + @areas.map(&:nome) )
+  = select_tag(:area, options_for_select(['Todas'] + Area.all.map {|area| [area.nome, area.id] }), id: 'area', class: "areas", name: 'parametros[area_nome]')
   = f.label 'Subárea'
-  = f.select 'sub_area_nome', options_for_select(['Todas'] + @sub_areas.map(&:nome) )
+  = select_tag(:sub_area, options_for_select(['Todas']), id: 'sub_area_busca_avancada', class: "sub_areas", name: 'parametros[sub_area_nome]')
   = f.label 'Tipos de conteúdo'
   %ul#tipos_de_conteudo
     - @tipos_conteudo.each do |tipo|
