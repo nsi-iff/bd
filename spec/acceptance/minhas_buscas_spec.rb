@@ -180,10 +180,12 @@ feature 'Buscas' do
     page.should have_link 'Editar'
     page.should have_link 'Deletar'
 
-    page.has_selector?('input', :type => 'checkbox')
+    page.should have_selector('input', :type => 'checkbox')
   end
 
-  scenario 'cadastrar busca salva no servico de mala direta' do
+
+  # TODO: isto rodava localmente antes, verificar (rodrigo, 12/07/12, 18:08)
+  scenario 'cadastrar busca salva no servico de mala direta', busca: true do
     usuario = autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'link', arquivo: ''
     page.should have_content 'com sucesso'
