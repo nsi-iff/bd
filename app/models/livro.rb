@@ -16,7 +16,7 @@ class Livro < Conteudo
   private
   def verificar_ano
     unless ano_publicacao.blank?
-      if ano_publicacao < 1990 or ano_publicacao > Time.now.year
+      if ano_publicacao < 1900 or ano_publicacao > Time.now.year
         errors.add(:ano_publicacao, "Insira um ano válido")
       end
     end
