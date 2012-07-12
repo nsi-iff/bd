@@ -140,4 +140,12 @@ feature 'Estante' do
       page.should have_content conteudo_2.referencia_abnt
     end
   end
+  it 'Não deve aparecer link para favoritar documento se este foi postado pelo próprio usuario' do
+    usuario = create(:usuario_contribuidor)
+    documento = create(:livro, contribuidor_id: usuario.id)
+    autenticar(usuario)
+    
+    visit conteudo_path(documento)
+    page.should_not have_content 'Favoritar'    
+  end
 end

@@ -38,10 +38,11 @@
     = render 'conteudos/graos_arquivo', graos: @conteudo.graos_arquivo
 
 - if current_usuario
-  - if current_usuario.favorito? @conteudo.referencia
-    = link_to 'Remover favorito', remover_favorito_conteudo_path(@conteudo), method: :put
-  - else
-    = link_to 'Favoritar', favoritar_conteudo_path(@conteudo), method: :put
+  - unless current_usuario.id == @conteudo.contribuidor_id
+    - if current_usuario.favorito? @conteudo.referencia
+      = link_to 'Remover favorito', remover_favorito_conteudo_path(@conteudo), method: :put
+    - else
+      = link_to 'Favoritar', favoritar_conteudo_path(@conteudo), method: :put
 
 = button_to "Editar", edit_conteudo_path(@conteudo), method: 'get'
 - if can? :destroy, @conteudo
