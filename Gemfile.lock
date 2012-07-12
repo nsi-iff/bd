@@ -7,7 +7,7 @@ GIT
       tire (>= 0.3.11)
 
 GIT
-  remote: git://github.com/rodrigomanhaes/simple-navigation.git
+  remote: https://github.com/rodrigomanhaes/simple-navigation.git
   revision: 3a803f0f745e0bdf44419a16c5fe33459d075c06
   branch: preceding_text
   specs:
