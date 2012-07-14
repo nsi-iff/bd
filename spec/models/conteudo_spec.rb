@@ -55,6 +55,11 @@ describe Conteudo do
               from('pendente').to('publicado')
           end
         end
+
+        it 'vai para recolhido' do
+          expect { conteudo.recolher! }.to change { conteudo.state }.
+            from('pendente').to('recolhido')
+        end
       end
 
       it 'ao devolver, vai para editável' do
