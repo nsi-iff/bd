@@ -10,16 +10,16 @@ describe Busca do
   it "trata os parâmetros de busca para a query no elasticsearch" do
     form_params = {titulo: "linguagens dinâmicas",
                     autor: "Why",
-                 sub_area: "Computação",
-                     area: "Exatas",
+                 sub_area_nome: "Computação",
+                     area_nome: "Exatas",
               instituicao: "IFF",
               tipos: ["livro", "relatorio"]}
 
     Busca.new(parametros: form_params).query_parametros.should eq(
       "titulo:linguagens dinâmicas "\
       "autor:Why "\
-      "sub_area:Computação "\
-      "area:Exatas "\
+      "sub_area_nome:Computação "\
+      "area_nome:Exatas "\
       "instituicao:IFF")
   end
 
