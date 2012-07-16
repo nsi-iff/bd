@@ -18,13 +18,30 @@ class Busca < ActiveRecord::Base
     end
   end
 
+  #TODO: refatorar
   def resultados(filtros = nil)
-    Tire.search('conteudos') { |t|
+    if parametros.blank?
+      buscar_em_conteudos(filtros) + buscar_em_arquivos
+    elsif busca.blank?
+      buscar_em_conteudos(filtros)
+    else
+      buscar_em_conteudos(filtros) & buscar_em_arquivos
+    end
+  end
+
+  def buscar_em_conteudos(filtros = nil)
+    Tire.search('conteudos', load: true) { |t|
       t.query { |q| q.string busca } unless busca.blank?
       t.query { |q| q.string query_parametros } unless query_parametros.blank?
       t.filter(:term, filtros) if filtros
       t.filter(:terms, _type: parametros[:tipos]) if parametros[:tipos]
     }.results.to_a
+  end
+
+  def buscar_em_arquivos
+    Tire.search('arquivos', load: true) { |t|
+      t.query { |q| q.string busca } unless busca.blank?
+    }.results.to_a.map(&:conteudo)
   end
 
   def parametros

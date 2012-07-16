@@ -20,17 +20,6 @@ class BuscasController < InheritedResources::Base
       redirect_to buscas_path,
         :notice => "Busca não realizada. Favor preencher algum critério de busca"
     else
-      @resultados = @busca.resultados(:pronatec => true)
-      render :resultado_busca
-    end
-  end
-
-  def busca_avancada
-    @busca = Busca.new(busca: params[:busca], parametros: params[:parametros])
-    if !@busca.busca? && @busca.parametros.empty?
-      redirect_to buscas_path,
-        :notice => "Busca não realizada. Favor preencher algum critério de busca"
-    else
       if @busca.parametros['tipos']
         @resultados = []
         @tipos = @busca.parametros['tipos']
