@@ -38,7 +38,7 @@ class Ability
         usuario.pode_devolver?(conteudo) && conteudo.pendente?
       end
       can :retornar_para_revisao, Conteudo do |conteudo|
-        usuario.pode_retornar_para_revisao?(conteudo) && conteudo.publicado?
+        usuario.mesma_instituicao? conteudo
       end
       can [:lista_de_revisao, :ter_lista_de_revisao], Usuario
     end

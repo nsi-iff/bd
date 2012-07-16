@@ -65,7 +65,7 @@ class Conteudo < ActiveRecord::Base
     end
 
     event :retornar_para_revisao do
-      transition [:publicado] => :pendente
+      transition [:publicado, :recolhido] => :pendente
     end
 
     after_transition(any => any) do |conteudo, transicao|
