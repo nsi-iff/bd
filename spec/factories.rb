@@ -65,6 +65,13 @@ FactoryGirl.define do
 
   factory :objeto_de_aprendizagem, :parent => :conteudo, :class => ObjetoDeAprendizagem do
   end
+  
+  factory :livro_recolhido, parent: :livro do
+    after(:create) do |livro|
+      livro.submeter!
+      livro.recolher!
+    end
+  end
 
   factory :instituicao do
     sequence(:nome) {|n| "Nome#{n}"}
