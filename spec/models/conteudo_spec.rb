@@ -150,12 +150,6 @@ describe Conteudo do
           conteudo.remover!(motivo: 'improprio')
         }.to change { conteudo.state }.from('recolhido').to('removido')
       end
-      
-      it 'ao retornar para revisão, vai para pendente' do
-        expect {
-          conteudo.retornar_para_revisao! 
-        }.to change { conteudo.state }.from('recolhido').to('pendente')
-      end
     end
   end
 

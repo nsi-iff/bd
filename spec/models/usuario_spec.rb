@@ -38,30 +38,6 @@ describe Usuario do
 
       include_examples 'adicionar e ler todos os tipos de conteudo'
     end
-    
-    context 'gestor' do
-      let(:usuario) { create(:usuario_gestor) }
-      
-      context 'retornar para pendente' do
-        let(:conteudo) { stub_model(Conteudo) }
-
-        it 'somente conteúdos de sua própria instituição' do
-          autorizado = stub_model(Usuario, gestor?: true)
-          autorizado.stub(:mesma_instituicao?).with(conteudo).and_return(true)
-          Ability.new(autorizado).should be_able_to(:retornar_para_revisao, conteudo)
-          
-          desautorizado = stub_model(Usuario, gestor?: true)
-          desautorizado.stub(:mesma_instituicao?).and_return(false)
-          Ability.new(desautorizado).should_not be_able_to(:retornar_para_revisao, conteudo)
-        end
-        
-        it 'somente gestor' do
-          nao_gestor = stub_model(Usuario, gestor?: false)
-          nao_gestor.stub(:mesma_instituicao?).with(conteudo).and_return(true)
-          Ability.new(nao_gestor).should_not be_able_to(:retornar_para_revisao, conteudo)
-        end
-      end
-    end
   end
 
   context 'escrivaninha' do
