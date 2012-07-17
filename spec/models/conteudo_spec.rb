@@ -298,6 +298,13 @@ describe Conteudo do
     conteudo.errors[:arquivo].should be_any
   end
 
+  it 'link devem ser válido' do
+    build(:conteudo, arquivo: nil,
+                  link: 'http://nsi.iff.edu.br').  should be_valid
+    build(:conteudo, arquivo: nil,
+                  link: 'abcde').  should_not be_valid
+  end
+
   it 'area deve ser a area ligada a sua subarea' do
     area = create(:area)
     subarea = create(:sub_area, area: area)

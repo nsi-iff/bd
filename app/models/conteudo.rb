@@ -30,6 +30,8 @@ class Conteudo < ActiveRecord::Base
   validates :titulo, :sub_area,
             :campus, :autores, presence: true
 
+  validates_format_of :link, :with => URI::regexp(%w(http https)), :allow_blank => true
+
   state_machine :state, :initial => :editavel do
     event :submeter do
       transition :editavel => :pendente
