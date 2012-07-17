@@ -24,7 +24,7 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                               campus: campos_centro,
                                               autores: [autor_1]
     @artigo_de_periodico = ArtigoDePeriodico.create titulo: "Artigo de Periódico",
-                                                    link: "nsi.iff.edu.br",
+                                                    link: "http://nsi.iff.edu.br",
                                                     sub_area: sub_area_1,
                                                     campus: campos_centro,
                                                     autores: [autor_1, autor_2],
