@@ -22,7 +22,7 @@ feature 'Editar Conteúdo' do
     scenario 'link para download com o nome do arquivo' do
       Papel.criar_todos
       submeter_conteudo :artigo_de_evento, link: '',
-                        arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
+                         arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
       artigo = ArtigoDeEvento.last
       visit edit_conteudo_path(artigo)
       click_link "Download: #{artigo.arquivo.nome}"
