@@ -150,10 +150,10 @@ describe Conteudo do
           conteudo.remover!(motivo: 'improprio')
         }.to change { conteudo.state }.from('recolhido').to('removido')
       end
-      
+
       it 'ao retornar para revisão, vai para pendente' do
         expect {
-          conteudo.retornar_para_revisao! 
+          conteudo.retornar_para_revisao!
         }.to change { conteudo.state }.from('recolhido').to('pendente')
       end
     end
@@ -347,9 +347,9 @@ describe Conteudo do
 
     it 'por enquanto, apenas se o arquivo associado for um ODT' do
       conteudo.link = nil
-      conteudo.arquivo = (stub_model(Arquivo, odt?: false))
+      conteudo.arquivo = stub_model(Arquivo, odt?: false)
       conteudo.should_not be_granularizavel
-      conteudo.arquivo = (stub_model(Arquivo, odt?: true))
+      conteudo.arquivo = stub_model(Arquivo, odt?: true)
       conteudo.should be_granularizavel
     end
   end

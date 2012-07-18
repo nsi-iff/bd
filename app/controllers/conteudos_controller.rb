@@ -43,8 +43,7 @@ class ConteudosController < ApplicationController
     @conteudo = obter_conteudo
     requisicao = conteudo_da_requisicao
     if params[:excluir_arquivo_atual]
-      @conteudo.arquivo = nil
-      Arquivo.find(requisicao[:arquivo_attributes][:id]).delete
+      @conteudo.arquivo.destroy
       requisicao.delete :arquivo_attributes
     end
 

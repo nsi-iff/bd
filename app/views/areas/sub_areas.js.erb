@@ -5,14 +5,17 @@
   sub_areas.children().remove();
 
   //executa este código somente na pagina de busca avancada
-  if ($('#sub_area_busca_avancada').size() != 0)
-  {
+  if ($('#sub_area_busca_avancada').size() != 0) {
     sub_areas.append("<option>Todas</option>");
-  }
-
-  //inclui as sub_areas da grande area selecionada
-  <% @area.sub_areas.each do |sub_area| %>
-    sub_areas.append(
+    <% @area.sub_areas.each do |sub_area| %>
+      sub_areas.append(
         "<option value=' <%= sub_area.nome %> '> <%= sub_area.nome %> </option>");
-  <% end %>
+    <% end %>
+  } else {
+    //inclui as sub_areas da grande area selecionada
+    <% @area.sub_areas.each do |sub_area| %>
+      sub_areas.append(
+        "<option value=' <%= sub_area.id %> '> <%= sub_area.nome %> </option>");
+    <% end %>
+  }
 })();
