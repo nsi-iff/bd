@@ -5,15 +5,25 @@ Dir.glob(Rails.root + '/app/models/*.rb').each { |file| require file }
 
 feature 'Buscas' do
   before(:each) do
-    Tire.criar_indices if ENV['INTEGRACAO_TIRE']
+    if ENV['INTEGRACAO_TIRE']
+      Tire.criar_indices
+      sleep(2)
+    end
     Papel.criar_todos
+  end
+
+  def refresh_elasticsearch
+    if ENV['INTEGRACAO_TIRE']
+      Arquivo.tire.index.refresh
+      Conteudo.tire.index.refresh
+    end
   end
 
   context 'busca avançada (busca no acervo)', busca: true do
     scenario 'deve buscar por título' do
       livro = create(:livro)
       livro.submeter! && livro.aprovar!
-      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+      refresh_elasticsearch
 
       visit buscas_path
       fill_in 'parametros[titulo]', with: livro.titulo
@@ -26,7 +36,7 @@ feature 'Buscas' do
     scenario 'busca pelo nome do autor' do
       livro = create(:livro)
       livro.submeter! && livro.aprovar!
-      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+      refresh_elasticsearch
 
       visit buscas_path
       fill_in 'parametros[nome]', with: livro.autores.first.nome
@@ -40,7 +50,7 @@ feature 'Buscas' do
       artigo = create(:artigo_de_periodico, titulo: "teste artigo")
       livro.submeter! && livro.aprovar!
       artigo.submeter! && artigo.aprovar!
-      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+      refresh_elasticsearch
 
       visit buscas_path
       fill_in 'parametros[titulo]', with: "teste"
@@ -56,7 +66,7 @@ feature 'Buscas' do
       objeto_de_aprendizagem = create(:objeto_de_aprendizagem, titulo: "teste aprendizagem")
       pronatec.submeter! && pronatec.aprovar!
       objeto_de_aprendizagem.submeter! && objeto_de_aprendizagem.aprovar!
-      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+      refresh_elasticsearch
 
       visit buscas_path
       find(:css, "#parametros_tipos_[value='pronatec']").set(true)
@@ -71,7 +81,7 @@ feature 'Buscas' do
       artigo = create(:artigo_de_periodico, titulo: "teste artigo")
       livro.submeter! && livro.aprovar!
       artigo.submeter! && artigo.aprovar!
-      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+      refresh_elasticsearch
 
       visit buscas_path
       fill_in 'parametros[titulo]', with: "teste"
@@ -86,7 +96,7 @@ feature 'Buscas' do
    scenario 'busca pelo nome da área' do
      livro = create(:livro, titulo: "teste livro")
      livro.submeter! && livro.aprovar!
-     Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+    refresh_elasticsearch
 
      visit buscas_path
      select livro.area.nome, from: 'parametros[area_nome]'
@@ -98,7 +108,7 @@ feature 'Buscas' do
    scenario 'busca pelo nome da sub-área', js: true do
      livro = create(:livro, titulo: "teste livro")
      livro.submeter! && livro.aprovar!
-     Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+     refresh_elasticsearch
 
      visit buscas_path
      select livro.area.nome, from: 'parametros[area_nome]'
@@ -112,7 +122,7 @@ feature 'Buscas' do
     scenario 'busca pelo nome da instituição' do
       livro = create(:livro, titulo: "teste livro")
       livro.submeter! && livro.aprovar!
-      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+      refresh_elasticsearch
 
       visit buscas_path
       select livro.campus.instituicao.nome, from: 'parametros[instituicao_nome]'
@@ -124,7 +134,7 @@ feature 'Buscas' do
     scenario 'busca por texto-integral' do
       livro = create(:livro, resumo: 'texto integral')
       livro.submeter! && livro.aprovar!
-      Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+      refresh_elasticsearch
 
       visit buscas_path
       fill_in 'busca', with: livro.resumo
@@ -135,6 +145,7 @@ feature 'Buscas' do
     end
 
     scenario 'busca por texto-integral deve buscar no arquivo' do
+      Arquivo.destroy_all # TODO: isso não devia ser necessário
       livro = create(:livro, titulo: "teste livro", link: '',
         arquivo: Arquivo.new(
           uploaded_file: ActionDispatch::Http::UploadedFile.new({
@@ -143,10 +154,7 @@ feature 'Buscas' do
             tempfile: File.new(Rails.root + 'spec/resources/arquivo.rtf')
           })))
       livro.submeter! && livro.aprovar!
-      if ENV['INTEGRACAO_TIRE']
-        Conteudo.tire.index.refresh
-        Arquivo.tire.index.refresh
-      end
+      refresh_elasticsearch
       visit buscas_path
       fill_in 'busca', with: "winter"
       click_button 'Buscar'
@@ -165,7 +173,7 @@ feature 'Buscas' do
     usuario = autenticar_usuario(Papel.membro)
     livro = create(:livro, titulo: 'My book')
     livro2 = create(:livro, titulo: 'Outro book')
-    Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+    refresh_elasticsearch
     visit root_path
     fill_in 'Busca', with: 'book'
     click_button 'Buscar'
@@ -208,7 +216,7 @@ feature 'Buscas' do
   # TODO: isto rodava localmente antes, verificar (rodrigo, 12/07/12, 18:08)
   scenario 'cadastrar busca salva no servico de mala direta', busca: true do
     usuario = autenticar_usuario(Papel.contribuidor)
-    submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'link', arquivo: ''
+    submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'http://nsi.iff.edu.br', arquivo: ''
     page.should have_content 'com sucesso'
     visit root_path
     fill_in 'Busca', with: 'livro'
@@ -225,10 +233,10 @@ feature 'Buscas' do
     click_link 'Gerenciar buscas'
 
     busca = Busca.first
-    busca.mala_direta.should == false
+    busca.mala_direta.should be_false
 
     busca.mala_direta = true
-    busca.mala_direta.should == true
+    busca.mala_direta.should be_true
   end
 
   # TODO: resolver o problema da intermitência na integração contínua. teste removido até que o problema seja resolvido.
