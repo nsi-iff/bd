@@ -3,7 +3,8 @@ DigitalLibrary::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
+  devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, 
+                        controllers: {registrations: 'registrations'}
   resources :usuarios, only: [:index] do
     collection do
       put :atualizar_papeis

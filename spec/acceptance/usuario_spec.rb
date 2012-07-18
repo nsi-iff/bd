@@ -65,4 +65,38 @@ feature 'sessão e registro de usuário' do
     last_email = ActionMailer::Base.deliveries.last
     last_email.to.should include(usuario.email)
   end
+
+  scenario 'modificar instituição de origem' do
+    popular_instituicao_campus
+    visit root_path
+    click_link 'Registrar Usuário'
+    fill_in 'Nome Completo', with: 'Foo Bar'
+    fill_in 'E-mail', with: 'foo@bar.com'
+    fill_in 'Senha', with: 'foobar'
+    fill_in 'Confirmação de Senha', with: 'foobar'
+    select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'select_instituicao'
+    select 'Campus Campos Centro', from: 'Campus'
+    click_button 'Registrar'
+    usuario = Usuario.last
+    usuario.confirm!
+    
+    visit root_path
+    click_link "Acessar"
+    fill_in 'E-mail', with: 'foo@bar.com'
+    fill_in 'Senha', with: 'foobar'
+    click_button 'Entrar'
+
+    click_link "Editar Conta"
+
+    fill_in 'Nova senha', with: 'foobar'
+    fill_in 'Confirmação da senha', with: 'foobar'
+    fill_in 'Senha atual', with: '12345678'
+
+    select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'select_instituicao'
+    select 'Campus Macaé', from: 'select_campus'
+    click_button 'Atualizar'
+    page.should have_content('Suas alterações foram salvas com sucesso')
+
+    usuario.reload.campus.nome.should == "Campus Macaé"
+  end
 end

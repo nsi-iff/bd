@@ -158,4 +158,11 @@ describe Usuario do
       usuario.lista_de_revisao.should == :isso
     end
   end
+
+  it 'usuario pode trocar instituicao de origem' do
+    meu_campus, outro_campus = create(:campus), create(:campus)
+    usuario = create(:usuario, campus: meu_campus)
+    usuario.trocar_campus outro_campus
+    usuario.campus.instituicao.should == outro_campus.instituicao
+  end
 end

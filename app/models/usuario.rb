@@ -109,4 +109,9 @@ class Usuario < ActiveRecord::Base
     camp2 = Campus.find(conteudo.campus_id)
     camp1.instituicao_id == camp2.instituicao_id
   end
+
+  def trocar_campus(novo)
+    self.campus = novo
+    save!
+  end
 end
