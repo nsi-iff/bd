@@ -212,8 +212,6 @@ feature 'Buscas' do
     page.should have_selector('input', :type => 'checkbox')
   end
 
-
-  # TODO: isto rodava localmente antes, verificar (rodrigo, 12/07/12, 18:08)
   scenario 'cadastrar busca salva no servico de mala direta', busca: true do
     usuario = autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'http://nsi.iff.edu.br', arquivo: ''
