@@ -14,6 +14,14 @@ class ServiceRegistry
   def self.cloudooo
     @cloudooo ||= NSICloudooo::Client.new(Rails.application.config.cloudooo_configuration)
   end
+
+  def self.videogranulate=(videogranulate)
+    @videogranulate = videogranulate
+  end
+
+  def self.videogranulate
+    @videogranulate ||= NSIVideoGranulate::Client.new(Rails.application.config.videogranulate_configuration)
+  end
 end
 
 module ActiveRecord
@@ -24,6 +32,10 @@ module ActiveRecord
 
     def cloudooo
       ServiceRegistry.cloudooo
+    end
+
+    def videogranulate
+      ServiceRegistry.videogranulate
     end
   end
 end

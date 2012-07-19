@@ -32,6 +32,7 @@ gem 'simple-navigation',
   branch: 'preceding_text'
 gem 'nokogiri'
 gem 'mime-types'
+gem "nsivideogranulate", "~> 0.0.2"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

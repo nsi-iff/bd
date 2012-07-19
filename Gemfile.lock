@@ -165,6 +165,8 @@ GEM
     nsisam (0.5.4)
       json
       sinatra
+    nsivideogranulate (0.0.2)
+      sinatra
     odt2html (0.1.1)
       rubyzip
     orm_adapter (0.3.0)
@@ -333,6 +335,7 @@ DEPENDENCIES
   nsi-abntformat (~> 1.0.4)
   nsicloudooo
   nsisam
+  nsivideogranulate (~> 0.0.2)
   odt2html
   paperclip
   pg (~> 0.14.0)
