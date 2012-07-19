@@ -70,5 +70,10 @@ module DigitalLibrary
     # Configuracoes de acesso ao elasticsearch
     config.elasticsearch_config = YAML.load(
       File.read(File.join(Rails.root, 'config', 'elasticsearch.yml')))[Rails.env]
+
+    # Configuracoes de acesso ao nsi videogranulate
+    config.videogranulate_configuration = YAML.load(
+      File.read(File.join(Rails.root, 'config', 'videogranulate.yml')))[Rails.env].
+      symbolize_keys
   end
 end
