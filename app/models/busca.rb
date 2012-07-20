@@ -50,33 +50,14 @@ class Busca < ActiveRecord::Base
 
   def parametros=(param)
     @parametros = param.delete_if { |key| param.fetch(key).blank? || param.fetch(key) == 'Todas' }
-    tipos = @parametros['tipos']
-    if tipos && tipos.include?('pronatec') && !tipos.include?('objeto_de_aprendizagem')
-      @parametros['tipos'] << "objeto_de_aprendizagem"
-      @objeto_veio_do_pronatec = true
+    if @parametros['tipos']
+      if "pronatec".in? @parametros['tipos']
+        @parametros['tipos'] << "objeto_de_aprendizagem"
+      end
     end
   end
 
   def query_parametros
     parametros.except(:tipos).map { |tupla| tupla.join(':') }.join(' ')
-  end
-
-  def self.filtrar_busca_avancada(busca)
-    tipos = busca.parametros['tipos']
-    @resultados = []
-    if tipos && tipos.include?("pronatec")
-      busca.resultados.map do |conteudo|
-        objeto = @objeto_veio_do_pronatec
-        if conteudo.pronatec?
-          @resultados << conteudo
-        elsif conteudo.is_a?(ObjetoDeAprendizagem) && !@objeto_veio_do_pronatec
-          @resultados << conteudo
-        else
-          @resultados << conteudo
-        end
-      end
-      @resultados
-    end
-    @resultados = busca.resultados if @resultados.blank?
   end
 end
