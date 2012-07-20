@@ -10,7 +10,6 @@ def criar_cesta(usuario, conteudo, *grain_files)
   grain_files.each_with_index do |file, index|
     tipo_grao = file.downcase.end_with?('odt') ? :grao_arquivo : :grao_imagem
     extensao = tipo_grao == :grao_arquivo ? "odt" : "png"
-    # TODO: refatorar
     result = sam.store('file' => Base64.encode64(File.read(file)), 'filename' => "filename_#{index}.#{extensao}")
     sleep(1)
     grao = create(tipo_grao, key: result['key'], conteudo: conteudo)

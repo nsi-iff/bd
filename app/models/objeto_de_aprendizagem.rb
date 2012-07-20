@@ -34,6 +34,43 @@ class ObjetoDeAprendizagem < Conteudo
     end
   end
 
+  def arquivo=(uploaded)
+    @arquivo_uploaded = uploaded
+    @arquivo_base64 = Base64.encode64(@arquivo_uploaded.read) if @arquivo_uploaded
+  end
+  
+  def enviar_arquivo_ao_sam
+    if arquivo.present?
+      if arquivo.video?
+        result = sam.store(video: arquivo_base64)
+      else  
+        result = sam.store(doc: arquivo_base64)
+      end
+      arquivo.key = result['key']
+    end
+  end
+
+  def granularizar
+    if arquivo.video?
+      granularizar_video
+    else
+      config = Rails.application.config.cloudooo_configuration
+      cloudooo.granulate(
+        sam_uid: arquivo.key,
+        filename: arquivo.nome,
+        callback: config[:callback_url],
+        verb: config[:callback_verb])
+    end
+  end
+
+  def granularizar_video
+    config = Rails.application.config.cloudooo_configuration
+    response = videogranulate.granulate(:sam_uid => arquivo.key, 
+      :filename => arquivo.nome,
+      callback_url: config[:callback_url],
+      verb: config[:callback_verb])
+  end
+
   def descricao_idioma
     idioma.try(:descricao)
   end
