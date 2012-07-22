@@ -1,7 +1,7 @@
 class Busca < ActiveRecord::Base
   belongs_to :usuario
   validates :titulo, presence: true
-  attr_accessor :parametros
+  attr_accessor :parametros, :objeto_veio_do_pronatec
   attr_accessible :parametros, :busca, :titulo, :descricao
 
   def self.enviar_email_mala_direta
@@ -50,14 +50,41 @@ class Busca < ActiveRecord::Base
 
   def parametros=(param)
     @parametros = param.delete_if { |key| param.fetch(key).blank? || param.fetch(key) == 'Todas' }
-    if @parametros['tipos']
-      if "pronatec".in? @parametros['tipos']
-        @parametros['tipos'] << "objeto_de_aprendizagem"
-      end
+
+    tipos = @parametros['tipos']
+    @@objeto_veio_do_pronatec = false
+    if tipos && tipos.include?('pronatec') && !tipos.include?('objeto_de_aprendizagem')
+      @parametros['tipos'] << "objeto_de_aprendizagem"
+      @@objeto_veio_do_pronatec = true
     end
   end
 
   def query_parametros
     parametros.except(:tipos).map { |tupla| tupla.join(':') }.join(' ')
+  end
+
+  def self.filtrar_busca_avancada(busca)
+    tipos = busca.parametros['tipos'].clone if busca.parametros['tipos']
+    tipos.delete('objeto_de_aprendizagem') if @@objeto_veio_do_pronatec
+    @resultados = []
+
+    # TODO: tentar juntar o loop no "elsif" com o do "if" (21/07/12, 03:40, bernardofire)
+    if tipos && tipos.include?("pronatec")
+      busca.resultados.map do |conteudo|
+        if conteudo.pronatec? || tipos.include?(conteudo.class.name.underscore)
+          @resultados << conteudo
+        end
+      end
+    elsif tipos && tipos.include?('objeto_de_aprendizagem')
+      busca.resultados.map do |conteudo|
+        if !conteudo.pronatec?
+          @resultados << conteudo
+        end
+      end
+    else
+      @resultados = busca.resultados if @resultados.blank?
+    end
+
+    @resultados
   end
 end
