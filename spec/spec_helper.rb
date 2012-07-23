@@ -26,8 +26,19 @@ Spork.prefork do
   # I.e., prevent Rails::Application to loads files in the application autoload_paths
   # such as app/models, app/controllers, etc.
   Spork.trap_method(Rails::Application, :eager_load!)
+
+  require "bundler/setup"
+  require "tire"
+  require "tire-mock_client"
+  Tire.configure do
+    unless ENV['INTEGRACAO_TIRE']
+      client Tire::Http::Client::MockClient
+    end
+  end
+
   # Depois dessa linha já é tarde demais. Now, load the rails stack
   require File.expand_path("../../config/environment", __FILE__)
+
   # Load all railties files, i.e., eager load all the engines
   Rails.application.railties.all { |r| r.eager_load! }
 
@@ -99,11 +110,12 @@ Spork.prefork do
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
-  end
+    config.before(:each) do
+      Conteudo.tire.index.delete
+      Conteudo.tire.create_elasticsearch_index
 
-  Tire.configure do
-    unless ENV['INTEGRACAO_TIRE']
-      client Tire::Http::Client::MockClient
+      Arquivo.tire.index.delete
+      Arquivo.tire.create_elasticsearch_index
     end
   end
 end

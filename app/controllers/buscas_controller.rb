@@ -20,22 +20,7 @@ class BuscasController < InheritedResources::Base
       redirect_to buscas_path,
         :notice => "Busca não realizada. Favor preencher algum critério de busca"
     else
-      if @busca.parametros['tipos']
-        @resultados = []
-        @tipos = @busca.parametros['tipos']
-        if @tipos.count("objeto_de_aprendizagem") == 1
-          if "pronatec".in? @tipos
-            @busca.resultados.map{|conteudo| @resultados << conteudo if conteudo.pronatec == true}
-          else
-            @busca.resultados.map{|conteudo| @resultados << conteudo if conteudo.pronatec != true and conteudo.class.name != "ObjetoDeAprendizagem"}
-          end
-          @busca.resultados.map{|conteudo| @resultados << conteudo if conteudo.class.name != "ObjetoDeAprendizagem"}
-        else
-          @resultados = @busca.resultados
-        end
-      else
-        @resultados = @busca.resultados
-      end
+      @resultados = Busca.filtrar_busca_avancada(@busca)
       render :resultado_busca
     end
   end
