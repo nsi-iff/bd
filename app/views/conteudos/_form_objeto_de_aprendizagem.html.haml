@@ -1,6 +1,3 @@
--#TODO: talvez melhorar layout do tr do eixos tematicos transformando-o em divs, como visto em http://blog.jeremymartin.name/2008/02/easy-multi-select-transfer-with-jquery.html (2012-04-13, 03:28, ciberglo)`
-
-
 = semantic_form_for @conteudo, url: url_para_form_conteudo(@conteudo) do |f|
   = render 'conteudos/abas_e_dados_basicos', :f => f
 
@@ -10,24 +7,31 @@
         hint: 'Palavras-chave do documento, separadas por vírgula'
     = f.input :tempo_aprendizagem, label: 'Tempo de aprendizagem típico',
         hint: 'Tempo típico para uma audiência típica lidar com o objeto de aprendizagem'
-    %table
-      %tr
-        = label_tag(:eixos_tematicos, 'Eixos temáticos')
-        %td
-          = select_tag(:eixos_tematicos, options_for_select(EixoTematico.all.map {|eixo| [eixo.nome, eixo.id] }),
-            class: "eixos_tematicos")
-          = f.input :cursos, :as => :select, input_html: { class: "cursos" },
-            collection: EixoTematico.first.cursos.map {|curso| [curso.nome, curso.id]},
-            prompt: false, label: 'Cursos'
-        %td
-          %input{:type => 'button', :value => '>', :id => 'to2'}
-          %input{:type => 'button', :value => '<', :id => 'to1'}
-          %input{:type => 'button', :value => '>>', :id => 'allTo2'}
-          %input{:type => 'button', :value => '<<', :id => 'allTo1'}
-        %td
-          = label_tag(:cursos, 'Cursos selecionados')
-          %select{id: 'cursos_selecionados', name: 'cursos_selecionados', multiple: 'multiple'}
 
+    = label_tag(:eixos_tematicos, 'Eixos temáticos')
+    = select_tag(:eixos_tematicos, options_for_select(EixoTematico.all.map {|eixo| [eixo.nome, eixo.id] }),
+             class: "eixos_tematicos")
+    %div
+      %div#todos_cursos
+        = label_tag(:cursos, 'Cursos')
+        %div.com_scroll
+          %div.sem_scroll
+            = f.input :cursos, :as => :select, input_html: { class: "cursos" },
+                  collection: EixoTematico.first.cursos.map {|curso| [curso.nome, curso.id]},
+                  prompt: false, label: false
+        %div.acoes_do_select
+          %input{:type => 'button', :value => '>', :id => 'to2'}
+          %input{:type => 'button', :value => '>>', :id => 'allTo2'}
+
+      %div#somente_selecionados
+        = label_tag(:cursos, 'Cursos selecionados')
+        %div.com_scroll
+          %div.sem_scroll
+            %select{id: 'cursos_selecionados', name: 'cursos_selecionados', multiple: 'multiple'}
+        %div.acoes_do_select
+          %input{:type => 'button', :value => '<', :id => 'to1'}
+          %input{:type => 'button', :value => '<<', :id => 'allTo1'}
+    %span.clear
     = f.input :novas_tags
     = f.input :idioma, :member_label => :descricao
     = f.input :resumo
@@ -35,4 +39,3 @@
     %span.clear
 
   = f.submit 'Salvar', onclick: 'enviar_cursos_selecionados()'
-

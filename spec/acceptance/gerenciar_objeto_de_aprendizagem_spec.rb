@@ -15,7 +15,7 @@ feature 'adicionar objeto de aprendizagem' do
       fill_in 'Tempo de aprendizagem típico', with: '2 meses'
 
       select('Ambiente e Saúde', from: 'Eixos temáticos')
-      select('Radiologia', from: 'Cursos')
+      select('Radiologia', from: 'objeto_de_aprendizagem_curso_ids')
       click_button '>'
 
       fill_in 'Novas tags', with: "Técnicas de programação\nOO\nTestes"
@@ -37,9 +37,9 @@ feature 'adicionar objeto de aprendizagem' do
       fill_in 'Tempo de aprendizagem típico', with: '2 meses'
 
       select('Ambiente e Saúde', from: 'Eixos temáticos')
-      select('Radiologia', from: 'Cursos')
+      select('Radiologia', from: 'objeto_de_aprendizagem_curso_ids')
       click_button '>'
-      select('Saneamento Ambiental', from: 'Cursos')
+      select('Saneamento Ambiental', from: 'objeto_de_aprendizagem_curso_ids')
       click_button '>'
 
       fill_in 'Novas tags', with: "Técnicas de programação\nOO\nTestes"
@@ -61,15 +61,15 @@ feature 'adicionar objeto de aprendizagem' do
       fill_in 'Tempo de aprendizagem típico', with: '2 meses'
 
       select('Ambiente e Saúde', from: 'Eixos temáticos')
-      select('Radiologia', from: 'Cursos')
+      select('Radiologia', from: 'objeto_de_aprendizagem_curso_ids')
       click_button '>'
-      select('Gestão Ambiental', from: 'Cursos')
+      select('Gestão Ambiental', from: 'objeto_de_aprendizagem_curso_ids')
       click_button '>'
 
       select('Militar', from: 'Eixos temáticos')
-      select('Fotointeligência', from: 'Cursos')
+      select('Fotointeligência', from: 'objeto_de_aprendizagem_curso_ids')
       click_button '>'
-      select('Sistemas de Armas', from: 'Cursos')
+      select('Sistemas de Armas', from: 'objeto_de_aprendizagem_curso_ids')
       click_button '>'
 
       fill_in 'Novas tags', with: "Técnicas de programação\nOO\nTestes"
