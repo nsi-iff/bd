@@ -27,6 +27,7 @@ Spork.prefork do
   # such as app/models, app/controllers, etc.
   Spork.trap_method(Rails::Application, :eager_load!)
 
+  require "bundler/setup"
   require "tire"
   require "tire-mock_client"
   Tire.configure do
