@@ -69,6 +69,18 @@ describe Busca do
     subject.buscar_em_conteudos.should eq([])
   end
 
+  it "#buscar_em_conteudos trata Tire::Search::SearchRequestFailed" do
+    Tire.should_receive('search').with('arquivos', load: true).
+      and_raise(Tire::Search::SearchRequestFailed)
+    Busca.new.buscar_em_arquivos.should eq([])
+  end
+
+  it "#buscar_em_arquivos trata Tire::Search::SearchRequestFailed" do
+    Tire.should_receive('search').with('conteudos', load: true).
+      and_raise(Tire::Search::SearchRequestFailed)
+    Busca.new.buscar_em_conteudos.should eq([])
+  end
+
   it "#buscar_em_arquivos retornar os conteudos buscando no índice 'arquivos'" do
     result = stub(:result)
     arquivos = [stub(:arquivo, conteudo: :conteudo)]

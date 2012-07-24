@@ -36,12 +36,16 @@ class Busca < ActiveRecord::Base
       t.filter(:term, filtros) if filtros
       t.filter(:terms, _type: parametros[:tipos]) if parametros[:tipos]
     }.results.to_a
+  rescue Tire::Search::SearchRequestFailed
+    []
   end
 
   def buscar_em_arquivos
     Tire.search('arquivos', load: true) { |t|
       t.query { |q| q.string busca } unless busca.blank?
     }.results.to_a.map(&:conteudo)
+  rescue Tire::Search::SearchRequestFailed
+    []
   end
 
   def parametros
