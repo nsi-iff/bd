@@ -7,7 +7,6 @@ feature 'Buscas' do
   before(:each) do
     if ENV['INTEGRACAO_TIRE']
       Tire.criar_indices
-      sleep(2)
     end
     Papel.criar_todos
   end
