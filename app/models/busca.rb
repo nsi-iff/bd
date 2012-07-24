@@ -18,14 +18,11 @@ class Busca < ActiveRecord::Base
     end
   end
 
-  #TODO: refatorar
   def resultados(filtros = nil)
-    if parametros.blank?
-      buscar_em_conteudos(filtros) + buscar_em_arquivos
-    elsif busca.blank?
+    if busca.blank?
       buscar_em_conteudos(filtros)
     else
-      buscar_em_conteudos(filtros) & buscar_em_arquivos
+      buscar_em_conteudos(filtros) + buscar_em_arquivos
     end
   end
 

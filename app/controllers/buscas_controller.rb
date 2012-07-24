@@ -29,10 +29,8 @@ class BuscasController < InheritedResources::Base
   end
 
   def buscar_pronatec
-    @resultados = Conteudo.where('pronatec = ?', true).where('titulo = ?', params[:busca])
-    #TODO: usar implementação seguinte quando busca avançada voltar a funcionar corretamente
-    #@busca = Busca.new(busca: params[:busca], parametros: { pronatec: true })
-    #@resultados = @busca.resultados
+    @resultados = Busca.new(busca: params[:busca],
+      parametros: { pronatec: true }).resultados
     render :resultado_busca
   end
 
