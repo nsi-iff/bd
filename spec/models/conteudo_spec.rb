@@ -380,7 +380,7 @@ describe Conteudo do
     context 'indexação de atributos de relacionamentos' do
       subject { create(:conteudo) }
 
-      before(:all) do
+      before do
         subject.autores = [create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
                            create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
         area = Area.create!(nome: 'Ciências Exatas e da Terra')
