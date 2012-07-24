@@ -9,6 +9,10 @@ class SubArea < ActiveRecord::Base
   validates_associated :area
 
   def to_s
-    self.nome
+    nome
+  end
+
+  def nome_area
+    area.nome
   end
 end

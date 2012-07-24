@@ -139,21 +139,20 @@ class Conteudo < ActiveRecord::Base
     to_json(include: {autores: { only: [:nome, :lattes]},
                       campus: { only: [:nome]},
                       graos: { only: [:tipo, :key] } },
-            methods: [:data_publicado, :area_nome,
-                      :sub_area_nome, :instituicao_nome])
+            methods: [:data_publicado, :nome_area,
+                      :nome_sub_area, :nome_instituicao])
   end
 
-  # TODO: refatorar
-  def area_nome
-    self.try(:sub_area).try(:area).try(:nome)
+  def nome_sub_area
+    sub_area.nome
   end
 
-  def sub_area_nome
-    self.try(:sub_area).try(:nome)
+  def nome_instituicao
+    campus.nome_instituicao
   end
 
-  def instituicao_nome
-    self.try(:campus).try(:instituicao).try(:nome)
+  def nome_area
+    sub_area.nome_area
   end
 
   def arquivo=(uploaded)

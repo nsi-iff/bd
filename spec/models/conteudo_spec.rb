@@ -378,11 +378,13 @@ describe Conteudo do
     end
 
     context 'indexação de atributos de relacionamentos' do
-      before(:each) do
+      subject { create(:conteudo) }
+
+      before(:all) do
         subject.autores = [create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
                            create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
-        area = Area.create!(nome: 'Ciências Exatas e da Terra')
-        sub_area = subject.sub_area = area.sub_areas.create!(nome: 'Ciência da Computação')
+        Area.create!(nome: 'Ciências Exatas e da Terra')
+        subject.sub_area = area.sub_areas.create!(nome: 'Ciência da Computação')
       end
 
       context 'dos autores' do
@@ -400,11 +402,11 @@ describe Conteudo do
       end
 
       it "deve incluir o nome da sub-área" do
-        campos_a_serem_indexados['sub_area_nome'].should == 'Ciência da Computação'
+        campos_a_serem_indexados['nome_sub_area'].should == 'Ciência da Computação'
       end
 
       it "deve incluir o nome da área da sub-área" do
-        campos_a_serem_indexados['area_nome'].should == 'Ciências Exatas e da Terra'
+        campos_a_serem_indexados['nome_area'].should == 'Ciências Exatas e da Terra'
       end
     end
 
@@ -475,5 +477,17 @@ describe Conteudo do
   it "#extensao retorna nil caso #arquivo não exista" do
     subject.arquivo.should be_nil
     subject.extensao.should be_nil
+  end
+
+  context "retorna nome da" do
+    subject do
+      create(:conteudo,
+        campus: stub_model(Campus, nome_instituicao: "IFF"),
+        sub_area: stub_model(SubArea, nome: "Física", nome_area: "Ciências"))
+    end
+
+    its(:nome_area) { should eq("Ciências") }
+    its(:nome_sub_area) { should eq("Física") }
+    its(:nome_instituicao) { should eq("IFF") }
   end
 end
