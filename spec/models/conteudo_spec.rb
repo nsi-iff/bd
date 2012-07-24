@@ -383,7 +383,7 @@ describe Conteudo do
       before(:all) do
         subject.autores = [create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
                            create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
-        Area.create!(nome: 'Ciências Exatas e da Terra')
+        area = Area.create!(nome: 'Ciências Exatas e da Terra')
         subject.sub_area = area.sub_areas.create!(nome: 'Ciência da Computação')
       end
 
