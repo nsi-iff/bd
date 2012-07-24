@@ -79,7 +79,7 @@ feature 'sessão e registro de usuário' do
     click_button 'Registrar'
     usuario = Usuario.last
     usuario.confirm!
-    
+
     visit root_path
     click_link "Acessar"
     fill_in 'E-mail', with: 'foo@bar.com'
@@ -95,8 +95,27 @@ feature 'sessão e registro de usuário' do
     select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'select_instituicao'
     select 'Campus Macaé', from: 'select_campus'
     click_button 'Atualizar'
-    page.should have_content('Suas alterações foram salvas com sucesso')
+    page.should have_content 'Suas alterações foram salvas com sucesso'
 
     usuario.reload.campus.nome.should == "Campus Macaé"
   end
+
+  scenario 'administrador de instituição não pode atribuir papel de administrador geral' do
+    Papel.criar_todos
+    usuario = create(:usuario, papeis: [Papel.instituicao_admin])
+    autenticar(usuario)
+    visit papeis_usuarios_path
+    within '#papeis-usuarios' do
+      page.should have_content usuario.nome_completo
+      page.should_not have_selector :css, '.admin'
+    end
+
+    admin = create(:usuario, papeis: [Papel.admin], campus: usuario.campus)
+    autenticar(admin)
+    visit papeis_usuarios_path
+    within '#papeis-usuarios' do
+      page.should have_selector :css, '.admin'
+    end
+  end
 end
+

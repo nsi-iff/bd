@@ -34,11 +34,20 @@
             %p{:title => usuario.email}
               = usuario.nome_completo
           - Papel.all.each do |papel|
-            %td
-              = check_box_tag "papeis[#{usuario.id}][]", papel.id, usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}"
+            - if papel.nome == 'admin'
+              - if current_usuario.admin?
+                %td
+                  = check_box_tag "papeis[#{usuario.id}][]", papel.id, usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}",
+                    class: papel.nome
+              - else
+                %td
+            - else
+              %td
+                = check_box_tag "papeis[#{usuario.id}][]", papel.id, usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}"
           %td
             = check_box_tag '', '', selected = false
           %td
             = check_box_tag "excluir_usuario[]", usuario.id, checked = false, id: "excluir-#{usuario.id}"
   %br
   = submit_tag 'Aplicar'
+
