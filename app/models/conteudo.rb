@@ -120,15 +120,8 @@ class Conteudo < ActiveRecord::Base
     contribuidor.try(:nome_completo)
   end
 
-  # TODO: refatorar
   def self.search(busca)
-    busca_conteudos = Tire.search('conteudos', load: true) {
-      query { string busca if busca }
-    }.results.to_a
-    busca_arquivos = Tire.search('arquivos', load: true) {
-      query { string busca if busca }
-    }.results.to_a
-    (busca_conteudos + busca_arquivos.map(&:conteudo)).uniq
+    Busca.new(busca: busca).resultados
   end
 
   def data_publicado

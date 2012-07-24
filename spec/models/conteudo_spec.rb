@@ -355,6 +355,12 @@ describe Conteudo do
   end
 
   context 'pesquisa por meta-dados' do
+    it "retorna os resultados de uma busca" do
+      Busca.should_receive(:new).with(busca: 'busca') {
+        mock(:result).as_null_object }
+      Conteudo.search 'busca'
+    end
+
     it "pesquisa no índice 'conteudos' e 'arquivos' do elasticsearch" do
       result = mock(:result).as_null_object
       Tire.should_receive('search').with('conteudos', {load: true}).and_return(result)
