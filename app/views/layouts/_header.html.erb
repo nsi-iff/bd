@@ -16,7 +16,7 @@
         <li><%= link_to "Acessibilidade", '#' %></li>
         <li><%= link_to "Contato", new_formulario_contato_path %></li>
         <% if usuario_signed_in? %>
-          <% if current_usuario.admin? %>
+          <% if can? :index, Usuario%>
             <li><%= link_to "Administração", usuarios_path  %></li>
           <% end %>
           <li><%= link_to "Editar Conta", edit_registration_path(current_usuario) %></li>
