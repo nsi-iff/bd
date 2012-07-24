@@ -96,7 +96,7 @@ feature 'Buscas' do
    scenario 'busca pelo nome da área' do
      livro = create(:livro, titulo: "teste livro")
      livro.submeter! && livro.aprovar!
-    refresh_elasticsearch
+     refresh_elasticsearch
 
      visit buscas_path
      select livro.area.nome, from: 'parametros[area_nome]'

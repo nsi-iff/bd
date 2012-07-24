@@ -11,12 +11,12 @@ end
 
 module Tire
   def self.criar_indices
+    Arquivo.tire.index.delete
+    Arquivo.tire.create_elasticsearch_index
     properties = {
       :id               => {:type => 'string', :index => :not_analyzed},
       :titulo           => { type: 'string' },
     }
-    Tire.index('arquivos').delete
-    Arquivo.tire.create_elasticsearch_index
     Tire.index 'conteudos' do
       delete
       create :mappings => {

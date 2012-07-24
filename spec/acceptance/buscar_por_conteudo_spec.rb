@@ -6,7 +6,6 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
 
   before :each do
     Tire.criar_indices
-    Arquivo.index.delete; Arquivo.create_elasticsearch_index
     iff = Instituicao.create(nome: 'IFF')
     campos_centro = Campus.create nome: 'Campos Centro', instituicao: iff
     cabo_frio = Campus.create nome: 'Cabo Frio', instituicao: iff
