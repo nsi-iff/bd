@@ -81,23 +81,5 @@ feature 'sessão e registro de usuário' do
 
     usuario.reload.campus.nome.should == "Campus Macaé"
   end
-
-  scenario 'administrador de instituição não pode atribuir papel de administrador geral' do
-    Papel.criar_todos
-    usuario = create(:usuario, papeis: [Papel.instituicao_admin])
-    autenticar(usuario)
-    visit papeis_usuarios_path
-    within '#papeis-usuarios' do
-      page.should have_content usuario.nome_completo
-      page.should_not have_selector :css, '.admin'
-    end
-
-    admin = create(:usuario, papeis: [Papel.admin], campus: usuario.campus)
-    autenticar(admin)
-    visit papeis_usuarios_path
-    within '#papeis-usuarios' do
-      page.should have_selector :css, '.admin'
-    end
-  end
 end
 
