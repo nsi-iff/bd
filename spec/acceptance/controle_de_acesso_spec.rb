@@ -104,6 +104,23 @@ feature 'controle de acesso' do
         page.should have_selector :css, '.admin'
       end
     end
+
+    scenario 'administrador não pode se excluir' do
+      Papel.criar_todos
+      usuario = create(:usuario, papeis: [Papel.admin])
+      autenticar(usuario)
+      visit papeis_usuarios_path
+      within '#papeis-usuarios' do
+        page.should have_content usuario.nome_completo
+        page.should_not have_selector :css, '.excluir_usuario'
+      end
+
+      create(:usuario)
+      visit papeis_usuarios_path
+      within '#papeis-usuarios' do
+        page.should have_selector :css, '.excluir_usuario'
+      end
+    end
   end
 end
 

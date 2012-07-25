@@ -46,8 +46,12 @@
                 = check_box_tag "papeis[#{usuario.id}][]", papel.id, usuario.papeis.include?(papel), id: "#{usuario.email}#{[papel.nome]}"
           %td
             = check_box_tag '', '', selected = false
-          %td
-            = check_box_tag "excluir_usuario[]", usuario.id, checked = false, id: "excluir-#{usuario.id}"
+
+          - if usuario == current_usuario
+            %td
+          - else
+            %td
+              = check_box_tag "excluir_usuario[]", usuario.id, checked = false, id: "excluir-#{usuario.id}", class: 'excluir_usuario'
   %br
   = submit_tag 'Aplicar'
 
