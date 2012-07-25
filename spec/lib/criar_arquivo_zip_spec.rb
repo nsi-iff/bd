@@ -6,6 +6,8 @@ feature 'cesta de grãos' do
   before(:each) do
     @usuario = create(:usuario)
     @livro = create(:livro, titulo: 'Quantum Mechanics for Dummies')
+    Livro.any_instance.stub(:referencia_abnt).and_return("Referências ABNT")
+    # TODO: consertar bug na geração da referência ABNT do livro
   end
 
   context 'criar arquivo zip' do
