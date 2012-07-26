@@ -222,6 +222,25 @@ describe Conteudo do
         conteudo.devolver!
       end
 
+      it 'recolhido --> editavel' do
+        conteudo.submeter!
+        conteudo.stub(:granularizavel?).and_return(false)
+        conteudo.aprovar!
+        conteudo.recolher!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.devolver!
+      end
+    end
+
+    context 'transições de publicado para qualquer outro estado devem destruir todos os grãos' do
+      it 'publicado --> pendente' do
+        conteudo.submeter!
+        conteudo.stub(:granularizavel?).and_return(false)
+        conteudo.aprovar!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.retornar_para_revisao!
+      end
+
       it 'publicado --> editavel' do
         conteudo.submeter!
         conteudo.stub(:granularizavel?).and_return(false)
@@ -230,13 +249,12 @@ describe Conteudo do
         conteudo.devolver!
       end
 
-      it 'recolhido --> editavel' do
+      it 'publicado --> recolhido' do
         conteudo.submeter!
         conteudo.stub(:granularizavel?).and_return(false)
         conteudo.aprovar!
-        conteudo.recolher!
         conteudo.should_receive(:destruir_graos)
-        conteudo.devolver!
+        conteudo.recolher!
       end
     end
   end
@@ -491,3 +509,4 @@ describe Conteudo do
     its(:nome_instituicao) { should eq("IFF") }
   end
 end
+

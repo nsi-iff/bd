@@ -76,7 +76,8 @@ class Conteudo < ActiveRecord::Base
           para: transicao.to }.merge(transicao.args.first || {}))
     end
 
-    after_transition any => :editavel, :do => :destruir_graos
+    after_transition all - [:publicado] => :editavel, :do => :destruir_graos
+    after_transition :publicado => any, :do => :destruir_graos
     before_transition :pendente => :granularizando, :do => :granularizar
   end
 
@@ -232,3 +233,4 @@ class Conteudo < ActiveRecord::Base
     camp1.instituicao_id == camp2.instituicao_id
   end
 end
+
