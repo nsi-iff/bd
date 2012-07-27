@@ -508,5 +508,18 @@ describe Conteudo do
     its(:nome_sub_area) { should eq("Física") }
     its(:nome_instituicao) { should eq("IFF") }
   end
+
+  it "destrói os grãos de um conteúdo" do
+    conteudo = create(:livro_publicado)
+    conteudo.graos << create(:grao)
+
+    conteudo.graos.should_not == []
+    Grao.all.should_not == []
+
+    conteudo.destruir_graos
+
+    conteudo.graos.should == []
+    Grao.all.should == []
+  end
 end
 

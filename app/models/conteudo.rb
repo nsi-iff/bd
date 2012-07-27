@@ -102,7 +102,7 @@ class Conteudo < ActiveRecord::Base
   end
 
   def destruir_graos
-    # STUB
+    self.graos.destroy_all unless self.graos.empty?
   end
 
   def granularizavel?
