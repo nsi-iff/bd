@@ -9,7 +9,7 @@ label {
   display: block;
   font-weight: bold;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 input[type="text"] {
@@ -46,6 +46,7 @@ input[type="submit"] {
 
 select {
   width: auto;
+  max-width: 550px;
   margin-bottom: 10px;
 }
 
@@ -81,9 +82,11 @@ form a {
 
 form li {
   list-style: none;
+  margin-top: -10px;
 }
 
 /* tornando asterisco de campo obrigatorio invisivel para forms de conteudo */
 #metadados_basicos label abbr {
   display: none;
 }
+
