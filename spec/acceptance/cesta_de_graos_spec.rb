@@ -207,6 +207,7 @@ feature 'cesta de grãos' do
       grao_armazenado.should == grao_extraido
       referencia_abnt = File.read("#{Rails.root}/spec/resources/downloads/referencias_ABNT.txt")
       referencia_abnt.should match "grao_quantum_mechanics_for_dummies_0.odt: #{@livro.referencia_abnt}"
+      FileUtils.rm_rf("#{Rails.root}/spec/resources/downloads")
     end
 
     scenario 'baixar conteudo da cesta em odt', js: true do
@@ -215,15 +216,15 @@ feature 'cesta de grãos' do
                                         ./spec/resources/grao_teste_0.jpg))
       visit root_path
       click_link 'baixar conteudo da cesta em odt'
-      grao_armazenado = "./spec/resources/tabela_e_imagens.odt"
-      grao_baixado = "tmp/graos.odt"
-      File.delete('myfile.xml') if File.exists?('myfile.xml')
+      grao_armazenado = "./spec/resources/Linus Torvalds.odt"
+      grao_baixado = "#{Rails.root}/tmp/Linus Torvalds.odt"
       comparar_odt('//office:text', grao_baixado, grao_armazenado)
 
-      odt = Zip::ZipFile.open('tmp/graos.odt')
+      odt = Zip::ZipFile.open(grao_baixado)
       doc = Document.new(odt.read("content.xml"))
       arquivo_odt = doc.to_s
-      arquivo_odt.should match "#{@livro.referencia_abnt}"
+      arquivo_odt.should match @livro.referencia_abnt
+      File.delete(grao_baixado)
     end
   end
 end

@@ -29,6 +29,7 @@ feature 'Editar Conteúdo' do
       baixado = "#{Rails.root}/tmp/#{artigo.titulo}.odt"
       postado = "#{Rails.root}/spec/resources/arquivo.odt"
       FileUtils.compare_file(baixado, postado).should == true
+      File.delete(baixado)
     end
 
     scenario 'remover arquivo atual' do
