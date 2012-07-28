@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe Livro do
   it 'deve ter o atributo "traducao" false por default' do
-    livro = Livro.new
-    livro.save validate: false
-    livro.traducao.should == false
+    create(:livro).traducao.should be_false
   end
 
   it { should have_valid(:numero_edicao).when '4', '', nil }

@@ -25,6 +25,7 @@ feature 'baixar conteúdo' do
       baixado = "#{Rails.root}/tmp/#{artigo.titulo}.#{artigo.extensao}"
       postado = "#{Rails.root}/spec/resources/arquivo.doc"
       FileUtils.compare_file(baixado, postado).should == true
+      File.delete(baixado)
     end
   end
 end

@@ -3,26 +3,29 @@
 require 'spec_helper'
 
 feature 'cesta de grãos' do
-  before :all do
-    require File.join(Rails.root, *%w(db criar_indices)) if ENV['INTEGRACAO_TIRE']
 
-    # monkeypatch temporario para passar no teste sem o Elastic Search
-    # TODO: remover depois que funcionarem buscas básicas com o ES fake
-    class << Conteudo
-      alias old_search search
-      def search(param)
-        where('upper(titulo) like ?', "%#{param.to_s.upcase}%")
+  unless ENV['INTEGRACAO_TIRE']
+    before :all do
+      # monkeypatch temporario para passar no teste sem o Elastic Search
+      # TODO: remover depois que funcionarem buscas básicas com o ES fake
+
+      class << Conteudo
+        alias old_search search
+        def search(param)
+          where('upper(titulo) like ?', "%#{param.to_s.upcase}%")
+        end
+      end
+    end
+
+    after :all do
+      class << Conteudo
+        alias search old_search
       end
     end
   end
 
-  after :all do
-    class << Conteudo
-      alias search old_search
-    end
-  end
-
   before(:each) do
+    Tire.criar_indices if ENV['INTEGRACAO_TIRE']
     @livro = create(:livro, titulo: 'Quantum Mechanics for Dummies')
     @grao1 = create(:grao_imagem, key: '12345', conteudo: @livro)
     @grao2 = create(:grao_arquivo, key: '67890', conteudo: @livro)
@@ -185,43 +188,43 @@ feature 'cesta de grãos' do
     end
 
     scenario 'baixar conteudo da cesta', js: true do
-      # TODO: consertar bug na geração da referência ABNT do livro
-      Livro.any_instance.stub(:referencia_abnt).and_return("Referências ABNT")
       criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt))
       visit root_path
       click_link 'baixar conteudo da cesta'
-      Zip::ZipFile.open(Dir["#{Rails.root}/tmp/cesta_tempo*"].last) { |zip_file|
-        zip_file.each { |f|
-          f_path=File.join("#{Rails.root}/spec/resources/downloads/", f.name)
-          FileUtils.mkdir_p(File.dirname(f_path))
-          zip_file.extract(f, f_path) unless File.exist?(f_path)
-        }
-      }
+
+      FileUtils.rm_rf "#{Rails.root}/spec/resources/downloads/"
+      FileUtils.mkdir_p "#{Rails.root}/spec/resources/downloads/"
+
+      Zip::ZipFile.open(Dir["#{Rails.root}/tmp/cesta_temporaria*"].last) do |zip_file|
+        zip_file.each do |grao|
+          grao_path = File.join("#{Rails.root}/spec/resources/downloads/", grao.name)
+          zip_file.extract(grao, grao_path)
+        end
+      end
 
       grao_armazenado = Digest::MD5.hexdigest(File.read('./spec/resources/tabela.odt'))
       grao_extraido = Digest::MD5.hexdigest(File.read("#{Rails.root}/spec/resources/downloads/grao_quantum_mechanics_for_dummies_0.odt"))
       grao_armazenado.should == grao_extraido
       referencia_abnt = File.read("#{Rails.root}/spec/resources/downloads/referencias_ABNT.txt")
       referencia_abnt.should match "grao_quantum_mechanics_for_dummies_0.odt: #{@livro.referencia_abnt}"
+      FileUtils.rm_rf("#{Rails.root}/spec/resources/downloads")
     end
 
     scenario 'baixar conteudo da cesta em odt', js: true do
-      # TODO: consertar bug na geração da referência ABNT do livro
-      Livro.any_instance.stub(:referencia_abnt).and_return("Referências ABNT")
       criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt
                                         ./spec/resources/biblioteca_digital.png
                                         ./spec/resources/grao_teste_0.jpg))
       visit root_path
       click_link 'baixar conteudo da cesta em odt'
-      grao_armazenado = "./spec/resources/tabela_e_imagens.odt"
-      grao_baixado = "tmp/graos.odt"
-      File.delete('myfile.xml') if File.exists?('myfile.xml')
+      grao_armazenado = "./spec/resources/Linus Torvalds.odt"
+      grao_baixado = "#{Rails.root}/tmp/Linus Torvalds.odt"
       comparar_odt('//office:text', grao_baixado, grao_armazenado)
 
-      odt = Zip::ZipFile.open('tmp/graos.odt')
+      odt = Zip::ZipFile.open(grao_baixado)
       doc = Document.new(odt.read("content.xml"))
       arquivo_odt = doc.to_s
-      arquivo_odt.should match "Referências ABNT"
+      arquivo_odt.should match @livro.referencia_abnt
+      File.delete(grao_baixado)
     end
   end
 end

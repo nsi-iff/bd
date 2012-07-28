@@ -54,17 +54,14 @@ describe Arquivo do
       arquivo.tipo_importa?.should be_false
     end
 
-    # TODO: refatorar
     context "quando o tipo de arquivo importar para o conteúdo" do
-      [:livro, :artigo_de_evento, :artigo_de_periodico, :periodico_tecnico_cientifico,
-       :relatorio, :trabalho_de_obtencao_de_grau].each do |tipo|
+      conteudos.each do |tipo|
         it "#{tipo} permite os formatos de arquivo: rtf, doc, odt, ps, pdf" do
-          ['arquivo.rtf', 'arquivo.doc', 'arquivo.odt', 'arquivo.ps', 'arquivo.pdf']
-          .each do |arquivo_tipo|
+          formatos_de_arquivo.each do |formato|
             upload = ActionDispatch::Http::UploadedFile.new({
-              filename: arquivo_tipo,
+              filename: "arquivo.#{formato}",
               type: 'text/plain',
-              tempfile: File.new(Rails.root + "spec/resources/#{arquivo_tipo}")
+              tempfile: File.new(Rails.root + "spec/resources/arquivo.#{formato}")
             })
             Arquivo.new(uploaded_file: upload).should be_valid
           end

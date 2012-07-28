@@ -43,7 +43,7 @@ feature 'Visualizar grão' do
       grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}.odt"
       grao_postado = "#{Rails.root}/spec/resources/grao_tabela.odt"
       comparar_odt('//office:text', grao_baixado, grao_postado)
-      File.delete('myfile.xml') if File.exists?('myfile.xml')
+      File.delete(grao_baixado)
     end
   end
   context 'tipo imagem' do
@@ -75,6 +75,7 @@ feature 'Visualizar grão' do
       grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}.jpg"
       grao_postado = "#{Rails.root}/spec/resources/grao_teste_1.jpg"
       FileUtils.compare_file(grao_postado, grao_baixado)
+      File.delete(grao_baixado)
     end
   end
   context 'e manipulação' do

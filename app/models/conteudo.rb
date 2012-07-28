@@ -76,7 +76,8 @@ class Conteudo < ActiveRecord::Base
           para: transicao.to }.merge(transicao.args.first || {}))
     end
 
-    after_transition any => :editavel, :do => :destruir_graos
+    after_transition all - [:publicado] => :editavel, :do => :destruir_graos
+    after_transition :publicado => any, :do => :destruir_graos
     before_transition :pendente => :granularizando, :do => :granularizar
   end
 
@@ -101,7 +102,7 @@ class Conteudo < ActiveRecord::Base
   end
 
   def destruir_graos
-    # STUB
+    self.graos.destroy_all unless self.graos.empty?
   end
 
   def granularizavel?
@@ -120,15 +121,8 @@ class Conteudo < ActiveRecord::Base
     contribuidor.try(:nome_completo)
   end
 
-  # TODO: refatorar
   def self.search(busca)
-    busca_conteudos = Tire.search('conteudos', load: true) {
-      query { string busca if busca }
-    }.results.to_a
-    busca_arquivos = Tire.search('arquivos', load: true) {
-      query { string busca if busca }
-    }.results.to_a
-    (busca_conteudos + busca_arquivos.map(&:conteudo)).uniq
+    Busca.new(busca: busca).resultados
   end
 
   def data_publicado
@@ -146,21 +140,20 @@ class Conteudo < ActiveRecord::Base
     to_json(include: {autores: { only: [:nome, :lattes]},
                       campus: { only: [:nome]},
                       graos: { only: [:tipo, :key] } },
-            methods: [:data_publicado, :area_nome,
-                      :sub_area_nome, :instituicao_nome])
+            methods: [:data_publicado, :nome_area,
+                      :nome_sub_area, :nome_instituicao])
   end
 
-  # TODO: refatorar
-  def area_nome
-    self.try(:sub_area).try(:area).try(:nome)
+  def nome_sub_area
+    sub_area.nome
   end
 
-  def sub_area_nome
-    self.try(:sub_area).try(:nome)
+  def nome_instituicao
+    campus.nome_instituicao
   end
 
-  def instituicao_nome
-    self.try(:campus).try(:instituicao).try(:nome)
+  def nome_area
+    sub_area.nome_area
   end
 
   def arquivo=(uploaded)
@@ -240,3 +233,4 @@ class Conteudo < ActiveRecord::Base
     camp1.instituicao_id == camp2.instituicao_id
   end
 end
+

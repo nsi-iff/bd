@@ -11,6 +11,7 @@ SimpleNavigation::Configuration.run do |navigation|
       sub.item :graficos_de_acessos, 'Gráficos de acesso', '/graficos_de_acessos'
       sub.item :busca_normal, 'Busca normal', busca_normal_path
       sub.item :busca_avancada, 'Busca avançada', busca_avancada_path
+      sub.item :busca_avancada, 'Busca avançada', buscas_path
 
       sub.item :new_conteudo, 'Adicionar conteúdo', new_conteudo_path
       sub.item :edit_conteudo, 'Editar conteúdo', edit_conteudo_path(@conteudo) if @conteudo && !@conteudo.new_record?

@@ -222,6 +222,25 @@ describe Conteudo do
         conteudo.devolver!
       end
 
+      it 'recolhido --> editavel' do
+        conteudo.submeter!
+        conteudo.stub(:granularizavel?).and_return(false)
+        conteudo.aprovar!
+        conteudo.recolher!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.devolver!
+      end
+    end
+
+    context 'transições de publicado para qualquer outro estado devem destruir todos os grãos' do
+      it 'publicado --> pendente' do
+        conteudo.submeter!
+        conteudo.stub(:granularizavel?).and_return(false)
+        conteudo.aprovar!
+        conteudo.should_receive(:destruir_graos)
+        conteudo.retornar_para_revisao!
+      end
+
       it 'publicado --> editavel' do
         conteudo.submeter!
         conteudo.stub(:granularizavel?).and_return(false)
@@ -230,13 +249,12 @@ describe Conteudo do
         conteudo.devolver!
       end
 
-      it 'recolhido --> editavel' do
+      it 'publicado --> recolhido' do
         conteudo.submeter!
         conteudo.stub(:granularizavel?).and_return(false)
         conteudo.aprovar!
-        conteudo.recolher!
         conteudo.should_receive(:destruir_graos)
-        conteudo.devolver!
+        conteudo.recolher!
       end
     end
   end
@@ -355,6 +373,12 @@ describe Conteudo do
   end
 
   context 'pesquisa por meta-dados' do
+    it "retorna os resultados de uma busca" do
+      Busca.should_receive(:new).with(busca: 'busca') {
+        mock(:result).as_null_object }
+      Conteudo.search 'busca'
+    end
+
     it "pesquisa no índice 'conteudos' e 'arquivos' do elasticsearch" do
       result = mock(:result).as_null_object
       Tire.should_receive('search').with('conteudos', {load: true}).and_return(result)
@@ -372,11 +396,13 @@ describe Conteudo do
     end
 
     context 'indexação de atributos de relacionamentos' do
-      before(:each) do
+      subject { create(:conteudo) }
+
+      before do
         subject.autores = [create(:autor, nome: '_why', lattes: 'http://lattes.cnpq.br/1234567890'),
                            create(:autor, nome: 'blix', lattes: 'http://lattes.cnpq.br/0987654321')]
         area = Area.create!(nome: 'Ciências Exatas e da Terra')
-        sub_area = subject.sub_area = area.sub_areas.create!(nome: 'Ciência da Computação')
+        subject.sub_area = area.sub_areas.create!(nome: 'Ciência da Computação')
       end
 
       context 'dos autores' do
@@ -394,11 +420,11 @@ describe Conteudo do
       end
 
       it "deve incluir o nome da sub-área" do
-        campos_a_serem_indexados['sub_area_nome'].should == 'Ciência da Computação'
+        campos_a_serem_indexados['nome_sub_area'].should == 'Ciência da Computação'
       end
 
       it "deve incluir o nome da área da sub-área" do
-        campos_a_serem_indexados['area_nome'].should == 'Ciências Exatas e da Terra'
+        campos_a_serem_indexados['nome_area'].should == 'Ciências Exatas e da Terra'
       end
     end
 
@@ -470,4 +496,30 @@ describe Conteudo do
     subject.arquivo.should be_nil
     subject.extensao.should be_nil
   end
+
+  context "retorna nome da" do
+    subject do
+      create(:conteudo,
+        campus: stub_model(Campus, nome_instituicao: "IFF"),
+        sub_area: stub_model(SubArea, nome: "Física", nome_area: "Ciências"))
+    end
+
+    its(:nome_area) { should eq("Ciências") }
+    its(:nome_sub_area) { should eq("Física") }
+    its(:nome_instituicao) { should eq("IFF") }
+  end
+
+  it "destrói os grãos de um conteúdo" do
+    conteudo = create(:livro_publicado)
+    conteudo.graos << create(:grao)
+
+    conteudo.graos.should_not == []
+    Grao.all.should_not == []
+
+    conteudo.destruir_graos
+
+    conteudo.graos.should == []
+    Grao.all.should == []
+  end
 end
+

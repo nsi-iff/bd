@@ -61,7 +61,7 @@ feature 'apresentar breadcrumbs para' do
       verificar_breadcrumbs '/estatisticas', crumb_default + 'Estatísticas'
     end
 
-    scenario 'docmentos mais acessados' do
+    scenario 'documentos mais acessados' do
       verificar_breadcrumbs '/documentos_mais_acessados', crumb_default + 'Documentos mais acessados'
     end
 
@@ -79,9 +79,17 @@ feature 'apresentar breadcrumbs para' do
       end
     end
 
-    scenario 'avançada' do
-      # TODO: implementar quando busca avançada estiver funcionando  (rodrigo, 17/06/2012 14:05)
-      # verificar_breadcrumbs busca_avancada_path, 'Busca avançada'
+    context 'avançada' do
+      scenario 'formulário' do
+        verificar_breadcrumbs(buscas_path, 'Busca avançada')
+      end
+
+      scenario 'resultados' do
+        verificar_breadcrumbs(buscas_path, 'Busca avançada') do |url|
+          visit buscas_path
+          click_button "Buscar"
+        end
+      end
     end
   end
 

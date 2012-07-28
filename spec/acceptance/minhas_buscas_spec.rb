@@ -7,7 +7,6 @@ feature 'Buscas' do
   before(:each) do
     if ENV['INTEGRACAO_TIRE']
       Tire.criar_indices
-      sleep(2)
     end
     Papel.criar_todos
   end
@@ -96,10 +95,10 @@ feature 'Buscas' do
    scenario 'busca pelo nome da área' do
      livro = create(:livro, titulo: "teste livro")
      livro.submeter! && livro.aprovar!
-    refresh_elasticsearch
+     refresh_elasticsearch
 
      visit buscas_path
-     select livro.area.nome, from: 'parametros[area_nome]'
+     select livro.nome_area, from: 'parametros[nome_area]'
      click_button 'Buscar'
      page.should have_content livro.titulo
      page.should_not have_content("Não foi encontrado resultado para sua busca.")
@@ -111,9 +110,9 @@ feature 'Buscas' do
      refresh_elasticsearch
 
      visit buscas_path
-     select livro.area.nome, from: 'parametros[area_nome]'
-     wait_until { page.has_selector?("select:has(option:contains('Todas'))[name='parametros[instituicao_nome]']") }
-     select livro.sub_area.nome, from: 'parametros[sub_area_nome]'
+     select livro.nome_area, from: 'parametros[nome_area]'
+     wait_until { page.has_selector?("select:has(option:contains('Todas'))[name='parametros[nome_instituicao]']") }
+     select livro.nome_sub_area, from: 'parametros[nome_sub_area]'
      click_button 'Buscar'
      page.should have_content livro.titulo
      page.should_not have_content("Não foi encontrado resultado para sua busca.")
@@ -125,7 +124,7 @@ feature 'Buscas' do
       refresh_elasticsearch
 
       visit buscas_path
-      select livro.campus.instituicao.nome, from: 'parametros[instituicao_nome]'
+      select livro.nome_instituicao, from: 'parametros[nome_instituicao]'
       click_button 'Buscar'
       page.should have_content livro.titulo
       page.should_not have_content("Não foi encontrado resultado para sua busca.")

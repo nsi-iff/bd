@@ -3,6 +3,12 @@
 require 'spec_helper'
 
 describe SubArea do
+  subject {
+    create(:sub_area, area: stub_model(Area, nome: "Ciências"))
+    }
+
+  its(:nome_area) { should eq("Ciências") }
+
   it "deve ser valido quando associado a uma área" do
     area = create(:area)
 
