@@ -1,12 +1,11 @@
 require 'fileutils'
 require 'nokogiri'
 require 'rubygems'
-  
+
 include REXML
 include Zip
 
-class DocumentoOdt < ActiveRecord::Base
-  
+class DocumentoOdt
   def initialize(nome)
     template_modelo = "#{Rails.root}/public/template.odt"
     @arquivo = File.join("#{Rails.root}/tmp/#{nome}.odt")
@@ -37,9 +36,9 @@ class DocumentoOdt < ActiveRecord::Base
     frame.add_attribute("text:anchor-type", "as-char")
     frame.add_attribute("svg:width", width)
     frame.add_attribute("svg:height", height)
-    Element.new("draw:image xlink:actuate='onLoad' 
-                 xlink:href='#{imagem_odt}' 
-                 xlink:show='embed' 
+    Element.new("draw:image xlink:actuate='onLoad'
+                 xlink:href='#{imagem_odt}'
+                 xlink:show='embed'
                  xlink:type='simple'", parent=frame)
     imagem_temporaria.close()
   end
