@@ -129,7 +129,7 @@ class ConteudosController < ApplicationController
 
   def granularizou
     conteudo = Conteudo.encontrar_por_id_sam(params['doc_key'])
-    conteudo.granularizou!(graos: params['grains_keys'])
+    conteudo.granularizou!(graos: params['grains_keys'], thumbnail: params['thumbnail_key'])
     render nothing: true
   end
 

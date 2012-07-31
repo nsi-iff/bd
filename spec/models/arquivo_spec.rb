@@ -147,4 +147,10 @@ describe Arquivo do
     }))
     arquivo.extensao.should eq("doc")
   end
+
+  it 'possui chave no sam para o seu thumbnail' do
+    arquivo = build(:arquivo)
+    arquivo.should_receive(:thumbnail).and_return('chave do sam')
+    arquivo.thumbnail.should == 'chave do sam'
+  end
 end

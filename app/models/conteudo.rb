@@ -13,6 +13,7 @@ class Conteudo < ActiveRecord::Base
   belongs_to :sub_area
   has_one :arquivo
   delegate :extensao, :to => :arquivo, :allow_nil => true
+  delegate :thumbnail, :to => :arquivo, :allow_nil => true
   belongs_to :contribuidor, :class_name => 'Usuario'
   accepts_nested_attributes_for :autores, :arquivo, :reject_if => :all_blank
   belongs_to :campus
@@ -97,6 +98,8 @@ class Conteudo < ActiveRecord::Base
   def granularizou(*args)
     options = args.first
     graos_response = options.delete(:graos)
+    thumbnail_key = options.delete(:thumbnail)
+    arquivo.thumbnail_key = thumbnail_key
     criar_graos(graos_response)
     super
   end
