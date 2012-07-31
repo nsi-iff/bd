@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(:version => 20120730231943) do
     t.string   "key"
     t.string   "mime_type"
     t.integer  "conteudo_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "thumbnail_key"
   end
 
   create_table "autores", :force => true do |t|
