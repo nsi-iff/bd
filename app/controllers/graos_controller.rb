@@ -86,7 +86,7 @@ class GraosController < ApplicationController
     dados_grao = @grao.conteudo_base64
     if @grao.imagem?
       dados_grao = Base64.decode64(dados_grao)
-      file_name  = "#{Rails.root}/tmp/#{@grao.titulo}.jpg"
+      file_name  = "#{Rails.root}/tmp/#{@grao.titulo}"
       File.new(file_name, "w").write(dados_grao.force_encoding('UTF-8'))
       send_file file_name
     else

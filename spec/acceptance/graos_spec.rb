@@ -72,7 +72,7 @@ feature 'Visualizar grão' do
       visit grao_path(grao)
 
       click_link 'Download'
-      grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}.jpg"
+      grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}"
       grao_postado = "#{Rails.root}/spec/resources/grao_teste_1.jpg"
       FileUtils.compare_file(grao_postado, grao_baixado)
       File.delete(grao_baixado)
