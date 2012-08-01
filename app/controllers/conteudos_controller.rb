@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 class ConteudosController < ApplicationController
-  before_filter :authenticate_usuario!, except: [:granularizou, :show, :por_area, :por_sub_area]
+  before_filter :authenticate_usuario!, except: [:granularizou, :show,
+                :baixar_conteudo, :por_area, :por_sub_area]
   before_filter :pode_editar, only: [:edit, :update]
 
   def new
@@ -168,6 +169,7 @@ class ConteudosController < ApplicationController
   end
 
   def incrementar_numero_de_acessos
+    # TODO: mover para o model
     if @conteudo.publicado?
       @conteudo.numero_de_acessos += 1
       @conteudo.save!
