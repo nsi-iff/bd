@@ -1,3 +1,6 @@
+- if @conteudo.thumbnail.present?
+  %img{id: "doc_thumbnail", src: "data:image/png;base64,#{@conteudo.thumbnail}"}
+
 %p
 %b
   Arquivo:
