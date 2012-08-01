@@ -246,20 +246,22 @@ feature 'Buscas' do
       artigo.aprovar!
     end
 
-    Busca.create(titulo: 'busca artigo',
-                 busca: 'livro',
-                 usuario: usuario_1,
-                 mala_direta: true)
+    busca = Busca.create(titulo: 'busca artigo',
+                          busca: 'livro')
+    busca.usuario = usuario_1
+    busca.mala_direta = true
+    busca.save!
 
     artigo = create(:artigo_de_evento, titulo: 'artigo')
     artigo.submeter!
     artigo.aprovar!
 
     usuario_2 = create :usuario
-    Busca.create(titulo: 'busca artigo',
-                 busca: 'artigo',
-                 usuario: usuario_2,
-                 mala_direta: true)
+    busca = Busca.create(titulo: 'busca artigo',
+                 busca: 'artigo')
+    busca.usuario = usuario_2
+    busca.mala_direta = true
+    busca.save!
 
     #nenhum email foi enviado
 
