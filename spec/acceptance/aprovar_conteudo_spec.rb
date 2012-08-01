@@ -44,11 +44,14 @@ feature 'aprovar conteúdo' do
                      grains_keys: {
                        images: 2.times.map {|n| rand.to_s.split('.').last },
                        files: [rand.to_s.split('.').last]
-                      })
+                      },
+                      thumbnail_key: 'a dummy key')
     artigo.reload.estado.should == 'publicado'
     artigo.should have(2).graos_imagem
     artigo.should have(1).graos_arquivo
+    artigo.arquivo.thumbnail_key.should == 'a dummy key'
   end
+
   scenario 'gestor de instituição não pode aprovar conteudo de outra instituição' do
     Papel.criar_todos
     ins1 = Instituicao.create(nome: 'instituicao1')
@@ -56,11 +59,11 @@ feature 'aprovar conteúdo' do
     ins2 = Instituicao.create(nome: 'instituicao2')
     camp2 = ins2.campus.create(nome: 'campus2')
     gestor = create(:usuario_gestor, campus: camp1)
-    
+
     conteudo = create(:relatorio)
     conteudo.campus_id= camp2.id
-    conteudo.submeter!    
-    
+    conteudo.submeter!
+
     autenticar(gestor)
 
     visit conteudo_path(conteudo)
