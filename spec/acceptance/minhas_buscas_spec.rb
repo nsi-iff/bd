@@ -213,12 +213,14 @@ feature 'Buscas' do
 
   scenario 'clicar na busca salva executa a busca novamente' do
     usuario = autenticar_usuario(Papel.contribuidor)
-    submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'http://nsi.iff.edu.br', arquivo: ''
+    artigo = create(:artigo_de_evento, titulo: 'artigo')
+    artigo.submeter!
+    artigo.aprovar!
+    refresh_elasticsearch
 
     visit root_path
     fill_in 'Busca', with: 'artigo'
     click_button 'Buscar'
-    sleep(1)
     within '#resultado' do
       page.should have_link 'artigo'
     end
@@ -231,7 +233,6 @@ feature 'Buscas' do
 
     #link do portlet
     click_link 'busca por artigo'
-    sleep(1)
     within '#resultado' do
       page.should have_link 'artigo'
     end
@@ -239,7 +240,6 @@ feature 'Buscas' do
     #link da view minhas buscas
     click_link 'Gerenciar buscas'
     click_link 'busca por artigo'
-    sleep(1)
     within '#resultado' do
       page.should have_link 'artigo'
     end
