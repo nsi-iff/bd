@@ -9,24 +9,6 @@ feature 'aprovar conteúdo' do
     popular_eixos_tematicos_cursos
   end
 
-  tipos_de_conteudo.each do |tipo|
-    scenario "gestor deve poder aprovar #{tipo} pendente" do
-      user = autenticar_usuario(Papel.gestor)
-      conteudo = create(tipo)
-      conteudo.campus_id = user.campus_id
-      conteudo.submeter!
-
-      visit lista_de_revisao_usuario_path(user)
-      page.should have_content conteudo.titulo
-
-      visit conteudo_path(conteudo)
-      click_button 'Aprovar'
-
-      visit lista_de_revisao_usuario_path(user)
-      page.should_not have_content conteudo.titulo
-    end
-  end
-
   scenario 'envia conteúdo para granularização ao aprovar' do
     autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :artigo_de_evento, link: '',

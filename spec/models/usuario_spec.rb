@@ -38,11 +38,57 @@ describe Usuario do
 
       include_examples 'adicionar e ler todos os tipos de conteudo'
     end
-    
+
     context 'gestor' do
       let(:usuario) { create(:usuario_gestor) }
-      
-      context 'retornar para pendente' do
+
+      context 'aprovar' do
+        let(:conteudo) { stub_model(Conteudo) }
+
+        it 'conteúdos da própria instituição são permitidos' do
+          gestor = stub_model(Usuario, gestor?: true)
+          gestor.stub(:mesma_instituicao?).with(conteudo).and_return(true)
+          Ability.new(gestor).should be_able_to(:aprovar, conteudo)
+        end
+
+        it 'conteúdos de instituição diferentes não são permitidos' do
+          gestor = stub_model(Usuario, gestor?: true)
+          gestor.stub(:mesma_instituicao?).with(conteudo).and_return(false)
+          Ability.new(gestor).should_not be_able_to(:aprovar, conteudo)
+        end
+      end
+
+      context 'devolver' do
+        let(:conteudo) { FactoryGirl.create(:livro) }
+
+        it 'somente conteúdos de sua própria instituição' do
+          gestor = stub_model(Usuario, gestor?: true)
+          gestor.stub(:mesma_instituicao?).with(conteudo).and_return(true)
+          conteudo.submeter!
+          Ability.new(gestor).should be_able_to(:devolver, conteudo)
+        end
+
+        it 'conteúdos de instituições diferentes não são permitidos' do
+          gestor = stub_model(Usuario, gestor?: true)
+          gestor.stub(:mesma_instituicao?).with(conteudo).and_return(false)
+          conteudo.submeter!
+          Ability.new(gestor).should_not be_able_to(:devolver, conteudo)
+        end
+      end
+
+      context 'recolher' do
+        let(:conteudo) { FactoryGirl.create(:livro) }
+
+        it 'somente conteúdos de sua própria instituição' do
+          gestor = stub_model(Usuario, gestor?: true)
+          gestor.stub(:mesma_instituicao?).with(conteudo).and_return(true)
+          conteudo.submeter!
+          conteudo.aprovar!
+          Ability.new(gestor).should be_able_to(:recolher, conteudo)
+        end
+      end
+
+      context 'retornar para revisão' do
         let(:conteudo) { stub_model(Conteudo) }
 
         it 'somente conteúdos de sua própria instituição' do
@@ -54,8 +100,8 @@ describe Usuario do
           desautorizado.stub(:mesma_instituicao?).and_return(false)
           Ability.new(desautorizado).should_not be_able_to(:retornar_para_revisao, conteudo)
         end
-        
-        it 'somente gestor' do
+
+        it 'conteúdos de instituições diferentes não são permitidos' do
           nao_gestor = stub_model(Usuario, gestor?: false)
           nao_gestor.stub(:mesma_instituicao?).with(conteudo).and_return(true)
           Ability.new(nao_gestor).should_not be_able_to(:retornar_para_revisao, conteudo)
