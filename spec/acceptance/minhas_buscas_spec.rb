@@ -211,6 +211,37 @@ feature 'Buscas' do
     page.should have_selector('input', :type => 'checkbox')
   end
 
+  scenario 'clicar na busca salva executa a busca novamente' do
+    usuario = autenticar_usuario(Papel.contribuidor)
+    submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'http://nsi.iff.edu.br', arquivo: ''
+
+    visit root_path
+    fill_in 'Busca', with: 'artigo'
+    click_button 'Buscar'
+    within '#resultado' do
+      page.should have_link 'artigo'
+    end
+
+    click_link 'Salvar Busca'
+    fill_in 'Título', with: 'busca por artigo'
+    click_button 'Salvar'
+
+    visit root_path
+
+    #link do portlet
+    click_link 'busca por artigo'
+    within '#resultado' do
+      page.should have_link 'artigo'
+    end
+
+    #link da view minhas buscas
+    click_link 'Gerenciar buscas'
+    click_link 'busca por artigo'
+    within '#resultado' do
+      page.should have_link 'artigo'
+    end
+  end
+
   scenario 'cadastrar busca salva no servico de mala direta', busca: true do
     usuario = autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'http://nsi.iff.edu.br', arquivo: ''
