@@ -123,6 +123,12 @@ header .site_actions {
   overflow: hidden;
 }
 
+h1 {
+  font-family: FuturaStd;
+  text-align: center;
+  color: #435E00;
+}
+
 .container .navigation a {
   color: #FFF;
   text-decoration: none;
