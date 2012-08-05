@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 class ConteudosController < ApplicationController
-  before_filter :authenticate_usuario!, except: [:granularizou, :show, :por_area, :por_sub_area]
+  before_filter :authenticate_usuario!, except: [:granularizou, :show,
+                :baixar_conteudo, :por_area, :por_sub_area]
   before_filter :pode_editar, only: [:edit, :update]
 
   def new
@@ -129,7 +130,7 @@ class ConteudosController < ApplicationController
 
   def granularizou
     conteudo = Conteudo.encontrar_por_id_sam(params['doc_key'])
-    conteudo.granularizou!(graos: params['grains_keys'])
+    conteudo.granularizou!(graos: params['grains_keys'], thumbnail: params['thumbnail_key'])
     render nothing: true
   end
 
@@ -168,6 +169,7 @@ class ConteudosController < ApplicationController
   end
 
   def incrementar_numero_de_acessos
+    # TODO: mover para o model
     if @conteudo.publicado?
       @conteudo.numero_de_acessos += 1
       @conteudo.save!

@@ -120,7 +120,13 @@ header .site_actions {
   min-height: 680px;
   padding: 0;
   width: 980px !important;
-  overflow: auto;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: FuturaStd;
+  text-align: center;
+  color: #435E00;
 }
 
 .container .navigation a {
@@ -198,10 +204,13 @@ header .site_actions {
 
 .container .busca_por_area {
   margin-top: 20px;
-  margin-left: 5px;
+}
+
+.container .busca_por_area p#title {
   width: 200px;
-  height: 27px;
   background-image: url("/assets/menu_verde.gif");
+  height: 15px;
+  width: 188px;
 }
 
 .container .busca_por_area #title {

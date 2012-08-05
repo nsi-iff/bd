@@ -211,6 +211,40 @@ feature 'Buscas' do
     page.should have_selector('input', :type => 'checkbox')
   end
 
+  scenario 'clicar na busca salva executa a busca novamente' do
+    usuario = autenticar_usuario(Papel.contribuidor)
+    artigo = create(:artigo_de_evento, titulo: 'artigo')
+    artigo.submeter!
+    artigo.aprovar!
+    refresh_elasticsearch
+
+    visit root_path
+    fill_in 'Busca', with: 'artigo'
+    click_button 'Buscar'
+    within '#resultado' do
+      page.should have_link 'artigo'
+    end
+
+    click_link 'Salvar Busca'
+    fill_in 'Título', with: 'busca por artigo'
+    click_button 'Salvar'
+
+    visit root_path
+
+    #link do portlet
+    click_link 'busca por artigo'
+    within '#resultado' do
+      page.should have_link 'artigo'
+    end
+
+    #link da view minhas buscas
+    click_link 'Gerenciar buscas'
+    click_link 'busca por artigo'
+    within '#resultado' do
+      page.should have_link 'artigo'
+    end
+  end
+
   scenario 'cadastrar busca salva no servico de mala direta', busca: true do
     usuario = autenticar_usuario(Papel.contribuidor)
     submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'http://nsi.iff.edu.br', arquivo: ''
@@ -237,40 +271,42 @@ feature 'Buscas' do
   end
 
   # TODO: resolver o problema da intermitência na integração contínua. teste removido até que o problema seja resolvido.
-#  scenario 'as 2:00 o servico de mala direta envia emails', busca: true do
-#    usuario_1 = create :usuario
+  scenario 'as 2:00 o servico de mala direta envia emails', busca: true do
+    usuario_1 = create :usuario
 
-#    Delorean.time_travel_to Date.yesterday do
-#      artigo = create(:livro, titulo: 'livro')
-#      artigo.submeter!
-#      artigo.aprovar!
-#    end
+    Delorean.time_travel_to Date.yesterday do
+      artigo = create(:livro, titulo: 'livro')
+      artigo.submeter!
+      artigo.aprovar!
+    end
 
-#    Busca.create(titulo: 'busca artigo',
-#                 busca: 'livro',
-#                 usuario: usuario_1,
-#                 mala_direta: true)
+    busca = Busca.create(titulo: 'busca artigo',
+                          busca: 'livro')
+    busca.usuario = usuario_1
+    busca.mala_direta = true
+    busca.save!
 
-#    artigo = create(:artigo_de_evento, titulo: 'artigo')
-#    artigo.submeter!
-#    artigo.aprovar!
+    artigo = create(:artigo_de_evento, titulo: 'artigo')
+    artigo.submeter!
+    artigo.aprovar!
 
-#    usuario_2 = create :usuario
-#    Busca.create(titulo: 'busca artigo',
-#                 busca: 'artigo',
-#                 usuario: usuario_2,
-#                 mala_direta: true)
+    usuario_2 = create :usuario
+    busca = Busca.create(titulo: 'busca artigo',
+                 busca: 'artigo')
+    busca.usuario = usuario_2
+    busca.mala_direta = true
+    busca.save!
 
-#    #nenhum email foi enviado
+    #nenhum email foi enviado
 
-#    amanha_quase_as_duas = Date.tomorrow.strftime('%Y-%m-%d') + ' 1:59:57 am'
-#    expect {
-#      Delorean.time_travel_to(amanha_quase_as_duas) { sleep(5) } # tempo para esperar enviar e-mail
-#    }.to change { ActionMailer::Base.deliveries.size }.by 1
-#    email = ActionMailer::Base.deliveries.last
-#    email.to.should == [usuario_2.email]
-#    email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
-#  end
+    amanha_quase_as_duas = Date.tomorrow.strftime('%Y-%m-%d') + ' 1:59:57 am'
+    expect {
+      Delorean.time_travel_to(amanha_quase_as_duas) { sleep(5) } # tempo para esperar enviar e-mail
+    }.to change { ActionMailer::Base.deliveries.size }.by 1
+    email = ActionMailer::Base.deliveries.last
+    email.to.should == [usuario_2.email]
+    email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
+  end
 
   scenario 'nenhuma busca salva' do
     usuario = autenticar_usuario(Papel.membro)

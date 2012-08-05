@@ -106,6 +106,11 @@ describe Conteudo do
           conteudo.graos_arquivo.map(&:key).should =~ %w(9876 5432)
           conteudo.graos_imagem.map(&:key).should == ['5678']
         end
+
+        it 'salva chave do thumbnail no arquivo' do
+          conteudo.granularizou!(graos: {}, thumbnail: 'chave do sam')
+          conteudo.arquivo.thumbnail_key.should == 'chave do sam'
+        end
       end
     end
 
@@ -495,6 +500,16 @@ describe Conteudo do
   it "#extensao retorna nil caso #arquivo não exista" do
     subject.arquivo.should be_nil
     subject.extensao.should be_nil
+  end
+
+  it "thumbnail é delegado para o #arquivo" do
+    subject.arquivo = stub_model(Arquivo, :thumbnail => "thumb")
+    subject.thumbnail.should eq("thumb")
+  end
+
+  it "#thumbnail retorna nil caso #arquivo não exista" do
+    subject.arquivo.should be_nil
+    subject.thumbnail.should be_nil
   end
 
   context "retorna nome da" do

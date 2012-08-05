@@ -50,7 +50,7 @@ class BuscasController < InheritedResources::Base
 
   def show
     busca = Busca.find(params[:id]).busca
-    @conteudos = Conteudo.search(busca)
+    @resultados = Conteudo.search(busca)
     render :resultado_busca
   end
 

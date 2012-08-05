@@ -54,4 +54,8 @@ class Arquivo < ActiveRecord::Base
   def extensao
     nome.split('.').last
   end
+
+  def thumbnail
+    sam.get(self.thumbnail_key)['data']['file'] if self.thumbnail_key
+  end
 end
