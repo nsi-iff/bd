@@ -1,4 +1,4 @@
 - graos.each do |grao|
   .grao_imagem
-    %img{src: "data:image/xyz;base64,#{grao.conteudo_base64}"}
-    = link_to "nome grao", grao_path(grao.id)
+    %a{href: grao_path(grao.id)}
+      %img{src: "data:image/xyz;base64,#{grao.conteudo_base64}"}
