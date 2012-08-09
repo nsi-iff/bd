@@ -50,6 +50,5 @@
 - if can? :destroy, @conteudo
   = button_to "Excluir", conteudo_path(@conteudo), method: 'delete'
 
-- if @conteudo.publicado?
-  = link_to "Download" , conteudo_baixar_conteudo_path(@conteudo)
+
 = render 'conteudos/acoes', :conteudo => @conteudo

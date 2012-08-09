@@ -6,6 +6,8 @@
   Arquivo:
   %br
 = @conteudo.arquivo.nil? ? "Não informado" : @conteudo.arquivo.nome
+- if @conteudo.publicado?
+  = link_to "Download" , conteudo_baixar_conteudo_path(@conteudo)
 
 %p
 %b
