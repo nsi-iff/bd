@@ -74,7 +74,7 @@ feature 'apresentar breadcrumbs para' do
     scenario 'normal' do
       verificar_breadcrumbs(busca_normal_path, 'Busca normal') do |url|
         visit root_path
-        fill_in "Busca", with: 'dummy '
+        fill_in "text_busca_inicio", with: 'dummy '
         click_button "Buscar"
       end
     end
