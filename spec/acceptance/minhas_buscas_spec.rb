@@ -174,7 +174,7 @@ feature 'Buscas' do
     livro2 = create(:livro, titulo: 'Outro book')
     refresh_elasticsearch
     visit root_path
-    fill_in 'Busca', with: 'book'
+    fill_in 'text_busca_inicio', with: 'book'
     click_button 'Buscar'
     click_link 'Salvar Busca'
     fill_in 'Título', with: 'Buscas book'
@@ -193,7 +193,7 @@ feature 'Buscas' do
     livro = create(:livro, titulo: 'livro')
 
     visit root_path
-    fill_in 'Busca', with: 'livro'
+    fill_in 'text_busca_inicio', with: 'livro'
     click_button 'Buscar'
     click_link 'Salvar Busca'
     fill_in 'Título', with: 'Buscar livro'
@@ -219,7 +219,7 @@ feature 'Buscas' do
     refresh_elasticsearch
 
     visit root_path
-    fill_in 'Busca', with: 'artigo'
+    fill_in 'text_busca_inicio', with: 'artigo'
     click_button 'Buscar'
     within '#resultado' do
       page.should have_link 'artigo'
@@ -250,7 +250,7 @@ feature 'Buscas' do
     submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'http://nsi.iff.edu.br', arquivo: ''
     page.should have_content 'com sucesso'
     visit root_path
-    fill_in 'Busca', with: 'livro'
+    fill_in 'text_busca_inicio', with: 'livro'
     click_button 'Buscar'
     click_link 'Salvar Busca'
 
