@@ -368,11 +368,11 @@ describe Conteudo do
       conteudo.should_not be_granularizavel
     end
 
-    it 'por enquanto, apenas se o arquivo associado for um ODT' do
+    it 'arquivo deve ser granularizavel se for odt ou video' do
       conteudo.link = nil
-      conteudo.arquivo = stub_model(Arquivo, odt?: false)
+      conteudo.arquivo = stub_model(Arquivo, odt?: false, video?: false)
       conteudo.should_not be_granularizavel
-      conteudo.arquivo = stub_model(Arquivo, odt?: true)
+      conteudo.arquivo = stub_model(Arquivo, odt?: true, video?: true)
       conteudo.should be_granularizavel
     end
   end

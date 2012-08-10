@@ -38,17 +38,6 @@ class ObjetoDeAprendizagem < Conteudo
     @arquivo_uploaded = uploaded
     @arquivo_base64 = Base64.encode64(@arquivo_uploaded.read) if @arquivo_uploaded
   end
-  
-  def enviar_arquivo_ao_sam
-    if arquivo.present?
-      if arquivo.video?
-        result = sam.store(video: arquivo_base64)
-      else  
-        result = sam.store(doc: arquivo_base64)
-      end
-      arquivo.key = result['key']
-    end
-  end
 
   def granularizar
     if arquivo.video?
@@ -69,6 +58,7 @@ class ObjetoDeAprendizagem < Conteudo
       :filename => arquivo.nome,
       callback_url: config[:callback_url],
       verb: config[:callback_verb])
+    binding.pry 
   end
 
   def descricao_idioma
@@ -86,5 +76,9 @@ class ObjetoDeAprendizagem < Conteudo
   def arquivo_attributes=(args)
     args.reverse_merge!(conteudo: self)
     super
+  end
+
+  def graos_video
+    graos.select(&:video?)
   end
 end

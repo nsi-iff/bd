@@ -2,7 +2,9 @@
   = @grao.titulo
 
 .grao
-  - if @grao.tipo == 'files'
+  - if @grao.video?
+    = render 'graos/show_video'	
+  - elsif @grao.tipo == 'files'
     = render 'graos/show_tabela'
   - else
     = render 'graos/show_imagem'

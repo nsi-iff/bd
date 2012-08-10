@@ -20,6 +20,10 @@
       %li{ class: 'sel_aba'}
         %a{:href=>"#tabelas"} Tabelas
 
+    - if @conteudo.graos_video.present?
+      %li{ class: 'sel_aba'}
+        %a{:href=>"#videos"} Videos
+
 #metadados.aba
   = render "metadados_#{@conteudo.nome_como_simbolo}"
   %p
@@ -36,6 +40,11 @@
 - if @conteudo.graos_arquivo.present?
   #tabelas.aba
     = render 'conteudos/graos_arquivo', graos: @conteudo.graos_arquivo
+
+- if @conteudo.graos_video.present?
+  #videos.aba
+    = render 'conteudos/graos_videos', thumbnails: @conteudo.graos_imagem, videos: @conteudo.graos_video
+    %span.clear
 
 - if current_usuario
   - unless current_usuario.id == @conteudo.contribuidor_id
