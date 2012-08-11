@@ -109,7 +109,7 @@ class Conteudo < ActiveRecord::Base
   end
 
   def granularizavel?
-    arquivo.present? && arquivo.odt?
+    arquivo.present? && (arquivo.odt? || arquivo.video?)
   end
 
   def area
@@ -174,6 +174,10 @@ class Conteudo < ActiveRecord::Base
 
   def graos_imagem
     graos.select(&:imagem?)
+  end
+
+  def graos_video
+    []
   end
 
   def nome_humanizado

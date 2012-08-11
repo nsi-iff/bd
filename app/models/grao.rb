@@ -14,6 +14,10 @@ class Grao < ActiveRecord::Base
     tipo == 'images'
   end
 
+  def video?
+    tipo == 'videos'
+  end
+
   def tipo_humanizado
     arquivo? ? "arquivo" : (imagem? ? "imagem" : nil)
   end

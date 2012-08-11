@@ -44,7 +44,13 @@ class Arquivo < ActiveRecord::Base
   end
 
   def enviar_ao_sam
-    self.key = sam.store(doc: self.content_base64)['key'] if @uploaded_file.present?
+    if @uploaded_file.present?
+      if self.video?
+        self.key = sam.store(video: self.content_base64)['key']
+      else
+        self.key = sam.store(doc: self.content_base64)['key']
+      end
+    end
   end
 
   def tipo_importa?

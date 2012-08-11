@@ -34,7 +34,7 @@ feature 'cesta de grãos' do
 
   def incluir_grao_na_cesta
     visit root_path
-    fill_in "Busca", with: 'Mechanics'
+    fill_in "text_busca_inicio", with: 'Mechanics'
     click_button "Buscar"
 
     within item_de_busca(resultado: 1, grao: 1) do
@@ -43,7 +43,7 @@ feature 'cesta de grãos' do
     within('#cesta') { page.should have_content representacao_grao(@grao1) }
 
     visit root_path
-    fill_in "Busca", with: 'for Dummies'
+    fill_in "text_busca_inicio", with: 'for Dummies'
     click_button "Buscar"
 
     within item_de_busca(resultado: 1, grao: 2) do
@@ -57,7 +57,7 @@ feature 'cesta de grãos' do
 
   def excluir_grao_da_cesta
     visit root_path
-    fill_in "Busca", with: 'Mechanics'
+    fill_in "text_busca_inicio", with: 'Mechanics'
     click_button "Buscar"
 
     within item_de_busca(resultado: 1, grao: 1) do
