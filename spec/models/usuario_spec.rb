@@ -95,7 +95,7 @@ describe Usuario do
           autorizado = stub_model(Usuario, gestor?: true)
           autorizado.stub(:mesma_instituicao?).with(conteudo).and_return(true)
           Ability.new(autorizado).should be_able_to(:retornar_para_revisao, conteudo)
-          
+
           desautorizado = stub_model(Usuario, gestor?: true)
           desautorizado.stub(:mesma_instituicao?).and_return(false)
           Ability.new(desautorizado).should_not be_able_to(:retornar_para_revisao, conteudo)
@@ -210,5 +210,15 @@ describe Usuario do
     usuario = create(:usuario, campus: meu_campus)
     usuario.trocar_campus outro_campus
     usuario.campus.instituicao.should == outro_campus.instituicao
+  end
+
+  context 'gerenciamento de usuários' do
+    it 'busca por nome' do
+      Papel.criar_todos
+      usuario = create(:usuario)
+      usuario.papeis << Papel.all
+      a = Usuario.buscar_por_nome(usuario.nome_completo.upcase, usuario)
+      a.size.should == 1
+    end
   end
 end
