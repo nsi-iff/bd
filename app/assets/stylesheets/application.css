@@ -198,10 +198,6 @@ h1 {
   background-image: url("/assets/menu_cinza.jpg");
 }
 
-.container .navigation li#editor_online {
-  background-image: url("/assets/menu_azul_claro.jpg");
-}
-
 .container .busca_por_area {
   margin-top: 20px;
 }
