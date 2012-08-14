@@ -193,7 +193,7 @@ describe Conteudo do
       mudanca = conteudo.mudancas_de_estado.last
       mudanca.de.should == de
       mudanca.para.should == para
-      mudanca.data_hora.should == tempo
+      mudanca.data_hora.to_datetime.should == tempo.to_datetime
     end
 
     it 'gera um objeto para a mudança de estado a cada transição' do
@@ -537,4 +537,3 @@ describe Conteudo do
     Grao.all.should == []
   end
 end
-
