@@ -54,7 +54,6 @@ group :test, :development do
   gem 'pry'
   gem 'pry-rails'
   gem 'capistrano'
-  gem 'tire-mock_client', github: 'natanael-araujo/tire-mock_client'
   gem 'spork-rails', '~> 3.2.0'
   gem 'debugger'
   gem 'simplecov', require: false

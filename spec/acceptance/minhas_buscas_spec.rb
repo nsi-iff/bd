@@ -5,17 +5,13 @@ Dir.glob(Rails.root + '/app/models/*.rb').each { |file| require file }
 
 feature 'Buscas' do
   before(:each) do
-    if ENV['INTEGRACAO_TIRE']
-      Tire.criar_indices
-    end
+    Tire.criar_indices
     Papel.criar_todos
   end
 
   def refresh_elasticsearch
-    if ENV['INTEGRACAO_TIRE']
-      Arquivo.tire.index.refresh
-      Conteudo.tire.index.refresh
-    end
+    Arquivo.tire.index.refresh
+    Conteudo.tire.index.refresh
   end
 
   context 'busca avançada (busca no acervo)', busca: true do

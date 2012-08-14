@@ -4,32 +4,12 @@ require 'spec_helper'
 
 feature 'cesta de grãos' do
 
-  unless ENV['INTEGRACAO_TIRE']
-    before :all do
-      # monkeypatch temporario para passar no teste sem o Elastic Search
-      # TODO: remover depois que funcionarem buscas básicas com o ES fake
-
-      class << Conteudo
-        alias old_search search
-        def search(param)
-          where('upper(titulo) like ?', "%#{param.to_s.upcase}%")
-        end
-      end
-    end
-
-    after :all do
-      class << Conteudo
-        alias search old_search
-      end
-    end
-  end
-
   before(:each) do
-    Tire.criar_indices if ENV['INTEGRACAO_TIRE']
+    Tire.criar_indices
     @livro = create(:livro, titulo: 'Quantum Mechanics for Dummies')
     @grao1 = create(:grao_imagem, key: '12345', conteudo: @livro)
     @grao2 = create(:grao_arquivo, key: '67890', conteudo: @livro)
-    Conteudo.tire.index.refresh if ENV['INTEGRACAO_TIRE']
+    Conteudo.tire.index.refresh
   end
 
   def incluir_grao_na_cesta

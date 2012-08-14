@@ -29,12 +29,6 @@ Spork.prefork do
 
   require "bundler/setup"
   require "tire"
-  require "tire-mock_client"
-  Tire.configure do
-    unless ENV['INTEGRACAO_TIRE']
-      client Tire::Http::Client::MockClient
-    end
-  end
 
   # Depois dessa linha já é tarde demais. Now, load the rails stack
   require File.expand_path("../../config/environment", __FILE__)
@@ -79,15 +73,13 @@ Spork.prefork do
     end
   end
 
-  require Rails.root + "db/criar_indices" if ENV['INTEGRACAO_TIRE']
+  require Rails.root + "db/criar_indices"
 
   RSpec.configure do |config|
     config.include Devise::TestHelpers, :type => :controller
     config.include FactoryGirl::Syntax::Methods
     config.include Toothbrush::Helpers
 
-    # testes de busca são dependentes do elasticsearch
-    config.filter_run_excluding busca: true unless ENV['INTEGRACAO_TIRE']
     config.filter_run_excluding sam: true unless ENV['INTEGRACAO_SAM']
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
