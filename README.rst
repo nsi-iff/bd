@@ -13,6 +13,28 @@ Instalação
 Contribuindo
 ++++++++++++
 
+
+Instalação do elasticsearch
+---------------------------
+
+`Baixe e instale <http://www.elasticsearch.org/guide/reference/setup/installation.html>`_ o elasticsearch.
+
+`Instale <https://github.com/elasticsearch/elasticsearch-mapper-attachments>`_ o plugin elasticsearch-mapper-attachments.
+
+Para executar ou testar a BD é necessário ter uma instância do elasticsearch rodando e referenciada em ``config/elasticsearch.yml``.
+Para rodar o elasticsearch, estando na pasta do próprio, digite (se quiser rodar em background, basta omitir o ``-f``)::
+
+    bin/elasticsearch -f
+
+
+O arquivo de configuração do elasticsearch (meramente uma cópia de ``config/elasticsearch.yml.example``) pode ser gerado com::
+
+    make default_config
+
+
+O arquivo ``config/elasticsearch.yml`` será ignorado pelo controle de versão, podendo, assim, ser alterado à vontade.
+
+
 Issues
 ------
 - Assine *uma* issue de cada vez. (Exceção: se as issues assinadas só couberem a você para faze-las.)
