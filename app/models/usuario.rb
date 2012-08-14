@@ -50,7 +50,8 @@ class Usuario < ActiveRecord::Base
 
   def self.buscar_por_nome(nome, current_usuario)
     # can't use "self" instead of "current_usuario", because this is a class method =/
-    usuarios = Usuario.where('nome_completo like ?', "%#{nome}%")
+    usuarios = Usuario.where('nome_completo ilike ?', "%#{nome}%")
+
     if current_usuario.admin?
       usuarios
     else
