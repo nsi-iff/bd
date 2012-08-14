@@ -1,0 +1,12 @@
+# Deixe em branco para usar a configuração default
+development:
+  host:
+  port:
+
+test:
+  host: localhost
+  port: 9200
+
+production:
+  host:
+  port:
