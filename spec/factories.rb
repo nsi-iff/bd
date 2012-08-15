@@ -80,6 +80,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :artigo_de_evento_pendente, parent: :artigo_de_evento do
+    after(:create) {|artigo| artigo.submeter! }
+  end
+
   factory :instituicao do
     sequence(:nome) {|n| "Nome#{n}"}
   end

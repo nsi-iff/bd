@@ -75,7 +75,10 @@ Spork.prefork do
 
   require Rails.root + "db/criar_indices"
 
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
   RSpec.configure do |config|
+    config.include DigitalLibrary::SpecHelpers::Utils
     config.include Devise::TestHelpers, :type => :controller
     config.include FactoryGirl::Syntax::Methods
     config.include Toothbrush::Helpers

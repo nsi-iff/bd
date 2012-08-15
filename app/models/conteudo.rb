@@ -240,4 +240,3 @@ class Conteudo < ActiveRecord::Base
     camp1.instituicao_id == camp2.instituicao_id
   end
 end
-
