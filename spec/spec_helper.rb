@@ -79,7 +79,7 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.include DigitalLibrary::SpecHelpers::Utils
-    config.include Devise::TestHelpers, :type => :controller
+    config.include Devise::TestHelpers, type: :view
     config.include FactoryGirl::Syntax::Methods
     config.include Toothbrush::Helpers
 
