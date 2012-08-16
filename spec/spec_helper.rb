@@ -7,7 +7,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
 
   # inicia simplecov (coverage) se não estiver usando spork, e com COVERAGE=true
-  unless Spork.using_spork? && ENV["COVERAGE"]
+  if !Spork.using_spork? && ENV["COVERAGE"]
     puts "Running Coverage Tool\n"
     require 'simplecov'
     require 'simplecov-rcov'
