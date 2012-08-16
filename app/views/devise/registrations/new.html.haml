@@ -8,7 +8,7 @@
     = select_tag(:instituicao, options_for_select(Instituicao.all.map {|instituicao| [instituicao.nome, instituicao.id] }),
       class: "instituicoes", id: "select_instituicao")
     = f.input :campus, as: :select, input_html: { class: "campus", id: "select_campus" },
-      collection: Instituicao.first.campus.map {|campus| [campus.nome, campus.id] },
+      collection: Instituicao.first.campi.map {|campus| [campus.nome, campus.id] },
       prompt: false, label: 'Campus'
   = f.actions do
     = f.submit 'Registrar'

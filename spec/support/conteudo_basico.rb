@@ -58,7 +58,7 @@ end
 
 def popular_instituicao_campus
   iffluminense = Instituicao.create!(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense')
-  iffluminense.campus.create!([
+  iffluminense.campi.create!([
     { nome: 'Campus Bom Jesus de Itabapoana' },
     { nome: 'Campus Cabo Frio'               },
     { nome: 'Campus Campos Centro'           },
@@ -68,7 +68,7 @@ def popular_instituicao_campus
   ])
 
   ifamapa = Instituicao.create!(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá')
-  ifamapa.campus.create!([
+  ifamapa.campi.create!([
     { nome: 'Campus Macapá' }
   ])
 end

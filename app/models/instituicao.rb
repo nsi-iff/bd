@@ -1,12 +1,12 @@
 class Instituicao < ActiveRecord::Base
-  has_many :campus
+  has_many :campi
 
   validates :nome, presence: true, uniqueness: true
-  
+
   attr_accessible :nome
 
   def usuarios
-    campus.map { |campus| campus.usuarios }.flatten
+    campi.map { |campus| campus.usuarios }.flatten
   end
 
   def to_s

@@ -40,7 +40,7 @@ class Usuario < ActiveRecord::Base
     if self.admin?
       Usuario.includes(:papeis).all
     else
-      self.campus.instituicao.campus.map {|campus| campus.usuarios}.flatten
+      self.campus.instituicao.usuarios
     end
   end
 

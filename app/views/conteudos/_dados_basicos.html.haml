@@ -38,6 +38,6 @@
     = link_to_add_association 'Adicionar outro autor', f, :autores, :partial => 'conteudos/autor_fields'
     = f.semantic_errors :autores
 = f.input :campus, as: :select, input_html: { class: "campus" },
-    collection: current_usuario.campus.instituicao.campus.map { |campus| [campus.nome, campus.id] },
+    collection: current_usuario.campus.instituicao.campi.map { |campus| [campus.nome, campus.id] },
     include_blank: false, label: 'Campus da Instituição do Autor'
 = f.input :contribuidor_id, as: :hidden, input_html: { value: current_usuario.id }

@@ -30,9 +30,9 @@ feature 'aprovar conteúdo' do
   scenario 'gestor de instituição não pode aprovar conteudo de outra instituição' do
     Papel.criar_todos
     ins1 = Instituicao.create(nome: 'instituicao1')
-    camp1 = ins1.campus.create(nome: 'campus1')
+    camp1 = ins1.campi.create(nome: 'campus1')
     ins2 = Instituicao.create(nome: 'instituicao2')
-    camp2 = ins2.campus.create(nome: 'campus2')
+    camp2 = ins2.campi.create(nome: 'campus2')
     gestor = create(:usuario_gestor, campus: camp1)
 
     conteudo = create(:relatorio)

@@ -193,7 +193,7 @@ class Conteudo < ActiveRecord::Base
   end
 
   def self.pendentes_da_instituicao(instituicao)
-    campi_ids = instituicao.campus.map(&:id)
+    campi_ids = instituicao.campus_ids
     where("campus_id IN (#{campi_ids.join(',')}) AND state = 'pendente'")
   end
 

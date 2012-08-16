@@ -15,9 +15,9 @@ feature 'mudar papel do usuário' do
   scenario 'administrador de instituição pode gerenciar apenas usuários de sua instituição' do
     Papel.criar_todos
     ins1 = Instituicao.create(nome: 'instituicao1')
-    camp1 = ins1.campus.create(nome: 'campus1')
+    camp1 = ins1.campi.create(nome: 'campus1')
     ins2 = Instituicao.create(nome: 'instituicao2')
-    camp2 = ins2.campus.create(nome: 'campus2')
+    camp2 = ins2.campi.create(nome: 'campus2')
     usuario = create(:usuario, campus: camp1)
     usuario.papeis << Papel.instituicao_admin
     create(:usuario, nome_completo: 'Rodrigo', campus: camp1)
@@ -67,9 +67,9 @@ feature 'mudar papel do usuário' do
     Papel.criar_todos
     autenticar_usuario Papel.admin
     ins1 = Instituicao.create(nome: 'instituicao1')
-    camp1 = ins1.campus.create(nome: 'campus1')
+    camp1 = ins1.campi.create(nome: 'campus1')
     ins2 = Instituicao.create(nome: 'instituicao2')
-    camp2 = ins2.campus.create(nome: 'campus2')
+    camp2 = ins2.campi.create(nome: 'campus2')
 
     create(:usuario_gestor, nome_completo: 'Rodrigo', campus: camp1)
     create(:usuario_contribuidor, nome_completo: 'Priscila', campus: camp2)
