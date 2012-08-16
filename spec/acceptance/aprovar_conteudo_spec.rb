@@ -12,7 +12,7 @@ feature 'aprovar conteúdo' do
     artigo = create(:artigo_de_evento_pendente,
       arquivo_para_conteudo(:odt).merge(campus: usuario.campus))
     visit conteudo_path(artigo)
-    artigo.aprovar!
+    click_button 'Aprovar'
     artigo.reload.should be_granularizando
     page.driver.post(granularizou_conteudos_path,
                      doc_key: artigo.arquivo.key,
