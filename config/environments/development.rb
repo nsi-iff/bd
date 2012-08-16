@@ -43,12 +43,6 @@ DigitalLibrary::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
 
-Tire.configure do
-  unless ENV['INTEGRACAO_TIRE']
-    client Tire::Http::Client::MockClient
-  end
-end
-
 unless ENV['INTEGRACAO_SAM']
   require Rails.root + "config/initializers/service_registry"
   ServiceRegistry.sam = NSISam::FakeClient.new

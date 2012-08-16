@@ -5,6 +5,7 @@ default_config:
 	@if ! test -f ./config/database.yml; then cp ./config/database.yml.example ./config/database.yml; fi
 	@if ! test -f ./config/sam.yml; then cp ./config/sam.yml.example ./config/sam.yml; fi
 	@if ! test -f ./config/cloudooo.yml; then cp ./config/cloudooo.yml.example ./config/cloudooo.yml; fi
+	@if ! test -f ./config/elasticsearch.yml; then cp ./config/elasticsearch.yml.example ./config/elasticsearch.yml; fi
 
 test:
 	@rspec ./spec/

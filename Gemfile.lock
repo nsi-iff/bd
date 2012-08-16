@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/natanael-araujo/tire-mock_client.git
-  revision: b1a280636d50d79b52a90014954b3d22554a61d7
-  specs:
-    tire-mock_client (0.0.1)
-      activesupport
-      tire (>= 0.3.11)
-
-GIT
   remote: https://github.com/rodrigomanhaes/simple-navigation.git
   revision: 3a803f0f745e0bdf44419a16c5fe33459d075c06
   branch: preceding_text
@@ -356,7 +348,6 @@ DEPENDENCIES
   therubyracer
   timecop (~> 0.4.4)
   tire
-  tire-mock_client!
   toothbrush
   uglifier (>= 1.0.3)
   valid_attribute (~> 1.2.0)
