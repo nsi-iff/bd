@@ -5,22 +5,15 @@ class Busca < ActiveRecord::Base
   attr_accessible :parametros, :busca, :titulo, :descricao
 
   def self.enviar_email_mala_direta
-    puts "chegou na mala direta"
     ontem = Date.yesterday.strftime("%d/%m/%y")
-    puts "Ontem: " + ontem.inspect
     conteudos_por_usuarios = Hash.new { |hash, email| hash[email] = [] }
-    p conteudos_por_usuarios
 
     self.where(mala_direta: true).each do |busca|
-      p busca
       conteudos = busca.resultados(:data_publicado => ontem)
-      p conteudos
       conteudos_por_usuarios[busca.usuario.email].concat conteudos if conteudos.present?
     end
 
-    p conteudos_por_usuarios
     conteudos_por_usuarios.each_pair do |usuario_email, conteudos|
-      puts "enviou email"
       Mailer.notificar_usuario_sobre_conteudos(usuario_email, conteudos).deliver
     end
   end

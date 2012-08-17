@@ -7,6 +7,5 @@ scheduler.cron '0 58 23 * * 1-7' do
 end
 
 scheduler.cron '0 00 2 * * 1-7' do
-  puts "PASSOU NO SCHEDULER"
   Busca.enviar_email_mala_direta
 end
