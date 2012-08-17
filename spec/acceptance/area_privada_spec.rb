@@ -5,26 +5,6 @@ require 'spec_helper'
 feature 'Área Privada' do
   before(:each) { Papel.criar_todos }
 
-  scenario 'testar links na área privada' do
-    usuario = autenticar_usuario(Papel.all)
-
-    visit area_privada_usuario_path(usuario)
-    click_link 'Escrivaninha'
-    current_path.should == escrivaninha_usuario_path(usuario)
-
-    visit area_privada_usuario_path(usuario)
-    click_link 'Estante'
-    current_path.should == estante_usuario_path(usuario)
-
-    visit area_privada_usuario_path(usuario)
-    click_link 'Minhas Buscas'
-    current_path.should == minhas_buscas_usuario_path(usuario)
-
-    visit area_privada_usuario_path(usuario)
-    click_link 'Lista de Revisão'
-    current_path.should == lista_de_revisao_usuario_path(usuario)
-  end
-
   scenario 'apenas gestor pode ver link para lista de revisão' do
     [Papel.membro, Papel.admin, Papel.contribuidor].each do |papel|
 
