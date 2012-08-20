@@ -12,6 +12,6 @@ describe "graos/cesta.html.haml" do
   it "contém o link para a view do grão" do
     render
     #TODO verificar o caminho do link
-    rendered.should have_link(Grao.first.key)
+    rendered.should have_link(Grao.first.titulo)
   end
 end

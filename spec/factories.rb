@@ -38,6 +38,10 @@ FactoryGirl.define do
     tipo 'files'
   end
 
+  factory :grao_video, :parent => :grao, :class => Grao do
+    tipo 'videos'
+  end
+
   factory :pronatec, parent: :conteudo, class: ObjetoDeAprendizagem do
     pronatec true
   end
@@ -82,6 +86,10 @@ FactoryGirl.define do
 
   factory :artigo_de_evento_pendente, parent: :artigo_de_evento do
     after(:create) {|artigo| artigo.submeter! }
+  end
+  
+  factory :relatorio_pendente, parent: :relatorio do
+    after(:create) {|relatorio| relatorio.submeter! }
   end
 
   factory :instituicao do

@@ -15,7 +15,8 @@ describe Grao do
 
   it 'informa seu tipo de modo humanizado' do
     build(:grao_imagem).tipo_humanizado.should == 'imagem'
-    build(:grao_arquivo).tipo_humanizado.should == 'arquivo'
+    build(:grao_arquivo).tipo_humanizado.should == 'tabela'
+    build(:grao_video).tipo_humanizado.should == 'video'
     Grao.new(tipo: 'outra coisa').tipo_humanizado.should be_nil
   end
 
@@ -26,10 +27,10 @@ describe Grao do
     grao.referencia_abnt.should == 'referencia abnt'
   end
 
-  it 'retorna seu titulo' do
-    conteudo = create(:livro, titulo: 'Testando retorno do titulo do ')
+  it '#titulo com o nome do conteúdo + tipo humanizado + numero' do
+    conteudo = create(:livro, titulo: 'Testando retorno do titulo')
     grao = build(:grao_arquivo, id: 9, conteudo_id: conteudo.id)
-    grao.titulo.should == 'Testando retorno do titulo do _grao_files_9'
+    grao.titulo.should == 'Testando retorno do titulo_tabela_9'
   end
 
   it 'informa a qual conteudo o grao pertence' do

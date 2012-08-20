@@ -86,40 +86,40 @@ feature 'Estante' do
   end
 
   scenario 'mostrar graos favoritos do usuário' do
-    @usuario.favoritar create(:grao).referencia
+    @usuario.favoritar (grao = create(:grao)).referencia
     visit root_path
     within '#estante' do
-      page.should have_content 'key imagem'
+      page.should have_content representacao_grao(grao)
     end
   end
 
   scenario 'move graos da cesta para estante (como graos favoritos)' do
-    conteudo = create(:livro)
-    @usuario.cesta << create(:grao, conteudo: conteudo).referencia
+    conteudo = create(:livro, titulo: 'Titulo')
+    @usuario.cesta << (grao = create(:grao, conteudo: conteudo, tipo: 'images')).referencia
 
     visit estante_usuario_path(@usuario)
 
     within '#estante' do
-      page.should_not have_content 'key imagem'
+      page.should_not have_content representacao_grao(grao)
     end
     within '.content' do
-      page.should_not have_content 'key imagem'
+      page.should_not have_content representacao_grao(grao)
     end
 
     within '#cesta' do
-      page.should have_content 'key imagem'
+      page.should have_content representacao_grao(grao)
       click_link 'Mover para estante'
     end
 
     within '#estante' do
-      page.should have_content 'key imagem'
+      page.should have_content representacao_grao(grao)
     end
     within '.content' do
-      page.should have_content 'key imagem'
+      page.should have_content representacao_grao(grao)
     end
 
     within '#cesta' do
-      page.should_not have_content 'key imagem'
+      page.should_not have_content representacao_grao(grao)
     end
   end
 

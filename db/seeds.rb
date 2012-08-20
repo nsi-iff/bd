@@ -372,10 +372,10 @@ def criar_instituicoes_e_campus_associados
   Campus.delete_all
 
   nenhum = Instituicao.create(nome: 'Não pertenço a uma Instituição da Rede Federal de EPCT')
-  nenhum.campus.create(nome: '----')
+  nenhum.campi.create(nome: '----')
 
   iftocantins = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Tocantins')
-  iftocantins.campus.create([
+  iftocantins.campi.create([
     { nome: 'Campus Araguatins'           },
     { nome: 'Campus Gurupi'               },
     { nome: 'Campus Palmas'               },
@@ -384,7 +384,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifmato_grosso = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso')
-  ifmato_grosso.campus.create([
+  ifmato_grosso.campi.create([
     { nome: 'Campus Barra do Garças'       },
     { nome: 'Campus Bela Vista/Cuiabá'     },
     { nome: 'Campus Cáceres'               },
@@ -398,7 +398,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifpara = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Pará')
-  ifpara.campus.create([
+  ifpara.campi.create([
     { nome: 'Campus Agrícola de Marabá'    },
     { nome: 'Campus Altamira'              },
     { nome: 'Campus Avançado de Breves'    },
@@ -413,7 +413,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifparaiba = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia da Paraíba')
-  ifparaiba.campus.create([
+  ifparaiba.campi.create([
     { nome: 'Campus Cajazeiras'      },
     { nome: 'Campus Campina Grande'  },
     { nome: 'Campus João Pessoa'     },
@@ -425,7 +425,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifsergipe = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Sergipe')
-  ifsergipe.campus.create([
+  ifsergipe.campi.create([
     { nome: 'Campus Estância'                },
     { nome: 'Campus Itabaiana'               },
     { nome: 'Campus Lagarto'                 },
@@ -434,7 +434,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifceara = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Ceará')
-  ifceara.campus.create([
+  ifceara.campi.create([
     { nome: 'Campus Avançado de Aracati'            },
     { nome: 'Campus Avançado de Baturité'           },
     { nome: 'Campus Avançado de Camocim'            },
@@ -459,13 +459,13 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifroraima = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Roraima')
-  ifroraima.campus.create([
+  ifroraima.campi.create([
     { nome: 'Campus Boa Vista'},
     { nome: 'Campus Novo Paraíso'},
   ])
 
   ifalagoas = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Alagoas')
-  ifalagoas.campus.create([
+  ifalagoas.campi.create([
     { nome: 'Campus Avançado de Murici'                },
     { nome: 'Campus Avançado de Santana do Ipanema'    },
     { nome: 'Campus Avançado de São Miguel dos Campos' },
@@ -479,7 +479,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifcatarinense = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Catarinense')
-  ifcatarinense.campus.create([
+  ifcatarinense.campi.create([
     { nome: 'Campus Avançado de Blumenau'            },
     { nome: 'Campus Avançado de Fraiburgo'           },
     { nome: 'Campus Avançado de Ibirama'             },
@@ -493,7 +493,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifsuldeminas = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Sul de Minas')
-  ifsuldeminas.campus.create([
+  ifsuldeminas.campi.create([
     { nome: 'Campus Avançado de Poços de Caldas' },
     { nome: 'Campus Avançado de Pouso Alegre'    },
     { nome: 'Campus Inconfidentes'               },
@@ -502,7 +502,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifsaopaulo = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de São Paulo')
-  ifsaopaulo.campus.create([
+  ifsaopaulo.campi.create([
     { nome: 'Campus Avançado de Boituva'   },
     { nome: 'Campus Avançado de Capivari'  },
     { nome: 'Campus Avançado de Jacareí'   },
@@ -534,7 +534,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   iftriangulomineiro = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Triângulo Mineiro')
-  iftriangulomineiro.campus.create([
+  iftriangulomineiro.campi.create([
     { nome: 'Campus Avançado de Uberlândia'},
     { nome: 'Campus Ituiutaba'},
     { nome: 'Campus Paracatu'},
@@ -543,7 +543,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifminasgerais = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais')
-  ifminasgerais.campus.create([
+  ifminasgerais.campi.create([
     { nome: 'Campus Avançado de Ouro Branco'        },
     { nome: 'Campus Avançado de Ribeirão das Neves' },
     { nome: 'Campus Bambuí'                         },
@@ -555,7 +555,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   utfpr = Instituicao.create(nome: 'Universidade Tecnológica Federal do Paraná')
-  utfpr.campus.create([
+  utfpr.campi.create([
     { nome: 'Campus Campo Mourão'      },
     { nome: 'Campus Cornelio Procopio' },
     { nome: 'Campus Curitiba UTFPR'    },
@@ -569,7 +569,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifsertaopernambucano = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Sertão Pernambucano')
-  ifsertaopernambucano.campus.create([
+  ifsertaopernambucano.campi.create([
     { nome: 'Campus Ouricuri' },
     { nome: 'Campus Salgueiro' },
     { nome: 'Petrolina' },
@@ -577,7 +577,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifms = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso do Sul')
-  ifms.campus.create([
+  ifms.campi.create([
     { nome: 'Campus de Aquidauana'  },
     { nome: 'Campus de Corumbá'     },
     { nome: 'Campus de Coxim'       },
@@ -587,7 +587,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifbaiano = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Baiano')
-  ifbaiano.campus.create([
+  ifbaiano.campi.create([
     { nome: 'Campus Catu'                },
     { nome: 'Campus Guanambi'            },
     { nome: 'Campus Itapetinga'          },
@@ -599,7 +599,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifro = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Rondonia')
-  ifro.campus.create([
+  ifro.campi.create([
     { nome: 'Campus Avançado de Cacoal'      },
     { nome: 'Campus Avançado de Porto Velho' },
     { nome: 'Campus Colorado do Oeste'       },
@@ -609,7 +609,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifrs = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul')
-  ifrs.campus.create([
+  ifrs.campi.create([
     { nome: 'Campus Avançado de Feliz'       },
     { nome: 'Campus Avançado de Ibirubá'     },
     { nome: 'Campus Avançado de Rolante'     },
@@ -626,12 +626,12 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifrn = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte')
-  ifrn.campus.create([
+  ifrn.campi.create([
     { nome: 'Campus Mossoró' },
   ])
 
   ifb = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Brasília')
-  ifb.campus.create([
+  ifb.campi.create([
     { nome: 'Campus Avançado de São Sebastião'     },
     { nome: 'Campus Avançado de Taguatinga Centro' },
     { nome: 'Campus Brasília'                      },
@@ -642,7 +642,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifnortedeminas = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Norte de Minas')
-  ifnortedeminas.campus.create([
+  ifnortedeminas.campi.create([
     { nome: 'Campus Araçuaí'       },
     { nome: 'Campus Arinos'        },
     { nome: 'Campus Januária'      },
@@ -652,7 +652,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifpi = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Piauí')
-  ifpi.campus.create([
+  ifpi.campi.create([
     { nome: 'Campus Avançado de Oeiras'            },
     { nome: 'Campus Avançado de Pedro II'          },
     { nome: 'Campus Avançado de São Joao do Piauí' },
@@ -669,7 +669,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifam = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Amazonas')
-  ifam.campus.create([
+  ifam.campi.create([
     { nome: 'Campus Lábrea'                   },
     { nome: 'Campus Manaus Zona'              },
     { nome: 'Campus Manaus'                   },
@@ -681,7 +681,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifpr = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Paraná')
-  ifpr.campus.create([
+  ifpr.campi.create([
     { nome: 'Campus Avançado de Irati'    },
     { nome: 'Campus Avançado de Ivaiporã' },
     { nome: 'Campus Avançado de Londrina' },
@@ -696,19 +696,19 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifap = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá')
-  ifap.campus.create([
+  ifap.campi.create([
     { nome: 'Campus Macapá' },
   ])
 
   ifac = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Acre')
-  ifac.campus.create([
+  ifac.campi.create([
     { nome: 'Campus Cruzeiro do Sul' },
     { nome: 'Campus Rio Branco'      },
     { nome: 'Campus Sena Madureira'  },
   ])
 
   ifma = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Maranhão')
-  ifma.campus.create([
+  ifma.campi.create([
     { nome: 'Campus Alcântara'                    },
     { nome: 'Campus Bacabal'                      },
     { nome: 'Campus Barra do Corda'               },
@@ -729,7 +729,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifrj = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Rio de Janeiro')
-  ifrj.campus.create([
+  ifrj.campi.create([
     { nome: 'Campus Avançado de Engenheiro Paulo de Frontin' },
     { nome: 'Campus Duque de Caxias' },
     { nome: 'Campus Maracanã'        },
@@ -742,7 +742,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifpe = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e  Tecnologia de Pernambuco')
-  ifpe.campus.create([
+  ifpe.campi.create([
     { nome: 'Campus Barreiros'              },
     { nome: 'Campus Belo Jardim'            },
     { nome: 'Campus Caruaru'                },
@@ -754,7 +754,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifba = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia da Bahia')
-  ifba.campus.create([
+  ifba.campi.create([
     { nome: 'Campus Barreiras' },
     { nome: 'Campus Camaçarí' },
     { nome: 'Campus Eunápolis' },
@@ -774,7 +774,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifes = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia do Espírito Santo')
-  ifes.campus.create([
+  ifes.campi.create([
     { nome: 'Campus Aracruz'                             },
     { nome: 'Campus Avançado Central Serrano'            },
     { nome: 'Campus Avançado de Guarapari'               },
@@ -795,7 +795,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifsc = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina')
-  ifsc.campus.create([
+  ifsc.campi.create([
     { nome: 'Campus Avançado de Caçador'        },
     { nome: 'Campus Avançado de Garopaba'       },
     { nome: 'Campus Avançado de Jaraguá do Sul' },
@@ -817,7 +817,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   iffluminense = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense')
-  iffluminense.campus.create([
+  iffluminense.campi.create([
     { nome: 'Campus Bom Jesus de Itabapoana' },
     { nome: 'Campus Cabo Frio'               },
     { nome: 'Campus Campos Centro'           },
@@ -827,7 +827,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifsudestedeminas = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Sudeste de Minas Gerais')
-  ifsudestedeminas.campus.create([
+  ifsudestedeminas.campi.create([
     { nome: 'Campus Avançado de São João del Rei' },
     { nome: 'Campus Barbacena'                    },
     { nome: 'Campus Juiz de Fora'                 },
@@ -836,7 +836,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifgoiano = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Goiano')
-  ifgoiano.campus.create([
+  ifgoiano.campi.create([
     { nome: 'Campus Iporá'     },
     { nome: 'Campus Morrinhos' },
     { nome: 'Campus Rio Verde' },
@@ -844,7 +844,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   iffarroupilha = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Farroupilha')
-  iffarroupilha.campus.create([
+  iffarroupilha.campi.create([
     { nome: 'Campus Júlio de Castilhos' },
     { nome: 'Campus Panambi'            },
     { nome: 'Campus Santa Rosa'         },
@@ -854,7 +854,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifgo = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Goiás')
-  ifgo.campus.create([
+  ifgo.campi.create([
     { nome: 'Campus Avançado de Águas Lindas'         },
     { nome: 'Campus Avançado de Aparecida de Goiânia' },
     { nome: 'Campus Avançado de Goiânia Setor Oeste'  },
@@ -869,7 +869,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   ifsulriograndense = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia Sul-Rio Grandense')
-  ifsulriograndense.campus.create([
+  ifsulriograndense.campi.create([
     { nome: 'Pelotas' },
     { nome: 'Sapucaia do Sul' },
     { nome: 'Charqueadas' },
@@ -881,7 +881,7 @@ def criar_instituicoes_e_campus_associados
   ])
 
   setecmec = Instituicao.create(nome: 'SETEC/MEC')
-  setecmec.campus.create([
+  setecmec.campi.create([
     { nome: 'RENAPI' },
   ])
 end
