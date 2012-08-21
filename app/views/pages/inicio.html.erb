@@ -1,7 +1,7 @@
 <div class="home">
   <h1>Busca</h1>
 
-  <%= form_tag busca_normal_path, :method => :get, :accesskey => "4" do %>
+  <%= form_tag busca_normal_path, :method => :get, :accesskey => "4", :class => "campo_busca" do %>
     <%= text_field_tag :busca, params[:busca], id: "text_busca_inicio" %>
     <%= submit_tag "Buscar", name: nil, id: "submit_busca_inicio" %>
   <% end %>
