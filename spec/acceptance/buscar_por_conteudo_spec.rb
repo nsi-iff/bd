@@ -59,6 +59,11 @@ feature 'buscar todos os tipos de conteúdo', busca: true do
                                                                      sub_area: sub_area_2,
                                                                      campus: campos_centro,
                                                                      autores: [autor_1]
+
+    aprovar(@artigo_de_evento, @artigo_de_periodico,
+            @livro, @objeto_de_aprendizagem,
+            @periodico_tecnico_cientifico,
+            @relatorio, @trabalho_de_obtencao_de_grau)
     Conteudo.tire.index.refresh
     Arquivo.tire.index.refresh
   end

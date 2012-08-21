@@ -12,6 +12,7 @@ class BuscasController < InheritedResources::Base
     @areas = Area.all
     @sub_areas = SubArea.all
     @instituicoes = Instituicao.all
+    @usuario = current_usuario
   end
 
   def busca_avancada
@@ -20,7 +21,7 @@ class BuscasController < InheritedResources::Base
       redirect_to buscas_path,
         :notice => "Busca não realizada. Favor preencher algum critério de busca"
     else
-      @resultados = Busca.filtrar_busca_avancada(@busca)
+      @resultados = Busca.filtrar_busca_avancada(@busca, current_usuario)
       render :resultado_busca
     end
   end

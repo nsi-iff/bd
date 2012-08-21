@@ -115,4 +115,8 @@ class Usuario < ActiveRecord::Base
     self.campus = novo
     save!
   end
+
+  def pode_buscar_por_estados?
+    self.gestor? || self.instituicao_admin? || self.admin?
+  end
 end
