@@ -1,6 +1,6 @@
 %h3 Cesta de Grãos
 - if @cesta.blank?
-  %p Não há nenhum grão na cesta.
+  %p Nesta área poderão ser adicionados partes de conteúdos do interesse do usuário para futura utilização.
 - else
   #items
     - @cesta.map { |referencia_id| Referencia.find(referencia_id).referenciavel }.each do |grao|
