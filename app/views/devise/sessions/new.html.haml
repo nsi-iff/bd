@@ -1,10 +1,9 @@
-%h1 Acessar
-%p Preencha os campos abaixo para acessar a Biblioteca Digital da EPCT como usuário cadastrado.
-%br
-
 = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  = f.input :email, label: 'E-mail'
-  = f.input :password, label: 'Senha'
-  = f.submit "Entrar", style: 'float: none'
+  = f.inputs 'Entrar' do
+    = f.input :email, label: 'E-mail'
+    = f.input :password, label: 'Senha'
+
+  = f.actions do
+    = f.submit "Entrar"
 
 = render "links"
