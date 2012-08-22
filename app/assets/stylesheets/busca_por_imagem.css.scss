@@ -2,19 +2,19 @@
   position: relative;
   float: right;
   width: 70px;
-  height: 36px;
-  margin-top: 0px;
+  height: 31px;
+  margin-top: -1px;
   margin-right: -80px;
 }
 
 .envia_imagem{
-  height: 36px;
-  width: 295px;
-  margin-left: 92px;
-  background-image: url('bg_input_busca_grande.gif');
-  
+  height: 29px;
+  width: 330px;
+  margin-left: 63px;
+  background: #FFFFFF;
+  border: 1px solid #B3B3B3;  
   input{
-    margin-top: 7px;
+    margin-top: 4px;
     margin-left: 4px;
     float: left;
   }
