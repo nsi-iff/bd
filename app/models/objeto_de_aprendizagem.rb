@@ -58,7 +58,6 @@ class ObjetoDeAprendizagem < Conteudo
       :filename => arquivo.nome,
       callback_url: config[:callback_url],
       verb: config[:callback_verb])
-    binding.pry 
   end
 
   def descricao_idioma
