@@ -1,16 +1,19 @@
+%h1 Registrar Usuário
+%p Preencha os campos abaixo para se cadastrar na Biblioteca Digital da EPCT e ter acesso à novas funcionalidades.
+
 = semantic_form_for @usuario do |f|
-  = f.inputs 'Registro de Usuário' do
-    = f.input :nome_completo, label: 'Nome Completo'
-    = f.input :email, label: 'E-mail'
-    = f.input :password, label: 'Senha'
-    = f.input :password_confirmation, label: 'Confirmação de Senha'
-    = label_tag(:instituicao, 'Instituição')
-    = select_tag(:instituicao, options_for_select(Instituicao.all.map {|instituicao| [instituicao.nome, instituicao.id] }),
-      class: "instituicoes", id: "select_instituicao")
-    = f.input :campus, as: :select, input_html: { class: "campus", id: "select_campus" },
-      collection: Instituicao.first.campi.map {|campus| [campus.nome, campus.id] },
-      prompt: false, label: 'Campus'
-  = f.actions do
-    = f.submit 'Registrar'
+  / = f.inputs 'Registro de Usuário' do
+  = f.input :nome_completo, label: 'Nome Completo'
+  = f.input :email, label: 'E-mail'
+  = f.input :password, label: 'Senha'
+  = f.input :password_confirmation, label: 'Confirmação de Senha'
+  = label_tag(:instituicao, 'Instituição')
+  = select_tag(:instituicao, options_for_select(Instituicao.all.map {|instituicao| [instituicao.nome, instituicao.id] }),
+    class: "instituicoes", id: "select_instituicao")
+  = f.input :campus, as: :select, input_html: { class: "campus", id: "select_campus" },
+    collection: Instituicao.first.campi.map {|campus| [campus.nome, campus.id] },
+    prompt: false, label: 'Campus'
+  / = f.actions do
+  = f.submit 'Registrar', style: 'float: none'
 
 = render 'links'
