@@ -1,3 +1,6 @@
+%h1 Contato
+%p Preencha e envie os dados abaixo para entrar em contato com a gerência da Biblioteca Digital da EPCT.
+
 = semantic_form_for @formulario_contato, url: formulario_contato_index_path, method: :post do |f|
   = f.input :nome, required: true
   = f.input :email, required: true
