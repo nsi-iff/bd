@@ -2,7 +2,7 @@
   position: relative;
   float: right;
   width: 70px;
-  height: 31px;
+  height: 30px;
   margin-top: -1px;
   margin-right: -80px;
 }
@@ -12,18 +12,36 @@
   width: 319px;
 }
 
-.busca_por_imagem_form span{
-  margin-left: -322px;
+.busca_por_imagem_form #escolher_imagem{
+  margin-left: -319px;
   position: relative;
-  top: 6px;
+  top: 7px;
+  border: 1px solid #B3B3B3;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+  padding: 2px;
+  background: #F2F2F2;
+  }
+
+#nome_arquivo{
+  max-width: 100px;
+  margin-left: 0px;
+  position: relative;
+  top: 7px;
 }
 
 .envia_imagem{
-  height: 29px;
+  height: 28px;
   width: 330px;
   margin-left: 63px;
   background: #FFFFFF;
-  border: 1px solid #B3B3B3;  
+  border: 1px solid #B3B3B3;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: inset 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 1px 1px rgba(0, 0, 0, 0.5);
   input{
     margin-top: 4px;
     margin-left: 4px;
