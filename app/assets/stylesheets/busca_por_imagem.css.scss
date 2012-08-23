@@ -7,6 +7,17 @@
   margin-right: -80px;
 }
 
+.busca_por_imagem_form input[type='file']{
+  opacity: 0;
+  width: 319px;
+}
+
+.busca_por_imagem_form span{
+  margin-left: -322px;
+  position: relative;
+  top: 6px;
+}
+
 .envia_imagem{
   height: 29px;
   width: 330px;
