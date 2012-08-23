@@ -30,8 +30,8 @@ class Busca < ActiveRecord::Base
   def buscar_em_conteudos(filtros = {})
     publicados = []
     estados = {}
-    estados[:state] = filtros.delete(:state)
-    if estados[:state].nil? || estados[:state].include?('publicado')
+    estados[:state] = filtros.delete(:state) || []
+    if estados[:state].empty? || estados[:state].include?('publicado')
       publicados = Tire.search('conteudos', load: true) { |t|
         t.query { |q| q.string busca } unless busca.blank?
         t.query { |q| q.string query_parametros } unless query_parametros.blank?

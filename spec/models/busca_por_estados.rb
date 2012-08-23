@@ -102,6 +102,17 @@ describe 'Buscas por estado do conteúdo', busca: true do
       resultado[0].titulo.should == 'artigo 2 do iff'
       resultado.size.should == 1
     end
+
+    it 'Quando nenhum estado é selecionado busca pelos conteudos publicados' do
+      aprovar(@artigo_1)
+      Conteudo.index.refresh
+
+      busca = Busca.new(busca: 'artigo', parametros: {})
+      busca.usuario_logado = @usuario_gestor
+      resultado = busca.buscar_em_conteudos()
+      resultado.size.should == 1
+      resultado[0].titulo.should == 'artigo do iff'
+    end
   end
 
   context 'administrador de instituicao' do
