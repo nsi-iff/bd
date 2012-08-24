@@ -107,6 +107,16 @@ describe Usuario do
           Ability.new(nao_gestor).should_not be_able_to(:retornar_para_revisao, conteudo)
         end
       end
+
+      it 'somente gestor pode acessar lista de revisão' do
+        gestor = stub_model(Usuario, gestor?: true)
+        Ability.new(gestor).should be_able_to(:ter_lista_de_revisao, Usuario)
+        Ability.new(gestor).should be_able_to(:lista_de_revisao, Usuario)
+
+        nao_gestor = stub_model(Usuario, gestor?: false)
+        Ability.new(nao_gestor).should_not be_able_to(:ter_lista_de_revisao, Usuario)
+        Ability.new(nao_gestor).should_not be_able_to(:lista_de_revisao, Usuario)
+      end
     end
   end
 

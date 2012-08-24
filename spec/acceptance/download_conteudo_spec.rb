@@ -10,7 +10,7 @@ feature 'baixar conteúdo' do
       artigo = ArtigoDeEvento.last
       artigo.submeter!
       visit conteudo_path(artigo)
-      page.should_not have_link 'Download'
+      page.should_not have_button 'Download'
     end
   end
   context 'conteúdo publicado' do
@@ -22,7 +22,7 @@ feature 'baixar conteúdo' do
       artigo.submeter!
       artigo.aprovar!
       visit conteudo_path(artigo)
-      click_link 'Download'
+      click_button 'Download'
       baixado = "#{Rails.root}/tmp/#{artigo.titulo}.#{artigo.extensao}"
       postado = "#{Rails.root}/spec/resources/arquivo.doc"
       FileUtils.compare_file(baixado, postado).should == true

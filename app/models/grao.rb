@@ -19,7 +19,9 @@ class Grao < ActiveRecord::Base
   end
 
   def tipo_humanizado
-    arquivo? ? "arquivo" : (imagem? ? "imagem" : nil)
+    return 'tabela' if arquivo?
+    return 'imagem' if imagem?
+    return 'video' if video?
   end
 
   def conteudo_base64
@@ -29,6 +31,6 @@ class Grao < ActiveRecord::Base
 
   def titulo
     conteudo = Conteudo.find(conteudo_id)
-    "#{conteudo.titulo}_grao_#{tipo}_#{id}"
+    "#{conteudo.titulo}_#{tipo_humanizado}_#{id}"
   end
  end

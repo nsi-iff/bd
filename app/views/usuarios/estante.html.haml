@@ -5,7 +5,7 @@
       = render 'usuarios/item_estante', item: item
 
       - if item.is_a? Referencia and item.referenciavel
-        = link_to 'Remover favorito', remover_favorito_conteudo_path(item.referenciavel), method: :put
+        = button_to 'Remover favorito', remover_favorito_conteudo_path(item.referenciavel), method: :put
       %br
       %br
   - if current_usuario.estante.blank?

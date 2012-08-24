@@ -19,5 +19,5 @@ def criar_cesta(usuario, conteudo, *grain_files)
 end
 
 def representacao_grao(grao)
-  "%s %s" % [grao.key, grao.tipo_humanizado]
+  "#{grao.conteudo.titulo}_#{grao.tipo_humanizado}_#{grao.id}"
 end

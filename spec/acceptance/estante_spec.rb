@@ -46,7 +46,7 @@ feature 'Estante' do
     relatorio.aprovar!
 
     visit conteudo_path(relatorio)
-    click_link 'Favoritar'
+    click_button 'Favoritar'
 
     visit root_path
     within '#estante' do
@@ -59,7 +59,7 @@ feature 'Estante' do
     end
 
     visit conteudo_path(relatorio)
-    click_link 'Remover favorito'
+    click_button 'Remover favorito'
 
     visit root_path
     within '#estante' do
@@ -72,12 +72,12 @@ feature 'Estante' do
     end
 
     visit conteudo_path(relatorio)
-    click_link 'Favoritar'
+    click_button 'Favoritar'
 
     visit estante_usuario_path(@usuario)
     within '.content' do
       page.should have_content 'We love Ruby and Agile!'
-      click_link 'Remover favorito'
+      click_button 'Remover favorito'
     end
 
     within '#estante' do
@@ -86,40 +86,40 @@ feature 'Estante' do
   end
 
   scenario 'mostrar graos favoritos do usuário' do
-    @usuario.favoritar create(:grao).referencia
+    @usuario.favoritar (grao = create(:grao)).referencia
     visit root_path
     within '#estante' do
-      page.should have_content 'key imagem'
+      page.should have_content representacao_grao(grao)
     end
   end
 
   scenario 'move graos da cesta para estante (como graos favoritos)' do
-    conteudo = create(:livro)
-    @usuario.cesta << create(:grao, conteudo: conteudo).referencia
+    conteudo = create(:livro, titulo: 'Titulo')
+    @usuario.cesta << (grao = create(:grao, conteudo: conteudo, tipo: 'images')).referencia
 
     visit estante_usuario_path(@usuario)
 
     within '#estante' do
-      page.should_not have_content 'key imagem'
+      page.should_not have_content representacao_grao(grao)
     end
     within '.content' do
-      page.should_not have_content 'key imagem'
+      page.should_not have_content representacao_grao(grao)
     end
 
     within '#cesta' do
-      page.should have_content 'key imagem'
+      page.should have_content representacao_grao(grao)
       click_link 'Mover para estante'
     end
 
     within '#estante' do
-      page.should have_content 'key imagem'
+      page.should have_content representacao_grao(grao)
     end
     within '.content' do
-      page.should have_content 'key imagem'
+      page.should have_content representacao_grao(grao)
     end
 
     within '#cesta' do
-      page.should_not have_content 'key imagem'
+      page.should_not have_content representacao_grao(grao)
     end
   end
 
@@ -144,8 +144,8 @@ feature 'Estante' do
     usuario = create(:usuario_contribuidor)
     documento = create(:livro, contribuidor_id: usuario.id)
     autenticar(usuario)
-    
+
     visit conteudo_path(documento)
-    page.should_not have_content 'Favoritar'    
+    page.should_not have_content 'Favoritar'
   end
 end

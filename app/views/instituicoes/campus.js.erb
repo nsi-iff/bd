@@ -3,7 +3,7 @@ var campus = $(".campus");
 campus.children().remove();
 
 //inclui as sub_areas da grande area selecionada
-<% @instituicao.campus.each do |campus| %>
+<% @instituicao.campi.each do |campus| %>
   campus.append(
       "<option value=' <%= campus.id %> '> <%= campus.nome %> </option>");
 <% end %>

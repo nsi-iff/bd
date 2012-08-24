@@ -6,7 +6,7 @@
 - else
   - if item.referenciavel
     - if item.referenciavel.is_a? Grao
-      = link_to item.referenciavel.key, conteudo_path(item.referenciavel.conteudo)
+      = link_to item.referenciavel.titulo, conteudo_path(item.referenciavel.conteudo)
       = item.referenciavel.tipo_humanizado
       %br
       %span.info

@@ -31,15 +31,15 @@ feature 'Visualizar grão' do
 
       page.should have_content 'Tabela originada da página X do conteúdo'
       page.should have_content "Testando visualização de tabelas"
-      page.should have_content "Download"
-      page.should have_content "Adicionar à Cesta de Grãos"
-      page.should have_content "Adicionar à Estante"
+      page.should have_button  "Download"
+      page.should have_button  "Adicionar à Cesta de Grãos"
+      page.should have_button  "Adicionar à Estante"
     end
     scenario 'efetuar download do grao' do
       grao = adicionar_grao
       visit grao_path(grao)
 
-      click_link 'Download'
+      click_button 'Download'
       grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}.odt"
       grao_postado = "#{Rails.root}/spec/resources/grao_tabela.odt"
       comparar_odt('//office:text', grao_baixado, grao_postado)
@@ -63,15 +63,15 @@ feature 'Visualizar grão' do
 
       page.should have_content 'Imagem originada da página X do conteúdo'
       page.should have_content "Testando visualização de imagem"
-      page.should have_content "Download"
-      page.should have_content "Adicionar à Cesta de Grãos"
-      page.should have_content "Adicionar à Estante"
+      page.should have_button  "Download"
+      page.should have_button  "Adicionar à Cesta de Grãos"
+      page.should have_button  "Adicionar à Estante"
     end
     scenario 'efetuar download do grao' do
       grao = adicionar_grao
       visit grao_path(grao)
 
-      click_link 'Download'
+      click_button 'Download'
       grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}"
       grao_postado = "#{Rails.root}/spec/resources/grao_teste_1.jpg"
       FileUtils.compare_file(grao_postado, grao_baixado)
@@ -96,7 +96,7 @@ feature 'Visualizar grão' do
       visit grao_path(grao)
 
 
-      click_link "Adicionar à Cesta de Grãos"
+      click_button "Adicionar à Cesta de Grãos"
       grao.id.should == user.cesta[0].referenciavel_id
     end
 
@@ -107,7 +107,7 @@ feature 'Visualizar grão' do
       grao = adicionar_grao
       visit grao_path(grao)
 
-      click_link 'Adicionar à Estante'
+      click_button 'Adicionar à Estante'
       grao.id.should == user.estante[0].referenciavel_id
     end
 

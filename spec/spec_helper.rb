@@ -7,7 +7,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
 
   # inicia simplecov (coverage) se não estiver usando spork, e com COVERAGE=true
-  unless Spork.using_spork? && ENV["COVERAGE"]
+  if !Spork.using_spork? && ENV["COVERAGE"]
     puts "Running Coverage Tool\n"
     require 'simplecov'
     require 'simplecov-rcov'
@@ -75,8 +75,12 @@ Spork.prefork do
 
   require Rails.root + "db/criar_indices"
 
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
   RSpec.configure do |config|
-    config.include Devise::TestHelpers, :type => :controller
+    config.include DigitalLibrary::SpecHelpers::Utils
+    config.include Devise::TestHelpers, type: :view
+    config.include Devise::TestHelpers, type: :controller
     config.include FactoryGirl::Syntax::Methods
     config.include Toothbrush::Helpers
 

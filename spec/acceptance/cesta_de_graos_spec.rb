@@ -7,6 +7,7 @@ feature 'cesta de grãos' do
   before(:each) do
     Tire.criar_indices
     @livro = create(:livro, titulo: 'Quantum Mechanics for Dummies')
+    aprovar(@livro)
     @grao1 = create(:grao_imagem, key: '12345', conteudo: @livro)
     @grao2 = create(:grao_arquivo, key: '67890', conteudo: @livro)
     Conteudo.tire.index.refresh

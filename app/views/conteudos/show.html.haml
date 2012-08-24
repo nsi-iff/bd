@@ -47,11 +47,11 @@
     %span.clear
 
 - if current_usuario
-  - unless current_usuario.id == @conteudo.contribuidor_id
+  - unless current_usuario == @conteudo.contribuidor
     - if current_usuario.favorito? @conteudo.referencia
-      = link_to 'Remover favorito', remover_favorito_conteudo_path(@conteudo), method: :put
+      = button_to 'Remover favorito', remover_favorito_conteudo_path(@conteudo), method: :put
     - else
-      = link_to 'Favoritar', favoritar_conteudo_path(@conteudo), method: :put
+      = button_to 'Favoritar', favoritar_conteudo_path(@conteudo), method: :put
 
 - if current_usuario && @conteudo.publicado? && @conteudo.nome_instituicao == current_usuario.instituicao.nome && current_usuario.gestor?
   = button_to "Editar", edit_conteudo_path(@conteudo), method: 'get'

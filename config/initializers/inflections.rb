@@ -21,9 +21,10 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'mudanca_de_estado', 'mudancas_de_estado'
   inflect.irregular 'formulario_contato', 'formularios_contato'
   inflect.irregular 'FormularioContato', 'FormulariosContato'
+  inflect.irregular 'campus', 'campi'
   inflect.plural /cao$/i, 'coes'
   inflect.singular /coes$/i, 'cao'
-  inflect.uncountable %w(campus cesta)
+  inflect.uncountable %w(cesta)
   inflect.plural /el$/i, 'eis'
   inflect.singular /eis$/i, 'el'
   inflect.singular /ais$/i, 'al'

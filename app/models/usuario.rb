@@ -40,7 +40,7 @@ class Usuario < ActiveRecord::Base
     if self.admin?
       Usuario.includes(:papeis).all
     else
-      self.campus.instituicao.campus.map {|campus| campus.usuarios}.flatten
+      self.campus.instituicao.usuarios
     end
   end
 
@@ -114,5 +114,9 @@ class Usuario < ActiveRecord::Base
   def trocar_campus(novo)
     self.campus = novo
     save!
+  end
+
+  def pode_buscar_por_estados?
+    self.gestor? || self.instituicao_admin? || self.admin?
   end
 end

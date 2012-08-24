@@ -2,5 +2,7 @@
     %h1 Busca por Imagem
     = form_tag url: busca_por_imagem_path, method: 'post' do
         .envia_imagem
+            %span#escolher_imagem Escolher Imagem
+            %span#nome_arquivo  
             %input{:type => 'file'}
-        %input{:type => 'submit',:value => ''}
+            %input{:type => 'submit',:value => 'Buscar'}
