@@ -35,7 +35,7 @@ describe Referencia do
       grao.referencia.referenciavel_removido!
     }.to change { ActionMailer::Base.deliveries.size }.by 1
 
-    email = ActionMailer::Base.deliveries.last
+    email = ultimo_email_enviado
     email.to.should == [usuario.email]
     email.subject.should == 'Biblioteca Digital: Notificação sobre grão removido'
   end

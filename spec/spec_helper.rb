@@ -84,6 +84,9 @@ Spork.prefork do
     config.include FactoryGirl::Syntax::Methods
     config.include Toothbrush::Helpers
 
+    config.include(MailerMacros)
+    config.before(:each) { resetar_emails }
+
     config.filter_run_excluding sam: true unless ENV['INTEGRACAO_SAM']
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

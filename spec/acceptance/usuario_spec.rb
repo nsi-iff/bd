@@ -62,8 +62,8 @@ feature 'sessão e registro de usuário' do
     click_button 'Envie as instruções de mudança de senha'
     sleep(3) #tempo para esperar enviar e-mail
     page.should have_content("Dentro de minutos, você receberá um email com as instruções de reinicialização da sua senha.")
-    last_email = ActionMailer::Base.deliveries.last
-    last_email.to.should include(usuario.email)
+
+    ultimo_email_enviado.to.should include(usuario.email)
   end
 
   scenario 'modificar instituição de origem' do

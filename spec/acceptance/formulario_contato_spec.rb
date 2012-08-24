@@ -12,7 +12,7 @@ feature "Formulário de contato" do
     fill_in 'Mensagem', :with => 'rails lek'
     click_button 'Enviar'
     page.body.should have_content('Obrigado por entrar em contato')
-    last_email = ActionMailer::Base.deliveries.last
+    last_email = ultimo_email_enviado
     last_email.to.should include('foo@bar.com')
     last_email.from.should include('john-doe@foobar.com')
   end
@@ -25,6 +25,6 @@ feature "Formulário de contato" do
     fill_in 'Mensagem', :with => 'campo faltando lek'
     click_button 'Enviar'
     page.body.should have_content("não pode ficar em branco")
-    ActionMailer::Base.deliveries.last.should == nil
+    ultimo_email_enviado.should == nil
   end
 end
