@@ -3,14 +3,14 @@
 
 .grao
   - if @grao.video?
-    = render 'graos/show_video'	
+    = render 'graos/show_video'
   - elsif @grao.tipo == 'files'
     = render 'graos/show_tabela'
   - else
     = render 'graos/show_imagem'
 
-= link_to "Download" , grao_baixar_grao_path(@grao)
+= button_to "Download" , grao_baixar_grao_path(@grao), method: :get
 %br
-= link_to 'Adicionar à Cesta de Grãos', adicionar_a_cesta_grao_path(@grao), method: :put, remote: true
+= button_to 'Adicionar à Cesta de Grãos', adicionar_a_cesta_grao_path(@grao), method: :put, remote: true
 - if current_usuario
-  = link_to "Adicionar à Estante", favoritar_grao_path(@grao), method: :put
+  = button_to "Adicionar à Estante", favoritar_grao_path(@grao), method: :put
