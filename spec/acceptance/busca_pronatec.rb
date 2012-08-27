@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Busca PRONATEC', busca: true do
+feature 'Busca PRONATEC' do
   scenario 'buscar pro conteudos com flag PRONTATEC=true' do
     Tire.criar_indices
     create(:pronatec, titulo: 'objeto pronatec')
