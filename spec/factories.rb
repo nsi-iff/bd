@@ -69,27 +69,22 @@ FactoryGirl.define do
 
   factory :objeto_de_aprendizagem, :parent => :conteudo, :class => ObjetoDeAprendizagem do
   end
-
-  factory :livro_recolhido, parent: :livro do
-    after(:create) do |livro|
-      livro.submeter!
-      livro.recolher!
-    end
-  end
-
-  factory :livro_publicado, parent: :livro do
-    after(:create) do |livro|
-      livro.submeter!
-      livro.aprovar!
-    end
-  end
-
-  factory :artigo_de_evento_pendente, parent: :artigo_de_evento do
-    after(:create) {|artigo| artigo.submeter! }
-  end
   
-  factory :relatorio_pendente, parent: :relatorio do
-    after(:create) {|relatorio| relatorio.submeter! }
+  ['artigo_de_evento', 'livro', 'relatorio', 'trabalho_de_obtencao_de_grau',  
+   'periodico_tecnico_cientifico', 'artigo_de_periodico', 'objeto_de_aprendizagem'].each do |tipo|
+    factory "#{tipo}_editavel", parent: tipo
+    
+    factory("#{tipo}_pendente", parent: tipo) do
+      after(:create) {|c| c.submeter! }
+    end
+    
+    factory("#{tipo}_recolhido", parent: "#{tipo}_pendente") do
+      after(:create) {|c| c.recolher! }
+    end
+    
+    factory("#{tipo}_publicado", parent: "#{tipo}_pendente") do
+      after(:create) {|c| c.aprovar! }
+    end
   end
 
   factory :instituicao do
