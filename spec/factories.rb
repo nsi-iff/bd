@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :conteudo do
-    titulo "Conteudo interessante"
+    sequence(:titulo) {|n| "Conteudo interessante #{n}" }
     sub_area
     campus
     autores { [create(:autor)] }

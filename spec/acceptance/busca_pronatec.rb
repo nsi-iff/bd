@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Busca PRONATEC' do
-  scenario 'buscar pro conteudos com flag PRONTATEC=true' do
+  scenario 'buscar conteudos com flag PRONTATEC=true' do
     Tire.criar_indices
     create(:pronatec, titulo: 'objeto pronatec')
     create(:objeto_de_aprendizagem, titulo: 'objeto aprendizagem')
