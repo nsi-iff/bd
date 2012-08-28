@@ -1,8 +1,6 @@
 - if item.is_a? Conteudo
   = link_to conteudo_tag(item), conteudo_path(item)
   %br
-  %span.info
-  = "#{item.nome_contribuidor} - #{item.created_at.strftime('%d/%m/%Y')}"
 - else
   - if item.referenciavel
     - if item.referenciavel.is_a? Grao
