@@ -6,8 +6,6 @@
     - @cesta.map { |referencia_id| Referencia.find(referencia_id).referenciavel }.each do |grao|
       .item
         = link_to grao.titulo, grao_path(grao)
-        = grao.tipo_humanizado
-        = "#{grao.created_at.strftime('%d/%m/%Y')}"
         = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete,
             remote: true
 
