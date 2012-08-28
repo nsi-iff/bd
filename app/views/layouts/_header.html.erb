@@ -13,7 +13,6 @@
     <div class="site_actions">
       <ul>
         <li><%= link_to "Mapa do Site", "/mapa_do_site", :accesskey => 5 %></li>
-        <li><%= link_to "Acessibilidade", '/acessibilidade' %></li>
         <li><%= link_to "Contato", new_formulario_contato_path %></li>
         <% if usuario_signed_in? %>
           <% if can? :index, Usuario%>
@@ -26,6 +25,14 @@
           <li><%= link_to "Registrar Usuário", new_usuario_registration_path %></li>
           <span class="clear"></span>
         <% end %>
+      </ul>
+    </div>
+    <div class="site_actions" id="actions_accessibility">
+      <ul>
+        <li id="aumentar_fonte"><%= link_to "aumentar fonte", '#' %></li>
+        <li id="diminuir_fonte"><%= link_to "diminuir fonte", '#' %></li>
+        <li id="alto_contraste"><%= link_to "alto contraste", '#' %></li>  
+        <li><%= link_to "Acessibilidade", '/acessibilidade' %></li>
       </ul>
     </div>
   </div>
