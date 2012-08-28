@@ -35,6 +35,7 @@ DigitalLibrary::Application.routes.draw do
   match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
   match '/graficos_de_acessos', :to => 'pages#graficos_de_acessos'
   match '/mapa_do_site', :to => 'pages#mapa_do_site'
+  match '/acessibilidade', :to => 'pages#acessibilidade'
   resources :buscas do
     post :cadastrar_mala_direta, :to => 'buscas#cadastrar_mala_direta'
     post :remover_mala_direta, :to => 'buscas#remover_mala_direta'

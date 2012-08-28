@@ -10,23 +10,32 @@
   <div class="container-header">
     <a href="/" accesskey="1"><h1>Biblioteca Digital da EPCT</h1></a>
 
-    <div class="site_actions">
-      <ul>
-        <li><%= link_to "Mapa do Site", "/mapa_do_site", :accesskey => 5 %></li>
-        <li><%= link_to "Acessibilidade", '#' %></li>
-        <li><%= link_to "Contato", new_formulario_contato_path %></li>
-        <% if usuario_signed_in? %>
-          <% if can? :index, Usuario%>
-            <li><%= link_to "Administração", usuarios_path  %></li>
+    <div class="actions">
+      <div class="site_actions">
+        <ul>
+          <li><%= link_to "Mapa do Site", "/mapa_do_site", :accesskey => 5 %></li>
+          <li><%= link_to "Contato", new_formulario_contato_path %></li>
+          <% if usuario_signed_in? %>
+            <% if can? :index, Usuario%>
+              <li><%= link_to "Administração", usuarios_path  %></li>
+            <% end %>
+            <li><%= link_to "Editar Conta", edit_registration_path(current_usuario) %></li>
+            <li><%= link_to "Sair", destroy_usuario_session_path %></li>
+          <% else %>
+            <li><%= link_to "Acessar", new_usuario_session_path %></li>
+            <li><%= link_to "Registrar Usuário", new_usuario_registration_path %></li>
+            <span class="clear"></span>
           <% end %>
-          <li><%= link_to "Editar Conta", edit_registration_path(current_usuario) %></li>
-          <li><%= link_to "Sair", destroy_usuario_session_path %></li>
-        <% else %>
-          <li><%= link_to "Acessar", new_usuario_session_path %></li>
-          <li><%= link_to "Registrar Usuário", new_usuario_registration_path %></li>
-          <span class="clear"></span>
-        <% end %>
-      </ul>
+        </ul>
+      </div>
+      <div class="site_actions" id="actions_accessibility">
+        <ul>
+          <li id="aumentar_fonte"><%= link_to "aumentar fonte", '#' %></li>
+          <li id="diminuir_fonte"><%= link_to "diminuir fonte", '#' %></li>
+          <li id="alto_contraste"><%= link_to "alto contraste", '#' %></li>  
+          <li><%= link_to "Acessibilidade", '/acessibilidade' %></li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>

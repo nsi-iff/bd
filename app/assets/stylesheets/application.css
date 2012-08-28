@@ -106,6 +106,26 @@ header .site_actions {
   border-radius:         5px;
 }
 
+#actions_accessibility{
+  margin-top:5px;
+}
+
+#alto_contraste{
+  background: url(/assets/icone_altocontraste.gif) no-repeat;
+  padding-left: 20px;
+}
+
+#diminuir_fonte{
+  background: url(/assets/icone_diminuirfonte.gif) no-repeat;
+  padding-left: 20px;
+}
+
+#aumentar_fonte{
+  background: url(/assets/icone_aumentarfonte.gif) no-repeat;
+  padding-left: 20px;
+  margin-left: 5px;
+}
+
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
