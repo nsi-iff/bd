@@ -54,10 +54,6 @@ body {
   src: local('types/FuturaStd-Heavy'), url('types/FuturaStd-Heavy.otf') format('truetype');
 }
 
-header {
-  overflow: auto;
-}
-
 header h1 {
   font-family: FuturaStd;
   color: #FFF;
@@ -136,7 +132,7 @@ header .site_actions {
   background: url("/assets/corpo_bg.gif") no-repeat scroll 0 top #F1F6E4;
   height: auto;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 128px;
   min-height: 680px;
   padding: 0;
   width: 980px !important;
@@ -158,6 +154,7 @@ h1 {
   width: 220px;
   float: left;
   margin-top: 10px;
+  font-size:20px !important;
 }
 
 .container .navigation ul, ol {
@@ -168,7 +165,6 @@ h1 {
 .container .navigation li {
   margin-left: 5px;
   width: 200px;
-  height: 27px;
   cursor: pointer;
 }
 
@@ -179,61 +175,61 @@ h1 {
 .container .navigation li p {
   margin: 5px;
   font-weight: bold;
-  padding: 0.4em;
+  padding: 0.3em;
   font-size: 15px;
 }
 
 .container .navigation li#home {
-  background-image: url("/assets/menu_vermelho.jpg");
+  background: #A81A19 url("/assets/menu_vermelho.jpg") 0 0 repeat-x;
 }
 
 .container .navigation li#busca {
-  background-image: url("/assets/menu_azul.jpg");
+  background: #18537D url("/assets/menu_azul.jpg") 0 0 repeat-x;
 }
 
 .container .navigation li#busca_pronatec {
-  background-image: url("/assets/menu_cinza.jpg");
+  background: #4F4F4D url("/assets/menu_cinza.jpg") 0 0 repeat-x;
 }
 .container .navigation li#busca_imagem {
-  background-image: url("/assets/menu_verde_escuro.jpg");
+  background: #354D13 url("/assets/menu_verde_escuro.jpg") 0 0 repeat-x;
 }
 
 .container .navigation li#adicionar_conteudo {
-  background-image: url("/assets/menu_amarelo.jpg");
+  background: #DCB210 url("/assets/menu_amarelo.jpg") 0 0 repeat-x;
 }
 
 .container .navigation li#ajuda {
-  background-image: url("/assets/menu_rosa.jpg");
+  background: #B40A51 url("/assets/menu_rosa.jpg") 0 0 repeat-x;
 }
 
 .container .navigation li#sobre {
-  background-image: url("/assets/menu_laranja.jpg");
+  background: #EF9405 url("/assets/menu_laranja.jpg") 0 0 repeat-x;
 }
 
 .container .navigation li#noticias {
-  background-image: url("/assets/menu_roxo.jpg");
+  background: #6A3681 url("/assets/menu_roxo.jpg") 0 0 repeat-x;
 }
 
 .container .navigation li#estatisticas {
-  background-image: url("/assets/menu_cinza.jpg");
+  background: #4F4F4D url("/assets/menu_cinza.jpg") 0 0 repeat-x;
 }
 
 .container .busca_por_area {
   margin-top: 20px;
+  max-width: 205px;
 }
 
 .container .busca_por_area p#title {
-  width: 200px;
-  background-image: url("/assets/menu_verde.gif");
-  height: 15px;
-  width: 188px;
+  background: #739524 url("/assets/menu_verde.jpg") 0 0 repeat-x;
 }
 
 .container .busca_por_area #title {
   color: #fff;
-  margin: 5px;
+  margin-left: 5px;
   font-weight: bold;
-  padding: 0.4em;
+  padding-top: 0.38em;
+  padding-bottom: 0.38em;
+  padding-left: 0.5em;
   font-size: 15px;
 }
 
@@ -269,17 +265,23 @@ h1 {
 }
 
 footer {
-  width: 973px;
-  height: 28px;
-  background: url("/assets/bg_rodape.gif") 0 0 no-repeat;
+  width: 970px;
+  background: #516A13 url("/assets/bg_rodape.gif") 0 0 repeat-x;
   margin: 0 auto;
   margin-top: 12px;
   overflow: hidden;
-  padding: 0 0 10px 7px;
+  padding-left: 4px;
+  padding-right: 8px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 footer p {
-  font-size: 1.1em;
+  font-size: 15px;
   color: #fff;
   float: left;
   margin: 7px 0 0 0;
@@ -299,7 +301,7 @@ footer a.topo {
   color: #FFFFFF;
   display: inline;
   float: right;
-  font-size: 1.1em;
+  font-size: 15px;
   height: 16px;
   margin: 3px 3px 0 24px;
   padding: 3px 28px 4px 0;
