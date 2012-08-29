@@ -1,25 +1,29 @@
 $(document).ready(function() {
 	var max = $('#aumentar_fonte');
 	var min = $('#diminuir_fonte');
-	var size = 15;
+	var padrao = $('#fonte_padrao')
 	var mudar_css = function(size){
-		$("p").css('font-size',((size).toString()+"px"))
-		$("p").css('font-size',((size).toString()+"px"))
-		$("label").css('font-size',((size).toString()+"px"))
-		
+		selector = $(".container p, .container a, .container input, .container select, .container label, .container h1, .container h2, .container h3, .container span, footer");
+		selector.each(function(){
+			var element = $(this);
+			font_size = element.css('font-size')
+			element.css('font-size',((parseInt(font_size)+(size)).toString()+"px"))
+			
+		});
 	}
 
 	var aumentar = function(){
-		navigation_font_size = size;
-		mudar_css(navigation_font_size + 2);
-		size = size + 2;
+		mudar_css(2);
 	}
 	var diminuir = function(){
-		navigation_font_size = size;
-		mudar_css(navigation_font_size - 2);
-		size = size - 2;
+		mudar_css(-2);
 	}
 
-	// max.click(aumentar);
-	// min.click(diminuir);
+	var refresh = function(){
+		document.location.reload();
+	}
+
+	max.click(aumentar);
+	min.click(diminuir);
+	padrao.click(refresh);
 });

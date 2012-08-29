@@ -115,6 +115,10 @@ header .site_actions {
   background: url(/assets/icone_diminuirfonte.gif) no-repeat;
   padding-left: 20px;
 }
+#fonte_padrao{
+  background: url(/assets/icone_fontepadrao.gif) no-repeat;
+  padding-left: 20px;
+}
 
 #aumentar_fonte{
   background: url(/assets/icone_aumentarfonte.gif) no-repeat;
