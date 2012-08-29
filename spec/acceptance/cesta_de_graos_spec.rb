@@ -61,15 +61,11 @@ feature 'cesta de grãos' do
       page.should have_content representacao_grao(@grao1)
       click_link 'Remover'
     end
+
     within '#cesta' do
       page.should_not have_content representacao_grao(@grao1)
       page.should have_content representacao_grao(@grao2)
-    end
-
-    within '#cesta'  do
       click_link 'Remover'
-    end
-    within '#cesta' do
       page.should_not have_content representacao_grao(@grao1)
       page.should_not have_content representacao_grao(@grao2)
     end
@@ -167,8 +163,8 @@ feature 'cesta de grãos' do
            %w(7 8 9)]
       end
     end
-
-    scenario 'baixar conteudo da cesta', js: true do
+    
+    scenario 'baixar conteudo da cesta' do
       criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt))
       visit root_path
       click_link 'baixar conteudo da cesta'
@@ -191,7 +187,7 @@ feature 'cesta de grãos' do
       FileUtils.rm_rf("#{Rails.root}/spec/resources/downloads")
     end
 
-    scenario 'baixar conteudo da cesta em odt', js: true do
+    scenario 'baixar conteudo da cesta em odt' do
       criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt
                                         ./spec/resources/biblioteca_digital.png
                                         ./spec/resources/grao_teste_0.jpg))
