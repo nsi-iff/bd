@@ -1,17 +1,12 @@
 .minhas_buscas.index
   %h3 Minhas Buscas
 
-  Marque o check-box da busca que deseje adicionar no serviço de mala direta. Esse serviço lhe avisará,
-  através de um e-mail, quando um novo documento que contemple sua busca for publicado.
-
   %h4 Buscas salvas
   - if @buscas.present?
     %csrf_method_tag
     %table
       - @buscas.each do |busca|
         %tr
-          %td.check
-            =check_box_tag :mala_direta, busca.id, busca.mala_direta, :class => 'mala_direta_checkbox'
           %td
             = link_to busca.titulo, busca_path(busca), id: "busca-#{busca.id}", title: busca.descricao
             = link_to '', edit_busca_path(busca), class: 'link_editar', title: 'Editar'
