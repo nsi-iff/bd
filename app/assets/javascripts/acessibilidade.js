@@ -50,10 +50,15 @@ $(document).ready(function() {
 		});
 	}
 	function contraste(){
-		selector_background = $("body, portlet, header, .container, footer, #menu_abas ul li, #notice");
+		selector_background = $("body, portlet, header, .container, footer, #menu_abas ul li, #notice, .grao_imagem");
 		selector_background.each(function(){
 			var element = $(this);
 			element.css('background','#000');
+		});
+		selector_background = $(".grao_imagem, table");
+		selector_background.each(function(){
+			var element = $(this);
+			element.css({'border': '1px solid #FF0'});
 		});
 		selector_background = $(".itens li, #title, .portlet, .aba, th");
 		selector_background.each(function(){
