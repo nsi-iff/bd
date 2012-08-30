@@ -34,6 +34,7 @@ $(document).ready(function() {
 	}
 	if (acess =="true") {
 		contraste();
+		$('#alto_contraste a').text('Restaurar contraste')		
 	};
 	var max = $('#aumentar_fonte');
 	var min = $('#diminuir_fonte');
@@ -101,13 +102,14 @@ $(document).ready(function() {
 			GerarCookie("alto_contraste", "true", 0);
 			acess = 'true';
 			contraste_on();
-	
+			$('#alto_contraste a').text('Restaurar contraste')
 		}
 		else{
 			ExcluirCookie("alto_contraste");
 			GerarCookie("alto_contraste", "false", 0);
 			acess = 'false';
 			contraste_off();
+			$('#alto_contraste a').text('Alto contraste')
 		}
 	}
 	max.click(aumentar);
