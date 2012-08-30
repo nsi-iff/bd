@@ -204,7 +204,6 @@ feature 'Buscas' do
     page.should have_link 'Editar'
     page.should have_link 'Deletar'
 
-    page.should have_selector('input', :type => 'checkbox')
   end
 
   scenario 'clicar na busca salva executa a busca novamente' do
@@ -255,6 +254,7 @@ feature 'Buscas' do
 
     page.should have_link 'Buscar livro'
     page.should have_link 'Gerenciar buscas'
+    page.should have_link 'Mala direta'
 
     Busca.count.should == 1
     click_link 'Gerenciar buscas'
