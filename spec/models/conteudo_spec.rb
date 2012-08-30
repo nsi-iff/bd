@@ -27,10 +27,15 @@ describe Conteudo do
           before(:each) do
             conteudo.stub(:granularizavel?).and_return(true)
             conteudo.link = nil
-            f = File.open(File.join(Rails.root, 'spec', 'resources',
-              'manual.odt'))
-            f.stub(:original_filename).and_return('anything.odt')
-            f.stub(:content_type).and_return('application/vnd.oasis.opendocument.text')
+            f = ActionDispatch::Http::UploadedFile.new({
+                filename: 'arquivo.pdf',
+                type: 'text/plain',
+                tempfile: File.new(Rails.root + 'spec/resources/manual.odt')
+            })
+            # f = File.open(File.join(Rails.root, 'spec', 'resources',
+              # 'manual.odt'))
+            # f.stub(:original_filename).and_return('anything.odt')
+            # f.stub(:content_type).and_return('application/vnd.oasis.opendocument.text')
             conteudo.arquivo = f
             conteudo.save!
           end
@@ -266,10 +271,11 @@ describe Conteudo do
 
   context 'não deve rodar código relativo a arquivos e SAM ao validar #bugfix' do
     let :conteudo do
-      Conteudo.new(arquivo: stub(
-        read: 'dummy value',
-        original_filename: 'another dummy',
-        content_type: 'application/vnd.oasis.opendocument.text'))
+      Conteudo.new(arquivo: ActionDispatch::Http::UploadedFile.new({
+                filename: 'arquivo.pdf',
+                type: 'text/plain',
+                tempfile: File.new(Rails.root + 'spec/resources/manual.odt')
+            }))
     end
 
     it 'não deve salvar arquivo' do
