@@ -46,7 +46,7 @@ class Arquivo < ActiveRecord::Base
 
   def enviar_ao_sam
     if @uploaded_file.present?
-      self.key = sam.store(file: self.content_base64)['key']
+      self.key = sam.store(file: self.content_base64).key
     end
   end
 
@@ -59,6 +59,6 @@ class Arquivo < ActiveRecord::Base
   end
 
   def thumbnail
-    sam.get(self.thumbnail_key)['data']['file'] if self.thumbnail_key
+    sam.get(self.thumbnail_key).data['file'] if self.thumbnail_key
   end
 end

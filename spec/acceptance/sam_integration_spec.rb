@@ -14,16 +14,11 @@ feature 'Integração com o SAM', sam: true do
     @artigo = ArtigoDeEvento.find_by_titulo('integracao sam')
 
     response = sam.get(@artigo.arquivo.key)
-    response.should have(3).keys
-
-    response.should have_key("from_user")
-    response["from_user"].should == Rails.application.config.sam_configuration[:user]
-
-    response.should have_key("date")
+    response.should_not be_nil
 
     arquivo_64 = Base64.encode64(File.open('spec/resources/manual.odt').read)
-    response.should have_key("data")
-    response["data"].should have_key("file")
-    response["data"]["file"].should == arquivo_64
+    response.data.should_not be_nil
+    response.data.should have_key("file")
+    response.data["file"].should == arquivo_64
   end
 end

@@ -21,7 +21,7 @@ feature 'Visualizar grão' do
       result = sam.store(file: conteudo_odt, filename: 'grao.odt')
 
       conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de tabelas")
-      grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
+      grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result.key)
     end
     scenario 'visualizar grao' do
       Papel.criar_todos
@@ -53,7 +53,7 @@ feature 'Visualizar grão' do
       result = sam.store(file: conteudo_odt, filename: 'grao.jpg')
 
       conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de imagem")
-      grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])
+      grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result.key)
     end
     scenario 'visualizar grao' do
       Papel.criar_todos
@@ -85,7 +85,7 @@ feature 'Visualizar grão' do
       result = sam.store(file: conteudo_odt, filename: 'grao.jpg')
 
       conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de imagem")
-      grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])
+      grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result.key)
     end
 
     scenario 'adiciondo-o à cesta de grão' do
