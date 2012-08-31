@@ -148,7 +148,7 @@ class ConteudosController < ApplicationController
   def baixar_conteudo
     conteudo = Conteudo.find(params[:conteudo_id])
     @sam = ServiceRegistry.sam
-    string = @sam.get(conteudo.arquivo.key)['data']['doc']
+    string = @sam.get(conteudo.arquivo.key)['data']['file']
     extensao = conteudo.extensao
     file = "#{Rails.root}/tmp/#{conteudo.titulo}.#{extensao}"
     File.open(file, "wb").write(Base64.decode64(string))
