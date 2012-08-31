@@ -128,7 +128,7 @@ describe Arquivo do
     })
     arquivo = build(:arquivo, uploaded_file: upload)
     ServiceRegistry.sam.should_receive(:store).with(file: arquivo.content_base64).
-      and_return("key" => "123")
+      and_return(stub("key" => "123"))
     arquivo.save
     arquivo.key.should eq("123")
   end
