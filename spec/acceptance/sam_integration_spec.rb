@@ -23,7 +23,7 @@ feature 'Integração com o SAM', sam: true do
 
     arquivo_64 = Base64.encode64(File.open('spec/resources/manual.odt').read)
     response.should have_key("data")
-    response["data"].should have_key("doc")
-    response["data"]["doc"].should == arquivo_64
+    response["data"].should have_key("file")
+    response["data"]["file"].should == arquivo_64
   end
 end
