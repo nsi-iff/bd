@@ -28,7 +28,7 @@ feature 'apresentacao dos conteudos por abas' do
     result = sam.store file: conteudo_imagem, filename: 'tela.png'
 
     conteudo = create(:artigo_de_periodico)
-    grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result['key'])
+    grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result.key)
 
     visit conteudo_path(conteudo)
 
@@ -54,7 +54,7 @@ feature 'apresentacao dos conteudos por abas' do
     result = sam.store(file: conteudo_odt, filename: 'grao.odt')
 
     conteudo = create(:artigo_de_periodico)
-    grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
+    grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result.key)
 
     visit conteudo_path(conteudo)
 
@@ -79,7 +79,7 @@ feature 'apresentacao dos conteudos por abas' do
     result = sam.store(file: conteudo_odt, filename: 'grao.odt')
 
     conteudo = create(:artigo_de_periodico)
-    grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result['key'])
+    grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result.key)
     imagem = IO.read("#{Rails.root}/spec/resources/biblioteca_digital.png")
 
     visit conteudo_path(conteudo)
