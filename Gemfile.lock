@@ -154,7 +154,7 @@ GEM
       unicode
     nsicloudooo (0.4.1)
       sinatra
-    nsisam (0.6.1)
+    nsisam (0.6.2)
       json
       sinatra
     nsivideogranulate (0.0.2)
