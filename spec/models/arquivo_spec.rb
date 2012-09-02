@@ -10,27 +10,6 @@ describe Arquivo do
     subject.nome = 'eu_nao_sou_odt'; subject.should_not be_odt
   end
 
-  it 'informa mimetype' do
-    subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
-      tempfile: File.new(Rails.root + 'spec/resources/arquivo.pdf')
-    })
-    subject.mime_type.should == "application/pdf"
-  end
-
-  it 'verifica mimetype para um upload_video_ogg' do
-    subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
-      tempfile: File.new(Rails.root + 'spec/resources/video.ogg')
-    })
-    subject.mime_type.should == "video/x-theora+ogg"
-  end
-
-  it 'verifica mimetype para um upload_audio_ogg' do
-    subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
-      tempfile: File.new(Rails.root + 'spec/resources/audio.ogg')
-    })
-    subject.mime_type.should == "audio/x-vorbis+ogg"
-  end
-
   it 'informa se é um video' do
     subject.mime_type = 'video/ogg'
     subject.should be_video
@@ -61,7 +40,7 @@ describe Arquivo do
     end
 
     its(:nome) { should eq('arquivo.rtf') }
-    its(:mime_type) { should eq('application/rtf') }
+    its(:mime_type) { should eq('text/rtf') }
   end
 
   context "quando #conteudo existe" do

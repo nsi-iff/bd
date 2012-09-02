@@ -39,8 +39,7 @@ class Arquivo < ActiveRecord::Base
   def uploaded_file=(uploaded_file)
     @uploaded_file = uploaded_file
     self.nome = @uploaded_file.original_filename
-    tmp_path = @uploaded_file.tempfile.path
-    self.mime_type = `mimetype #{tmp_path}`.split(' ')[-1]
+    self.mime_type = @uploaded_file.content_type
     @content_base64 = Base64.encode64 @uploaded_file.read
   end
 
