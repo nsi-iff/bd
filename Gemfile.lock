@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/rodrigomanhaes/simple-navigation.git
-  revision: 3a803f0f745e0bdf44419a16c5fe33459d075c06
-  branch: preceding_text
-  specs:
-    simple-navigation (3.7.0)
-      activesupport (>= 2.3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -245,6 +237,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
     sexp_processor (3.2.0)
+    simple-navigation (3.8.0)
+      activesupport (>= 2.3.2)
     simplecov (0.6.4)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -339,7 +333,7 @@ DEPENDENCIES
   rspec-rails (~> 2.11.0)
   rufus-scheduler
   sass-rails (~> 3.2.3)
-  simple-navigation!
+  simple-navigation (~> 3.8.0)
   simplecov
   simplecov-rcov
   spork-rails (~> 3.2.0)

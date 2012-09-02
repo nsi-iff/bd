@@ -27,9 +27,7 @@ gem 'nsi-abntformat', '~>1.0.4'
 gem 'odt2html'
 gem 'mail_form'
 gem 'erb2haml'
-gem 'simple-navigation',
-  git: 'https://github.com/rodrigomanhaes/simple-navigation.git',
-  branch: 'preceding_text'
+gem 'simple-navigation', '~> 3.8.0'
 gem 'nokogiri'
 gem 'mime-types'
 gem "nsivideogranulate", "~> 0.0.2"
