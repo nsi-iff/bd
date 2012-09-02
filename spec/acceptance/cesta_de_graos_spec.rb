@@ -80,20 +80,6 @@ feature 'cesta de grãos' do
     end
   end
 
-  def acessar_visao_da_cesta(options = {})
-    if options[:anonimo]
-      incluir_grao_na_cesta_pelo_form
-    else
-      incluir_graos_na_cesta
-      visit root_path
-    end
-    within('#cesta') { click_link 'Ver todos' }
-    within '#visao_cesta' do
-      page.should have_content representacao_grao(@grao1)
-      page.should have_content representacao_grao(@grao2)
-    end
-  end
-
   def comparar_odt(tag, novo, grao)
     test = open_xml(grao).xpath(tag)
     tmp =  open_xml(novo).xpath(tag)
@@ -120,10 +106,6 @@ feature 'cesta de grãos' do
       autenticar_usuario
       deslogar
       page.should_not have_selector '#cesta #items'
-    end
-
-    scenario 'acessar visão da cesta', js: true do
-      acessar_visao_da_cesta(anonimo: true)
     end
   end
 
@@ -157,10 +139,6 @@ feature 'cesta de grãos' do
           page.should have_content representacao_grao(g)
         }
       end
-    end
-
-    scenario 'acessar visão da cesta', js: true do
-      acessar_visao_da_cesta
     end
 
     scenario 'editar grão da cesta' do
