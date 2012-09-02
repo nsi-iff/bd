@@ -19,7 +19,7 @@ feature 'Thumbnail do documento' do
     thumb_base64 = File.open("#{Rails.root}/spec/resources/thumb_do_manual_base64.txt").read
     response = ServiceRegistry.sam.store file: thumb_base64
 
-    artigo.granularizou!(graos: {}, thumbnail: response['key'])
+    artigo.granularizou!(graos: {}, thumbnail: response.key)
     artigo.reload.estado.should == 'publicado'
 
     visit conteudo_path(artigo)

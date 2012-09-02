@@ -5,11 +5,11 @@
   #items
     - @cesta.map { |referencia_id| Referencia.find(referencia_id).referenciavel }.each do |grao|
       .item
+        = image_tag 'grao/picture.png', width: '14px', height: '14px' if grao.imagem?
+        = image_tag 'grao/movie.png', width: '14px', height: '14px' if grao.video?
+        = image_tag 'grao/table.png', width: '14px', height: '14px' if grao.arquivo?
         = link_to grao.titulo, grao_path(grao)
-        = grao.tipo_humanizado
-        = "#{grao.created_at.strftime('%d/%m/%Y')}"
-        = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete,
-            remote: true
+        = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete, remote: true
 
   = link_to 'baixar conteudo da cesta', '/cesta/baixar_conteudo'
   = link_to 'baixar conteudo da cesta em odt', '/cesta/baixar_conteudo_em_odt'

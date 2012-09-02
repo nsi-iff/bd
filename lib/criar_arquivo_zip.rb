@@ -10,7 +10,7 @@ def criar_arquivo_zip(cesta_de_graos)
         grao = Grao.where(:key => key).first
         conteudo_que_gerou_o_grao = Conteudo.where(:id => grao.conteudo_id).first
         nome_conteudo = conteudo_que_gerou_o_grao.titulo.removeaccents.titleize.delete(" ").underscore
-        dados_grao = @sam.get(key)['data']
+        dados_grao = @sam.get(key).data
         title = 'grao_' + nome_conteudo +  '_' + index.to_s
         if grao.imagem?
           nome_grao = dados_grao['filename']

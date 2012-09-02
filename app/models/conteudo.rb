@@ -155,6 +155,10 @@ class Conteudo < ActiveRecord::Base
     campus.nome_instituicao
   end
 
+  def link_download
+    sam.dowload_link_for_file(arquivo.key)
+  end
+
   def nome_area
     sub_area.nome_area
   end

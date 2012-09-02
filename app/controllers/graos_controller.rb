@@ -6,7 +6,7 @@ require 'extend_string'
 require 'fileutils'
 require 'nokogiri'
 require 'rubygems'
-  
+
 include REXML
 include Zip
 
@@ -53,7 +53,7 @@ class GraosController < ApplicationController
       end
       documento.adicionar_texto "Referências"
       referencias_abnt.each do |referencia|
-        documento.adicionar_texto referencia 
+        documento.adicionar_texto referencia
       end
       documento.salvar!
       send_file documento.arquivo
@@ -115,5 +115,5 @@ class GraosController < ApplicationController
 
   def carregar_grao
     @grao = Grao.find(params[:id]) if params[:id]
-  end 
+  end
 end
