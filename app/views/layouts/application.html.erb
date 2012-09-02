@@ -28,7 +28,7 @@
         <div id='breadcrumbs'>
           <%= render_navigation renderer: :breadcrumbs,
             join_with: " &raquo; ", static_leaf: true,
-            preceding_text: 'Você está aqui: ' %>
+            prefix: 'Você está aqui: ' %>
         </div>
       <%= yield %>
       <p class="texto-acessibilidade">Fim do Conteúdo</p>

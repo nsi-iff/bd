@@ -189,16 +189,16 @@ describe Conteudo do
     end
 
     def verificar(conteudo, evento, de, para)
-      tempo = Time.now
+      tempo_inicio = Time.now
       expect {
-        Timecop.freeze(tempo) do
-          conteudo.send(evento)
-        end
+        conteudo.send(evento)
       }.to change { conteudo.mudancas_de_estado.size }.by(1)
+      tempo_fim = Time.now
       mudanca = conteudo.mudancas_de_estado.last
       mudanca.de.should == de
       mudanca.para.should == para
-      mudanca.data_hora.should == tempo
+      mudanca.data_hora.should satisfy {|data_hora|
+        tempo_inicio < data_hora && data_hora < tempo_fim }
     end
 
     it 'gera um objeto para a mudança de estado a cada transição' do
@@ -543,4 +543,3 @@ describe Conteudo do
     Grao.all.should == []
   end
 end
-
