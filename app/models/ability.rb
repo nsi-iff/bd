@@ -16,8 +16,11 @@ class Ability
       unless instituicao == 'Não pertenço a uma Instituição da Rede Federal de EPCT'
         can [:adicionar_conteudo], Usuario
       end
-      can [:read, :edit, :update], Conteudo do |conteudo|
-        !conteudo.recolhido?
+      can :read, Conteudo do |conteudo|
+        conteudo.publicado? || conteudo.contribuidor == usuario
+      end
+      can [:edit, :update], Conteudo do |conteudo|
+        conteudo.editavel? && conteudo.contribuidor == usuario
       end
       can [:create, :submeter], Conteudo
       can [:destroy], Conteudo do |conteudo|

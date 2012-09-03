@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe ConteudosController do
@@ -27,6 +29,15 @@ describe ConteudosController do
     it "instancia um arquivo em @conteudo" do
       @conteudo.arquivo.should_not be_nil
       @conteudo.arquivo.should be_new_record
+    end
+  end
+
+  describe 'GET show' do
+    it 'autoriza o conteúdo corrente para leitura' do
+      conteudo = stub_model(Conteudo)
+      Conteudo.stub(:find).with('1').and_return(conteudo)
+      controller.should_receive(:authorize!).with(:read, conteudo)
+      get :show, id: '1'
     end
   end
 end
