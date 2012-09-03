@@ -3,11 +3,11 @@ module DigitalLibrary
     module Utils
       def arquivo_para_conteudo(tipo = :odt)
         { link: '',
-          arquivo: stub(
-            original_filename: 'arquivo.odt',
-            content_type: 'application/vnd.oasis.opendocument.text',
-            read: File.open(File.join(
-              Rails.root, *%w(spec resources manual.odt))).read) }
+          arquivo: ActionDispatch::Http::UploadedFile.new({
+                filename: 'arquivo.odt',
+                type: 'application/vnd.oasis.opendocument.text',
+                tempfile: File.new(Rails.root + 'spec/resources/manual.odt')
+            })}
       end
     end
   end
