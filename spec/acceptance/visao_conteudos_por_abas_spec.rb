@@ -4,11 +4,13 @@ require 'spec_helper'
 require 'base64'
 
 feature 'apresentacao dos conteudos por abas' do
-  scenario 'visao de conteudo sem graos deve mostrar somente aba padrao' do
+  before :each do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
+    @usuario = autenticar_usuario(Papel.contribuidor)
+  end
 
-    conteudo = create(:artigo_de_periodico)
+  scenario 'visao de conteudo sem graos deve mostrar somente aba padrao' do
+    conteudo = create(:artigo_de_periodico, contribuidor: @usuario)
 
     visit conteudo_path(conteudo)
 
@@ -18,16 +20,13 @@ feature 'apresentacao dos conteudos por abas' do
   end
 
   scenario 'conteudo com grao imagem deve ter aba imagens com visualizacao das imagens' do
-    Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
-
     sam = ServiceRegistry.sam
 
     #submeter imagem
     conteudo_imagem = Base64.encode64(File.open('spec/resources/tela.png').read)
     result = sam.store file: conteudo_imagem, filename: 'tela.png'
 
-    conteudo = create(:artigo_de_periodico)
+    conteudo = create(:artigo_de_periodico, contribuidor: @usuario)
     grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result.key)
 
     visit conteudo_path(conteudo)
@@ -45,15 +44,12 @@ feature 'apresentacao dos conteudos por abas' do
   end
 
   scenario 'conteudo com grao arquivo deve ter aba tabelas com visualizacao das tabelas' do
-    Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
-
     sam = ServiceRegistry.sam
 
     conteudo_odt = Base64.encode64(File.open('spec/resources/grao_tabela.odt').read)
     result = sam.store(file: conteudo_odt, filename: 'grao.odt')
 
-    conteudo = create(:artigo_de_periodico)
+    conteudo = create(:artigo_de_periodico, contribuidor: @usuario)
     grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result.key)
 
     visit conteudo_path(conteudo)
@@ -70,15 +66,12 @@ feature 'apresentacao dos conteudos por abas' do
   end
 
   scenario 'imagens inseridas em tabelas devem ser mostradas' do
-    Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
-
     sam = ServiceRegistry.sam
 
     conteudo_odt = Base64.encode64(File.open('spec/resources/imagem_em_tabela.odt').read)
     result = sam.store(file: conteudo_odt, filename: 'grao.odt')
 
-    conteudo = create(:artigo_de_periodico)
+    conteudo = create(:artigo_de_periodico, contribuidor: @usuario)
     grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result.key)
     imagem = IO.read("#{Rails.root}/spec/resources/biblioteca_digital.png")
 

@@ -29,8 +29,8 @@ end
 
 def stub_usuario(papel_ou_papeis, stub_hash)
   papeis = papel_ou_papeis.is_a?(Array) ? papel_ou_papeis : [papel_ou_papeis]
-  stub_model(Usuario, 
-    Papel.all.map(&:nome).reduce({}) {|hash, papel| 
+  stub_model(Usuario,
+    Papel.all.map(&:nome).reduce({}) {|hash, papel|
       hash.merge("#{papel}?".to_sym => papeis.include?(papel))
     }.merge(stub_hash))
 end

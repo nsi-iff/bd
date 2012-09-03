@@ -20,9 +20,10 @@ feature 'adicionar periodico tecnico cientifico' do
 
   scenario 'editar periodico técnico cientifico' do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
+    usuario = autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(create :periodico_tecnico_cientifico)
+    visit edit_conteudo_path(
+      create :periodico_tecnico_cientifico, contribuidor: usuario)
     fill_in 'Editora', with: 'periodico tecnico cientifico editado'
     click_button 'Salvar'
 

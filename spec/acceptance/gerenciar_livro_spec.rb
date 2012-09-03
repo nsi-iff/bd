@@ -32,15 +32,15 @@ feature 'adicionar livro' do
 
   scenario 'sem tradução' do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
-    visit conteudo_path(create(:livro, traducao: false))
+    usuario = autenticar_usuario(Papel.contribuidor)
+    visit conteudo_path(create(:livro, traducao: false, contribuidor: usuario))
     page.should have_content 'Tradução: Não'
   end
 
   scenario 'editar livro' do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
-    visit edit_conteudo_path(create :livro)
+    usuario = autenticar_usuario(Papel.contribuidor)
+    visit edit_conteudo_path(create :livro, contribuidor: usuario)
 
     fill_in 'Subtítulo', with: 'Metaprograming Rails'
     click_button 'Salvar'

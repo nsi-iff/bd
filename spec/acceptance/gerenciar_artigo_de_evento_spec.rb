@@ -34,9 +34,9 @@ feature 'adicionar artigo de evento' do
 
   scenario 'editar artigo de evento' do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
+    usuario = autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(create :artigo_de_evento)
+    visit edit_conteudo_path(create :artigo_de_evento, contribuidor: usuario)
     fill_in 'Nome', with: 'artigo de evento editado'
     click_button 'Salvar'
 

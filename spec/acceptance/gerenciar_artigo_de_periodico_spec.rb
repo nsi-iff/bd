@@ -30,9 +30,9 @@ feature 'adicionar artigo de periódico' do
 
   scenario 'editar artigo de periodico' do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
+    usuario = autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(create :artigo_de_periodico)
+    visit edit_conteudo_path(create :artigo_de_periodico, contribuidor: usuario)
     fill_in 'Nome', with: 'artigo de periodico editado'
     click_button 'Salvar'
 

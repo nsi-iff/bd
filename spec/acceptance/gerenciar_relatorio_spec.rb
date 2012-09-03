@@ -20,9 +20,9 @@ feature 'adicionar relatório' do
 
   scenario 'editar relatorio' do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
+    usuario = autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(create :relatorio)
+    visit edit_conteudo_path(create :relatorio, contribuidor: usuario)
     fill_in 'Local da publicação', with: 'relatório editado'
     click_button 'Salvar'
 

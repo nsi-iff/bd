@@ -25,9 +25,10 @@ feature 'adicionar trabalho de obtençao de grau' do
 
   scenario 'editar trabalho de obtenção de grau' do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
+    usuario = autenticar_usuario(Papel.contribuidor)
 
-    visit edit_conteudo_path(create :trabalho_de_obtencao_de_grau)
+    visit edit_conteudo_path(
+      create :trabalho_de_obtencao_de_grau, contribuidor: usuario)
     fill_in 'Subtítulo', with: 'trabalho de obtenção de grau editado'
     click_button 'Salvar'
 
