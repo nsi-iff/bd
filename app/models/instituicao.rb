@@ -1,9 +1,13 @@
+# encoding: utf-8
+
 class Instituicao < ActiveRecord::Base
   has_many :campi
 
   validates :nome, presence: true, uniqueness: true
 
   attr_accessible :nome
+  
+  NENHUMA = 'Não pertenço a uma Instituição da Rede Federal de EPCT'
 
   def usuarios
     campi.map { |campus| campus.usuarios }.flatten

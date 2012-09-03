@@ -4,7 +4,7 @@
   <div id="conteudo_mapa_do_site">
     <a href="/" alt="Página Inicial da Biblioteca Digital da EPCT."><p>Biblioteca Digital da EPCT</p></a>
     <a href="/buscas" alt="Busca no Acervo"><p>Busca no Acervo</p></a>
-    <% if current_usuario and can? :adicionar_conteudo, Usuario %>
+    <% if current_usuario and can? :create, Conteudo %>
       <a href="/adicionar_conteudo" alt="Adicionar conteúdo"><p>Adicionar Conteúdo</p></a>
     <% end %>
     <a href="/ajuda" alt="Ajuda"><p>Ajuda</p></a>

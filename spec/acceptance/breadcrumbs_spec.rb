@@ -6,6 +6,7 @@ feature 'apresentar breadcrumbs para' do
   before(:each) do
     Papel.criar_todos
     @usuario = autenticar_usuario(Papel.all)
+    
   end
 
   let(:crumb_default) { "Você está aqui: Início #{breadcrumb_separator} " }

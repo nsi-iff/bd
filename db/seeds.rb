@@ -371,9 +371,6 @@ def criar_instituicoes_e_campus_associados
   Instituicao.delete_all
   Campus.delete_all
 
-  nenhum = Instituicao.create(nome: 'Não pertenço a uma Instituição da Rede Federal de EPCT')
-  nenhum.campi.create(nome: '----')
-
   iftocantins = Instituicao.create(nome: 'Instituto Federal de Educação, Ciência e Tecnologia de Tocantins')
   iftocantins.campi.create([
     { nome: 'Campus Araguatins'           },
