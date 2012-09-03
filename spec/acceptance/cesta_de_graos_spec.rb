@@ -112,10 +112,6 @@ feature 'cesta de grãos' do
       incluir_grao_na_cesta_pelo_form
     end
 
-    scenario 'excluir grão da cesta', js: true do
-      excluir_grao_da_cesta
-    end
-
     scenario 'editar grão da cesta' do
       criar_cesta @usuario, create(:livro),
                             recurso('grao_teste_0.jpg'),
