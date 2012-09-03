@@ -8,19 +8,6 @@ feature 'controle de acesso' do
       Papel.criar_todos
     end
 
-    scenario 'usuário contribuidor não pertencente a nenhum instituto não pode adicionar conteúdo' do
-      usuario = autenticar_usuario(Papel.contribuidor)
-
-      campus_nao_federais.each do |campus|
-        usuario.campus = campus[0]
-        usuario.save!
-        visit adicionar_conteudo_path
-
-        page.should have_content 'Acesso negado'
-        page.should_not have_content '#adicionar_conteudo'
-      end
-    end
-
     scenario 'pode ser acessado por contribuidores de conteúdo' do
       popular_area_sub_area
       popular_eixos_tematicos_cursos

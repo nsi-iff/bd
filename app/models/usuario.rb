@@ -119,4 +119,8 @@ class Usuario < ActiveRecord::Base
   def pode_buscar_por_estados?
     self.gestor? || self.instituicao_admin? || self.admin?
   end
+  
+  def pode_adicionar_conteudo?
+    contribuidor? && campus_id.present?
+  end
 end

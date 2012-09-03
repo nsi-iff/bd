@@ -45,6 +45,21 @@ describe Usuario do
         ability.should be_able_to(:read, conteudo)
         ability.should_not be_able_to(:read, outro_conteudo)
       end
+      
+      context 'só pode adicionar conteúdo se pertence a algum instituto' do
+        it 'unidade' do
+          usuario.pode_adicionar_conteudo?.should be_true
+          usuario.update_attribute(:campus, nil)
+          usuario.pode_adicionar_conteudo?.should be_false
+        end
+        
+        it 'ability' do
+          ability.should be_able_to :create, Conteudo
+          usuario = create(:usuario_contribuidor)
+          usuario.stub(:pode_adicionar_conteudo?).and_return(false)
+          Ability.new(usuario).should_not be_able_to :create, Conteudo
+        end
+      end
     end
 
     context 'gestor' do

@@ -2,7 +2,6 @@
 
 class PagesController < ApplicationController
   before_filter :authenticate_usuario!, only: [:adicionar_conteudo]
-  load_and_authorize_resource Usuario, parent: false, only: [:adicionar_conteudo]
 
   def inicio
     @title = "Página Inicial"
@@ -47,6 +46,7 @@ class PagesController < ApplicationController
   end
 
   def adicionar_conteudo
+    authorize! :create, Conteudo
   end
   
   def mapa_do_site
