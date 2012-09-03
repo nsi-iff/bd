@@ -35,8 +35,16 @@ describe Usuario do
 
     context 'contribuidor de conteudo' do
       let(:usuario) { create(:usuario_contribuidor) }
+      let(:ability) { Ability.new(usuario) }
 
       include_examples 'adicionar e ler todos os tipos de conteudo'
+
+      it 'apenas dono pode ver conteudo editável' do
+        conteudo = build(:livro_editavel, contribuidor: usuario)
+        outro_conteudo = build(:livro_editavel)
+        ability.should be_able_to(:read, conteudo)
+        ability.should_not be_able_to(:read, outro_conteudo)
+      end
     end
 
     context 'gestor' do

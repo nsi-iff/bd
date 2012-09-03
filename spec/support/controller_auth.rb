@@ -10,4 +10,8 @@ module ControllerAuth
     @request.env["devise.mapping"] = Devise.mappings[:admin]
     sign_in usuario
   end
+
+  def acesso_negado
+    'Acesso negado'
+  end
 end
