@@ -12,14 +12,14 @@ describe Arquivo do
 
   it 'informa mimetype' do
     subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
-      tempfile: File.new('/spec/resources/arquivo.pdf')
+      tempfile: File.new('spec/resources/arquivo.pdf')
     })
     subject.mime_type.should == "application/pdf"
   end
 
   it 'verifica mimetype para um upload_video_ogg' do
    subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
-     tempfile: File.new('/spec/resources/video.ogg')
+     tempfile: File.new('spec/resources/video.ogg')
    })
    subject.mime_type.should == "video/x-theora+ogg"
   end
