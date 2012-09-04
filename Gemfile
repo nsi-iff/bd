@@ -29,7 +29,6 @@ gem 'mail_form'
 gem 'erb2haml'
 gem 'simple-navigation', '~> 3.9.0'
 gem 'nokogiri'
-gem 'mime-types'
 gem "nsivideogranulate", "~> 0.0.2"
 
 group :assets do
