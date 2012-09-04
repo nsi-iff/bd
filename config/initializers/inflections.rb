@@ -22,6 +22,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'formulario_contato', 'formularios_contato'
   inflect.irregular 'FormularioContato', 'FormulariosContato'
   inflect.irregular 'campus', 'campi'
+  inflect.irregular 'item', 'itens'
   inflect.plural /cao$/i, 'coes'
   inflect.singular /coes$/i, 'cao'
   inflect.uncountable %w(cesta)

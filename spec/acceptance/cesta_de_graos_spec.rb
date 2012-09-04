@@ -6,30 +6,27 @@ feature 'cesta de grãos' do
 
   before(:each) do
     Tire.criar_indices
-    @livro = create(:livro, titulo: 'Quantum Mechanics for Dummies')
-    aprovar(@livro)
-    @grao1 = create(:grao_imagem, key: '12345', conteudo: @livro)
-    @grao2 = create(:grao_arquivo, key: '67890', conteudo: @livro)
+    @livro = create(:livro_publicado, titulo: 'Quantum Mechanics for Dummies')
+
+    conteudo_imagem = Base64.encode64(File.open('spec/resources/tela.png').read)
+    conteudo_odt = Base64.encode64(File.open('spec/resources/grao_tabela.odt').read)
+
+    result = ServiceRegistry.sam.store file: conteudo_imagem, filename: 'tela.png'
+    @grao1 = create(:grao_imagem, conteudo: @livro, key: result.key)
+
+    result = ServiceRegistry.sam.store(file: conteudo_odt, filename: 'grao.odt')
+    @grao2 = create(:grao_arquivo, conteudo: @livro, key: result.key)
     Conteudo.tire.index.refresh
   end
 
   def incluir_grao_na_cesta_pelo_form
-    visit root_path
-    fill_in "text_busca_inicio", with: 'Mechanics'
-    click_button "Buscar"
+    visit grao_path(@grao1)
+    click_button 'Adicionar à Cesta de Grãos'
 
-    within item_de_busca(resultado: 1, grao: 1) do
-      click_link 'Adicionar à cesta'
-    end
     within('#cesta') { page.should have_content representacao_grao(@grao1) }
 
-    visit root_path
-    fill_in "text_busca_inicio", with: 'for Dummies'
-    click_button "Buscar"
-
-    within item_de_busca(resultado: 1, grao: 2) do
-      click_link 'Adicionar à cesta'
-    end
+    visit grao_path(@grao2)
+    click_button 'Adicionar à Cesta de Grãos'
 
     within item_da_cesta(2) do
       page.should have_content representacao_grao(@grao2)
@@ -43,18 +40,11 @@ feature 'cesta de grãos' do
 
   def excluir_grao_da_cesta(options = {})
     if options[:anonimo]
-      visit root_path
-      fill_in "text_busca_inicio", with: 'Mechanics'
-      click_button "Buscar"
+      visit grao_path(@grao1)
+      click_button 'Adicionar à Cesta de Grãos'
 
-      within item_de_busca(resultado: 1, grao: 1) do
-        click_link 'Adicionar à cesta'
-        sleep(0.5)
-      end
-      within item_de_busca(resultado: 1, grao: 2) do
-        click_link 'Adicionar à cesta'
-      end
-      sleep(0.5) # esperar o javascript trabalhar
+      visit grao_path(@grao2)
+      click_button 'Adicionar à Cesta de Grãos'
     else
       incluir_graos_na_cesta
       visit root_path

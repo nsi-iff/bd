@@ -1,14 +1,20 @@
 - if @resultados.blank?
   %p Não foi encontrado resultado para sua busca.
 - else
+  = form_tag busca_normal_path, :method => :get, :accesskey => "4", :class => "campo_busca" do
+    = text_field_tag :busca, params[:busca], id: "text_busca_resultados"
+    = submit_tag "Buscar", name: nil, id: "submit_busca"
+
+  %div#resultado_header
+    %strong
+      = "#{@resultados.size} #{'item'.pluralize(@resultados.size)} #{'encontrado'.pluralize(@resultados.size)}"
+    - if current_usuario
+      = image_tag(asset_path 'save_icon.png')
+      = link_to 'Salvar Busca', new_busca_path
+
   %ul#resultado
     - @resultados.each do |conteudo|
       %li
         = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
-        #graos
-          - conteudo.graos.each do |grao|
-            .grao
-              = grao.titulo
-              = link_to 'Adicionar à cesta', adicionar_a_cesta_grao_path(grao), method: :put, remote: true
-
-= link_to 'Salvar Busca', new_busca_path if current_usuario
+        %span.resumo
+          = truncate(conteudo.resumo, length: 180, separator: ' ')
