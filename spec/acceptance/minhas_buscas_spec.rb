@@ -148,8 +148,8 @@ feature 'Buscas' do
 
   scenario 'salvar busca' do
     usuario = autenticar_usuario(Papel.membro)
-    livro = create(:livro, titulo: 'My book')
-    livro2 = create(:livro, titulo: 'Outro book')
+    livro = create(:livro_publicado, titulo: 'My book')
+    livro2 = create(:livro_publicado, titulo: 'Outro book')
     refresh_elasticsearch
     visit root_path
     fill_in 'text_busca_inicio', with: 'book'
@@ -168,7 +168,8 @@ feature 'Buscas' do
     usuario = autenticar_usuario(Papel.membro)
     page.should_not have_link 'Gerenciar buscas'
 
-    livro = create(:livro, titulo: 'livro')
+    livro = create(:livro_publicado, titulo: 'livro')
+    Conteudo.tire.index.refresh
 
     visit root_path
     fill_in 'text_busca_inicio', with: 'livro'
@@ -190,8 +191,9 @@ feature 'Buscas' do
 
   scenario 'cadastrar busca salva no servico de mala direta', busca: true do
     usuario = autenticar_usuario(Papel.contribuidor)
-    submeter_conteudo :artigo_de_evento, titulo: 'artigo', link: 'http://nsi.iff.edu.br', arquivo: ''
-    page.should have_content 'com sucesso'
+    create(:livro_publicado, titulo: 'livro')
+    Conteudo.tire.index.refresh
+
     visit root_path
     fill_in 'text_busca_inicio', with: 'livro'
     click_button 'Buscar'

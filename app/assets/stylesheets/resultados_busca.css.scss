@@ -1,0 +1,37 @@
+ul#resultado {
+  list-style: none;
+
+  span.resumo {
+    display: block;
+    font-size: 90%;
+    margin-left: 40px;
+  }
+
+  a {
+    color: #648217;
+    width: 100%;
+  }
+
+  li {
+    padding-bottom: 10px;
+    margin-right: 10px;
+  }
+}
+
+div#resultado_header {
+  font-size: 120%;
+  text-align: center;
+
+  strong {
+    margin-right: 15px;
+  }
+
+  a {
+    color: #648217;
+  }
+
+  img {
+    position: relative;
+    bottom: -5px;
+  }
+}
