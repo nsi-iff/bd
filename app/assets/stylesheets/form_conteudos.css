@@ -20,7 +20,7 @@ input[type="text"] {
   display: block;
 }
 
-#text_busca_inicio {
+#text_busca_inicio, #text_busca_resultados {
   display: inline;
   margin-top: 19px;
 }

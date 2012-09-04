@@ -12,23 +12,23 @@ describe Arquivo do
 
   it 'informa mimetype' do
     subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
-      tempfile: File.new(Rails.root + 'spec/resources/arquivo.pdf')
+      tempfile: File.new('spec/resources/arquivo.pdf')
     })
     subject.mime_type.should == "application/pdf"
   end
 
   it 'verifica mimetype para um upload_video_ogg' do
-    subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
-      tempfile: File.new(Rails.root + 'spec/resources/video.ogg')
-    })
-    subject.mime_type.should == "video/x-theora+ogg"
+   subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
+     tempfile: File.new('spec/resources/video.ogg')
+   })
+   subject.mime_type.should == "video/x-theora+ogg"
   end
 
   it 'verifica mimetype para um upload_audio_ogg' do
     subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
-      tempfile: File.new(Rails.root + 'spec/resources/audio.ogg')
+      tempfile: File.new('spec/resources/audio.ogg')
     })
-    subject.mime_type.should == "audio/x-vorbis+ogg"
+   subject.mime_type.should == "audio/x-vorbis+ogg"
   end
 
   it 'informa se é um video' do
