@@ -88,12 +88,15 @@ describe Busca do
     Delorean.time_travel_to Date.yesterday
     livro = create(:livro_publicado, titulo: 'The Lord of The Rings')
     Delorean.back_to_1985
+    livro.data_publicado.should == ontem
 
     livro_2 = create(:livro_publicado, titulo: 'The book of Lord Shang')
+    livro_2.data_publicado.should == Date.today.strftime("%d/%m/%y")
 
     Delorean.time_travel_to Date.today - 2
     livro_3 = create(:livro_publicado, titulo: 'Dracula the Lord of Shadows')
     Delorean.back_to_1985
+    livro_3.data_publicado.should == (Date.today - 2).strftime("%d/%m/%y")
 
     Conteudo.index.refresh
 
