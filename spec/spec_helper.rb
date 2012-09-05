@@ -59,6 +59,7 @@ Spork.prefork do
   end
 
   ServiceRegistry.sam = NSISam::FakeClient.new unless ENV['INTEGRACAO_SAM']
+  ServiceRegistry.sam.expire = 5
 
   # ver http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
   Devise.stretches = 1
