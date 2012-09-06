@@ -150,7 +150,8 @@ feature 'Buscas' do
     usuario = autenticar_usuario(Papel.membro)
     livro = create(:livro_publicado, titulo: 'My book')
     livro2 = create(:livro_publicado, titulo: 'Outro book')
-    refresh_elasticsearch
+    Conteudo.index.refresh
+
     visit root_path
     fill_in 'text_busca_inicio', with: 'book'
     click_button 'Buscar'
@@ -169,7 +170,7 @@ feature 'Buscas' do
     page.should_not have_link 'Gerenciar buscas'
 
     livro = create(:livro_publicado, titulo: 'livro')
-    Conteudo.tire.index.refresh
+    Conteudo.index.refresh
 
     visit root_path
     fill_in 'text_busca_inicio', with: 'livro'
@@ -192,7 +193,7 @@ feature 'Buscas' do
   scenario 'cadastrar busca salva no servico de mala direta', busca: true do
     usuario = autenticar_usuario(Papel.contribuidor)
     create(:livro_publicado, titulo: 'livro')
-    Conteudo.tire.index.refresh
+    Conteudo.index.refresh
 
     visit root_path
     fill_in 'text_busca_inicio', with: 'livro'

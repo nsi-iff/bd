@@ -78,4 +78,37 @@ describe Busca do
     Tire.should_receive('search').with('arquivos', load: true).and_return(result)
     subject.buscar_em_arquivos.should eq([:conteudo])
   end
+
+  it 'mala direta' do
+    Tire.criar_indices
+    ontem = Date.yesterday.strftime("%d/%m/%y")
+    usuario = create(:usuario)
+    busca = create(:busca, busca: "Lord", usuario: usuario, mala_direta: true)
+
+    Delorean.time_travel_to Date.yesterday
+    livro = create(:livro_publicado, titulo: 'The Lord of The Rings')
+    Delorean.back_to_1985
+    livro.data_publicado.should == ontem
+
+    livro_2 = create(:livro_publicado, titulo: 'The book of Lord Shang')
+    livro_2.data_publicado.should == Date.today.strftime("%d/%m/%y")
+
+    Delorean.time_travel_to Date.today - 2
+    livro_3 = create(:livro_publicado, titulo: 'Dracula the Lord of Shadows')
+    Delorean.back_to_1985
+    livro_3.data_publicado.should == (Date.today - 2).strftime("%d/%m/%y")
+
+    Conteudo.index.refresh
+
+    expect {
+     Busca.enviar_email_mala_direta { sleep(1) } # tempo para esperar enviar e-mail
+    }.to change { ActionMailer::Base.deliveries.size }.by 1
+
+    email = ultimo_email_enviado
+    email.to.should == [usuario.email]
+    email.to_s.should match(livro.titulo)
+    email.to_s.should_not match(livro_2.titulo)
+    email.to_s.should_not match(livro_3.titulo)
+    email.subject.should == 'Biblioteca Digital: Novos documentos de seu interesse'
+  end
 end
