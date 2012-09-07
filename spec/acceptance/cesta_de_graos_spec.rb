@@ -92,7 +92,7 @@ feature 'cesta de grãos' do
     scenario 'baixar conteudo da cesta' do
       criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt))
       visit root_path
-      click_link 'baixar conteudo da cesta'
+      find('[title="baixar conteúdo da cesta"]').click
 
       FileUtils.rm_rf "#{Rails.root}/spec/resources/downloads/"
       FileUtils.mkdir_p "#{Rails.root}/spec/resources/downloads/"
@@ -117,7 +117,7 @@ feature 'cesta de grãos' do
                                         ./spec/resources/biblioteca_digital.png
                                         ./spec/resources/grao_teste_0.jpg))
       visit root_path
-      click_link 'baixar conteudo da cesta em odt'
+      find('[title="baixar conteúdo da cesta em odt"]').click
       grao_armazenado = "./spec/resources/Linus Torvalds.odt"
       grao_baixado = "#{Rails.root}/tmp/Linus Torvalds.odt"
       comparar_odt('//office:text', grao_baixado, grao_armazenado)

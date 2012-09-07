@@ -11,10 +11,13 @@
         = link_to grao.titulo, grao_path(grao)
         = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete, remote: true
 
-  = link_to 'baixar conteudo da cesta', '/cesta/baixar_conteudo'
-  = link_to 'baixar conteudo da cesta em odt', '/cesta/baixar_conteudo_em_odt'
+  = link_to image_tag('cesta/baixar_carrinho.png', width: '18px', height: '18px', title: 'baixar conteúdo da cesta'),
+    '/cesta/baixar_conteudo'
+  = link_to image_tag('cesta/baixar_carrinho.png', width: '18px', height: '18px', title:'baixar conteúdo da cesta em odt'),
+    '/cesta/baixar_conteudo_em_odt'
+  - if current_usuario
+    = link_to image_tag('cesta/mover_para_estante.gif', width: '18px', height: '18px', title: "mover para estante"),
+      favoritar_graos_path
   %br
   = link_to "Ver todos", cesta_graos_path
-  - if current_usuario
-    = link_to "Mover para estante", favoritar_graos_path
   = link_to "Editar", editor_path(graos: true)
