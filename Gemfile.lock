@@ -319,7 +319,7 @@ DEPENDENCIES
   nokogiri
   nsi-abntformat (~> 1.0.4)
   nsicloudooo
-  nsisam
+  nsisam (~> 0.6.4)
   nsivideogranulate (~> 0.0.2)
   odt2html
   paperclip

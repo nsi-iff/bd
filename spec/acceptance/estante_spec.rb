@@ -108,7 +108,7 @@ feature 'Estante' do
 
     within '#cesta' do
       page.should have_content representacao_grao(grao)
-      click_link 'Mover para estante'
+      find('#mover_graos_estante').click
     end
 
     within '#estante' do
