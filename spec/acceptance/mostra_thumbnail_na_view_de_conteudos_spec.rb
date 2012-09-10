@@ -5,16 +5,11 @@ require 'spec_helper'
 feature 'Thumbnail do documento' do
   scenario 'deve aparecer na view do conteudo' do
     Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
-    submeter_conteudo :artigo_de_evento, link: '',
-      arquivo: File.join(Rails.root, *%w(spec resources manual.odt))
-    artigo = ArtigoDeEvento.last
-    artigo.submeter!
-
-    usuario = autenticar_usuario(Papel.gestor)
-    artigo.campus_id = usuario.campus_id
-    visit conteudo_path(artigo)
-    artigo.aprovar!
+    artigo = create(:artigo_de_evento)
+    artigo.stub(:granularizavel?).and_return(true)
+    artigo.link = ''
+    artigo.arquivo = create(:arquivo)
+    aprovar(artigo)
 
     thumb_base64 = File.open("#{Rails.root}/spec/resources/thumb_do_manual_base64.txt").read
     response = ServiceRegistry.sam.store file: thumb_base64
@@ -26,5 +21,3 @@ feature 'Thumbnail do documento' do
     page.find("img[src*='data:image/png;base64,#{thumb_base64}']")
   end
 end
-
-

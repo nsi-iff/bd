@@ -127,6 +127,7 @@ FactoryGirl.define do
   factory :arquivo do
     nome 'arquivo.rtf'
     key { rand.to_s.split('.')[1] }
+    thumbnail_key { rand.to_s.split('.')[1] }
   end
 
   factory :acesso do
