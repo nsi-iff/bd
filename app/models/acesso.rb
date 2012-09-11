@@ -21,7 +21,7 @@ class Acesso < ActiveRecord::Base
   end
 
   def self.total_de_acessos
-    self.sum :quantidade
+    sum :quantidade
   end
 end
 
