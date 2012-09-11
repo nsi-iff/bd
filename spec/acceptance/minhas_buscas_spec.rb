@@ -146,6 +146,24 @@ feature 'Buscas' do
     end
   end
 
+  scenario 'busca por texto-integral deve buscar no arquivo' do
+      Arquivo.destroy_all # TODO: isso não devia ser necessário
+      livro = create(:livro_publicado, titulo: "teste livro", link: '',
+                      arquivo: Arquivo.new(
+                                uploaded_file: ActionDispatch::Http::UploadedFile.new(
+                                  {filename: 'arquivo.rtf', type: 'text/rtf',
+                                   tempfile: File.new(Rails.root + 'spec/resources/arquivo.rtf')}
+                                )
+                              )
+                    )
+      refresh_elasticsearch
+      visit buscas_path
+      fill_in 'busca', with: "winter"
+      click_button 'Buscar'
+      page.should have_content livro.titulo
+      page.should_not have_content("Não foi encontrado resultado para sua busca.")
+    end
+
   scenario 'salvar busca' do
     usuario = autenticar_usuario(Papel.membro)
     livro = create(:livro_publicado, titulo: 'My book')
