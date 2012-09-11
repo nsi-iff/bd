@@ -9,7 +9,7 @@ class Busca < ActiveRecord::Base
     conteudos_por_usuarios = Hash.new { |hash, email| hash[email] = [] }
 
     self.where(mala_direta: true).each do |busca|
-      conteudos = busca.resultados(:data_publicado => [ontem])
+      conteudos = busca.resultados(:data_publicado => ontem)
       conteudos_por_usuarios[busca.usuario.email].concat conteudos if conteudos.present?
     end
 

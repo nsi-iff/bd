@@ -134,7 +134,7 @@ class Conteudo < ActiveRecord::Base
       if mudanca.present?
         mudanca[0].data_hora.strftime("%d/%m/%y")
       else
-        Time.now.strftime("%d/%m/%y")
+        Date.today.strftime("%d/%m/%y")
       end
     end
   end
