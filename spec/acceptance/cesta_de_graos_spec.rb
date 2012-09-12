@@ -37,7 +37,30 @@ feature 'cesta de grãos' do
     @usuario.cesta << @grao1.referencia
     @usuario.cesta << @grao2.referencia
   end
+     
+  def excluir_grao_da_cesta(options = {})
+    visit grao_path(@grao1)
+    click_button 'Adicionar à Cesta de Grãos'
 
+    within('#cesta') { page.should have_content representacao_grao(@grao1) }
+
+    visit grao_path(@grao2)
+    click_button 'Adicionar à Cesta de Grãos'
+
+    within item_da_cesta(2) do
+      page.should have_content representacao_grao(@grao2)
+      click_link 'Remover'
+    end
+    within '#cesta' do
+      page.should have_content representacao_grao(@grao1)
+      page.should_not have_content representacao_grao(@grao2)
+      click_link 'Remover'
+      page.should_not have_content representacao_grao(@grao1)
+      page.should_not have_content representacao_grao(@grao2)
+    end
+     
+  end
+     
   def comparar_odt(tag, novo, grao)
     test = open_xml(grao).xpath(tag)
     tmp =  open_xml(novo).xpath(tag)
@@ -52,6 +75,10 @@ feature 'cesta de grãos' do
   context 'usuário anônimo' do
     scenario 'incluir grão na cesta', js: true do
       incluir_grao_na_cesta_pelo_form
+    end
+
+    scenario 'excluir grão da cesta', js: true do
+      excluir_grao_da_cesta
     end
 
     scenario 'cesta é zerada em nova sessão', js: true do
