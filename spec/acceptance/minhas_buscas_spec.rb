@@ -127,8 +127,7 @@ feature 'Buscas' do
     end
 
     scenario 'busca por texto-integral' do
-      livro = create(:livro, resumo: 'texto integral')
-      livro.submeter! && livro.aprovar!
+      livro = create(:livro_publicado, resumo: 'texto integral')
       refresh_elasticsearch
 
       visit buscas_path
@@ -181,6 +180,28 @@ feature 'Buscas' do
     page.should have_content 'Busca salva com sucesso'
     visit root_path
     page.should have_link 'Buscas book'
+  end
+
+  scenario 'clicar na busca salva executa a busca novamente' do
+    usuario = autenticar_usuario(Papel.contribuidor)
+    artigo = create(:artigo_de_evento_publicado, titulo: 'artigo')
+    Conteudo.index.refresh
+
+    create(:busca, titulo: "busca por artigo", busca: 'artigo', usuario: usuario)
+
+    visit root_path
+    #link do portlet
+    click_link 'busca por artigo'
+    within '#resultado' do
+      page.should have_link 'artigo'
+    end
+
+    #link da view minhas buscas
+    click_link 'Gerenciar buscas'
+    click_link 'busca por artigo'
+    within '#resultado' do
+      page.should have_link 'artigo'
+    end
   end
 
   scenario 'ver minhas buscas' do
