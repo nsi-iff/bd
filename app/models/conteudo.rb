@@ -200,6 +200,10 @@ class Conteudo < ActiveRecord::Base
     campi_ids = instituicao.campus_ids
     where("campus_id IN (#{campi_ids.join(',')}) AND state = 'pendente'")
   end
+  
+  def disponivel_para_download?
+    publicado? && arquivo.present?
+  end
 
   private
 

@@ -6,7 +6,7 @@
   Arquivo:
   %br
 = @conteudo.arquivo.nil? ? "Não informado" : @conteudo.arquivo.nome
-- if @conteudo.publicado? && @conteudo.arquivo.present?
+- if @conteudo.disponivel_para_download?
   = button_to "Download" , conteudo_baixar_conteudo_path(@conteudo), method: :get
 
 %p
@@ -44,7 +44,7 @@
           %td
             = autor.nome
           %td
-            = link_to autor.lattes, autor.lattes
+            = link_to autor.lattes, autor.lattes if autor.lattes
 %p
 %b
   Instituição:

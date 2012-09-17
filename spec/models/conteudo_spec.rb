@@ -542,4 +542,12 @@ describe Conteudo do
     conteudo.graos.should == []
     Grao.all.should == []
   end
+  
+  it 'disponivel para download quando publicado E com arquivo' do
+    create(:livro_publicado).should_not be_disponivel_para_download
+    create(:livro_pendente, arquivo_para_conteudo(:odt)).
+      should_not be_disponivel_para_download
+    create(:livro_publicado, arquivo_para_conteudo(:odt)).
+      should_not be_disponivel_para_download
+  end
 end
