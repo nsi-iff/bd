@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'spec_helper'
+
 describe FormularioContato do
   describe 'validacoes' do
     it { should_not have_valid(:nome).when(nil, '') }
