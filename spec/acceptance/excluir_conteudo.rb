@@ -13,17 +13,7 @@ feature 'Excluir conteúdo' do
 
     visit conteudo_path(livro)
     click_button 'Excluir'
-
-    expect { visit conteudo_path(livro) }.to raise_error ActiveRecord::RecordNotFound
-  end
-
-  scenario 'não pode excluir conteúdo sem estar editavel' do
-    usuario = criar_usuario(Papel.contribuidor)
-    livro = create(:livro, contribuidor: usuario)
-    livro.submeter!
-    autenticar(usuario)
-    visit conteudo_path(livro)
-
-    page.should_not have_button 'Excluir'
+    
+    Livro.find_by_id(livro.id).should be_nil
   end
 end
