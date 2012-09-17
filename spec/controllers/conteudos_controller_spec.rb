@@ -31,6 +31,13 @@ describe ConteudosController do
       @conteudo.arquivo.should be_new_record
     end
   end
+  
+  describe 'POST create' do
+    it 'autoriza Conteudo para escrita' do
+      controller.should_receive(:authorize!).with(:create, Conteudo)
+      post :create, conteudo: {}, tipo: 'artigo_de_evento'
+    end
+  end
 
   describe 'GET show' do
     it 'autoriza o conteúdo corrente para leitura' do

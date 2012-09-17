@@ -32,6 +32,12 @@ describe Usuario do
         end
       end
     end
+    
+    shared_examples 'não pode adicionar conteudo' do
+      it 'não pode adicionar conteudo' do
+        should_not be_able_to :create, Conteudo
+      end
+    end
 
     context 'contribuidor de conteudo' do
       let(:usuario) { create(:usuario_contribuidor) }
@@ -140,9 +146,31 @@ describe Usuario do
         Ability.new(nao_gestor).should_not be_able_to(:ter_lista_de_revisao, Usuario)
         Ability.new(nao_gestor).should_not be_able_to(:lista_de_revisao, Usuario)
       end
+      
+      it 'não pode adicionar conteúdo' do
+        should_not be_able_to :create, Conteudo
+      end
+    end
+    
+    context 'admin' do
+      let(:usuario) { create(:usuario_admin) }
+      
+      include_examples 'não pode adicionar conteudo'
+    end
+
+    context 'instituicao_admin' do
+      let(:usuario) { create(:usuario_instituicao_admin) }
+      
+      include_examples 'não pode adicionar conteudo'
+    end
+
+    context 'anonimo' do
+      let(:usuario) { nil }
+      
+      include_examples 'não pode adicionar conteudo'
     end
   end
-
+  
   context 'escrivaninha' do
     it 'retorna os conteudos do usuario que sao editaveis' do
       usuario = Usuario.new
