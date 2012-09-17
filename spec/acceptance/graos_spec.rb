@@ -2,16 +2,16 @@
 
 require 'spec_helper'
 
-  def comparar_odt(tag, novo, grao)
-    test = open_xml(grao).xpath(tag)
-    tmp =  open_xml(novo).xpath(tag)
-    test.children.count.should == tmp.children.count
-  end
+def comparar_odt(tag, novo, grao)
+  test = open_xml(grao).xpath(tag)
+  tmp =  open_xml(novo).xpath(tag)
+  test.children.count.should == tmp.children.count
+end
 
-  def open_xml(file)
-    doc = ZipFile.open(file)
-    Nokogiri::XML(doc.read("content.xml"))
-  end
+def open_xml(file)
+  doc = ZipFile.open(file)
+  Nokogiri::XML(doc.read("content.xml"))
+end
 
 feature 'Visualizar grão' do
   context 'tipo tabela' do
@@ -23,6 +23,7 @@ feature 'Visualizar grão' do
       conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de tabelas")
       grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result.key)
     end
+
     scenario 'visualizar grao' do
       Papel.criar_todos
       user = autenticar_usuario(Papel.contribuidor)
@@ -35,6 +36,7 @@ feature 'Visualizar grão' do
       page.should have_button  "Adicionar à Cesta de Grãos"
       page.should have_button  "Adicionar à Estante"
     end
+    
     scenario 'efetuar download do grao' do
       grao = adicionar_grao
       visit grao_path(grao)
@@ -46,6 +48,7 @@ feature 'Visualizar grão' do
       File.delete(grao_baixado)
     end
   end
+  
   context 'tipo imagem' do
     def adicionar_grao
       sam = ServiceRegistry.sam
@@ -55,6 +58,7 @@ feature 'Visualizar grão' do
       conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de imagem")
       grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result.key)
     end
+    
     scenario 'visualizar grao' do
       Papel.criar_todos
       user = autenticar_usuario(Papel.contribuidor)
@@ -67,6 +71,7 @@ feature 'Visualizar grão' do
       page.should have_button  "Adicionar à Cesta de Grãos"
       page.should have_button  "Adicionar à Estante"
     end
+    
     scenario 'efetuar download do grao' do
       grao = adicionar_grao
       visit grao_path(grao)
@@ -78,6 +83,7 @@ feature 'Visualizar grão' do
       File.delete(grao_baixado)
     end
   end
+  
   context 'e manipulação' do
     def adicionar_grao
       sam = ServiceRegistry.sam
@@ -94,7 +100,6 @@ feature 'Visualizar grão' do
 
       grao = adicionar_grao
       visit grao_path(grao)
-
 
       click_button "Adicionar à Cesta de Grãos"
       grao.id.should == user.cesta[0].referenciavel_id
@@ -117,8 +122,5 @@ feature 'Visualizar grão' do
 
       page.should_not have_content "Adicionar à estante"
     end
-
   end
-
 end
-

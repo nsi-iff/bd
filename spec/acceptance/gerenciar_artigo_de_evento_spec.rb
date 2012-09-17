@@ -5,17 +5,17 @@ require 'spec_helper'
 feature 'adicionar artigo de evento' do
   scenario 'padrao' do
     submeter_conteudo :artigo_de_evento do
-        fill_in 'Subtítulo', with: 'Ruby Becomes The Flash'
-        fill_in 'Nome', with: 'NSI Ruby Conf'
-        fill_in 'Local do Evento', with: 'Campos dos Goytacazes, Rio de Janeiro, Brazil'
-        fill_in 'Número', with: '1'
-        fill_in 'Ano do Evento', with: '2012'
-        fill_in 'Editora', with: 'Essentia'
-        fill_in 'Ano da Publicação', with: '2012'
-        fill_in 'Local da Publicação', with: 'Campos dos Goytacazes (RJ)'
-        fill_in 'Título dos anais', with: 'Proceedings of the 1st NSI Ruby Conf'
-        fill_in 'Página inicial do trabalho', with: '10'
-        fill_in 'Página final do trabalho', with: '25'
+      fill_in 'Subtítulo', with: 'Ruby Becomes The Flash'
+      fill_in 'Nome', with: 'NSI Ruby Conf'
+      fill_in 'Local do Evento', with: 'Campos dos Goytacazes, Rio de Janeiro, Brazil'
+      fill_in 'Número', with: '1'
+      fill_in 'Ano do Evento', with: '2012'
+      fill_in 'Editora', with: 'Essentia'
+      fill_in 'Ano da Publicação', with: '2012'
+      fill_in 'Local da Publicação', with: 'Campos dos Goytacazes (RJ)'
+      fill_in 'Título dos anais', with: 'Proceedings of the 1st NSI Ruby Conf'
+      fill_in 'Página inicial do trabalho', with: '10'
+      fill_in 'Página final do trabalho', with: '25'
     end
 
     validar_conteudo
