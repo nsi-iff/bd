@@ -25,13 +25,8 @@ describe ConteudosController do
     it 'inclui um autor em @conteudo' do
       @conteudo.should have(1).autores
     end
-
-    it "instancia um arquivo em @conteudo" do
-      @conteudo.arquivo.should_not be_nil
-      @conteudo.arquivo.should be_new_record
-    end
   end
-  
+
   describe 'POST create' do
     it 'autoriza Conteudo para escrita' do
       controller.should_receive(:authorize!).with(:create, Conteudo)

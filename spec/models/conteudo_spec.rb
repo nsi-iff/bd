@@ -320,7 +320,7 @@ describe Conteudo do
 
   it "o arquivo deve ser de um tipo válido" do
     conteudo = build(:conteudo, link: nil,
-                                arquivo: stub_model(Arquivo, valid?: true))
+                                arquivo: stub_model(Arquivo, valid?: true, destroy: true))
     conteudo.should be_valid
     conteudo.arquivo = stub_model(Arquivo, valid?: false)
     conteudo.should_not be_valid
@@ -376,7 +376,7 @@ describe Conteudo do
 
     it 'arquivo deve ser granularizavel se for odt ou video' do
       conteudo.link = nil
-      conteudo.arquivo = stub_model(Arquivo, odt?: false, video?: false)
+      conteudo.arquivo = stub_model(Arquivo, odt?: false, video?: false, destroy: true)
       conteudo.should_not be_granularizavel
       conteudo.arquivo = stub_model(Arquivo, odt?: true, video?: true)
       conteudo.should be_granularizavel
@@ -542,7 +542,7 @@ describe Conteudo do
     conteudo.graos.should == []
     Grao.all.should == []
   end
-  
+
   it 'disponivel para download quando publicado E com arquivo' do
     create(:livro_publicado).should_not be_disponivel_para_download
     create(:livro_pendente, arquivo_para_conteudo(:odt)).
@@ -550,4 +550,32 @@ describe Conteudo do
     create(:livro_publicado, arquivo_para_conteudo(:odt)).
       should_not be_disponivel_para_download
   end
+
+  it "#arquivo_attributes= cria um arquivo com os parametros recebidos" do
+    params = {attrs: 'foo'}
+    subject.should_receive(:build_arquivo).with(params)
+    subject.arquivo_attributes = params
+  end
+
+  context "quanto atualizado" do
+    let(:conteudo) { create(:conteudo, arquivo: create(:arquivo), link: '') }
+
+    it "não salva automaticamente o arquivo" do
+      conteudo.arquivo.should_not_receive(:save)
+      conteudo.save
+    end
+
+    it "salva o arquivo se necessário, caso exista" do
+      expect { create(:conteudo) }.to_not raise_error(NoMethodError)
+      conteudo.arquivo.should_receive(:salvar_se_necessario)
+      conteudo.save
+    end
+  end
+
+  it "quando destruído também destroi arquivo" do
+    conteudo = create(:relatorio, arquivo: create(:arquivo), link: '')
+    conteudo.destroy
+    expect { conteudo.arquivo.reload }.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end
+

@@ -31,7 +31,7 @@ describe Arquivo do
    subject.mime_type.should == "audio/x-vorbis+ogg"
   end
 
-  it 'informa se é um video' do
+  it 'informa se é um vídeo' do
     subject.mime_type = 'video/ogg'
     subject.should be_video
     subject.mime_type = 'text/plain'
@@ -173,5 +173,15 @@ describe Arquivo do
     arquivo = build(:arquivo)
     arquivo.should_receive(:thumbnail).and_return('chave do sam')
     arquivo.thumbnail.should == 'chave do sam'
+  end
+
+  it "#salvar_se_necessario salva apenas se houver alteração nos atributos" do
+    subject.stub(:changed? => true)
+    subject.should_receive(:save)
+    subject.salvar_se_necessario
+
+    subject.stub(:changed? => false)
+    subject.should_not_receive(:save)
+    subject.salvar_se_necessario
   end
 end

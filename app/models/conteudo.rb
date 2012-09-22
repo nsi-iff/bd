@@ -11,11 +11,11 @@ class Conteudo < ActiveRecord::Base
   has_many :autores
   has_many :mudancas_de_estado
   belongs_to :sub_area
-  has_one :arquivo
+  has_one :arquivo, :dependent => :destroy
   delegate :extensao, :to => :arquivo, :allow_nil => true
   delegate :thumbnail, :to => :arquivo, :allow_nil => true
   belongs_to :contribuidor, :class_name => 'Usuario'
-  accepts_nested_attributes_for :autores, :arquivo, :reject_if => :all_blank
+  accepts_nested_attributes_for :autores, :reject_if => :all_blank
   belongs_to :campus
 
   attr_accessible :arquivo, :contribuidor, :titulo, :link, :sub_area_id,
@@ -28,10 +28,11 @@ class Conteudo < ActiveRecord::Base
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
            :arquivo_ou_link_devem_existir
 
-  validates :titulo, :sub_area,
-            :campus, :autores, presence: true
+  validates :titulo, :sub_area, :campus, :autores, presence: true
 
   validates_format_of :link, :with => URI::regexp(%w(http https)), :allow_blank => true
+
+  after_save :salvar_arquivo, :if => :arquivo
 
   state_machine :state, :initial => :editavel do
     event :submeter do
@@ -163,6 +164,10 @@ class Conteudo < ActiveRecord::Base
     sub_area.nome_area
   end
 
+  def arquivo_attributes=(params)
+    self.build_arquivo(params)
+  end
+
   def arquivo=(uploaded)
     return super(Arquivo.new uploaded_file: uploaded) if uploaded.respond_to?(:read)
     super
@@ -200,7 +205,7 @@ class Conteudo < ActiveRecord::Base
     campi_ids = instituicao.campus_ids
     where("campus_id IN (#{campi_ids.join(',')}) AND state = 'pendente'")
   end
-  
+
   def disponivel_para_download?
     publicado? && arquivo.present?
   end
@@ -246,5 +251,9 @@ class Conteudo < ActiveRecord::Base
     camp1 = Campus.find(user.campus_id)
     camp2 = Campus.find(conteudo.campus_id)
     camp1.instituicao_id == camp2.instituicao_id
+  end
+
+  def salvar_arquivo
+    self.arquivo.salvar_se_necessario
   end
 end
