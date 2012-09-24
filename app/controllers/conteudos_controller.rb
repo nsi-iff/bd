@@ -8,7 +8,6 @@ class ConteudosController < ApplicationController
   def new
     authorize! :create, Conteudo
     @conteudo = klass.new
-    @conteudo.build_arquivo
     @conteudo.pronatec = true if params['pronatec']
     @conteudo.autores << Autor.new
   end

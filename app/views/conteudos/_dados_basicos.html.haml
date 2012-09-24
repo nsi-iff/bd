@@ -16,7 +16,7 @@
       = label_tag 'substituir_arquivo_atual', 'Substituir arquivo atual'
       = check_box_tag 'substituir_arquivo_atual', 'substituir_arquivo_atual', false, class: 'opcoes_arquivo'
 
-  = f.semantic_fields_for :arquivo do |arquivo_f|
+  = f.semantic_fields_for :arquivo_attributes do |arquivo_f|
     - if @conteudo.tipo_de_arquivo_importa?
       = arquivo_f.input :uploaded_file, as: :file, label: 'Arquivo',
         hint: 'Formatos suportados: rtf, doc, odt, ps e pdf'

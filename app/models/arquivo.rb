@@ -61,4 +61,8 @@ class Arquivo < ActiveRecord::Base
   def thumbnail
     sam.get(self.thumbnail_key).data['file'] if self.thumbnail_key
   end
+
+  def salvar_se_necessario
+    self.save if self.changed?
+  end
 end
