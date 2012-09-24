@@ -25,18 +25,6 @@ feature 'Lista de Revisão' do
     end
   end
 
-  scenario 'somente gestores têm lista de revisão' do
-    { Papel.contribuidor => false,
-      Papel.gestor => true,
-      Papel.membro => false,
-      Papel.admin => false }.each_pair do |papel, tem_lista_de_revisao|
-    autenticar_usuario(papel)
-    visit root_path
-    page.send(tem_lista_de_revisao ? :should : :should_not,
-      have_selector('#lista_de_revisao'))
-    end
-  end
-
   scenario 'não poderá constar na lista de revisão documentos de outras instituições' do
     meu_campus, outro_campus = create(:campus), create(:campus)
     usuario_gestor = create(:usuario_gestor, campus: meu_campus)
