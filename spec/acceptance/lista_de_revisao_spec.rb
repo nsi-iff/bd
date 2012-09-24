@@ -10,35 +10,18 @@ feature 'Lista de Revisão' do
     usuario_gestor = create(:usuario_gestor, campus: meu_campus)
     outro = create(:usuario)
 
-    artigo = create(:artigo_de_evento, titulo: 'artigo de evento', campus: meu_campus)
-    livro = create(:livro, titulo: 'livro', campus: meu_campus)
-    relatorio = create(:relatorio, titulo: 'relatório', contribuidor: outro)
+    artigo_editavel = create(:artigo_de_evento, titulo: 'artigo de evento', campus: meu_campus)
+    livro_publicado = create(:livro_publicado, titulo: 'livro', campus: meu_campus)
+    relatorio_pendente = create(:relatorio_pendente, titulo: 'relatório', campus: meu_campus)
+    periodico_pendente = create(:periodico_tecnico_cientifico_pendente, titulo: 'periodico', campus: meu_campus)
 
-    relatorio.submeter!
     autenticar(usuario_gestor)
-    
     visit root_path
     within "#lista_de_revisao" do
       page.should_not have_content 'livro'
       page.should_not have_content 'artigo de evento'
-      page.should_not have_content 'relatório'
-    end
-
-    artigo.submeter!
-    visit root_path
-    within "#lista_de_revisao" do
-      page.should_not have_content 'livro'
-      page.should have_content 'artigo de evento'
-      page.should_not have_content 'relatório'
-    end
-
-    artigo.aprovar!
-    livro.submeter!
-    visit root_path
-    within "#lista_de_revisao" do
-      page.should have_content 'livro'
-      page.should_not have_content 'artigo de evento'
-      page.should_not have_content 'relatório'
+      page.should have_content 'relatório'
+      page.should have_content 'periodico'
     end
   end
 
@@ -59,17 +42,17 @@ feature 'Lista de Revisão' do
     usuario_gestor = create(:usuario_gestor, campus: meu_campus)
     outro_campus_da_minha_instituicao = create(:campus, instituicao: meu_campus.instituicao)
 
-    outro_artigo_pendente = create(:artigo_de_evento, 
-                                    titulo: 'conteudo de outro instituto', 
+    outro_artigo_pendente = create(:artigo_de_evento,
+                                    titulo: 'conteudo de outro instituto',
                                     campus: outro_campus)
     outro_artigo_pendente.submeter!
 
-    meu_artigo_pendente = create(:artigo_de_evento, 
+    meu_artigo_pendente = create(:artigo_de_evento,
                                   titulo:'meu conteudo',
                                   campus: meu_campus)
     meu_artigo_pendente.submeter!
 
-    meu_outro_artigo_pendente = create(:artigo_de_evento, 
+    meu_outro_artigo_pendente = create(:artigo_de_evento,
                                 titulo: 'conteudo de outro campus' ,
                                 campus: outro_campus_da_minha_instituicao)
     meu_outro_artigo_pendente.submeter!
