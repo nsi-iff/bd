@@ -13,32 +13,37 @@ def open_xml(file)
   Nokogiri::XML(doc.read("content.xml"))
 end
 
+def adicionar_grao(options = {})
+  tipo = options[:tipo] || 'imagem'
+  arquivo = options[:arquivo] || 'grao_teste_1'
+  extensao = tipo == 'tabela' ? 'odt' : 'jpg'
+  tipo_grao = tipo == 'tabela' ? 'files' : 'images'
+  sam = ServiceRegistry.sam
+  conteudo_odt = Base64.encode64(File.open("spec/resources/#{arquivo}.#{extensao}").read)
+  result = sam.store(file: conteudo_odt, filename: "grao.#{extensao}")
+
+  conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de grao #{options[:tipo]}")
+  grao = create(:grao, tipo: tipo_grao, conteudo: conteudo, key: result.key)
+end
+
+
 feature 'Visualizar grão' do
   context 'tipo tabela' do
-    def adicionar_grao
-      sam = ServiceRegistry.sam
-      conteudo_odt = Base64.encode64(File.open('spec/resources/grao_tabela.odt').read)
-      result = sam.store(file: conteudo_odt, filename: 'grao.odt')
-
-      conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de tabelas")
-      grao = create(:grao, tipo: 'files', conteudo: conteudo, key: result.key)
-    end
-
     scenario 'visualizar grao' do
       Papel.criar_todos
       user = autenticar_usuario(Papel.contribuidor)
-      grao = adicionar_grao
+      grao = adicionar_grao(tipo: 'tabela', arquivo: 'grao_tabela')
       visit grao_path(grao)
 
       page.should have_content 'Tabela originada da página X do conteúdo'
-      page.should have_content "Testando visualização de tabelas"
+      page.should have_content "Testando visualização de grao tabela"
       page.should have_button  "Download"
       page.should have_button  "Adicionar à Cesta de Grãos"
       page.should have_button  "Adicionar à Estante"
     end
     
     scenario 'efetuar download do grao' do
-      grao = adicionar_grao
+      grao = adicionar_grao(tipo: 'tabela', arquivo: 'grao_tabela')
       visit grao_path(grao)
 
       click_button 'Download'
@@ -50,30 +55,21 @@ feature 'Visualizar grão' do
   end
   
   context 'tipo imagem' do
-    def adicionar_grao
-      sam = ServiceRegistry.sam
-      conteudo_odt = Base64.encode64(File.open('spec/resources/grao_teste_1.jpg').read)
-      result = sam.store(file: conteudo_odt, filename: 'grao.jpg')
-
-      conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de imagem")
-      grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result.key)
-    end
-    
     scenario 'visualizar grao' do
       Papel.criar_todos
       user = autenticar_usuario(Papel.contribuidor)
-      grao = adicionar_grao
+      grao = adicionar_grao(tipo: 'imagem', arquivo: 'grao_teste_1')
       visit grao_path(grao)
 
       page.should have_content 'Imagem originada da página X do conteúdo'
-      page.should have_content "Testando visualização de imagem"
+      page.should have_content "Testando visualização de grao imagem"
       page.should have_button  "Download"
       page.should have_button  "Adicionar à Cesta de Grãos"
       page.should have_button  "Adicionar à Estante"
     end
     
     scenario 'efetuar download do grao' do
-      grao = adicionar_grao
+      grao = adicionar_grao(tipo: 'imagem', arquivo: 'grao_teste_1')
       visit grao_path(grao)
 
       click_button 'Download'
@@ -85,15 +81,6 @@ feature 'Visualizar grão' do
   end
   
   context 'e manipulação' do
-    def adicionar_grao
-      sam = ServiceRegistry.sam
-      conteudo_odt = Base64.encode64(File.open('spec/resources/grao_teste_1.jpg').read)
-      result = sam.store(file: conteudo_odt, filename: 'grao.jpg')
-
-      conteudo = create(:artigo_de_periodico, titulo: "Testando visualização de imagem")
-      grao = create(:grao, tipo: 'images', conteudo: conteudo, key: result.key)
-    end
-
     scenario 'adiciondo-o à cesta de grão' do
       Papel.criar_todos
       user = autenticar_usuario(Papel.contribuidor)
