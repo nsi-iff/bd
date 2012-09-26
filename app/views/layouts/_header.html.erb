@@ -13,7 +13,7 @@
     <div class="actions">
       <div class="site_actions">
         <ul>
-          <li><%= link_to "Mapa do Site", "/mapa_do_site", :accesskey => 5 %></li>
+          <li><%= link_to "Mapa do Site", mapa_do_site_path, :accesskey => 5 %></li>
           <li><%= link_to "Contato", new_formulario_contato_path %></li>
           <% if usuario_signed_in? %>
             <% if can? :index, Usuario%>
