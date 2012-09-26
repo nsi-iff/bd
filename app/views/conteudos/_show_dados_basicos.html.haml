@@ -7,7 +7,8 @@
   %br
 = @conteudo.arquivo.nil? ? "Não informado" : @conteudo.arquivo.nome
 - if @conteudo.disponivel_para_download?
-  = button_to "Download" , conteudo_baixar_conteudo_path(@conteudo), method: :get
+  #download
+    = link_to "Download" , @conteudo.link_download, method: :get
 
 %p
 %b

@@ -157,7 +157,12 @@ class Conteudo < ActiveRecord::Base
   end
 
   def link_download
-    sam.dowload_link_for_file(arquivo.key)
+    sam = ServiceRegistry.sam
+    if self.disponivel_para_download?
+      sam.download_link_for_file(arquivo.key)
+    else
+      self.link
+    end
   end
 
   def nome_area
