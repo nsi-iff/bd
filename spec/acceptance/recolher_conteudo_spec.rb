@@ -5,8 +5,7 @@ feature 'Recolher Conteúdo' do
   context 'usuário gestor' do
     scenario 'apenas gestores podem ver conteúdos recolhidos' do
       Papel.criar_todos
-      livro = create(:livro)
-      livro.submeter!; livro.recolher!
+      livro = create(:livro_recolhido)
       autenticar(create(:usuario_contribuidor))
       visit conteudo_path(livro)
       current_path.should == root_path

@@ -3,7 +3,7 @@
   <a href="/"><li id="home"><p>Página Inicial</p></li></a>
   <a href="/buscas"><li id="busca"><p>Busca Avançada</p></li></a>
   <a href="/busca_pronatec"><li id="busca_pronatec"><p>Busca PRONATEC</p></li></a>
-  <a href="/busca_por_imagem"><li id="busca_imagem"><p>Busca por Imagem</p></li></a>
+  <a href="<%= new_busca_por_imagem_path %>"><li id="busca_imagem"><p>Busca por Imagem</p></li></a>
   <% if current_usuario and can? :create, Conteudo %>
     <a href="/adicionar_conteudo">
       <li id="adicionar_conteudo"><p>Adicionar Conteúdo</p></li>

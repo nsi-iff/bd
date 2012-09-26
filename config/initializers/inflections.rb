@@ -21,6 +21,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'mudanca_de_estado', 'mudancas_de_estado'
   inflect.irregular 'formulario_contato', 'formularios_contato'
   inflect.irregular 'FormularioContato', 'FormulariosContato'
+  inflect.irregular 'busca_por_imagem', 'buscas_por_imagem'
+  inflect.irregular 'BuscaPorImagem', 'BuscasPorImagem'
   inflect.irregular 'campus', 'campi'
   inflect.irregular 'item', 'itens'
   inflect.plural /cao$/i, 'coes'
