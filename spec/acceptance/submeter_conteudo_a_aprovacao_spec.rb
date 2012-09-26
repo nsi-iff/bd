@@ -12,17 +12,17 @@ feature 'submeter conteúdo a aprovação' do
   let(:user) { autenticar_usuario(Papel.contribuidor) }
 
   tipos_de_conteudo.each do |tipo|
-      scenario "dono do #{tipo} pode submetê-lo a aprovação" do
-        conteudo = create(tipo, contribuidor: user)
+    scenario "dono do #{tipo} pode submetê-lo a aprovação" do
+      conteudo = create(tipo, contribuidor: user)
 
-        visit conteudo_path(conteudo)
-        click_button 'Submeter'
-        visit conteudo_path(conteudo)
+      visit conteudo_path(conteudo)
+      click_button 'Submeter'
+      visit conteudo_path(conteudo)
 
-        page.should_not have_content 'Submeter'
-        within '#escrivaninha' do
-          page.should have_content conteudo.titulo
-        end
+      page.should_not have_content 'Submeter'
+      within '#escrivaninha' do
+        page.should have_content conteudo.titulo
+      end
     end
   end
 end
