@@ -39,13 +39,14 @@ DigitalLibrary::Application.routes.draw do
   resources :buscas do
     post :cadastrar_mala_direta, :to => 'buscas#cadastrar_mala_direta'
     post :remover_mala_direta, :to => 'buscas#remover_mala_direta'
-    post :busca_por_imagem, :to => 'buscas#busca_por_imagem'
   end
+  
+  resources :buscas_por_imagem, only: [:new, :create]
+  
   get :busca_avancada, to: 'buscas#busca_avancada'
   get :busca_normal, to: 'buscas#busca_normal'
   get :busca_pronatec, to: 'buscas#busca_pronatec'
   get :buscar_pronatec, to: 'buscas#buscar_pronatec'
-  get :busca_por_imagem, to: 'buscas#busca_por_imagem'
 
   resources :tutoriais, :only => :index, :path => '/ajuda/tutoriais'
   match 'ajuda/tutoriais/*tutorial' => 'tutoriais#show', :via => :get
