@@ -532,12 +532,29 @@ describe Conteudo do
 
   it "destrói os grãos de um conteúdo" do
     conteudo = create(:livro_publicado)
-    conteudo.graos << create(:grao)
+    grao = create(:grao)
+    grao.should_receive(:deleta_do_sam).and_return(true)
+    conteudo.graos << grao
 
     conteudo.graos.should_not == []
     Grao.all.should_not == []
 
     conteudo.destruir_graos
+
+    conteudo.graos.should == []
+    Grao.all.should == []
+  end
+
+  it "destrói os grãos quando destruir o conteúdo" do
+    conteudo = create(:livro_publicado)
+    grao = create(:grao)
+    grao.should_receive(:deleta_do_sam).and_return(true)
+    conteudo.graos << grao
+
+    conteudo.graos.should_not == []
+    Grao.all.should_not == []
+
+    conteudo.destroy
 
     conteudo.graos.should == []
     Grao.all.should == []
@@ -574,6 +591,7 @@ describe Conteudo do
 
   it "quando destruído também destroi arquivo" do
     conteudo = create(:relatorio, arquivo: create(:arquivo), link: '')
+    conteudo.arquivo.should_receive(:deleta_do_sam).and_return(true)
     conteudo.destroy
     expect { conteudo.arquivo.reload }.to raise_error(ActiveRecord::RecordNotFound)
   end

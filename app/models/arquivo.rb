@@ -15,6 +15,7 @@ class Arquivo < ActiveRecord::Base
   validates_format_of :nome, :with => /.*\.(pdf|rtf|odt|doc|ps)/, :on => :create,
                              :if => :tipo_importa?
   before_save :enviar_ao_sam
+  before_destroy :deleta_do_sam
 
   def to_s
     self.nome
@@ -64,5 +65,15 @@ class Arquivo < ActiveRecord::Base
 
   def salvar_se_necessario
     self.save if self.changed?
+  end
+
+  def deleta_do_sam
+    resposta_arquivo = sam.delete(self.key)
+    if self.thumbnail_key
+      resposta_thumbnail = sam.delete(self.thumbnail_key)
+      return resposta_arquivo.deleted? && resposta_thumbnail.deleted?
+    else
+      return resposta_arquivo.deleted?
+    end
   end
 end

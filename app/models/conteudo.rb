@@ -7,7 +7,7 @@ class Conteudo < ActiveRecord::Base
   include ReferenciaBibliografica
   include Referenciavel
 
-  has_many :graos
+  has_many :graos, :dependent => :destroy
   has_many :autores
   has_many :mudancas_de_estado
   belongs_to :sub_area
