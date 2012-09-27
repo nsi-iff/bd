@@ -18,9 +18,6 @@ describe "conteudos/_show_dados_basicos.html.haml" do
     it 'aparece para documentos disponiveis para download' do
       @conteudo.stub(:link_download).and_return('foo')
       @conteudo.stub(:disponivel_para_download?).and_return(true)
-      # @conteudo.stub_chain(:arquivo, :key).and_return('foo')
-      # @conteudo.stub_chain(:arquivo, :thumbnail).and_return('bar')
-      # @conteudo.stub_chain(:arquivo, :nome).and_return('arquivo.rtf')
       render
       rendered.should have_link 'Download'
     end
