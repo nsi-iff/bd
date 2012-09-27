@@ -15,7 +15,7 @@ class Arquivo < ActiveRecord::Base
   validates_format_of :nome, :with => /.*\.(pdf|rtf|odt|doc|ps)/, :on => :create,
                              :if => :tipo_importa?
   before_save :enviar_ao_sam
-  before_destroy :deleta_do_sam
+  before_destroy :deleta_do_sam, :if => "self.key"
 
   def to_s
     self.nome
