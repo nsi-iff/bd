@@ -42,6 +42,7 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
 
     submeter_conteudo :artigo_de_evento, link: 'http://nsi.iff.edu.br',
                                          arquivo: Rails.root + 'spec/resources/arquivo.pdf'
+
     page.should_not have_content 'com sucesso'
     within '#artigo_de_evento_link_input' do
       page.should have_content 'não pode existir simultaneamente a arquivo'
