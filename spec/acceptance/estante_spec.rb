@@ -133,6 +133,7 @@ feature 'Estante' do
     @usuario.favoritar(grao.referencia)
 
     conteudo.destroy
+    grao.destroy
 
     visit estante_usuario_path(@usuario)
     within '#estante' do
