@@ -25,7 +25,7 @@ describe Acesso do
   it 'faz a contagem de acesso diariamente as 23:58' do
     Acesso.count.should == 0
     Delorean.time_travel_to Date.today.strftime('%Y-%m-22') + ' 11:58 pm'
-    sleep(0.5)
+    sleep(1)
     Acesso.total_de_acessos.should == 3
     Delorean.back_to_the_present
   end
