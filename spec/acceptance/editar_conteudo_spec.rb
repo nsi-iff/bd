@@ -25,11 +25,8 @@ feature 'Editar Conteúdo' do
                          arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
       artigo = ArtigoDeEvento.last
       visit edit_conteudo_path(artigo)
-      click_link "Download: #{artigo.arquivo.nome}"
-      baixado = "#{Rails.root}/tmp/#{artigo.titulo}.odt"
-      postado = "#{Rails.root}/spec/resources/arquivo.odt"
-      FileUtils.compare_file(baixado, postado).should == true
-      File.delete(baixado)
+      link = find_link "Download: #{artigo.arquivo.nome}"
+      link["href"].should == artigo.link_download
     end
 
     scenario 'remover arquivo atual' do

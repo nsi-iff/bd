@@ -7,7 +7,7 @@ class Conteudo < ActiveRecord::Base
   include ReferenciaBibliografica
   include Referenciavel
 
-  has_many :graos
+  has_many :graos, :dependent => :destroy
   has_many :autores
   has_many :mudancas_de_estado
   belongs_to :sub_area
@@ -157,7 +157,12 @@ class Conteudo < ActiveRecord::Base
   end
 
   def link_download
-    sam.dowload_link_for_file(arquivo.key)
+    sam = ServiceRegistry.sam
+    if self.disponivel_para_download?
+      sam.download_link_for_file(arquivo.key)
+    else
+      self.link
+    end
   end
 
   def nome_area

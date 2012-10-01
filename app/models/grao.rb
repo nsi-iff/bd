@@ -6,6 +6,8 @@ class Grao < ActiveRecord::Base
 
   attr_accessible :tipo, :key
 
+  before_destroy :deleta_do_sam
+
   def arquivo?
     tipo == 'files'
   end
@@ -32,5 +34,10 @@ class Grao < ActiveRecord::Base
   def titulo
     conteudo = Conteudo.find(conteudo_id)
     "#{conteudo.titulo}_#{tipo_humanizado}_#{id}"
+  end
+
+  def deleta_do_sam
+    resposta = sam.delete(key)
+    resposta.deleted?
   end
  end

@@ -128,6 +128,7 @@ FactoryGirl.define do
     nome 'arquivo.rtf'
     key { rand.to_s.split('.')[1] }
     thumbnail_key { rand.to_s.split('.')[1] }
+    mime_type 'application/x-octet-stream'
   end
 
   factory :acesso do

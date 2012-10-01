@@ -127,6 +127,7 @@ feature 'Estante' do
     conteudo = create(:livro)
     conteudo_2 = create(:artigo_de_evento)
     grao = create(:grao, conteudo: conteudo_2)
+    grao.should_receive(:deleta_do_sam).and_return(true)
 
     @usuario.favoritar(conteudo.referencia)
     @usuario.favoritar(grao.referencia)

@@ -127,7 +127,7 @@ describe Arquivo do
       tempfile: File.new(Rails.root + "spec/resources/arquivo.rtf")
     })
     arquivo = build(:arquivo, uploaded_file: upload)
-    ServiceRegistry.sam.should_receive(:store).with(file: arquivo.content_base64).
+    ServiceRegistry.sam.should_receive(:store).with(file: arquivo.content_base64, filename: 'arquivo.rtf').
       and_return(stub("key" => "123"))
     arquivo.save
     arquivo.key.should eq("123")

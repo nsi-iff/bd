@@ -9,12 +9,13 @@ class Arquivo < ActiveRecord::Base
 
   belongs_to :conteudo
 
-  attr_accessor :uploaded_file
-  attr_accessible :uploaded_file, :conteudo
+  attr_accessor :uploaded_file, :mime_type
+  attr_accessible :uploaded_file, :conteudo, :mime_type, :key, :thumbnail_key, :nome
 
   validates_format_of :nome, :with => /.*\.(pdf|rtf|odt|doc|ps)/, :on => :create,
                              :if => :tipo_importa?
   before_save :enviar_ao_sam
+  before_destroy :deleta_do_sam, :if => "self.key"
 
   def to_s
     self.nome
@@ -25,7 +26,7 @@ class Arquivo < ActiveRecord::Base
   end
 
   def video?
-    mime_type.start_with? 'video'
+    self.mime_type.start_with? 'video'
   end
 
   def content_base64
@@ -46,7 +47,7 @@ class Arquivo < ActiveRecord::Base
 
   def enviar_ao_sam
     if @uploaded_file.present?
-      self.key = sam.store(file: self.content_base64).key
+      self.key = sam.store(file: self.content_base64, filename: self.nome).key
     end
   end
 
@@ -64,5 +65,15 @@ class Arquivo < ActiveRecord::Base
 
   def salvar_se_necessario
     self.save if self.changed?
+  end
+
+  def deleta_do_sam
+    resposta_arquivo = sam.delete(self.key)
+    if self.thumbnail_key
+      resposta_thumbnail = sam.delete(self.thumbnail_key)
+      return resposta_arquivo.deleted? && resposta_thumbnail.deleted?
+    else
+      return resposta_arquivo.deleted?
+    end
   end
 end
