@@ -5,7 +5,7 @@
     - if lista_de_revisao.blank?
       %p Não há nenhum conteúdo para revisão.
     - else
-      - lista_de_revisao.each do |conteudo|
+      - lista_de_revisao[0..(Rails.application.config.limite_de_itens_nos_portlets - 1)].each do |conteudo|
         .item
           = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
           %br

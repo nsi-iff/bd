@@ -75,5 +75,8 @@ module DigitalLibrary
     config.videogranulate_configuration = YAML.load(
       File.read(File.join(Rails.root, 'config', 'videogranulate.yml')))[Rails.env].
       symbolize_keys
+      
+    # configurações de itens nos portlets
+    config.limite_de_itens_nos_portlets = 5
   end
 end
