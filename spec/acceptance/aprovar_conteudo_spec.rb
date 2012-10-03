@@ -26,4 +26,13 @@ feature 'aprovar conteúdo' do
     artigo.should have(1).graos_arquivo
     artigo.arquivo.thumbnail_key.should == 'a dummy key'
   end
+
+  scenario 'cria uma notificação para o usuário e conteúdo ao aprovar' do
+    usuario = autenticar_usuario(Papel.gestor)
+    livro = create(:livro, contribuidor_id: usuario.id)
+    livro.submeter! && livro.aprovar!
+    livro.estado.should == 'publicado'
+    usuario.notificacoes.should_not == []
+    livro.notificacoes.should_not == []
+  end
 end
