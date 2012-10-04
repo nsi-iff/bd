@@ -4,11 +4,11 @@ FactoryGirl.define do
   end
 
   factory :area do
-    sequence(:nome) {|n| "Nome#{n}" }
+    sequence(:nome) {|n| "Area#{n}" }
   end
 
   factory :sub_area do
-    sequence(:nome) {|n| "Nome#{n}" }
+    sequence(:nome) {|n| "Sub-area#{n}" }
     area
   end
 
