@@ -83,4 +83,18 @@ feature 'adicionar objeto de aprendizagem' do
     page.should have_content 'Técnicas de programação, OO e Testes'
     page.should have_content 'Português (Brasil)'
   end
+
+  scenario 'adicionar video', javascript: true do
+    Papel.criar_todos
+    usuario = autenticar_usuario(Papel.all)
+    autor = Autor.create nome: 'autor'
+    arquivo = ActionDispatch::Http::UploadedFile.new({
+        filename: 'video de teste',
+        type: 'video/ogg',
+        tempfile: File.new(Rails.root + "spec/resources/video.ogg")
+      })
+    objeto_de_aprendizagem = ObjetoDeAprendizagem.create titulo: 'teste video', autores: [autor], arquivo: arquivo
+    visit conteudo_path(objeto_de_aprendizagem)
+    save_and_open_page
+  end
 end
