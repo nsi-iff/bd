@@ -3,7 +3,7 @@ DigitalLibrary::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' },
+  devise_for :usuarios, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, 
                         controllers: {registrations: 'registrations'}
   resources :usuarios, only: [:index] do
     collection do
@@ -40,9 +40,9 @@ DigitalLibrary::Application.routes.draw do
     post :cadastrar_mala_direta, :to => 'buscas#cadastrar_mala_direta'
     post :remover_mala_direta, :to => 'buscas#remover_mala_direta'
   end
-
+  
   resources :buscas_por_imagem, only: [:new, :create]
-
+  
   get :busca_avancada, to: 'buscas#busca_avancada'
   get :busca_normal, to: 'buscas#busca_normal'
   get :busca_pronatec, to: 'buscas#busca_pronatec'
@@ -87,7 +87,4 @@ DigitalLibrary::Application.routes.draw do
   match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
   get '/editor' => 'editor#index', as: :editor
   post '/editor' => 'editor#download'
-
-  #Catch unroutable paths and send to the routing error handler
-  match '*a', :to => 'pages#routing_error'
 end
