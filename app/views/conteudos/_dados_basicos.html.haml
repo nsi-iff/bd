@@ -1,5 +1,3 @@
-= f.input :titulo, label: 'Título'
-
 #arquivo
   - if controller.action_name == 'edit' && @conteudo.arquivo
     %br
@@ -27,6 +25,7 @@
 
 = f.input :link,
   hint: 'Este campo somente deverá ser preenchido se o autor não dispuser dos devidos direitos para disponibilização do conteúdo, inviabilizando assim o preenchimento do campo “Arquivo”.'
+= f.input :titulo, label: 'Título'
 = label_tag(:area, 'Grande Área de Conhecimento')
 = select_tag(:area, options_for_select(Area.all.map {|area| [area.nome, area.id] }), class: "areas")
 = f.input :sub_area, as: :select, input_html: { class: "sub_areas" },
