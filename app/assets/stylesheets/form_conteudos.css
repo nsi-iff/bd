@@ -8,8 +8,12 @@ fieldset {
 label {
   display: block;
   font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 2px;
+  margin-top: 15px;
+}
+
+#label_instituicao, #label_campus
+{
+  margin-top: -5px;
 }
 
 input[type="text"] {
@@ -44,7 +48,6 @@ input[type="checkbox"] {
 }
 
 input[type="submit"] {
-  float: left;
   width: 80px;
   margin-bottom: 20px;
 }
@@ -104,4 +107,3 @@ form li {
 #metadados_basicos label abbr {
   display: none;
 }
-

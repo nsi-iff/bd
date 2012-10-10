@@ -1,6 +1,7 @@
 = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
-  = f.inputs "Editar #{resource_name.to_s.humanize}" do
+  %div#editar_usuario
+    %h1 Editar Usuário
     = f.input :nome_completo, required: false, label: 'Nome Completo'
     = f.input :email, required: false, label: 'E-mail'
     = f.input :password, label: 'Nova senha',
@@ -9,16 +10,15 @@
     = f.input :current_password, label: 'Senha atual',
       hint: 'Precisamos da sua senha atual para atualizar os campos'
 
-    = label_tag(:instituicao, 'Instituição')
+    = label_tag(:instituicao, 'Instituição', id: 'label_instituicao')
     = select_tag(:instituicao, options_for_select(Instituicao.all.map {|instituicao| [instituicao.nome, instituicao.id] },
       [current_usuario.campus.instituicao.nome, current_usuario.campus.instituicao.id]),
       class: "instituicoes", id: "select_instituicao")
 
-    = label_tag(:campus, 'Campus')
+    = label_tag(:campus, 'Campus', id: 'label_campus')
     = select_tag(:campus, options_for_select(current_usuario.campus.instituicao.campi.map {|campus| [campus.nome, campus.id] }),
       class: "campus", id: "select_campus")
 
-  = f.actions do
     = f.submit 'Atualizar'
 
 = render 'links'
