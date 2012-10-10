@@ -50,6 +50,7 @@ input[type="checkbox"] {
 input[type="submit"] {
   width: 80px;
   margin-bottom: 20px;
+  float: left;
 }
 
 .inline-hints {
@@ -106,4 +107,8 @@ form li {
 /* tornando asterisco de campo obrigatorio invisivel para forms de conteudo */
 #metadados_basicos label abbr {
   display: none;
+}
+
+#link_suporte {
+  clear: both;
 }
