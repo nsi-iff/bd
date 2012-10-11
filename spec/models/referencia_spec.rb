@@ -39,4 +39,11 @@ describe Referencia do
     email.to.should == [usuario.email]
     email.subject.should == 'Biblioteca Digital: Notificação sobre grão removido'
   end
+  
+  it 'retorna o referenciavel por id da referencia' do
+    conteudo = create(:livro)
+    referencia = create(:referencia, referenciavel: conteudo)
+    Referencia.referenciavel_por_id_referencia(referencia.id).should == conteudo
+    Referencia.referenciavel_por_id_referencia(-999).should be_nil
+  end
 end
