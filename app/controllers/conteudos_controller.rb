@@ -136,12 +136,12 @@ class ConteudosController < ApplicationController
 
   def por_area
     area = Area.find(params[:area_id])
-    @conteudos = area.conteudos[0..20]
+    @conteudos = area.conteudos[0..20].select{|x| x.estado== "publicado"}
   end
 
   def por_sub_area
     sub_area = SubArea.find(params[:sub_area_id])
-    @conteudos = sub_area.conteudos[0..20]
+    @conteudos = sub_area.conteudos[0..20].select{|x| x.estado== "publicado"}
   end
 
   private

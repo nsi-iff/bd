@@ -1,0 +1,32 @@
+<% if current_usuario && !current_usuario.notificacoes.blank? %>
+  <% notificacoes = current_usuario.notificacoes %>
+  <div id="notificacoes_container">
+    <div id="mascara"></div>
+    <div id="notificacoes">
+      <div id="cabecalho_notificacoes">
+        Bilioteca Digital da EPCT
+      </div>
+      <div id="conteudo_notificacoes">
+        <% if notificacoes.count > 1 %>
+          <p>Os conteúdos:</p>
+          <ul>
+            <% notificacoes.each do |notificacao| %>
+              <li><b><%= notificacao.titulo_conteudo %></b></li><br>
+              <% Notificacao.destroy(notificacao.id) %>
+            <% end %>
+          </ul>
+          <p>anteriormente submetidos para publicação já se encontram disponíveis para o público.</p>
+        <% else %>
+          <p>O conteúdo <b><%= notificacoes.first.titulo_conteudo %></b> anteriormente 
+          submetido para publicação já se encontra disponível para o público.<p>
+          <% Notificacao.destroy(notificacoes.first.id) %>
+        <% end %>
+        </ul>
+      </div>
+      <div id="sair">
+        <a href="#"><div id="sair_notificacoes" onclick="$('#notificacoes_container').remove()">Ok</div></a>
+      </div>
+    </div>
+  </div>
+<% end %>
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815235156) do
+ActiveRecord::Schema.define(:version => 20121004182913) do
 
   create_table "acessos", :force => true do |t|
     t.date     "data"
@@ -182,6 +182,14 @@ ActiveRecord::Schema.define(:version => 20120815235156) do
 
   add_index "mudancas_de_estado", ["conteudo_id"], :name => "index_mudancas_de_estado_on_conteudo_id"
   add_index "mudancas_de_estado", ["usuario_id"], :name => "index_mudancas_de_estado_on_usuario_id"
+
+  create_table "notificacoes", :force => true do |t|
+    t.integer  "conteudo_id"
+    t.integer  "usuario_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "titulo_conteudo"
+  end
 
   create_table "papeis", :force => true do |t|
     t.string "nome"

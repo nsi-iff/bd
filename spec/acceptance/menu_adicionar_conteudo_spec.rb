@@ -42,67 +42,51 @@ feature 'verificar menu adicionar conteúdo' do
 
   scenario 'link para adicionar artigo de evento' do
     visit adicionar_conteudo_path
-    within_fieldset 'Adicionar Conteúdo' do
-      click_link 'Artigo de Evento'
-    end
+    click_link 'Artigo de Evento'
     page.should have_content 'Adicionar Artigo de Evento'
   end
 
   scenario 'link para adicionar artigo de periódico' do
     visit adicionar_conteudo_path
-    within_fieldset 'Adicionar Conteúdo' do
-      click_link 'Artigo de Periódico'
-    end
+    click_link 'Artigo de Periódico'
     page.should have_content 'Adicionar Artigo de Periódico'
   end
 
   scenario 'link para adicionar livro' do
     visit adicionar_conteudo_path
-    within_fieldset 'Adicionar Conteúdo' do
-      click_link 'Livro'
-    end
+    click_link 'Livro'
     page.should have_content 'Adicionar Livro'
   end
 
   scenario 'link para adicionar objeto de aprendizagem' do
     popular_eixos_tematicos_cursos
     visit adicionar_conteudo_path
-    within_fieldset 'Adicionar Conteúdo' do
-      click_link 'Objeto de Aprendizagem'
-    end
+    click_link 'Objeto de Aprendizagem'
     page.should have_content 'Adicionar Objeto de Aprendizagem'
   end
 
   scenario 'link para adicionar periódico técnico científico' do
     visit adicionar_conteudo_path
-    within_fieldset 'Adicionar Conteúdo' do
-      click_link 'Periódico Técnico Científico'
-    end
+    click_link 'Periódico Técnico Científico'
     page.should have_content 'Adicionar Periódico Técnico-Científico'
   end
 
   scenario 'link para adicionar PRONATEC' do
     popular_eixos_tematicos_cursos
     visit adicionar_conteudo_path
-    within_fieldset 'Adicionar Conteúdo' do
-      click_link 'PRONATEC'
-    end
+    click_link 'PRONATEC'
     page.should have_content 'Adicionar PRONATEC'
   end
 
   scenario 'link para adicionar relatório' do
     visit adicionar_conteudo_path
-    within_fieldset 'Adicionar Conteúdo' do
-      click_link 'Relatório'
-    end
+    click_link 'Relatório'
     page.should have_content 'Adicionar Relatório'
   end
 
   scenario 'link para adicionar trabalho de obtenção de grau' do
     visit adicionar_conteudo_path
-    within_fieldset 'Adicionar Conteúdo' do
-      click_link 'Trabalho de Obtenção de Grau'
-    end
+    click_link 'Trabalho de Obtenção de Grau'
     page.should have_content 'Adicionar Trabalho de Obtenção de Grau'
   end
 end

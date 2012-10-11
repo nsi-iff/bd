@@ -2,6 +2,7 @@ class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :papeis
   has_and_belongs_to_many :cesta, class_name: 'Referencia', join_table: 'referencias_nas_cestas'
   has_many :buscas
+  has_many :notificacoes
   has_and_belongs_to_many :favoritos, class_name: 'Referencia', join_table: 'favoritos'
   belongs_to :campus
   # Include default devise modules. Others available are:

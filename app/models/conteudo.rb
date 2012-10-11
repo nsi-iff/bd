@@ -10,6 +10,7 @@ class Conteudo < ActiveRecord::Base
   has_many :graos, :dependent => :destroy
   has_many :autores
   has_many :mudancas_de_estado
+  has_many :notificacoes
   belongs_to :sub_area
   has_one :arquivo, :dependent => :destroy
   delegate :extensao, :to => :arquivo, :allow_nil => true
@@ -80,6 +81,7 @@ class Conteudo < ActiveRecord::Base
 
     after_transition all - [:publicado] => :editavel, :do => :destruir_graos
     after_transition :publicado => any, :do => :destruir_graos
+    after_transition any => :publicado, :do => :notificar_publicacao
     before_transition :pendente => :granularizando, :do => :granularizar
   end
 
@@ -213,6 +215,13 @@ class Conteudo < ActiveRecord::Base
 
   def disponivel_para_download?
     publicado? && arquivo.present?
+  end
+
+  def notificar_publicacao
+    notificacao = self.notificacoes.create(conteudo_id: self.id, 
+                                           usuario_id: self.contribuidor_id,
+                                           titulo_conteudo: self.titulo)
+    notificacao.save!
   end
 
   private

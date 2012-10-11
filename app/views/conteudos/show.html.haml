@@ -53,11 +53,4 @@
     - else
       = button_to 'Favoritar', favoritar_conteudo_path(@conteudo), method: :put
 
-- if current_usuario && @conteudo.publicado? && @conteudo.nome_instituicao == current_usuario.instituicao.nome && current_usuario.gestor?
-  = button_to "Editar", edit_conteudo_path(@conteudo), method: 'get'
-
-- if can? :destroy, @conteudo
-  = button_to "Excluir", conteudo_path(@conteudo), method: 'delete'
-
-
 = render 'conteudos/acoes', :conteudo => @conteudo
