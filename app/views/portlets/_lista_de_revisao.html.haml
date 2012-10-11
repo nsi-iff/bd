@@ -11,6 +11,8 @@
           %br
           %span.info
             = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+      .portlet-info
+        = "Total: #{pluralize(lista_de_revisao.count, "item")}"
 
       = link_to "Ver todos", lista_de_revisao_usuario_path(current_usuario)
 
