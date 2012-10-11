@@ -22,9 +22,11 @@ describe "portlets/_lista_de_revisao.html.haml" do
   end
   
   it_behaves_like 'a portlet' do
-    let(:stub_usuario) do
-      lambda {|conteudos_para_a_lista|
-        stub_model(Usuario, lista_de_revisao: conteudos_para_a_lista)
+    let(:options) do
+      { usuario: stub_model(Usuario, lista_de_revisao: 
+        (1..8).map {|n| 
+          build(:conteudo, id: n, titulo: "Conteudo #{n}", created_at: Time.now)
+        })
       }
     end
   end

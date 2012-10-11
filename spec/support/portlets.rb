@@ -9,12 +9,12 @@ def estante_vazia
 end
 
 shared_examples_for 'a portlet' do
+  let(:usuario) { options[:usuario] }
+  
   it 'mostra apenas um número fixo de itens' do
+    assigns.merge(options[:assigns]) if options[:assigns]
     Rails.application.config.limite_de_itens_nos_portlets = 4
-    conteudos_para_a_lista = (1..8).map do |n| 
-      FactoryGirl.create(:conteudo, id: n, titulo: "Conteudo #{n}", created_at: Time.now)
-    end
-    view.stub(:current_usuario).and_return(stub_usuario[conteudos_para_a_lista])
+    view.stub(:current_usuario).and_return(usuario)
     view.stub(:can?).and_return(true)
     render
     (1..4).each {|n| rendered.should have_content "Conteudo #{n}" }
