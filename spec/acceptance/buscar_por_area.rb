@@ -8,6 +8,13 @@ feature 'buscar conteúdo por área' do
     conteudo2 = create(:conteudo)
     visit root_path
     click_link conteudo1.sub_area.area.nome
+    page.should_not have_content conteudo1.titulo
+    
+    conteudo1.submeter!
+    conteudo1.aprovar!
+    
+    visit root_path
+    click_link conteudo1.sub_area.nome
     page.should have_content "Resultados da Busca — 1 itens correspondentes aos termos da busca"
     page.should have_content conteudo1.titulo
   end

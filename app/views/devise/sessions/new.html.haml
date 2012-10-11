@@ -3,8 +3,8 @@
 %br
 
 = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  = f.input :email, label: 'E-mail'
-  = f.input :password, label: 'Senha'
+  = f.input :email, label: 'E-mail', required: false
+  = f.input :password, label: 'Senha', required: false
   = f.submit "Entrar", style: 'float: none'
 
 = render "links"

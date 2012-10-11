@@ -218,9 +218,9 @@ class Conteudo < ActiveRecord::Base
   end
 
   def notificar_publicacao
-    mensagem = "O conteúdo #{self.titulo} anteriormente submetido para publicação já se encontra disponível para o público."
-    notificacao = self.notificacoes.create(mensagem: mensagem, conteudo_id: self.id, 
-                                           usuario_id: self.contribuidor_id)
+    notificacao = self.notificacoes.create(conteudo_id: self.id, 
+                                           usuario_id: self.contribuidor_id,
+                                           titulo_conteudo: self.titulo)
     notificacao.save!
   end
 

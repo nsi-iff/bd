@@ -7,4 +7,8 @@
 - if can? :devolver, conteudo
   = button_to 'Devolver', devolver_conteudo_path(conteudo), method: :put
 - if conteudo.can_retornar_para_revisao? && can?(:retornar_para_revisao, conteudo)
-  = button_to 'Retornar para revisão', retornar_para_revisao_conteudo_path, method: :put, style: 'width:160px'
+  = button_to 'Retornar para revisão', retornar_para_revisao_conteudo_path, method: :put
+- if can? :edit, @conteudo
+  = button_to "Editar", edit_conteudo_path(@conteudo), method: 'get'
+- if can? :destroy, @conteudo
+  = button_to "Excluir", conteudo_path(@conteudo), method: 'delete'

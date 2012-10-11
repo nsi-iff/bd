@@ -138,27 +138,14 @@ feature 'cesta de grãos' do
       end
     end
 
-    scenario 'baixar conteudo da cesta' do
+    scenario 'baixar conteúdo da cesta' do
       criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt))
       visit root_path
       find('#baixar_conteudo_cesta').click
 
-      FileUtils.rm_rf "#{Rails.root}/spec/resources/downloads/"
-      FileUtils.mkdir_p "#{Rails.root}/spec/resources/downloads/"
-
-      Zip::ZipFile.open(Dir["#{Rails.root}/tmp/cesta_temporaria*"].last) do |zip_file|
-        zip_file.each do |grao|
-          grao_path = File.join("#{Rails.root}/spec/resources/downloads/", grao.name)
-          zip_file.extract(grao, grao_path)
-        end
-      end
-
-      grao_armazenado = Digest::MD5.hexdigest(File.read('./spec/resources/tabela.odt'))
-      grao_extraido = Digest::MD5.hexdigest(File.read("#{Rails.root}/spec/resources/downloads/grao_quantum_mechanics_for_dummies_0.odt"))
-      grao_armazenado.should == grao_extraido
-      referencia_abnt = File.read("#{Rails.root}/spec/resources/downloads/referencias_ABNT.txt")
-      referencia_abnt.should match "grao_quantum_mechanics_for_dummies_0.odt: #{@livro.referencia_abnt}"
-      FileUtils.rm_rf("#{Rails.root}/spec/resources/downloads")
+      page.response_headers['Content-Type'].should == "application/zip"
+      page.source.should have_content "grao_quantum_mechanics_for_dummies_0.odt" # zip deve conter arquivo que representa o grão
+      page.source.should have_content "referencias_ABNT.txt"
     end
 
     scenario 'baixar conteudo da cesta em odt' do

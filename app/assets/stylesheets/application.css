@@ -314,4 +314,5 @@ footer a.topo {
 
 #select_instituicao, #select_campus {
   font-size: 12px;
+  display: block;
 }

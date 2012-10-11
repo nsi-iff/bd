@@ -8,8 +8,12 @@ fieldset {
 label {
   display: block;
   font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 2px;
+  margin-top: 15px;
+}
+
+#label_instituicao, #label_campus
+{
+  margin-top: -5px;
 }
 
 input[type="text"] {
@@ -44,9 +48,9 @@ input[type="checkbox"] {
 }
 
 input[type="submit"] {
-  float: left;
-  width: 80px;
+  width: auto;
   margin-bottom: 20px;
+  float: left;
 }
 
 .inline-hints {
@@ -105,3 +109,6 @@ form li {
   display: none;
 }
 
+#link_suporte {
+  clear: both;
+}
