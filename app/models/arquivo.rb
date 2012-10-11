@@ -9,8 +9,8 @@ class Arquivo < ActiveRecord::Base
 
   belongs_to :conteudo
 
-  attr_accessor :uploaded_file, :mime_type    
-  attr_accessible :uploaded_file, :conteudo, :mime_type, :key, :thumbnail_key, :nome
+  attr_accessor :uploaded_file
+  attr_accessible :uploaded_file, :conteudo, :key, :thumbnail_key, :nome
 
   validates_format_of :nome, :with => /.*\.(pdf|rtf|odt|doc|ps)/, :on => :create,
                              :if => :tipo_importa?

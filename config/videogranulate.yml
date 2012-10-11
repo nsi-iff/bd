@@ -1,16 +1,16 @@
 development:
-  user: 'ic'     
-  password: 'ic'
-  host: 200.143.198.46
-  port: 9885
-  callback_url: 'http://10.12.3.216:3000/conteudos/granularizou'
+  user: 'test'
+  password: 'test'
+  host: localhost
+  port: 8885
+  callback_url: 'http://localhost:3000/conteudos/granularizou'
   callback_verb: 'POST'
 
 test:
-  user: 'ic'
-  password: 'ic'
+  user: 'test'
+  password: 'test'
   host: localhost
-  port: 9885
+  port: 8885
   callback_url: 'http://localhost:3000/conteudos/granularizou'
   callback_verb: 'POST'
 

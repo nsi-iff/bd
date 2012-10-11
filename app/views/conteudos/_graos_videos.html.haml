@@ -1,4 +1,4 @@
-- thumbnails.length.times do |i|
+- videos.length.times do |i|
   .grao_imagem
     %img{src: "data:image/xyz;base64,#{thumbnails[i].conteudo_base64}"}
     = link_to "nome grao", grao_path(videos[i].id)

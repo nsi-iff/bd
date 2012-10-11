@@ -7,6 +7,7 @@ feature 'adicionar objeto de aprendizagem' do
     Capybara.current_driver = :webkit
     Idioma.create! descricao: 'Português (Brasil)'
     popular_eixos_tematicos_cursos
+    Papel.criar_todos
   end
 
   scenario 'selecionar um curso de um eixo', javascript: true do
@@ -82,5 +83,11 @@ feature 'adicionar objeto de aprendizagem' do
     page.should have_content 'Fotointeligência, Gestão Ambiental, Radiologia e Sistemas de Armas'
     page.should have_content 'Técnicas de programação, OO e Testes'
     page.should have_content 'Português (Brasil)'
+  end
+
+  scenario 'adicionar video', javascript: true do
+    submeter_conteudo :objeto_de_aprendizagem, link: '', arquivo: Rails.root + 'spec/resources/video.ogg'
+    visit conteudo_path(1)
+    page.should have_selector 'video'
   end
 end
