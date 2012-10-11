@@ -87,8 +87,6 @@ feature 'adicionar objeto de aprendizagem' do
 
   scenario 'adicionar video', javascript: true do
     submeter_conteudo :objeto_de_aprendizagem, link: '', arquivo: Rails.root + 'spec/resources/video.ogg'
-    visit conteudo_path(1)
-    save_and_open_page
-    page.should have_css('video.OMP')
+    page.should have_selector('video')
   end
 end
