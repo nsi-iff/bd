@@ -9,17 +9,16 @@ unless Rails.application.config.consider_all_requests_local
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
   rescue_from ActionController::RoutingError, :with => :render_not_found
   rescue_from ActionController::UnknownController, :with => :render_not_found
-  rescue_from ActionController::UnknownAction, :with => :render_not_found
+  rescue_from ::AbstractController::ActionNotFound, :with => :render_not_found
 end
 
 def render_not_found(exception)
-  render :template => "/errors/404.html.erb", :layout => 'application'
+  render :template => "/errors/404", :layout => 'application'
 end
 
 def render_error(exception)
   ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
-  debugger
-  render :template => "/errors/500.html.erb", :layout => 'application'
+  render :template => "/errors/500", layout: 'application'
 end
 
 def routing_error
