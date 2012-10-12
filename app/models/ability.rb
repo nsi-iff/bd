@@ -14,14 +14,14 @@ class Ability
     if usuario.contribuidor?
       instituicao = usuario.campus.instituicao.nome
       can :read, Conteudo do |conteudo|
-        conteudo.publicado? || conteudo.contribuidor_id == usuario.id
+        conteudo.publicado? || conteudo.contribuidor == usuario
       end
       can [:edit, :update], Conteudo do |conteudo|
-        conteudo.editavel? && conteudo.contribuidor_id == usuario.id
+        conteudo.editavel? && conteudo.contribuidor == usuario
       end
       can [:create, :submeter], Conteudo if usuario.pode_adicionar_conteudo?
       can [:destroy], Conteudo do |conteudo|
-        conteudo.editavel? && conteudo.contribuidor_id == usuario.id
+        conteudo.editavel? && conteudo.contribuidor == usuario
       end
     end
 
