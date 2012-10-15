@@ -1,13 +1,11 @@
 class Estatistica
-  attr_reader :numero_de_usuarios_cadastrados, 
+  attr_reader :numero_de_usuarios_cadastrados,
               :percentual_de_acessos_por_tipo_de_conteudo,
               :percentual_de_acessos_por_subarea_de_conhecimento,
               :instituicoes_que_mais_contribuiram,
               :campus_que_mais_contribuiram
 
-  TIPOS_DE_CONTEUDO = [ArtigoDeEvento, ArtigoDePeriodico, Livro,
-                       ObjetoDeAprendizagem, PeriodicoTecnicoCientifico,
-                       Relatorio, TrabalhoDeObtencaoDeGrau]
+  TIPOS_DE_CONTEUDO = Conteudo.subclasses
 
   def initialize(ano, mes = nil)
     data_inicial = mes ? Time.new(ano, mes).beginning_of_month : Time.new(ano).beginning_of_year
