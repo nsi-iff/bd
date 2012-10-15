@@ -28,9 +28,7 @@ class PagesController < ApplicationController
 
   def estatisticas
     @title = "Estatísticas"
-    unless params['select_ano']
-      params['select_ano'] = Date.today.year
-    end
+    params['select_ano'] ||= Date.today.year
     @estatisticas = Estatistica.new(params['select_ano'], params['select_mes'])
   end
 
