@@ -19,7 +19,7 @@ shared_examples_for 'a portlet' do
     view.stub(:current_usuario).and_return(usuario || stub_model(Usuario))
     view.stub(:can?).and_return(true)
     render
-    (1..4).each {|n| rendered.should have_content "Conteudo #{n}" }
-    (5..6).each {|n| rendered.should_not have_content "Conteudo #{n}" }
+    (1..4).each {|n| rendered.send options[:reverse] ? :should_not : :should, have_content("Conteudo #{n}") }
+    (5..6).each {|n| rendered.send options[:reverse] ? :should : :should_not, have_content("Conteudo #{n}") }
   end
 end
