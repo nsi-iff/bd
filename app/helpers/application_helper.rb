@@ -86,6 +86,12 @@ module ApplicationHelper
       join.
       html_safe
   end
+  
+  def limitar_para_portlet(lista, opcoes = {})
+    lista = lista.reverse if opcoes[:reverse]
+    limite = Rails.application.config.limite_de_itens_nos_portlets - 1
+    lista[0..limite]
+  end
 
   private
 

@@ -3,7 +3,7 @@
   %p Nesta área poderão ser adicionados partes de conteúdos do interesse do usuário para futura utilização.
 - else
   #items
-    - @cesta[0..(Rails.application.config.limite_de_itens_nos_portlets - 1)].map { |ref_id| Referencia.referenciavel_por_id_referencia(ref_id) }.each do |grao|
+    - limitar_para_portlet(@cesta).map { |ref_id| Referencia.referenciavel_por_id_referencia(ref_id) }.each do |grao|
       .item
         = image_tag 'grao/picture.png', width: '14px', height: '14px' if grao.imagem?
         = image_tag 'grao/movie.png', width: '14px', height: '14px' if grao.video?

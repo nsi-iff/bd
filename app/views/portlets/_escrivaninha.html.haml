@@ -1,7 +1,7 @@
 - if current_usuario.present? && can?(:ter_escrivaninha, current_usuario)
   #escrivaninha.portlet
     %h3 Escrivaninha
-    - current_usuario.escrivaninha.reverse[0..(Rails.application.config.limite_de_itens_nos_portlets - 1)].each do |conteudo|
+    - limitar_para_portlet(current_usuario.escrivaninha, reverse: true).each do |conteudo|
       .item
         = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
         - if conteudo.pendente?

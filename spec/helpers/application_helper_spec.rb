@@ -28,4 +28,19 @@ describe ApplicationHelper do
         "<span class='conteudo_tag conteudo-objeto_de_aprendizagem'>Hey ho, let's go</span>"
     end
   end
+  
+  describe 'limitar_para_portlet' do
+    before(:each) do
+      Rails.application.config.limite_de_itens_nos_portlets = 3
+    end
+    
+    it 'retorna apenas o numero de itens definido na configuracao' do
+      helper.limitar_para_portlet((1..10).to_a).should == [1, 2, 3]
+    end
+    
+    it 'permite retornar os ultimos em vez dos primeiros' do
+      helper.limitar_para_portlet((1..10).to_a, reverse: true).should == 
+        [8, 9, 10]
+    end
+  end
 end
