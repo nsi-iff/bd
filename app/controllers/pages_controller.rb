@@ -48,7 +48,7 @@ class PagesController < ApplicationController
   def adicionar_conteudo
     authorize! :create, Conteudo
   end
-  
+
   def mapa_do_site
     @title = "Mapa do Site"
   end

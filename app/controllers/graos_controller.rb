@@ -32,6 +32,7 @@ class GraosController < ApplicationController
   end
 
   def baixar_conteudo_em_odt
+    # TODO: refactoring, mover para model, lib.. ?
     unless current_usuario.cesta.blank?
       documento = DocumentoOdt.new("#{current_usuario.nome_completo}")
       referencias_abnt = []
@@ -82,6 +83,7 @@ class GraosController < ApplicationController
   end
 
   def baixar_grao
+    # TODO: refactoring, mover para model, lib.. ?
     @grao = Grao.find(params[:grao_id])
     dados_grao = @grao.conteudo_base64
     if @grao.imagem?
