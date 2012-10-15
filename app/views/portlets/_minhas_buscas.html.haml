@@ -1,8 +1,9 @@
 - if current_usuario.present?
   #minhas_buscas.portlet
     %h3 Minhas Buscas
-    - if current_usuario.buscas.present?
-      - current_usuario.buscas.reverse[0..2].each do |busca|
+    - buscas = current_usuario.buscas
+    - if buscas.present?
+      - limitar_para_portlet(buscas, reverse: true).each do |busca|
         .item
           = link_to busca.titulo, busca_path(busca)
       = link_to "Gerenciar buscas", minhas_buscas_usuario_path(current_usuario)

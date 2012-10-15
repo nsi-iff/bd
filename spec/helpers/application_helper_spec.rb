@@ -40,7 +40,7 @@ describe ApplicationHelper do
     
     it 'permite retornar os ultimos em vez dos primeiros' do
       helper.limitar_para_portlet((1..10).to_a, reverse: true).should == 
-        [8, 9, 10]
+        [10, 9, 8]
     end
   end
 end
