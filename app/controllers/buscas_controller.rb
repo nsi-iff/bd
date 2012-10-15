@@ -16,12 +16,12 @@ class BuscasController < InheritedResources::Base
 
   def busca_avancada
     @busca = Busca.new(busca: params[:busca], parametros: params[:parametros])
-    if !@busca.busca? && @busca.parametros.empty?
-      redirect_to buscas_path,
-        :notice => "Busca não realizada. Favor preencher algum critério de busca"
-    else
+    if @busca.valida?
       @resultados = Busca.filtrar_busca_avancada(@busca, current_usuario)
       render :resultado_busca
+    else
+      redirect_to buscas_path,
+        :notice => "Busca não realizada. Favor preencher algum critério de busca"
     end
   end
 
