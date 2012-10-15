@@ -12,7 +12,6 @@ class BuscasController < InheritedResources::Base
     @areas = Area.all
     @sub_areas = SubArea.all
     @instituicoes = Instituicao.all
-    @usuario = current_usuario
   end
 
   def busca_avancada

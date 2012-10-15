@@ -22,10 +22,10 @@
         = check_box_tag "parametros[tipos][]", "pronatec"
         = "PRONATEC"
 
-  - if @usuario && @usuario.pode_buscar_por_estados?
+  - if current_usuario && current_usuario.pode_buscar_por_estados?
     = f.label 'Estado do Conteúdo'
     %ul#estado_do_conteudo
-      = estados_visiveis_para(@usuario)
+      = estados_visiveis_para(current_usuario)
 
   = label_tag :busca, "Conteúdo (texto integral)"
   = text_field_tag :busca
