@@ -5,8 +5,8 @@ class ArtigoDePeriodico < Conteudo
   validates :volume_publicacao, numericality: { greater_than: 0, allow_blank: true}
   flexible_date :data_publicacao, suffix: 'br'
 
-  attr_accessible :nome_periodico, :editora, :fasciculo, :volume_publicacao, 
-                  :data_publicacao_br, :local_publicacao, :pagina_inicial, 
+  attr_accessible :nome_periodico, :editora, :fasciculo, :volume_publicacao,
+                  :data_publicacao_br, :local_publicacao, :pagina_inicial,
                   :pagina_final
   validate :verificar_paginas
 
@@ -18,10 +18,8 @@ class ArtigoDePeriodico < Conteudo
   private
 
   def verificar_paginas
-    unless pagina_inicial.blank?
-      if pagina_final < pagina_inicial
-        errors.add(:pagina_final, "Página final deve ser maior que página inicial")
-      end
+    if !pagina_inicial.blank? && pagina_final < pagina_inicial
+      errors.add(:pagina_final, "Página final deve ser maior que página inicial")
     end
   end
 end
