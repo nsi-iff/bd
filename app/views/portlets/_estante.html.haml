@@ -9,5 +9,5 @@
         - limitar_para_portlet(estante, reverse: true).each do |item|
           .item
             = render 'usuarios/item_estante', item: item
-
-        = link_to "Ver todos", estante_usuario_path(current_usuario)
+        - if mostra_link_ver_todos_para_portlet?(estante)
+          = link_to "Ver todos", estante_usuario_path(current_usuario) 

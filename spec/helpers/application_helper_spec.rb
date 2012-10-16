@@ -43,4 +43,16 @@ describe ApplicationHelper do
         [10, 9, 8]
     end
   end
+  
+  describe 'mostra link "ver todos" para portlet?' do
+    it 'sim se há mais links que o mostrado' do
+      helper.stub(:limitar_para_portlet).and_return [1, 2, 3, 4]
+      helper.mostra_link_ver_todos_para_portlet?((1..10).to_a).should be_true
+    end
+    
+    it 'não se há menos links que o mostrado ou a quantidade e a mesma' do
+      helper.stub(:limitar_para_portlet).and_return [1, 2, 3]
+      helper.mostra_link_ver_todos_para_portlet?((1..3).to_a).should be_false
+    end
+  end
 end

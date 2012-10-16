@@ -17,9 +17,9 @@ feature 'Escrivaninha' do
       page.should have_content 'Ruby is cool'
       page.should have_content 'Agile rulz'
       page.should_not have_content 'We love Ruby and Agile'
-      click_link 'Ver todos'
     end
 
+    visit escrivaninha_usuario_path(usuario)
     within '.content' do
       page.should have_content 'Ruby is cool'
       page.should have_content 'Agile rulz'
@@ -33,9 +33,9 @@ feature 'Escrivaninha' do
       page.should have_content 'Agile rulz'
       page.should have_content 'Pendente'
       page.should_not have_content 'We love Ruby and Agile'
-      click_link 'Ver todos'
     end
 
+    visit escrivaninha_usuario_path(usuario)
     within '.content' do
       page.should have_content 'Ruby is cool'
       page.should have_content 'Agile rulz'

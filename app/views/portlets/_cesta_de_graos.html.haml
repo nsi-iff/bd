@@ -19,5 +19,5 @@
     = link_to image_tag('cesta/mover_para_estante.gif', width: '18px', height: '18px', title: "mover para estante"),
       favoritar_graos_path, id: 'mover_graos_estante'
   %br
-  = link_to "Ver todos", cesta_graos_path
+  = link_to "Ver todos", cesta_graos_path if mostra_link_ver_todos_para_portlet?(@cesta)
   = link_to "Editar", editor_path(graos: true)

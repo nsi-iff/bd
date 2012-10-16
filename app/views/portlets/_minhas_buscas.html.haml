@@ -8,6 +8,8 @@
           = link_to busca.titulo, busca_path(busca)
       = link_to "Gerenciar buscas", minhas_buscas_usuario_path(current_usuario)
       = link_to "Mala direta", minhas_buscas_usuario_path(current_usuario)
+      - if mostra_link_ver_todos_para_portlet?(buscas)
+        = link_to "Ver todas", minhas_buscas_usuario_path(current_usuario)
     - else
       %p Não há buscas salvas.
 

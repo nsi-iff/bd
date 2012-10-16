@@ -92,6 +92,10 @@ module ApplicationHelper
     limite = Rails.application.config.limite_de_itens_nos_portlets - 1
     lista[0..limite]
   end
+  
+  def mostra_link_ver_todos_para_portlet?(lista)
+    limitar_para_portlet(lista).count < lista.count
+  end
 
   private
 

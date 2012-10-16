@@ -1,7 +1,8 @@
 - if current_usuario.present? && can?(:ter_escrivaninha, current_usuario)
   #escrivaninha.portlet
     %h3 Escrivaninha
-    - limitar_para_portlet(current_usuario.escrivaninha, reverse: true).each do |conteudo|
+    - escrivaninha = current_usuario.escrivaninha
+    - limitar_para_portlet(escrivaninha, reverse: true).each do |conteudo|
       .item
         = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
         - if conteudo.pendente?
@@ -9,8 +10,8 @@
         %br
         %span.info
           = "#{conteudo.created_at.strftime('%d/%m/%Y')}"
-    - if current_usuario.escrivaninha.blank?
+    - if escrivaninha.blank?
       %p Não há nenhum conteúdo editável.
-    - else
-      = link_to "Ver todos", escrivaninha_usuario_path(current_usuario)
+    - if mostra_link_ver_todos_para_portlet?(escrivaninha)
+      = link_to "Ver todos", escrivaninha_usuario_path(current_usuario) 
 

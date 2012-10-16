@@ -14,5 +14,6 @@
       .portlet-info
         = "Total: #{pluralize(lista_de_revisao.count, "item")}"
 
-      = link_to "Ver todos", lista_de_revisao_usuario_path(current_usuario)
+      - if mostra_link_ver_todos_para_portlet?(lista_de_revisao)
+        = link_to "Ver todos", lista_de_revisao_usuario_path(current_usuario)
 
