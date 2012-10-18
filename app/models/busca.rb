@@ -86,10 +86,6 @@ class Busca < ActiveRecord::Base
     end
   end
 
-  def valida?
-    @busca.busca? && !@busca.parametros.empty?
-  end
-
   def query_parametros
     parametros.except(:tipos).map { |tupla| tupla.join(':') }.join(' ')
   end
