@@ -23,21 +23,23 @@
         hint: 'É suportado qualquer formato de arquivo.'
     = f.semantic_errors :arquivo
 
-= f.input :link,
+= f.input :link, :input_html => {:onfocus => "mostrar_metadados();"},
   hint: 'Este campo somente deverá ser preenchido se o autor não dispuser dos devidos direitos para disponibilização do conteúdo, inviabilizando assim o preenchimento do campo “Arquivo”.'
-= f.input :titulo, label: 'Título'
-= label_tag(:area, 'Grande Área de Conhecimento')
-= select_tag(:area, options_for_select(Area.all.map {|area| [area.nome, area.id] }), class: "areas")
-= f.input :sub_area, as: :select, input_html: { class: "sub_areas" },
-    collection: Area.first.sub_areas.map {|sub_area| [sub_area.nome, sub_area.id] },
-    include_blank: false, label: 'Área de Conhecimento'
-#autores
-  = f.semantic_fields_for :autores do |autor|
-    = render 'conteudos/autor_fields', :f => autor
-  .links
-    = link_to_add_association 'Adicionar outro autor', f, :autores, :partial => 'conteudos/autor_fields', class: 'btn'
-    = f.semantic_errors :autores
-= f.input :campus, as: :select, input_html: { class: "campus" },
-    collection: current_usuario.campus.instituicao.campi.map { |campus| [campus.nome, campus.id] },
-    include_blank: false, label: 'Campus da Instituição do Autor'
-= f.input :contribuidor_id, as: :hidden, input_html: { value: current_usuario.id }
+
+#metadados_basicos_dependentes_do_campo_link
+  = f.input :titulo, label: 'Título'
+  = label_tag(:area, 'Grande Área de Conhecimento')
+  = select_tag(:area, options_for_select(Area.all.map {|area| [area.nome, area.id] }), class: "areas")
+  = f.input :sub_area, as: :select, input_html: { class: "sub_areas" },
+      collection: Area.first.sub_areas.map {|sub_area| [sub_area.nome, sub_area.id] },
+      include_blank: false, label: 'Área de Conhecimento'
+  #autores
+    = f.semantic_fields_for :autores do |autor|
+      = render 'conteudos/autor_fields', :f => autor
+    .links
+      = link_to_add_association 'Adicionar outro autor', f, :autores, :partial => 'conteudos/autor_fields', class: 'btn'
+      = f.semantic_errors :autores
+  = f.input :campus, as: :select, input_html: { class: "campus" },
+      collection: current_usuario.campus.instituicao.campi.map { |campus| [campus.nome, campus.id] },
+      include_blank: false, label: 'Campus da Instituição do Autor'
+  = f.input :contribuidor_id, as: :hidden, input_html: { value: current_usuario.id }

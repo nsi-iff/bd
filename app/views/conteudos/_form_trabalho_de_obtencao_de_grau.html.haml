@@ -2,18 +2,22 @@
   = render 'conteudos/abas_e_dados_basicos', :f => f
 
   #metadados_complementares.aba
-    = f.input :subtitulo, label: 'Subtítulo'
-    = f.input :numero_paginas, label: 'Número de páginas'
-    = f.input :instituicao, label: 'Instituição',
-      hint: 'Instituição concedente do grau associado ao trabalho'
-    = f.input :grau, label: 'Grau', as: 'select', include_blank: false,
-      collection: Grau.all.map { |grau| [grau.nome, grau.id] }
-    = f.input :data_defesa_br, as: 'string', label: 'Data da Defesa',
-      hint: 'Data na qual o trabalho foi apresentado'
-    = f.input :local_defesa, label: 'Local de Defesa',
-      hint: 'Cidade onde o trabalho foi defendido'
-    = f.input :resumo
-    = f.input :direitos
-    %span.clear
+    #metadados_complementares_dependentes_do_campo_link
+      = f.input :subtitulo, label: 'Subtítulo'
+      = f.input :numero_paginas, label: 'Número de páginas'
+      = f.input :instituicao, label: 'Instituição',
+        hint: 'Instituição concedente do grau associado ao trabalho'
+      = f.input :grau, label: 'Grau', as: 'select', include_blank: false,
+        collection: Grau.all.map { |grau| [grau.nome, grau.id] }
+      = f.input :data_defesa_br, as: 'string', label: 'Data da Defesa',
+        hint: 'Data na qual o trabalho foi apresentado'
+      = f.input :local_defesa, label: 'Local de Defesa',
+        hint: 'Cidade onde o trabalho foi defendido'
+      = f.input :resumo
+      = f.input :direitos
+      %span.clear
+
+  - if @conteudo.new_record?
+    = javascript_tag "ocultar_metadados();"
 
   = f.submit 'Salvar'
