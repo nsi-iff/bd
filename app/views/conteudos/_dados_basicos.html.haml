@@ -35,7 +35,7 @@
   = f.semantic_fields_for :autores do |autor|
     = render 'conteudos/autor_fields', :f => autor
   .links
-    = link_to_add_association 'Adicionar outro autor', f, :autores, :partial => 'conteudos/autor_fields'
+    = link_to_add_association 'Adicionar outro autor', f, :autores, :partial => 'conteudos/autor_fields', class: 'btn'
     = f.semantic_errors :autores
 = f.input :campus, as: :select, input_html: { class: "campus" },
     collection: current_usuario.campus.instituicao.campi.map { |campus| [campus.nome, campus.id] },
