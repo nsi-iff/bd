@@ -5,12 +5,15 @@
     - if lista_de_revisao.blank?
       %p Não há nenhum conteúdo para revisão.
     - else
-      - lista_de_revisao[0..(Rails.application.config.limite_de_itens_nos_portlets - 1)].each do |conteudo|
+      - limitar_para_portlet(lista_de_revisao).each do |conteudo|
         .item
           = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
           %br
           %span.info
             = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
+      .portlet-info
+        = "Total: #{pluralize(lista_de_revisao.count, "item")}"
 
-      = link_to "Ver todos", lista_de_revisao_usuario_path(current_usuario)
+      - if mostra_link_ver_todos_para_portlet?(lista_de_revisao)
+        = link_to "Ver todos", lista_de_revisao_usuario_path(current_usuario)
 

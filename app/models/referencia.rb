@@ -13,6 +13,10 @@ class Referencia < ActiveRecord::Base
       Mailer.notificar_usuarios_referenciavel_removido(favoritador, self.referenciavel).deliver
     end
   end
+  
+  def self.referenciavel_por_id_referencia(referencia_id)
+    find_by_id(referencia_id).try(:referenciavel)
+  end
 
   private
 

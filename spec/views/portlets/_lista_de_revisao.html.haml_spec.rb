@@ -21,15 +21,14 @@ describe "portlets/_lista_de_revisao.html.haml" do
     render.should_not have_content 'Lista de Revisão'
   end
   
-  it 'mostra apenas um número fixo de itens' do
-    Rails.application.config.limite_de_itens_nos_portlets = 4
-    conteudos = (1..8).map do |n| 
-      build(:conteudo, id: n, titulo: "Conteudo #{n}", created_at: Time.now)
+  it_behaves_like 'a portlet' do
+    let(:options) do
+      { usuario: stub_model(Usuario, gestor?: true,
+        lista_de_revisao: 
+          (1..8).map {|n| 
+            build(:conteudo, id: n, titulo: "Conteudo #{n}", created_at: Time.now)
+          })
+      }
     end
-    usuario.stub(:lista_de_revisao).and_return(conteudos)
-    view.stub(:can?).and_return(true)
-    render
-    (1..4).each {|n| rendered.should have_content "Conteudo #{n}" }
-    (5..6).each {|n| rendered.should_not have_content "Conteudo #{n}" }
   end
 end

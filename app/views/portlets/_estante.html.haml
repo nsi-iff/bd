@@ -1,12 +1,13 @@
 - if current_usuario.present? && can?(:ter_estante, current_usuario)
   #estante.portlet
     %h3 Estante
-    - if current_usuario.estante.blank?
+    - estante = current_usuario.estante
+    - if estante.blank?
       %p Não há nenhum conteúdo publicado ou favoritado.
     - else
       #items
-        - current_usuario.estante.reverse[0..2].each do |item|
+        - limitar_para_portlet(estante, reverse: true).each do |item|
           .item
             = render 'usuarios/item_estante', item: item
-
-        = link_to "Ver todos", estante_usuario_path(current_usuario)
+        - if mostra_link_ver_todos_para_portlet?(estante)
+          = link_to "Ver todos", estante_usuario_path(current_usuario) 
