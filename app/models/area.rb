@@ -7,7 +7,7 @@ class Area < ActiveRecord::Base
   validates :nome, presence: true, uniqueness: true
 
   def conteudos
-    self.sub_areas.map(&:conteudos).flatten
+    (self.sub_areas.map &:conteudos).flatten
   end
 
   def to_s
