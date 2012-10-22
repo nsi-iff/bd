@@ -2,23 +2,27 @@
   = render 'conteudos/abas_e_dados_basicos', :f => f
 
   #metadados_complementares.aba
-    = f.input :subtitulo, label: 'Subtítulo'
-    = f.input :nome_periodico, label: 'Nome',
-      hint: 'Nome do periódico no qual o artigo foi publicado'
-    = f.input :editora,
-      hint: 'Uma organização que coordena a publicação do periódico'
-    = f.input :fasciculo, label: 'Fascículo'
-    = f.input :volume_publicacao, label: 'Volume',
-        hint: 'Volume da publicação do artigo'
-    = f.input :data_publicacao_br, as: 'string', label: 'Data',
-        hint: 'Data de publicação do artigo'
-    = f.input :local_publicacao, label: 'Local'
-    = f.input :pagina_inicial, label: 'Página inicial da publicação',
-        hint: 'Página inicial da publicação do artigo'
-    = f.input :pagina_final, label: 'Página final da publicação',
-        hint: 'Página final da publicação do artigo'
-    = f.input :resumo
-    = f.input :direitos
-    %span.clear
+    #metadados_complementares_dependentes_do_campo_link
+      = f.input :subtitulo, label: 'Subtítulo'
+      = f.input :nome_periodico, label: 'Nome',
+        hint: 'Nome do periódico no qual o artigo foi publicado'
+      = f.input :editora,
+        hint: 'Uma organização que coordena a publicação do periódico'
+      = f.input :fasciculo, label: 'Fascículo'
+      = f.input :volume_publicacao, label: 'Volume',
+          hint: 'Volume da publicação do artigo'
+      = f.input :data_publicacao_br, as: 'string', label: 'Data',
+          hint: 'Data de publicação do artigo'
+      = f.input :local_publicacao, label: 'Local'
+      = f.input :pagina_inicial, label: 'Página inicial da publicação',
+          hint: 'Página inicial da publicação do artigo'
+      = f.input :pagina_final, label: 'Página final da publicação',
+          hint: 'Página final da publicação do artigo'
+      = f.input :resumo
+      = f.input :direitos
+      %span.clear
+
+  - if @conteudo.new_record?
+    = javascript_tag "ocultar_metadados();"
 
   = f.submit 'Salvar'
