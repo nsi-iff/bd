@@ -3,6 +3,10 @@
 require 'spec_helper'
 
 describe Arquivo do
+  it 'mimetype application/ogg' do
+    subject.mime_type = 'application/ogg'
+    subject.save.should == false
+  end
   it 'informa se é um ODT' do
     subject.nome = 'eu_sou.odt'; subject.should be_odt
     subject.nome = 'eu_sou.ODT'; subject.should be_odt

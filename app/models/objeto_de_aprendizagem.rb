@@ -54,7 +54,7 @@ class ObjetoDeAprendizagem < Conteudo
 
   def granularizar_video
     config = Rails.application.config.videogranulate_configuration
-    response = videogranulate.granulate(:sam_uid => arquivo.key, 
+    response = videogranulate.granulate(:sam_uid => arquivo.key,
       :filename => arquivo.nome,
       callback: config[:callback_url],
       verb: config[:callback_verb])

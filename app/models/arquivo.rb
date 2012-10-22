@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Arquivo < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
@@ -14,8 +15,15 @@ class Arquivo < ActiveRecord::Base
 
   validates_format_of :nome, :with => /.*\.(pdf|rtf|odt|doc|ps)/, :on => :create,
                              :if => :tipo_importa?
+
+  validate :checar_mimetype
+
   before_save :enviar_ao_sam
   before_destroy :deleta_do_sam, :if => "self.key"
+
+  def checar_mimetype
+    self.mime_type == 'application/ogg' && errors.add(:mime_type, 'Arquivo inválido')
+  end
 
   def to_s
     self.nome
