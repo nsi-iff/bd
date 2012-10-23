@@ -9,6 +9,7 @@ describe "portlets/_cesta_de_graos.html.haml" do
         Referencia.stub(:referenciavel_por_id_referencia).with(n).and_return(
           stub_model(Grao, imagem?: true, titulo: "Conteudo #{n}"))
       end
+
       
       {
         assigns: {
@@ -16,5 +17,13 @@ describe "portlets/_cesta_de_graos.html.haml" do
         }
       }
     end
+  end
+  it "Possui check box para seleção de grãos" do
+    @usuario = create(:usuario_contribuidor)
+    @livro = create(:livro_publicado)
+    @cesta = criar_cesta(@usuario, @livro, "#{Rails.root}/spec/resources/imagem_em_tabela.odt")
+    assign(:cesta, @cesta)
+    render
+    rendered.should have_css "#cesta.portlet .item > input[type='checkbox']"
   end
 end
