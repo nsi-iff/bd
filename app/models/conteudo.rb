@@ -33,6 +33,8 @@ class Conteudo < ActiveRecord::Base
 
   validates_format_of :link, :with => URI::regexp(%w(http https)), :allow_blank => true
 
+  validates_associated :arquivo
+
   after_save :salvar_arquivo, :if => :arquivo
 
   state_machine :state, :initial => :editavel do
@@ -218,7 +220,7 @@ class Conteudo < ActiveRecord::Base
   end
 
   def notificar_publicacao
-    notificacao = self.notificacoes.create(conteudo_id: self.id, 
+    notificacao = self.notificacoes.create(conteudo_id: self.id,
                                            usuario_id: self.contribuidor_id,
                                            titulo_conteudo: self.titulo)
     notificacao.save!
