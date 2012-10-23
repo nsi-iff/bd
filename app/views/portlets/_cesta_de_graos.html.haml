@@ -2,9 +2,10 @@
 - if @cesta.blank?
   %p Nesta área poderão ser adicionados partes de conteúdos do interesse do usuário para futura utilização.
 - else
-  #items
+  #cesta.portlet
     - limitar_para_portlet(@cesta).map { |ref_id| Referencia.referenciavel_por_id_referencia(ref_id) }.each do |grao|
       .item
+        = check_box_tag false
         = image_tag 'grao/picture.png', width: '14px', height: '14px' if grao.imagem?
         = image_tag 'grao/movie.png', width: '14px', height: '14px' if grao.video?
         = image_tag 'grao/table.png', width: '14px', height: '14px' if grao.arquivo?

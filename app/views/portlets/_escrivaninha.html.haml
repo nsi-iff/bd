@@ -4,6 +4,7 @@
     - escrivaninha = current_usuario.escrivaninha
     - limitar_para_portlet(escrivaninha, reverse: true).each do |conteudo|
       .item
+        = check_box_tag false
         = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
         - if conteudo.pendente?
           %span.info{ id: "pendente[#{conteudo.id}]" } Pendente

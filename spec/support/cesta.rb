@@ -2,7 +2,7 @@
 require 'base64'
 
 def item_da_cesta(n)
-  "#cesta #items div:nth-child(%s)" % n
+  "#cesta #cesta.portlet div:nth-child(%s)" % n
 end
 
 def criar_cesta(usuario, conteudo, *grain_files)
