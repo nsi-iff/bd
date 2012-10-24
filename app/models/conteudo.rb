@@ -29,7 +29,7 @@ class Conteudo < ActiveRecord::Base
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,
            :arquivo_ou_link_devem_existir
 
-  validates :titulo, :sub_area, :campus, :autores, presence: true
+  validates :titulo, :sub_area, :campus, :autores, presence: true, :unless => :novo_registro?
 
   validates_format_of :link, :with => URI::regexp(%w(http https)), :allow_blank => true
 
@@ -271,5 +271,9 @@ class Conteudo < ActiveRecord::Base
 
   def salvar_arquivo
     self.arquivo.salvar_se_necessario
+  end
+
+  def novo_registro?
+    self.new_record?
   end
 end

@@ -352,16 +352,19 @@ describe Conteudo do
   end
 
   context 'atributos obrigatorios' do
-    it { should_not have_valid(:titulo).when('', nil) }
-    it { should_not have_valid(:sub_area).when(nil) }
+    let(:conteudo) { create(:livro_pendente) }
+
+    it { conteudo.should_not have_valid(:titulo).when('', nil) }
+    it { conteudo.should_not have_valid(:sub_area).when(nil) }
 #    it { should_not have_valid(:campus).when('', nil) }
 
     it 'deve ter pelo menos um autor' do
-      subject.valid?
-      subject.errors[:autores].should be_any
-      subject.autores.build(nome: 'Linus', lattes: 'http://lattes.cnpq.br/1')
-      subject.valid?
-      subject.errors[:autores].should_not be_any
+      conteudo.autores.delete_all
+      conteudo.valid?
+      conteudo.errors[:autores].should be_any
+      conteudo.autores.build(nome: 'Linus', lattes: 'http://lattes.cnpq.br/1')
+      conteudo.valid?
+      conteudo.errors[:autores].should_not be_any
     end
   end
 

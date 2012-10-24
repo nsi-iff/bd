@@ -35,6 +35,7 @@ class ConteudosController < ApplicationController
 
   def edit
     @conteudo = obter_conteudo
+    @conteudo.valid?
     authorize! :update, @conteudo
   end
 
@@ -79,8 +80,12 @@ class ConteudosController < ApplicationController
   def submeter
     authorize! :submeter, Conteudo
     conteudo = obter_conteudo
-    conteudo.submeter
-    redirect_to conteudo_path(conteudo)
+    if conteudo.valid?
+      conteudo.submeter
+      redirect_to conteudo_path(conteudo)
+    else
+      redirect_to edit_conteudo_path(conteudo)
+    end
   end
 
   def aprovar
