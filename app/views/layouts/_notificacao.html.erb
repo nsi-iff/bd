@@ -24,7 +24,11 @@
         </ul>
       </div>
       <div id="sair">
-        <a href="#"><div id="sair_notificacoes" onclick="$('#notificacoes_container').remove()">Ok</div></a>
+        <a href="#">
+          <div id="sair_notificacoes" onclick="$('#notificacoes_container').remove(); 
+                                               $('html').css('overflow', 'visible')">Ok
+          </div>
+        </a>
       </div>
     </div>
   </div>
