@@ -14,10 +14,10 @@
 
   = link_to image_tag('cesta/baixar_carrinho.png', width: '18px', height: '18px', title: 'baixar conteúdo da cesta'),
     '/cesta/baixar_conteudo', id: 'baixar_conteudo_cesta'
-  = link_to image_tag('cesta/baixar_carrinho.png', width: '18px', height: '18px', title:'baixar conteúdo da cesta em odt'),
+  = link_to image_tag('cesta/baixar_em_odt.png', width: '18px', height: '18px', title:'baixar conteúdo da cesta em odt'),
     '/cesta/baixar_conteudo_em_odt', id: 'baixar_conteudo_cesta_odt'
   - if current_usuario
-    = link_to image_tag('cesta/mover_para_estante.gif', width: '18px', height: '18px', title: "mover para estante"),
+    = link_to image_tag('cesta/mover_para_estante.png', width: '18px', height: '18px', title: "mover grãos para estante"),
       favoritar_graos_path, id: 'mover_graos_estante'
   %br
   = link_to "Ver todos", cesta_graos_path if mostra_link_ver_todos_para_portlet?(@cesta)
