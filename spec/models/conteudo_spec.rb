@@ -598,5 +598,8 @@ describe Conteudo do
     conteudo.destroy
     expect { conteudo.arquivo.reload }.to raise_error(ActiveRecord::RecordNotFound)
   end
+  
+  it 'não permite extração de metadados por default' do
+    Conteudo.new.permite_extracao_de_metadados?.should be_false
+  end
 end
-

@@ -14,6 +14,9 @@ class ArtigoDePeriodico < Conteudo
     "Artigo de Periódico"
   end
 
+  def permite_extracao_de_metadados?
+    true
+  end
 
   private
 

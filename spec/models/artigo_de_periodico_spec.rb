@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe ArtigoDePeriodico do
@@ -14,4 +16,6 @@ describe ArtigoDePeriodico do
     artigo_2 = ArtigoDeEvento.new pagina_inicial: 30
     artigo_2.should_not have_valid(:pagina_final).when 20
   end
+  
+  it_behaves_like 'conteudo que permite extração de metadados'
 end

@@ -14,6 +14,10 @@ class ArtigoDeEvento < Conteudo
   def self.nome_humanizado
     'Artigo de Evento'
   end
+  
+  def permite_extracao_de_metadados?
+    true
+  end
 
   private
 

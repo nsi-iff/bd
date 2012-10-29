@@ -225,6 +225,10 @@ class Conteudo < ActiveRecord::Base
                                            titulo_conteudo: self.titulo)
     notificacao.save!
   end
+  
+  def permite_extracao_de_metadados?
+    false
+  end
 
   private
 

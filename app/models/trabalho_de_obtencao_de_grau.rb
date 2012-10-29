@@ -12,4 +12,8 @@ class TrabalhoDeObtencaoDeGrau < Conteudo
   def self.nome_humanizado
     "Trabalho de Obtenção de Grau"
   end
+  
+  def permite_extracao_de_metadados?
+    true
+  end
 end
