@@ -55,6 +55,7 @@ DigitalLibrary::Application.routes.draw do
     member do
       put :recolher
       put :aprovar
+      put :pre_submeter
       put :submeter
       put :favoritar
       put :remover_favorito

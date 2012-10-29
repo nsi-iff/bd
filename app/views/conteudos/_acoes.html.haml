@@ -1,5 +1,5 @@
 - if can? :submeter, conteudo and conteudo.editavel?
-  = button_to 'Submeter', submeter_conteudo_path(conteudo), method: :put
+  = button_to 'Submeter', pre_submeter_conteudo_path(conteudo), method: :put
 - if can? :aprovar, conteudo and conteudo.pendente?
   = button_to 'Aprovar', aprovar_conteudo_path(conteudo), method: :put
 - if can? :recolher, conteudo

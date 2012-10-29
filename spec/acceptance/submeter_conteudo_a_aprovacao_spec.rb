@@ -17,6 +17,7 @@ feature 'submeter conteúdo a aprovação' do
 
       visit conteudo_path(conteudo)
       click_button 'Submeter'
+      click_button 'O conteúdo foi revisado!'
       visit conteudo_path(conteudo)
 
       page.should_not have_content 'Submeter'

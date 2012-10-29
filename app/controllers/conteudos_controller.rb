@@ -77,6 +77,12 @@ class ConteudosController < ApplicationController
     redirect_to root_path
   end
 
+  def pre_submeter
+    authorize! :submeter, Conteudo
+    @conteudo = obter_conteudo
+    redirect_to edit_conteudo_path(@conteudo) if !@conteudo.valid?
+  end
+
   def submeter
     authorize! :submeter, Conteudo
     conteudo = obter_conteudo
