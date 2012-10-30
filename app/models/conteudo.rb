@@ -239,7 +239,8 @@ class Conteudo < ActiveRecord::Base
 
   def criar_graos(dados_graos)
     dados_graos.keys.each do |tipo|
-      dados_graos[tipo].each {|key| graos.create!(key: key, tipo: tipo) }
+      dados_graos[tipo].each {|key| graos.create!(key: key, tipo: tipo) } if dados_graos[tipo].kind_of? Array
+      graos.create!(key: dados_graos[tipo], tipo:tipo) unless dados_graos[tipo].kind_of? Array
     end
   end
 
