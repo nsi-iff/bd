@@ -186,6 +186,10 @@ class Conteudo < ActiveRecord::Base
     Arquivo.find_by_key(id_sam).try(:conteudo)
   end
 
+  def grao_video_converted
+    graos.select(&:video_converted?)
+  end
+
   def graos_arquivo
     graos.select(&:arquivo?)
   end

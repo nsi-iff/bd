@@ -12,6 +12,19 @@ class Grao < ActiveRecord::Base
     tipo == 'files'
   end
 
+  def link_download
+    sam = ServiceRegistry.sam 
+    sam.download_link_for_file key
+  end
+  
+  def audio?
+    tipo == 'audio'
+  end
+
+  def video_converted?
+    tipo == 'converted_video'
+  end
+
   def imagem?
     tipo == 'images'
   end
