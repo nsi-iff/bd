@@ -61,22 +61,7 @@ module ApplicationHelper
   end
 
   def tabela_grao(grao)
-    tabela = extract_table(Base64.decode64(grao.conteudo_base64)).html_safe
-    while "Pictures".in? tabela
-      index2 = index1 = tabela.index("Pictures")
-      while tabela[index2] != "\n"
-        index2 += 1
-      end
-      nome_imagem = tabela[index1..index2-1]
-      arquivo_odt = Tempfile.new("#{Rails.root}/tmp/arquivo.odt", "w")
-      arquivo_odt.write(Base64.decode64(grao.conteudo_base64).force_encoding('UTF-8'))
-      arquivo_odt.close()
-      table = ZipFile.open(arquivo_odt.path)
-      imagem = table.read(nome_imagem)
-      (index2 - index1).times{ tabela[index1] = "" }
-      tabela.insert(index1, "<span class='imagem_em_tabela'><img src='data:image/xyz;base64,#{Base64.encode64(imagem)}'></span>")
-    end
-    tabela
+    extract_table(Base64.decode64(grao.conteudo_base64)).html_safe
   end
 
   def renderizar_graos_da_cesta(cesta)
