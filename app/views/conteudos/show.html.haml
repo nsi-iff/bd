@@ -22,7 +22,7 @@
 
     - if @conteudo.graos_video.present?
       %li{ class: 'sel_aba'}
-        %a{:href=>"#videos"} Videos
+        %a{:href=>"#videos"} Grãos Multimídia
 
 #metadados.aba
   = render "metadados_#{@conteudo.nome_como_simbolo}"
@@ -43,6 +43,12 @@
 
 - if @conteudo.graos_video.present?
   #videos.aba
+    %b
+      Áudio:
+    = render 'conteudos/show_audio_player'
+    %br
+      %b
+        Vídeos:
     = render 'conteudos/graos_videos', thumbnails: @conteudo.graos_imagem, videos: @conteudo.graos_video
     %span.clear
 
