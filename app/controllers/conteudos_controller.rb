@@ -28,6 +28,12 @@ class ConteudosController < ApplicationController
       redirect_to conteudo_path(@conteudo),
                   notice: "#{@conteudo.class.nome_humanizado} enviado com sucesso"
     else
+      if @conteudo.arquivo && @conteudo.arquivo.errors['mime_type'].any?
+        flash[:alert] = %Q[Arquivo com formato inválido,
+                    favor reenviar o arquivo com o formato
+                    convertido (Maiores informações podem
+                    ser obtidas <a href="#">aqui</a>)]
+      end
       @conteudo.build_arquivo
       render action: 'new'
     end
