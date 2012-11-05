@@ -84,7 +84,7 @@ class GraosController < ApplicationController
   def baixar_grao
     @grao = Grao.find(params[:grao_id])
     dados_grao = @grao.conteudo_base64
-    if @grao.imagem?
+    if @grao.imagem? || @grao.video?
       dados_grao = Base64.decode64(dados_grao)
       file_name  = "#{Rails.root}/tmp/#{@grao.titulo}"
       File.new(file_name, "w").write(dados_grao.force_encoding('UTF-8'))
