@@ -27,10 +27,10 @@ describe Grao do
     grao.referencia_abnt.should == 'referencia abnt'
   end
 
-  it '#titulo com o nome do conteúdo + tipo humanizado + numero' do
+  it '#titulo com o nome do conteúdo + tipo humanizado + numero_conteudo + pagina' do
     conteudo = create(:livro, titulo: 'Testando retorno do titulo')
     grao = build(:grao_arquivo, id: 9, conteudo_id: conteudo.id)
-    grao.titulo.should == 'Testando retorno do titulo_tabela_9'
+    grao.titulo.should == 'Testando retorno do titulo_tabela_9_X'
   end
 
   it 'informa a qual conteudo o grao pertence' do
