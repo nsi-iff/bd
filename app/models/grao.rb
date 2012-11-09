@@ -46,11 +46,16 @@ class Grao < ActiveRecord::Base
 
   def titulo
     conteudo = Conteudo.find(conteudo_id)
-    "#{conteudo.titulo}_#{tipo_humanizado}_#{id}"
+    "#{conteudo.titulo}_#{tipo_humanizado}_#{id}_#{pagina}"
   end
 
   def deleta_do_sam
     resposta = sam.delete(key)
     resposta.deleted?
+  end
+
+  def pagina
+    #TODO criar campo no SAM para armazenar numero da pagina
+    return "X"
   end
  end

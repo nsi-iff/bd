@@ -23,7 +23,7 @@
         <p id="notice"><span class='tipo'>Aviso</span><%= notice %></p>
       <% end %>
       <% if alert %>
-        <p id="alert"><span class='tipo'>Erro</span><%= alert %></p>
+        <p id="alert"><span class='tipo'>Erro</span><%= raw alert %></p>
       <% end %>
         <div id='breadcrumbs'>
           <%= render_navigation renderer: :breadcrumbs,
