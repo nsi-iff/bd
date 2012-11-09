@@ -25,10 +25,9 @@ def extract_table(content)
       end
       nome_imagem = table[index1..index2-1]
       arquivo_odt = Tempfile.new("#{Rails.root}/tmp/arquivo.odt", "w")
-      arquivo_odt.write(Base64.decode64(grao.conteudo_base64).force_encoding('UTF-8'))
+      arquivo_odt.write(content.force_encoding('UTF-8'))
       arquivo_odt.close()
-      table = ZipFile.open(arquivo_odt.path)
-      imagem = table.read(nome_imagem)
+      imagem = ZipFile.open(arquivo_odt.path).read(nome_imagem)
       (index2 - index1).times{ table[index1] = "" }
       table.insert(index1, "<span class='imagem_em_table'><img src='data:image/xyz;base64,#{Base64.encode64(imagem)}'></span>")
     end
