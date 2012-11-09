@@ -29,6 +29,6 @@ def extract_table(content)
       table["Pictures/#{image}"] = 
         "<span class='imagem_em_table'><img src='data:image/xyz;base64,#{Base64.encode64(image)}'></span>"
     end
-
+  end
   style + table
 end
