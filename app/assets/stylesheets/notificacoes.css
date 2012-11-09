@@ -49,12 +49,11 @@
 }
 
 #conteudo_notificacoes ul{
-  list-style: none outside none;
+  list-style: disc outside none;
   margin: 0 0 -21px 0;
 }
 
 #conteudo_notificacoes li{
-  float: left;
   padding: 0px 5px;
   margin: -10px 0 0 25px;
 }
