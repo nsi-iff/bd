@@ -18,19 +18,17 @@ def extract_table(content)
     table = htmldoc.xpath('//table').to_s
 
     File.delete(file_name)
-    while "Pictures".in? table
-      index2 = index1 = table.index("Pictures")
-      while table[index2] != "\n"
-        index2 += 1
-      end
-      nome_imagem = table[index1..index2-1]
-      arquivo_odt = Tempfile.new("#{Rails.root}/tmp/arquivo.odt", "w")
-      arquivo_odt.write(content.force_encoding('UTF-8'))
-      arquivo_odt.close()
-      imagem = ZipFile.open(arquivo_odt.path).read(nome_imagem)
-      (index2 - index1).times{ table[index1] = "" }
-      table.insert(index1, "<span class='imagem_em_table'><img src='data:image/xyz;base64,#{Base64.encode64(imagem)}'></span>")
+    odt_file = Tempfile.new("#{Rails.root}/tmp/arquivo.odt", "w")
+    odt_file.write(content.force_encoding('UTF-8'))
+    odt_file.close()
+    zipfile = ZipFile.open(odt_file.path)
+    images = table.scan(/Pictures\/(.+)\n/).flatten
+    images.each do |image|
+      index = table.index("Pictures/#{image}")
+      open_image = zipfile.read("Pictures/#{image}")
+      table["Pictures/#{image}"] = 
+        "<span class='imagem_em_table'><img src='data:image/xyz;base64,#{Base64.encode64(image)}'></span>"
     end
-  end
+
   style + table
 end
