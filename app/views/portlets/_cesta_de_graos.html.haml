@@ -9,7 +9,7 @@
         = image_tag 'grao/picture.png', width: '14px', height: '14px' if grao.imagem?
         = image_tag 'grao/movie.png', width: '14px', height: '14px' if grao.video?
         = image_tag 'grao/table.png', width: '14px', height: '14px' if grao.arquivo?
-        = link_to grao.titulo, grao_path(grao)
+        = link_to titulo_para_portlet(grao.titulo), grao_path(grao)
         = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete, remote: true
 
   = link_to image_tag('cesta/baixar_carrinho.png', width: '18px', height: '18px', title: 'baixar conteúdo da cesta'),

@@ -56,8 +56,14 @@ module ApplicationHelper
     end
   end
 
-  def conteudo_tag(conteudo)
-    "<span class='conteudo_tag conteudo-#{conteudo.class.name.to_s.underscore}'>#{conteudo.titulo}</span>".html_safe
+  def conteudo_tag(conteudo, no_portlet = false)
+    titulo = conteudo.titulo
+    titulo = titulo_para_portlet(titulo) if no_portlet
+    "<span class='conteudo_tag conteudo-#{conteudo.class.name.to_s.underscore}'>#{titulo}</span>".html_safe
+  end
+
+  def titulo_para_portlet(titulo)
+    Rails.env.test? ? titulo : "#{titulo[0..16]}\n#{(titulo[17..40] && titulo[17..40].strip + '...') || ''}"
   end
 
   def tabela_grao(grao)
@@ -71,13 +77,13 @@ module ApplicationHelper
       join.
       html_safe
   end
-  
+
   def limitar_para_portlet(lista, opcoes = {})
     lista = lista.reverse if opcoes[:reverse]
     limite = Rails.application.config.limite_de_itens_nos_portlets - 1
     lista[0..limite]
   end
-  
+
   def mostra_link_ver_todos_para_portlet?(lista)
     limitar_para_portlet(lista).count < lista.count
   end

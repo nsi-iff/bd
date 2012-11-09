@@ -8,7 +8,7 @@
       - limitar_para_portlet(lista_de_revisao).each do |conteudo|
         .item
           = check_box_tag false
-          = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
+          = link_to conteudo_tag(conteudo, no_portlet=true), conteudo_path(conteudo)
           %br
           %span.info
             = "#{conteudo.nome_contribuidor} - #{conteudo.created_at.strftime('%d/%m/%Y')}"
