@@ -11,7 +11,7 @@ feature 'baixar conteúdo' do
     artigo.submeter!
     artigo.aprovar!
     visit conteudo_path(artigo)
-    click_link 'Download' 
+    
   end
 end
 
