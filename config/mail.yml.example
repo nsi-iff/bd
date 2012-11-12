@@ -1,12 +1,14 @@
 development:
   address: '200.167.129.65'
   port: '25'
+  user_name: 'user_name@domain'
   domain: 'iff.edu.br'
   enable_starttls_auto: false
 
 test:
   address:
   port:
+  user_name: 'user_name'
   authentication: plain
   user_name:
   password:
@@ -15,4 +17,5 @@ test:
 production:
   address: '200.167.129.65'
   port: '25'
+  user_name: 'user_name'
   domain: 'iff.edu.br'
