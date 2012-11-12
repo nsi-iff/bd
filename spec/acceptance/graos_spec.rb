@@ -68,16 +68,16 @@ feature 'Visualizar grão' do
       page.should have_button  "Adicionar à Estante"
     end
     
-    scenario 'efetuar download do grao' do
-      grao = adicionar_grao(tipo: 'imagem', arquivo: 'grao_teste_1')
-      visit grao_path(grao)
+    # scenario 'efetuar download do grao' do
+    #   grao = adicionar_grao(tipo: 'imagem', arquivo: 'grao_teste_1')
+    #   visit grao_path(grao)
 
-      click_button 'Download'
-      grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}"
-      grao_postado = "#{Rails.root}/spec/resources/grao_teste_1.jpg"
-      FileUtils.compare_file(grao_postado, grao_baixado)
-      File.delete(grao_baixado)
-    end
+    #   click_button 'Download'
+    #   grao_baixado = "#{Rails.root}/tmp/#{grao.titulo}"
+    #   grao_postado = "#{Rails.root}/spec/resources/grao_teste_1.jpg"
+    #   FileUtils.compare_file(grao_postado, grao_baixado)
+    #   File.delete(grao_baixado)
+    # end
   end
   
   context 'e manipulação' do

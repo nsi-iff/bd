@@ -5,7 +5,7 @@
     - limitar_para_portlet(escrivaninha, reverse: true).each do |conteudo|
       .item
         = check_box_tag false
-        = link_to conteudo_tag(conteudo), conteudo_path(conteudo)
+        = link_to conteudo_tag(conteudo, no_portlet=true), conteudo_path(conteudo)
         - if conteudo.pendente?
           %span.info{ id: "pendente[#{conteudo.id}]" } Pendente
         %br
@@ -14,5 +14,5 @@
     - if escrivaninha.blank?
       %p Não há nenhum conteúdo editável.
     - if mostra_link_ver_todos_para_portlet?(escrivaninha)
-      = link_to "Ver todos", escrivaninha_usuario_path(current_usuario) 
+      = link_to "Ver todos", escrivaninha_usuario_path(current_usuario)
 

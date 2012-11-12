@@ -84,9 +84,4 @@ feature 'adicionar objeto de aprendizagem' do
     page.should have_content 'Técnicas de programação, OO e Testes'
     page.should have_content 'Português (Brasil)'
   end
-
-  scenario 'adicionar video', javascript: true do
-    submeter_conteudo :objeto_de_aprendizagem, link: '', arquivo: Rails.root + 'spec/resources/video.ogg'
-    page.should have_selector('video')
-  end
 end

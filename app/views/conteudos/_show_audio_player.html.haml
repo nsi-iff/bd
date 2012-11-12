@@ -1,0 +1,4 @@
+.video_container
+	%audio{:controls=>"controls", :style =>"margin: 15px 100px"}
+		%source{:src=>"#{@conteudo.grao_audio[0].link_download}",
+		:type=>'audio/ogg', :codecs=>"vorbis"}

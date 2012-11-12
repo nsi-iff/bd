@@ -1,4 +1,4 @@
-- if @conteudo.arquivo and @conteudo.arquivo.video?
+- if @conteudo.arquivo and @conteudo.arquivo.video? and @conteudo.publicado?
   = render 'conteudos/show_video_player'
 
 = render 'conteudos/show_dados_basicos', conteudo: @conteudo

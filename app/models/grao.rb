@@ -12,6 +12,19 @@ class Grao < ActiveRecord::Base
     tipo == 'files'
   end
 
+  def link_download
+    sam = ServiceRegistry.sam 
+    sam.download_link_for_file key
+  end
+  
+  def audio?
+    tipo == 'audio'
+  end
+
+  def video_converted?
+    tipo == 'converted_video'
+  end
+
   def imagem?
     tipo == 'images'
   end
@@ -33,11 +46,16 @@ class Grao < ActiveRecord::Base
 
   def titulo
     conteudo = Conteudo.find(conteudo_id)
-    "#{conteudo.titulo}_#{tipo_humanizado}_#{id}"
+    "#{conteudo.titulo}_#{tipo_humanizado}_#{id}_#{pagina}"
   end
 
   def deleta_do_sam
     resposta = sam.delete(key)
     resposta.deleted?
+  end
+
+  def pagina
+    #TODO criar campo no SAM para armazenar numero da pagina
+    return "X"
   end
  end
