@@ -11,10 +11,14 @@ class ArtigoDeEvento < Conteudo
   validate :verificar_paginas
   validate :verificar_ano
 
+  validates :numero_evento, :ano_evento, :ano_publicacao,
+            :pagina_final, :pagina_inicial, :numero_edicao,
+            numericality: { greater_than: 0, allow_blank: true }
+
   def self.nome_humanizado
     'Artigo de Evento'
   end
-  
+
   def permite_extracao_de_metadados?
     true
   end
