@@ -9,5 +9,5 @@
 %p
   Os metadados do seu conteúdo já foram revisados?
 
-= button_to 'O conteúdo foi revisado!', submeter_conteudo_path(@conteudo), method: :post
+= button_to 'O conteúdo foi revisado!', submeter_conteudo_path(@conteudo), method: :put
 = button_to 'Cancelar submissão!', conteudo_path(@conteudo), method: :get
