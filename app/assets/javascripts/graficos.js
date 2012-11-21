@@ -31,7 +31,6 @@ var Estatisticas = {
 
     barra: function(div, data, label, title) {
         $.jqplot(div, [data], {
-            animate: ! $.jqplot.use_excanvas,
             seriesDefaults: {
                 renderer: $.jqplot.BarRenderer,
                 pointLabels: {
@@ -64,7 +63,7 @@ var Estatisticas = {
                 location: 'e'
             }
         });
-    }
+    },
 };
 
 $(document).ready(function() {
@@ -90,7 +89,7 @@ $(document).ready(function() {
         title = 'Acesso de documentos por conteúdo individual.';
         Estatisticas.barra('todos_acessos', todos_acessos[1], todos_acessos[0], title);
 
-        $('.salvar_grafico').live('click', function() {
+        $('.salvar_grafico').click(function() {
           var grafico_id = this.id.replace('salvar_', '');
           $('#' + grafico_id).jqplotSaveImage();
         });
