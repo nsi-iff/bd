@@ -2,7 +2,7 @@
 
 class ArtigoDePeriodico < Conteudo
   index_name 'conteudos'
-  validates :volume_publicacao, numericality: { greater_than: 0, allow_blank: true}
+  validates :volume_publicacao, :pagina_final, :pagina_inicial, numericality: { greater_than: 0, allow_blank: true}
   flexible_date :data_publicacao, suffix: 'br'
 
   attr_accessible :nome_periodico, :editora, :fasciculo, :volume_publicacao,
