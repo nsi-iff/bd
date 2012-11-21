@@ -167,7 +167,7 @@ class ConteudosController < ApplicationController
     sam = ServiceRegistry.sam
     string64 = sam.get(key)
     arquivo = Base64.decode64(string64.data['file'])
-    file_name  = "#{Rails.root}/tmp/#{@conteudo.titulo}"
+    file_name  = "#{Rails.root}/tmp/#{@conteudo.arquivo.nome}"
     file = File.new(file_name, "w")
     file.write(arquivo.force_encoding('UTF-8'))
     send_file file_name
