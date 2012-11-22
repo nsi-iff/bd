@@ -26,7 +26,8 @@ class ConteudosController < ApplicationController
     end
 
     if @conteudo.save
-      if extrair_metadados(@conteudo)
+      if @conteudo.permite_extracao_de_metadados? and @conteudo.arquivo.present? and @conteudo.arquivo.extensao == "pdf"
+        extrair_metadados(@conteudo)
         redirect_to root_path,
                   notice: "#{@conteudo.class.nome_humanizado} enviado com sucesso"
       else
