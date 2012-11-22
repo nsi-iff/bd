@@ -84,4 +84,18 @@ class Arquivo < ActiveRecord::Base
       return resposta_arquivo.deleted?
     end
   end
+
+  def extrair_metadados
+    tipos_de_conteudo = {"artigo_de_evento" => "event",
+                         "artigo_de_periodico" => 'period',
+                         "trabalho_de_obtencao_de_grau" => 'tcc'}
+    arquivo = sam.get(self.key).data
+    filename = arquivo['filename']
+    dados = Base64.decode64(arquivo['file'])
+    path = "#{Rails.root}/tmp/temp_#{filename}"
+    file = File.open(path, "w").write(dados.force_encoding('UTF-8'))
+    tipo = Conteudo.find(self.conteudo_id).nome_como_simbolo
+    string = "extract_metadata #{path} -t #{tipos_de_conteudo[tipo]}"
+    metadados = `#{string}`
+  end
 end

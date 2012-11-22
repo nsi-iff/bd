@@ -1,4 +1,5 @@
 # encoding: utf-8
+require './lib/extrair_metadados.rb'
 
 class ConteudosController < ApplicationController
   before_filter :authenticate_usuario!, except: [:granularizou, :show,
@@ -25,8 +26,13 @@ class ConteudosController < ApplicationController
     end
 
     if @conteudo.save
-      redirect_to conteudo_path(@conteudo),
+      if extrair_metadados(@conteudo)
+        redirect_to root_path,
                   notice: "#{@conteudo.class.nome_humanizado} enviado com sucesso"
+      else
+        redirect_to conteudo_path(@conteudo),
+                  notice: "#{@conteudo.class.nome_humanizado} enviado com sucesso"
+      end
     else
       if @conteudo.arquivo && @conteudo.arquivo.errors['mime_type'].any?
         flash[:alert] = %Q[Arquivo com formato inválido,
