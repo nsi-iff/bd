@@ -2,25 +2,25 @@
 
 require 'spec_helper'
 
-feature 'extrair automaticamente os metadados do arquivo do conteudo' do
-  before(:each) do
-    popular_area_sub_area if Area.count == 0
-    Papel.criar_todos if Papel.count == 0
-    autenticar_usuario(Papel.contribuidor)
-  end
+#feature 'extrair automaticamente os metadados do arquivo do conteudo' do
+#  before(:each) do
+#    popular_area_sub_area if Area.count == 0
+#    Papel.criar_todos if Papel.count == 0
+#    autenticar_usuario(Papel.contribuidor)
+#  end
 
-  scenario 'tipo de conteúdo Artigo de Evento' do
-    visit new_conteudo_path(tipo: :artigo_de_evento)
-    attach_file('Arquivo', File.join(Rails.root, *%w(spec resources artigo_de_evento.pdf)))
+#  scenario 'tipo de conteúdo Artigo de Evento' do
+#    visit new_conteudo_path(tipo: :artigo_de_evento)
+#    attach_file('Arquivo', File.join(Rails.root, *%w(spec resources artigo_de_evento.pdf)))
 
-    click_button 'Salvar'
+#    click_button 'Salvar'
 
-    artigo_de_evento = ArtigoDeEvento.last
-    artigo_de_evento.resumo.should_not == ""
-    artigo_de_evento.titulo.should_not == ""
-    artigo_de_evento.autores.should_not == []
-    artigo_de_evento.numero_paginas.should_not == ""
-  end
+#    artigo_de_evento = ArtigoDeEvento.last
+#    artigo_de_evento.resumo.should_not == ""
+#    artigo_de_evento.titulo.should_not == ""
+#    artigo_de_evento.autores.should_not == []
+#    artigo_de_evento.numero_paginas.should_not == ""
+#  end
 
   #TODO Verificar ser nsi.metadataextractor já realiza a extração em Artigo de Periódico
 #  scenario 'tipo de conteúdo Artigo de Periódico' do
@@ -36,18 +36,18 @@ feature 'extrair automaticamente os metadados do arquivo do conteudo' do
 #    artigo_de_periodico.numero_paginas == ""
 #  end
 
-  scenario 'tipo de conteúdo Trabalho de Obtenção de Grau' do
-    popular_graus
-    visit new_conteudo_path(tipo: :trabalho_de_obtencao_de_grau)
-    attach_file('Arquivo', File.join(Rails.root, *%w(spec resources tcc.pdf)))
-    select 'Graduação', from: 'Grau'
+#  scenario 'tipo de conteúdo Trabalho de Obtenção de Grau' do
+#    popular_graus
+#    visit new_conteudo_path(tipo: :trabalho_de_obtencao_de_grau)
+#    attach_file('Arquivo', File.join(Rails.root, *%w(spec resources tcc.pdf)))
+#    select 'Graduação', from: 'Grau'
 
-    click_button 'Salvar'
+#    click_button 'Salvar'
 
-    tcc = TrabalhoDeObtencaoDeGrau.last
-    tcc.resumo.should_not == ""
-    tcc.titulo.should_not == ""
-    tcc.autores.should_not == []
-    tcc.numero_paginas.should_not == ""
-  end
-end
+#    tcc = TrabalhoDeObtencaoDeGrau.last
+#    tcc.resumo.should_not == ""
+#    tcc.titulo.should_not == ""
+#    tcc.autores.should_not == []
+#    tcc.numero_paginas.should_not == ""
+#  end
+#end
