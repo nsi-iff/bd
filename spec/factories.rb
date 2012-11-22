@@ -110,7 +110,7 @@ FactoryGirl.define do
     descricao 'um papel'
   end
 
-  %w(contribuidor gestor admin instituicao_admin).each do |papel|
+  %w(contribuidor gestor admin instituicao_admin membro).each do |papel|
     factory "usuario_#{papel}".to_sym, :parent => :usuario do
       after :create do |u|
         hash = { nome: papel }
