@@ -16,7 +16,7 @@ class Conteudo < ActiveRecord::Base
   delegate :extensao, :to => :arquivo, :allow_nil => true
   delegate :thumbnail, :to => :arquivo, :allow_nil => true
   belongs_to :contribuidor, :class_name => 'Usuario'
-  accepts_nested_attributes_for :autores, :reject_if => :all_blank
+  accepts_nested_attributes_for :autores, :reject_if => :all_blank, :allow_destroy => true
   belongs_to :campus
 
   attr_accessible :arquivo, :contribuidor, :titulo, :link, :sub_area_id,
