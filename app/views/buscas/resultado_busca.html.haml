@@ -1,8 +1,8 @@
 - if @resultados.blank?
   %p Não foi encontrado resultado para sua busca.
 - else
-  = form_tag busca_normal_path, :method => :get, :accesskey => "4", :class => "campo_busca" do
-    = text_field_tag :busca, params[:busca], id: "text_busca_resultados"
+  = form_tag busca_normal_path, :method => :get, :class => "campo_busca" do
+    = text_field_tag :busca, params[:busca], id: "text_busca_resultados", :accesskey => "3"
     = submit_tag "Buscar", name: nil, id: "submit_busca"
 
   %div#resultado_header
