@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
+gem 'exception_notification'
 gem 'devise', '~>2.1.0'
 gem 'cancan', '~>1.6.7'
 gem 'pg', '~> 0.14.0'
