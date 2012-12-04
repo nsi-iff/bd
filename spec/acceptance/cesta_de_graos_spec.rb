@@ -88,6 +88,13 @@ feature 'cesta de grãos' do
       deslogar
       page.should_not have_selector '#cesta #cesta.portlet'
     end
+
+    scenario 'grão não pode ser adicionado duas vezes na cesta', js: true do
+      incluir_grao_na_cesta_pelo_form
+      visit grao_path(@grao2)
+      page.should_not have_content 'Adicionar à Cesta de Grãos'
+    end
+  
   end
 
   context 'usuário logado' do
@@ -164,5 +171,6 @@ feature 'cesta de grãos' do
       arquivo_odt.should match @livro.referencia_abnt
       File.delete(grao_baixado)
     end
+
   end
 end
