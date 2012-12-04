@@ -71,4 +71,8 @@ class BuscasController < InheritedResources::Base
 
   def busca_por_imagem
   end
+
+  def mala_direta
+    @buscas = current_usuario.buscas
+  end
 end

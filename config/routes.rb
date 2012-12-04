@@ -19,6 +19,7 @@ DigitalLibrary::Application.routes.draw do
       get :estante
       get :minhas_buscas
       get :area_privada
+      get "/minhas_buscas/mala_direta", to: "buscas#mala_direta", as: :mala_direta
     end
   end
 
