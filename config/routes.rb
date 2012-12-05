@@ -30,7 +30,6 @@ DigitalLibrary::Application.routes.draw do
   match "/ajuda",     :to => "pages#ajuda"
   match "/ajuda/manuais", :to => "pages#manuais"
   match "/sobre",     :to => "pages#sobre"
-  match "/noticias",  :to => "pages#noticias"
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
   match '/estatisticas', :to => "pages#estatisticas"
   match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'

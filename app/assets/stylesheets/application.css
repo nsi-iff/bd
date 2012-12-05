@@ -210,10 +210,6 @@ h1 {
   background: #EF9405 url("/assets/menu_laranja.jpg") 0 0 repeat-x;
 }
 
-.container .navigation li#noticias {
-  background: #6A3681 url("/assets/menu_roxo.jpg") 0 0 repeat-x;
-}
-
 .container .navigation li#estatisticas {
   background: #4F4F4D url("/assets/menu_cinza.jpg") 0 0 repeat-x;
 }

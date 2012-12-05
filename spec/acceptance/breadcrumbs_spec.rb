@@ -6,7 +6,7 @@ feature 'apresentar breadcrumbs para' do
   before(:each) do
     Papel.criar_todos
     @usuario = autenticar_usuario(Papel.all)
-    
+
   end
 
   let(:crumb_default) { "Você está aqui: Início #{breadcrumb_separator} " }
@@ -48,10 +48,6 @@ feature 'apresentar breadcrumbs para' do
 
     scenario 'sobre' do
       verificar_breadcrumbs '/sobre', crumb_default + 'Sobre'
-    end
-
-    scenario 'noticias' do
-      verificar_breadcrumbs '/noticias', crumb_default + 'Notícias'
     end
 
     scenario 'adicionar conteúdo' do

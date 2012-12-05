@@ -22,10 +22,6 @@ class PagesController < ApplicationController
     @title = "Sobre"
   end
 
-  def noticias
-    @title = "Notícias"
-  end
-
   def estatisticas
     @title = "Estatísticas"
     unless params['select_ano']
@@ -48,7 +44,7 @@ class PagesController < ApplicationController
   def adicionar_conteudo
     authorize! :create, Conteudo
   end
-  
+
   def mapa_do_site
     @title = "Mapa do Site"
   end
