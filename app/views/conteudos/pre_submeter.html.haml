@@ -1,0 +1,13 @@
+%h2= "Submeter #{@conteudo.pronatec? ? "PRONATEC" : @conteudo.class.nome_humanizado}"
+
+%p
+  Caro usuário, a fim de facilitar o seu trabalho, a BD-EPCT realizou a
+  tentativa de preencher os metadados do seu conteúdo de forma automática.
+  No entanto é extremamente necessário que estes metadados sejam revisados e
+  validados.
+
+%p
+  Os metadados do seu conteúdo já foram revisados?
+
+= button_to 'O conteúdo foi revisado!', submeter_conteudo_path(@conteudo), method: :put
+= button_to 'Cancelar submissão!', conteudo_path(@conteudo), method: :get

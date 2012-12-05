@@ -40,12 +40,12 @@
 - if @conteudo.graos_arquivo.present?
   #tabelas.aba
     = render 'conteudos/graos_arquivo', graos: @conteudo.graos_arquivo
-
 - if @conteudo.graos_video.present?
   #videos.aba
     %b
+    - if @conteudo.grao_audio[0]["key"] != nil
       Áudio:
-    = render 'conteudos/show_audio_player'
+      = render 'conteudos/show_audio_player'
     %br
       %b
         Vídeos:

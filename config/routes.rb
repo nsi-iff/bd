@@ -19,6 +19,7 @@ DigitalLibrary::Application.routes.draw do
       get :estante
       get :minhas_buscas
       get :area_privada
+      get "/minhas_buscas/mala_direta", to: "buscas#mala_direta", as: :mala_direta
     end
   end
 
@@ -55,6 +56,7 @@ DigitalLibrary::Application.routes.draw do
     member do
       put :recolher
       put :aprovar
+      put :pre_submeter
       put :submeter
       put :favoritar
       put :remover_favorito
@@ -88,6 +90,5 @@ DigitalLibrary::Application.routes.draw do
   get '/editor' => 'editor#index', as: :editor
   post '/editor' => 'editor#download'
 
-  #Catch unroutable paths and send to the routing error handler
-  match '*a', :to => 'pages#routing_error'
+  match '*path' => 'application#routing_error' unless Rails.application.config.consider_all_requests_local
 end

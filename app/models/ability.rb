@@ -7,6 +7,10 @@ class Ability
 
     usuario ||= Usuario.new    # usuário não cadastrado (convidado)
 
+    if usuario.membro?
+      can [:ter_estante], Usuario
+    end
+
     if usuario.gestor? || usuario.contribuidor?
       can [:ter_escrivaninha, :ter_estante], Usuario
     end

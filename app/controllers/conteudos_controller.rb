@@ -1,4 +1,5 @@
 # encoding: utf-8
+require './lib/extrair_metadados.rb'
 
 class ConteudosController < ApplicationController
   before_filter :authenticate_usuario!, except: [:granularizou, :show,
@@ -25,8 +26,14 @@ class ConteudosController < ApplicationController
     end
 
     if @conteudo.save
-      redirect_to conteudo_path(@conteudo),
+      if @conteudo.permite_extracao_de_metadados? and @conteudo.arquivo.present? and @conteudo.arquivo.extensao == "pdf"
+        extrair_metadados(@conteudo)
+        redirect_to root_path,
                   notice: "#{@conteudo.class.nome_humanizado} enviado com sucesso"
+      else
+        redirect_to conteudo_path(@conteudo),
+                  notice: "#{@conteudo.class.nome_humanizado} enviado com sucesso"
+      end
     else
       if @conteudo.arquivo && @conteudo.arquivo.errors['mime_type'].any?
         flash[:alert] = %Q[Arquivo com formato inválido,
@@ -81,6 +88,12 @@ class ConteudosController < ApplicationController
     authorize! :recolher, conteudo
     conteudo.recolher
     redirect_to root_path
+  end
+
+  def pre_submeter
+    authorize! :submeter, Conteudo
+    @conteudo = obter_conteudo
+    redirect_to edit_conteudo_path(@conteudo) if !@conteudo.valid?
   end
 
   def submeter
@@ -161,7 +174,7 @@ class ConteudosController < ApplicationController
     sam = ServiceRegistry.sam
     string64 = sam.get(key)
     arquivo = Base64.decode64(string64.data['file'])
-    file_name  = "#{Rails.root}/tmp/#{@conteudo.titulo}"
+    file_name  = "#{Rails.root}/tmp/#{@conteudo.arquivo.nome}"
     file = File.new(file_name, "w")
     file.write(arquivo.force_encoding('UTF-8'))
     send_file file_name

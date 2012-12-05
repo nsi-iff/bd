@@ -194,6 +194,23 @@ feature 'Buscas' do
     end
   end
 
+  scenario "Editar string de busca salva" do
+    usuario = autenticar_usuario(Papel.membro)
+    livro = create(:livro_publicado, titulo: 'My book')
+    livro2 = create(:livro_publicado, titulo: 'Outro book')
+    Conteudo.index.refresh
+
+    busca = create(:busca, titulo: "busca por artigo", busca: 'My book', usuario: usuario)
+
+    visit edit_busca_path(busca)
+    fill_in 'Busca', with: 'Outro book'
+    fill_in 'Título', with: 'Outro Título'
+    fill_in 'Descriçao', with: 'Nova Descriçao'
+    click_button 'Salvar'
+
+    page.should have_link 'Outro book'
+  end
+
   scenario 'ver minhas buscas' do
     usuario = autenticar_usuario(Papel.membro)
     page.should_not have_link 'Gerenciar buscas'
@@ -237,7 +254,7 @@ feature 'Buscas' do
     page.should have_link 'Mala direta'
 
     Busca.count.should == 1
-    click_link 'Gerenciar buscas'
+    click_link 'Mala direta'
 
     busca = Busca.first
     busca.mala_direta.should be_false
@@ -262,4 +279,5 @@ feature 'Buscas' do
     visit buscas_path
     page.should_not have_content "Salvar Busca"
   end
+
 end

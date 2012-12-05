@@ -13,8 +13,9 @@ class Mailer < ActionMailer::Base
   def notificar_usuarios_referenciavel_removido(usuario, referenciavel)
     @usuario = usuario
     @referenciavel = referenciavel
+    sender = Rails.application.config.mailer_configuration[:user_name]
 
-    mail(from: "no_reply@iff.edu.br", to: @usuario.email,
+    mail(from: sender, to: @usuario.email,
          subject: 'Biblioteca Digital: Notificação sobre grão removido')
   end
 end

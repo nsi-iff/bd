@@ -123,6 +123,21 @@ feature 'Estante' do
     end
   end
 
+  scenario 'Todo usuario cadastrado deve ter estante' do
+    usuario = create(:usuario_membro)
+    conteudo = create(:livro_publicado, titulo: 'Titulo')
+
+    visit conteudo_path(conteudo)
+
+    click_button 'Favoritar'
+
+    within '#estante' do
+      page.should have_content 'Titulo'
+    end
+
+    # binding.pry
+  end
+
   it 'quando referenciavel eh removido, a referencia abnt deve ser mostrada' do
     conteudo = create(:livro)
     conteudo_2 = create(:artigo_de_evento)

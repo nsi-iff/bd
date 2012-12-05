@@ -21,36 +21,36 @@ feature 'Editar Conteúdo' do
   context 'ações relacionadas ao arquivo do conteudo' do
     scenario 'link para download com o nome do arquivo' do
       Papel.criar_todos
-      submeter_conteudo :artigo_de_evento, link: '',
+      submeter_conteudo :livro, link: '',
                          arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
-      artigo = ArtigoDeEvento.last
-      visit edit_conteudo_path(artigo)
-      link = find_link "Download: #{artigo.arquivo.nome}"
-      link["href"].should == artigo.link_download
+      livro = Livro.last
+      visit edit_conteudo_path(livro)
+      link = find_link "Download: #{livro.arquivo.nome}"
+      link["href"].should == livro.link_download
     end
 
     scenario 'remover arquivo atual' do
-      submeter_conteudo :artigo_de_evento, link: '',
+      submeter_conteudo :livro, link: '',
                         arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
-      artigo = ArtigoDeEvento.last
-      visit edit_conteudo_path(artigo)
+      livro = Livro.last
+      visit edit_conteudo_path(livro)
       check 'Excluir arquivo atual'
       fill_in 'Link', with: 'um_link_ai'
       click_button 'Salvar'
 
-      artigo.arquivo.should == nil
+      livro.arquivo.should == nil
     end
 
     scenario 'alterar arquivo por um novo' do
-      submeter_conteudo :artigo_de_evento, link: '',
+      submeter_conteudo :livro, link: '',
                         arquivo: File.join(Rails.root, *%w(spec resources arquivo.odt))
-      artigo = ArtigoDeEvento.last
-      visit edit_conteudo_path(artigo)
+      livro = Livro.last
+      visit edit_conteudo_path(livro)
       check 'Substituir arquivo atual'
       attach_file 'Arquivo', File.join(Rails.root, *%w(spec resources outro_arquivo.odt))
       click_button 'Salvar'
 
-      artigo.arquivo.nome.should == 'outro_arquivo.odt'
+      livro.arquivo.nome.should == 'outro_arquivo.odt'
     end
   end
 end
