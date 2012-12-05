@@ -4,7 +4,6 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :inicio, 'Início', root_path do |sub|
       sub.item :sobre, 'Sobre', '/sobre'
-      sub.item :noticias, 'Notícias', '/noticias'
       sub.item :adicionar_conteudo, 'Adicionar conteúdo', '/adicionar_conteudo'
       sub.item :estatisticas, 'Estatísticas', '/estatisticas'
       sub.item :documentos_mais_acessados, 'Documentos mais acessados', '/documentos_mais_acessados'
