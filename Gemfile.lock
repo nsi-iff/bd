@@ -149,9 +149,9 @@ GEM
     nokogiri (1.5.5)
     nsi-abntformat (1.0.4)
       unicode
-    nsicloudooo (0.4.1)
+    nsicloudooo (0.5.0)
       sinatra
-    nsisam (0.7.4)
+    nsisam (0.7.6)
       json
       sinatra
       webmock
@@ -291,7 +291,7 @@ GEM
     valid_attribute (1.3.1)
     warden (1.2.1)
       rack (>= 1.0)
-    webmock (1.8.10)
+    webmock (1.9.0)
       addressable (>= 2.2.7)
       crack (>= 0.1.7)
     xpath (0.1.4)
@@ -328,8 +328,8 @@ DEPENDENCIES
   multi_json (~> 1.3.0)
   nokogiri
   nsi-abntformat (~> 1.0.4)
-  nsicloudooo
-  nsisam
+  nsicloudooo (~> 0.5.0)
+  nsisam (~> 0.7.6)
   nsivideogranulate (~> 0.0.2)
   odt2html
   paperclip
