@@ -18,7 +18,7 @@ class Ability
     if usuario.contribuidor?
       instituicao = usuario.campus.instituicao.nome
       can :read, Conteudo do |conteudo|
-        conteudo.publicado? || conteudo.contribuidor == usuario
+        conteudo.publicado? || (conteudo.contribuidor == usuario and conteudo.recolhido? == false)
       end
       can [:edit, :update], Conteudo do |conteudo|
         conteudo.editavel? && conteudo.contribuidor == usuario
