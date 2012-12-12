@@ -24,6 +24,7 @@ feature 'adicionar objeto de aprendizagem' do
     end
 
     validar_conteudo
+    page.should have_content 'Objeto de Aprendizagem'
     page.should have_content 'programação, orientação a objetos, classe'
     page.should have_content '2 meses'
     page.should have_content 'Ambiente e Saúde'

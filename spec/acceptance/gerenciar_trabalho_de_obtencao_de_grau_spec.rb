@@ -15,6 +15,7 @@ feature 'adicionar trabalho de obtençao de grau' do
     end
 
     validar_conteudo
+    page.should have_content 'Trabalho de Obtenção de Grau'
     page.should have_content 'Adicionando trabalho de obtenção de grau'
     page.should have_content '20'
     page.should have_content 'IFF'

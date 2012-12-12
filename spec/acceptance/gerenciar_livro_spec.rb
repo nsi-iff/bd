@@ -18,6 +18,7 @@ feature 'adicionar livro' do
     end
 
     validar_conteudo
+    page.should have_content 'Livro'
     page.should have_content 'Livro enviado com sucesso'
     page.should have_content 'Direitos e esquerdos'
     page.should have_content 'Rails Rocks'

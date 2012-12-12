@@ -13,6 +13,7 @@ feature 'adicionar relatório' do
     end
 
     validar_conteudo
+    page.should have_content 'Relatório'
     page.should have_content 'Rio de Janeiro'
     page.should have_content '1998'
     page.should have_content '427'

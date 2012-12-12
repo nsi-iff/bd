@@ -157,7 +157,8 @@ GEM
       webmock
     nsivideogranulate (0.0.2)
       sinatra
-    odt2html (0.1.1)
+    odt2html-nsi (0.2.0)
+      odt2html-nsi
       rubyzip
     orm_adapter (0.4.0)
     paperclip (3.2.0)
@@ -331,7 +332,7 @@ DEPENDENCIES
   nsicloudooo (~> 0.5.0)
   nsisam (~> 0.7.6)
   nsivideogranulate (~> 0.0.2)
-  odt2html
+  odt2html-nsi
   paperclip
   pg (~> 0.14.0)
   poltergeist (~> 0.7.0)
