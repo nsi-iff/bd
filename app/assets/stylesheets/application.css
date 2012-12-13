@@ -149,6 +149,13 @@ h1 {
   color: #435E00;
 }
 
+.content_title h2 {
+  font-family: FuturaStd;
+  text-align: center;
+  color: #435E00;
+  font-size: 26px;
+}
+
 .container .navigation a {
   color: #FFF;
   text-decoration: none;
