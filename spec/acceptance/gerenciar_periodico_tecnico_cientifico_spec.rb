@@ -12,6 +12,7 @@ feature 'adicionar periodico tecnico cientifico' do
     end
 
     validar_conteudo
+    page.should have_content 'Periódico Técnico-Científico'
     page.should have_content 'Bookmam'
     page.should have_content 'Campos dos Goytacazes'
     page.should have_content '2007'

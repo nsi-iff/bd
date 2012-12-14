@@ -149,6 +149,13 @@ h1 {
   color: #435E00;
 }
 
+.content_title h2 {
+  font-family: FuturaStd;
+  text-align: center;
+  color: #435E00;
+  font-size: 26px;
+}
+
 .container .navigation a {
   color: #FFF;
   text-decoration: none;
@@ -208,10 +215,6 @@ h1 {
 
 .container .navigation li#sobre {
   background: #EF9405 url("/assets/menu_laranja.jpg") 0 0 repeat-x;
-}
-
-.container .navigation li#noticias {
-  background: #6A3681 url("/assets/menu_roxo.jpg") 0 0 repeat-x;
 }
 
 .container .navigation li#estatisticas {

@@ -17,6 +17,7 @@ feature 'adicionar artigo de periódico' do
     end
 
     validar_conteudo
+    page.should have_content 'Artigo de Periódico'
     page.should have_content 'Adicionando artigo de periódico'
     page.should have_content '10'
     page.should have_content '25'

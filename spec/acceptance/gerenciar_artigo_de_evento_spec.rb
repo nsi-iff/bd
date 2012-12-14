@@ -19,6 +19,7 @@ feature 'adicionar artigo de evento' do
     end
 
     validar_conteudo
+    page.should have_content 'Artigo de Evento'
     page.should have_content 'Ruby Becomes The Flash'
     page.should have_content '10'
     page.should have_content '25'
