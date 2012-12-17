@@ -33,7 +33,7 @@ class GraosController < ApplicationController
 
   def baixar_conteudo_em_odt
     unless current_usuario.cesta.blank?
-      documento = DocumentoOdt.new("#{current_usuario.nome_completo}")
+      documento = DocumentoOdt.new("cesta-#{Time.now.to_s}")
       referencias_abnt = []
       current_usuario.cesta.map(&:referenciavel).map(&:key).each do |key|
         grao = Grao.where(:key => key).first
