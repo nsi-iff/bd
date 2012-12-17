@@ -37,7 +37,7 @@ feature 'cesta de grãos' do
     @usuario.cesta << @grao1.referencia
     @usuario.cesta << @grao2.referencia
   end
-     
+
   def excluir_grao_da_cesta(options = {})
     visit grao_path(@grao1)
     click_button 'Adicionar à Cesta de Grãos'
@@ -58,9 +58,9 @@ feature 'cesta de grãos' do
       page.should_not have_content representacao_grao(@grao1)
       page.should_not have_content representacao_grao(@grao2)
     end
-     
+
   end
-     
+
   def comparar_odt(tag, novo, grao)
     test = open_xml(grao).xpath(tag)
     tmp =  open_xml(novo).xpath(tag)
@@ -94,7 +94,7 @@ feature 'cesta de grãos' do
       visit grao_path(@grao2)
       page.should_not have_content 'Adicionar à Cesta de Grãos'
     end
-  
+
   end
 
   context 'usuário logado' do
@@ -128,7 +128,7 @@ feature 'cesta de grãos' do
         }
       end
     end
-     
+
     scenario 'editar grão da cesta' do
       criar_cesta @usuario, create(:livro),
                             recurso('grao_teste_0.jpg'),
@@ -160,9 +160,10 @@ feature 'cesta de grãos' do
                                         ./spec/resources/biblioteca_digital.png
                                         ./spec/resources/grao_teste_0.jpg))
       visit root_path
+      time = Time.now; Timecop.freeze(time)
       find('#baixar_conteudo_cesta_odt').click
       grao_armazenado = "./spec/resources/Linus Torvalds.odt"
-      grao_baixado = "#{Rails.root}/tmp/Linus Torvalds.odt"
+      grao_baixado = "#{Rails.root}/tmp/cesta-#{time}.odt"
       comparar_odt('//office:text', grao_baixado, grao_armazenado)
 
       odt = Zip::ZipFile.open(grao_baixado)
