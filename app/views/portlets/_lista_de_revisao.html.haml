@@ -16,5 +16,6 @@
         = "Total: #{pluralize(lista_de_revisao.count, "item")}"
 
       - if mostra_link_ver_todos_para_portlet?(lista_de_revisao)
-        = link_to "Ver todos", lista_de_revisao_usuario_path(current_usuario)
+        = link_to "Lista completa para revisão", lista_de_revisao_usuario_path(current_usuario),
+          id: 'lista_completa_para_revisao'
 
