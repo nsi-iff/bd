@@ -105,7 +105,6 @@ class Conteudo < ActiveRecord::Base
     type = options.delete(:type)
     graos_response = options.delete(:graos)
     thumbnail_key = options.delete(:thumbnail)
-    binding.pry
     if type == "video"
       graos_response['thumbnails'] = thumbnail_key
     elsif type == "doc"
