@@ -107,7 +107,8 @@ class Conteudo < ActiveRecord::Base
     thumbnail_key = options.delete(:thumbnail)
     if type == "video"
       graos_response['thumbnails'] = thumbnail_key
-    elsif type == "doc"
+      arquivo.thumbnail_key = nil
+    else
       arquivo.thumbnail_key = thumbnail_key
     end
     criar_graos(graos_response)
