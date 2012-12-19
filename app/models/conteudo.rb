@@ -102,9 +102,15 @@ class Conteudo < ActiveRecord::Base
 
   def granularizou(*args)
     options = args.first
+    type = options.delete(:type)
     graos_response = options.delete(:graos)
     thumbnail_key = options.delete(:thumbnail)
-    graos_response['thumbnails'] = thumbnail_key
+    binding.pry
+    if type == "video"
+      graos_response['thumbnails'] = thumbnail_key
+    elsif type == "doc"
+      arquivo.thumbnail_key = thumbnail_key
+    end
     criar_graos(graos_response)
     super
   end
