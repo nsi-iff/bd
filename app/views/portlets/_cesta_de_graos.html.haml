@@ -2,15 +2,14 @@
 - if @cesta.blank?
   %p Nesta área poderão ser adicionados partes de conteúdos do interesse do usuário para futura utilização.
 - else
-  #cesta.portlet
-    - limitar_para_portlet(@cesta).map { |ref_id| Referencia.referenciavel_por_id_referencia(ref_id) }.each do |grao|
-      .item
-        = check_box_tag false
-        = image_tag 'grao/picture.png', width: '14px', height: '14px' if grao.imagem?
-        = image_tag 'grao/movie.png', width: '14px', height: '14px' if grao.video?
-        = image_tag 'grao/table.png', width: '14px', height: '14px' if grao.arquivo?
-        = link_to titulo_para_portlet(grao.titulo), grao_path(grao)
-        = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete, remote: true
+  - limitar_para_portlet(@cesta).map { |ref_id| Referencia.referenciavel_por_id_referencia(ref_id) }.each do |grao|
+    .item
+      = check_box_tag false
+      = image_tag 'grao/picture.png', width: '14px', height: '14px' if grao.imagem?
+      = image_tag 'grao/movie.png', width: '14px', height: '14px' if grao.video?
+      = image_tag 'grao/table.png', width: '14px', height: '14px' if grao.arquivo?
+      = link_to titulo_para_portlet(grao.titulo), grao_path(grao)
+      = link_to 'Remover', remover_da_cesta_grao_path(grao), method: :delete, remote: true
 
   = link_to image_tag('cesta/baixar_carrinho.png', width: '18px', height: '18px', title: 'baixar conteúdo da cesta'),
     '/cesta/baixar_conteudo', id: 'baixar_conteudo_cesta'
