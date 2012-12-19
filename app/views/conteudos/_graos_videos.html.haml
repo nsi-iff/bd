@@ -1,3 +1,4 @@
+- thumbnails = @conteudo.graos_thumbnails.each
 - videos.length.times do |i|
   .grao_imagem
-    = link_to image_tag("data:image/xyz;base64,#{thumbnails[i].conteudo_base64}"), grao_path(videos[i].id)
+    = link_to image_tag(thumbnails.next.link_download), grao_path(videos[i].id)

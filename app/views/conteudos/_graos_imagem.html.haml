@@ -1,4 +1,5 @@
+- imagens = @conteudo.graos_imagem.each
 - graos.each do |grao|
   .grao_imagem
     %a{href: grao_path(grao.id)}
-      %img{src: "data:image/xyz;base64,#{grao.conteudo_base64}"}
+      %img{src: imagens.next.link_download}
