@@ -152,9 +152,17 @@ class ConteudosController < ApplicationController
   end
 
   def granularizou
-    key = params['doc_key'] || params['video_key']
+    if params['doc_key']
+      key = params['doc_key']
+      type  = "doc"
+      thumb = "thumbnail_key"
+    elsif params['video_key']
+      key = params['video_key']
+      type = "video"
+      thumb = "thumbnails_keys"
+    end
     conteudo = Conteudo.encontrar_por_id_sam(key)
-    conteudo.granularizou!(graos: params['grains_keys'], thumbnail: params['thumbnail_key'])
+    conteudo.granularizou!(graos: params['grains_keys'], thumbnail: params[thumb], type: type)
     render nothing: true
   end
 

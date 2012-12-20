@@ -38,7 +38,7 @@ feature 'apresentacao dos conteudos por abas' do
     click_link 'Imagens'
 
     parte_conteudo = grao.conteudo_base64[0..10]
-    page.find("img[src*='#{parte_conteudo}']")
+    page.find("img[src]")
 
     sam.delete grao.key
   end

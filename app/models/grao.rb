@@ -21,6 +21,10 @@ class Grao < ActiveRecord::Base
     tipo == 'audio'
   end
 
+  def thumbnails?
+    tipo == 'thumbnails'
+  end
+
   def video_converted?
     tipo == 'converted_video'
   end

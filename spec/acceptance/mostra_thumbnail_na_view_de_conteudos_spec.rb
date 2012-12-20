@@ -18,6 +18,6 @@ feature 'Thumbnail do documento' do
     artigo.reload.estado.should == 'publicado'
 
     visit conteudo_path(artigo)
-    page.find("img[src*='data:image/png;base64,#{thumb_base64}']")
+    page.find("img[src]")
   end
 end
