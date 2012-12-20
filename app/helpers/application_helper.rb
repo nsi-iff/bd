@@ -63,7 +63,7 @@ module ApplicationHelper
   end
 
   def titulo_para_portlet(titulo)
-    Rails.env.test? ? titulo : "#{titulo[0..16]}\n#{(titulo[17..40] && titulo[17..40].strip + '...') || ''}"
+    Rails.env.test? ? titulo : "#{titulo[0..16]}\n#{(titulo[17..40] && titulo[17..40].strip + (titulo[41] ? '...' : '')) || ''}"
   end
 
   def tabela_grao(grao)
