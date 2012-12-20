@@ -24,6 +24,6 @@ describe "portlets/_cesta_de_graos.html.haml" do
     @cesta = criar_cesta(@usuario, @livro, "#{Rails.root}/spec/resources/imagem_em_tabela.odt")
     assign(:cesta, @cesta)
     render
-    rendered.should have_css "#cesta.portlet .item > input[type='checkbox']"
+    rendered.should have_css ".item > input[type='checkbox']"
   end
 end
