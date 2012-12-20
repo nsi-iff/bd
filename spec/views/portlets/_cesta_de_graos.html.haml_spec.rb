@@ -10,7 +10,7 @@ describe "portlets/_cesta_de_graos.html.haml" do
           stub_model(Grao, imagem?: true, titulo: "Conteudo #{n}"))
       end
 
-      
+
       {
         assigns: {
           cesta: (1..8).to_a

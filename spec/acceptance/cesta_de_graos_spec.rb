@@ -83,10 +83,10 @@ feature 'cesta de grãos' do
 
     scenario 'cesta é zerada em nova sessão', js: true do
       incluir_grao_na_cesta_pelo_form
-      page.should have_selector '#cesta #cesta.portlet'
+      page.should have_selector '#cesta.portlet div'
       autenticar_usuario
       deslogar
-      page.should_not have_selector '#cesta #cesta.portlet'
+      page.should_not have_selector '#cesta.portlet div'
     end
 
     scenario 'grão não pode ser adicionado duas vezes na cesta', js: true do
@@ -120,7 +120,7 @@ feature 'cesta de grãos' do
         }
       end
       deslogar
-      page.should_not have_selector '#cesta #items'
+      page.should_not have_selector '#items'
       autenticar(@usuario)
       within '#cesta' do
         [@grao1, @grao2].each {|g|
