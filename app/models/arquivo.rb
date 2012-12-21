@@ -96,6 +96,9 @@ class Arquivo < ActiveRecord::Base
     cloudooo.extract_metadata(chave_arquivo, tipo_do_conteudo)
     sleep(2)
     chave_metadados = cloudooo.metadata_key_for(chave_arquivo)
-    metadados = sam.get(chave_metadados).data()
+    if chave_metadados
+      return sam.get(chave_metadados).data()
+    end
+    return nil
   end
 end

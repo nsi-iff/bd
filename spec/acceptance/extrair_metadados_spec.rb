@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'spec_helper'
+#require 'spec_helper'
 
 #feature 'extrair automaticamente os metadados do arquivo do conteudo' do
 #  before(:each) do
@@ -16,10 +16,10 @@ require 'spec_helper'
 #    click_button 'Salvar'
 
 #    artigo_de_evento = ArtigoDeEvento.last
-#    artigo_de_evento.resumo.should_not == ""
-#    artigo_de_evento.titulo.should_not == ""
-#    artigo_de_evento.autores.should_not == []
-#    artigo_de_evento.numero_paginas.should_not == ""
+#    artigo_de_evento.resumo.should_not be_nil
+#    artigo_de_evento.titulo.should_not be_nil
+#    artigo_de_evento.autores.should_not be_nil
+#    artigo_de_evento.numero_paginas.should_not be_nil
 #  end
 
   #TODO Verificar ser nsi.metadataextractor já realiza a extração em Artigo de Periódico
@@ -45,9 +45,25 @@ require 'spec_helper'
 #    click_button 'Salvar'
 
 #    tcc = TrabalhoDeObtencaoDeGrau.last
-#    tcc.resumo.should_not == ""
-#    tcc.titulo.should_not == ""
-#    tcc.autores.should_not == []
-#    tcc.numero_paginas.should_not == ""
+#    tcc.resumo.should_not be_nil
+#    tcc.titulo.should_not be_nil
+#    tcc.autores.should_not be_nil
+#    tcc.numero_paginas.should_not be_nil
+#  end
+
+#  scenario 'insucesso na extração de metadados não pode impedir envio do conteúdo' do
+#    popular_graus
+#    visit new_conteudo_path(tipo: :artigo_de_evento)
+#    attach_file('Arquivo', File.join(Rails.root, *%w(spec resources tcc.pdf)))
+
+#    click_button 'Salvar'
+
+#    artigo_de_evento = ArtigoDeEvento.last
+#    artigo_de_evento.resumo.should be_blank
+#    artigo_de_evento.titulo.should be_blank
+#    artigo_de_evento.autores.should be_blank
+#    artigo_de_evento.numero_paginas.should be_blank
+
+#    page.should have_content "sucesso"
 #  end
 #end

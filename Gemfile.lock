@@ -151,7 +151,7 @@ GEM
       unicode
     nsicloudooo (0.5.2)
       sinatra
-    nsisam (0.7.6)
+    nsisam (0.7.7)
       json
       sinatra
       webmock
@@ -330,7 +330,7 @@ DEPENDENCIES
   nokogiri
   nsi-abntformat (~> 1.0.4)
   nsicloudooo (~> 0.5.2)
-  nsisam (~> 0.7.6)
+  nsisam (~> 0.7.7)
   nsivideogranulate (~> 0.0.2)
   odt2html-nsi
   paperclip
