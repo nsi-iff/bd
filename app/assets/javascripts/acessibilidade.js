@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  var variacao_da_fonte = 0;
 	function GerarCookie(strCookie, strValor, lngDias){
     	var dtmData = new Date();
     	if(lngDias){
@@ -27,6 +28,21 @@ $(document).ready(function() {
 	function ExcluirCookie(strCookie){
     	GerarCookie(strCookie, '', -1);
 	}
+
+	if (LerCookie("alterar_fonte") == null){
+	  font_acess = 'false';
+	}
+	else
+	{
+	  font_acess = LerCookie("alterar_fonte");
+	}
+	if (font_acess == "true")
+	{
+	  var tamanho_padrao = parseInt($('.container p').css('font-size'));
+	  var ultimo_tamanho = parseInt(LerCookie("tamanho_fonte"));
+    mudar_css(ultimo_tamanho - tamanho_padrao);
+	}
+
 	if (LerCookie("alto_contraste") == null){
 		acess = "false"
 	}else{
@@ -47,7 +63,6 @@ $(document).ready(function() {
 			var element = $(this);
 			font_size = element.css('font-size')
 			element.css('font-size',((parseInt(font_size)+(size)).toString()+"px"))
-			
 		});
 	}
 	function contraste(){
@@ -83,10 +98,34 @@ $(document).ready(function() {
 		});
 	}
 	function aumentar(){
-		mudar_css(2);
+	  if (LerCookie("alterar_fonte") == null){
+	    GerarCookie("alterar_fonte", "true", 0);
+	  }
+	  font_acess = 'true';
+	  mudar_css(2);
+	  if (LerCookie("tamanho_fonte") == null){
+	    GerarCookie("tamanho_fonte", parseInt($('.container p').css('font-size')), 0);
+	  }
+	  else
+	  {
+	    ExcluirCookie("tamanho_fonte");
+	    GerarCookie("tamanho_fonte", parseInt($('.container p').css('font-size')), 0);
+	  }
 	}
 	function diminuir(){
+		if (LerCookie("alterar_fonte") == null){
+		  GerarCookie("alterar_fonte", "true", 0);
+		}
+		font_acess = 'true';
 		mudar_css(-2);
+	  if (LerCookie("tamanho_fonte") == null){
+	    GerarCookie("tamanho_fonte", parseInt($('.container p').css('font-size')), 0);
+	  }
+	  else
+	  {
+	    ExcluirCookie("tamanho_fonte");
+	    GerarCookie("tamanho_fonte", parseInt($('.container p').css('font-size')), 0);
+	  }
 	}
 	function contraste_on(){
 		contraste();
@@ -112,8 +151,20 @@ $(document).ready(function() {
 			$('#alto_contraste a').text('Alto contraste')
 		}
 	}
+	
+	function verify_font(){
+	  if (font_acess == 'true')
+	  {
+	    ExcluirCookie("alterar_fonte");
+	    ExcluirCookie("tamanho_fonte");
+	    font_acess = 'false';
+  	  refresh();
+  	}
+	}
+	
 	max.click(aumentar);
 	min.click(diminuir);
-	padrao.click(refresh);
+	padrao.click(verify_font);
 	alto_contraste.click(verify_contraste);
+	
 });
