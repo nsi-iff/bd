@@ -8,17 +8,17 @@ feature 'controle de acesso' do
       Papel.criar_todos
     end
 
-    scenario 'usuário criado não tem o acesso liberado antes de confirmar sua conta' do
-      usuario = create(:usuario, confirmed_at: nil)
-      autenticar(usuario)
-      page.should have_content 'Antes de continuar, confirme a sua conta'
+#    scenario 'usuário criado não tem o acesso liberado antes de confirmar sua conta' do
+#      usuario = create(:usuario, confirmed_at: nil)
+#      autenticar(usuario)
+#      page.should have_content 'Antes de continuar, confirme a sua conta'
 
-      usuario.confirm!
-      autenticar(usuario)
+#      usuario.confirm!
+#      autenticar(usuario)
 
-      page.should_not have_content 'Antes de continuar, confirme a sua conta'
-      page.should have_content 'sucesso'
-    end
+#      page.should_not have_content 'Antes de continuar, confirme a sua conta'
+#      page.should have_content 'sucesso'
+#    end
   end
 
 
