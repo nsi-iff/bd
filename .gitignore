@@ -12,8 +12,9 @@
 *.swp
 *~
 
-# ignore automatic gemset usage (rvm)
+# ignore automatic gemset usage (rvm, rbenv)
 .rvmrc
+.ruby-version
 
 # ignore personal TODO file
 .todo
