@@ -10,6 +10,13 @@ Instalação
   cp config/database.yml.example config/database.yml
 - rake db:drop:all db:create:all db:migrate db:seed db:test:prepare
 
+
+Dependências nativas
+--------------------
+
+- `webkit <https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit>`_
+- Posgresql
+
 Contribuindo
 ++++++++++++
 
@@ -55,8 +62,3 @@ Boas Práticas
 - Evite deixar espaços em branco (blank spaces/trailing characters).
 - Não use tabs para indentação, mas sim espaços, respeitando a convenção de cada linguagem: `2 espaços <https://github.com/nsi-iff/ruby-style-guide/tree/reduce-over-inject>`_ para Ruby, `4 espaços <http://javascript.crockford.com/code.html>`_ para JavaScript. Na maioria dos editores, é possível configurar de modo que tabs sejam convertidas no número desejado de espaços.
 
-
-Dependências nativas
---------------------
-
-- `webkit <https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit>`_
