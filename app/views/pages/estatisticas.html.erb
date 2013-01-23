@@ -5,63 +5,32 @@
     <% ano = params['select_ano'] %>
     <% mes = params['select_mes'] %>
 
-    <h2>
-      Estatísticas Gerais de Acesso
-    </h2>
+    <span class="section_title">
+      <h3>
+        Estatísticas Gerais de Acesso
+      </h3>
+    </span>
 
     <h3>
-      Por conteúdo individual:
+      <div id="link_estatisticas_gerais">
+        <%= link_to "Por conteúdo individual", por_conteudo_individual_path %><br>
+        <%= link_to "Por tipo de conteúdo", por_tipo_de_conteudo_path %><br>
+        <%= link_to "Por subárea do conhecimento", por_subarea_do_conhecimento_path %><br>
+      </div>
     </h3>
-      <table class="tabelas_de_estatisticas" id="acesso_de_documentos">
-        <th> Nome do documento </th>
-        <th> Número de acessos </th>
-        <% @estatisticas.cinco_documentos_mais_acessados.each do |d| %>
-          <tr>
-            <td><%= link_to conteudo_tag(d), "conteudos/#{d.id}" %></td>
-            <td><%= d.numero_de_acessos %></td>
-          </tr>
-        <% end %>
-      </table>
-      <br />
-      <%= link_to "Veja a lista completa dos documentos mais acessados", documentos_mais_acessados_path %>
-
-    <h3>
-      Por tipo de conteúdo:
-    </h3>
-    <table class="tabelas_de_estatisticas" id="tipos_de_conteudo">
-      <th> Tipo de conteúdo </th>
-      <th> Percentual de acessos </th>
-      <% @estatisticas.percentual_de_acessos_por_tipo_de_conteudo.each do |percentual| %>
-        <tr>
-          <td><%= percentual[0] %></td>
-          <td><%= percentual[1].round 2 %> %</td>
-        </tr>
-      <% end %>
-    </table>
-
-    <h3>Por subárea do conhecimento:</h3>
-    <table class="tabelas_de_estatisticas" id="sub_area_de_conhecimento">
-      <th> Subárea </th>
-      <th> Percentual de acessos </th>
-      <% @estatisticas.percentual_de_acessos_por_subarea_de_conhecimento.each do |percentual| %>
-        <tr>
-          <td><%= percentual[1] %></td>
-          <td><%= percentual[0].round 2 %> %</td>
-        </tr>
-      <% end %>
-    </table>
-    <br \>
 
     <hr id="barra_horizontal">
 
-    <h2>
-     Estatísticas de Contribuição em
-      <% if ano and mes %>
-        <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
-      <% else %>
-        <%= ano %>
-      <% end %>
-    </h2>
+    <span class="section_title">
+      <h3>
+       Estatísticas de Contribuição em
+        <% if ano and mes %>
+          <%= meses[mes.to_i-1][0].to_s + " de " + ano %>
+        <% else %>
+          <%= ano %>
+        <% end %>
+      </h3>
+    </span>
 
     Selecione um período para as estatísticas:
 
@@ -105,8 +74,6 @@
         </tr>
       <% end %>
     </table>
-
-    <br><%= link_to 'Graficos', graficos_de_acessos_path %>
   <% end %>
 </div>
 

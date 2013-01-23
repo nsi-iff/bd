@@ -1,0 +1,21 @@
+%h2 Por tipo de conteúdo
+
+%div{:class => "estatisticas"}
+  %div{class: "graph", id: "conteudo"}
+  = link_to "Clique para salvar o gráfico", "#", id: "salvar_conteudo", class: "salvar_grafico"
+  %br
+  %br
+
+  %table{:class => "tabelas_de_estatisticas", :id => "tipos_de_conteudo", :border => "1"}
+    %th Tipo de conteúdo
+    %th Percentual de acessos
+    - @estatisticas.percentual_de_acessos_por_tipo_de_conteudo.each do |percentual|
+      %tr
+        %td
+          = percentual[0]
+        %td
+          = percentual[1].round 2
+%br
+= link_to "Voltar", :back
+%br
+

@@ -61,10 +61,6 @@ feature 'apresentar breadcrumbs para' do
     scenario 'documentos mais acessados' do
       verificar_breadcrumbs '/documentos_mais_acessados', crumb_default + 'Documentos mais acessados'
     end
-
-    scenario 'gráficos de acessos' do
-      verificar_breadcrumbs '/graficos_de_acessos', crumb_default + 'Gráficos'
-    end
   end
 
   context 'buscas' do

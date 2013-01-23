@@ -1,20 +1,21 @@
-%h2 Documentos mais acessados
+%h2 Por conteúdo individual
 
 %div{:class => "estatisticas"}
-  %div{class: "graph", id: "todos_acessos"}
-  = link_to "Clique para salvar o gráfico", "#", id: "salvar_todos_acessos", class: "salvar_grafico"
+  %div{class: "graph", id: "cinco_acessos"}
+  = link_to "Clique para salvar o gráfico", "#", id: "salvar_cinco_acessos", class: "salvar_grafico"
   %br
   %br
 
   %table{:class => "tabelas_de_estatisticas", :id => "acesso_de_documentos", :border => "1"}
     %th Nome do documento
     %th Número de acessos
-    - @estatisticas.documentos_mais_acessados.each do |d|
+    - @estatisticas.cinco_documentos_mais_acessados.each do |d|
       %tr
         %td
           = link_to conteudo_tag(d), "conteudos/#{d.id}"
         %td
           = d.numero_de_acessos
 %br
+= link_to "Veja a lista completa dos documentos mais acessados", documentos_mais_acessados_path
+%br
 = link_to "Voltar", :back
-

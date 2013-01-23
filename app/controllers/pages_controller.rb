@@ -30,15 +30,20 @@ class PagesController < ApplicationController
     @estatisticas = Estatistica.new(params['select_ano'], params['select_mes'])
   end
 
-  def documentos_mais_acessados
-    @title = "Documentos mais acessados"
-    @estatisticas = Estatistica.new(Date.today.year)
+  def por_conteudo_individual
+    estatisticas_gerais_de_acesso
   end
 
-  def graficos_de_acessos
-    @title = "Gráficos de acessos"
-    @estatisticas = Estatistica.new(Date.today.year)
-    gon.rabl "app/views/pages/estatisticas.json.rabl"
+  def por_tipo_de_conteudo
+    estatisticas_gerais_de_acesso
+  end
+
+  def por_subarea_do_conhecimento
+    estatisticas_gerais_de_acesso
+  end
+
+  def documentos_mais_acessados
+    estatisticas_gerais_de_acesso
   end
 
   def adicionar_conteudo
@@ -47,5 +52,12 @@ class PagesController < ApplicationController
 
   def mapa_do_site
     @title = "Mapa do Site"
+  end
+
+  private
+
+  def estatisticas_gerais_de_acesso
+    @estatisticas = Estatistica.new(Date.today.year)
+    gon.rabl "app/views/pages/estatisticas.json.rabl"
   end
 end

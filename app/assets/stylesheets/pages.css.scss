@@ -36,6 +36,11 @@
   color: #648217;
 }
 
+#link_estatisticas_gerais a
+{
+  color: #000;
+}
+
 .ajuda h1 {
   color: #526B13;
 }
@@ -71,6 +76,13 @@
   text-align:center;
   padding:2px;
   color:black;
+}
+
+.estatisticas .section_title h3 {
+  font-family: FuturaStd;
+  text-align: center;
+  color: #435E00;
+  font-size: 22px;
 }
 
 .estatisticas label {

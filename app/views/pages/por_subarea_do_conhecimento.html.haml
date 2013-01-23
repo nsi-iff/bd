@@ -1,0 +1,21 @@
+%h2 Por subárea do conhecimento
+
+%div{class: "estatisticas"}
+  %div{class: "graph", id: "subarea"}
+  = link_to "Clique para salvar o gráfico", "#", id: "salvar_subarea", class: "salvar_grafico"
+  %br
+  %br
+
+  %table{class: "tabelas_de_estatisticas", id: "sub_area_de_conhecimento"}
+    %th Subárea
+    %th Percentual de acessos
+    - @estatisticas.percentual_de_acessos_por_subarea_de_conhecimento.each do |percentual|
+      %tr
+        %td
+          = percentual[1]
+        %td
+          = percentual[0].round 2
+%br
+= link_to "Voltar", :back
+%br
+

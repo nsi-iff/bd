@@ -32,8 +32,10 @@ DigitalLibrary::Application.routes.draw do
   match "/sobre",     :to => "pages#sobre"
   match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
   match '/estatisticas', :to => "pages#estatisticas"
+  match '/por_conteudo_individual', :to => "pages#por_conteudo_individual"
+  match '/por_tipo_de_conteudo', :to => "pages#por_tipo_de_conteudo"
+  match '/por_subarea_do_conhecimento', :to => "pages#por_subarea_do_conhecimento"
   match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
-  match '/graficos_de_acessos', :to => 'pages#graficos_de_acessos'
   match '/mapa_do_site', :to => 'pages#mapa_do_site'
   match '/acessibilidade', :to => 'pages#acessibilidade'
   resources :buscas do
