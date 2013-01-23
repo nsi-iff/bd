@@ -49,8 +49,9 @@ class Grao < ActiveRecord::Base
   end
 
   def titulo
+    #TODO inserir o número da página ao final da string abaixo
     conteudo = Conteudo.find(conteudo_id)
-    "#{conteudo.titulo}_#{tipo_humanizado}_#{id}_#{pagina}"
+    "#{conteudo.titulo}_#{tipo_humanizado}_#{id}"
   end
 
   def deleta_do_sam
