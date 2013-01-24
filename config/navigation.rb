@@ -4,6 +4,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :inicio, 'Início', root_path do |sub|
       sub.item :sobre, 'Sobre', '/sobre'
+      sub.item :mapa_do_site, 'Mapa do Site', '/mapa_do_site'
       sub.item :adicionar_conteudo, 'Adicionar conteúdo', '/adicionar_conteudo'
       sub.item :estatisticas, 'Estatísticas', '/estatisticas'
       sub.item :documentos_mais_acessados, 'Documentos mais acessados', '/documentos_mais_acessados'
@@ -11,6 +12,8 @@ SimpleNavigation::Configuration.run do |navigation|
       sub.item :busca_normal, 'Busca normal', busca_normal_path
       sub.item :busca_avancada, 'Busca avançada', busca_avancada_path
       sub.item :busca_avancada, 'Busca avançada', buscas_path
+      sub.item :busca_pronatec, 'Busca PRONATEC', '/busca_pronatec'
+      sub.item :busca_imagem, 'Busca por Imagem', '/buscas_por_imagem/new'
 
       sub.item :new_conteudo, 'Adicionar conteúdo', new_conteudo_path
       sub.item :edit_conteudo, 'Editar conteúdo', edit_conteudo_path(@conteudo) if @conteudo && !@conteudo.new_record?
@@ -28,12 +31,15 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :usuarios, 'Usuários', usuarios_path do |u|
+      u.item :login, 'Acesso', '/usuarios/login'
+      u.item :register, 'Registrar Usuário', '/usuarios/register'
       u.item :buscar_por_nome, 'Busca por nome', buscar_por_nome_usuarios_path
       u.item :papeis, 'Papéis', papeis_usuarios_path
     end
 
     primary.item :ajuda, 'Ajuda', '/ajuda' do |ajuda|
       ajuda.item :manuais, 'Manuais', '/ajuda/manuais'
+      ajuda.item :tutoriais, 'Tutoriais', '/ajuda/tutoriais'
     end
   end
   # Specify a custom renderer if needed.

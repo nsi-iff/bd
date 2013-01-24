@@ -27,6 +27,17 @@ feature 'apresentar breadcrumbs para' do
       verificar_breadcrumbs(
         papeis_usuarios_path, crumb_usuarios + 'Papéis')
     end
+
+    scenario 'login' do
+      click_link 'Sair'
+      verificar_breadcrumbs('/usuarios/login', 'Acesso')
+    end
+
+    scenario 'register' do
+      click_link 'Sair'
+      verificar_breadcrumbs('/usuarios/register', 'Registrar Usuário')
+    end
+
   end
 
   context 'ajuda' do
@@ -39,6 +50,11 @@ feature 'apresentar breadcrumbs para' do
     scenario 'manuais' do
       verificar_breadcrumbs('/ajuda/manuais', crumb_ajuda + 'Manuais')
     end
+
+    scenario 'tutoriais' do
+      verificar_breadcrumbs('/ajuda/tutoriais', crumb_ajuda + 'Tutoriais')
+    end
+
   end
 
   context 'páginas' do
@@ -48,6 +64,10 @@ feature 'apresentar breadcrumbs para' do
 
     scenario 'sobre' do
       verificar_breadcrumbs '/sobre', crumb_default + 'Sobre'
+    end
+
+    scenario 'mapa_do_site' do
+      verificar_breadcrumbs('/mapa_do_site', 'Mapa do Site')
     end
 
     scenario 'adicionar conteúdo' do
@@ -84,6 +104,15 @@ feature 'apresentar breadcrumbs para' do
         end
       end
     end
+
+    scenario 'PRONATEC' do
+      verificar_breadcrumbs('busca_pronatec', 'Busca PRONATEC')
+    end
+
+    scenario 'imagem' do
+      verificar_breadcrumbs('buscas_por_imagem/new', 'Busca por Imagem')
+    end
+
   end
 
   context 'conteúdos' do
