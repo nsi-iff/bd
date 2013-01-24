@@ -53,7 +53,6 @@ group :test, :development do
   gem 'pry-rails'
   gem 'capistrano'
   gem 'spork-rails', '~> 3.2.0'
-  gem 'debugger'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
   gem 'zippy'
