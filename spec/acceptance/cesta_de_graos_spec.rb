@@ -160,17 +160,19 @@ feature 'cesta de grãos' do
                                         ./spec/resources/biblioteca_digital.png
                                         ./spec/resources/grao_teste_0.jpg))
       visit root_path
-      time = Time.now; Timecop.freeze(time)
-      find('#baixar_conteudo_cesta_odt').click
-      grao_armazenado = "./spec/resources/Linus Torvalds.odt"
-      grao_baixado = "#{Rails.root}/tmp/cesta-#{time}.odt"
-      comparar_odt('//office:text', grao_baixado, grao_armazenado)
+      time = Time.now; 
+      Timecop.freeze(time) do
+        find('#baixar_conteudo_cesta_odt').click
+        grao_armazenado = "./spec/resources/Linus Torvalds.odt"
+        grao_baixado = "#{Rails.root}/tmp/cesta-#{time}.odt"
+        comparar_odt('//office:text', grao_baixado, grao_armazenado)
 
-      odt = Zip::ZipFile.open(grao_baixado)
-      doc = Document.new(odt.read("content.xml"))
-      arquivo_odt = doc.to_s
-      arquivo_odt.should match @livro.referencia_abnt
-      File.delete(grao_baixado)
+        odt = Zip::ZipFile.open(grao_baixado)
+        doc = Document.new(odt.read("content.xml"))
+        arquivo_odt = doc.to_s
+        arquivo_odt.should match @livro.referencia_abnt
+        File.delete(grao_baixado)
+      end
     end
 
   end

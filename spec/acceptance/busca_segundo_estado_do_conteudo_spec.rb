@@ -28,7 +28,6 @@ feature 'Busca por estado do conteudo', busca: true do
     check 'Publicado'
     check 'Recolhido'
     click_button 'Buscar'
-
     page.should have_link 'artigo do iff'
     page.should have_link 'artigo 2 do iff'
     page.should have_link 'artigo 3 do iff'

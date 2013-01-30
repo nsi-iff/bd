@@ -10,6 +10,7 @@ feature 'sessão e registro de usuário' do
 
   scenario 'modificar opções de campus ao modificar instituição', :js => true do
     popular_instituicao_campus
+    deslogar
     visit root_path
     click_link 'Registrar Usuário'
     select 'Instituto Federal de Educação, Ciência e Tecnologia do Amapá', from: 'select_instituicao'
@@ -21,6 +22,7 @@ feature 'sessão e registro de usuário' do
 
   scenario 'cadastrar usuario' do
     popular_instituicao_campus
+    deslogar
     visit root_path
     click_link 'Registrar Usuário'
     fill_in 'Nome Completo', with: 'Foo Bar'
