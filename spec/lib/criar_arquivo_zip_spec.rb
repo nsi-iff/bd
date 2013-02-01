@@ -32,7 +32,9 @@ feature 'cesta de grãos' do
       referencia_abnt = File.read("#{Rails.root}/spec/resources/downloads/referencias_ABNT.txt")
       referencia_abnt.should match "grao_quantum_mechanics_for_dummies_0.odt: #{@livro.referencia_abnt}"
 
-      File.delete(Dir["#{Rails.root}/tmp/cesta_tempo*"].last)
+      if Dir["#{Rails.root}/tmp/cesta_tempo*"].present?
+        File.delete(Dir["#{Rails.root}/tmp/cesta_tempo*"].last)
+      end
     end
   end
 end
