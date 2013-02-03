@@ -148,4 +148,13 @@ FactoryGirl.define do
     usuario
     mala_direta false
   end
+
+  factory :curso do
+    nome 'um curso'
+    eixo_tematico
+  end
+
+  factory :eixo_tematico do
+    nome 'um eixo'
+  end
 end

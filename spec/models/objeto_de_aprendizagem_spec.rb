@@ -4,11 +4,13 @@ require 'spec_helper'
 
 describe ObjetoDeAprendizagem do
   it 'fornece os nomes dos eixos temáticos' do
-    subject.nomes_dos_eixos_tematicos.should be_nil
+    objeto = create(:objeto_de_aprendizagem)
+    objeto.nomes_dos_eixos_tematicos.should be_nil
     %w(Agricultura Artes Filosofia).each do |nome_eixo|
-      subject.eixos_tematicos << stub_model(EixoTematico, nome: nome_eixo)
+      objeto.cursos << create(:curso,
+        eixo_tematico: create(:eixo_tematico, nome: nome_eixo))
     end
-    subject.nomes_dos_eixos_tematicos.should == 'Agricultura, Artes e Filosofia'
+    objeto.reload.nomes_dos_eixos_tematicos.should == 'Agricultura, Artes e Filosofia'
   end
 
   it 'fornece os nomes das novas tags' do
