@@ -85,6 +85,7 @@ feature 'apresentar breadcrumbs para' do
 
   context 'buscas' do
     scenario 'normal' do
+      Tire.criar_indices
       verificar_breadcrumbs(busca_normal_path, 'Busca normal') do |url|
         visit root_path
         fill_in "text_busca_inicio", with: 'dummy '
