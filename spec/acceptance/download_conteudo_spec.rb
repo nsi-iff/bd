@@ -11,7 +11,6 @@ feature 'baixar conteúdo' do
     livro.submeter!
     livro.aprovar!
     visit conteudo_path(livro)
-    click_link 'Download' 
+    click_link 'Download'
   end
 end
-
