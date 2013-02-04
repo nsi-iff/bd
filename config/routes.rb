@@ -79,6 +79,7 @@ DigitalLibrary::Application.routes.draw do
       post :editar
     end
     get "/baixar_grao" , :to => 'graos#baixar_grao'
+    get :limpar_cesta, on: :collection if Rails.env.test?
   end
 
   get :favoritar_graos, :to => 'graos#favoritar_graos'

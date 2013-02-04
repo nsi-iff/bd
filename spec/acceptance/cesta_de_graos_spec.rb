@@ -3,7 +3,6 @@
 require 'spec_helper'
 
 feature 'cesta de grãos' do
-
   before(:each) do
     Tire.criar_indices
     @livro = create(:livro_publicado, titulo: 'Quantum Mechanics for Dummies')
@@ -58,7 +57,6 @@ feature 'cesta de grãos' do
       page.should_not have_content representacao_grao(@grao1)
       page.should_not have_content representacao_grao(@grao2)
     end
-
   end
 
   def comparar_odt(tag, novo, grao)
@@ -73,6 +71,25 @@ feature 'cesta de grãos' do
   end
 
   context 'usuário anônimo' do
+    before(:all) do
+      class GraosController
+        def limpar_cesta
+          session[:cesta] = []
+          render nothing: true
+        end
+      end
+    end
+
+    after(:all) do
+      class GraosController
+        undef_method :limpar_cesta
+      end
+    end
+
+    before :each do
+      page.driver.visit limpar_cesta_graos_path
+    end
+
     scenario 'incluir grão na cesta', js: true do
       incluir_grao_na_cesta_pelo_form
     end
@@ -160,7 +177,7 @@ feature 'cesta de grãos' do
                                         ./spec/resources/biblioteca_digital.png
                                         ./spec/resources/grao_teste_0.jpg))
       visit root_path
-      time = Time.now; 
+      time = Time.now;
       Timecop.freeze(time) do
         find('#baixar_conteudo_cesta_odt').click
         grao_armazenado = "./spec/resources/Linus Torvalds.odt"
