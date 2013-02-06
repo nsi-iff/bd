@@ -32,7 +32,7 @@ feature 'sessão e registro de usuário' do
     select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'select_instituicao'
     select 'Campus Campos Centro', from: 'Campus'
     click_button 'Registrar'
-    page.should have_content 'A sua conta foi criada com sucesso. No entanto, não foi possível fazer login, pois ela não foi confirmada'
+    page.should have_content 'mensagem com um link de confirmação foi enviada para o seu e-mail'
   end
 
   scenario 'acessar sistema' do
