@@ -18,6 +18,9 @@ class PagesController < ApplicationController
   def manuais
   end
 
+  def converter_video
+  end
+
   def sobre
     @title = "Sobre"
   end

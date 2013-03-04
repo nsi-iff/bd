@@ -39,7 +39,7 @@ class ConteudosController < ApplicationController
         flash[:alert] = %Q[Arquivo com formato inválido,
                     favor reenviar o arquivo com o formato
                     convertido (Maiores informações podem
-                    ser obtidas <a href="#">aqui</a>)]
+                    ser obtidas <a href="#{converter_video_path}">aqui</a>)]
       end
       @conteudo.build_arquivo
       render action: 'new'
