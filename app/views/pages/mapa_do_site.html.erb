@@ -2,17 +2,34 @@
   <h1> Mapa do Site </h1>
   <p>Uma visão geral do conteúdo disponível no site. Mantenha o ponteiro do mouse sobre o item por alguns segundos para visualizar sua descrição.</p>
   <div id="conteudo_mapa_do_site">
-    <a href="/" alt="Página Inicial da Biblioteca Digital da EPCT."><p>Biblioteca Digital da EPCT</p></a>
-    <a href="/buscas" alt="Busca no Acervo"><p>Busca no Acervo</p></a>
-    <% if current_usuario and can? :create, Conteudo %>
-      <a href="/adicionar_conteudo" alt="Adicionar conteúdo"><p>Adicionar Conteúdo</p></a>
-    <% end %>
-    <a href="/ajuda" alt="Ajuda"><p>Ajuda</p></a>
-    <a href="/ajuda/manuais" id="link-manuais" alt="Manuais de Ajuda"><p>Manuais de Ajuda</p></a>
-    <a href="/arquivos/manuais/manual_do_bibliotecario.pdf" id="link-bibliotecario" alt="Manual do Bibliotecário"><p>Manual do Bibliotecário</p></a>
-    <a href="/arquivos/manuais/manual_do_usuario.pdf" alt="Manual do Usuário" id="link-usuario"><p>Manual do Usuário</p></a>
-    <a href="/ajuda/tutoriais" alt="Tutoriais" id="link-tutoriais"><p>Tutoriais</p></a>
-    <a href="/noticias" alt="Notícias"><p>Notícias</p></a>
-    <a href="/estatisticas" alt="Estatísticas"><p>Estatísticas</p></a>
+    <a href="/" title="Início e busca básica."><p>Página inicial</p></a>
+    <a href="/buscas" title="Busca com critérios de seleção mais complexos."><p>Busca Avançada</p></a>
+    <a href="/busca_pronatec" title="Busca em conteúdos específicos do Programa Nacional de Acesso ao Ensino Técnico e Emprego."><p>Busca PRONATEC</p></a>
+    <a href="/buscas_por_imagem/new" title="Busca a partir de uma imagem submetida com o retorno de grãos imagens do próprio acervo"><p>Busca por imagem</p></a>
+      <dl>
+        <dt><a href="/adicionar_conteudo" title="Recurso disponível somente para Contribuidores e Gestores"><p>Adicionar Conteúdo</p></a></dt>
+        <dd>Artigo de Evento</dd>
+        <dd>Artigo de Periódico</dd>
+        <dd>Livro</dd>
+        <dd>Objeto de Aprendizagem</dd>
+        <dd>Periódico Técnico Científico</dd>
+        <dd>PRONATEC</dd>
+        <dd>Relatório</dd>
+        <dd>Trabalho de Obtenção de Grau</dd>
+      </dl>
+    <dl>
+      <dt><a href="/ajuda" title="Guias de utilização do Portal"><p>Ajuda</p></a></dt>
+      <dd>Manuais de Ajuda</dd>
+      <dd> &nbsp &nbsp Manual do Bibliotecário</dd>
+      <dd>&nbsp &nbsp Manual do Usuário</dd>
+      <dd>Tutoriais</dd>
+    </dl>
+    <a href="/sobre" title="Objetivos e Finalidade do Portal."><p>Sobre</p></a>
+    <dl>
+      <dt><a href="/estatisticas" alt="Estatísticas"><p>Estatísticas</p></a></dt>
+      <dd>Estatísticas do Portal</dd>
+      <dd>Gráficos</dd>
+    </dl>
+    <p><b>Busca por Área</b> - Busca dentro de uma das áreas do CNPq</p>
   </div>
 </div>
