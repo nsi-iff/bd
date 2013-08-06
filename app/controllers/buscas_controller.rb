@@ -5,6 +5,7 @@ class BuscasController < InheritedResources::Base
   before_filter :authenticate_usuario!, except: [:index, :busca_avancada, :busca_normal, :busca_por_imagem,
                                                  :busca_pronatec, :buscar_pronatec, :resultado_busca]
 
+  before_filter :tratar_dados_da_busca, only: [:busca_normal]
   respond_to :js, :only => [:cadastrar_mala_direta, :remover_mala_direta]
 
   def index
@@ -74,5 +75,11 @@ class BuscasController < InheritedResources::Base
 
   def mala_direta
     @buscas = current_usuario.buscas
+  end
+
+  private
+
+  def tratar_dados_da_busca
+    params[:busca].gsub!('/', '\\/')
   end
 end
