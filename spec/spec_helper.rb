@@ -37,7 +37,6 @@ Spork.prefork do
   Rails.application.railties.all { |r| r.eager_load! }
 
   require 'rspec/rails'
-  require 'rspec/autorun'
   require 'capybara/rails'
   require 'capybara/poltergeist'
   require 'valid_attribute'
@@ -98,13 +97,7 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
-    # check phantomjs availability in order to use poltergeist driver on capybara
-    def is_command_available(command)
-      system("which #{command} > /dev/null 2>&1")
-    end
-
-    Capybara.javascript_driver = is_command_available(:phantomjs) ?
-                    :poltergeist : :webkit
+    Capybara.javascript_driver = :poltergeist
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
