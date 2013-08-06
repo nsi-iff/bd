@@ -24,8 +24,6 @@ describe Estatistica do
   end
 
   it 'deve retornar usuários cadastrados por mês' do
-    ano = 2012
-    mes = 12
     Timecop.travel(2.months.ago) do
       4.times { create(:usuario) }
     end
@@ -33,7 +31,7 @@ describe Estatistica do
       9.times { create(:usuario) }
     end
 
-    estatisticas =  Estatistica.new(ano, 2.months.ago.month)
+    estatisticas =  Estatistica.new(2.months.ago.year, 2.months.ago.month)
     estatisticas.numero_de_usuarios_cadastrados.should == 4
   end
 
