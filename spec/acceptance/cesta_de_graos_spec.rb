@@ -156,7 +156,7 @@ feature 'cesta de grãos' do
       within '#documento' do
         page.should have_selector "img[src^='data:image/xyz;base64']"
         all('table tbody tr').map(&:text).map(&:strip).
-          map {|t| t.gsub(/\s+/, ' ') }.
+        map {|t| t.gsub(/\s+/, ' ') }.
           should == ['1 2 3', '4 5 6', '7 8 9']        
       end
     end
