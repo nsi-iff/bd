@@ -59,10 +59,9 @@ feature 'apresentacao dos conteudos por abas' do
     page.should have_content 'Tabelas'
 
     click_link 'Tabelas'
-    ensure_table '.grao_arquivo table',
-      [%w(1 2 3),
-       %w(4 5 6),
-       %w(7 8 9)]
+    all('.grao_arquivo table tbody tr').map(&:text).map(&:strip).
+      map {|s| s.gsub(/\s+/, '') }.
+      should == %w(123 456 789)
   end
 
   scenario 'imagens inseridas em tabelas devem ser mostradas' do
