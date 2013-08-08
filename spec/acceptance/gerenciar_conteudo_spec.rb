@@ -52,27 +52,6 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
     end
   end
 
-  scenario 'aceita vários autores', js: true do
-    submeter_conteudo :artigo_de_evento do
-      ['Linus Torvalds',
-       'Yukihiro Matsumoto',
-       'Guido van Rossum'].each_with_index do |autor, i|
-        click_link 'Adicionar outro autor'
-        within "#autores .nested-fields:nth-child(#{i + 1})" do
-          fill_in 'Autor', with: autor
-          fill_in 'Curriculum Lattes',
-            with: "http://lattes.cnpq.br/#{autor.downcase.gsub(' ', '_')}"
-        end
-      end
-    end
-    page.should have_content 'Linus Torvalds'
-    page.should have_content 'http://lattes.cnpq.br/linus_torvalds'
-    page.should have_content 'Yukihiro Matsumoto'
-    page.should have_content 'http://lattes.cnpq.br/yukihiro_matsumoto'
-    page.should have_content 'Guido van Rossum'
-    page.should have_content 'http://lattes.cnpq.br/guido_van_rossum'
-  end
-
   scenario 'campos obrigatórios' do
     submeter_conteudo :artigo_de_evento,
       titulo: '', autores: false

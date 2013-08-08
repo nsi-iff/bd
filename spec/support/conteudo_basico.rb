@@ -97,7 +97,6 @@ def preencher_campos(tipo, opcoes = {})
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'
 
   select("Ciências Exatas e da Terra", from: 'area')
-
   select('Ciência da Computação', from: "#{tipo}_sub_area_id")
 
   unless opcoes[:autores] == false
