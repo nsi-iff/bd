@@ -180,7 +180,7 @@ feature 'cesta de grãos' do
       Timecop.freeze(time) do
         find('#baixar_conteudo_cesta_odt').click
         grao_armazenado = "./spec/resources/Linus Torvalds.odt"
-        grao_baixado = "#{Rails.root}/tmp/cesta-#{time}.odt"
+        grao_baixado = "#{Rails.root}/tmp/cesta-#{time.getlocal.strftime('%Y-%m-%d_%T')}.odt"
         comparar_odt('//office:text', grao_baixado, grao_armazenado)
 
         odt = Zip::ZipFile.open(grao_baixado)

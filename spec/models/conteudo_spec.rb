@@ -394,19 +394,18 @@ describe Conteudo do
     end
 
     it "pesquisa no índice 'conteudos' e 'arquivos' do elasticsearch" do
-      result = mock(:result).as_null_object
+      result = mock(:result, results: [])
       Tire.should_receive('search').with('conteudos', {load: true}).and_return(result)
       Tire.should_receive('search').with('arquivos', {load: true}).and_return(result)
       Conteudo.search 'busca'
     end
 
     it "#search retorna a soma das buscas em 'arquivos' e 'conteudos'" do
-      result_conteudos = mock(:conteudos).as_null_object
-      result_arquivos = mock(:arquivos).as_null_object
-      result_conteudos.should_receive(:+).with(result_arquivos).and_return(['soma'])
+      result_conteudos = double(:conteudos, results: [:conteudos])
+      result_arquivos = double(:arquivos, results: [double(conteudo: :arquivos)])
       Tire.should_receive('search').with('conteudos', {load: true}).and_return(result_conteudos)
       Tire.should_receive('search').with('arquivos', {load: true}).and_return(result_arquivos)
-      Conteudo.search('busca').should eq(['soma'])
+      Conteudo.search('busca').should == [:conteudos, :arquivos]
     end
 
     context 'indexação de atributos de relacionamentos' do
