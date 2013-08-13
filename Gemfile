@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '4.0.0'
 
 gem 'exception_notification', '~> 4.0.0'
 gem 'devise', '~>3.0.2'
@@ -13,7 +13,7 @@ gem 'inherited_resources', '~> 1.4.1'
 gem 'haml', '~> 4.0.3'
 gem 'formtastic', '~> 2.2.0'
 gem 'cocoon', '~> 1.2.0'
-gem 'flexible_date', '~> 0.4.1'
+gem 'flexible_date', git: 'https://github.com/rodrigomanhaes/flexible_date.git', branch: 'rails4'
 gem 'state_machine', '~> 1.2.0'
 gem 'tire', '~> 0.6.0'
 gem 'apachelogregex'
@@ -26,18 +26,18 @@ gem 'gon'
 gem 'multi_json', '~>1.3.0'
 gem 'nsi-abntformat', '~>1.0.4'
 gem 'odt2html-nsi'
-gem 'mail_form'
+gem 'mail_form', git: 'https://github.com/plataformatec/mail_form.git'
 gem 'erb2haml'
 gem 'simple-navigation', '~> 3.11.0'
 gem 'nokogiri'
 gem "nsivideogranulate", "~> 0.2.0"
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+#group :assets do
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
-end
+#end
 
 group :test, :development do
   gem 'sqlite3'
