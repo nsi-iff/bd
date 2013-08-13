@@ -22,7 +22,7 @@ feature "editor online" do
     criar_cesta(@usuario, @livro, *%w(./spec/resources/biblioteca_digital.png))
     visit "/editor?graos=true"
     click_button "Download"
-    page.body.should match("Referência ABNT")
+    page.body.should include "ncia ABNT"
   end
 
   def headers

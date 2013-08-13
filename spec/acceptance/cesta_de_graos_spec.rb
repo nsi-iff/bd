@@ -1,9 +1,11 @@
 # encoding: utf-8
 
 require 'spec_helper'
+require 'tempfile'
 
 feature 'cesta de grãos' do
   before(:each) do
+    Papel.criar_todos
     Tire.criar_indices
     @livro = create(:livro_publicado, titulo: 'Quantum Mechanics for Dummies')
 
@@ -116,7 +118,6 @@ feature 'cesta de grãos' do
 
   context 'usuário logado' do
     before :each do
-      Papel.criar_todos
       @usuario = autenticar_usuario(Papel.membro)
     end
 
@@ -165,10 +166,19 @@ feature 'cesta de grãos' do
       criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt))
       visit root_path
       find('#baixar_conteudo_cesta').click
-
+      
       page.response_headers['Content-Type'].should == "application/zip"
-      page.source.should have_content "grao_quantum_mechanics_for_dummies_0.odt" # zip deve conter arquivo que representa o grão
-      page.source.should have_content "referencias_ABNT.txt"
+      file = Tempfile.new('zipfile')
+      file.binmode
+      file.write(page.source)
+      file.close
+      begin
+        zipped_files = Zip::ZipFile.open(file.path).entries.map(&:name)
+        zipped_files.should include "grao_quantum_mechanics_for_dummies_0.odt"
+        zipped_files.should include "referencias_ABNT.txt"
+      ensure
+        file.unlink
+      end
     end
 
     scenario 'baixar conteudo da cesta em odt' do

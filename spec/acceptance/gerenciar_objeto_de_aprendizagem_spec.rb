@@ -19,7 +19,7 @@ feature 'adicionar objeto de aprendizagem' do
       click_button '>'
 
       fill_in 'Novas tags', with: "Técnicas de programação\nOO\nTestes"
-      select 'Português (Brasil)', on: 'Idioma'
+      select 'Português (Brasil)', from: 'Idioma'
     end
 
     validar_conteudo
@@ -44,7 +44,7 @@ feature 'adicionar objeto de aprendizagem' do
       click_button '>'
 
       fill_in 'Novas tags', with: "Técnicas de programação\nOO\nTestes"
-      select 'Português (Brasil)', on: 'Idioma'
+      select 'Português (Brasil)', from: 'Idioma'
     end
 
     validar_conteudo

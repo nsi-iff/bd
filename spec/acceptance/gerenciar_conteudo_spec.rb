@@ -65,36 +65,41 @@ feature 'adicionar conteudo (referente aos dados básicos)' do
   end
 
   scenario "conteudo da área deve mudar quando grande área é selecionada", js: true do
-    popular_area_sub_area
-    Papel.criar_todos
-    autenticar_usuario(Papel.contribuidor)
-    visit new_conteudo_path(tipo: :artigo_de_evento)
+    Capybara.configure {|config| config.ignore_hidden_elements = false }
+    begin
+      popular_area_sub_area
+      Papel.criar_todos
+      autenticar_usuario(Papel.contribuidor)
+      visit new_conteudo_path(tipo: :artigo_de_evento)
 
-    select('Ciências Exatas e da Terra', from: 'Grande Área de Conhecimento')
-    select('Ciência da Computação', from: 'Área de Conhecimento')
+      select('Ciências Exatas e da Terra', from: 'area')
+      select('Ciência da Computação', from: 'artigo_de_evento_sub_area_id')
 
-    select('Engenharias', from: 'Grande Área de Conhecimento')
-    select('Engenharia de Produção', from: 'Área de Conhecimento')
+      select('Engenharias', from: 'Grande Área de Conhecimento'); sleep 0.5
+      select('Engenharia de Produção', from: 'Área de Conhecimento')
 
-    select('Ciências Biológicas', from: 'Grande Área de Conhecimento')
-    select('Biologia Geral', from: 'Área de Conhecimento')
+      select('Ciências Biológicas', from: 'Grande Área de Conhecimento'); sleep 0.5
+      select('Biologia Geral', from: 'Área de Conhecimento')
 
-    select('Ciências da Saúde', from: 'Grande Área de Conhecimento')
-    select('Enfermagem', from: 'Área de Conhecimento')
+      select('Ciências da Saúde', from: 'Grande Área de Conhecimento'); sleep 0.5
+      select('Enfermagem', from: 'Área de Conhecimento')
 
-    select('Ciências Agrárias', from: 'Grande Área de Conhecimento')
-    select('Agronomia', from: 'Área de Conhecimento')
+      select('Ciências Agrárias', from: 'Grande Área de Conhecimento'); sleep 0.5
+      select('Agronomia', from: 'Área de Conhecimento')
 
-    select('Ciências Sociais Aplicadas', from: 'Grande Área de Conhecimento')
-    select('Administração', from: 'Área de Conhecimento')
+      select('Ciências Sociais Aplicadas', from: 'Grande Área de Conhecimento'); sleep 0.5
+      select('Administração', from: 'Área de Conhecimento')
 
-    select('Ciências Humanas', from: 'Grande Área de Conhecimento')
-    select('Teologia', from: 'Área de Conhecimento')
+      select('Ciências Humanas', from: 'Grande Área de Conhecimento'); sleep 0.5
+      select('Teologia', from: 'Área de Conhecimento')
 
-    select('Linguística, Letras e Artes', from: 'Grande Área de Conhecimento')
-    select('Letras', from: 'Área de Conhecimento')
+      select('Linguística, Letras e Artes', from: 'Grande Área de Conhecimento'); sleep 0.5
+      select('Letras', from: 'Área de Conhecimento')
 
-    select('Outras', from: 'Grande Área de Conhecimento')
-    select('Biomedicina', from: 'Área de Conhecimento')
+      select('Outras', from: 'Grande Área de Conhecimento'); sleep 0.5
+      select('Biomedicina', from: 'Área de Conhecimento')
+    ensure
+      Capybara.configure {|config| config.ignore_hidden_elements = true }
+    end
   end
 end

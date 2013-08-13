@@ -27,7 +27,7 @@ feature 'sessão e registro de usuário' do
     click_link 'Registrar Usuário'
     fill_in 'Nome Completo', with: 'Foo Bar'
     fill_in 'E-mail', with: 'foo@bar.com'
-    fill_in 'Senha', with: 'foobar'
+    fill_in 'usuario_password', with: 'foobar'
     fill_in 'Confirmação de Senha', with: 'foobar'
     select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'select_instituicao'
     select 'Campus Campos Centro', from: 'Campus'

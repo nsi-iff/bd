@@ -98,7 +98,7 @@ feature 'Buscas' do
 
      visit buscas_path
      select livro.nome_area, from: 'parametros[nome_area]'
-     wait_until { page.has_selector?("select:has(option:contains('Todas'))[name='parametros[nome_instituicao]']") }
+     sleep(0.5)
      select livro.nome_sub_area, from: 'parametros[nome_sub_area]'
      click_button 'Buscar'
      page.should have_content livro.titulo
@@ -181,14 +181,14 @@ feature 'Buscas' do
 
     visit root_path
     #link do portlet
-    click_link 'busca por artigo'
+    within('#minhas_buscas') { click_link 'busca por artigo' }
     within '#resultado' do
       page.should have_link 'artigo'
     end
 
     #link da view minhas buscas
     click_link 'Gerenciar buscas'
-    click_link 'busca por artigo'
+    within('.minhas_buscas.index') { click_link 'busca por artigo' }
     within '#resultado' do
       page.should have_link 'artigo'
     end

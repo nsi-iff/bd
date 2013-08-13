@@ -42,8 +42,8 @@ end
 group :test, :development do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 2.14.0'
-  gem 'capybara', '~> 1.1.2'
-  gem 'poltergeist', '~> 1.0'
+  gem 'capybara', '~> 2.1.0'
+  gem 'poltergeist', '~> 1.3.0'
   gem 'launchy', '~> 2.3.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'valid_attribute', '~> 1.3.1'
