@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 
 gem 'exception_notification', '~> 4.0.0'
-gem 'devise', '~>2.2.3'
+gem 'devise', '~>3.0.2'
 gem 'cancan', '~>1.6.10'
 gem 'pg', '~> 0.16.0'
 gem 'nsisam', '~> 0.7.7'
