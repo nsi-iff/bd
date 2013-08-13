@@ -50,7 +50,6 @@ group :test, :development do
   gem 'timecop', '~> 0.6.3'
   gem 'pry-rails', '~> 0.3.2'
   gem 'capistrano', '~>2.15.5'
-  gem 'spork-rails', '~> 3.2.0'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
   gem 'zippy'
