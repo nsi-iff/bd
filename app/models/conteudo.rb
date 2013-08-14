@@ -19,11 +19,6 @@ class Conteudo < ActiveRecord::Base
   accepts_nested_attributes_for :autores, :reject_if => :all_blank, :allow_destroy => true
   belongs_to :campus
 
-  attr_accessible :arquivo, :contribuidor, :titulo, :link, :sub_area_id,
-                  :autores_attributes, :campus_id, :contribuidor_id, :subtitulo,
-                  :resumo, :direitos, :sub_area, :campus, :autores, :pronatec,
-                  :arquivo_attributes
-
   validate :arquivo_deve_ser_valido, :if => :arquivo
 
   validate :nao_pode_ter_arquivo_e_link_simultaneamente,

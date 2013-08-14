@@ -2,7 +2,6 @@
 
 class Papel < ActiveRecord::Base
   has_and_belongs_to_many :usuarios
-  attr_accessible :nome, :descricao
 
   def self.criar_todos
     create!([

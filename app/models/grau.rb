@@ -10,6 +10,4 @@ class Grau < ActiveRecord::Base
         { nome: 'Doutorado'      }
     ])
   end
-  
-  attr_accessible :nome
 end

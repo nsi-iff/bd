@@ -1,116 +1,83 @@
-require 'spork'
-#uncomment the following line to use spork with the debugger
-#require 'spork/ext/ruby-debug'
+require 'rubygems'
+ENV["RAILS_ENV"] ||= 'test'
 
-Spork.prefork do
-  require 'rubygems'
-  ENV["RAILS_ENV"] ||= 'test'
+# inicia simplecov (coverage) se não estiver usando spork, e com COVERAGE=true
+if ENV["COVERAGE"]
+ puts "Running Coverage Tool\n"
+  require 'simplecov'
+  require 'simplecov-rcov'
+  SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+  SimpleCov.start 'rails'
+end
 
-  # inicia simplecov (coverage) se não estiver usando spork, e com COVERAGE=true
-  if !Spork.using_spork? && ENV["COVERAGE"]
-    puts "Running Coverage Tool\n"
-    require 'simplecov'
-    require 'simplecov-rcov'
-    SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
-    SimpleCov.start 'rails'
-  end
+require 'rails/application'
 
-  require 'rails/application'
-  # Use of https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujutsu
-  Spork.trap_method(Rails::Application, :reload_routes!)
-  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+require "bundler/setup"
+require "tire"
 
-  # As próximas etapas são para re-carregar app/models/..., app/controllers/... no spork
-  # como visto em http://my.rails-royce.org/2012/01/14/reloading-models-in-rails-3-1-when-usign-spork-and-cache_classes-true/
-  # Prevent main application to eager_load in the prefork block (do not load files in autoload_paths)
-  # I.e., prevent Rails::Application to loads files in the application autoload_paths
-  # such as app/models, app/controllers, etc.
-  Spork.trap_method(Rails::Application, :eager_load!)
+# Depois dessa linha já é tarde demais. Now, load the rails stack
+require File.expand_path("../../config/environment", __FILE__)
 
-  require "bundler/setup"
-  require "tire"
+# Load all railties files, i.e., eager load all the engines
+# Rails.application.railties.all { |r| r.eager_load! }
 
-  # Depois dessa linha já é tarde demais. Now, load the rails stack
-  require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'capybara/rails'
+require 'capybara/poltergeist'
+require 'valid_attribute'
+require 'cancan/matchers'
+require 'rufus/scheduler'
 
-  # Load all railties files, i.e., eager load all the engines
-  Rails.application.railties.all { |r| r.eager_load! }
+unless ENV['INTEGRACAO_CLOUDOOO']
+  require 'integration/fake_nsicloudooo'
+end
 
-  require 'rspec/rails'
-  require 'capybara/rails'
-  require 'capybara/poltergeist'
-  require 'valid_attribute'
-  require 'cancan/matchers'
-  require 'rufus/scheduler'
+ServiceRegistry.sam = NSISam::FakeClient.new unless ENV['INTEGRACAO_SAM']
+ServiceRegistry.sam.expire = 5 if ENV['INTEGRACAO_SAM']
 
+# ver http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
+Devise.stretches = 1
+Rails.logger.level = 4
 
-  if Spork.using_spork?
-    ## other requires to reduce (improve) test load-time
-    # as test with script tooked from http://www.opinionatedprogrammer.com/2011/02/profiling-spork-for-faster-start-up-time/
-    require 'rspec/core'
-    require 'rspec/mocks'
-    require 'rspec/expectations'
-    require 'treetop/runtime'
-  end
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
 
-  unless ENV['INTEGRACAO_CLOUDOOO']
-    require 'integration/fake_nsicloudooo'
-  end
-
-  ServiceRegistry.sam = NSISam::FakeClient.new unless ENV['INTEGRACAO_SAM']
-  ServiceRegistry.sam.expire = 5 if ENV['INTEGRACAO_SAM']
-
-  # ver http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
-  Devise.stretches = 1
-  Rails.logger.level = 4
-
-  class ActiveRecord::Base
-    mattr_accessor :shared_connection
-    @@shared_connection = nil
-
-    def self.connection
-      @@shared_connection || retrieve_connection
-    end
-  end
-
-  require Rails.root + "db/criar_indices"
-
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
-  RSpec.configure do |config|
-    config.include DigitalLibrary::SpecHelpers::Utils
-    config.include Devise::TestHelpers, type: :view
-    config.include Devise::TestHelpers, type: :controller
-    config.include FactoryGirl::Syntax::Methods
-    config.include Toothbrush::Helpers
-
-    config.include(MailerMacros)
-    config.before(:each) { resetar_emails }
-
-    config.filter_run_excluding sam: true unless ENV['INTEGRACAO_SAM']
-
-    # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-    # If you're not using ActiveRecord, or you'd prefer not to run each of your
-    # examples within a transaction, remove the following line or assign false
-    # instead of true.
-    config.use_transactional_fixtures = true
-
-    Capybara.javascript_driver = :poltergeist
-
-    # If true, the base class of anonymous controllers will be inferred
-    # automatically. This will be the default behavior in future versions of
-    # rspec-rails.
-    config.infer_base_class_for_anonymous_controllers = false
+  def self.connection
+    @@shared_connection || retrieve_connection
   end
 end
 
-Spork.each_run do
-  # Forces all threads to share the same connection. This works on
-  # Capybara because it starts the web server in a thread.
-  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
-  # This steps will only be runned when using spork
-  FactoryGirl.reload if Spork.using_spork?
+require Rails.root + "db/criar_indices"
+
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+RSpec.configure do |config|
+  config.include DigitalLibrary::SpecHelpers::Utils
+  config.include Devise::TestHelpers, type: :view
+  config.include Devise::TestHelpers, type: :controller
+  config.include FactoryGirl::Syntax::Methods
+  config.include Toothbrush::Helpers
+
+  config.include(MailerMacros)
+  config.before(:each) { resetar_emails }
+
+  config.filter_run_excluding sam: true unless ENV['INTEGRACAO_SAM']
+
+  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+  # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # examples within a transaction, remove the following line or assign false
+  # instead of true.
+  config.use_transactional_fixtures = true
+
+  Capybara.javascript_driver = :poltergeist
+
+  # If true, the base class of anonymous controllers will be inferred
+  # automatically. This will be the default behavior in future versions of
+  # rspec-rails.
+  config.infer_base_class_for_anonymous_controllers = false
 end

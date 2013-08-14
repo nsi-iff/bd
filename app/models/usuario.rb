@@ -10,10 +10,6 @@ class Usuario < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :usuario, :nome_completo, :papel_ids, :campus_id, :confirmed_at
-
   validates :email, presence: true, uniqueness: true
   validates :nome_completo, presence: true, allow_blank: true
 

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
+gem 'activeresource', '4.0.0'
 
 gem 'exception_notification', '~> 4.0.0'
 gem 'devise', '~>3.0.2'
@@ -11,7 +12,7 @@ gem 'nsicloudooo', '~> 0.5.2'
 gem 'delorean'
 gem 'inherited_resources', '~> 1.4.1'
 gem 'haml', '~> 4.0.3'
-gem 'formtastic', '~> 2.2.0'
+gem 'formtastic', '~> 2.3.0.rc2'
 gem 'cocoon', '~> 1.2.0'
 gem 'flexible_date', git: 'https://github.com/rodrigomanhaes/flexible_date.git', branch: 'rails4'
 gem 'state_machine', '~> 1.2.0'
