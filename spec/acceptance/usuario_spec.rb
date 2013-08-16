@@ -20,21 +20,6 @@ feature 'sessão e registro de usuário' do
     select 'Campus Campos Centro', from: 'Campus'
   end
 
-  scenario 'cadastrar usuario' do
-    popular_instituicao_campus
-    deslogar
-    visit root_path
-    click_link 'Registrar Usuário'
-    fill_in 'Nome Completo', with: 'Foo Bar'
-    fill_in 'E-mail', with: 'foo@bar.com'
-    fill_in 'usuario_password', with: 'foobar'
-    fill_in 'Confirmação de Senha', with: 'foobar'
-    select 'Instituto Federal de Educação, Ciência e Tecnologia Fluminense', from: 'select_instituicao'
-    select 'Campus Campos Centro', from: 'Campus'
-    click_button 'Registrar'
-    page.should have_content 'mensagem com um link de confirmação foi enviada para o seu e-mail'
-  end
-
   scenario 'acessar sistema' do
     usuario = create :usuario, password: 'foobar', password_confirmation: 'foobar'
 
