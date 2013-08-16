@@ -81,17 +81,6 @@ feature 'Visualizar grão' do
   end
   
   context 'e manipulação' do
-    scenario 'adiciondo-o à cesta de grão' do
-      Papel.criar_todos
-      user = autenticar_usuario(Papel.contribuidor)
-
-      grao = adicionar_grao
-      visit grao_path(grao)
-
-      click_button "Adicionar à Cesta de Grãos"
-      grao.id.should == user.cesta[0].referenciavel_id
-    end
-
     scenario 'adiciondo-o à estante do usuario' do
       Papel.criar_todos
       user = autenticar_usuario(Papel.contribuidor)
