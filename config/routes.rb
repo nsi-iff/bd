@@ -87,9 +87,9 @@ DigitalLibrary::Application.routes.draw do
   get "/cesta/baixar_conteudo", :to => 'graos#baixar_conteudo'
   get "/cesta/baixar_conteudo_em_odt", :to => 'graos#baixar_conteudo_em_odt'
 
-  match "/areas/:id/sub_areas" => "areas#sub_areas", via: :get
-  match "/instituicoes/:id/campus" => "instituicoes#campus", via: :get
-  match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos", via: :get
+  match "/areas/:id/sub_areas" => "areas#sub_areas", via: :post
+  match "/instituicoes/:id/campus" => "instituicoes#campus", via: :post
+  match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos", via: :post
   get '/editor' => 'editor#index', as: :editor
   post '/editor' => 'editor#download'
 

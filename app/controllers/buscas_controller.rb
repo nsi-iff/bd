@@ -46,8 +46,18 @@ class BuscasController < InheritedResources::Base
   end
 
   def create
-    @busca = current_usuario.buscas.new(params[:busca].merge busca: session[:ultima_busca])
+    params[:busca].merge! busca: session[:ultima_busca]
+    @busca = current_usuario.buscas.new(params_busca)
     create! notice: "Busca salva com sucesso"
+  end
+
+  def update
+    @busca = Busca.find(params[:id])
+    if @busca.update_attributes(params_busca)
+      redirect_to @busca
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -81,5 +91,9 @@ class BuscasController < InheritedResources::Base
 
   def tratar_dados_da_busca
     params[:busca].gsub!('/', '\\/')
+  end
+
+  def params_busca
+    params.require(:busca).permit(:parametros, :busca, :titulo, :descricao)
   end
 end

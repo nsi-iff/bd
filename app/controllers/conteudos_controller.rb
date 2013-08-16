@@ -193,7 +193,51 @@ class ConteudosController < ApplicationController
   end
 
   def conteudo_da_requisicao
-    params[params['tipo'].try(:to_sym) || @conteudo.nome_como_simbolo]
+    params.require(param_key).permit(:arquivo, :contribuidor, :titulo, 
+      :link, :sub_area_id, :campus_id, 
+      :contribuidor_id, :subtitulo, :resumo, :direitos, :sub_area, :campus, 
+      :autores, :pronatec, *send("params_#{param_key}"),
+      arquivo_attributes: [:uploaded_file], autores_attributes: [:nome, :lattes])
+  end
+
+  def params_artigo_de_evento
+    [:subtitulo, :nome_evento, :numero_evento,
+     :local_evento, :ano_evento, :editora, :ano_publicacao,
+     :local_publicacao, :titulo_anais, :pagina_inicial,
+     :pagina_final, :resumo, :direitos]
+  end
+
+  def params_artigo_de_periodico
+    [:nome_periodico, :editora, :fasciculo, :volume_publicacao,
+    :data_publicacao_br, :local_publicacao, :pagina_inicial,
+    :pagina_final]
+  end
+
+  def params_livro
+    [:traducao, :numero_edicao, :local_publicacao, :editora,
+     :ano_publicacao, :numero_paginas]
+  end
+
+  def params_objeto_de_aprendizagem
+    [:palavras_chave, :tempo_aprendizagem, :curso_ids, :novas_tags,
+     :idioma_id]
+  end
+
+  def params_periodico_tecnico_cientifico
+    [:editora, :local_publicacao, :ano_primeiro_volume, :ano_ultimo_volume]
+  end
+
+  def params_relatorio
+    [:local_publicacao, :ano_publicacao, :numero_paginas]
+  end
+
+  def params_trabalho_de_obtencao_de_grau
+    [:numero_paginas, :instituicao, :grau_id, :data_defesa_br, 
+     :local_defesa]
+  end
+
+  def param_key
+    params['tipo'].try(:to_sym) || @conteudo.nome_como_simbolo
   end
 
   def obter_conteudo

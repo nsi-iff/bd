@@ -7,6 +7,8 @@ class UsuariosController < ApplicationController
   def index
   end
 
+def create; binding.pry; create!; end
+
   def papeis
     @usuarios = current_usuario.usuarios_gerenciaveis
   end

@@ -11,7 +11,7 @@ class Usuario < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, presence: true, uniqueness: true
-  validates :nome_completo, presence: true, allow_blank: true
+  validates :nome_completo, presence: true
 
   def conteudos_editaveis
     Conteudo.where(contribuidor_id: self.id, state: 'editavel')

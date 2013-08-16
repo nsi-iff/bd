@@ -1,6 +1,6 @@
 class ObjetoDeAprendizagem < Conteudo
   index_name 'conteudos'
-  has_and_belongs_to_many :cursos
+  has_and_belongs_to_many :cursos, join_table: 'cursos_objetos_de_aprendizagem'
   has_many :eixos_tematicos, :through => :cursos, :uniq => true
   belongs_to :idioma
 

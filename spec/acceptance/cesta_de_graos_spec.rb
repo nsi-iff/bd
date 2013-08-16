@@ -74,7 +74,7 @@ feature 'cesta de grãos' do
 
   context 'usuário anônimo' do
     before(:all) do
-      class GraosController
+      GraosController.class_eval do
         def limpar_cesta
           session[:cesta] = []
           render nothing: true
@@ -83,7 +83,7 @@ feature 'cesta de grãos' do
     end
 
     after(:all) do
-      class GraosController
+      GraosController.class_eval do
         undef_method :limpar_cesta
       end
     end

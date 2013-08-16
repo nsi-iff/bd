@@ -17,7 +17,6 @@ feature 'adicionar artigo de evento' do
       fill_in 'Página inicial do trabalho', with: '10'
       fill_in 'Página final do trabalho', with: '25'
     end
-
     validar_conteudo
     page.should have_content 'Artigo de Evento'
     page.should have_content 'Ruby Becomes The Flash'

@@ -7,10 +7,16 @@ feature 'adicionar objeto de aprendizagem' do
     Idioma.create! descricao: 'Português (Brasil)'
     popular_eixos_tematicos_cursos
     Papel.criar_todos
+    Capybara.configure {|c| c.match = :prefer_exact }
   end
 
-  scenario 'selecionar um curso de um eixo' do
+  after(:each) do
+    Capybara.configure {|c| c.match = :smart }
+  end
+
+  scenario 'selecionar um curso de um eixo', js: true do
     submeter_conteudo :objeto_de_aprendizagem do
+      save_and_open_page
       fill_in 'Palavras-chave', with: 'programação, orientação a objetos, classe'
       fill_in 'Tempo de aprendizagem típico', with: '2 meses'
 
