@@ -1,7 +1,7 @@
 module EditorHelper
   def criar_documento
     graos = params['graos'].keys[0].to_sym
-    documento = File.new("#{Rails.root}/tmp/documento.html", 'w')
+    documento = Tempfile.new("documento.html")
     documento.write('<meta charset="UTF-8">')
     documento.write(params[:documento])
     if graos == :true

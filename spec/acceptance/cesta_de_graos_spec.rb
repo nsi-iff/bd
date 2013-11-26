@@ -25,7 +25,7 @@ feature 'cesta de grãos' do
     click_button 'Adicionar à Cesta de Grãos'
 
     within('#cesta') { page.should have_content representacao_grao(@grao1) }
-
+    ENV['merda'] = '10'
     visit grao_path(@grao2)
     click_button 'Adicionar à Cesta de Grãos'
 
@@ -158,7 +158,7 @@ feature 'cesta de grãos' do
         page.should have_selector "img[src^='data:image/xyz;base64']"
         all('table tbody tr').map(&:text).map(&:strip).
         map {|t| t.gsub(/\s+/, ' ') }.
-          should == ['1 2 3', '4 5 6', '7 8 9']        
+          should == ['1 2 3', '4 5 6', '7 8 9']
       end
     end
 
@@ -166,7 +166,7 @@ feature 'cesta de grãos' do
       criar_cesta(@usuario, @livro, *%w(./spec/resources/tabela.odt))
       visit root_path
       find('#baixar_conteudo_cesta').click
-      
+
       page.response_headers['Content-Type'].should == "application/zip"
       file = Tempfile.new('zipfile')
       file.binmode

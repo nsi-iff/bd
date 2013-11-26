@@ -23,7 +23,7 @@ class DocumentoOdt
   end
 
   def adicionar_imagem(imagem, nome)
-    imagem_temporaria = Tempfile.new("#{Rails.root}/tmp/#{nome}", "w")
+    imagem_temporaria = Tempfile.new("nome", Rails.root.join('tmp'))
     imagem_temporaria.write(imagem.force_encoding('UTF-8'))
     imagem_odt = "Pictures/" + nome
     @arquivo_odt.add(imagem_odt, imagem_temporaria)
@@ -57,7 +57,7 @@ class DocumentoOdt
   end
 
   def salvar!
-    myfile = Tempfile.new("#{Rails.root}/tmp/myfile.xml", "w")
+    myfile = Tempfile.new("myfile.xml", Rails.root.join('tmp'))
     @content.write(myfile)
     @arquivo_odt.replace("content.xml", myfile)
     myfile.close

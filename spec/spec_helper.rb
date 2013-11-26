@@ -114,3 +114,8 @@ Spork.each_run do
   # This steps will only be runned when using spork
   FactoryGirl.reload if Spork.using_spork?
 end
+
+
+def page!
+  save_and_open_page
+end

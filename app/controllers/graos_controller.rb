@@ -44,7 +44,7 @@ class GraosController < ApplicationController
         if grao.imagem?
           documento.adicionar_imagem(grao_string, grao.titulo)
         else
-          arquivo_temporario = Tempfile.new("#{Rails.root}/tmp/#{rand}.odt", "w")
+          arquivo_temporario = Tempfile.new("#{rand}.odt")
           arquivo_temporario.write(grao_string.force_encoding('UTF-8'))
           documento.adicionar_tabela(arquivo_temporario)
           arquivo_temporario.close()
@@ -78,7 +78,6 @@ class GraosController < ApplicationController
   end
 
   def show
-    carregar_grao
   end
 
   def baixar_grao
@@ -87,20 +86,20 @@ class GraosController < ApplicationController
     if @grao.imagem? || @grao.video?
       dados_grao = Base64.decode64(dados_grao)
       file_name  = "#{Rails.root}/tmp/#{@grao.titulo}"
-      file = File.new(file_name, "w")
+      file = File.new(file_name)
       file.write(dados_grao.force_encoding('UTF-8'))
       send_file file_name
       File.delete file.path
     else
       documento = DocumentoOdt.new("#{@grao.titulo}")
       dados_grao = Base64.decode64(dados_grao)
-      file_name  = "#{Rails.root}/tmp/#{rand}.odt"
-      arquivo_temporario = Tempfile.new(file_name, "w")
+      file_name  = "#{rand}.odt"
+      arquivo_temporario = Tempfile.new(file_name)
       arquivo_temporario.write(dados_grao.force_encoding('UTF-8'))
       documento.adicionar_tabela(arquivo_temporario)
       documento.salvar!
       send_file documento.arquivo
-      arquivo_temporario.close()
+      arquivo_temporario.close
     end
   end
 

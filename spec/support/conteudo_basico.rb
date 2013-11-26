@@ -97,7 +97,14 @@ def preencher_campos(tipo, opcoes = {})
   fill_in 'Link', with: opcoes[:link] || 'http://www.rubyconf.org/articles/1'
 
   select("Ciências Exatas e da Terra", from: 'area')
-  select('Ciência da Computação', from: "#{tipo}_sub_area_id")
+  begin
+    select('Ciência da Computação', from: "#{tipo}_sub_area_id")
+  rescue
+    # para investigar erro "intermitente"
+    page!
+    puts "Area.count: #{Area.count}"
+    binding.pry
+  end
 
   unless opcoes[:autores] == false
     click_link 'Adicionar outro autor'

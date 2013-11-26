@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.14'
 
@@ -54,4 +54,5 @@ group :test, :development do
   gem 'simplecov-rcov', require: false
   gem 'zippy'
   gem 'toothbrush'
+  gem 'spork'
 end

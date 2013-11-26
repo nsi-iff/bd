@@ -85,18 +85,18 @@ describe Busca do
     busca = create(:busca, busca: "Lord", usuario: usuario, mala_direta: true)
     create(:busca, busca: "dummy", usuario: usuario, mala_direta: true)
 
-    Timecop.travel Time.now - 2.days
+    Timecop.travel Time.zone.now - 2.days
     livro_1 = create(:livro_publicado, titulo: 'Dracula the Lord of Shadows')
     Timecop.return
-    livro_1.data_publicado.should == (Date.today - 2).strftime("%d/%m/%y")
+    livro_1.data_publicado.should == (Date.current - 2).strftime("%d/%m/%y")
 
-    Timecop.travel Time.now - 1.day
+    Timecop.travel Time.zone.now - 1.day
     livro_2 = create(:livro_publicado, titulo: 'The Lord of The Rings')
     Timecop.return
     livro_2.data_publicado.should == Date.yesterday.strftime("%d/%m/%y")
 
     livro_3 = create(:livro_publicado, titulo: 'The book of Lord Shang')
-    livro_3.data_publicado.should == Date.today.strftime("%d/%m/%y")
+    livro_3.data_publicado.should == Date.current.strftime("%d/%m/%y")
 
     Conteudo.index.refresh
 
