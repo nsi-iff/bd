@@ -31,6 +31,7 @@ gem 'erb2haml'
 gem 'simple-navigation', '~> 3.11.0'
 gem 'nokogiri'
 gem "nsivideogranulate", "~> 0.2.0"
+gem 'protected_attributes'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.1'
