@@ -15,7 +15,7 @@ class Usuario < ActiveRecord::Base
                   :usuario, :nome_completo, :papel_ids, :campus_id, :confirmed_at
 
   validates :email, presence: true, uniqueness: true
-  validates :nome_completo, presence: true, allow_blank: true
+  validates :nome_completo, presence: true
 
   def conteudos_editaveis
     Conteudo.where(contribuidor_id: self.id, state: 'editavel')
@@ -120,7 +120,7 @@ class Usuario < ActiveRecord::Base
   def pode_buscar_por_estados?
     self.gestor? || self.instituicao_admin? || self.admin?
   end
-  
+
   def pode_adicionar_conteudo?
     contribuidor? && campus_id.present?
   end
