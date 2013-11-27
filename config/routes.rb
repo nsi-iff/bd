@@ -88,7 +88,7 @@ DigitalLibrary::Application.routes.draw do
   get "/cesta/baixar_conteudo_em_odt", :to => 'graos#baixar_conteudo_em_odt'
 
   get "/areas/:id/sub_areas" => "areas#sub_areas"
-  get "/instituicoes/:id/campus" => "instituicoes#campus"
+  post "/instituicoes/:id/campus" => "instituicoes#campus"
   get "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
   get '/editor' => 'editor#index', as: :editor
   post '/editor' => 'editor#download'
