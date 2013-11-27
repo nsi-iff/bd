@@ -55,5 +55,4 @@ group :test, :development do
   gem 'simplecov-rcov', require: false
   gem 'zippy'
   gem 'toothbrush', github: 'rodrigomanhaes/toothbrush'
-  gem 'spork'
 end
