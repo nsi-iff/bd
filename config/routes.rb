@@ -27,18 +27,18 @@ DigitalLibrary::Application.routes.draw do
 
   get   "/areas/:area_id/conteudos", to: "conteudos#por_area", as: :conteudos_por_area
   get   "/sub_area/:sub_area_id/conteudos", to: "conteudos#por_sub_area", as: :conteudos_por_sub_area
-  match "/ajuda",     :to => "pages#ajuda"
-  match "/ajuda/manuais", :to => "pages#manuais"
-  match "/sobre",     :to => "pages#sobre"
-  match "/converter_video", :to =>"pages#converter_video"
-  match '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
-  match '/estatisticas', :to => "pages#estatisticas"
-  match '/por_conteudo_individual', :to => "pages#por_conteudo_individual"
-  match '/por_tipo_de_conteudo', :to => "pages#por_tipo_de_conteudo"
-  match '/por_subarea_do_conhecimento', :to => "pages#por_subarea_do_conhecimento"
-  match '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
-  match '/mapa_do_site', :to => 'pages#mapa_do_site'
-  match '/acessibilidade', :to => 'pages#acessibilidade'
+  get "/ajuda",     :to => "pages#ajuda"
+  get "/ajuda/manuais", :to => "pages#manuais"
+  get "/sobre",     :to => "pages#sobre"
+  get "/converter_video", :to =>"pages#converter_video"
+  get '/adicionar_conteudo', :to => 'pages#adicionar_conteudo'
+  get '/estatisticas', :to => "pages#estatisticas"
+  get '/por_conteudo_individual', :to => "pages#por_conteudo_individual"
+  get '/por_tipo_de_conteudo', :to => "pages#por_tipo_de_conteudo"
+  get '/por_subarea_do_conhecimento', :to => "pages#por_subarea_do_conhecimento"
+  get '/documentos_mais_acessados', :to => 'pages#documentos_mais_acessados'
+  get '/mapa_do_site', :to => 'pages#mapa_do_site'
+  get '/acessibilidade', :to => 'pages#acessibilidade'
   resources :buscas do
     post :cadastrar_mala_direta, :to => 'buscas#cadastrar_mala_direta'
     post :remover_mala_direta, :to => 'buscas#remover_mala_direta'
@@ -52,7 +52,7 @@ DigitalLibrary::Application.routes.draw do
   get :buscar_pronatec, to: 'buscas#buscar_pronatec'
 
   resources :tutoriais, :only => :index, :path => '/ajuda/tutoriais'
-  match 'ajuda/tutoriais/*tutorial' => 'tutoriais#show', :via => :get
+  get 'ajuda/tutoriais/*tutorial' => 'tutoriais#show'
 
   resources :conteudos, except: [:index] do
     member do
@@ -87,11 +87,11 @@ DigitalLibrary::Application.routes.draw do
   get "/cesta/baixar_conteudo", :to => 'graos#baixar_conteudo'
   get "/cesta/baixar_conteudo_em_odt", :to => 'graos#baixar_conteudo_em_odt'
 
-  match "/areas/:id/sub_areas" => "areas#sub_areas"
-  match "/instituicoes/:id/campus" => "instituicoes#campus"
-  match "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
+  get "/areas/:id/sub_areas" => "areas#sub_areas"
+  get "/instituicoes/:id/campus" => "instituicoes#campus"
+  get "/eixos_tematicos/:id/cursos" => "eixos_tematicos#cursos"
   get '/editor' => 'editor#index', as: :editor
   post '/editor' => 'editor#download'
 
-  match '*path' => 'application#routing_error' unless Rails.application.config.consider_all_requests_local
+  get '*path' => 'application#routing_error' unless Rails.application.config.consider_all_requests_local
 end
