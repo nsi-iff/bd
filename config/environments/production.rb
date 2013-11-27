@@ -69,4 +69,6 @@ DigitalLibrary::Application.configure do
     :email_prefix => "[BD ERRO] ",
     :sender_address => %{"BD" <no-replay@bd.iff.edu.br>},
     :exception_recipients => %w{bibliotecadigital@iff.edu.br}
+
+  config.eager_load = true
 end

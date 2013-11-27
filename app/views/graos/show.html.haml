@@ -11,6 +11,6 @@
 
 = button_to "Download" , grao_baixar_grao_path(@grao), method: :get
 - unless @cesta.include? @grao.referencia
-  = button_to 'Adicionar à Cesta de Grãos', adicionar_a_cesta_grao_path(@grao), method: :put, remote: true, style: 'width:200px'
+  = button_to 'Adicionar à Cesta de Grãos', adicionar_a_cesta_grao_path(@grao, format: :js), method: :put, remote: true, style: 'width:200px'
 - if current_usuario
   = button_to "Adicionar à Estante", favoritar_grao_path(@grao), method: :put, style: 'width:150px'

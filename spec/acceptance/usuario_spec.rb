@@ -25,7 +25,7 @@ feature 'sessão e registro de usuário' do
     deslogar
     visit root_path
     click_link 'Registrar Usuário'
-    fill_in 'Nome Completo', with: 'Foo Bar'
+    fill_in 'Nome Completo', with: 'Qualquer'
     fill_in 'E-mail', with: 'foo@bar.com'
     fill_in 'usuario_password', with: 'foobar'
     fill_in 'Confirmação de Senha', with: 'foobar'
@@ -33,6 +33,9 @@ feature 'sessão e registro de usuário' do
     select 'Campus Campos Centro', from: 'Campus'
     click_button 'Registrar'
     page.should have_content 'mensagem com um link de confirmação foi enviada para o seu e-mail'
+    usuario = Usuario.where(email: 'foo@bar.com').take
+    expect(usuario.nome_completo).to eql 'Qualquer'
+    expect(usuario.campus.nome).to eql 'Campus Campos Centro'
   end
 
   scenario 'acessar sistema' do
