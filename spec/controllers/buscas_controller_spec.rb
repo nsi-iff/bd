@@ -12,7 +12,7 @@ describe BuscasController do
       Busca.should_receive(:new).with(
         busca: nil,
         parametros: {"titulo" => "linguagens dinâmicas"}).
-        and_return(mock(:busca).as_null_object)
+        and_return(double(:busca).as_null_object)
       post :busca_avancada, parametros: {titulo: "linguagens dinâmicas"}
     end
 

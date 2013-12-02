@@ -34,8 +34,8 @@ describe Busca do
 
   context "#resultados retorna conteudos buscando" do
     it "em 'conteudos' e 'arquivos'se o termo #busca existir" do
-      conteudos = stub(:conteudo)
-      arquivos = stub(:arquivos)
+      conteudos = double(:conteudo)
+      arquivos = double(:arquivos)
       conteudos.should_receive(:+).with(arquivos).and_return([:conteudo])
       subject.should_receive(:buscar_em_conteudos).and_return(conteudos)
       subject.should_receive(:buscar_em_arquivos).and_return(arquivos)
@@ -44,7 +44,7 @@ describe Busca do
     end
 
     it "no índice 'conteudos' se #busca for vazio" do
-      conteudos = [stub(:conteudo)]
+      conteudos = [double(:conteudo)]
       subject.should_receive(:buscar_em_conteudos).and_return(conteudos)
       subject.should_not_receive(:buscar_em_arquivos)
       subject.parametros = {autor: 'Why'}
@@ -53,7 +53,7 @@ describe Busca do
   end
 
   it "#buscar_em_conteudos deve buscar no índice 'conteudos' do elasticsearch" do
-    result = stub(:result)
+    result = double(:result)
     result.stub_chain(:results, :to_a).and_return([])
     Tire.should_receive('search').with('conteudos', load: true).and_return(result)
     subject.buscar_em_conteudos.should eq([])
@@ -72,8 +72,8 @@ describe Busca do
   end
 
   it "#buscar_em_arquivos retornar os conteudos buscando no índice 'arquivos'" do
-    result = stub(:result)
-    arquivos = [stub(:arquivo, conteudo: :conteudo)]
+    result = double(:result)
+    arquivos = [double(:arquivo, conteudo: :conteudo)]
     result.stub_chain(:results, :to_a).and_return(arquivos)
     Tire.should_receive('search').with('arquivos', load: true).and_return(result)
     subject.buscar_em_arquivos.should eq([:conteudo])

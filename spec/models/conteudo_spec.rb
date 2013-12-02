@@ -1,4 +1,4 @@
-# encoding: utf-8
+ encoding: utf-8
 
 require 'spec_helper'
 require 'integration/fake_nsicloudooo'
@@ -41,7 +41,7 @@ describe Conteudo do
           end
 
           it 'envia para granularização' do
-            cloudooo.stub(:new).and_return(oo = stub)
+            cloudooo.stub(:new).and_return(oo = double)
             cloudooo.should_receive(:granulate)
             conteudo.aprovar!
           end
@@ -283,7 +283,7 @@ describe Conteudo do
     end
 
     it 'não deve enviar arquivo ao SAM' do
-      NSISam::Client.stub(:new).and_return(sam_mock = mock)
+      NSISam::Client.stub(:new).and_return(sam_mock = double)
       sam_mock.should_not_receive(:store)
       conteudo.valid?
     end
@@ -389,12 +389,12 @@ describe Conteudo do
   context 'pesquisa por meta-dados' do
     it "retorna os resultados de uma busca" do
       Busca.should_receive(:new).with(busca: 'busca') {
-        mock(:result).as_null_object }
+        double(:result).as_null_object }
       Conteudo.search 'busca'
     end
 
     it "pesquisa no índice 'conteudos' e 'arquivos' do elasticsearch" do
-      result = mock(:result, results: [])
+      result = double(:result, results: [])
       Tire.should_receive('search').with('conteudos', {load: true}).and_return(result)
       Tire.should_receive('search').with('arquivos', {load: true}).and_return(result)
       Conteudo.search 'busca'
@@ -597,7 +597,7 @@ describe Conteudo do
     conteudo.destroy
     expect { conteudo.arquivo.reload }.to raise_error(ActiveRecord::RecordNotFound)
   end
-  
+
   it 'não permite extração de metadados por default' do
     Conteudo.new.permite_extracao_de_metadados?.should be_false
   end
