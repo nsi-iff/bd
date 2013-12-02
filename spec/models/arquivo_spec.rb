@@ -56,7 +56,7 @@ describe Arquivo do
   end
 
   context "extrai do arquivo do upload" do
-    before(:all) do
+    before(:each) do
       subject.uploaded_file = ActionDispatch::Http::UploadedFile.new({
         filename: 'arquivo.rtf',
         type: 'text/rtf',
