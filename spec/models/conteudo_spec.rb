@@ -585,7 +585,7 @@ describe Conteudo do
     end
 
     it "salva o arquivo se necessário, caso exista" do
-      expect { create(:conteudo) }.to_not raise_error(NoMethodError)
+      expect { create(:conteudo) }.to_not raise_error
       conteudo.arquivo.should_receive(:salvar_se_necessario)
       conteudo.save
     end
