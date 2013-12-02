@@ -2,11 +2,6 @@
 require "spec_helper"
 
 describe Busca do
-  its(:parametros) { should be_accessible }
-  its(:busca) { should be_accessible }
-  its(:titulo) { should be_accessible }
-  its(:descricao) { should be_accessible }
-
   it "trata os parâmetros de busca para a query no elasticsearch" do
     form_params = {titulo: "linguagens dinâmicas",
                     autor: "Why",

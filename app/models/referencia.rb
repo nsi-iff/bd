@@ -6,14 +6,12 @@ class Referencia < ActiveRecord::Base
   before_save :criar_tipo_do_grao, :if => lambda { |r| r.referenciavel_type == 'Grao' }
   has_and_belongs_to_many :favoritadores, class_name: 'Usuario', join_table: 'favoritos'
 
-  attr_accessible :referenciavel
-
   def referenciavel_removido!
     favoritadores.each do |favoritador|
       Mailer.notificar_usuarios_referenciavel_removido(favoritador, self.referenciavel).deliver
     end
   end
-  
+
   def self.referenciavel_por_id_referencia(referencia_id)
     find_by_id(referencia_id).try(:referenciavel)
   end

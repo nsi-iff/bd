@@ -4,8 +4,6 @@ class Grao < ActiveRecord::Base
   belongs_to :conteudo
   delegate :referencia_abnt, :to => :conteudo
 
-  attr_accessible :tipo, :key
-
   before_destroy :deleta_do_sam
 
   def arquivo?
@@ -13,10 +11,10 @@ class Grao < ActiveRecord::Base
   end
 
   def link_download
-    sam = ServiceRegistry.sam 
+    sam = ServiceRegistry.sam
     sam.download_link_for_file key
   end
-  
+
   def audio?
     tipo == 'audio'
   end

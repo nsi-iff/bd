@@ -30,6 +30,7 @@ describe ConteudosController do
   describe 'POST create' do
     it 'autoriza Conteudo para escrita' do
       controller.should_receive(:authorize!).with(:create, Conteudo)
+      controller.stub(:conteudo_da_requisicao).and_return({})
       post :create, conteudo: {}, tipo: 'artigo_de_evento'
     end
   end

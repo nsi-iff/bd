@@ -192,8 +192,46 @@ class ConteudosController < ApplicationController
     params['tipo'].camelize.constantize
   end
 
+  def tipo_conteudo
+    params['tipo'].try(:to_sym) || @conteudo.nome_como_simbolo
+  end
+
   def conteudo_da_requisicao
-    params[params['tipo'].try(:to_sym) || @conteudo.nome_como_simbolo]
+    params.require(tipo_conteudo).permit(conteudo_attributes, conteudo_hash)
+  end
+
+  def conteudo_attributes
+    [:contribuidor, :titulo, :link, :sub_area_id, :campus_id, :contribuidor_id,
+     :subtitulo, :resumo, :direitos, :sub_area, :campus, :autores, :pronatec].
+     concat(CONTEUDO_ATTRIBUTES_POR_TIPO[tipo_conteudo])
+  end
+
+  CONTEUDO_ATTRIBUTES_POR_TIPO = {
+      'artigo_de_periodico' => [
+        :nome_periodico, :editora, :fasciculo, :volume_publicacao,
+        :data_publicacao_br, :local_publicacao, :pagina_inicial, :pagina_final],
+      'artigo_de_evento' => [
+        :subtitulo, :nome_evento, :numero_evento, :local_evento, :ano_evento,
+        :local_publicacao, :titulo_anais, :pagina_inicial, :pagina_final,
+        :editora, :resumo, :direitos],
+      'livro' => [:traducao, :numero_edicao, :local_publicacao, :editora,
+        :ano_publicacao, :numero_paginas],
+      'objeto_de_aprendizagem' => [:palavras_chave, :tempo_aprendizagem,
+        :novas_tags, :idioma_id],
+      'periodico_tecnico_cientifico' => [:editora, :local_publicacao,
+        :ano_primeiro_volume, :ano_ultimo_volume],
+      'relatorio' => [:local_publicacao, :ano_publicacao, :numero_paginas],
+      'trabalho_de_obtencao_de_grau' => [:numero_paginas, :instituicao,
+        :grau_id, :data_defesa_br, :local_defesa]
+    }.with_indifferent_access
+
+  def conteudo_hash
+    hash = {
+      arquivo_attributes: [:uploaded_file],
+      autores_attributes: [:nome, :lattes, :_destroy]
+    }
+    hash.merge!(curso_ids: []) if tipo_conteudo.to_sym == :objeto_de_aprendizagem
+    hash.with_indifferent_access
   end
 
   def obter_conteudo

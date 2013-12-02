@@ -1,8 +1,7 @@
 class Busca < ActiveRecord::Base
   belongs_to :usuario
   validates :titulo, presence: true
-  attr_accessor :parametros, :objeto_veio_do_pronatec, :usuario_logado
-  attr_accessible :parametros, :busca, :titulo, :descricao
+  attr_accessor :parametros, :objeto_veio_do_pronatec, :usuario_logado, :busca
 
   def self.enviar_email_mala_direta
     ontem = Date.yesterday.strftime("%d/%m/%y")

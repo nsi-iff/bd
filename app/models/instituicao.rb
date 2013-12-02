@@ -5,8 +5,6 @@ class Instituicao < ActiveRecord::Base
 
   validates :nome, presence: true, uniqueness: true
 
-  attr_accessible :nome
-  
   NENHUMA = 'Não pertenço a uma Instituição da Rede Federal de EPCT'
 
   def usuarios

@@ -17,8 +17,10 @@ class BuscasController < InheritedResources::Base
   end
 
   def busca_avancada
-    @busca = Busca.new(busca: params[:busca], parametros: params[:parametros])
-    if !@busca.busca? && @busca.parametros.empty?
+    @busca = Busca.new
+    @busca.busca = params[:busca]
+    @busca.parametros = params[:parametros]
+    if @busca.busca.blank? && @busca.parametros.empty?
       redirect_to buscas_path,
         :notice => "Busca não realizada. Favor preencher algum critério de busca"
     else
@@ -46,7 +48,7 @@ class BuscasController < InheritedResources::Base
   end
 
   def create
-    @busca = current_usuario.buscas.new(params[:busca].merge busca: session[:ultima_busca])
+    @busca = current_usuario.buscas.new(params_busca.merge busca: session[:ultima_busca])
     create! notice: "Busca salva com sucesso"
   end
 
@@ -81,5 +83,13 @@ class BuscasController < InheritedResources::Base
 
   def tratar_dados_da_busca
     params[:busca].gsub!('/', '\\/')
+  end
+
+  def params_busca
+    params.require(:busca).permit(:titulo, :descricao)
+  end
+
+  def permitted_params
+    params.permit(busca: [:titulo, :busca, :descricao])
   end
 end
