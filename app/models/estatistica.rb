@@ -35,7 +35,7 @@ class Estatistica
 
   def percentual_de_acessos_por_tipo_de_conteudo
     percentuais = []
-    soma_geral_dos_acessos = @conteudos_validos.sum(&:numero_de_acessos)
+    soma_geral_dos_acessos = @conteudos_validos.sum(:numero_de_acessos)
     unless @conteudos_validos.empty?
       if soma_geral_dos_acessos == 0
         TIPOS_DE_CONTEUDO.each do |tipo_atual|
@@ -44,7 +44,7 @@ class Estatistica
       else
         TIPOS_DE_CONTEUDO.each do |tipo_atual|
           percentuais << [tipo_atual.to_s.underscore.humanize,
-                          tipo_atual.all.sum(&:numero_de_acessos) /
+                          tipo_atual.all.sum(:numero_de_acessos) /
                           soma_geral_dos_acessos.to_f * 100]
         end
       end
@@ -54,7 +54,7 @@ class Estatistica
 
   def cinco_maiores_percentuais_de_acessos_por_subarea
     percentuais = []
-    soma_geral_dos_acessos = @conteudos_validos.sum(&:numero_de_acessos)
+    soma_geral_dos_acessos = @conteudos_validos.sum(:numero_de_acessos)
     id_sub_area_dos_conteudos = @conteudos_validos.map(&:sub_area_id).uniq
     unless @conteudos_validos.empty?
       if soma_geral_dos_acessos == 0
@@ -64,7 +64,7 @@ class Estatistica
       else
         id_sub_area_dos_conteudos.each do |id|
           percentuais << [@conteudos_validos.where(sub_area_id: id).
-                            sum(&:numero_de_acessos) /
+                            sum(:numero_de_acessos) /
                           soma_geral_dos_acessos.to_f * 100,
                           SubArea.find(id).nome]
         end
