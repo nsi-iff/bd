@@ -23,7 +23,7 @@ class UsuariosController < ApplicationController
 
   def atualizar_papeis
     params[:papeis] ||= {}
-    Usuario.includes(:papeis).all.each do |usuario|
+    Usuario.includes(:papeis).each do |usuario|
       usuario.update_attributes papel_ids: params[:papeis]["#{usuario.id}"] || []
     end
     unless params[:excluir_usuario].nil?

@@ -39,7 +39,7 @@ class Usuario < ActiveRecord::Base
 
   def usuarios_gerenciaveis
     if self.admin?
-      Usuario.includes(:papeis).all
+      Usuario.includes(:papeis)
     else
       self.campus.instituicao.usuarios
     end

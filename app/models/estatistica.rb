@@ -1,5 +1,5 @@
 class Estatistica
-  attr_reader :numero_de_usuarios_cadastrados, 
+  attr_reader :numero_de_usuarios_cadastrados,
               :percentual_de_acessos_por_tipo_de_conteudo,
               :percentual_de_acessos_por_subarea_de_conhecimento,
               :instituicoes_que_mais_contribuiram,
@@ -22,7 +22,7 @@ class Estatistica
   end
 
   def documentos_mais_acessados
-    @conteudos_validos.all.sort_by(&:numero_de_acessos).reverse
+    @conteudos_validos.sort_by(&:numero_de_acessos).reverse
   end
 
   def cinco_documentos_mais_acessados
@@ -35,7 +35,7 @@ class Estatistica
 
   def percentual_de_acessos_por_tipo_de_conteudo
     percentuais = []
-    soma_geral_dos_acessos = @conteudos_validos.all.sum(&:numero_de_acessos)
+    soma_geral_dos_acessos = @conteudos_validos.sum(&:numero_de_acessos)
     unless @conteudos_validos.empty?
       if soma_geral_dos_acessos == 0
         TIPOS_DE_CONTEUDO.each do |tipo_atual|
@@ -54,8 +54,8 @@ class Estatistica
 
   def cinco_maiores_percentuais_de_acessos_por_subarea
     percentuais = []
-    soma_geral_dos_acessos = @conteudos_validos.all.sum(&:numero_de_acessos)
-    id_sub_area_dos_conteudos = @conteudos_validos.all.map(&:sub_area_id).uniq
+    soma_geral_dos_acessos = @conteudos_validos.sum(&:numero_de_acessos)
+    id_sub_area_dos_conteudos = @conteudos_validos.map(&:sub_area_id).uniq
     unless @conteudos_validos.empty?
       if soma_geral_dos_acessos == 0
         id_sub_area_dos_conteudos.each do |id|
@@ -84,7 +84,7 @@ class Estatistica
 
   def campus_contribuidores
     contribuidores = []
-    @conteudos_por_periodo.all.map(&:campus_id).uniq.each do |id|
+    @conteudos_por_periodo.map(&:campus_id).uniq.each do |id|
       contribuidores << [@conteudos_por_periodo.where(campus_id: id).count, Campus.find(id).nome]
     end
     contribuidores.sort.reverse[0..4]

@@ -4,7 +4,7 @@ def criar_arquivo_zip(cesta_de_graos)
     t = Tempfile.new("cesta_temporaria", tmpdir="#{Rails.root}/tmp")
     @referencias_abnt = ""
     Zip::ZipOutputStream.open(t.path) do |z|
-      cesta_de_graos.all.map {|referencia|
+      cesta_de_graos.map {|referencia|
         referencia.referenciavel.key
       }.each_with_index do |key, index|
         grao = Grao.where(:key => key).first
