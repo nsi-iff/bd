@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 
 gem 'exception_notification', '~> 4.0.0'
 gem 'devise', '~>3.2.2'
