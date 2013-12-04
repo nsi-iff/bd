@@ -1,6 +1,8 @@
 #encoding: utf-8
 
 class RegistrationsController < Devise::RegistrationsController
+  before_filter :configure_permitted_params
+
   def edit
     @user = current_user
   end
@@ -17,9 +19,8 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def sign_up_params
-    devise_parameter_sanitizer.for(:sign_up).merge \
-      nome_completo: params[:usuario][:nome_completo],
-      campus_id: params[:usuario][:campus_id]
+  def configure_permitted_params
+    devise_parameter_sanitizer.for(:sign_up).concat(
+      [:nome_completo, :campus_id])
   end
 end
